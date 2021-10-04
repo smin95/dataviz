@@ -1,9 +1,32 @@
 --- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+title: "Data Visualization in R Using smplot"
+author: "Seung Hyun Min"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+documentclass: book
 ---
 
-# Down the rabbit-hole
+```{r include=FALSE,cache=FALSE,purl=FALSE}
+# don't cache anything on this page
+knitr::opts_chunk$set(cache = FALSE)
+```
+
+# Welcome! {-#index}
+
+
+<img src="./img/sample.png" width="750" alt="Cover image" align="right" style="margin: 0 1em 0 1em"/>
+
+
+This book outlines tutorials in using ggplot2 in R coupled with smplot, a package developed by myself. Since smplot is a package for newcomers to R, I have decided to combine ggplot2 tutorials and documentation of smplot together.
+
+## For those who are familiar with R & ggplot2 already {-}
+
+Please skip Chapter 1-3. 
+
+## Contribution {-}
+If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me sammin95@gmail.com. If you find issues with the 'smplot' package, please pull-request on [Github](https://github.com/smin95/smplot).
+
+## License {-}
+smplot is under the MIT license. This tutorial is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
 
