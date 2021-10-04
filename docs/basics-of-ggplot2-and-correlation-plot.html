@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Basics of ggplot2 and Correlation Plot | Data Visualization in R Using smplot</title>
-  <meta name="description" content="Chapter 2 Basics of ggplot2 and Correlation Plot | Data Visualization in R Using smplot" />
+  <title>Chapter 2 Basics of ggplot2 and Correlation Plot | Data Visualization in R Using smplot (in working progress)</title>
+  <meta name="description" content="Chapter 2 Basics of ggplot2 and Correlation Plot | Data Visualization in R Using smplot (in working progress)" />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Basics of ggplot2 and Correlation Plot | Data Visualization in R Using smplot" />
+  <meta property="og:title" content="Chapter 2 Basics of ggplot2 and Correlation Plot | Data Visualization in R Using smplot (in working progress)" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Basics of ggplot2 and Correlation Plot | Data Visualization in R Using smplot" />
+  <meta name="twitter:title" content="Chapter 2 Basics of ggplot2 and Correlation Plot | Data Visualization in R Using smplot (in working progress)" />
   
   
   
@@ -140,7 +140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
 <ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-those-who-are-familiar-with-r-ggplot2-already"><i class="fa fa-check"></i>For those who are familiar with R &amp; ggplot2 already</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#contribution"><i class="fa fa-check"></i>Contribution</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and Contact</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>1</b> Download RStudio &amp; Basics of R</a>
@@ -239,7 +239,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>4.7</b> Slope chart - <code>sm_slope()</code></a></li>
 <li class="chapter" data-level="4.8" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>4.8</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
 <li class="chapter" data-level="4.9" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>4.9</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
-<li class="chapter" data-level="" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#overriding-defaults-of-smplots-themes"><i class="fa fa-check"></i>Overriding defaults of smplot’s themes</a></li>
+<li class="chapter" data-level="4.10" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#overriding-defaults-of-smplots-themes"><i class="fa fa-check"></i><b>4.10</b> Overriding defaults of smplot’s themes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html"><i class="fa fa-check"></i><b>5</b> Recreating the Cover Example Figure</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#boxplot-and-violin-plot-1"><i class="fa fa-check"></i><b>5.1</b> Boxplot and violin plot</a>
+<ul>
+<li class="chapter" data-level="" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#upload-pre-existing-data"><i class="fa fa-check"></i>Upload pre-existing data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#bar-plot-and-slope-chart"><i class="fa fa-check"></i><b>5.2</b> Bar plot and slope chart</a></li>
+<li class="chapter" data-level="5.3" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#raincloud-plot"><i class="fa fa-check"></i><b>5.3</b> Raincloud plot</a></li>
+<li class="chapter" data-level="5.4" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#put-all-figures-together"><i class="fa fa-check"></i><b>5.4</b> Put all figures together</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -252,7 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization in R Using smplot</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization in R Using smplot (in working progress)</a>
           </h1>
         </div>
 

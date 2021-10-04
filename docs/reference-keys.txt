@@ -25,3 +25,9 @@ bar-plot---sm_bar
 slope-chart---sm_slope
 a-bland-altman-plot---sm_bland_altman
 raincloud-plot---sm_raincloud
+overriding-defaults-of-smplots-themes
+recreating-the-cover-example-figure
+boxplot-and-violin-plot-1
+bar-plot-and-slope-chart
+raincloud-plot
+put-all-figures-together

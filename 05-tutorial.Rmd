@@ -8,7 +8,7 @@ editor_options:
 
 # Full Guide on smplot
 
-This chapter is for those who know how to use ggplot2 already and skipped Chapters 1-3 from the online tutorial.
+This chapter is for those who know how to use ggplot2 already and skipped Chapters 1-3 from the online tutorial. It also includes tutorials about `sm_bar()`, `sm_bland_altman()` and `sm_raincloud()`, all of which are not mentioned in the preceding chapters.
 
 
 ```{r setup, include=FALSE}
@@ -419,7 +419,7 @@ sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.
 ```
 
 
-## Overriding defaults of smplot's themes {-}
+## Overriding defaults of smplot's themes 
 
 - You can override all the defaults by adding `theme()` object to your **ggplot2** graph. 
 
