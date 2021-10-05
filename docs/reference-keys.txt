@@ -1,7 +1,7 @@
 fig:pressure
 fig:unnamed-chunk-2
 fig:unnamed-chunk-19
-fig:unnamed-chunk-87
+fig:unnamed-chunk-86
 download-rstudio-basics-of-r
 setting-up-rstudio
 basics-of-r

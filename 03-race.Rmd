@@ -494,11 +494,10 @@ save_plot('figure1b.png', figure1)
   - You have learned to plot `geom_point()` and `geom_smooth()` in the same graph.
 
 - **smplot** functions can be used to improve **ggplot2** visually.
-  - For scatterplots, add `sm_corr_theme()`.
+  - For correlation plots, add `sm_corr_theme()`.
   - You can report statistical results and plot linear regression from correlation by `sm_statCorr()`.
   - You can also select colors using `sm_color()`.
-  - **smplot is not necessary to make a graph using ggplot2. Its goal is to improve it. If you don't like it, you don't have to use it.**
-
+  
 - Save the graph as an image file in your working directory.
   - Working directory has to be set in RStudio (**Session -> Set Working Directory -> Choose Directory**)
   - Then use `save_plot()` from **cowplot** to save the image in your directory (folder **LearnR**).

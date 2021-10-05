@@ -19,7 +19,7 @@ library(smplot)
 
 ### Download requirements {-}
 
-- Download **data.csv** from https://www.ses21.com/data.csv
+- Download **data.csv** from https://raw.githubusercontent.com/smin95/dataviz/master/data.csv
 - Put the file **data.csv** in your **LearnR** folder
 
 ### Before we get started {-}
@@ -35,11 +35,12 @@ library(smplot)
 ### data.csv {-}
 
 - Let's load **data.csv** in R from your **LearnR** folder.
+- Then store the loaded data into a variable called `df`. 
 - We will use a function from the **tidyverse** package called **read_csv()**.
   - For more information, type `?read_csv()`.
 
 ```{r}
-read_csv('data.csv')
+df <- read_csv('data.csv')
 ```
 
 - If you get an **error** such as `object 'data.csv' not found`, make sure you set your working directory in the **LearnR** folder. Also make sure you have downloaded your data and saved it in the **LearnR** folder.
@@ -71,10 +72,6 @@ View(df)
 - In fact, 'data.csv' has the structure of a typical **data frame**.
   - Each **column** is a **variable**.
   - Each **row** represents an **observation** 
-
-```{r}
-df <- read_csv('data.csv')
-```
 
 - In future, I suggest you save data that has a similar structure to that of **df**. 
   - Put your own data in Microsoft Excel and save it as a **csv file** to load it on R.
@@ -491,4 +488,3 @@ save_plot('violin.jpg', my_violin, base_asp = 1)
   - These are functions from the **ggplot2** package.
 - You can also plot individual data at the same time with functions from the **smplot** package.
   - These functions are `sm_boxplot()` and `sm_violin()`.
-  - **smplot** functions are not necessary to make a graph with **ggplot2**. If you don't like it, you don't have to use it.

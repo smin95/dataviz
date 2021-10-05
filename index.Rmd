@@ -15,11 +15,11 @@ knitr::opts_chunk$set(cache = FALSE)
 
 <img src="./img/sample.png" width="750" alt="Cover image" align="right" style="margin: 0 1em 0 1em"/>
 
-This book outlines tutorials in using ggplot2 in R coupled with smplot, a package developed by myself. Since smplot is a package for newcomers to R, I have decided to combine ggplot2 tutorials and documentation of smplot together.
+This book guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. 
 
-Note: If you are interested in recreating this figure, please read Chapter 5.
+**Note:** If you are interested in recreating this figure, please read Chapter 5.
 
-## For those who are familiar with R & ggplot2 already {-}
+## For R and ggplot2 experts {-}
 
 Please skip Chapter 1-3. 
 
