@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2021-10-05" />
+<meta name="date" content="2021-10-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -249,7 +249,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#bar-plot-and-slope-chart"><i class="fa fa-check"></i><b>5.2</b> Bar plot and slope chart</a></li>
 <li class="chapter" data-level="5.3" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#raincloud-plot"><i class="fa fa-check"></i><b>5.3</b> Raincloud plot</a></li>
-<li class="chapter" data-level="5.4" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#put-all-figures-together"><i class="fa fa-check"></i><b>5.4</b> Put all figures together</a></li>
+<li class="chapter" data-level="5.4" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#put-all-figures-together"><i class="fa fa-check"></i><b>5.4</b> Put all figures together</a>
+<ul>
+<li class="chapter" data-level="" data-path="recreating-the-cover-example-figure.html"><a href="recreating-the-cover-example-figure.html#the-codes-only-with-no-discussion"><i class="fa fa-check"></i>The codes only with no discussion</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -421,9 +424,18 @@ Figure 1.2: Setting your working directory, image from <a href="https://www.ucl.
 <ul>
 <li>You only need to install them once, but you will need to reload them whenever you start a new session in RStudio using the function <code>library()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="download-rstudio-basics-of-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># it has ggplot2 package</span></span>
-<span id="cb17-2"><a href="download-rstudio-basics-of-r.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># it allows you to save figures in .png file</span></span>
-<span id="cb17-3"><a href="download-rstudio-basics-of-r.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="download-rstudio-basics-of-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># it has ggplot2 package</span></span></code></pre></div>
+<pre><code>## -- Attaching packages ----------------------------------- tidyverse 1.3.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
+## v tibble  3.1.1     v dplyr   1.0.5
+## v tidyr   1.1.3     v stringr 1.4.0
+## v readr   1.4.0     v forcats 0.5.1</code></pre>
+<pre><code>## -- Conflicts -------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="download-rstudio-basics-of-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># it allows you to save figures in .png file</span></span>
+<span id="cb21-2"><a href="download-rstudio-basics-of-r.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span></code></pre></div>
+<pre><code>## To read the updated tutorial for smplot, please visit smin95.com/pubs</code></pre>
 <ul>
 <li>Now let’s make some graphs in the subsequent chapters.</li>
 </ul>

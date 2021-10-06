@@ -130,8 +130,8 @@ print(raincloud)
 
 ```{r, fig.width = 7.4, fig.height= 7.8,warning = F}
 add_four <- plot_grid(boxplot, violin, bar, slope,
-                 ncol =2,
-                 nrow = 2, rel_widths = c(1,1,1,1),
+                 ncol = 2, nrow = 2, 
+                 rel_widths = c(1,1,1,1),
                  scale = 0.95)
 
 print(add_four)
@@ -140,7 +140,8 @@ print(add_four)
 - Then, add the raincloud plot below the combined 2x2 figure (`add_four`).
 
 ```{r, fig.width = 7.4, fig.height= 11.7,warning = F}
-all <- plot_grid(add_four, raincloud, ncol = 1, nrow = 2, rel_widths = c(1,1),
+all <- plot_grid(add_four, raincloud, ncol = 1, 
+                 nrow = 2, rel_widths = c(1,1),
                  rel_heights = c(2,1.05))
 
 print(all)
@@ -151,6 +152,85 @@ print(all)
 ```{r eval = FALSE}
 
 save_plot("sample.png", 
-          tgd, ncol = 2, nrow =3, base_asp = .95,
+          tgd, ncol = 2, nrow = 3, base_asp = .95,
+          dpi = 600)
+```
+
+### The codes only with no discussion {-}
+
+```{r eval = FALSE}
+df <- read_csv('https://raw.githubusercontent.com/smin95/dataviz/master/data.csv') 
+df$Day <- factor(df$Day, levels = c('One','Two','Three'))
+
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
+  sm_boxplot(color = 'white', shape = 21) + 
+  scale_fill_manual(values = sm_palette(3)) +
+  ggtitle('sm_boxplot()') + 
+  theme(plot.title = element_text(face="bold")) -> boxplot
+
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
+  sm_violin() + 
+  scale_color_manual(values = sm_palette(3)) + 
+  ggtitle('sm_violin()') + 
+  theme(plot.title = element_text(face="bold"))-> violin
+
+set.seed(1) # generate random data
+day1 = rnorm(20,0,1)
+day2 = rnorm(20,5,1)
+Subject <- rep(paste0('S',seq(1:20)), 2)
+Data <- data.frame(Value = matrix(c(day1,day2),ncol=1))
+Day <- rep(c('Day 1', 'Day 2'), each = length(day1))
+df1 <- cbind(Subject, Data, Day)
+
+ggplot(data = df1, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', point_alpha = 1, bar_alpha = 0.2,
+          bar_fill_color = 'black') +
+  scale_fill_manual(values = sm_color('blue','orange')) +
+  theme(axis.title.x = element_blank()) +
+  ggtitle('sm_bar()') + 
+  theme(plot.title = element_text(face="bold")) -> bar
+
+ggplot(data = df1, mapping = aes(x = Day, y = Value, 
+                                group = Subject, fill = Day)) +
+  sm_slope(labels = c('Day 1', 'Day 2'),
+            shape = 21, color = 'white', line_alpha = 0.3) +
+  scale_fill_manual(values = sm_color('blue','orange')) +
+  ggtitle('sm_slope()') + 
+  theme(plot.title = element_text(face="bold")) -> slope
+
+# raincloud plot
+set.seed(2) # generate random data
+day1 = rnorm(20,0,1)
+day2 = rnorm(20,5,1)
+day3 = rnorm(20,6,1.5)
+day4 = rnorm(20,7,2)
+Subject <- rep(paste0('S',seq(1:20)), 4)
+Data <- data.frame(Value = matrix(c(day1,day2,day3,day4),ncol=1))
+Day <- rep(c('Day 1', 'Day 2', 'Day 3', 'Day 4'), each = length(day1))
+df2 <- cbind(Subject, Data, Day)
+
+sm_raincloud(data = df2, x = Day, y = Value, group = Subject,
+              boxplot_alpha = 0.5, color = 'white', shape = 21,
+              sep_level = 2, line_alpha = 0.2) +
+  scale_x_continuous(limits = c(0.25,4.75), 
+                     labels = c('1', '2', '3', '4'),
+                     breaks = c(1,2,3,4)) +
+  scale_color_manual(values = rep('transparent',4)) + 
+  scale_fill_manual(values = sm_palette(4)) + 
+  ggtitle('sm_raincloud()') + 
+  xlab('Day') + 
+  theme(plot.title = element_text(face="bold")) -> raincloud
+
+add_four <- plot_grid(boxplot, violin, bar, slope,
+                 ncol =2,
+                 nrow = 2, rel_widths = c(1,1,1,1),
+                 scale = 0.95)
+
+all <- plot_grid(add_four, raincloud, ncol = 1, 
+                 nrow = 2, rel_widths = c(1,1), 
+                 rel_heights = c(2,1.05))
+
+save_plot("sample.png", 
+          tgd, ncol = 2, nrow = 3, base_asp = .95,
           dpi = 600)
 ```
