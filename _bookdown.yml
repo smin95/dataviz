@@ -6,3 +6,14 @@ view: https://github.com/smin95/dataviz/blob/master/%s
 language:
   ui:
     chapter_name: "Chapter "
+
+
+rmd_files: [
+  'index.Rmd',
+  '01-basics.Rmd',
+  '02-corr.Rmd',
+  '03-violinBox.Rmd',
+  '04-smplot.Rmd',
+  '05-coverFig.Rmd',
+  '06-manuscriptFig.Rmd'
+]

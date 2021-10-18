@@ -255,7 +255,7 @@ save_plot("slopes.png",
 
 ## Figure 6 - Raincloud plot
 
-```{r, fig.width = 7.4, fig.height= 15, warning = F}
+```{r, fig.width = 7.25, fig.height= 15, warning = F}
 
 raincloud1 <- sm_raincloud(data = df1, x = Day, y = Value, 
              boxplot_alpha = 0.5, color = 'white', shape = 21,
