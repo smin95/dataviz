@@ -1,9 +1,11 @@
 ---
 output: html_document
-chapter: Recreating the Cover Example Figure
+chapter: Recreating the Manuscript Figures
 editor_options:
   chunk_output_type: console
 ---
+
+# Recreating the Manuscript Figures
 
 Load these packages by typing the codes below.
 
@@ -50,8 +52,6 @@ corr3 <- ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   sm_statCorr(color = sm_color('green'), corr_method = 'spearman') +
   ggtitle('Statistics computed with smplot') 
 
-print(corr3)
-
 text3 <- ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) + 
   geom_point(color = 'white', fill = 'white') + theme_nothing() +
   annotate('text', label = 'Base plot + sm_corr_theme() +\nsm_statCorr()',
@@ -69,6 +69,8 @@ corr_all <- plot_grid(corr1, text1, corr2, text2,
                  label_size = 12,
                  ncol = 2, nrow = 3, 
                  scale = 0.95)
+
+print(corr_all)
 
 save_plot("corr_plots.png", 
           corr_all, ncol = 2, nrow = 3, base_asp = .95,
@@ -114,6 +116,8 @@ bar_all <- plot_grid(bar1, text1, bar2, text2,
                         ncol = 2, nrow = 2, 
                         scale = 0.95)
 
+print(bar_all)
+
 save_plot("bars.png", 
           bar_all, ncol = 2, nrow = 2, base_asp = .95,
           dpi = 600)
@@ -154,6 +158,8 @@ boxplot_all <- plot_grid(boxplot1, text1, boxplot2, text2,
                       ncol = 2, nrow = 2, 
                       scale = 0.95)
 
+print(boxplot_all)
+
 save_plot("boxplots.png", 
           boxplot_all, ncol = 2, nrow = 2, base_asp = .95,
           dpi = 600)
@@ -189,6 +195,8 @@ violin_all <- plot_grid(violin1, text1, violin2, text2,
                          label_size = 12,
                          ncol = 2, nrow = 2, 
                          scale = 0.95)
+
+print(violin_all)
 
 save_plot("violins.png", 
           violin_all, ncol = 2, nrow = 2, base_asp = .95,
@@ -237,6 +245,8 @@ slopes <- plot_grid(slope_n2, slope_n4,
           label_size = 12,
           ncol = 2, nrow = 1, 
           scale = 0.95)
+
+print(slopes)
 
 save_plot("slopes.png", 
           slopes, ncol = 2, nrow = 1, base_asp = .95,
@@ -340,6 +350,8 @@ raincloud_all <- plot_grid(raincloud_2x_all,
                            scale = 0.95,
                            rel_heights = c(7.5,2.5))
 
+print(raincloud_all)
+
 save_plot("rainclouds.png", 
           raincloud_all, ncol = 2, nrow = 4, base_asp = .95,
           dpi = 600)
@@ -403,6 +415,8 @@ case_study <- plot_grid(slope, corr_plot, ba_plot,
                      label_size = 12,
                      ncol = 3, nrow = 1, 
                      scale = 0.95)
+
+print(case_study)
 
 save_plot("case_study.png", 
           case_study, ncol = 3, nrow = 1, base_asp = .95,

@@ -31,6 +31,7 @@ boxplot-and-violin-plot-1
 bar-plot-and-slope-chart
 raincloud-plot
 put-all-figures-together
+recreating-the-manuscript-figures
 figure-1---correlation-plot
 figure-2---bar-plot
 figure-3---boxplot
