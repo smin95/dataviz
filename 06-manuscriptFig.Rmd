@@ -17,7 +17,7 @@ library(smplot)
 
 ## Figure 1 - Correlation plot
 
-```{r, fig.width = 7.4, fig.height= 11.7,warning = F}
+```{r, fig.width = 7.25, fig.height= 11.7,warning = F}
 corr1 <- ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = sm_color('green'), color = 'white',
              size = 3) + # ggplot2 default
@@ -79,7 +79,7 @@ save_plot("corr_plots.png",
 
 ## Figure 2 - Bar plot
 
-```{r, fig.width = 7.4, fig.height= 7.4,warning = F}
+```{r, fig.width = 7.25, fig.height= 7.4,warning = F}
 set.seed(1) # generate random data
 day1 = rnorm(20,0,1)
 day2 = rnorm(20,5,1)
@@ -125,7 +125,7 @@ save_plot("bars.png",
 
 ## Figure 3 - Boxplot
 
-```{r, fig.width = 7.4, fig.height= 7.4,warning = F}
+```{r, fig.width = 7.25, fig.height= 7.4,warning = F}
 df <- read_csv('https://raw.githubusercontent.com/smin95/dataviz/master/data.csv') 
 
 df$Day <- factor(df$Day, levels = c('One','Two','Three'))
@@ -167,7 +167,7 @@ save_plot("boxplots.png",
 
 ## Figure 4 - Violin plot
 
-```{r, fig.width = 7.4, fig.height= 7.4,warning = F}
+```{r, fig.width = 7.25, fig.height= 7.4,warning = F}
 violin1 <- ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   geom_violin() + 
   theme(legend.position = 'none') +
@@ -359,7 +359,7 @@ save_plot("rainclouds.png",
 
 ## Figure 7 - Case study 
 
-```{r, fig.width = 11.1, fig.height= 3.7, warning = F}
+```{r, fig.width = 10.95, fig.height= 3.7, warning = F}
 
 set.seed(11) # generate random data
 method1 = c(rnorm(19,0,1),2.5)

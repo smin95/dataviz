@@ -165,13 +165,13 @@ df$Day <- factor(df$Day, levels = c('One','Two','Three'))
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
   sm_boxplot(color = 'white', shape = 21) + 
   scale_fill_manual(values = sm_palette(3)) +
-  ggtitle('sm_boxplot()') + 
+  ggtitle('Boxplot') + 
   theme(plot.title = element_text(face="bold")) -> boxplot
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   sm_violin() + 
   scale_color_manual(values = sm_palette(3)) + 
-  ggtitle('sm_violin()') + 
+  ggtitle('Violin plot') + 
   theme(plot.title = element_text(face="bold"))-> violin
 
 set.seed(1) # generate random data
@@ -187,7 +187,7 @@ ggplot(data = df1, mapping = aes(x = Day, y = Value, fill = Day)) +
           bar_fill_color = 'black') +
   scale_fill_manual(values = sm_color('blue','orange')) +
   theme(axis.title.x = element_blank()) +
-  ggtitle('sm_bar()') + 
+  ggtitle('Bar plot') + 
   theme(plot.title = element_text(face="bold")) -> bar
 
 ggplot(data = df1, mapping = aes(x = Day, y = Value, 
@@ -195,7 +195,7 @@ ggplot(data = df1, mapping = aes(x = Day, y = Value,
   sm_slope(labels = c('Day 1', 'Day 2'),
             shape = 21, color = 'white', line_alpha = 0.3) +
   scale_fill_manual(values = sm_color('blue','orange')) +
-  ggtitle('sm_slope()') + 
+  ggtitle('Slope chart') + 
   theme(plot.title = element_text(face="bold")) -> slope
 
 # raincloud plot
@@ -217,7 +217,7 @@ sm_raincloud(data = df2, x = Day, y = Value, group = Subject,
                      breaks = c(1,2,3,4)) +
   scale_color_manual(values = rep('transparent',4)) + 
   scale_fill_manual(values = sm_palette(4)) + 
-  ggtitle('sm_raincloud()') + 
+  ggtitle('Raincloud plot') + 
   xlab('Day') + 
   theme(plot.title = element_text(face="bold")) -> raincloud
 

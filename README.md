@@ -1,26 +1,16 @@
-### Render the book
+# Data Visualization in R Using smplot
+October 18th, 2021
 
-- [ ] 1. Install **bookdown** with `install.packages("bookdown")`. If you already have it, update to the [latest version](https://CRAN.R-project.org/package=bookdown).
+Seung Hyun (Sam) Min
 
-- [ ] 2. Render locally with `bookdown::render_book("index.Rmd")`.
+This repository contains the Markdown files for the book "Data Visualization in R Using smplot" The book was completed using the bookdown package (www.bookdown.org). You can acccess the book with the link here (smin95.github.io/dataviz/).
 
-- [ ] 3. Use `browseURL("docs/index.html")` to view your book locally (or just open `index.html` in a browser).
+## Frequently Asked Questions
+**1\. Why did you create the smplot R package?
+Actually, I created it because I had become too tired of manually tweaking the defaults of ggplot2 all the time. I had also developd my own style for data visualization. I wanted to automate the process to make it easier for myself, and I decided later to make a guide for the public and future students.
 
-- [ ] 4. If it looks good, commit and push all changed files to GitHub. 
+**2\. Is the smplot package available on CRAN yet?
+No. But I plan to submit it to CRAN in the future.
 
-(You will need to repeat steps 2 and 4 every time you wish to update the book online.)
-
-### Edit README
-
-Once you've completed these steps, delete the content of this **README** and add a short description of your project with a link to the book URL. It would be appreciated if you add the following to the end:
-
-*This repo was initially generated from a bookdown template available here: https://github.com/jtr13/bookdown-template.*
-
-### Demo Video
-
-A demo video showing how to create a **bookdown book** following these instructions: http://bit.ly/fiveminutebookdown
-
-### Additional features
-
-Please consult the official guide to **bookdown**: https://bookdown.org/yihui/bookdown
-
+**3\. Can I use the smplot package to plot data with base R?
+No. It only complements ggplot2. So users of smplot is assumed to be using ggplot2 for data visualization.
