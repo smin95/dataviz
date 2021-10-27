@@ -1,5 +1,5 @@
 --- 
-title: "Data Visualization in R Using smplot (in working progress)"
+title: "Data Visualization in R Using smplot"
 author: "Seung Hyun Min"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
