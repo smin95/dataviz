@@ -389,9 +389,10 @@ corr_plot <- ggplot(data = df3, mapping = aes(x = first, y = second)) +
   scale_y_continuous(limits = c(-2.5,2.5)) +
   scale_x_continuous(limits = c(-2.5,2.5)) +
   sm_statCorr(color = sm_color('blue'), corr_method = 'pearson',
-              label_x = -2, label_y = -2.5) +
+              label_x = -2.2, label_y = 2.3) +
   ggtitle('Correlation plot') + 
-  xlab('Method 1') + ylab('Method 2')
+  xlab('Method 1') + ylab('Method 2') +
+  annotate('text', x = 0, y = -2.3, label = 'sm_corr_theme() + sm_statCorr()')
 
 # BA plot
 res <- sm_statBlandAlt(df3$first,df3$second)
@@ -407,7 +408,8 @@ ba_plot <- sm_bland_altman(df3$first, df3$second, shape = 21,
   annotate('text', label = signif(res$upper_limit,3), x = 4.3, y = res$upper_limit - 0.4) +
   annotate('text', label = 'Lower limit', x = 4.3, y = res$lower_limit + 0.4) +
   annotate('text', label = signif(res$lower_limit,3), x = 4.3, y = res$lower_limit - 0.4) + 
-  ggtitle('Bland-Altman plot') 
+  ggtitle('Bland-Altman plot') +
+  annotate('text', x = 1.5, y = -4, label = 'sm_statBlandAlt() + \nsm_bland_altman()')
 
 case_study <- plot_grid(slope, corr_plot, ba_plot, 
                      labels = c("A", "B", "C"),
