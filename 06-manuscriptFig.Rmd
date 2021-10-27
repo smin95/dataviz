@@ -377,7 +377,8 @@ ggplot(data = df, mapping = aes(x = Method, y = Value,
   scale_fill_manual(values = sm_color('blue','orange')) +
   ggtitle('Slope chart') + 
   theme(plot.title = element_text(face="bold")) +
-  ylab('Gene expression level') -> slope
+  ylab('Gene expression level') + 
+  annotate('text', x = 1.5, y = 2, label = 'sm_slope()') -> slope
 
 # correlation plot
 
