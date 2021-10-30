@@ -21,7 +21,7 @@ This book guides the reader to be familiar with R, a programming language, for d
 
 ## For R and ggplot2 experts {-}
 
-Please skip Chapter 1-3. 
+Please skip Chapters 1-3. 
 
 ## Issues and Contact {-}
 If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the 'smplot' package, please pull-request on [Github](https://github.com/smin95/smplot).

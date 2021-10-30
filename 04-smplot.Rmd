@@ -396,7 +396,7 @@ sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.
   scale_fill_manual(values = sm_palette(4))
 ```
 
-- So far the distribution plots (violin plots) have been vertical. We can change their location by setting `vertical = FALSE`. 
+- So far the distribution plots (violin plots) have been vertical. We can change their configuration by setting `vertical = FALSE`. 
 
 ```{r, fig.width = 3.7, fig.height = 5.7, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.5, 
