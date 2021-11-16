@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2021-10-29" />
+<meta name="date" content="2021-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -233,9 +233,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#smplots-graph-themes"><i class="fa fa-check"></i>smplot’s graph themes</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#correlation-plot"><i class="fa fa-check"></i><b>4.3</b> Correlation plot</a></li>
-<li class="chapter" data-level="4.4" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>4.4</b> Boxplot - <code>sm_boxplot()</code></a></li>
-<li class="chapter" data-level="4.5" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>4.5</b> Violin plot - <code>sm_violin()</code></a></li>
-<li class="chapter" data-level="4.6" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>4.6</b> Bar plot - <code>sm_bar()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>4.4</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>4.4.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>4.5</b> Violin plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>4.5.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>4.6</b> Bar plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>4.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
 <li class="chapter" data-level="4.7" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>4.7</b> Slope chart - <code>sm_slope()</code></a></li>
 <li class="chapter" data-level="4.8" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>4.8</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
 <li class="chapter" data-level="4.9" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>4.9</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
@@ -310,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb152-5"><a href="recreating-the-cover-example-figure.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="ot">-&gt;</span> boxplot</span>
 <span id="cb152-6"><a href="recreating-the-cover-example-figure.html#cb152-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb152-7"><a href="recreating-the-cover-example-figure.html#cb152-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(boxplot)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-125-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-130-1.png" width="355.2" /></p>
 <ul>
 <li>Plot the violin plot using <code>sm_violin()</code> and store it in a variable.</li>
 </ul>
@@ -321,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb153-5"><a href="recreating-the-cover-example-figure.html#cb153-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))<span class="ot">-&gt;</span> violin</span>
 <span id="cb153-6"><a href="recreating-the-cover-example-figure.html#cb153-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb153-7"><a href="recreating-the-cover-example-figure.html#cb153-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(violin)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-126-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-131-1.png" width="355.2" /></p>
 </div>
 </div>
 <div id="bar-plot-and-slope-chart" class="section level2" number="5.2">
@@ -348,7 +357,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb155-7"><a href="recreating-the-cover-example-figure.html#cb155-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="ot">-&gt;</span> bar</span>
 <span id="cb155-8"><a href="recreating-the-cover-example-figure.html#cb155-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb155-9"><a href="recreating-the-cover-example-figure.html#cb155-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bar)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-128-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-133-1.png" width="355.2" /></p>
 <ul>
 <li>Draw a slope chart using <code>sm_slope()</code> and store it in a variable.</li>
 </ul>
@@ -361,7 +370,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb156-7"><a href="recreating-the-cover-example-figure.html#cb156-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="ot">-&gt;</span> slope</span>
 <span id="cb156-8"><a href="recreating-the-cover-example-figure.html#cb156-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb156-9"><a href="recreating-the-cover-example-figure.html#cb156-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(slope)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-134-1.png" width="355.2" /></p>
 </div>
 <div id="raincloud-plot" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Raincloud plot</h2>
@@ -393,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb158-11"><a href="recreating-the-cover-example-figure.html#cb158-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="ot">-&gt;</span> raincloud</span>
 <span id="cb158-12"><a href="recreating-the-cover-example-figure.html#cb158-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb158-13"><a href="recreating-the-cover-example-figure.html#cb158-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(raincloud)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-131-1.png" width="547.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-136-1.png" width="547.2" /></p>
 </div>
 <div id="put-all-figures-together" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Put all figures together</h2>
@@ -406,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb159-4"><a href="recreating-the-cover-example-figure.html#cb159-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb159-5"><a href="recreating-the-cover-example-figure.html#cb159-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb159-6"><a href="recreating-the-cover-example-figure.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(add_four)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-132-1.png" width="710.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-137-1.png" width="710.4" /></p>
 <ul>
 <li>Then, add the raincloud plot below the combined 2x2 figure (<code>add_four</code>).</li>
 </ul>
@@ -415,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb160-3"><a href="recreating-the-cover-example-figure.html#cb160-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="fl">1.05</span>))</span>
 <span id="cb160-4"><a href="recreating-the-cover-example-figure.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb160-5"><a href="recreating-the-cover-example-figure.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-133-1.png" width="710.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-138-1.png" width="710.4" /></p>
 <ul>
 <li>Now save the figure in a png file in your working directory using <code>save_plot()</code> from the <code>cowplot</code> package.</li>
 </ul>

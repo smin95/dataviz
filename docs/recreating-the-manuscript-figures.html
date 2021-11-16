@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2021-10-29" />
+<meta name="date" content="2021-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -233,9 +233,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#smplots-graph-themes"><i class="fa fa-check"></i>smplot’s graph themes</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#correlation-plot"><i class="fa fa-check"></i><b>4.3</b> Correlation plot</a></li>
-<li class="chapter" data-level="4.4" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>4.4</b> Boxplot - <code>sm_boxplot()</code></a></li>
-<li class="chapter" data-level="4.5" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>4.5</b> Violin plot - <code>sm_violin()</code></a></li>
-<li class="chapter" data-level="4.6" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>4.6</b> Bar plot - <code>sm_bar()</code></a></li>
+<li class="chapter" data-level="4.4" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>4.4</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>4.4.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>4.5</b> Violin plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>4.5.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>4.6</b> Bar plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>4.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
 <li class="chapter" data-level="4.7" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>4.7</b> Slope chart - <code>sm_slope()</code></a></li>
 <li class="chapter" data-level="4.8" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>4.8</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
 <li class="chapter" data-level="4.9" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>4.9</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
@@ -344,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb164-51"><a href="recreating-the-manuscript-figures.html#cb164-51" aria-hidden="true" tabindex="-1"></a>                 <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb164-52"><a href="recreating-the-manuscript-figures.html#cb164-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb164-53"><a href="recreating-the-manuscript-figures.html#cb164-53" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(corr_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-137-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-1.png" width="696" /></p>
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="recreating-the-manuscript-figures.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;corr_plots.png&quot;</span>, </span>
 <span id="cb165-2"><a href="recreating-the-manuscript-figures.html#cb165-2" aria-hidden="true" tabindex="-1"></a>          corr_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb165-3"><a href="recreating-the-manuscript-figures.html#cb165-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -388,7 +397,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb166-35"><a href="recreating-the-manuscript-figures.html#cb166-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb166-36"><a href="recreating-the-manuscript-figures.html#cb166-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb166-37"><a href="recreating-the-manuscript-figures.html#cb166-37" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bar_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-138-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="696" /></p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="recreating-the-manuscript-figures.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;bars.png&quot;</span>, </span>
 <span id="cb167-2"><a href="recreating-the-manuscript-figures.html#cb167-2" aria-hidden="true" tabindex="-1"></a>          bar_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb167-3"><a href="recreating-the-manuscript-figures.html#cb167-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -428,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb168-31"><a href="recreating-the-manuscript-figures.html#cb168-31" aria-hidden="true" tabindex="-1"></a>                      <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb168-32"><a href="recreating-the-manuscript-figures.html#cb168-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb168-33"><a href="recreating-the-manuscript-figures.html#cb168-33" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(boxplot_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-139-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-144-1.png" width="696" /></p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="recreating-the-manuscript-figures.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;boxplots.png&quot;</span>, </span>
 <span id="cb169-2"><a href="recreating-the-manuscript-figures.html#cb169-2" aria-hidden="true" tabindex="-1"></a>          boxplot_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb169-3"><a href="recreating-the-manuscript-figures.html#cb169-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -464,7 +473,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb170-27"><a href="recreating-the-manuscript-figures.html#cb170-27" aria-hidden="true" tabindex="-1"></a>                         <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb170-28"><a href="recreating-the-manuscript-figures.html#cb170-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb170-29"><a href="recreating-the-manuscript-figures.html#cb170-29" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(violin_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-140-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-145-1.png" width="696" /></p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="recreating-the-manuscript-figures.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;violins.png&quot;</span>, </span>
 <span id="cb171-2"><a href="recreating-the-manuscript-figures.html#cb171-2" aria-hidden="true" tabindex="-1"></a>          violin_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb171-3"><a href="recreating-the-manuscript-figures.html#cb171-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -512,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb172-39"><a href="recreating-the-manuscript-figures.html#cb172-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb172-40"><a href="recreating-the-manuscript-figures.html#cb172-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb172-41"><a href="recreating-the-manuscript-figures.html#cb172-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(slopes)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-141-1.png" width="768" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-146-1.png" width="768" /></p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="recreating-the-manuscript-figures.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;slopes.png&quot;</span>, </span>
 <span id="cb173-2"><a href="recreating-the-manuscript-figures.html#cb173-2" aria-hidden="true" tabindex="-1"></a>          slopes, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb173-3"><a href="recreating-the-manuscript-figures.html#cb173-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -613,7 +622,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb174-92"><a href="recreating-the-manuscript-figures.html#cb174-92" aria-hidden="true" tabindex="-1"></a>                           <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">7.5</span>,<span class="fl">2.5</span>))</span>
 <span id="cb174-93"><a href="recreating-the-manuscript-figures.html#cb174-93" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb174-94"><a href="recreating-the-manuscript-figures.html#cb174-94" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(raincloud_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-147-1.png" width="696" /></p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="recreating-the-manuscript-figures.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;rainclouds.png&quot;</span>, </span>
 <span id="cb175-2"><a href="recreating-the-manuscript-figures.html#cb175-2" aria-hidden="true" tabindex="-1"></a>          raincloud_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb175-3"><a href="recreating-the-manuscript-figures.html#cb175-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -679,7 +688,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb176-57"><a href="recreating-the-manuscript-figures.html#cb176-57" aria-hidden="true" tabindex="-1"></a>                     <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb176-58"><a href="recreating-the-manuscript-figures.html#cb176-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb176-59"><a href="recreating-the-manuscript-figures.html#cb176-59" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(case_study)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="1051.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-148-1.png" width="1051.2" /></p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="recreating-the-manuscript-figures.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;case_study.png&quot;</span>, </span>
 <span id="cb177-2"><a href="recreating-the-manuscript-figures.html#cb177-2" aria-hidden="true" tabindex="-1"></a>          case_study, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb177-3"><a href="recreating-the-manuscript-figures.html#cb177-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>

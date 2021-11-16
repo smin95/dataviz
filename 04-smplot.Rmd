@@ -150,9 +150,9 @@ p1 + sm_corr_theme() +
 
 ```{r}
 set.seed(1) # generate random data
-day1 = rnorm(20,0,1)
-day2 = rnorm(20,5,1)
-Subject <- rep(paste0('S',seq(1:20)), 2)
+day1 = rnorm(16,0,1)
+day2 = rnorm(16,5,1)
+Subject <- rep(paste0('S',seq(1:16)), 2)
 Data <- data.frame(Value = matrix(c(day1,day2),ncol=1))
 Day <- rep(c('Day 1', 'Day 2'), each = length(day1))
 df <- cbind(Subject, Data, Day)
@@ -186,6 +186,18 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   scale_fill_manual(values = sm_color('blue','orange'))
 ```
 
+### Plotting individual points with unique colors
+
+- One can also use `sm_boxplot()` to plot individual points with unique colors. 
+- But `sm_boxplot()` cannot print distinct box colors across distinct x levels (i.e., in this example, all boxes are grey). This is because the author thinks it is not a good practice to print different colors of boxes as they tend to distract the reader. 
+
+```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject)) +
+  sm_boxplot(shape = 21, color = 'white') +
+  scale_fill_manual(values = sm_palette(16))
+```
+
+
 ## Violin plot - `sm_violin()` 
 
 - `sm_violin()` plots a violin plot, individual points and lines that indiciate means and +/- 1 standard deviation at the same time.
@@ -207,6 +219,31 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   scale_color_manual(values = sm_color('blue','orange'))
 ```
 
+### Plotting individual points with unique colors
+
+- One can also use `sm_violin()` to plot individual points with unique colors. 
+- The x-level has to be grouped in the aesthetics (ex. `group = Day`).
+- But `sm_violin()` cannot print distinct violin colors across distinct x levels (i.e., in this example, all boxes are grey). This is because the author thinks it is not a good practice to print different colors of boxes as they tend to distract the reader. 
+
+```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject,
+                                group = Day)) +
+  sm_violin(shape = 21, color = 'white', point_alpha = 0.6) + 
+  scale_fill_manual(values = sm_palette(16)) 
+
+```
+
+
+```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject,
+                                group = Day, color = Day)) +
+  sm_violin(shape = 21, color = 'white', point_alpha = 0.6) + 
+  scale_fill_manual(values = sm_palette(16)) +
+  scale_color_manual(values = sm_color('blue', 'orange'))
+
+```
 
 ## Bar plot - `sm_bar()` 
 
@@ -226,6 +263,27 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80', se = FALSE) +
   scale_fill_manual(values = sm_color('blue','orange'))
+```
+
+### Plotting individual points with unique colors
+
+- One can also use `sm_bar()` to plot individual points with unique colors. 
+
+
+```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
+  sm_bar(bar_fill_color = 'gray80') +
+  scale_color_manual(values = sm_palette(16)) 
+```
+
+- `sm_bar()` can also print distinct box colors across distinct x levels.
+
+```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
+                                fill = Day)) +
+  sm_bar() +
+  scale_color_manual(values = sm_palette(16)) +
+  scale_fill_manual(values = sm_color('lightorange','skyblue'))
 ```
 
 ## Slope chart - `sm_slope()` 
