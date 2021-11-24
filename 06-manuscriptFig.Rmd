@@ -105,7 +105,7 @@ bar2 <- ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 text2 <- ggplot(data = df, mapping = aes(x = Day, y = Value)) + 
   geom_point(color = 'white', fill = 'white') + theme_nothing() +
-  annotate('text', label = 'Bar~plot~using~bold(sm_bar())~from~smplot',
+  annotate('text', label = 'Bar~plot~using~bold(sm_bar())',
            x = 1.5, y = 4.5, parse = TRUE) +
   annotate('text', label = 'Individual points,\nlarger font,\nminimalistic theme\ncentered title\nnarrower bar width\nerror bar',
            x = 1.5, y = 1.5)
@@ -147,9 +147,9 @@ boxplot2 <- ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 text2 <- ggplot(data = df, mapping = aes(x = Day, y = Value)) + 
   geom_point(color = 'white', fill = 'white') + theme_nothing() +
-  annotate('text', label = 'Boxplot~using~bold(sm_boxplot())~from~smplot',
+  annotate('text', label = 'Boxplot~using~bold(sm_boxplot())',
            x = 2, y = 11, parse = TRUE) +
-  annotate('text', label = 'Individual points,\ncolors with higher contrasts,\nlarger font,\nminimalistic theme\ncentered title',
+  annotate('text', label = 'Individual points,\nlarger font,\nminimalistic theme\ncentered title',
            x = 2, y = 5)
 
 boxplot_all <- plot_grid(boxplot1, text1, boxplot2, text2, 
@@ -187,7 +187,7 @@ text2 <- ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   geom_point(color = 'white', fill = 'white') + theme_nothing() +
   annotate('text', label = 'Violin~plot~using~bold(sm_violin())\nfrom~smplot',
            x = 2, y = 12, parse = TRUE) +
-  annotate('text', label = 'Individual points,\ncolors with higher contrasts,\nlarger font,\nminimalistic theme\ncentered title\nerror bars',
+  annotate('text', label = 'Individual points,\nlarger font,\nminimalistic theme\ncentered title\nerror bars',
            x = 2, y = 4)
 
 violin_all <- plot_grid(violin1, text1, violin2, text2, 
