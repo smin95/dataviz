@@ -1,11 +1,13 @@
 ---
 output: html_document
-chapter: Recreating the Manuscript Figures
+chapter: Recreating Figures from Front. Genetics 
 editor_options:
   chunk_output_type: console
 ---
 
-# Recreating the Manuscript Figures
+# Recreating Figures from Front. Genetics (2021)
+
+This chapter refers to this paper: **Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). Frontiers in Genetics, 12:802894.**
 
 Load these packages by typing the codes below.
 

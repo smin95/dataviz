@@ -1,11 +1,11 @@
 ---
 output: html_document
-chapter: Recreating the Cover Example Figure
+chapter: Recreating the Cover Figure
 editor_options:
   chunk_output_type: console
 ---
 
-# Recreating the Cover Example Figure
+# Recreating the Cover Figure
 
 Load these packages by typing the codes below.
 

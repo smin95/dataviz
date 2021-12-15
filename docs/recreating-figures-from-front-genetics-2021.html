@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Recreating Figures from Front. Genetics (2021) | Data Visualization in R Using smplot</title>
+  <meta name="description" content="Chapter 6 Recreating Figures from Front. Genetics (2021) | Data Visualization in R Using smplot" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Recreating Figures from Front. Genetics (2021) | Data Visualization in R Using smplot" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Recreating Figures from Front. Genetics (2021) | Data Visualization in R Using smplot" />
+  
+  
+  
+
+<meta name="author" content="Seung Hyun Min" />
+
+
+<meta name="date" content="2021-12-15" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="recreating-the-cover-figure.html"/>
+
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dataviz with smplot</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#please-cite-this-paper-when-smplot-is-used"><i class="fa fa-check"></i>Please cite this paper when smplot is used</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-r-and-ggplot2-experts"><i class="fa fa-check"></i>For R and ggplot2 experts</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and Contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>1</b> Download RStudio &amp; Basics of R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#setting-up-rstudio"><i class="fa fa-check"></i><b>1.1</b> Setting up RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#why-use-r-for-data-visualization"><i class="fa fa-check"></i>Why use R for data visualization?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#other-available-resources-for-r"><i class="fa fa-check"></i>Other available resources for R</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#download-requirements-for-rstudio"><i class="fa fa-check"></i>Download requirements for RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#open-rstudio"><i class="fa fa-check"></i>Open RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-make-a-folder-and-set-it-as-working-directory"><i class="fa fa-check"></i>Let’s make a folder and set it as working directory</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#basics-of-r"><i class="fa fa-check"></i><b>1.2</b> Basics of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-type-some-codes"><i class="fa fa-check"></i>Let’s type some codes</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-can-i-learn-most-effectively-with-the-notes"><i class="fa fa-check"></i>How can I learn most effectively with the notes?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#more-installation"><i class="fa fa-check"></i>More installation</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html"><i class="fa fa-check"></i><b>2</b> Basics of ggplot2 and Correlation Plot</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#upload-sample-data"><i class="fa fa-check"></i><b>2.1</b> Upload sample data</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#sample-data-mpg"><i class="fa fa-check"></i>Sample data: mpg</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>2.2</b> Basics of ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-make-some-graphs"><i class="fa fa-check"></i>Let’s make some graphs</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-ggplot-works"><i class="fa fa-check"></i>How ggplot works</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-of-points-for-each-unique-group"><i class="fa fa-check"></i>Different color of points for each unique group</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-shape-for-each-group"><i class="fa fa-check"></i>Different color &amp; shape for each group</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#same-shape-across-all-groups"><i class="fa fa-check"></i>Same shape across all groups</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#exercise-try-changing-the-shape-of-the-points-to-the-circle-with-the-border."><i class="fa fa-check"></i>Exercise: try changing the shape of the points to the circle with the border.</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-do-we-draw-the-best-fit-line-of-the-graph"><i class="fa fa-check"></i>How do we draw the best-fit line of the graph?</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#geom_point-geom_smooth"><i class="fa fa-check"></i>geom_point() + geom_smooth()</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#writing-shorter-codes"><i class="fa fa-check"></i>Writing shorter codes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#improve-dataviz-using-smplot"><i class="fa fa-check"></i><b>2.3</b> Improve dataviz using smplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#positive-relationship-between-x--and-y-axes"><i class="fa fa-check"></i>Positive relationship between x- and y-axes</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#reporting-statistics-from-a-paired-correlation"><i class="fa fa-check"></i>Reporting statistics from a paired correlation</a></li>
+<li><a href="basics-of-ggplot2-and-correlation-plot.html#fill-0f993d-vs-fill-green"><code>fill = '#0f993d'</code> vs <code>fill = 'green'</code></a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-for-each-group-but-with-other-colors"><i class="fa fa-check"></i>Different color for each group but with other colors</a></li>
+<li><a href="basics-of-ggplot2-and-correlation-plot.html#lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1.">Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#summary"><i class="fa fa-check"></i><b>2.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html"><i class="fa fa-check"></i><b>3</b> Boxplot and Violin Plot</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#upload-sample-data-csv-file-in-rstudio"><i class="fa fa-check"></i><b>3.1</b> Upload sample data (csv file) in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#download-requirements"><i class="fa fa-check"></i>Download requirements</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#before-we-get-started"><i class="fa fa-check"></i>Before we get started</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#data.csv"><i class="fa fa-check"></i>data.csv</a></li>
+<li><a href="boxplot-and-violin-plot.html#read_csvdata.csv"><code>read_csv('data.csv')</code></a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#best-way-to-plot-data"><i class="fa fa-check"></i>Best way to plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot"><i class="fa fa-check"></i><b>3.2</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#what-is-a-boxplot"><i class="fa fa-check"></i>What is a boxplot?</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-vs-bar-graph"><i class="fa fa-check"></i>Boxplot vs bar graph</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-using-ggplot2"><i class="fa fa-check"></i>Boxplot using ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#problem-alphabetical-order"><i class="fa fa-check"></i>Problem: Alphabetical order</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#displaying-characters-in-a-non-alphabetical-order"><i class="fa fa-check"></i>Displaying characters in a non-alphabetical order</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#double-check-if-the-day-column-is-factor"><i class="fa fa-check"></i>Double-check if the ‘Day’ column is factor</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#back-to-boxplot-using-ggplot2"><i class="fa fa-check"></i>Back to boxplot using ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#a-boxplot-with-individual-data"><i class="fa fa-check"></i>A boxplot with individual data</a></li>
+<li><a href="boxplot-and-violin-plot.html#geom_boxplot-vs-sm_boxplot"><code>geom_boxplot()</code> vs <code>sm_boxplot()</code></a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-boxplot"><i class="fa fa-check"></i>Save boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot"><i class="fa fa-check"></i><b>3.3</b> Violin plot</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#structure-of-the-violin-plot"><i class="fa fa-check"></i>Structure of the violin plot</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-ggplot2"><i class="fa fa-check"></i>Violin plot with ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-individual-points"><i class="fa fa-check"></i>Violin plot with individual points</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_violin-vs-sm_violin"><i class="fa fa-check"></i>geom_violin() vs sm_violin()</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-your-violin-plot"><i class="fa fa-check"></i>Save your violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#summary-1"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html"><i class="fa fa-check"></i><b>4</b> Full Guide on smplot</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#installation-of-the-package"><i class="fa fa-check"></i><b>4.1</b> Installation of the package</a>
+<ul>
+<li><a href="full-guide-on-smplot.html#what-is-smplot">What is <code>smplot</code>?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#smplots-color-palette-and-graph-themes"><i class="fa fa-check"></i><b>4.2</b> smplot’s color palette and graph themes</a>
+<ul>
+<li class="chapter" data-level="" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#smplots-color-palette"><i class="fa fa-check"></i>smplot’s color palette</a></li>
+<li class="chapter" data-level="" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#smplots-graph-themes"><i class="fa fa-check"></i>smplot’s graph themes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#correlation-plot"><i class="fa fa-check"></i><b>4.3</b> Correlation plot</a></li>
+<li class="chapter" data-level="4.4" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>4.4</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>4.4.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>4.5</b> Violin plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>4.5.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>4.6</b> Bar plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>4.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>4.7</b> Slope chart - <code>sm_slope()</code></a></li>
+<li class="chapter" data-level="4.8" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>4.8</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
+<li class="chapter" data-level="4.9" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>4.9</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
+<li class="chapter" data-level="4.10" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#overriding-defaults-of-smplots-themes"><i class="fa fa-check"></i><b>4.10</b> Overriding defaults of smplot’s themes</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="recreating-the-cover-figure.html"><a href="recreating-the-cover-figure.html"><i class="fa fa-check"></i><b>5</b> Recreating the Cover Figure</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="recreating-the-cover-figure.html"><a href="recreating-the-cover-figure.html#boxplot-and-violin-plot-1"><i class="fa fa-check"></i><b>5.1</b> Boxplot and violin plot</a>
+<ul>
+<li class="chapter" data-level="" data-path="recreating-the-cover-figure.html"><a href="recreating-the-cover-figure.html#upload-pre-existing-data"><i class="fa fa-check"></i>Upload pre-existing data</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="recreating-the-cover-figure.html"><a href="recreating-the-cover-figure.html#bar-plot-and-slope-chart"><i class="fa fa-check"></i><b>5.2</b> Bar plot and slope chart</a></li>
+<li class="chapter" data-level="5.3" data-path="recreating-the-cover-figure.html"><a href="recreating-the-cover-figure.html#raincloud-plot"><i class="fa fa-check"></i><b>5.3</b> Raincloud plot</a></li>
+<li class="chapter" data-level="5.4" data-path="recreating-the-cover-figure.html"><a href="recreating-the-cover-figure.html#put-all-figures-together"><i class="fa fa-check"></i><b>5.4</b> Put all figures together</a>
+<ul>
+<li class="chapter" data-level="" data-path="recreating-the-cover-figure.html"><a href="recreating-the-cover-figure.html#the-codes-only-with-no-discussion"><i class="fa fa-check"></i>The codes only with no discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html"><i class="fa fa-check"></i><b>6</b> Recreating Figures from Front. Genetics (2021)</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html#figure-1---correlation-plot"><i class="fa fa-check"></i><b>6.1</b> Figure 1 - Correlation plot</a></li>
+<li class="chapter" data-level="6.2" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html#figure-2---bar-plot"><i class="fa fa-check"></i><b>6.2</b> Figure 2 - Bar plot</a></li>
+<li class="chapter" data-level="6.3" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html#figure-3---boxplot"><i class="fa fa-check"></i><b>6.3</b> Figure 3 - Boxplot</a></li>
+<li class="chapter" data-level="6.4" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html#figure-4---violin-plot"><i class="fa fa-check"></i><b>6.4</b> Figure 4 - Violin plot</a></li>
+<li class="chapter" data-level="6.5" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html#figure-5---slope-chart"><i class="fa fa-check"></i><b>6.5</b> Figure 5 - Slope chart</a></li>
+<li class="chapter" data-level="6.6" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html#figure-6---raincloud-plot"><i class="fa fa-check"></i><b>6.6</b> Figure 6 - Raincloud plot</a></li>
+<li class="chapter" data-level="6.7" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html#figure-7---case-study"><i class="fa fa-check"></i><b>6.7</b> Figure 7 - Case study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization in R Using smplot</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="recreating-figures-from-front.-genetics-2021" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Recreating Figures from Front. Genetics (2021)</h1>
+<p>This chapter refers to this paper: <strong>Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). Frontiers in Genetics, 12:802894.</strong></p>
+<p>Load these packages by typing the codes below.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="recreating-figures-from-front-genetics-2021.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># it has ggplot2 package</span></span>
+<span id="cb163-2"><a href="recreating-figures-from-front-genetics-2021.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># it allows you to save figures in .png file</span></span>
+<span id="cb163-3"><a href="recreating-figures-from-front-genetics-2021.html#cb163-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span></code></pre></div>
+<div id="figure-1---correlation-plot" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Figure 1 - Correlation plot</h2>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="recreating-figures-from-front-genetics-2021.html#cb164-1" aria-hidden="true" tabindex="-1"></a>corr1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb164-2"><a href="recreating-figures-from-front-genetics-2021.html#cb164-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
+<span id="cb164-3"><a href="recreating-figures-from-front-genetics-2021.html#cb164-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="co"># ggplot2 default</span></span>
+<span id="cb164-4"><a href="recreating-figures-from-front-genetics-2021.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Correlation plot without smplot&#39;</span>)</span>
+<span id="cb164-5"><a href="recreating-figures-from-front-genetics-2021.html#cb164-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-6"><a href="recreating-figures-from-front-genetics-2021.html#cb164-6" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb164-7"><a href="recreating-figures-from-front-genetics-2021.html#cb164-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb164-8"><a href="recreating-figures-from-front-genetics-2021.html#cb164-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, </span>
+<span id="cb164-9"><a href="recreating-figures-from-front-genetics-2021.html#cb164-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;Base plot only using </span><span class="sc">\n</span><span class="st">the defaults of ggplot2&#39;</span>,</span>
+<span id="cb164-10"><a href="recreating-figures-from-front-genetics-2021.html#cb164-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">3.9</span>, <span class="at">y =</span> <span class="dv">25</span>)</span>
+<span id="cb164-11"><a href="recreating-figures-from-front-genetics-2021.html#cb164-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-12"><a href="recreating-figures-from-front-genetics-2021.html#cb164-12" aria-hidden="true" tabindex="-1"></a>corr2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb164-13"><a href="recreating-figures-from-front-genetics-2021.html#cb164-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
+<span id="cb164-14"><a href="recreating-figures-from-front-genetics-2021.html#cb164-14" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb164-15"><a href="recreating-figures-from-front-genetics-2021.html#cb164-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> <span class="co"># smplot correlation theme </span></span>
+<span id="cb164-16"><a href="recreating-figures-from-front-genetics-2021.html#cb164-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Correlation plot with smplot&#39;</span>) </span>
+<span id="cb164-17"><a href="recreating-figures-from-front-genetics-2021.html#cb164-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-18"><a href="recreating-figures-from-front-genetics-2021.html#cb164-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-19"><a href="recreating-figures-from-front-genetics-2021.html#cb164-19" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb164-20"><a href="recreating-figures-from-front-genetics-2021.html#cb164-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb164-21"><a href="recreating-figures-from-front-genetics-2021.html#cb164-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Base plot + sm_corr_theme()&#39;</span>,</span>
+<span id="cb164-22"><a href="recreating-figures-from-front-genetics-2021.html#cb164-22" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">3.9</span>, <span class="at">y =</span> <span class="dv">29</span>, <span class="at">fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb164-23"><a href="recreating-figures-from-front-genetics-2021.html#cb164-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">3.9</span>, <span class="at">y =</span> <span class="dv">23</span>, <span class="at">parse =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb164-24"><a href="recreating-figures-from-front-genetics-2021.html#cb164-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;bold(sm_corr_theme())~</span><span class="sc">\n</span><span class="st">provides~</span><span class="sc">\n</span><span class="st">a~theme~with&#39;</span>) <span class="sc">+</span></span>
+<span id="cb164-25"><a href="recreating-figures-from-front-genetics-2021.html#cb164-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">3.9</span>, <span class="at">y =</span> <span class="dv">20</span>,</span>
+<span id="cb164-26"><a href="recreating-figures-from-front-genetics-2021.html#cb164-26" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;minimalistic background</span><span class="sc">\n</span><span class="st">larger font</span><span class="sc">\n</span><span class="st">centered title&#39;</span>)</span>
+<span id="cb164-27"><a href="recreating-figures-from-front-genetics-2021.html#cb164-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-28"><a href="recreating-figures-from-front-genetics-2021.html#cb164-28" aria-hidden="true" tabindex="-1"></a>corr3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb164-29"><a href="recreating-figures-from-front-genetics-2021.html#cb164-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
+<span id="cb164-30"><a href="recreating-figures-from-front-genetics-2021.html#cb164-30" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb164-31"><a href="recreating-figures-from-front-genetics-2021.html#cb164-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> <span class="co"># smplot corr theme + p and r values</span></span>
+<span id="cb164-32"><a href="recreating-figures-from-front-genetics-2021.html#cb164-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>), <span class="at">corr_method =</span> <span class="st">&#39;spearman&#39;</span>) <span class="sc">+</span></span>
+<span id="cb164-33"><a href="recreating-figures-from-front-genetics-2021.html#cb164-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Statistics computed with smplot&#39;</span>) </span>
+<span id="cb164-34"><a href="recreating-figures-from-front-genetics-2021.html#cb164-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-35"><a href="recreating-figures-from-front-genetics-2021.html#cb164-35" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span> </span>
+<span id="cb164-36"><a href="recreating-figures-from-front-genetics-2021.html#cb164-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb164-37"><a href="recreating-figures-from-front-genetics-2021.html#cb164-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Base plot + sm_corr_theme() +</span><span class="sc">\n</span><span class="st">sm_statCorr()&#39;</span>,</span>
+<span id="cb164-38"><a href="recreating-figures-from-front-genetics-2021.html#cb164-38" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">3.9</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb164-39"><a href="recreating-figures-from-front-genetics-2021.html#cb164-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">3.9</span>, <span class="at">y =</span> <span class="dv">24</span>, <span class="at">parse =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb164-40"><a href="recreating-figures-from-front-genetics-2021.html#cb164-40" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;bold(sm_statCorr())~from~smplot~computes&#39;</span>) <span class="sc">+</span></span>
+<span id="cb164-41"><a href="recreating-figures-from-front-genetics-2021.html#cb164-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">3.9</span>, <span class="at">y =</span> <span class="fl">22.6</span>, </span>
+<span id="cb164-42"><a href="recreating-figures-from-front-genetics-2021.html#cb164-42" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;R and p values from a correlation test.&#39;</span>) <span class="sc">+</span></span>
+<span id="cb164-43"><a href="recreating-figures-from-front-genetics-2021.html#cb164-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">3.9</span>, <span class="at">y =</span> <span class="dv">18</span>,</span>
+<span id="cb164-44"><a href="recreating-figures-from-front-genetics-2021.html#cb164-44" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">It also prints the best-fit </span><span class="sc">\n</span><span class="st">linear regression line </span><span class="sc">\n</span><span class="st">based on the R value.&#39;</span>)</span>
+<span id="cb164-45"><a href="recreating-figures-from-front-genetics-2021.html#cb164-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-46"><a href="recreating-figures-from-front-genetics-2021.html#cb164-46" aria-hidden="true" tabindex="-1"></a>corr_all <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(corr1, text1, corr2, text2, </span>
+<span id="cb164-47"><a href="recreating-figures-from-front-genetics-2021.html#cb164-47" aria-hidden="true" tabindex="-1"></a>                      corr3, text3,</span>
+<span id="cb164-48"><a href="recreating-figures-from-front-genetics-2021.html#cb164-48" aria-hidden="true" tabindex="-1"></a>                 <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb164-49"><a href="recreating-figures-from-front-genetics-2021.html#cb164-49" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label_size =</span> <span class="dv">12</span>,</span>
+<span id="cb164-50"><a href="recreating-figures-from-front-genetics-2021.html#cb164-50" aria-hidden="true" tabindex="-1"></a>                 <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">3</span>, </span>
+<span id="cb164-51"><a href="recreating-figures-from-front-genetics-2021.html#cb164-51" aria-hidden="true" tabindex="-1"></a>                 <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
+<span id="cb164-52"><a href="recreating-figures-from-front-genetics-2021.html#cb164-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-53"><a href="recreating-figures-from-front-genetics-2021.html#cb164-53" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(corr_all)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-1.png" width="696" /></p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="recreating-figures-from-front-genetics-2021.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;corr_plots.png&quot;</span>, </span>
+<span id="cb165-2"><a href="recreating-figures-from-front-genetics-2021.html#cb165-2" aria-hidden="true" tabindex="-1"></a>          corr_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
+<span id="cb165-3"><a href="recreating-figures-from-front-genetics-2021.html#cb165-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+</div>
+<div id="figure-2---bar-plot" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Figure 2 - Bar plot</h2>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="recreating-figures-from-front-genetics-2021.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># generate random data</span></span>
+<span id="cb166-2"><a href="recreating-figures-from-front-genetics-2021.html#cb166-2" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb166-3"><a href="recreating-figures-from-front-genetics-2021.html#cb166-3" aria-hidden="true" tabindex="-1"></a>day2 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
+<span id="cb166-4"><a href="recreating-figures-from-front-genetics-2021.html#cb166-4" aria-hidden="true" tabindex="-1"></a>Subject <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)), <span class="dv">2</span>)</span>
+<span id="cb166-5"><a href="recreating-figures-from-front-genetics-2021.html#cb166-5" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Value =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(day1,day2),<span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb166-6"><a href="recreating-figures-from-front-genetics-2021.html#cb166-6" aria-hidden="true" tabindex="-1"></a>Day <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>, <span class="st">&#39;Day 2&#39;</span>), <span class="at">each =</span> <span class="fu">length</span>(day1))</span>
+<span id="cb166-7"><a href="recreating-figures-from-front-genetics-2021.html#cb166-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Subject, Data, Day)</span>
+<span id="cb166-8"><a href="recreating-figures-from-front-genetics-2021.html#cb166-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-9"><a href="recreating-figures-from-front-genetics-2021.html#cb166-9" aria-hidden="true" tabindex="-1"></a>bar1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb166-10"><a href="recreating-figures-from-front-genetics-2021.html#cb166-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">geom =</span> <span class="st">&#39;bar&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb166-11"><a href="recreating-figures-from-front-genetics-2021.html#cb166-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb166-12"><a href="recreating-figures-from-front-genetics-2021.html#cb166-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Bar plot without smplot&#39;</span>)</span>
+<span id="cb166-13"><a href="recreating-figures-from-front-genetics-2021.html#cb166-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-14"><a href="recreating-figures-from-front-genetics-2021.html#cb166-14" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb166-15"><a href="recreating-figures-from-front-genetics-2021.html#cb166-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb166-16"><a href="recreating-figures-from-front-genetics-2021.html#cb166-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Bar~plot~using~bold(stat_summary())~from~ggplot2&#39;</span>,</span>
+<span id="cb166-17"><a href="recreating-figures-from-front-genetics-2021.html#cb166-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="dv">3</span>, <span class="at">parse =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb166-18"><a href="recreating-figures-from-front-genetics-2021.html#cb166-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-19"><a href="recreating-figures-from-front-genetics-2021.html#cb166-19" aria-hidden="true" tabindex="-1"></a>bar2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb166-20"><a href="recreating-figures-from-front-genetics-2021.html#cb166-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
+<span id="cb166-21"><a href="recreating-figures-from-front-genetics-2021.html#cb166-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb166-22"><a href="recreating-figures-from-front-genetics-2021.html#cb166-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Bar plot using smplot&#39;</span>)</span>
+<span id="cb166-23"><a href="recreating-figures-from-front-genetics-2021.html#cb166-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-24"><a href="recreating-figures-from-front-genetics-2021.html#cb166-24" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb166-25"><a href="recreating-figures-from-front-genetics-2021.html#cb166-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb166-26"><a href="recreating-figures-from-front-genetics-2021.html#cb166-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Bar~plot~using~bold(sm_bar())&#39;</span>,</span>
+<span id="cb166-27"><a href="recreating-figures-from-front-genetics-2021.html#cb166-27" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">4.5</span>, <span class="at">parse =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb166-28"><a href="recreating-figures-from-front-genetics-2021.html#cb166-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Individual points,</span><span class="sc">\n</span><span class="st">larger font,</span><span class="sc">\n</span><span class="st">minimalistic theme</span><span class="sc">\n</span><span class="st">centered title</span><span class="sc">\n</span><span class="st">narrower bar width</span><span class="sc">\n</span><span class="st">error bar&#39;</span>,</span>
+<span id="cb166-29"><a href="recreating-figures-from-front-genetics-2021.html#cb166-29" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">1.5</span>)</span>
+<span id="cb166-30"><a href="recreating-figures-from-front-genetics-2021.html#cb166-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-31"><a href="recreating-figures-from-front-genetics-2021.html#cb166-31" aria-hidden="true" tabindex="-1"></a>bar_all <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(bar1, text1, bar2, text2, </span>
+<span id="cb166-32"><a href="recreating-figures-from-front-genetics-2021.html#cb166-32" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb166-33"><a href="recreating-figures-from-front-genetics-2021.html#cb166-33" aria-hidden="true" tabindex="-1"></a>                        <span class="at">label_size =</span> <span class="dv">12</span>,</span>
+<span id="cb166-34"><a href="recreating-figures-from-front-genetics-2021.html#cb166-34" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, </span>
+<span id="cb166-35"><a href="recreating-figures-from-front-genetics-2021.html#cb166-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
+<span id="cb166-36"><a href="recreating-figures-from-front-genetics-2021.html#cb166-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-37"><a href="recreating-figures-from-front-genetics-2021.html#cb166-37" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bar_all)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="696" /></p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="recreating-figures-from-front-genetics-2021.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;bars.png&quot;</span>, </span>
+<span id="cb167-2"><a href="recreating-figures-from-front-genetics-2021.html#cb167-2" aria-hidden="true" tabindex="-1"></a>          bar_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
+<span id="cb167-3"><a href="recreating-figures-from-front-genetics-2021.html#cb167-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+</div>
+<div id="figure-3---boxplot" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Figure 3 - Boxplot</h2>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="recreating-figures-from-front-genetics-2021.html#cb168-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/smin95/dataviz/master/data.csv&#39;</span>) </span>
+<span id="cb168-2"><a href="recreating-figures-from-front-genetics-2021.html#cb168-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-3"><a href="recreating-figures-from-front-genetics-2021.html#cb168-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Day, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;One&#39;</span>,<span class="st">&#39;Two&#39;</span>,<span class="st">&#39;Three&#39;</span>))</span>
+<span id="cb168-4"><a href="recreating-figures-from-front-genetics-2021.html#cb168-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-5"><a href="recreating-figures-from-front-genetics-2021.html#cb168-5" aria-hidden="true" tabindex="-1"></a>boxplot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb168-6"><a href="recreating-figures-from-front-genetics-2021.html#cb168-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb168-7"><a href="recreating-figures-from-front-genetics-2021.html#cb168-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb168-8"><a href="recreating-figures-from-front-genetics-2021.html#cb168-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Boxplot without smplot&#39;</span>)</span>
+<span id="cb168-9"><a href="recreating-figures-from-front-genetics-2021.html#cb168-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-10"><a href="recreating-figures-from-front-genetics-2021.html#cb168-10" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb168-11"><a href="recreating-figures-from-front-genetics-2021.html#cb168-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb168-12"><a href="recreating-figures-from-front-genetics-2021.html#cb168-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Boxplot~using~bold(geom_boxplot())</span><span class="sc">\n</span><span class="st">~from~ggplot2&#39;</span>,</span>
+<span id="cb168-13"><a href="recreating-figures-from-front-genetics-2021.html#cb168-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">8</span>, <span class="at">parse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb168-14"><a href="recreating-figures-from-front-genetics-2021.html#cb168-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-15"><a href="recreating-figures-from-front-genetics-2021.html#cb168-15" aria-hidden="true" tabindex="-1"></a>boxplot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb168-16"><a href="recreating-figures-from-front-genetics-2021.html#cb168-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">shape =</span> <span class="dv">16</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb168-17"><a href="recreating-figures-from-front-genetics-2021.html#cb168-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb168-18"><a href="recreating-figures-from-front-genetics-2021.html#cb168-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Boxplot with smplot&#39;</span>) <span class="co"># smplot&#39;s default</span></span>
+<span id="cb168-19"><a href="recreating-figures-from-front-genetics-2021.html#cb168-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-20"><a href="recreating-figures-from-front-genetics-2021.html#cb168-20" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb168-21"><a href="recreating-figures-from-front-genetics-2021.html#cb168-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb168-22"><a href="recreating-figures-from-front-genetics-2021.html#cb168-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Boxplot~using~bold(sm_boxplot())&#39;</span>,</span>
+<span id="cb168-23"><a href="recreating-figures-from-front-genetics-2021.html#cb168-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">11</span>, <span class="at">parse =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb168-24"><a href="recreating-figures-from-front-genetics-2021.html#cb168-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Individual points,</span><span class="sc">\n</span><span class="st">larger font,</span><span class="sc">\n</span><span class="st">minimalistic theme</span><span class="sc">\n</span><span class="st">centered title&#39;</span>,</span>
+<span id="cb168-25"><a href="recreating-figures-from-front-genetics-2021.html#cb168-25" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">5</span>)</span>
+<span id="cb168-26"><a href="recreating-figures-from-front-genetics-2021.html#cb168-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-27"><a href="recreating-figures-from-front-genetics-2021.html#cb168-27" aria-hidden="true" tabindex="-1"></a>boxplot_all <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(boxplot1, text1, boxplot2, text2, </span>
+<span id="cb168-28"><a href="recreating-figures-from-front-genetics-2021.html#cb168-28" aria-hidden="true" tabindex="-1"></a>                      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb168-29"><a href="recreating-figures-from-front-genetics-2021.html#cb168-29" aria-hidden="true" tabindex="-1"></a>                      <span class="at">label_size =</span> <span class="dv">12</span>,</span>
+<span id="cb168-30"><a href="recreating-figures-from-front-genetics-2021.html#cb168-30" aria-hidden="true" tabindex="-1"></a>                      <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, </span>
+<span id="cb168-31"><a href="recreating-figures-from-front-genetics-2021.html#cb168-31" aria-hidden="true" tabindex="-1"></a>                      <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
+<span id="cb168-32"><a href="recreating-figures-from-front-genetics-2021.html#cb168-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb168-33"><a href="recreating-figures-from-front-genetics-2021.html#cb168-33" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(boxplot_all)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-144-1.png" width="696" /></p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="recreating-figures-from-front-genetics-2021.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;boxplots.png&quot;</span>, </span>
+<span id="cb169-2"><a href="recreating-figures-from-front-genetics-2021.html#cb169-2" aria-hidden="true" tabindex="-1"></a>          boxplot_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
+<span id="cb169-3"><a href="recreating-figures-from-front-genetics-2021.html#cb169-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+</div>
+<div id="figure-4---violin-plot" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Figure 4 - Violin plot</h2>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="recreating-figures-from-front-genetics-2021.html#cb170-1" aria-hidden="true" tabindex="-1"></a>violin1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb170-2"><a href="recreating-figures-from-front-genetics-2021.html#cb170-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
+<span id="cb170-3"><a href="recreating-figures-from-front-genetics-2021.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb170-4"><a href="recreating-figures-from-front-genetics-2021.html#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Violin plot without smplot&#39;</span>) <span class="do">## ggplot2 default</span></span>
+<span id="cb170-5"><a href="recreating-figures-from-front-genetics-2021.html#cb170-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-6"><a href="recreating-figures-from-front-genetics-2021.html#cb170-6" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb170-7"><a href="recreating-figures-from-front-genetics-2021.html#cb170-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb170-8"><a href="recreating-figures-from-front-genetics-2021.html#cb170-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Violin~plot~using~bold(geom_violin())</span><span class="sc">\n</span><span class="st">~from~ggplot2&#39;</span>,</span>
+<span id="cb170-9"><a href="recreating-figures-from-front-genetics-2021.html#cb170-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">8</span>, <span class="at">parse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb170-10"><a href="recreating-figures-from-front-genetics-2021.html#cb170-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-11"><a href="recreating-figures-from-front-genetics-2021.html#cb170-11" aria-hidden="true" tabindex="-1"></a>violin2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb170-12"><a href="recreating-figures-from-front-genetics-2021.html#cb170-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_violin</span>() <span class="sc">+</span> </span>
+<span id="cb170-13"><a href="recreating-figures-from-front-genetics-2021.html#cb170-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>)) <span class="sc">+</span></span>
+<span id="cb170-14"><a href="recreating-figures-from-front-genetics-2021.html#cb170-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Violin plot with smplot&#39;</span>) <span class="co"># smplot default</span></span>
+<span id="cb170-15"><a href="recreating-figures-from-front-genetics-2021.html#cb170-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-16"><a href="recreating-figures-from-front-genetics-2021.html#cb170-16" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb170-17"><a href="recreating-figures-from-front-genetics-2021.html#cb170-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb170-18"><a href="recreating-figures-from-front-genetics-2021.html#cb170-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Violin~plot~using~bold(sm_violin())</span><span class="sc">\n</span><span class="st">from~smplot&#39;</span>,</span>
+<span id="cb170-19"><a href="recreating-figures-from-front-genetics-2021.html#cb170-19" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">12</span>, <span class="at">parse =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb170-20"><a href="recreating-figures-from-front-genetics-2021.html#cb170-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Individual points,</span><span class="sc">\n</span><span class="st">larger font,</span><span class="sc">\n</span><span class="st">minimalistic theme</span><span class="sc">\n</span><span class="st">centered title</span><span class="sc">\n</span><span class="st">error bars&#39;</span>,</span>
+<span id="cb170-21"><a href="recreating-figures-from-front-genetics-2021.html#cb170-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">4</span>)</span>
+<span id="cb170-22"><a href="recreating-figures-from-front-genetics-2021.html#cb170-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-23"><a href="recreating-figures-from-front-genetics-2021.html#cb170-23" aria-hidden="true" tabindex="-1"></a>violin_all <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(violin1, text1, violin2, text2, </span>
+<span id="cb170-24"><a href="recreating-figures-from-front-genetics-2021.html#cb170-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb170-25"><a href="recreating-figures-from-front-genetics-2021.html#cb170-25" aria-hidden="true" tabindex="-1"></a>                         <span class="at">label_size =</span> <span class="dv">12</span>,</span>
+<span id="cb170-26"><a href="recreating-figures-from-front-genetics-2021.html#cb170-26" aria-hidden="true" tabindex="-1"></a>                         <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, </span>
+<span id="cb170-27"><a href="recreating-figures-from-front-genetics-2021.html#cb170-27" aria-hidden="true" tabindex="-1"></a>                         <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
+<span id="cb170-28"><a href="recreating-figures-from-front-genetics-2021.html#cb170-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb170-29"><a href="recreating-figures-from-front-genetics-2021.html#cb170-29" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(violin_all)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-145-1.png" width="696" /></p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="recreating-figures-from-front-genetics-2021.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;violins.png&quot;</span>, </span>
+<span id="cb171-2"><a href="recreating-figures-from-front-genetics-2021.html#cb171-2" aria-hidden="true" tabindex="-1"></a>          violin_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
+<span id="cb171-3"><a href="recreating-figures-from-front-genetics-2021.html#cb171-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+</div>
+<div id="figure-5---slope-chart" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Figure 5 - Slope chart</h2>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="recreating-figures-from-front-genetics-2021.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>) <span class="co"># generate random data</span></span>
+<span id="cb172-2"><a href="recreating-figures-from-front-genetics-2021.html#cb172-2" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb172-3"><a href="recreating-figures-from-front-genetics-2021.html#cb172-3" aria-hidden="true" tabindex="-1"></a>day2 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
+<span id="cb172-4"><a href="recreating-figures-from-front-genetics-2021.html#cb172-4" aria-hidden="true" tabindex="-1"></a>Subject <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)), <span class="dv">2</span>)</span>
+<span id="cb172-5"><a href="recreating-figures-from-front-genetics-2021.html#cb172-5" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Value =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(day1,day2),<span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb172-6"><a href="recreating-figures-from-front-genetics-2021.html#cb172-6" aria-hidden="true" tabindex="-1"></a>Day <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>, <span class="st">&#39;Day 2&#39;</span>), <span class="at">each =</span> <span class="fu">length</span>(day1))</span>
+<span id="cb172-7"><a href="recreating-figures-from-front-genetics-2021.html#cb172-7" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Subject, Data, Day)</span>
+<span id="cb172-8"><a href="recreating-figures-from-front-genetics-2021.html#cb172-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-9"><a href="recreating-figures-from-front-genetics-2021.html#cb172-9" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, </span>
+<span id="cb172-10"><a href="recreating-figures-from-front-genetics-2021.html#cb172-10" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">group =</span> Subject, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
+<span id="cb172-11"><a href="recreating-figures-from-front-genetics-2021.html#cb172-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>, <span class="st">&#39;Day 2&#39;</span>),</span>
+<span id="cb172-12"><a href="recreating-figures-from-front-genetics-2021.html#cb172-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">line_alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb172-13"><a href="recreating-figures-from-front-genetics-2021.html#cb172-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb172-14"><a href="recreating-figures-from-front-genetics-2021.html#cb172-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A slope chart with 2 x-levels&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb172-15"><a href="recreating-figures-from-front-genetics-2021.html#cb172-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="ot">-&gt;</span> slope_n2</span>
+<span id="cb172-16"><a href="recreating-figures-from-front-genetics-2021.html#cb172-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-17"><a href="recreating-figures-from-front-genetics-2021.html#cb172-17" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>) <span class="co"># generate random data</span></span>
+<span id="cb172-18"><a href="recreating-figures-from-front-genetics-2021.html#cb172-18" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb172-19"><a href="recreating-figures-from-front-genetics-2021.html#cb172-19" aria-hidden="true" tabindex="-1"></a>day2 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
+<span id="cb172-20"><a href="recreating-figures-from-front-genetics-2021.html#cb172-20" aria-hidden="true" tabindex="-1"></a>day3 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">6</span>,<span class="fl">1.5</span>)</span>
+<span id="cb172-21"><a href="recreating-figures-from-front-genetics-2021.html#cb172-21" aria-hidden="true" tabindex="-1"></a>day4 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">7</span>,<span class="dv">2</span>)</span>
+<span id="cb172-22"><a href="recreating-figures-from-front-genetics-2021.html#cb172-22" aria-hidden="true" tabindex="-1"></a>Subject <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)), <span class="dv">4</span>)</span>
+<span id="cb172-23"><a href="recreating-figures-from-front-genetics-2021.html#cb172-23" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Value =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(day1,day2,day3,day4),<span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb172-24"><a href="recreating-figures-from-front-genetics-2021.html#cb172-24" aria-hidden="true" tabindex="-1"></a>Day <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>, <span class="st">&#39;Day 2&#39;</span>, <span class="st">&#39;Day 3&#39;</span>, <span class="st">&#39;Day 4&#39;</span>), <span class="at">each =</span> <span class="fu">length</span>(day1))</span>
+<span id="cb172-25"><a href="recreating-figures-from-front-genetics-2021.html#cb172-25" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Subject, Data, Day)</span>
+<span id="cb172-26"><a href="recreating-figures-from-front-genetics-2021.html#cb172-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-27"><a href="recreating-figures-from-front-genetics-2021.html#cb172-27" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, </span>
+<span id="cb172-28"><a href="recreating-figures-from-front-genetics-2021.html#cb172-28" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">group =</span> Subject, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
+<span id="cb172-29"><a href="recreating-figures-from-front-genetics-2021.html#cb172-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>, <span class="st">&#39;Day 2&#39;</span>, <span class="st">&#39;Day 3&#39;</span>, <span class="st">&#39;Day 4&#39;</span>),</span>
+<span id="cb172-30"><a href="recreating-figures-from-front-genetics-2021.html#cb172-30" aria-hidden="true" tabindex="-1"></a>           <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">line_alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb172-31"><a href="recreating-figures-from-front-genetics-2021.html#cb172-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb172-32"><a href="recreating-figures-from-front-genetics-2021.html#cb172-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;sm_slope() with 4 x-levels&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb172-33"><a href="recreating-figures-from-front-genetics-2021.html#cb172-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="ot">-&gt;</span> slope_n4</span>
+<span id="cb172-34"><a href="recreating-figures-from-front-genetics-2021.html#cb172-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-35"><a href="recreating-figures-from-front-genetics-2021.html#cb172-35" aria-hidden="true" tabindex="-1"></a>slopes <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(slope_n2, slope_n4, </span>
+<span id="cb172-36"><a href="recreating-figures-from-front-genetics-2021.html#cb172-36" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>), <span class="at">rel_widths =</span> <span class="fu">c</span>(<span class="fl">1.5</span>,<span class="dv">2</span>),</span>
+<span id="cb172-37"><a href="recreating-figures-from-front-genetics-2021.html#cb172-37" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_size =</span> <span class="dv">12</span>,</span>
+<span id="cb172-38"><a href="recreating-figures-from-front-genetics-2021.html#cb172-38" aria-hidden="true" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>, </span>
+<span id="cb172-39"><a href="recreating-figures-from-front-genetics-2021.html#cb172-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
+<span id="cb172-40"><a href="recreating-figures-from-front-genetics-2021.html#cb172-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb172-41"><a href="recreating-figures-from-front-genetics-2021.html#cb172-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(slopes)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-146-1.png" width="768" /></p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="recreating-figures-from-front-genetics-2021.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;slopes.png&quot;</span>, </span>
+<span id="cb173-2"><a href="recreating-figures-from-front-genetics-2021.html#cb173-2" aria-hidden="true" tabindex="-1"></a>          slopes, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
+<span id="cb173-3"><a href="recreating-figures-from-front-genetics-2021.html#cb173-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+</div>
+<div id="figure-6---raincloud-plot" class="section level2" number="6.6">
+<h2><span class="header-section-number">6.6</span> Figure 6 - Raincloud plot</h2>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="recreating-figures-from-front-genetics-2021.html#cb174-1" aria-hidden="true" tabindex="-1"></a>raincloud1 <span class="ot">&lt;-</span> <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df1, <span class="at">x =</span> Day, <span class="at">y =</span> Value, </span>
+<span id="cb174-2"><a href="recreating-figures-from-front-genetics-2021.html#cb174-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">boxplot_alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb174-3"><a href="recreating-figures-from-front-genetics-2021.html#cb174-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep_level =</span> <span class="dv">0</span>, <span class="at">line_alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb174-4"><a href="recreating-figures-from-front-genetics-2021.html#cb174-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">2.85</span>), </span>
+<span id="cb174-5"><a href="recreating-figures-from-front-genetics-2021.html#cb174-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;1&#39;</span>, <span class="st">&#39;2&#39;</span>),</span>
+<span id="cb174-6"><a href="recreating-figures-from-front-genetics-2021.html#cb174-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb174-7"><a href="recreating-figures-from-front-genetics-2021.html#cb174-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">2</span>)) <span class="sc">+</span> </span>
+<span id="cb174-8"><a href="recreating-figures-from-front-genetics-2021.html#cb174-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span> </span>
+<span id="cb174-9"><a href="recreating-figures-from-front-genetics-2021.html#cb174-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A raincloud plot with 2 x-levels&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb174-10"><a href="recreating-figures-from-front-genetics-2021.html#cb174-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb174-11"><a href="recreating-figures-from-front-genetics-2021.html#cb174-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))</span>
+<span id="cb174-12"><a href="recreating-figures-from-front-genetics-2021.html#cb174-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-13"><a href="recreating-figures-from-front-genetics-2021.html#cb174-13" aria-hidden="true" tabindex="-1"></a>text1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb174-14"><a href="recreating-figures-from-front-genetics-2021.html#cb174-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb174-15"><a href="recreating-figures-from-front-genetics-2021.html#cb174-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;sep_level = 0</span><span class="sc">\n</span><span class="st">which_side = &quot;right&quot;&#39;</span>,</span>
+<span id="cb174-16"><a href="recreating-figures-from-front-genetics-2021.html#cb174-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="dv">5</span>, <span class="at">fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb174-17"><a href="recreating-figures-from-front-genetics-2021.html#cb174-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">2.5</span>, </span>
+<span id="cb174-18"><a href="recreating-figures-from-front-genetics-2021.html#cb174-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;Separation is minimum amongst</span><span class="sc">\n</span><span class="st">points, violin plot and boxplot.</span><span class="sc">\n</span><span class="st">This can be adjusted with&#39;</span>) <span class="sc">+</span></span>
+<span id="cb174-19"><a href="recreating-figures-from-front-genetics-2021.html#cb174-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">1.6</span>, <span class="at">label =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">  sep_level (0-4).&#39;</span>, <span class="at">fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb174-20"><a href="recreating-figures-from-front-genetics-2021.html#cb174-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.5</span>,</span>
+<span id="cb174-21"><a href="recreating-figures-from-front-genetics-2021.html#cb174-21" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;The violin plots face to the right.</span><span class="sc">\n</span><span class="st">This can be be changed with&#39;</span>) <span class="sc">+</span></span>
+<span id="cb174-22"><a href="recreating-figures-from-front-genetics-2021.html#cb174-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">1.1</span>, <span class="at">label =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">   which_side (&quot;right&quot;, &quot;left&quot;, &quot;mixed&quot;).&#39;</span>, <span class="at">fontface =</span> <span class="dv">2</span>)</span>
+<span id="cb174-23"><a href="recreating-figures-from-front-genetics-2021.html#cb174-23" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb174-24"><a href="recreating-figures-from-front-genetics-2021.html#cb174-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-25"><a href="recreating-figures-from-front-genetics-2021.html#cb174-25" aria-hidden="true" tabindex="-1"></a>raincloud2 <span class="ot">&lt;-</span> <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df1, <span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">group =</span> Subject,</span>
+<span id="cb174-26"><a href="recreating-figures-from-front-genetics-2021.html#cb174-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">boxplot_alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb174-27"><a href="recreating-figures-from-front-genetics-2021.html#cb174-27" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep_level =</span> <span class="dv">2</span>, <span class="at">line_alpha =</span> <span class="fl">0.2</span>, <span class="at">which_side =</span> <span class="st">&#39;mixed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb174-28"><a href="recreating-figures-from-front-genetics-2021.html#cb174-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">2.85</span>), </span>
+<span id="cb174-29"><a href="recreating-figures-from-front-genetics-2021.html#cb174-29" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;1&#39;</span>, <span class="st">&#39;2&#39;</span>),</span>
+<span id="cb174-30"><a href="recreating-figures-from-front-genetics-2021.html#cb174-30" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb174-31"><a href="recreating-figures-from-front-genetics-2021.html#cb174-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">2</span>)) <span class="sc">+</span> </span>
+<span id="cb174-32"><a href="recreating-figures-from-front-genetics-2021.html#cb174-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span> </span>
+<span id="cb174-33"><a href="recreating-figures-from-front-genetics-2021.html#cb174-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;sm_raincloud() with 2 x-levels&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb174-34"><a href="recreating-figures-from-front-genetics-2021.html#cb174-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb174-35"><a href="recreating-figures-from-front-genetics-2021.html#cb174-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))</span>
+<span id="cb174-36"><a href="recreating-figures-from-front-genetics-2021.html#cb174-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-37"><a href="recreating-figures-from-front-genetics-2021.html#cb174-37" aria-hidden="true" tabindex="-1"></a>text2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb174-38"><a href="recreating-figures-from-front-genetics-2021.html#cb174-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb174-39"><a href="recreating-figures-from-front-genetics-2021.html#cb174-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;sep_level = 2</span><span class="sc">\n</span><span class="st">which_side = &quot;mixed&quot;&#39;</span>,</span>
+<span id="cb174-40"><a href="recreating-figures-from-front-genetics-2021.html#cb174-40" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">4.7</span>, <span class="at">fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb174-41"><a href="recreating-figures-from-front-genetics-2021.html#cb174-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">2.8</span>, </span>
+<span id="cb174-42"><a href="recreating-figures-from-front-genetics-2021.html#cb174-42" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;Default sep_level is set at 2</span><span class="sc">\n</span><span class="st"> but this can be changed (0-4).&#39;</span>) <span class="sc">+</span></span>
+<span id="cb174-43"><a href="recreating-figures-from-front-genetics-2021.html#cb174-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="dv">1</span>,</span>
+<span id="cb174-44"><a href="recreating-figures-from-front-genetics-2021.html#cb174-44" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;The violin plots face both to the</span><span class="sc">\n</span><span class="st">left (x=1) and right (x=2).&#39;</span>) <span class="sc">+</span></span>
+<span id="cb174-45"><a href="recreating-figures-from-front-genetics-2021.html#cb174-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">0.6</span>, <span class="at">label =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">which_side = &quot;mixed&quot; only works when</span><span class="sc">\n</span><span class="st">there are 2 x discrete levels.&#39;</span>, <span class="at">fontface =</span> <span class="dv">2</span>)</span>
+<span id="cb174-46"><a href="recreating-figures-from-front-genetics-2021.html#cb174-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-47"><a href="recreating-figures-from-front-genetics-2021.html#cb174-47" aria-hidden="true" tabindex="-1"></a>raincloud3 <span class="ot">&lt;-</span> <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df1, <span class="at">x =</span> Day, <span class="at">y =</span> Value, </span>
+<span id="cb174-48"><a href="recreating-figures-from-front-genetics-2021.html#cb174-48" aria-hidden="true" tabindex="-1"></a>             <span class="at">boxplot_alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb174-49"><a href="recreating-figures-from-front-genetics-2021.html#cb174-49" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep_level =</span> <span class="dv">4</span>, <span class="at">line_alpha =</span> <span class="fl">0.2</span>, <span class="at">which_side =</span> <span class="st">&#39;left&#39;</span>) <span class="sc">+</span></span>
+<span id="cb174-50"><a href="recreating-figures-from-front-genetics-2021.html#cb174-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">2.85</span>), </span>
+<span id="cb174-51"><a href="recreating-figures-from-front-genetics-2021.html#cb174-51" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;1&#39;</span>, <span class="st">&#39;2&#39;</span>),</span>
+<span id="cb174-52"><a href="recreating-figures-from-front-genetics-2021.html#cb174-52" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb174-53"><a href="recreating-figures-from-front-genetics-2021.html#cb174-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">2</span>)) <span class="sc">+</span> </span>
+<span id="cb174-54"><a href="recreating-figures-from-front-genetics-2021.html#cb174-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span> </span>
+<span id="cb174-55"><a href="recreating-figures-from-front-genetics-2021.html#cb174-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A raincloud with no overlap&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb174-56"><a href="recreating-figures-from-front-genetics-2021.html#cb174-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb174-57"><a href="recreating-figures-from-front-genetics-2021.html#cb174-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))</span>
+<span id="cb174-58"><a href="recreating-figures-from-front-genetics-2021.html#cb174-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-59"><a href="recreating-figures-from-front-genetics-2021.html#cb174-59" aria-hidden="true" tabindex="-1"></a>text3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df1, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
+<span id="cb174-60"><a href="recreating-figures-from-front-genetics-2021.html#cb174-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> <span class="fu">theme_nothing</span>() <span class="sc">+</span></span>
+<span id="cb174-61"><a href="recreating-figures-from-front-genetics-2021.html#cb174-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;sep_level = 4</span><span class="sc">\n</span><span class="st">which_side = &quot;left&quot;&#39;</span>,</span>
+<span id="cb174-62"><a href="recreating-figures-from-front-genetics-2021.html#cb174-62" aria-hidden="true" tabindex="-1"></a>           <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">3.5</span>, <span class="at">fontface =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb174-63"><a href="recreating-figures-from-front-genetics-2021.html#cb174-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="fl">1.5</span>,</span>
+<span id="cb174-64"><a href="recreating-figures-from-front-genetics-2021.html#cb174-64" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="st">&#39;The violin plots face to the left.&#39;</span>)</span>
+<span id="cb174-65"><a href="recreating-figures-from-front-genetics-2021.html#cb174-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-66"><a href="recreating-figures-from-front-genetics-2021.html#cb174-66" aria-hidden="true" tabindex="-1"></a>raincloud_2x_all <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(raincloud1, text1, </span>
+<span id="cb174-67"><a href="recreating-figures-from-front-genetics-2021.html#cb174-67" aria-hidden="true" tabindex="-1"></a>                           raincloud2, text2, </span>
+<span id="cb174-68"><a href="recreating-figures-from-front-genetics-2021.html#cb174-68" aria-hidden="true" tabindex="-1"></a>                           raincloud3, text3,  </span>
+<span id="cb174-69"><a href="recreating-figures-from-front-genetics-2021.html#cb174-69" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;&quot;</span>),</span>
+<span id="cb174-70"><a href="recreating-figures-from-front-genetics-2021.html#cb174-70" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label_size =</span> <span class="dv">12</span>,</span>
+<span id="cb174-71"><a href="recreating-figures-from-front-genetics-2021.html#cb174-71" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">3</span>, </span>
+<span id="cb174-72"><a href="recreating-figures-from-front-genetics-2021.html#cb174-72" aria-hidden="true" tabindex="-1"></a>                     <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
+<span id="cb174-73"><a href="recreating-figures-from-front-genetics-2021.html#cb174-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-74"><a href="recreating-figures-from-front-genetics-2021.html#cb174-74" aria-hidden="true" tabindex="-1"></a>raincloud4 <span class="ot">&lt;-</span> <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Day, <span class="at">y =</span> Value, </span>
+<span id="cb174-75"><a href="recreating-figures-from-front-genetics-2021.html#cb174-75" aria-hidden="true" tabindex="-1"></a>             <span class="at">boxplot_alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb174-76"><a href="recreating-figures-from-front-genetics-2021.html#cb174-76" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep_level =</span> <span class="dv">2</span>, <span class="at">line_alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb174-77"><a href="recreating-figures-from-front-genetics-2021.html#cb174-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">4.75</span>), </span>
+<span id="cb174-78"><a href="recreating-figures-from-front-genetics-2021.html#cb174-78" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;1&#39;</span>, <span class="st">&#39;2&#39;</span>, <span class="st">&#39;3&#39;</span>, <span class="st">&#39;4&#39;</span>),</span>
+<span id="cb174-79"><a href="recreating-figures-from-front-genetics-2021.html#cb174-79" aria-hidden="true" tabindex="-1"></a>                     <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb174-80"><a href="recreating-figures-from-front-genetics-2021.html#cb174-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">4</span>)) <span class="sc">+</span> </span>
+<span id="cb174-81"><a href="recreating-figures-from-front-genetics-2021.html#cb174-81" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span> </span>
+<span id="cb174-82"><a href="recreating-figures-from-front-genetics-2021.html#cb174-82" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Four discrete levels of x, sep_level = 2, which_side = &quot;right&quot;&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb174-83"><a href="recreating-figures-from-front-genetics-2021.html#cb174-83" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb174-84"><a href="recreating-figures-from-front-genetics-2021.html#cb174-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))</span>
+<span id="cb174-85"><a href="recreating-figures-from-front-genetics-2021.html#cb174-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-86"><a href="recreating-figures-from-front-genetics-2021.html#cb174-86" aria-hidden="true" tabindex="-1"></a>raincloud_all <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(raincloud_2x_all, </span>
+<span id="cb174-87"><a href="recreating-figures-from-front-genetics-2021.html#cb174-87" aria-hidden="true" tabindex="-1"></a>                           raincloud4,  </span>
+<span id="cb174-88"><a href="recreating-figures-from-front-genetics-2021.html#cb174-88" aria-hidden="true" tabindex="-1"></a>                           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;&quot;</span>,<span class="st">&quot;D&quot;</span>),</span>
+<span id="cb174-89"><a href="recreating-figures-from-front-genetics-2021.html#cb174-89" aria-hidden="true" tabindex="-1"></a>                           <span class="at">label_size =</span> <span class="dv">12</span>,</span>
+<span id="cb174-90"><a href="recreating-figures-from-front-genetics-2021.html#cb174-90" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">nrow =</span> <span class="dv">2</span>, </span>
+<span id="cb174-91"><a href="recreating-figures-from-front-genetics-2021.html#cb174-91" aria-hidden="true" tabindex="-1"></a>                           <span class="at">scale =</span> <span class="fl">0.95</span>,</span>
+<span id="cb174-92"><a href="recreating-figures-from-front-genetics-2021.html#cb174-92" aria-hidden="true" tabindex="-1"></a>                           <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">7.5</span>,<span class="fl">2.5</span>))</span>
+<span id="cb174-93"><a href="recreating-figures-from-front-genetics-2021.html#cb174-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-94"><a href="recreating-figures-from-front-genetics-2021.html#cb174-94" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(raincloud_all)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-147-1.png" width="696" /></p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="recreating-figures-from-front-genetics-2021.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;rainclouds.png&quot;</span>, </span>
+<span id="cb175-2"><a href="recreating-figures-from-front-genetics-2021.html#cb175-2" aria-hidden="true" tabindex="-1"></a>          raincloud_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
+<span id="cb175-3"><a href="recreating-figures-from-front-genetics-2021.html#cb175-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+</div>
+<div id="figure-7---case-study" class="section level2" number="6.7">
+<h2><span class="header-section-number">6.7</span> Figure 7 - Case study</h2>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="recreating-figures-from-front-genetics-2021.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>) <span class="co"># generate random data</span></span>
+<span id="cb176-2"><a href="recreating-figures-from-front-genetics-2021.html#cb176-2" aria-hidden="true" tabindex="-1"></a>method1 <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">19</span>,<span class="dv">0</span>,<span class="dv">1</span>),<span class="fl">2.5</span>)</span>
+<span id="cb176-3"><a href="recreating-figures-from-front-genetics-2021.html#cb176-3" aria-hidden="true" tabindex="-1"></a>method2 <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">19</span>,<span class="dv">0</span>,<span class="dv">1</span>),<span class="fl">2.5</span>)</span>
+<span id="cb176-4"><a href="recreating-figures-from-front-genetics-2021.html#cb176-4" aria-hidden="true" tabindex="-1"></a>Subject <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)), <span class="dv">2</span>)</span>
+<span id="cb176-5"><a href="recreating-figures-from-front-genetics-2021.html#cb176-5" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Value =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(method1,method2),<span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb176-6"><a href="recreating-figures-from-front-genetics-2021.html#cb176-6" aria-hidden="true" tabindex="-1"></a>Method <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;Method 1&#39;</span>, <span class="st">&#39;Method 2&#39;</span>), <span class="at">each =</span> <span class="fu">length</span>(method1))</span>
+<span id="cb176-7"><a href="recreating-figures-from-front-genetics-2021.html#cb176-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Subject, Data, Method)</span>
+<span id="cb176-8"><a href="recreating-figures-from-front-genetics-2021.html#cb176-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-9"><a href="recreating-figures-from-front-genetics-2021.html#cb176-9" aria-hidden="true" tabindex="-1"></a><span class="co"># slope chart</span></span>
+<span id="cb176-10"><a href="recreating-figures-from-front-genetics-2021.html#cb176-10" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Method, <span class="at">y =</span> Value, </span>
+<span id="cb176-11"><a href="recreating-figures-from-front-genetics-2021.html#cb176-11" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">group =</span> Subject, <span class="at">fill =</span> Method)) <span class="sc">+</span></span>
+<span id="cb176-12"><a href="recreating-figures-from-front-genetics-2021.html#cb176-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Method 1&#39;</span>, <span class="st">&#39;Method 2&#39;</span>),</span>
+<span id="cb176-13"><a href="recreating-figures-from-front-genetics-2021.html#cb176-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">line_alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb176-14"><a href="recreating-figures-from-front-genetics-2021.html#cb176-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb176-15"><a href="recreating-figures-from-front-genetics-2021.html#cb176-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Slope chart&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb176-16"><a href="recreating-figures-from-front-genetics-2021.html#cb176-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb176-17"><a href="recreating-figures-from-front-genetics-2021.html#cb176-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Gene expression level&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb176-18"><a href="recreating-figures-from-front-genetics-2021.html#cb176-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="dv">2</span>, <span class="at">label =</span> <span class="st">&#39;sm_slope()&#39;</span>) <span class="ot">-&gt;</span> slope</span>
+<span id="cb176-19"><a href="recreating-figures-from-front-genetics-2021.html#cb176-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-20"><a href="recreating-figures-from-front-genetics-2021.html#cb176-20" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation plot</span></span>
+<span id="cb176-21"><a href="recreating-figures-from-front-genetics-2021.html#cb176-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-22"><a href="recreating-figures-from-front-genetics-2021.html#cb176-22" aria-hidden="true" tabindex="-1"></a>df3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">first =</span> method1, <span class="at">second =</span> method2)</span>
+<span id="cb176-23"><a href="recreating-figures-from-front-genetics-2021.html#cb176-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-24"><a href="recreating-figures-from-front-genetics-2021.html#cb176-24" aria-hidden="true" tabindex="-1"></a>corr_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df3, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> first, <span class="at">y =</span> second)) <span class="sc">+</span> </span>
+<span id="cb176-25"><a href="recreating-figures-from-front-genetics-2021.html#cb176-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
+<span id="cb176-26"><a href="recreating-figures-from-front-genetics-2021.html#cb176-26" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">sm_corr_theme</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb176-27"><a href="recreating-figures-from-front-genetics-2021.html#cb176-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>,<span class="fl">2.5</span>)) <span class="sc">+</span></span>
+<span id="cb176-28"><a href="recreating-figures-from-front-genetics-2021.html#cb176-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">2.5</span>,<span class="fl">2.5</span>)) <span class="sc">+</span></span>
+<span id="cb176-29"><a href="recreating-figures-from-front-genetics-2021.html#cb176-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>), <span class="at">corr_method =</span> <span class="st">&#39;pearson&#39;</span>,</span>
+<span id="cb176-30"><a href="recreating-figures-from-front-genetics-2021.html#cb176-30" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_x =</span> <span class="sc">-</span><span class="fl">2.2</span>, <span class="at">label_y =</span> <span class="fl">2.3</span>) <span class="sc">+</span></span>
+<span id="cb176-31"><a href="recreating-figures-from-front-genetics-2021.html#cb176-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Correlation plot&#39;</span>) <span class="sc">+</span> </span>
+<span id="cb176-32"><a href="recreating-figures-from-front-genetics-2021.html#cb176-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Method 1&#39;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&#39;Method 2&#39;</span>) <span class="sc">+</span></span>
+<span id="cb176-33"><a href="recreating-figures-from-front-genetics-2021.html#cb176-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="sc">-</span><span class="fl">2.3</span>, <span class="at">label =</span> <span class="st">&#39;sm_corr_theme() + sm_statCorr()&#39;</span>)</span>
+<span id="cb176-34"><a href="recreating-figures-from-front-genetics-2021.html#cb176-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-35"><a href="recreating-figures-from-front-genetics-2021.html#cb176-35" aria-hidden="true" tabindex="-1"></a><span class="co"># BA plot</span></span>
+<span id="cb176-36"><a href="recreating-figures-from-front-genetics-2021.html#cb176-36" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">sm_statBlandAlt</span>(df3<span class="sc">$</span>first,df3<span class="sc">$</span>second)</span>
+<span id="cb176-37"><a href="recreating-figures-from-front-genetics-2021.html#cb176-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-38"><a href="recreating-figures-from-front-genetics-2021.html#cb176-38" aria-hidden="true" tabindex="-1"></a>ba_plot <span class="ot">&lt;-</span> <span class="fu">sm_bland_altman</span>(df3<span class="sc">$</span>first, df3<span class="sc">$</span>second, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb176-39"><a href="recreating-figures-from-front-genetics-2021.html#cb176-39" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
+<span id="cb176-40"><a href="recreating-figures-from-front-genetics-2021.html#cb176-40" aria-hidden="true" tabindex="-1"></a>                <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)) <span class="sc">+</span> </span>
+<span id="cb176-41"><a href="recreating-figures-from-front-genetics-2021.html#cb176-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb176-42"><a href="recreating-figures-from-front-genetics-2021.html#cb176-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb176-43"><a href="recreating-figures-from-front-genetics-2021.html#cb176-43" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Mean&#39;</span>, <span class="at">x =</span> <span class="fl">4.3</span>, <span class="at">y =</span> res<span class="sc">$</span>mean_diff <span class="sc">+</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb176-44"><a href="recreating-figures-from-front-genetics-2021.html#cb176-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>mean_diff,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">4.3</span>, <span class="at">y =</span> res<span class="sc">$</span>mean_diff <span class="sc">-</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb176-45"><a href="recreating-figures-from-front-genetics-2021.html#cb176-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Upper limit&#39;</span>, <span class="at">x =</span> <span class="fl">4.3</span>, <span class="at">y =</span> res<span class="sc">$</span>upper_limit <span class="sc">+</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb176-46"><a href="recreating-figures-from-front-genetics-2021.html#cb176-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>upper_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">4.3</span>, <span class="at">y =</span> res<span class="sc">$</span>upper_limit <span class="sc">-</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb176-47"><a href="recreating-figures-from-front-genetics-2021.html#cb176-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Lower limit&#39;</span>, <span class="at">x =</span> <span class="fl">4.3</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit <span class="sc">+</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb176-48"><a href="recreating-figures-from-front-genetics-2021.html#cb176-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>lower_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">4.3</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit <span class="sc">-</span> <span class="fl">0.4</span>) <span class="sc">+</span> </span>
+<span id="cb176-49"><a href="recreating-figures-from-front-genetics-2021.html#cb176-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Bland-Altman plot&#39;</span>) <span class="sc">+</span></span>
+<span id="cb176-50"><a href="recreating-figures-from-front-genetics-2021.html#cb176-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">1.5</span>, <span class="at">y =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">label =</span> <span class="st">&#39;sm_statBlandAlt() + </span><span class="sc">\n</span><span class="st">sm_bland_altman()&#39;</span>)</span>
+<span id="cb176-51"><a href="recreating-figures-from-front-genetics-2021.html#cb176-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-52"><a href="recreating-figures-from-front-genetics-2021.html#cb176-52" aria-hidden="true" tabindex="-1"></a>case_study <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(slope, corr_plot, ba_plot, </span>
+<span id="cb176-53"><a href="recreating-figures-from-front-genetics-2021.html#cb176-53" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>),</span>
+<span id="cb176-54"><a href="recreating-figures-from-front-genetics-2021.html#cb176-54" aria-hidden="true" tabindex="-1"></a>                     <span class="at">hjust =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="co"># horizontal position of ABC labels</span></span>
+<span id="cb176-55"><a href="recreating-figures-from-front-genetics-2021.html#cb176-55" aria-hidden="true" tabindex="-1"></a>                     <span class="at">label_size =</span> <span class="dv">12</span>,</span>
+<span id="cb176-56"><a href="recreating-figures-from-front-genetics-2021.html#cb176-56" aria-hidden="true" tabindex="-1"></a>                     <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">1</span>, </span>
+<span id="cb176-57"><a href="recreating-figures-from-front-genetics-2021.html#cb176-57" aria-hidden="true" tabindex="-1"></a>                     <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
+<span id="cb176-58"><a href="recreating-figures-from-front-genetics-2021.html#cb176-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-59"><a href="recreating-figures-from-front-genetics-2021.html#cb176-59" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(case_study)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-148-1.png" width="1051.2" /></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="recreating-figures-from-front-genetics-2021.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;case_study.png&quot;</span>, </span>
+<span id="cb177-2"><a href="recreating-figures-from-front-genetics-2021.html#cb177-2" aria-hidden="true" tabindex="-1"></a>          case_study, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
+<span id="cb177-3"><a href="recreating-figures-from-front-genetics-2021.html#cb177-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="recreating-the-cover-figure.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/smin95/dataviz/edit/master/06-manuscriptFig.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/smin95/dataviz/blob/master/06-manuscriptFig.Rmd",
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

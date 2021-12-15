@@ -29,12 +29,12 @@ slope-chart---sm_slope
 a-bland-altman-plot---sm_bland_altman
 raincloud-plot---sm_raincloud
 overriding-defaults-of-smplots-themes
-recreating-the-cover-example-figure
+recreating-the-cover-figure
 boxplot-and-violin-plot-1
 bar-plot-and-slope-chart
 raincloud-plot
 put-all-figures-together
-recreating-the-manuscript-figures
+recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
 figure-2---bar-plot
 figure-3---boxplot
