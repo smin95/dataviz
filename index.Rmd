@@ -19,6 +19,10 @@ This book guides the reader to be familiar with R, a programming language, for d
 
 **Note:** If you are interested in recreating this figure, please read Chapter 5.
 
+## Please cite this paper when smplot is used {-}
+
+Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). Frontiers in Genetics, 12:802894. 
+
 ## For R and ggplot2 experts {-}
 
 Please skip Chapters 1-3. 
