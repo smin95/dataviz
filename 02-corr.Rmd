@@ -31,6 +31,8 @@ mpg
 ```
 
 - Notice that some columns and rows are not shown. You can type `View(mpg)` to see the entire **data frame**.
+- Each row is an unique observation.
+- Each column is a unique variable/condition. 
 
 ```{r, eval = FALSE}
 View(mpg)
