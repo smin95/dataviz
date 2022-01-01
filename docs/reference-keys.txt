@@ -19,6 +19,7 @@ full-guide-on-smplot
 installation-of-the-package
 smplots-color-palette-and-graph-themes
 correlation-plot
+data-frame-for-a-correlation-plot
 boxplot---sm_boxplot
 plotting-individual-points-with-unique-colors
 violin-plot---sm_violin

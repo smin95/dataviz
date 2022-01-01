@@ -142,6 +142,54 @@ p1 + sm_corr_theme() +
                text_size = 5)
 ```
 
+### Data frame for a correlation plot
+- Column 1 has to be the data for x-axis.
+- Column 2 has to be the data for y-axis. 
+- This structure of the data frame is slightly different from that is typically used in ggplot2 and smplot functions (ex. `sm_boxplot()`, `sm_bar()`, `sm_violin()` and `sm_raincloud()`).
+
+- Correlation plot and a bar plot requires a different data frame structure. 
+
+```{r}
+# Example
+set.seed(11) # generate random data
+method1 = c(rnorm(19,0,1),2.5)
+method2 = c(rnorm(19,0,1),2.5)
+Subject <- rep(paste0('S',seq(1:20)), 2)
+Data <- data.frame(Value = matrix(c(method1,method2),ncol=1))
+Method <- rep(c('Method 1', 'Method 2'), each = length(method1))
+df_general <- cbind(Subject, Data, Method) # used for sm_bar(), sm_boxplot(), sm_violin(), etc
+
+df_corr <- data.frame(first = method1, second = method2) # used for correlation
+
+head(df_corr)
+head(df_general)
+```
+
+- Notice that `df_corr` has two columns, each of which represents a measurement group. 
+- Notice that `df_general` has three columns. The first column is subject, second column is data (i.e., `Value`) and third column is measurement group. 
+
+```{r, fig.width = 3.7, fig.height=3.7}
+
+# correlation plot using dataframe 'df_corr' 
+ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
+  geom_point(shape = 21, fill = sm_color('blue'), color = 'white',
+             size = 3) + sm_corr_theme(borders = FALSE) +
+  scale_y_continuous(limits = c(-2.5,2.5)) +
+  scale_x_continuous(limits = c(-2.5,2.5)) +
+  sm_statCorr(color = sm_color('cyan'), corr_method = 'pearson',
+              label_x = -2.2, label_y = 2.3) +
+  ggtitle('Correlation plot') + 
+  xlab('Method 1') + ylab('Method 2') 
+
+```
+
+```{r, fig.width = 3.7, fig.height=3.7}
+# bar graph using dataframe 'df_general'
+ggplot(data = df_general, mapping = aes(x = Method, y = Value, fill = Method)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
+  scale_fill_manual(values = sm_color('cyan','green'))
+```
+
 ## Boxplot - `sm_boxplot()`
 
 - `sm_boxplot()` generates a boxplot and individual points at the same time. 
@@ -256,12 +304,20 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   scale_fill_manual(values = sm_color('blue','orange'))
 ```
 
-- In this case, the error bar represents **standard error**. If you prefer to show **standard deviation**, then you should set `se = FALSE` in `sm_bar()`.
+- In this case, the error bar represents **standard error**. If you prefer to show **standard deviation**, then you should set `errorbar_type  = 'sd'` in `sm_bar()`.
   
   
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
-  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80', se = FALSE) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80', errorbar_type = 'sd') +
+  scale_fill_manual(values = sm_color('blue','orange'))
+```
+
+- 95% confidence interval also be displayed with `errorbar_type  = 'ci'`. 
+
+```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80', errorbar_type = 'ci') +
   scale_fill_manual(values = sm_color('blue','orange'))
 ```
 
