@@ -589,7 +589,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 - `sm_color('blue)` prints a hex code for the corresponding. Likewise, `sm_color('blue','orange')` prints out two hex codes. 
 
-- Instead of using `sm_color()` function, you can directly input the hexcodes 
+- Therefore, instead of using `sm_color()` function to call forth the colors, you can directly write the hex codes.
 
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 
