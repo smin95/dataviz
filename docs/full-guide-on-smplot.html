@@ -253,6 +253,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.8" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>4.8</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
 <li class="chapter" data-level="4.9" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>4.9</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
 <li class="chapter" data-level="4.10" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#overriding-defaults-of-smplots-themes"><i class="fa fa-check"></i><b>4.10</b> Overriding defaults of smplot’s themes</a></li>
+<li class="chapter" data-level="4.11" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#overriding-defaults-of-smplot-colors"><i class="fa fa-check"></i><b>4.11</b> Overriding defaults of smplot colors</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="recreating-the-cover-figure.html"><a href="recreating-the-cover-figure.html"><i class="fa fa-check"></i><b>5</b> Recreating the Cover Figure</a>
 <ul>
@@ -838,6 +839,19 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb156-5"><a href="full-guide-on-smplot.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Value&#39;</span>) <span class="sc">+</span></span>
 <span id="cb156-6"><a href="full-guide-on-smplot.html#cb156-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Reading performance in children&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-131-1.png" width="355.2" /></p>
+</div>
+<div id="overriding-defaults-of-smplot-colors" class="section level2" number="4.11">
+<h2><span class="header-section-number">4.11</span> Overriding defaults of smplot colors</h2>
+<ul>
+<li><p><code>sm_color('blue)</code> prints a hex code for the corresponding. Likewise, <code>sm_color('blue','orange')</code> prints out two hex codes.</p></li>
+<li><p>Instead of using <code>sm_color()</code> function, you can directly input the hexcodes instead.</p></li>
+</ul>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="full-guide-on-smplot.html#cb157-1" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#ff1493&#39;</span>, <span class="st">&#39;#483d8B&#39;</span>) <span class="co"># pink and lavender</span></span>
+<span id="cb157-2"><a href="full-guide-on-smplot.html#cb157-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb157-3"><a href="full-guide-on-smplot.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
+<span id="cb157-4"><a href="full-guide-on-smplot.html#cb157-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
+<span id="cb157-5"><a href="full-guide-on-smplot.html#cb157-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_colors)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-132-1.png" width="355.2" /></p>
 
 </div>
 </div>

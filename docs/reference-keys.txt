@@ -30,6 +30,7 @@ slope-chart---sm_slope
 a-bland-altman-plot---sm_bland_altman
 raincloud-plot---sm_raincloud
 overriding-defaults-of-smplots-themes
+overriding-defaults-of-smplot-colors
 recreating-the-cover-figure
 boxplot-and-violin-plot-1
 bar-plot-and-slope-chart

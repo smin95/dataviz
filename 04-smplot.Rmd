@@ -564,3 +564,18 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   ylab('Value') +
   ggtitle('Reading performance in children')
 ```
+
+## Overriding defaults of smplot colors
+
+- `sm_color('blue)` prints a hex code for the corresponding. Likewise, `sm_color('blue','orange')` prints out two hex codes. 
+
+- Instead of using `sm_color()` function, you can directly input the hexcodes instead. 
+
+```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+
+my_colors <- c('#ff1493', '#483d8B') # pink and lavender
+
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
+  scale_fill_manual(values = my_colors)
+```
