@@ -10,6 +10,8 @@ editor_options:
 
 This chapter is for those who know how to use ggplot2 already and skipped Chapters 1-3 from the online tutorial. It also includes tutorials about `sm_bar()`, `sm_bland_altman()` and `sm_raincloud()`, all of which are not mentioned in the preceding chapters.
 
+- If you are not sure about any of the functions, please type `?` before the function names, ex. `?sm_bar`. 
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
@@ -36,7 +38,7 @@ library(smplot)
 - **smplot** is a package that provides functions that visually improve graphs produced from **ggplot2**.
   - So it does not work with plots made from base R.
 - It was first developed in May 2021.
-- It is **free** and open source (https://github.com/smin95/smplot).
+- It is **free** and **open source** (https://github.com/smin95/smplot).
 
 ## smplot's color palette and graph themes
 
@@ -160,13 +162,21 @@ Method <- rep(c('Method 1', 'Method 2'), each = length(method1))
 df_general <- cbind(Subject, Data, Method) # used for sm_bar(), sm_boxplot(), sm_violin(), etc
 
 df_corr <- data.frame(first = method1, second = method2) # used for correlation
+```
 
-head(df_corr)
+- We have created two data frames: `df_general` and `df_corr`. Let's take a look at their structures. 
+
+```{r}
 head(df_general)
 ```
 
-- Notice that `df_corr` has two columns, each of which represents a measurement group. 
 - Notice that `df_general` has three columns. The first column is subject, second column is data (i.e., `Value`) and third column is measurement group. 
+
+```{r}
+head(df_corr)
+```
+
+- Notice that `df_corr` has two columns, each of which represents a measurement group. 
 
 ```{r, fig.width = 3.7, fig.height=3.7}
 
@@ -370,10 +380,20 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject)) +
 
 - You could also apply different color for each `Day` using `scale_fill_manual()`.
 
+
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)) +
   sm_slope(labels = c('Day 1','Day 2'), shape = 21, color = 'white') +
   scale_fill_manual(values = sm_color('blue','orange'))
+```
+
+- You can also change the line color and other aesthetics. For more information, please type `?sm_slope`. 
+
+```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)) +
+  sm_slope(labels = c('Day 1','Day 2'), shape = 21, color = 'white',
+           fill = sm_color('blue'), line_color = '#ADD8E6',
+           line_size = 0.6)
 ```
 
 ## A Bland Altman plot - `sm_bland_altman()`
@@ -569,7 +589,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 - `sm_color('blue)` prints a hex code for the corresponding. Likewise, `sm_color('blue','orange')` prints out two hex codes. 
 
-- Instead of using `sm_color()` function, you can directly input the hexcodes instead. 
+- Instead of using `sm_color()` function, you can directly input the hexcodes 
 
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 
