@@ -172,7 +172,7 @@ head(df_general)
 
 # correlation plot using dataframe 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
-  geom_point(shape = 21, fill = sm_color('blue'), color = 'white',
+  geom_point(shape = 21, fill = sm_color('cyan'), color = 'white',
              size = 3) + sm_corr_theme(borders = FALSE) +
   scale_y_continuous(limits = c(-2.5,2.5)) +
   scale_x_continuous(limits = c(-2.5,2.5)) +
