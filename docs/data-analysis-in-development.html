@@ -255,7 +255,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.10" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#overriding-defaults-of-smplots-themes"><i class="fa fa-check"></i><b>4.10</b> Overriding defaults of smplot’s themes</a></li>
 <li class="chapter" data-level="4.11" data-path="full-guide-on-smplot.html"><a href="full-guide-on-smplot.html#overriding-defaults-of-smplot-colors"><i class="fa fa-check"></i><b>4.11</b> Overriding defaults of smplot colors</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html"><i class="fa fa-check"></i><b>5</b> Data Analysis (in development)</a></li>
+<li class="chapter" data-level="5" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html"><i class="fa fa-check"></i><b>5</b> Data Analysis (in development)</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.1</b> Plotting individual data</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html"><i class="fa fa-check"></i><b>6</b> Recreating Figures from Front. Genetics (2021)</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html#figure-1---correlation-plot"><i class="fa fa-check"></i><b>6.1</b> Figure 1 - Correlation plot</a></li>
@@ -289,7 +292,282 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 5</span> Data Analysis (in development)</h1>
 <p>This section is in development. Contents will include dplyr (filter, select) and statistics (t-test, correlation, power analysis etc).</p>
 <p>If you wish me to include other topics, please let me know.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-analysis-in-development.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;gridExtra&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-analysis-in-development.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb161-2"><a href="data-analysis-in-development.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb161-3"><a href="data-analysis-in-development.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span>
+<span id="cb161-4"><a href="data-analysis-in-development.html#cb161-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb161-5"><a href="data-analysis-in-development.html#cb161-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span></code></pre></div>
+<div id="plotting-individual-data" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Plotting individual data</h2>
+<p>First, you need to load data (.csv file). When you are loading your own .csv file for your data analysis, make sure you place the .csv file of your interest in the folder that has been set to the <strong>working directory</strong>.</p>
+<p>In this example, we will be using data from this paper:</p>
+<p><strong>Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.</strong></p>
+<p>We will be creating a similar figure to <strong>Figure 2A</strong> using <strong>smplot</strong>. For the PDF copy, please visit <a href="https://www.smin95.com/pubs/min2019.pdf" class="uri">https://www.smin95.com/pubs/min2019.pdf</a>.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-analysis-in-development.html#cb162-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;min2019.csv&#39;</span>)</span>
+<span id="cb162-2"><a href="data-analysis-in-development.html#cb162-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Day)</span>
+<span id="cb162-3"><a href="data-analysis-in-development.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject Day    Time Cbratio
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 S1      1         0  -0.421
+## 2 S2      1         0   2.82 
+## 3 S3      1         0   1.69 
+## 4 S4      1         0   2.55 
+## 5 S5      1         0  -0.217
+## 6 S6      1         0   0.626</code></pre>
+<p>There are 4 columns in this dataframe:
+- First, <code>Subject</code> refers to each participant. There are 10 participants total.
+- Next, <code>Day</code> refers to the day of testing. The participants were tested on Day 1, 2, 3, 4 and 5. We will only use Day from 1 and 5.
+- <code>Time</code> refers to the number of minutes after an experimental manipulation (ex. monocular deprivation). These are 0, 3, 6, 12, 24 and 48 minutes, but in the dataframe, it says 0, 1, 2, 3, 4 and 5; we will change the labels manually.
+- The <code>Cbratio</code> column refers to the actual data that will be plotted here.</p>
+<p>In the example below, the plots will have different colors based on Day (1 or 5). Therefore, the values in <code>Day</code> column have to be discrete, not continuous. To make them discrte, one needs to convert the <code>Day</code> column from <strong>double</strong> (continuous variable) to <strong>factor</strong> (discrete variable).</p>
+<p>To plot data of each subject separately, we need the dataframe to show data only from one subject. This can be achieved as shown below:</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="data-analysis-in-development.html#cb164-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 S1      1         0  -0.421
+##  2 S1      1         1   0.802
+##  3 S1      1         2   1.01 
+##  4 S1      1         3   0.634
+##  5 S1      1         4  -0.245
+##  6 S1      1         5  -0.834
+##  7 S1      5         0   2.42 
+##  8 S1      5         1   1.76 
+##  9 S1      5         2   1.91 
+## 10 S1      5         3   0.609
+## 11 S1      5         4   0.811
+## 12 S1      5         5   0.363</code></pre>
+<p><code>%&gt;%</code> is called the <strong>pipe</strong>. The above code can be read as: <strong>filter</strong> for all rows of the dataframe <strong>df</strong> that have <code>S1</code> in the <code>Subject</code> column.</p>
+<p>Here is another example.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="data-analysis-in-development.html#cb166-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 60 x 4
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 S1      1         0  -0.421
+##  2 S2      1         0   2.82 
+##  3 S3      1         0   1.69 
+##  4 S4      1         0   2.55 
+##  5 S5      1         0  -0.217
+##  6 S6      1         0   0.626
+##  7 S7      1         0   2.62 
+##  8 S8      1         0   1.42 
+##  9 S9      1         0   1.54 
+## 10 S10     1         0   3.05 
+## # ... with 50 more rows</code></pre>
+<p>The above code can be read as: <strong>filter</strong> for all rows of the dataframe <strong>df</strong> that have <code>1</code> in the <code>Day</code> column.</p>
+<p>Notice that S1 is a <strong>character</strong> because it has an alphabet. Therefore, it needs to be written as <code>'S1'</code>. However, <code>1</code> of <code>Day</code> is <strong>double</strong>, which is essentially just a number digit. Therefore, it can be written as <code>1</code> with no quotation mark.</p>
+<p>Let’s try another example.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="data-analysis-in-development.html#cb168-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject Day    Time Cbratio
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 S1      1         0  -0.421
+## 2 S1      1         1   0.802
+## 3 S1      1         2   1.01 
+## 4 S1      1         3   0.634
+## 5 S1      1         4  -0.245
+## 6 S1      1         5  -0.834</code></pre>
+<p>The above code can be read as: <strong>filter</strong> for all rows of the dataframe <strong>df</strong> that have <code>1</code> in the <code>Day</code> column. Then, <strong>filter</strong> for all rows of the dataframe <strong>df</strong> that have <code>S1</code> in the <code>Subject</code> column.</p>
+<p>The above can also be written like the one below:</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="data-analysis-in-development.html#cb170-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject Day    Time Cbratio
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 S1      1         0  -0.421
+## 2 S1      1         1   0.802
+## 3 S1      1         2   1.01 
+## 4 S1      1         3   0.634
+## 5 S1      1         4  -0.245
+## 6 S1      1         5  -0.834</code></pre>
+<p>The above can be read as: <strong>filter</strong> for all rows of the dataframe <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>AND</strong> have <code>S1</code> in the <code>Subject</code> column.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-analysis-in-development.html#cb172-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 66 x 4
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 S1      1         0  -0.421
+##  2 S2      1         0   2.82 
+##  3 S3      1         0   1.69 
+##  4 S4      1         0   2.55 
+##  5 S5      1         0  -0.217
+##  6 S6      1         0   0.626
+##  7 S7      1         0   2.62 
+##  8 S8      1         0   1.42 
+##  9 S9      1         0   1.54 
+## 10 S10     1         0   3.05 
+## # ... with 56 more rows</code></pre>
+<p>The above can be read as: <strong>filter</strong> for all rows of the dataframe <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>OR</strong> have <code>S1</code> in the <code>Subject</code> column.</p>
+<p>If you wish to see the <code>Cbratio</code> column only (i.e., data only) for rows of <strong>df</strong> that have <code>Day ==  1</code> and <code>Time == 0</code>, you can write it like this:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-analysis-in-development.html#cb174-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Time <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Cbratio)</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 1
+##    Cbratio
+##      &lt;dbl&gt;
+##  1  -0.421
+##  2   2.82 
+##  3   1.69 
+##  4   2.55 
+##  5  -0.217
+##  6   0.626
+##  7   2.62 
+##  8   1.42 
+##  9   1.54 
+## 10   3.05</code></pre>
+<p>There are 10 rows (i.e., 10 subjects) in this filtered data frame and 1 column, which is <code>Cbratio</code>. The above can be read as: <strong>filter</strong> for all rows of the dataframe <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>AND</strong> have <code>0</code> in the <code>Time</code> column.</p>
+<p>Now let’s plot data for each subject (S1, S5, S6, S10). Each panel shows the data of each subject for both Days 1 and 5.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="data-analysis-in-development.html#cb176-1" aria-hidden="true" tabindex="-1"></a>df_s1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) <span class="co"># rows of df that only contain S1 in the Subject column</span></span>
+<span id="cb176-2"><a href="data-analysis-in-development.html#cb176-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-3"><a href="data-analysis-in-development.html#cb176-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use df_s1 to plot the data of S1</span></span>
+<span id="cb176-4"><a href="data-analysis-in-development.html#cb176-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-5"><a href="data-analysis-in-development.html#cb176-5" aria-hidden="true" tabindex="-1"></a>s1_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s1, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb176-6"><a href="data-analysis-in-development.html#cb176-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb176-7"><a href="data-analysis-in-development.html#cb176-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> <span class="co"># lm = linear regression method </span></span>
+<span id="cb176-8"><a href="data-analysis-in-development.html#cb176-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb176-9"><a href="data-analysis-in-development.html#cb176-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb176-10"><a href="data-analysis-in-development.html#cb176-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb176-11"><a href="data-analysis-in-development.html#cb176-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb176-12"><a href="data-analysis-in-development.html#cb176-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb176-13"><a href="data-analysis-in-development.html#cb176-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) <span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb176-14"><a href="data-analysis-in-development.html#cb176-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb176-15"><a href="data-analysis-in-development.html#cb176-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s1_plot)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-145-1.png" width="336" /></p>
+<p>Then make each one for the other subjects (S1, S5, S6, S10).</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="data-analysis-in-development.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 5</span></span>
+<span id="cb177-2"><a href="data-analysis-in-development.html#cb177-2" aria-hidden="true" tabindex="-1"></a>df_s5 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S5&#39;</span>) <span class="co"># rows of df that only contain S5 in the Subject column</span></span>
+<span id="cb177-3"><a href="data-analysis-in-development.html#cb177-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb177-4"><a href="data-analysis-in-development.html#cb177-4" aria-hidden="true" tabindex="-1"></a>s5_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s5, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb177-5"><a href="data-analysis-in-development.html#cb177-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb177-6"><a href="data-analysis-in-development.html#cb177-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> <span class="co"># lm = linear regression method </span></span>
+<span id="cb177-7"><a href="data-analysis-in-development.html#cb177-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb177-8"><a href="data-analysis-in-development.html#cb177-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb177-9"><a href="data-analysis-in-development.html#cb177-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># show legends for the color</span></span>
+<span id="cb177-10"><a href="data-analysis-in-development.html#cb177-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb177-11"><a href="data-analysis-in-development.html#cb177-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb177-12"><a href="data-analysis-in-development.html#cb177-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span> <span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb177-13"><a href="data-analysis-in-development.html#cb177-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb177-14"><a href="data-analysis-in-development.html#cb177-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.96</span>, <span class="fl">0.65</span>)) <span class="co"># location of legend (color label)</span></span>
+<span id="cb177-15"><a href="data-analysis-in-development.html#cb177-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb177-16"><a href="data-analysis-in-development.html#cb177-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s5_plot)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-146-1.png" width="336" /></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="data-analysis-in-development.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 6</span></span>
+<span id="cb178-2"><a href="data-analysis-in-development.html#cb178-2" aria-hidden="true" tabindex="-1"></a>df_s6 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S6&#39;</span>) <span class="co"># rows of df that only contain S6 in the Subject column</span></span>
+<span id="cb178-3"><a href="data-analysis-in-development.html#cb178-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-4"><a href="data-analysis-in-development.html#cb178-4" aria-hidden="true" tabindex="-1"></a>s6_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s5, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb178-5"><a href="data-analysis-in-development.html#cb178-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb178-6"><a href="data-analysis-in-development.html#cb178-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> <span class="co"># lm = linear regression method </span></span>
+<span id="cb178-7"><a href="data-analysis-in-development.html#cb178-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb178-8"><a href="data-analysis-in-development.html#cb178-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb178-9"><a href="data-analysis-in-development.html#cb178-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb178-10"><a href="data-analysis-in-development.html#cb178-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb178-11"><a href="data-analysis-in-development.html#cb178-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>))  <span class="sc">+</span></span>
+<span id="cb178-12"><a href="data-analysis-in-development.html#cb178-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) <span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb178-13"><a href="data-analysis-in-development.html#cb178-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb178-14"><a href="data-analysis-in-development.html#cb178-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s6_plot)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-147-1.png" width="336" /></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="data-analysis-in-development.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 10</span></span>
+<span id="cb179-2"><a href="data-analysis-in-development.html#cb179-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-3"><a href="data-analysis-in-development.html#cb179-3" aria-hidden="true" tabindex="-1"></a>df_s10 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S10&#39;</span>) <span class="co"># rows of df that only contain S5 in the Subject column</span></span>
+<span id="cb179-4"><a href="data-analysis-in-development.html#cb179-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-5"><a href="data-analysis-in-development.html#cb179-5" aria-hidden="true" tabindex="-1"></a>s10_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s10, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb179-6"><a href="data-analysis-in-development.html#cb179-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb179-7"><a href="data-analysis-in-development.html#cb179-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> <span class="co"># lm = linear regression method </span></span>
+<span id="cb179-8"><a href="data-analysis-in-development.html#cb179-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb179-9"><a href="data-analysis-in-development.html#cb179-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb179-10"><a href="data-analysis-in-development.html#cb179-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb179-11"><a href="data-analysis-in-development.html#cb179-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb179-12"><a href="data-analysis-in-development.html#cb179-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb179-13"><a href="data-analysis-in-development.html#cb179-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>))<span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb179-14"><a href="data-analysis-in-development.html#cb179-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb179-15"><a href="data-analysis-in-development.html#cb179-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s10_plot)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-148-1.png" width="336" /></p>
+<p>Now let’s put them together in a 2x2 figure (2 rows, 2 columns) using the function <code>plot_grid</code> from the <strong>cowplot</strong> package.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="data-analysis-in-development.html#cb180-1" aria-hidden="true" tabindex="-1"></a>together1 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(s1_plot, s5_plot, s6_plot, s10_plot, </span>
+<span id="cb180-2"><a href="data-analysis-in-development.html#cb180-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="co"># 2 columns in the final figure</span></span>
+<span id="cb180-3"><a href="data-analysis-in-development.html#cb180-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow =</span> <span class="dv">2</span>, <span class="co"># 2 rows in the final figure </span></span>
+<span id="cb180-4"><a href="data-analysis-in-development.html#cb180-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">align =</span> <span class="st">&#39;hv&#39;</span>,<span class="co"># set to the same horizontal and vertical lengths of each panel. </span></span>
+<span id="cb180-5"><a href="data-analysis-in-development.html#cb180-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;S1&#39;</span>,<span class="st">&#39;S5&#39;</span>,<span class="st">&#39;S6&#39;</span>,<span class="st">&#39;S10&#39;</span>), <span class="co"># each panel label</span></span>
+<span id="cb180-6"><a href="data-analysis-in-development.html#cb180-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_x =</span> <span class="fl">0.14</span>,<span class="co"># horizontal position of the panel&#39;s label relative to each panel. 0 is the very left of the plot.</span></span>
+<span id="cb180-7"><a href="data-analysis-in-development.html#cb180-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_y =</span> <span class="fl">0.97</span>)  <span class="co"># vertical position of the panel&#39;s label relative to each panel. 1 is the very top of the plot. </span></span>
+<span id="cb180-8"><a href="data-analysis-in-development.html#cb180-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-9"><a href="data-analysis-in-development.html#cb180-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(together1)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-149-1.png" width="700.8" /></p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="data-analysis-in-development.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;together1.png&#39;</span>,together1,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>,<span class="at">base_asp=</span><span class="fl">0.95</span>) <span class="co"># save as an image. </span></span></code></pre></div>
+<ul>
+<li><p>Open <code>together.png</code> in your directory folder.</p></li>
+<li><p>Note that are some repeating x and y-axes labels. We can remove them. For instance, the top left panel’s x-axis labels can be removed because the bottom left panel also has the x-axis labels.</p></li>
+<li><p>Another instance is that the y-axis labels of the top right panel can be removed because the top left panel has the same label.</p></li>
+<li><p>This step is <strong>OPTIONAL</strong>.</p></li>
+</ul>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-analysis-in-development.html#cb182-1" aria-hidden="true" tabindex="-1"></a>s1_plot_a <span class="ot">&lt;-</span> s1_plot <span class="sc">+</span> </span>
+<span id="cb182-2"><a href="data-analysis-in-development.html#cb182-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># remove x-axis title </span></span>
+<span id="cb182-3"><a href="data-analysis-in-development.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x=</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># remove numbers in the x-axis</span></span>
+<span id="cb182-4"><a href="data-analysis-in-development.html#cb182-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())  <span class="co"># remove y-axis title </span></span>
+<span id="cb182-5"><a href="data-analysis-in-development.html#cb182-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb182-6"><a href="data-analysis-in-development.html#cb182-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb182-7"><a href="data-analysis-in-development.html#cb182-7" aria-hidden="true" tabindex="-1"></a>s5_plot_a <span class="ot">&lt;-</span> s5_plot <span class="sc">+</span> </span>
+<span id="cb182-8"><a href="data-analysis-in-development.html#cb182-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># remove x-axis title </span></span>
+<span id="cb182-9"><a href="data-analysis-in-development.html#cb182-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># remove numbers in the x-axis</span></span>
+<span id="cb182-10"><a href="data-analysis-in-development.html#cb182-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># remove numbers in the y-axis</span></span>
+<span id="cb182-11"><a href="data-analysis-in-development.html#cb182-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>()) </span>
+<span id="cb182-12"><a href="data-analysis-in-development.html#cb182-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-13"><a href="data-analysis-in-development.html#cb182-13" aria-hidden="true" tabindex="-1"></a>s6_plot_a <span class="ot">&lt;-</span> s6_plot <span class="sc">+</span></span>
+<span id="cb182-14"><a href="data-analysis-in-development.html#cb182-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># remove numbers in the x-axis</span></span>
+<span id="cb182-15"><a href="data-analysis-in-development.html#cb182-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb182-16"><a href="data-analysis-in-development.html#cb182-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-17"><a href="data-analysis-in-development.html#cb182-17" aria-hidden="true" tabindex="-1"></a>s10_plot_a <span class="ot">&lt;-</span> s10_plot <span class="sc">+</span></span>
+<span id="cb182-18"><a href="data-analysis-in-development.html#cb182-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># remove x-axis title </span></span>
+<span id="cb182-19"><a href="data-analysis-in-development.html#cb182-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span> <span class="co"># remove numbers in the y-axis</span></span>
+<span id="cb182-20"><a href="data-analysis-in-development.html#cb182-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>()) </span>
+<span id="cb182-21"><a href="data-analysis-in-development.html#cb182-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-22"><a href="data-analysis-in-development.html#cb182-22" aria-hidden="true" tabindex="-1"></a>together2 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(s1_plot_a, s5_plot_a, s6_plot_a, s10_plot_a, </span>
+<span id="cb182-23"><a href="data-analysis-in-development.html#cb182-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="co"># 2 columns in the final figure</span></span>
+<span id="cb182-24"><a href="data-analysis-in-development.html#cb182-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow =</span> <span class="dv">2</span>, <span class="co"># 2 rows in the final figure </span></span>
+<span id="cb182-25"><a href="data-analysis-in-development.html#cb182-25" aria-hidden="true" tabindex="-1"></a>          <span class="at">align =</span> <span class="st">&#39;hv&#39;</span>,<span class="co"># set to the same horizontal and vertical lengths of each panel. </span></span>
+<span id="cb182-26"><a href="data-analysis-in-development.html#cb182-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;S1&#39;</span>,<span class="st">&#39;S5&#39;</span>,<span class="st">&#39;S6&#39;</span>,<span class="st">&#39;S10&#39;</span>), <span class="co"># each panel label</span></span>
+<span id="cb182-27"><a href="data-analysis-in-development.html#cb182-27" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_x =</span> <span class="fl">0.07</span>, <span class="co"># horizontal position of the panel&#39;s label relative to each panel. 0 is the very left of the plot. </span></span>
+<span id="cb182-28"><a href="data-analysis-in-development.html#cb182-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_y =</span> <span class="fl">0.97</span>) <span class="co"># vertical position of the panel&#39;s label relative to each panel. 1 is the very top of the plot. </span></span>
+<span id="cb182-29"><a href="data-analysis-in-development.html#cb182-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-30"><a href="data-analysis-in-development.html#cb182-30" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(together2)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-150-1.png" width="658.56" /></p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="data-analysis-in-development.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;together2.png&#39;</span>,together2,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>,<span class="at">base_asp=</span><span class="fl">0.95</span>)</span></code></pre></div>
+<p>It seems that there are some empty space between amongst panel. Let’s remove them by reducing the margin of each panel. For more information about the function <code>plot_grid</code>, please type <code>?plot_grid</code> in the console.
+- This step is also <strong>OPTIONAL</strong>.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="data-analysis-in-development.html#cb184-1" aria-hidden="true" tabindex="-1"></a>s1_plot_b <span class="ot">&lt;-</span> s1_plot_a <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">r=</span><span class="dv">1</span>)) <span class="co"># reduce the empty space of the panel facing to the right to 1 point. Default of ggplot2 is 5.5 points. </span></span>
+<span id="cb184-2"><a href="data-analysis-in-development.html#cb184-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-3"><a href="data-analysis-in-development.html#cb184-3" aria-hidden="true" tabindex="-1"></a>s5_plot_b <span class="ot">&lt;-</span> s5_plot_a <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">r=</span><span class="dv">1</span>, <span class="at">l=</span><span class="dv">1</span>)) <span class="co"># reduce the empty space of the panel facing to the right and left to 1 point. Default of ggplot2 is 5.5 points. </span></span>
+<span id="cb184-4"><a href="data-analysis-in-development.html#cb184-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-5"><a href="data-analysis-in-development.html#cb184-5" aria-hidden="true" tabindex="-1"></a>s6_plot_b <span class="ot">&lt;-</span> s6_plot_a <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">r=</span><span class="dv">1</span>)) <span class="co"># reduce the empty space of the panel facing to the right to 1 point. Default of ggplot2 is 5.5 points. </span></span>
+<span id="cb184-6"><a href="data-analysis-in-development.html#cb184-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-7"><a href="data-analysis-in-development.html#cb184-7" aria-hidden="true" tabindex="-1"></a>s10_plot_b <span class="ot">&lt;-</span> s10_plot_a <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">plot.margin =</span> <span class="fu">margin</span>(<span class="at">r=</span><span class="dv">1</span>,<span class="at">l=</span><span class="dv">1</span>)) <span class="co"># reduce the empty space of the panel facing to the right and left to 1 point. Default of ggplot2 is 5.5 points. </span></span>
+<span id="cb184-8"><a href="data-analysis-in-development.html#cb184-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-9"><a href="data-analysis-in-development.html#cb184-9" aria-hidden="true" tabindex="-1"></a><span class="co"># this step is OPTIONAL</span></span>
+<span id="cb184-10"><a href="data-analysis-in-development.html#cb184-10" aria-hidden="true" tabindex="-1"></a>together3 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(s1_plot_b, s5_plot_b, s6_plot_b, s10_plot_b,</span>
+<span id="cb184-11"><a href="data-analysis-in-development.html#cb184-11" aria-hidden="true" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">2</span>, <span class="co"># 2 columns in the final figure</span></span>
+<span id="cb184-12"><a href="data-analysis-in-development.html#cb184-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow =</span> <span class="dv">2</span>, <span class="co"># 2 rows in the final figure </span></span>
+<span id="cb184-13"><a href="data-analysis-in-development.html#cb184-13" aria-hidden="true" tabindex="-1"></a>          <span class="at">align =</span> <span class="st">&#39;hv&#39;</span>,</span>
+<span id="cb184-14"><a href="data-analysis-in-development.html#cb184-14" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;S1&#39;</span>,<span class="st">&#39;S5&#39;</span>,<span class="st">&#39;S6&#39;</span>,<span class="st">&#39;S10&#39;</span>), <span class="co"># each panel label</span></span>
+<span id="cb184-15"><a href="data-analysis-in-development.html#cb184-15" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_x =</span> <span class="fl">0.07</span>) <span class="co"># horizontal position of the panel&#39;s label relative to each panel. 0 is the very left of the plot. </span></span>
+<span id="cb184-16"><a href="data-analysis-in-development.html#cb184-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-17"><a href="data-analysis-in-development.html#cb184-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(together3)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-151-1.png" width="643.2" /></p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="data-analysis-in-development.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;together3.png&#39;</span>,together3,<span class="at">nrow=</span><span class="dv">2</span>,<span class="at">ncol=</span><span class="dv">2</span>,<span class="at">base_asp=</span><span class="fl">0.95</span>)</span></code></pre></div>
+<p>Now, you need to add the y-axis label (<code>'Contrast balance ratio'</code>), x-axis label (<code>'Minutes after monocular deprivation'</code>) and the title (<code>'Recovery of the patching effect'</code>).</p>
+<p>You can do this with <strong>Adobe Illustrator</strong> or directly in <strong>R</strong>. Here, I present a solution with <strong>R</strong>.</p>
+<p>You don’t have to understand the codes below to use the codes.</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="data-analysis-in-development.html#cb186-1" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="fu">ggdraw</span>() <span class="sc">+</span> <span class="fu">draw_label</span>(<span class="st">&#39;Recovery of the patching effect&#39;</span>,</span>
+<span id="cb186-2"><a href="data-analysis-in-development.html#cb186-2" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">17</span>) <span class="co"># title of the combined plot</span></span>
+<span id="cb186-3"><a href="data-analysis-in-development.html#cb186-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-4"><a href="data-analysis-in-development.html#cb186-4" aria-hidden="true" tabindex="-1"></a>plot_with_title <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(title, together3, <span class="at">ncol =</span> <span class="dv">1</span>, <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">0.1</span> ,<span class="dv">1</span>)) <span class="co"># add the title and the combined plot together </span></span>
+<span id="cb186-5"><a href="data-analysis-in-development.html#cb186-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-6"><a href="data-analysis-in-development.html#cb186-6" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">add_sub</span>(plot_with_title, <span class="st">&quot;Minutes after monocular deprivation&quot;</span>, <span class="at">y =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">3</span>, <span class="at">size =</span> <span class="dv">17</span>) </span>
+<span id="cb186-7"><a href="data-analysis-in-development.html#cb186-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add x-axis title to the combined plot</span></span>
+<span id="cb186-8"><a href="data-analysis-in-development.html#cb186-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-9"><a href="data-analysis-in-development.html#cb186-9" aria-hidden="true" tabindex="-1"></a><span class="co"># add y-axis title to the combined plot</span></span>
+<span id="cb186-10"><a href="data-analysis-in-development.html#cb186-10" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">grid.arrange</span>(combined_plot, <span class="at">left =</span> <span class="fu">textGrob</span>(<span class="st">&quot;\u0394 Contrast Balance Ratio (dB)&quot;</span>, <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fontsize =</span> <span class="dv">17</span>), <span class="at">rot =</span> <span class="dv">90</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-152-1.png" width="624" /></p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="data-analysis-in-development.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;combined_plot.png&quot;</span>, combined_plot, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_aspect_ratio =</span> .<span class="dv">9</span>, <span class="at">limitsize =</span> F)</span></code></pre></div>
 
+</div>
 </div>
             </section>
 
