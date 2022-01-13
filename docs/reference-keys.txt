@@ -32,6 +32,7 @@ raincloud-plot---sm_raincloud
 overriding-defaults-of-smplots-themes
 overriding-defaults-of-smplot-colors
 data-analysis-in-development
+recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
 figure-2---bar-plot
 figure-3---boxplot
