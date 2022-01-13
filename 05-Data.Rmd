@@ -9,3 +9,4 @@ editor_options:
 
 This section is in development. Contents will include dplyr (filter, select) and statistics (t-test, correlation, power analysis etc).
 
+If you wish me to include other topics, please let me know. 
