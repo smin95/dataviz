@@ -32,12 +32,6 @@ raincloud-plot---sm_raincloud
 overriding-defaults-of-smplots-themes
 overriding-defaults-of-smplot-colors
 data-analysis-in-development
-recreating-the-cover-figure
-boxplot-and-violin-plot-1
-bar-plot-and-slope-chart
-raincloud-plot
-put-all-figures-together
-recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
 figure-2---bar-plot
 figure-3---boxplot
@@ -45,3 +39,8 @@ figure-4---violin-plot
 figure-5---slope-chart
 figure-6---raincloud-plot
 figure-7---case-study
+recreating-the-cover-figure
+boxplot-and-violin-plot-1
+bar-plot-and-slope-chart
+raincloud-plot
+put-all-figures-together
