@@ -17,15 +17,13 @@ knitr::opts_chunk$set(cache = FALSE)
 
 This book guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. 
 
-**Note:** If you are interested in recreating this figure, please read Chapter 5.
-
 ## Please cite this paper when smplot is used {-}
 
 **Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). Frontiers in Genetics, 12:802894.**
 
 ## For R and ggplot2 experts {-}
 
-Please skip Chapters 1-3. 
+Please read Chapter 4. 
 
 ## Issues and Contact {-}
 If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the 'smplot' package, please pull-request on [Github](https://github.com/smin95/smplot).

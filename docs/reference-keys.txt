@@ -39,8 +39,3 @@ figure-4---violin-plot
 figure-5---slope-chart
 figure-6---raincloud-plot
 figure-7---case-study
-recreating-the-cover-figure
-boxplot-and-violin-plot-1
-bar-plot-and-slope-chart
-raincloud-plot
-put-all-figures-together
