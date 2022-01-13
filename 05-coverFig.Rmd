@@ -1,9 +1,14 @@
 ---
 output: html_document
-chapter: Recreating the Cover Figure
+chapter: Data analysis (in development)
 editor_options:
   chunk_output_type: console
 ---
+
+# Data Analysis (in development)
+
+This section is in development. 
+
 
 # Recreating the Cover Figure
 
