@@ -59,6 +59,24 @@ knitr::include_graphics("img/setwd.png")
 http://www.sthda.com/english/wiki/running-rstudio-and-setting-up-your-working-directory-easy-r-programming
 - You will need set the directory **every time** you start RStudio.
 
+
+### How to run your code
+
+- You can run code in 2 ways.
+
+- First, you can type it in the script and run it after highlighting the codes you would like to run. 
+
+```{r, echo=FALSE, fig.align = 'center',fig.cap="How to run your code - script", out.width = '100%'}
+knitr::include_graphics("img/run_code.png")
+```
+
+- Second, you can type your code directly in the console. 
+
+```{r, echo=FALSE, fig.align = 'center',fig.cap="How to run your code - console", out.width = '100%'}
+knitr::include_graphics("img/run_code_console.png")
+```
+
+
 ## Basics of R 
 
 ### Let's type some codes {-}
