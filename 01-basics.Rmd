@@ -123,7 +123,7 @@ TRUE*FALSE # 1 * 0
 ```{r, eval = FALSE}
 install.packages('tidyverse') # tidyverse was created by Hadley Wickham at RStudio, tidyverse includes ggplot2
 install.packages('devtools')
-devtools::install_github('smin95/smplot') 
+devtools::install_github('smin95/smplot') # requires VPN if you are in China
 ```
 
 - You only need to install them once, but you will need to reload them whenever you start a new session in RStudio using the function `library()`.

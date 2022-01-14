@@ -11,19 +11,12 @@ This section is in development. Contents will include dplyr (filter, select) and
 
 If you wish me to include other topics, please let me know. 
 
-```{r, eval = F}
-install.packages('gridExtra')
-```
+## `filter` for data, `select` for columns
+
 
 ```{r}
 library(tidyverse)
-library(cowplot)
-library(smplot)
-library(gridExtra)
-library(grid)
 ```
-
-## Plotting individual data
 
 First, you need to load data (.csv file). When you are loading your own .csv file for your data analysis, make sure you place the .csv file of your interest in the folder that has been set to the **working directory**. 
 
@@ -34,15 +27,19 @@ In this example, we will be using data from this paper:
 We will be creating a similar figure to **Figure 2A** using **smplot**. For the PDF copy, please visit https://www.smin95.com/pubs/min2019.pdf. 
 
 ```{r}
-df <- read_csv('min2019.csv')
+df <- read_csv('https://raw.githubusercontent.com/smin95/dataviz/master/min2019.csv')
 df$Day <- factor(df$Day)
 head(df)
 ```
 
 There are 4 columns in this dataframe:
+
 - First, `Subject` refers to each participant. There are 10 participants total. 
+
 - Next, `Day` refers to the day of testing. The participants were tested on Day 1, 2, 3, 4 and 5. We will only use Day from 1 and 5.
+
 - `Time` refers to the number of minutes after an experimental manipulation (ex. monocular deprivation). These are 0, 3, 6, 12, 24 and 48 minutes, but in the dataframe, it says 0, 1, 2, 3, 4 and 5; we will change the labels manually. 
+
 - The `Cbratio` column refers to the actual data that will be plotted here.  
 
 In the example below, the plots will have different colors based on Day (1 or 5). Therefore, the values in `Day` column have to be discrete, not continuous. To make them discrte, one needs to convert the `Day` column from **double** (continuous variable) to **factor** (discrete variable).
@@ -95,35 +92,115 @@ df %>% filter(Day == 1 & Time == 0) %>% select(Cbratio)
 
 There are 10 rows (i.e., 10 subjects) in this filtered data frame and 1 column, which is `Cbratio`. The above can be read as: **filter** for all rows of the dataframe **df** that have `1` in the `Day` column **AND** have `0` in the `Time` column.
 
-Now let's plot data for each subject (S1, S5, S6, S10). Each panel shows the data of each subject for both Days 1 and 5. 
+## Plotting individual data
 
-```{r, fig.width = 3.5, fig.height = 3.5}
-df_s1 <- df %>% filter(Subject == 'S1') # rows of df that only contain S1 in the Subject column
+First, you will need several packages for this section. 
+
+- If you do not have the **gridExtra** and **grid** packages in your RStudio, please install them using the codes below. It might take less than a minute. 
+
+```{r, eval = F}
+install.packages('gridExtra')
+install.packages('grid')
+```
+
+- Then load all these packages below. 
+
+```{r}
+library(tidyverse)
+library(cowplot)
+library(smplot)
+library(gridExtra)
+library(grid)
+```
+
+Now let's plot data for each subject (S1-S9) except S10. Each panel shows the data of each subject for both Days 1 and 5. 
+
+```{r, fig.width = 3.65, fig.height = 3.65}
+df_s1 <- df %>% filter(Subject == 'S1') 
+# rows of df that only contain S1 in the Subject column
 
 # use df_s1 to plot the data of S1
 
-s1_plot <- ggplot(data = df_s1, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s1 <- ggplot(data = df_s1, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + # lm = linear regression method 
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
   scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) # axis text size is 1.5x the original font size. 
+  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+# axis text size is 1.5x the original font size. 
 
-print(s1_plot)
+print(plot_s1)
 ```
 
-Then make each one for the other subjects (S1, S5, S6, S10). 
+Then make each one for the other subjects (S2-S9). 
 
-```{r, fig.width = 3.5, fig.height = 3.5}
-# Subject 5
-df_s5 <- df %>% filter(Subject == 'S5') # rows of df that only contain S5 in the Subject column
+```{r, fig.width = 3.65, fig.height = 3.65}
+df_s2 <- df %>% filter(Subject == 'S2') 
 
-s5_plot <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s2 <- ggplot(data = df_s2, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + # lm = linear regression method 
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid() +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  scale_y_continuous(limits = c(-3, 5.5)) +
+  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+# axis text size is 1.5x the original font size. 
+
+print(plot_s2)
+```
+
+```{r, fig.width = 3.65, fig.height = 3.65}
+df_s3 <- df %>% filter(Subject == 'S3')
+
+plot_s3 <- ggplot(data = df_s3, aes(x = Time, y = Cbratio, color = Day)) + 
+  geom_point(size = 4.5) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid() +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  scale_y_continuous(limits = c(-3, 5.5)) +
+  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+# axis text size is 1.5x the original font size. 
+
+print(plot_s3)
+```
+
+```{r, fig.width = 3.65, fig.height = 3.65}
+df_s4 <- df %>% filter(Subject == 'S4')
+
+plot_s4 <- ggplot(data = df_s4, aes(x = Time, y = Cbratio, color = Day)) + 
+  geom_point(size = 4.5) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid() +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  scale_y_continuous(limits = c(-3, 5.5)) +
+  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+# axis text size is 1.5x the original font size. 
+
+print(plot_s4)
+```
+
+```{r, fig.width = 3.65, fig.height = 3.65}
+# Subject 5
+df_s5 <- df %>% filter(Subject == 'S5') 
+# rows of df that only contain S5 in the Subject column
+
+plot_s5 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) + 
+  geom_point(size = 4.5) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid(legends = TRUE) + # show legends for the color
@@ -131,152 +208,236 @@ s5_plot <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) +
   scale_y_continuous(limits = c(-3, 5.5)) +
   theme(axis.text = element_text(size = rel(1.5), color = "black")) + # axis text size is 1.5x the original font size. 
   theme(legend.justification = c(1,0), 
-        legend.position = c(0.96, 0.65)) # location of legend (color label)
+        legend.position = c(0.96, 0.65)) 
+# location of legend (color label)
 
-print(s5_plot)
+print(plot_s5)
 ```
 
-```{r, fig.width = 3.5, fig.height = 3.5}
+```{r, fig.width = 3.65, fig.height = 3.65}
 # Subject 6
-df_s6 <- df %>% filter(Subject == 'S6') # rows of df that only contain S6 in the Subject column
+df_s6 <- df %>% filter(Subject == 'S6') 
+# rows of df that only contain S6 in the Subject column
 
-s6_plot <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s6 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + # lm = linear regression method 
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
   scale_y_continuous(limits = c(-3, 5.5))  +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) # axis text size is 1.5x the original font size. 
+  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+# axis text size is 1.5x the original font size. 
 
-print(s6_plot)
+print(plot_s6)
 ```
 
-```{r, fig.width = 3.5, fig.height = 3.5}
-# Subject 10
+```{r, fig.width = 3.65, fig.height = 3.65}
+df_s7 <- df %>% filter(Subject == 'S7')
 
-df_s10 <- df %>% filter(Subject == 'S10') # rows of df that only contain S5 in the Subject column
-
-s10_plot <- ggplot(data = df_s10, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s7 <- ggplot(data = df_s7, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + # lm = linear regression method 
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
   scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black"))# axis text size is 1.5x the original font size. 
+  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+# axis text size is 1.5x the original font size. 
 
-print(s10_plot)
+print(plot_s7)
 ```
 
-Now let's put them together in a 2x2 figure (2 rows, 2 columns) using the function `plot_grid` from the **cowplot** package.
+```{r, fig.width = 3.65, fig.height = 3.65}
+df_s8 <- df %>% filter(Subject == 'S8')
 
-```{r, fig.width = 7.3, fig.height = 7.3}
+plot_s8 <- ggplot(data = df_s8, aes(x = Time, y = Cbratio, color = Day)) + 
+  geom_point(size = 4.5) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid() +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  scale_y_continuous(limits = c(-3, 5.5)) +
+  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+# axis text size is 1.5x the original font size. 
 
-together1 <- plot_grid(s1_plot, s5_plot, s6_plot, s10_plot, 
-          ncol = 2, # 2 columns in the final figure
-          nrow = 2, # 2 rows in the final figure 
-          align = 'hv',# set to the same horizontal and vertical lengths of each panel. 
-          labels = c('S1','S5','S6','S10'), # each panel label
-          label_x = 0.14,# horizontal position of the panel's label relative to each panel. 0 is the very left of the plot.
-          label_y = 0.97)  # vertical position of the panel's label relative to each panel. 1 is the very top of the plot. 
+print(plot_s8)
+```
+
+```{r, fig.width = 3.65, fig.height = 3.65}
+# Subject 9
+
+df_s9 <- df %>% filter(Subject == 'S9') 
+
+plot_s9 <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
+  geom_point(size = 4.5) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid() +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  scale_y_continuous(limits = c(-3, 5.5)) +
+  theme(axis.text = element_text(size = rel(1.5), color = "black"))
+# axis text size is 1.5x the original font size. 
+
+print(plot_s9)
+```
+
+Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `plot_grid` from the **cowplot** package. Here is the illustration of what we are going to do. 
+
+```{r, echo=FALSE, fig.align = 'center',fig.cap="3x3 figure. It has 3 columns and 3 rows", out.width = '75%'}
+knitr::include_graphics("img/rc33.png")
+```
+
+When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot()` have to match the values in `plot_grid()` as shown below. 
+
+`plot_grid()` is a function that puts different graphs together (ex. 3x3 structure).
+
+`save_plot()` is a function that saves a selected graph into an image or PDF file (or eps, etc).  
+
+```{r, fig.width = 11.4, fig.height = 11.6}
+
+together1 <- plot_grid(plot_s1, plot_s2, plot_s3,
+                       plot_s4, plot_s5, plot_s6, 
+                       plot_s7, plot_s8, plot_s9, 
+          ncol = 3, # 2 columns in the final figure
+          nrow = 3, # 2 rows in the final figure 
+          align = 'hv',# set to the same horizontal and vertical                             # lengths of each panel. 
+          labels = c('S1','S2', 'S3', 'S4','S5','S6',
+                     'S7','S8','S9'), # each panel label
+          label_x = 0.14,# horizontal position of the panel's 
+          # label relative to each panel. 0 is the very 
+          # left of the plot.
+          label_y = 0.97)  # vertical position of the panel's 
+          # label relative to each panel. 1 is the very 
+          # top of the plot. 
 
 print(together1)
 
-save_plot('together1.png',together1,nrow=2,ncol=2,base_asp=0.95) # save as an image. 
+save_plot('together1.png',together1,nrow=3,ncol=3,base_asp=0.95) 
+# save as an image. ncol and nrow in save_plot() 
+# nrow and ncol in save_plot() have to match the values in plot_grid() as shown above. 
 ```
 
-- Open `together.png` in your directory folder. 
+Open `together1.png` in your directory folder. Notice that the **png** file may look different from the one printed in your RStudio screen or on the browser as shown in this guide. As long as your **png** file looks good, it should be okay. 
 
-- Note that are some repeating x and y-axes labels. We can remove them. For instance, the top left panel's x-axis labels can be removed because the bottom left panel also has the x-axis labels. 
+Note that are some repeating x and y-axes labels. We can remove them. For instance, the top left panel's x-axis labels can be removed because the bottom left panel also has the x-axis labels. 
 
-- Another instance is that the y-axis labels of the top right panel can be removed because the top left panel has the same label. 
+Another instance is that the y-axis labels of the top right panel can be removed because the top left panel has the same label. 
 
-- This step is **OPTIONAL**.
+Also, it seems that there are some empty space between amongst panel. Let's remove them by reducing the margin of each panel. For more information about the function `plot_grid`, please type `?plot_grid` in the console.
 
-```{r, fig.width = 6.86, fig.height = 6.86}
+- We will use the function `sm_common_axis()` to resolve these issues.
 
-s1_plot_a <- s1_plot + 
-  theme(axis.title.x = element_blank()) + # remove x-axis title 
-  theme(axis.text.x= element_blank()) + # remove numbers in the x-axis
-  theme(axis.title.y = element_blank())  # remove y-axis title 
-  
-  
-s5_plot_a <- s5_plot + 
-  theme(axis.title.x = element_blank()) + # remove x-axis title 
-  theme(axis.text.x = element_blank()) + # remove numbers in the x-axis
-  theme(axis.text.y = element_blank()) + # remove numbers in the y-axis
-  theme(axis.title.y = element_blank()) 
+- `sm_common_axis()` has an argument called `location`. This refers to the location of each panel in the combined figure that you will make. 
 
-s6_plot_a <- s6_plot +
-  theme(axis.title.x = element_blank()) + # remove numbers in the x-axis
-  theme(axis.title.y = element_blank())
+- The picture here illustrates what you will need to write for `location` in the function `sm_common_axis()`. 
 
-s10_plot_a <- s10_plot +
-  theme(axis.title.x = element_blank()) + # remove x-axis title 
-  theme(axis.text.y = element_blank()) + # remove numbers in the y-axis
-  theme(axis.title.y = element_blank()) 
+- Example: `sm_common_axis(location = 'topleft')` for the very top left panel of the 3x3 combined figure.
 
-together2 <- plot_grid(s1_plot_a, s5_plot_a, s6_plot_a, s10_plot_a, 
-          ncol = 2, # 2 columns in the final figure
-          nrow = 2, # 2 rows in the final figure 
-          align = 'hv',# set to the same horizontal and vertical lengths of each panel. 
-          labels = c('S1','S5','S6','S10'), # each panel label
-          label_x = 0.07, # horizontal position of the panel's label relative to each panel. 0 is the very left of the plot. 
-          label_y = 0.97) # vertical position of the panel's label relative to each panel. 1 is the very top of the plot. 
+```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 3x3 figure.", out.width = '75%'}
+knitr::include_graphics("img/rc_arg.png")
+```
+
+
+
+```{r, fig.width = 11.1, fig.height = 11.3}
+
+plot_s1_b <- plot_s1 + sm_common_axis(location = 'topleft')
+
+plot_s2_b <- plot_s2 + sm_common_axis(location = 'topcenter')
+
+plot_s3_b <- plot_s1 + sm_common_axis(location = 'topright')
+
+plot_s4_b <- plot_s4 + sm_common_axis(location = 'topleft')
+
+plot_s5_b <- plot_s5 + sm_common_axis(location = 'topcenter')
+
+plot_s6_b <- plot_s6 + sm_common_axis(location = 'topright')
+
+plot_s7_b <- plot_s7 + sm_common_axis(location = 'bottomleft')
+
+plot_s8_b <- plot_s1 + sm_common_axis(location = 'bottomcenter')
+
+plot_s9_b <- plot_s9 + sm_common_axis(location = 'bottomright')
+
+together2 <- plot_grid(plot_s1_b, plot_s2_b, plot_s3_b,
+                       plot_s4_b, plot_s5_b, plot_s6_b, 
+                       plot_s7_b, plot_s8_b, plot_s9_b, 
+          ncol = 3, # 2 columns in the final figure
+          nrow = 3, # 2 rows in the final figure 
+          align = 'hv',# set to the same horizontal and vertical 
+          # lengths of each panel. 
+          labels = c('S1','S2', 'S3', 'S4','S5','S6',
+                     'S7','S8','S9'), # each panel label
+          label_x = 0.07) # horizontal position of the panel's 
+                          # label relative to each panel. 
+                          # 0 is the very left of the plot. 
 
 print(together2)
 
-save_plot('together2.png',together2,nrow=2,ncol=2,base_asp=0.95)
+save_plot('together2.png',together2,nrow=3,ncol=3,base_asp=0.95)
+# save as an image. ncol and nrow in save_plot() 
+# nrow and ncol in save_plot() have to match the 
+# values in plot_grid() as shown above. 
 ```
 
-It seems that there are some empty space between amongst panel. Let's remove them by reducing the margin of each panel. For more information about the function `plot_grid`, please type `?plot_grid` in the console.
-- This step is also **OPTIONAL**. 
+Open `together2.png` in your directory folder. I think it looks a lot cleaner!
 
-```{r, fig.width = 6.7, fig.height = 6.7}
+If you are planning to make 1x3 figure (1 row, 3 columns), here is the illustration.
 
-s1_plot_b <- s1_plot_a + theme(plot.margin = margin(r=1)) # reduce the empty space of the panel facing to the right to 1 point. Default of ggplot2 is 5.5 points. 
-
-s5_plot_b <- s5_plot_a + theme(plot.margin = margin(r=1, l=1)) # reduce the empty space of the panel facing to the right and left to 1 point. Default of ggplot2 is 5.5 points. 
-
-s6_plot_b <- s6_plot_a + theme(plot.margin = margin(r=1)) # reduce the empty space of the panel facing to the right to 1 point. Default of ggplot2 is 5.5 points. 
-
-s10_plot_b <- s10_plot_a + theme(plot.margin = margin(r=1,l=1)) # reduce the empty space of the panel facing to the right and left to 1 point. Default of ggplot2 is 5.5 points. 
-
-# this step is OPTIONAL
-together3 <- plot_grid(s1_plot_b, s5_plot_b, s6_plot_b, s10_plot_b,
-          ncol = 2, # 2 columns in the final figure
-          nrow = 2, # 2 rows in the final figure 
-          align = 'hv',
-          labels = c('S1','S5','S6','S10'), # each panel label
-          label_x = 0.07) # horizontal position of the panel's label relative to each panel. 0 is the very left of the plot. 
-
-print(together3)
-
-save_plot('together3.png',together3,nrow=2,ncol=2,base_asp=0.95)
+```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 1x3 figure.", out.width = '75%'}
+knitr::include_graphics("img/rc13.png")
 ```
 
-Now, you need to add the y-axis label (`'Contrast balance ratio'`), x-axis label (`'Minutes after monocular deprivation'`) and the title (`'Recovery of the patching effect'`).
+If you are planning to make 2x2 figure (2 rows, 2 columns), here is the illustration.
 
-You can do this with **Adobe Illustrator** or directly in **R**. Here, I present a solution with **R**.
+```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 2x2 figure.", out.width = '55%'}
+knitr::include_graphics("img/rc22.png")
+```
+
+We are almost done now. You need to add the y-axis label (`'Contrast balance ratio'`), x-axis label (`'Minutes after monocular deprivation'`) and the title (`'Recovery of the patching effect'`) as shown in the original paper (Vision Research 2019).
+
+You can do this in **Adobe Illustrator** or directly in **R**. Here, I present a solution with **R**.
 
 You don't have to understand the codes below to use the codes.
 
-```{r, fig.width = 6.5, fig.height = 7.2}
+```{r, fig.width = 11.5, fig.height = 12.5}
 
-title <- ggdraw() + draw_label('Recovery of the patching effect',
-                               size = 17) # title of the combined plot
+title <- ggdraw() + 
+  draw_label('Recovery of the patching effect',
+                               size = 17, hjust = 0.45, vjust = 1.2) # title of the combined plot. 
+# vjust controls the vertical position of the title. 
+# hjust controls the horizontal position of the title.
 
-plot_with_title <- plot_grid(title, together3, ncol = 1, rel_heights = c(0.1 ,1)) # add the title and the combined plot together 
+plot_with_title <- plot_grid(title, together2, ncol = 1, 
+                             rel_heights = c(0.1 ,1)) 
+# add the title and the combined plot together 
 
-combined_plot <- add_sub(plot_with_title, "Minutes after monocular deprivation", y = 0, vjust = -.3, size = 17) 
+combined_plot <- add_sub(plot_with_title, 
+                         "Minutes after monocular deprivation", 
+                         y = 0, vjust = -.3, size = 17) 
 # add x-axis title to the combined plot
 
 # add y-axis title to the combined plot
 combined_plot <- grid.arrange(combined_plot, left = textGrob("\u0394 Contrast Balance Ratio (dB)", gp = gpar(fontsize = 17), rot = 90))
 
 
-save_plot("combined_plot.png", combined_plot, ncol = 2, nrow = 2, base_aspect_ratio = .9, limitsize = F)
+save_plot("combined_plot.png", combined_plot, ncol = 3, nrow = 3,
+          base_aspect_ratio = .9, limitsize = F)
 ```
+
+Open `combined_plot.png` file in your directory folder. Does it look similar to the one in the web browser? On my computer, they look very different, and I much prefer the **png** file. 
+
+To be honest, for adding the titles of the axes and the graph, using **Adobe Illustrator** might be much easier. I just included the codes here to demonstrate that everything, however, can be done in R.
+
+If you do not understand some of these functions, you can type in your console `?add_sub`, `?grid.arrange` to learn about these functions.
+
+An astute reader will realize that the codes are quite repetitive. Could the codes be shortened? The answer is yes! However, this method is quite complex and is beyond the scope of this book.

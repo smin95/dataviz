@@ -2,6 +2,10 @@ fig:pressure
 fig:unnamed-chunk-2
 fig:unnamed-chunk-19
 fig:unnamed-chunk-86
+fig:unnamed-chunk-155
+fig:unnamed-chunk-157
+fig:unnamed-chunk-159
+fig:unnamed-chunk-160
 download-rstudio-basics-of-r
 setting-up-rstudio
 basics-of-r
@@ -32,6 +36,7 @@ raincloud-plot---sm_raincloud
 overriding-defaults-of-smplots-themes
 overriding-defaults-of-smplot-colors
 data-analysis-in-development
+filter-for-data-select-for-columns
 plotting-individual-data
 recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot

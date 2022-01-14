@@ -257,7 +257,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html"><i class="fa fa-check"></i><b>5</b> Data Analysis (in development)</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.1</b> Plotting individual data</a></li>
+<li class="chapter" data-level="5.1" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#filter-for-data-select-for-columns"><i class="fa fa-check"></i><b>5.1</b> <code>filter</code> for data, <code>select</code> for columns</a></li>
+<li class="chapter" data-level="5.2" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.2</b> Plotting individual data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html"><i class="fa fa-check"></i><b>6</b> Recreating Figures from Front. Genetics (2021)</a>
 <ul>
@@ -435,7 +436,7 @@ Figure 1.2: Setting your working directory, image from <a href="https://www.ucl.
 </ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="download-rstudio-basics-of-r.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>) <span class="co"># tidyverse was created by Hadley Wickham at RStudio, tidyverse includes ggplot2</span></span>
 <span id="cb16-2"><a href="download-rstudio-basics-of-r.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;devtools&#39;</span>)</span>
-<span id="cb16-3"><a href="download-rstudio-basics-of-r.html#cb16-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot&#39;</span>) </span></code></pre></div>
+<span id="cb16-3"><a href="download-rstudio-basics-of-r.html#cb16-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot&#39;</span>) <span class="co"># requires VPN if you are in China</span></span></code></pre></div>
 <ul>
 <li>You only need to install them once, but you will need to reload them whenever you start a new session in RStudio using the function <code>library()</code>.</li>
 </ul>
