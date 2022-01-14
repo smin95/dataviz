@@ -307,8 +307,8 @@ When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot(
 together1 <- plot_grid(plot_s1, plot_s2, plot_s3,
                        plot_s4, plot_s5, plot_s6, 
                        plot_s7, plot_s8, plot_s9, 
-          ncol = 3, # 2 columns in the final figure
-          nrow = 3, # 2 rows in the final figure 
+          ncol = 3, # 3 columns in the final figure
+          nrow = 3, # 3 rows in the final figure 
           align = 'hv',# set to the same horizontal and vertical                             # lengths of each panel. 
           labels = c('S1','S2', 'S3', 'S4','S5','S6',
                      'S7','S8','S9'), # each panel label
@@ -371,8 +371,8 @@ plot_s9_b <- plot_s9 + sm_common_axis(location = 'bottomright')
 together2 <- plot_grid(plot_s1_b, plot_s2_b, plot_s3_b,
                        plot_s4_b, plot_s5_b, plot_s6_b, 
                        plot_s7_b, plot_s8_b, plot_s9_b, 
-          ncol = 3, # 2 columns in the final figure
-          nrow = 3, # 2 rows in the final figure 
+          ncol = 3, # 3 columns in the final figure
+          nrow = 3, # 3 rows in the final figure 
           align = 'hv',# set to the same horizontal and vertical 
           # lengths of each panel. 
           labels = c('S1','S2', 'S3', 'S4','S5','S6',
