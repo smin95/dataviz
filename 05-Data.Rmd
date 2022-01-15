@@ -11,7 +11,7 @@ This section is in development. Contents will include dplyr (filter, select) and
 
 If you wish me to include other topics, please let me know. 
 
-## `filter` for data, `select` for columns
+## `filter` for Data, `select` for Columns
 
 
 ```{r}
@@ -94,7 +94,7 @@ There are 10 rows (i.e., 10 subjects) in this filtered data frame and 1 column, 
 
 If you are interested in learning more about this topic, please check out Chapter 5 of R for Data Science by Hadley Wickham (https://r4ds.had.co.nz/transform.html).
 
-## Basic statistics
+## Basic Statistics
 
 We will use the **df** dataset for this example to demonstrate t-test, effect size and power analysis.
 
@@ -146,7 +146,7 @@ Notice that when `df_0min_day1` has a column entitled `Cbratio` with 10 rows of 
 t.test(df_0min_day1$Cbratio, df_0min_day5$Cbratio, paired = TRUE)
 ```
 
-In this case, the subjects are **paired** because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set `paried = FALSE`. 
+In this case, the subjects are **paired** because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set `paired = FALSE`. 
 
 If we are reporting the results, we should report it as such, t(9) = -0.35, p = 0.736. The difference between Days 1 and 5 is not significant.
 
@@ -162,9 +162,9 @@ To respond to this concern, we might need to calculate the **effect size**. If t
 
 One measure to capture the effect size is **Cohen's d**. We can use `sm_effsize()` to calculate Cohen's d as a measure for the effect size. 
 
-- **Small** effect size: Cohen's d around 0.2 
-- **Medium** effect size: Cohen's d around 0.5 
-- **Large** effect size: Cohen's d > 0.8.
+- **Small** effect size: Cohen's d around **0.2** 
+- **Medium** effect size: Cohen's d around **0.5** 
+- **Large** effect size: Cohen's d > **0.8**.
 
 The inputs for `sm_effsize()` are the data of two sample groups, just as they were in `t.test()`. 
 
@@ -173,7 +173,9 @@ The inputs for `sm_effsize()` are the data of two sample groups, just as they we
 sm_effsize(df_0min_day1$Cbratio, df_0min_day5$Cbratio)
 ```
 
-It is recommended that both p-value and effect size are reported in scientific papers.
+Cohen's d equals **0.185**, which is a very small effect size. This indicates that there is a very small difference in data between Days 1 and 5. 
+
+Also, it is recommended that both p-value and effect size are reported in scientific papers.
 
 ### Power Analysis
 
@@ -190,7 +192,7 @@ We would need **232 subjects** per group (`n = 231.1206`) for the p-value to rea
 
 To learn more about performing statistical tests in R, please check out the book entitled **YaRrr! The Pirate's Guide to R** by Nathaniel Phillips (https://bookdown.org/ndphillips/YaRrr/).
 
-## Plotting individual data
+## Plotting Individual Data
 
 First, you will need several packages for this section. 
 

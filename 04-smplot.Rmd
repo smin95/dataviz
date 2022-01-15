@@ -1,14 +1,14 @@
 ---
 output: html_document
-chapter: Full Guide on smplot
+chapter: Manual for smplot 
 editor_options:
   chunk_output_type: console
 ---
 
 
-# Full Guide on smplot
+# Manual and Examples of smplot
 
-This chapter is for those who know how to use ggplot2 already and skipped Chapters 1-3 from the online tutorial. It also includes tutorials about `sm_bar()`, `sm_bland_altman()` and `sm_raincloud()`, all of which are not mentioned in the preceding chapters.
+This chapter is a manual for **smplot**; it includes numerous examples. It also includes tutorials about `sm_bar()`, `sm_bland_altman()` and `sm_raincloud()`, all of which are not mentioned in the preceding chapters. However, this chapter does not describe `sm_effsize()`, `sm_power()` and `sm_common_axis()`; these functions are described in Chapter 5.
 
 - If you are not sure about any of the functions, please type `?` before the function names, ex. `?sm_bar`. 
 
@@ -17,7 +17,7 @@ This chapter is for those who know how to use ggplot2 already and skipped Chapte
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
 
-## Installation of the package 
+## Installation of the Package 
 
 - The **smplot** package is NOT available on CRAN yet. So, you will need to download it directly from my github for now.
 - To install it, please type in the R console:
@@ -40,7 +40,7 @@ library(smplot)
 - It was first developed in May 2021.
 - It is **free** and **open source** (https://github.com/smin95/smplot).
 
-## smplot's color palette and graph themes
+## smplot's Color Palette and Graph Themes
 
 ### smplot's color palette {-}
 
@@ -111,7 +111,7 @@ p2
 p2 + scale_color_manual(values = sm_palette(7))
 ```
 
-## Correlation plot 
+## Correlation Plot 
 
 - `sm_corr_theme()` and `sm_statCorr()` can be used as a pair when plotting a correlation.
 
@@ -256,7 +256,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject)) +
 ```
 
 
-## Violin plot - `sm_violin()` 
+## Violin Plot - `sm_violin()` 
 
 - `sm_violin()` plots a violin plot, individual points and lines that indiciate means and +/- 1 standard deviation at the same time.
 - It is very similar to `sm_boxplot()` except there is no option for `notch = TRUE` in `sm_violin()`.
@@ -303,7 +303,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject,
 
 ```
 
-## Bar plot - `sm_bar()` 
+## Bar Plot - `sm_bar()` 
 
 - It automatically uses `sm_bar_theme()` / `sm_hgrid()`.
 - Let's use data (`df`) we generated before.
@@ -352,7 +352,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
   scale_fill_manual(values = sm_color('lightorange','skyblue'))
 ```
 
-## Slope chart - `sm_slope()` 
+## Slope Chart - `sm_slope()` 
 
 - This function plots a slope chart. 
 - A slope chart is useful to describe changes between two different timepoints for each measurement (ex. a participant).
@@ -396,7 +396,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)
            line_size = 0.6)
 ```
 
-## A Bland Altman plot - `sm_bland_altman()`
+## A Bland Altman Plot - `sm_bland_altman()`
 
 - `sm_bland_altman()` and `sm_statBlandAlt()` functions can be used to create a Bland-Altman plot.
 - The plot is used to measure agreement between two different measurements.
@@ -553,7 +553,7 @@ sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.
 ```
 
 
-## Overriding defaults of smplot's themes 
+## Overriding Defaults of smplot's Themes 
 
 - You can override all the defaults by adding `theme()` object to your **ggplot2** graph. 
 
@@ -585,7 +585,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   ggtitle('Reading performance in children')
 ```
 
-## Overriding defaults of smplot colors
+## Overriding Defaults of smplot Colors
 
 - `sm_color('blue)` prints a hex code for the corresponding. Likewise, `sm_color('blue','orange')` prints out two hex codes. 
 

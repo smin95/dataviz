@@ -15,7 +15,7 @@ library(cowplot) # it allows you to save figures in .png file
 library(smplot)
 ```
 
-## Upload sample data (csv file) in RStudio
+## Upload Sample Data (csv file) in RStudio
 
 ### Download requirements {-}
 
@@ -363,7 +363,7 @@ save_plot('boxplot.jpg', my_boxplot, base_asp = 1)
 - This image file should now be in your **LearnR** folder.
 
 
-## Violin plot 
+## Violin Plot 
 
 - The boxplot represents the distribution quite well but it can still be misleading. 
   - Also, it can be visually overwhelming (i.e., too crowded) to some readers.

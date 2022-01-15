@@ -15,7 +15,7 @@ library(cowplot) # it allows you to save figures in .png file
 library(smplot)
 ```
 
-## Upload sample data 
+## Uploading data 
 
 ### Sample data: mpg {-}
 
@@ -231,7 +231,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_smooth()
 ```
 
-## Improve dataviz using smplot
+## Improve Data Visualization using smplot
 
 - Although the default theme of ggplot2 graphs is clean, there are some things that I do not like:
   - The fonts are too small.

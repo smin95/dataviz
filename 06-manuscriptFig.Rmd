@@ -17,7 +17,7 @@ library(cowplot) # it allows you to save figures in .png file
 library(smplot)
 ```
 
-## Figure 1 - Correlation plot
+## Figure 1 - Correlation Plot
 
 ```{r, fig.width = 7.25, fig.height= 11.7,warning = F}
 corr1 <- ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
@@ -79,7 +79,7 @@ save_plot("corr_plots.png",
           dpi = 600)
 ```
 
-## Figure 2 - Bar plot
+## Figure 2 - Bar Plot
 
 ```{r, fig.width = 7.25, fig.height= 7.4,warning = F}
 set.seed(1) # generate random data
@@ -167,7 +167,7 @@ save_plot("boxplots.png",
           dpi = 600)
 ```
 
-## Figure 4 - Violin plot
+## Figure 4 - Violin Plot
 
 ```{r, fig.width = 7.25, fig.height= 7.4,warning = F}
 violin1 <- ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
@@ -205,7 +205,7 @@ save_plot("violins.png",
           dpi = 600)
 ```
 
-## Figure 5 - Slope chart
+## Figure 5 - Slope Chart
 
 ```{r, fig.width = 8, fig.height= 3.7,warning = F}
 set.seed(1) # generate random data
@@ -255,7 +255,7 @@ save_plot("slopes.png",
           dpi = 600)
 ```
 
-## Figure 6 - Raincloud plot
+## Figure 6 - Raincloud Plot
 
 ```{r, fig.width = 7.25, fig.height= 15, warning = F}
 
@@ -359,7 +359,7 @@ save_plot("rainclouds.png",
           dpi = 600)
 ```
 
-## Figure 7 - Case study 
+## Figure 7 - Case Study 
 
 ```{r, fig.width = 10.95, fig.height= 3.7, warning = F}
 
