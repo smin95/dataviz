@@ -42,7 +42,7 @@ There are 4 columns in this dataframe:
 
 - The `Cbratio` column refers to the actual data that will be plotted here.  
 
-In the example below, the plots will have different colors based on Day (1 or 5). Therefore, the values in `Day` column have to be discrete, not continuous. To make them discrte, one needs to convert the `Day` column from **double** (continuous variable) to **factor** (discrete variable).
+In the example below, the plots will have different colors based on Day (1 or 5). Therefore, the values in `Day` column have to be discrete, not continuous. To make them discrete, one needs to convert the `Day` column from **double** (continuous variable) to **factor** (discrete variable).
 
 To plot data of each subject separately, we need the dataframe to show data only from one subject. This can be achieved as shown below:
 
@@ -91,6 +91,104 @@ df %>% filter(Day == 1 & Time == 0) %>% select(Cbratio)
 ```
 
 There are 10 rows (i.e., 10 subjects) in this filtered data frame and 1 column, which is `Cbratio`. The above can be read as: **filter** for all rows of the dataframe **df** that have `1` in the `Day` column **AND** have `0` in the `Time` column.
+
+If you are interested in learning more about this topic, please check out Chapter 5 of R for Data Science by Hadley Wickham (https://r4ds.had.co.nz/transform.html).
+
+## Basic statistics
+
+We will use the **df** dataset for this example to demonstrate t-test, effect size and power analysis.
+
+```{r}
+head(df)
+```
+
+### T-test
+
+In this example, we will compare changes in sensory eye dominance after short-term monocular deprivation in Day 1 vs Day 5. These values are shown in the `Cbratio` column.
+
+Let's filter only for data that are `Time == 0` for Day 1 and Day 5, which refers to 0 minutes after short-term monocular deprivation for 120 minutes. 
+
+```{r}
+# 0 minutes after short-term monocular deprivation 
+df_0min <- df %>% filter(Time == 0)
+```
+
+Now, let's plot a bar graph to display contrast balance ratio (`Cbratio`) from Days 1 and 5 at 0 minutes after short-term monocular deprivation using `sm_bar()`.
+
+```{r, fig.width = 3.7, fig.height=3.7, warning = F}
+ggplot(data = df_0min, mapping = aes(x = Day, y = Cbratio, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
+  scale_fill_manual(values = sm_color('blue','orange')) +
+  ggtitle('Cbratio at 0min')
+```
+
+There seems to be a very small difference in the contrast balance ratio (`Cbratio`) between Days 1 and 5. The errorbars (in this case, standard error) are overlapping; this indicates that there is no significant difference (p < 0.05) between the two datasets. Let's take a look if my prediction is correct by using a **t-test** using the function `t.test`.
+
+```{r}
+df_0min
+```
+
+`t.test` allows us to compare whether data between two different groups are significantly different. Since we will only compare values in the `Cbratio` column, let's select for the `Cbratio` column and use these values in our `t.test`. 
+
+```{r}
+df_0min_day1 <- df_0min %>% filter(Day == 1) %>% select(Cbratio)
+print(df_0min_day1)
+print(df_0min_day1$Cbratio)
+
+df_0min_day5 <- df_0min %>% filter(Day == 5) %>% select(Cbratio)
+print(df_0min_day5)
+
+```
+
+Notice that when `df_0min_day1` has a column entitled `Cbratio` with 10 rows of data. However, `df_0min_day1$Cbratio` prints ONLY the values within the `Cbratio` column. This is because `$` is used to **extract** a specific column within a dataframe. You could type `df_0min$` ,  press the **Tab** button from the keyboard, and see what happens. 
+
+```{r}
+t.test(df_0min_day1$Cbratio, df_0min_day5$Cbratio, paired = TRUE)
+```
+
+In this case, the subjects are **paired** because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set `paried = FALSE`. 
+
+If we are reporting the results, we should report it as such, t(9) = -0.35, p = 0.736. The difference between Days 1 and 5 is not significant.
+
+### Effect Size
+
+However, even if p-value is larger than 0.05, this does not mean that there is no significant difference between the two groups.
+
+If the sample size is small, p-value can be larger than 0.05. But as the sample gets larger, p-value will decrease even if the mean difference between the two groups remains the same. 
+
+In this example, the sample size is not large (n=10). Therefore, one might ask whether our conclusion that there is no significant difference between Days 1 and 5 is truly valid.
+
+To respond to this concern, we might need to calculate the **effect size**. If the effect size is large, there is large difference between the sample groups. 
+
+One measure to capture the effect size is **Cohen's d**. We can use `sm_effsize()` to calculate Cohen's d as a measure for the effect size. 
+
+- **Small** effect size: Cohen's d around 0.2 
+- **Medium** effect size: Cohen's d around 0.5 
+- **Large** effect size: Cohen's d > 0.8.
+
+The inputs for `sm_effsize()` are the data of two sample groups, just as they were in `t.test()`. 
+
+
+```{r}
+sm_effsize(df_0min_day1$Cbratio, df_0min_day5$Cbratio)
+```
+
+It is recommended that both p-value and effect size are reported in scientific papers.
+
+### Power Analysis
+
+We got p > 0.05 with our small sample size (n = 10). As we previously mentioned, we know that p-value gets smaller with an increasing sample size. So, one might be concerned with what would be the minimal sample size to detect a statistically significant difference between the two groups (Days 1 and 5). If the minimal sample size is not large, then one can conclude that I did not collect enough data to show the difference and that it was incorrect for me to state that there was no significant difference between the two groups.
+
+To figure out the minimal sample size, we must do **power analysis**. This can be achieved using `sm_power()`. The inputs for `sm_power()` are data of two sample groups, just as they were in `t.test()`.
+
+```{r}
+sm_power(df_0min_day1$Cbratio, df_0min_day5$Cbratio, 
+         paired = TRUE)
+```
+
+We would need **232 subjects** per group (`n = 231.1206`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in contrast balance ratio between Days 1 and 5. In other words, the difference between Days 1 and 5 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
+
+To learn more about performing statistical tests in R, please check out the book entitled **YaRrr! The Pirate's Guide to R** by Nathaniel Phillips (https://bookdown.org/ndphillips/YaRrr/).
 
 ## Plotting individual data
 
@@ -391,13 +489,13 @@ save_plot('together2.png',together2,nrow=3,ncol=3,base_asp=0.95)
 
 Open `together2.png` in your directory folder. I think it looks a lot cleaner!
 
-If you are planning to make 1x3 figure (1 row, 3 columns), here is the illustration.
+If you are planning to make a 1x3 figure (1 row, 3 columns), here is the illustration.
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 1x3 figure.", out.width = '75%'}
 knitr::include_graphics("img/rc13.png")
 ```
 
-If you are planning to make 2x2 figure (2 rows, 2 columns), here is the illustration.
+If you are planning to make a 2x2 figure (2 rows, 2 columns), here is the illustration.
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 2x2 figure.", out.width = '55%'}
 knitr::include_graphics("img/rc22.png")
@@ -413,22 +511,24 @@ You don't have to understand the codes below to use the codes.
 
 title <- ggdraw() + 
   draw_label('Recovery of the patching effect',
-                               size = 17, hjust = 0.45, vjust = 1.2) # title of the combined plot. 
+                               size = 17, hjust = 0.45, vjust = 1.2) # title of the 3x3 figure. 
 # vjust controls the vertical position of the title. 
 # hjust controls the horizontal position of the title.
 
 plot_with_title <- plot_grid(title, together2, ncol = 1, 
                              rel_heights = c(0.1 ,1)) 
-# add the title and the combined plot together 
+# add the title and the 3x3 figure together 
 
 combined_plot <- add_sub(plot_with_title, 
                          "Minutes after monocular deprivation", 
                          y = 0, vjust = -.3, size = 17) 
-# add x-axis title to the combined plot
+# add x-axis title to the 3x3 figure
 
-# add y-axis title to the combined plot
-combined_plot <- grid.arrange(combined_plot, left = textGrob("\u0394 Contrast Balance Ratio (dB)", gp = gpar(fontsize = 17), rot = 90))
-
+# add y-axis title to the 3x3 figure
+combined_plot <- grid.arrange(combined_plot, 
+                              left = textGrob("\u0394 Contrast Balance Ratio (dB)",
+                                              gp = gpar(fontsize = 17), 
+                                              rot = 90))
 
 save_plot("combined_plot.png", combined_plot, ncol = 3, nrow = 3,
           base_aspect_ratio = .9, limitsize = F)
