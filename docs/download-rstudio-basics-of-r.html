@@ -256,16 +256,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.10" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#overriding-defaults-of-smplots-themes"><i class="fa fa-check"></i><b>4.10</b> Overriding Defaults of smplot’s Themes</a></li>
 <li class="chapter" data-level="4.11" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#overriding-defaults-of-smplot-colors"><i class="fa fa-check"></i><b>4.11</b> Overriding Defaults of smplot Colors</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html"><i class="fa fa-check"></i><b>5</b> Data Analysis (in development)</a>
+<li class="chapter" data-level="5" data-path="data-analysis.html"><a href="data-analysis.html"><i class="fa fa-check"></i><b>5</b> Data Analysis</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#filter-for-data-select-for-columns"><i class="fa fa-check"></i><b>5.1</b> <code>filter</code> for Data, <code>select</code> for Columns</a></li>
-<li class="chapter" data-level="5.2" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#basic-statistics"><i class="fa fa-check"></i><b>5.2</b> Basic Statistics</a>
+<li class="chapter" data-level="5.1" data-path="data-analysis.html"><a href="data-analysis.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>5.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#t-test"><i class="fa fa-check"></i><b>5.2.1</b> T-test</a></li>
-<li class="chapter" data-level="5.2.2" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#effect-size"><i class="fa fa-check"></i><b>5.2.2</b> Effect Size</a></li>
-<li class="chapter" data-level="5.2.3" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#power-analysis"><i class="fa fa-check"></i><b>5.2.3</b> Power Analysis</a></li>
+<li class="chapter" data-level="5.1.1" data-path="data-analysis.html"><a href="data-analysis.html#filter-for-rows"><i class="fa fa-check"></i><b>5.1.1</b> <code>filter()</code> for rows</a></li>
+<li class="chapter" data-level="5.1.2" data-path="data-analysis.html"><a href="data-analysis.html#select-for-columns"><i class="fa fa-check"></i><b>5.1.2</b> <code>select()</code> for columns</a></li>
+<li class="chapter" data-level="5.1.3" data-path="data-analysis.html"><a href="data-analysis.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>5.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="data-analysis-in-development.html"><a href="data-analysis-in-development.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.3</b> Plotting Individual Data</a></li>
+<li class="chapter" data-level="5.2" data-path="data-analysis.html"><a href="data-analysis.html#plotting-average-data-with-errorbars"><i class="fa fa-check"></i><b>5.2</b> Plotting average data with errorbars</a></li>
+<li class="chapter" data-level="5.3" data-path="data-analysis.html"><a href="data-analysis.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.3</b> Plotting Individual Data</a></li>
+<li class="chapter" data-level="5.4" data-path="data-analysis.html"><a href="data-analysis.html#basic-statistics"><i class="fa fa-check"></i><b>5.4</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="data-analysis.html"><a href="data-analysis.html#t-test"><i class="fa fa-check"></i><b>5.4.1</b> T-test</a></li>
+<li class="chapter" data-level="5.4.2" data-path="data-analysis.html"><a href="data-analysis.html#effect-size"><i class="fa fa-check"></i><b>5.4.2</b> Effect Size</a></li>
+<li class="chapter" data-level="5.4.3" data-path="data-analysis.html"><a href="data-analysis.html#power-analysis"><i class="fa fa-check"></i><b>5.4.3</b> Power Analysis</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="recreating-figures-from-front-genetics-2021.html"><a href="recreating-figures-from-front-genetics-2021.html"><i class="fa fa-check"></i><b>6</b> Recreating Figures from Front. Genetics (2021)</a>
 <ul>
@@ -355,7 +361,7 @@ Figure 1.1: Rstudio layout, image from <a href="http://www.sthda.com/english/wik
 </div>
 <div id="lets-make-a-folder-and-set-it-as-working-directory" class="section level3 unnumbered">
 <h3>Let’s make a folder and set it as working directory</h3>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="img/setwd.png" alt="Setting your working directory, image from https://www.ucl.ac.uk/~uctqiax/PUBLG100/2015/faq/setwd.html" width="80%" />
 <p class="caption">
 Figure 1.2: Setting your working directory, image from <a href="https://www.ucl.ac.uk/~uctqiax/PUBLG100/2015/faq/setwd.html" class="uri">https://www.ucl.ac.uk/~uctqiax/PUBLG100/2015/faq/setwd.html</a>
@@ -375,7 +381,7 @@ Figure 1.2: Setting your working directory, image from <a href="https://www.ucl.
 <li><p>You can run code in 2 ways.</p></li>
 <li><p>First, you can type it in the script and run it after highlighting the codes you would like to run.</p></li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
 <img src="img/run_code.PNG" alt="How to run your code - script" width="100%" />
 <p class="caption">
 Figure 1.3: How to run your code - script
@@ -384,7 +390,7 @@ Figure 1.3: How to run your code - script
 <ul>
 <li>Second, you can type your code directly in the console.</li>
 </ul>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5"></span>
 <img src="img/run_code_console.PNG" alt="How to run your code - console" width="100%" />
 <p class="caption">
 Figure 1.4: How to run your code - console
@@ -469,18 +475,9 @@ Figure 1.4: How to run your code - console
 <ul>
 <li>You only need to install them once, but you will need to reload them whenever you start a new session in RStudio using the function <code>library()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="download-rstudio-basics-of-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># it has ggplot2 package</span></span></code></pre></div>
-<pre><code>## -- Attaching packages --------------------------------- tidyverse 1.3.1 --</code></pre>
-<pre><code>## v ggplot2 3.3.3     v purrr   0.3.4
-## v tibble  3.1.1     v dplyr   1.0.5
-## v tidyr   1.1.3     v stringr 1.4.0
-## v readr   1.4.0     v forcats 0.5.1</code></pre>
-<pre><code>## -- Conflicts ------------------------------------ tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="download-rstudio-basics-of-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># it allows you to save figures in .png file</span></span>
-<span id="cb21-2"><a href="download-rstudio-basics-of-r.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span></code></pre></div>
-<pre><code>## Updated tutorial for smplot: smin95.github.io/dataviz/</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="download-rstudio-basics-of-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># it has ggplot2 package</span></span>
+<span id="cb17-2"><a href="download-rstudio-basics-of-r.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># it allows you to save figures in .png file</span></span>
+<span id="cb17-3"><a href="download-rstudio-basics-of-r.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span></code></pre></div>
 <ul>
 <li>Now let’s make some graphs in the subsequent chapters.</li>
 </ul>

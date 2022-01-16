@@ -180,7 +180,7 @@ head(df_corr)
 
 ```{r, fig.width = 3.7, fig.height=3.7}
 
-# correlation plot using dataframe 'df_corr' 
+# correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
   geom_point(shape = 21, fill = sm_color('cyan'), color = 'white',
              size = 3) + sm_corr_theme(borders = FALSE) +
@@ -194,7 +194,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 ```
 
 ```{r, fig.width = 3.7, fig.height=3.7}
-# bar graph using dataframe 'df_general'
+# bar graph using data frame 'df_general'
 ggplot(data = df_general, mapping = aes(x = Method, y = Value, fill = Method)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
   scale_fill_manual(values = sm_color('cyan','green'))
