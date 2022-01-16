@@ -491,7 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Therefore, <code>group_by()</code> and <code>summarise()</code> are very useful together. They provide grouped summaries, such as the average. However, <code>summarise()</code> alone may not be so useful.</p>
 <p>Besides the <strong>average</strong>, one might also be interested in obtaining either <strong>standard deviation</strong> or <strong>standard error</strong>.</p>
 <p>However, our <strong>df</strong> does not contain any data about the <strong>standard deviation</strong> or <strong>standard error</strong> per Day or Time, etc. Standard error can be computed with <code>sm_stdErr()</code>.</p>
-<p>We could achieve obtain standard error with the help of the <code>summarise()</code> function for each <code>Day</code> and <code>Time</code>.</p>
+<p>We could obtain standard error with the help of the <code>summarise()</code> function for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="data-analysis.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   standard_error
@@ -869,6 +869,13 @@ Figure 5.4: Arguments for location in sm_common_axis for 2x2 figure.
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="data-analysis.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;combined_plot.png&quot;</span>, combined_plot, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>,</span>
 <span id="cb204-2"><a href="data-analysis.html#cb204-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">base_aspect_ratio =</span> .<span class="dv">9</span>, <span class="at">limitsize =</span> F)</span></code></pre></div>
 <p>Open <code>combined_plot.png</code> file in your directory folder. Does it look similar to the one in the web browser? On my computer, they look very different, and I much prefer the <strong>png</strong> file.</p>
+<p>Here is the actual <strong>png</strong> file:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-172"></span>
+<img src="img/combined_plot.png" alt="Combined plot" width="100%" />
+<p class="caption">
+Figure 5.5: Combined plot
+</p>
+</div>
 <p>To be honest, for adding the titles of the axes and the graph, using <strong>Adobe Illustrator</strong> might be much easier. I just included the codes here to demonstrate that everything, however, can be done in R.</p>
 <p>If you do not understand some of these functions, you can type in your console <code>?add_sub</code>, <code>?grid.arrange</code> to learn about these functions.</p>
 <p>An astute reader will realize that the codes are quite repetitive. Could the codes be shortened? The answer is yes! However, this method is quite complex and beyond the scope of this book.</p>
@@ -897,7 +904,7 @@ Figure 5.4: Arguments for location in sm_common_axis for 2x2 figure.
 <span id="cb208-2"><a href="data-analysis.html#cb208-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb208-3"><a href="data-analysis.html#cb208-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb208-4"><a href="data-analysis.html#cb208-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Cbratio at 0min&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-174-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-175-1.png" width="355.2" /></p>
 <p>There seems to be a very small difference in the contrast balance ratio (<code>Cbratio</code>) between Days 1 and 5. The error bars (in this case, standard error) are overlapping; this indicates that there is no significant difference (p &lt; 0.05) between the two datasets. Let’s take a look if my prediction is correct by using a <strong>t-test</strong> using the function <code>t.test</code>.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-analysis.html#cb209-1" aria-hidden="true" tabindex="-1"></a>df_0min</span></code></pre></div>
 <pre><code>## # A tibble: 20 x 4

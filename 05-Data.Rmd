@@ -136,7 +136,7 @@ Besides the **average**, one might also be interested in obtaining either **stan
 
 However, our **df** does not contain any data about the **standard deviation** or **standard error** per Day or Time, etc. Standard error can be computed with `sm_stdErr()`. 
 
-We could achieve obtain standard error with the help of the `summarise()` function for each `Day` and `Time`.
+We could obtain standard error with the help of the `summarise()` function for each `Day` and `Time`.
 
 ```{r}
 summarise(df, standard_error = sm_stdErr(Cbratio))
@@ -541,6 +541,12 @@ save_plot("combined_plot.png", combined_plot, ncol = 3, nrow = 3,
 ```
 
 Open `combined_plot.png` file in your directory folder. Does it look similar to the one in the web browser? On my computer, they look very different, and I much prefer the **png** file. 
+
+Here is the actual **png** file:
+
+```{r, echo=FALSE, fig.align = 'center',fig.cap="Combined plot", out.width = '100%'}
+knitr::include_graphics("img/combined_plot.png")
+```
 
 To be honest, for adding the titles of the axes and the graph, using **Adobe Illustrator** might be much easier. I just included the codes here to demonstrate that everything, however, can be done in R.
 

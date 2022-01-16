@@ -8,6 +8,7 @@ fig:unnamed-chunk-165
 fig:unnamed-chunk-167
 fig:unnamed-chunk-169
 fig:unnamed-chunk-170
+fig:unnamed-chunk-172
 download-rstudio-basics-of-r
 setting-up-rstudio
 how-to-run-your-code
