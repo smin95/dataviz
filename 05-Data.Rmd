@@ -170,7 +170,7 @@ We will plot a similar graph to **Figure 3A** in the Vision Research paper (Min 
 - Usually, a data frame that has grouped summary information, such as average and standard error across subject, is required to plot a graph that depicts average values. 
 - `geom_errorbar()` is required to plot the error bar.
 - Legend title has been removed with the `theme()` function.
-- Greek letter $\Delta is printed with `\u0394`. 
+- Greek letter **Delta** is printed with `\u0394`. 
 - X-tick labels are originally 0, 1, 2, 3, 4, 5 (as specified in the **df** data frame). However, they can be manually changed using `labels = ` argument in the `scale_x_continuous()` function. 
 - Legend label can also be changed in `labels = ` from the `scale_color_manual()` function because each `Day` has been defined by each `color`; this is the case because `color = Day` in `aes(..., ..., color = Day)`. 
 
