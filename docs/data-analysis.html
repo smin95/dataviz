@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-01-15" />
+<meta name="date" content="2022-01-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -264,7 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.2" data-path="data-analysis.html"><a href="data-analysis.html#select-for-columns"><i class="fa fa-check"></i><b>5.1.2</b> <code>select()</code> for columns</a></li>
 <li class="chapter" data-level="5.1.3" data-path="data-analysis.html"><a href="data-analysis.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>5.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="data-analysis.html"><a href="data-analysis.html#plotting-average-data-with-errorbars"><i class="fa fa-check"></i><b>5.2</b> Plotting average data with errorbars</a></li>
+<li class="chapter" data-level="5.2" data-path="data-analysis.html"><a href="data-analysis.html#plotting-average-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting average data with error bars</a></li>
 <li class="chapter" data-level="5.3" data-path="data-analysis.html"><a href="data-analysis.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.3</b> Plotting Individual Data</a></li>
 <li class="chapter" data-level="5.4" data-path="data-analysis.html"><a href="data-analysis.html#basic-statistics"><i class="fa fa-check"></i><b>5.4</b> Basic Statistics</a>
 <ul>
@@ -541,8 +541,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you are interested in learning more about this topic (data transformation), please check out Chapter 5 of R for Data Science by Hadley Wickham (<a href="https://r4ds.had.co.nz/transform.html" class="uri">https://r4ds.had.co.nz/transform.html</a>).</p>
 </div>
 </div>
-<div id="plotting-average-data-with-errorbars" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Plotting average data with errorbars</h2>
+<div id="plotting-average-data-with-error-bars" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Plotting average data with error bars</h2>
 <p>We will plot a similar graph to <strong>Figure 3A</strong> in the Vision Research paper (Min et al., 2019) in this section.</p>
 <ul>
 <li>Usually, a data frame that has grouped summary information, such as average and standard error across subject, is required to plot a graph that depicts average values.</li>
@@ -898,7 +898,7 @@ Figure 5.4: Arguments for location in sm_common_axis for 2x2 figure.
 <span id="cb208-3"><a href="data-analysis.html#cb208-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb208-4"><a href="data-analysis.html#cb208-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Cbratio at 0min&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-174-1.png" width="355.2" /></p>
-<p>There seems to be a very small difference in the contrast balance ratio (<code>Cbratio</code>) between Days 1 and 5. The errorbars (in this case, standard error) are overlapping; this indicates that there is no significant difference (p &lt; 0.05) between the two datasets. Let’s take a look if my prediction is correct by using a <strong>t-test</strong> using the function <code>t.test</code>.</p>
+<p>There seems to be a very small difference in the contrast balance ratio (<code>Cbratio</code>) between Days 1 and 5. The error bars (in this case, standard error) are overlapping; this indicates that there is no significant difference (p &lt; 0.05) between the two datasets. Let’s take a look if my prediction is correct by using a <strong>t-test</strong> using the function <code>t.test</code>.</p>
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-analysis.html#cb209-1" aria-hidden="true" tabindex="-1"></a>df_0min</span></code></pre></div>
 <pre><code>## # A tibble: 20 x 4
 ##    Subject Day    Time Cbratio

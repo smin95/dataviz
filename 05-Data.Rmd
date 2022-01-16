@@ -163,7 +163,7 @@ Now you see that the original **df**, which contains data for each subject, has 
 
 If you are interested in learning more about this topic (data transformation), please check out Chapter 5 of R for Data Science by Hadley Wickham (https://r4ds.had.co.nz/transform.html).
 
-## Plotting average data with errorbars
+## Plotting average data with error bars
 
 We will plot a similar graph to **Figure 3A** in the Vision Research paper (Min et al., 2019) in this section.
 
@@ -577,7 +577,7 @@ ggplot(data = df_0min, mapping = aes(x = Day, y = Cbratio, fill = Day)) +
   ggtitle('Cbratio at 0min')
 ```
 
-There seems to be a very small difference in the contrast balance ratio (`Cbratio`) between Days 1 and 5. The errorbars (in this case, standard error) are overlapping; this indicates that there is no significant difference (p < 0.05) between the two datasets. Let's take a look if my prediction is correct by using a **t-test** using the function `t.test`.
+There seems to be a very small difference in the contrast balance ratio (`Cbratio`) between Days 1 and 5. The error bars (in this case, standard error) are overlapping; this indicates that there is no significant difference (p < 0.05) between the two datasets. Let's take a look if my prediction is correct by using a **t-test** using the function `t.test`.
 
 ```{r}
 df_0min
