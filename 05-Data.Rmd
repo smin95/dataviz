@@ -68,7 +68,7 @@ Let's try another example.
 
 ```{r}
 day1 <- filter(df, Day == 1) # save the new data frame into a new variable
-filter(df, Subject == 'S1') # this new data frame contains Day 1 and Subject 1 data only.
+filter(day1, Subject == 'S1') # this new data frame contains Day 1 and Subject 1 data only.
 ```
 
 The above code can be read as: **filter** for all rows of the data frame **df** that have `1` in the `Day` column. Save this new data frame as `day1`. Then,  **filter** for all rows of the data frame `day1` that have `S1` in the `Subject` column. 
@@ -220,7 +220,7 @@ library(grid)
 Now let's plot data for each subject (S1-S9) except S10. Each panel shows the data of each subject for both Days 1 and 5. 
 
 ```{r, fig.width = 3.65, fig.height = 3.65}
-df_s1 <- df %>% filter(Subject == 'S1') 
+df_s1 <- filter(df, Subject == 'S1') 
 # rows of df that only contain S1 in the Subject column
 
 # use df_s1 to plot the data of S1
@@ -243,7 +243,7 @@ print(plot_s1)
 Then make each one for the other subjects (S2-S9). 
 
 ```{r, fig.width = 3.65, fig.height = 3.65}
-df_s2 <- df %>% filter(Subject == 'S2') 
+df_s2 <- filter(df, Subject == 'S2') 
 
 plot_s2 <- ggplot(data = df_s2, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
@@ -261,7 +261,7 @@ print(plot_s2)
 ```
 
 ```{r, fig.width = 3.65, fig.height = 3.65}
-df_s3 <- df %>% filter(Subject == 'S3')
+df_s3 <- filter(df, Subject == 'S3')
 
 plot_s3 <- ggplot(data = df_s3, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
@@ -279,7 +279,7 @@ print(plot_s3)
 ```
 
 ```{r, fig.width = 3.65, fig.height = 3.65}
-df_s4 <- df %>% filter(Subject == 'S4')
+df_s4 <- filter(df, Subject == 'S4')
 
 plot_s4 <- ggplot(data = df_s4, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
@@ -298,7 +298,7 @@ print(plot_s4)
 
 ```{r, fig.width = 3.65, fig.height = 3.65}
 # Subject 5
-df_s5 <- df %>% filter(Subject == 'S5') 
+df_s5 <- filter(df, Subject == 'S5') 
 # rows of df that only contain S5 in the Subject column
 
 plot_s5 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) + 
@@ -320,7 +320,7 @@ print(plot_s5)
 
 ```{r, fig.width = 3.65, fig.height = 3.65}
 # Subject 6
-df_s6 <- df %>% filter(Subject == 'S6') 
+df_s6 <- filter(df, Subject == 'S6') 
 # rows of df that only contain S6 in the Subject column
 
 plot_s6 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) + 
@@ -339,7 +339,7 @@ print(plot_s6)
 ```
 
 ```{r, fig.width = 3.65, fig.height = 3.65}
-df_s7 <- df %>% filter(Subject == 'S7')
+df_s7 <- filter(df, Subject == 'S7')
 
 plot_s7 <- ggplot(data = df_s7, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
@@ -357,7 +357,7 @@ print(plot_s7)
 ```
 
 ```{r, fig.width = 3.65, fig.height = 3.65}
-df_s8 <- df %>% filter(Subject == 'S8')
+df_s8 <- filter(df, Subject == 'S8')
 
 plot_s8 <- ggplot(data = df_s8, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
@@ -377,7 +377,7 @@ print(plot_s8)
 ```{r, fig.width = 3.65, fig.height = 3.65}
 # Subject 9
 
-df_s9 <- df %>% filter(Subject == 'S9') 
+df_s9 <- filter(df, Subject == 'S9') 
 
 plot_s9 <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 4.5) +
@@ -571,7 +571,7 @@ Let's filter only for data that are `Time == 0` for Day 1 and Day 5, which refer
 
 ```{r}
 # 0 minutes after short-term monocular deprivation 
-df_0min <- df %>% filter(Time == 0)
+df_0min <- filter(df, Time == 0)
 ```
 
 Now, let's plot a bar graph to display contrast balance ratio (`Cbratio`) from Days 1 and 5 at 0 minutes after short-term monocular deprivation using `sm_bar()`.
@@ -592,11 +592,11 @@ df_0min
 `t.test` allows us to compare whether data between two different groups are significantly different. Since we will only compare values in the `Cbratio` column, let's select for the `Cbratio` column and use these values in our `t.test`. 
 
 ```{r}
-df_0min_day1 <- df_0min %>% filter(Day == 1) %>% select(Cbratio)
+df_0min_day1 <- select(filter(df_0min, Day == 1), Cbratio)
 print(df_0min_day1)
 print(df_0min_day1$Cbratio)
 
-df_0min_day5 <- df_0min %>% filter(Day == 5) %>% select(Cbratio)
+df_0min_day5 <- select(filter(df_0min, Day == 5), Cbratio)
 print(df_0min_day5)
 
 ```

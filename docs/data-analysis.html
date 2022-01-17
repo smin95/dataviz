@@ -376,22 +376,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Notice that S1 is a <strong>character</strong> because it has an alphabet. Therefore, it needs to be written as <code>'S1'</code>. However, <code>1</code> of <code>Day</code> is <strong>double</strong>, which is essentially just a number digit. Therefore, it can be written as <code>1</code> with no quotation mark.</p>
 <p>Let’s try another example.</p>
 <div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="data-analysis.html#cb167-1" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># save the new data frame into a new variable</span></span>
-<span id="cb167-2"><a href="data-analysis.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) <span class="co"># this new data frame contains Day 1 and Subject 1 data only.</span></span></code></pre></div>
-<pre><code>## # A tibble: 12 x 4
-##    Subject Day    Time Cbratio
-##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
-##  1 S1      1         0  -0.421
-##  2 S1      1         1   0.802
-##  3 S1      1         2   1.01 
-##  4 S1      1         3   0.634
-##  5 S1      1         4  -0.245
-##  6 S1      1         5  -0.834
-##  7 S1      5         0   2.42 
-##  8 S1      5         1   1.76 
-##  9 S1      5         2   1.91 
-## 10 S1      5         3   0.609
-## 11 S1      5         4   0.811
-## 12 S1      5         5   0.363</code></pre>
+<span id="cb167-2"><a href="data-analysis.html#cb167-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(day1, Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) <span class="co"># this new data frame contains Day 1 and Subject 1 data only.</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject Day    Time Cbratio
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 S1      1         0  -0.421
+## 2 S1      1         1   0.802
+## 3 S1      1         2   1.01 
+## 4 S1      1         3   0.634
+## 5 S1      1         4  -0.245
+## 6 S1      1         5  -0.834</code></pre>
 <p>The above code can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column. Save this new data frame as <code>day1</code>. Then, <strong>filter</strong> for all rows of the data frame <code>day1</code> that have <code>S1</code> in the <code>Subject</code> column.</p>
 <p>The above can also be written like the one below:</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="data-analysis.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
@@ -588,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb189-4"><a href="data-analysis.html#cb189-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
 <span id="cb189-5"><a href="data-analysis.html#cb189-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span></code></pre></div>
 <p>Now let’s plot data for each subject (S1-S9) except S10. Each panel shows the data of each subject for both Days 1 and 5.</p>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-analysis.html#cb190-1" aria-hidden="true" tabindex="-1"></a>df_s1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) </span>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-analysis.html#cb190-1" aria-hidden="true" tabindex="-1"></a>df_s1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) </span>
 <span id="cb190-2"><a href="data-analysis.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S1 in the Subject column</span></span>
 <span id="cb190-3"><a href="data-analysis.html#cb190-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb190-4"><a href="data-analysis.html#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use df_s1 to plot the data of S1</span></span>
@@ -608,7 +602,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb190-18"><a href="data-analysis.html#cb190-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s1)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-156-1.png" width="350.4" /></p>
 <p>Then make each one for the other subjects (S2-S9).</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="data-analysis.html#cb191-1" aria-hidden="true" tabindex="-1"></a>df_s2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S2&#39;</span>) </span>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="data-analysis.html#cb191-1" aria-hidden="true" tabindex="-1"></a>df_s2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S2&#39;</span>) </span>
 <span id="cb191-2"><a href="data-analysis.html#cb191-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb191-3"><a href="data-analysis.html#cb191-3" aria-hidden="true" tabindex="-1"></a>plot_s2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s2, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
 <span id="cb191-4"><a href="data-analysis.html#cb191-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
@@ -624,7 +618,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb191-14"><a href="data-analysis.html#cb191-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb191-15"><a href="data-analysis.html#cb191-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s2)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-157-1.png" width="350.4" /></p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-analysis.html#cb192-1" aria-hidden="true" tabindex="-1"></a>df_s3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S3&#39;</span>)</span>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-analysis.html#cb192-1" aria-hidden="true" tabindex="-1"></a>df_s3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S3&#39;</span>)</span>
 <span id="cb192-2"><a href="data-analysis.html#cb192-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb192-3"><a href="data-analysis.html#cb192-3" aria-hidden="true" tabindex="-1"></a>plot_s3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s3, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
 <span id="cb192-4"><a href="data-analysis.html#cb192-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
@@ -640,7 +634,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb192-14"><a href="data-analysis.html#cb192-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb192-15"><a href="data-analysis.html#cb192-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s3)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-158-1.png" width="350.4" /></p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="data-analysis.html#cb193-1" aria-hidden="true" tabindex="-1"></a>df_s4 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S4&#39;</span>)</span>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="data-analysis.html#cb193-1" aria-hidden="true" tabindex="-1"></a>df_s4 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S4&#39;</span>)</span>
 <span id="cb193-2"><a href="data-analysis.html#cb193-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb193-3"><a href="data-analysis.html#cb193-3" aria-hidden="true" tabindex="-1"></a>plot_s4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s4, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
 <span id="cb193-4"><a href="data-analysis.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
@@ -657,7 +651,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb193-15"><a href="data-analysis.html#cb193-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s4)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-159-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-analysis.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 5</span></span>
-<span id="cb194-2"><a href="data-analysis.html#cb194-2" aria-hidden="true" tabindex="-1"></a>df_s5 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S5&#39;</span>) </span>
+<span id="cb194-2"><a href="data-analysis.html#cb194-2" aria-hidden="true" tabindex="-1"></a>df_s5 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S5&#39;</span>) </span>
 <span id="cb194-3"><a href="data-analysis.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S5 in the Subject column</span></span>
 <span id="cb194-4"><a href="data-analysis.html#cb194-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb194-5"><a href="data-analysis.html#cb194-5" aria-hidden="true" tabindex="-1"></a>plot_s5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s5, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -677,7 +671,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb194-19"><a href="data-analysis.html#cb194-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s5)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-160-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="data-analysis.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 6</span></span>
-<span id="cb195-2"><a href="data-analysis.html#cb195-2" aria-hidden="true" tabindex="-1"></a>df_s6 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S6&#39;</span>) </span>
+<span id="cb195-2"><a href="data-analysis.html#cb195-2" aria-hidden="true" tabindex="-1"></a>df_s6 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S6&#39;</span>) </span>
 <span id="cb195-3"><a href="data-analysis.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S6 in the Subject column</span></span>
 <span id="cb195-4"><a href="data-analysis.html#cb195-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb195-5"><a href="data-analysis.html#cb195-5" aria-hidden="true" tabindex="-1"></a>plot_s6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s5, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -694,7 +688,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb195-16"><a href="data-analysis.html#cb195-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb195-17"><a href="data-analysis.html#cb195-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s6)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-161-1.png" width="350.4" /></p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="data-analysis.html#cb196-1" aria-hidden="true" tabindex="-1"></a>df_s7 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S7&#39;</span>)</span>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="data-analysis.html#cb196-1" aria-hidden="true" tabindex="-1"></a>df_s7 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S7&#39;</span>)</span>
 <span id="cb196-2"><a href="data-analysis.html#cb196-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb196-3"><a href="data-analysis.html#cb196-3" aria-hidden="true" tabindex="-1"></a>plot_s7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s7, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
 <span id="cb196-4"><a href="data-analysis.html#cb196-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
@@ -710,7 +704,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb196-14"><a href="data-analysis.html#cb196-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb196-15"><a href="data-analysis.html#cb196-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s7)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-162-1.png" width="350.4" /></p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="data-analysis.html#cb197-1" aria-hidden="true" tabindex="-1"></a>df_s8 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S8&#39;</span>)</span>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="data-analysis.html#cb197-1" aria-hidden="true" tabindex="-1"></a>df_s8 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S8&#39;</span>)</span>
 <span id="cb197-2"><a href="data-analysis.html#cb197-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb197-3"><a href="data-analysis.html#cb197-3" aria-hidden="true" tabindex="-1"></a>plot_s8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s8, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
 <span id="cb197-4"><a href="data-analysis.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
@@ -728,7 +722,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-163-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="data-analysis.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 9</span></span>
 <span id="cb198-2"><a href="data-analysis.html#cb198-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb198-3"><a href="data-analysis.html#cb198-3" aria-hidden="true" tabindex="-1"></a>df_s9 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;S9&#39;</span>) </span>
+<span id="cb198-3"><a href="data-analysis.html#cb198-3" aria-hidden="true" tabindex="-1"></a>df_s9 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S9&#39;</span>) </span>
 <span id="cb198-4"><a href="data-analysis.html#cb198-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb198-5"><a href="data-analysis.html#cb198-5" aria-hidden="true" tabindex="-1"></a>plot_s9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s9, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
 <span id="cb198-6"><a href="data-analysis.html#cb198-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
@@ -898,7 +892,7 @@ Figure 5.5: Combined plot
 <p>In this example, we will compare changes in sensory eye dominance after short-term monocular deprivation in Day 1 vs Day 5. These values are shown in the <code>Cbratio</code> column.</p>
 <p>Let’s filter only for data that are <code>Time == 0</code> for Day 1 and Day 5, which refers to 0 minutes after short-term monocular deprivation for 120 minutes.</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="data-analysis.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 minutes after short-term monocular deprivation </span></span>
-<span id="cb207-2"><a href="data-analysis.html#cb207-2" aria-hidden="true" tabindex="-1"></a>df_0min <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Time <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
+<span id="cb207-2"><a href="data-analysis.html#cb207-2" aria-hidden="true" tabindex="-1"></a>df_0min <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Time <span class="sc">==</span> <span class="dv">0</span>)</span></code></pre></div>
 <p>Now, let’s plot a bar graph to display contrast balance ratio (<code>Cbratio</code>) from Days 1 and 5 at 0 minutes after short-term monocular deprivation using <code>sm_bar()</code>.</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="data-analysis.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_0min, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Cbratio, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb208-2"><a href="data-analysis.html#cb208-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
@@ -931,7 +925,7 @@ Figure 5.5: Combined plot
 ## 19 S9      5         0  -0.502
 ## 20 S10     5         0   1.68</code></pre>
 <p><code>t.test</code> allows us to compare whether data between two different groups are significantly different. Since we will only compare values in the <code>Cbratio</code> column, let’s select for the <code>Cbratio</code> column and use these values in our <code>t.test</code>.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="data-analysis.html#cb211-1" aria-hidden="true" tabindex="-1"></a>df_0min_day1 <span class="ot">&lt;-</span> df_0min <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Cbratio)</span>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="data-analysis.html#cb211-1" aria-hidden="true" tabindex="-1"></a>df_0min_day1 <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(df_0min, Day <span class="sc">==</span> <span class="dv">1</span>), Cbratio)</span>
 <span id="cb211-2"><a href="data-analysis.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df_0min_day1)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 1
 ##    Cbratio
@@ -949,7 +943,7 @@ Figure 5.5: Combined plot
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="data-analysis.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df_0min_day1<span class="sc">$</span>Cbratio)</span></code></pre></div>
 <pre><code>##  [1] -0.4206  2.8213  1.6856  2.5496 -0.2166  0.6264  2.6196  1.4151
 ##  [9]  1.5372  3.0519</code></pre>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="data-analysis.html#cb215-1" aria-hidden="true" tabindex="-1"></a>df_0min_day5 <span class="ot">&lt;-</span> df_0min <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(Cbratio)</span>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="data-analysis.html#cb215-1" aria-hidden="true" tabindex="-1"></a>df_0min_day5 <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(df_0min, Day <span class="sc">==</span> <span class="dv">5</span>), Cbratio)</span>
 <span id="cb215-2"><a href="data-analysis.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(df_0min_day5)</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 1
 ##    Cbratio
