@@ -659,7 +659,7 @@ sm_power(df_0min_day1$Cbratio, df_0min_day5$Cbratio,
          paired = TRUE)
 ```
 
-We would need **232 subjects** per group (`n = 231.1206`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in contrast balance ratio between Days 1 and 5. In other words, the difference between Days 1 and 5 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
+According to our power analysis (significant level = 0.05, power = 80%), we would need **232 subjects** per group (`n = 231.1206`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in contrast balance ratio between Days 1 and 5. In other words, the difference between Days 1 and 5 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
 
 To learn more about performing statistical tests in R, please check out the book entitled **YaRrr! The Pirate's Guide to R** by Nathaniel Phillips (https://bookdown.org/ndphillips/YaRrr/).
 
