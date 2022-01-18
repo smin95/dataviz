@@ -200,6 +200,27 @@ ggplot(data = df_general, mapping = aes(x = Method, y = Value, fill = Method)) +
   scale_fill_manual(values = sm_color('cyan','green'))
 ```
 
+### Correlation plot with both regression and reference lines
+
+- You can also add a reference line (slope = 1) in a correlation plot.
+- This can be done with `geom_abline()`. In this example, the reference line's slope is set to 1 and it has a dashed line style.
+
+```{r, fig.width = 3.7, fig.height=3.7}
+
+# correlation plot using data frame 'df_corr' 
+ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
+  geom_point(shape = 21, fill = sm_color('cyan'), color = 'white',
+             size = 3) + sm_corr_theme(borders = FALSE) +
+  geom_abline(slope = 1, linetype = 'dashed') +
+  scale_y_continuous(limits = c(-2.8,2.8),  expand = c(0,0)) +
+  scale_x_continuous(limits = c(-2.8,2.8), expand = c(0,0)) +
+  sm_statCorr(color = sm_color('cyan'), corr_method = 'pearson',
+              label_x = -2.2, label_y = 2.3) +
+  ggtitle('Correlation plot') + 
+  xlab('Method 1') + ylab('Method 2') 
+
+```
+
 ## Boxplot - `sm_boxplot()`
 
 - `sm_boxplot()` generates a boxplot and individual points at the same time. 
