@@ -83,7 +83,7 @@ print(all)
 
 This book guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. 
 
-## Major Updates on smplot
+## Major Updates on smplot {-}
 
 If you downloaded **before Feb. 17th, 2022**, please re-download it. After the update, `sm_violin()` and `sm_bar()` works properly; their errorbars of 95% confidence intervals (`errorbar_type = 'ci'`) can be displayed without an issue. 
 
