@@ -257,11 +257,13 @@ save_plot("slopes.png",
 
 ## Figure 6 - Raincloud Plot
 
+Due to the recent update of smplot (Feb. 21st, 2022), paired lines are no longer shown in this figure. 
+
 ```{r, fig.width = 7.25, fig.height= 15, warning = F}
 
 raincloud1 <- sm_raincloud(data = df1, x = Day, y = Value, 
              boxplot_alpha = 0.5, color = 'white', shape = 21,
-             sep_level = 0, line_alpha = 0.2) +
+             sep_level = 0) +
   scale_x_continuous(limits = c(0.15,2.85), 
                      labels = c('1', '2'),
                      breaks = c(1,2)) +
@@ -283,9 +285,9 @@ text1 <- ggplot(data = df1, mapping = aes(x = Day, y = Value)) +
   annotate('text', x = 1.5, y = -1.1, label = '\n   which_side ("right", "left", "mixed").', fontface = 2)
   
 
-raincloud2 <- sm_raincloud(data = df1, x = Day, y = Value, group = Subject,
+raincloud2 <- sm_raincloud(data = df1, x = Day, y = Value, 
              boxplot_alpha = 0.5, color = 'white', shape = 21,
-             sep_level = 2, line_alpha = 0.2, which_side = 'mixed') +
+             sep_level = 2, which_side = 'mixed') +
   scale_x_continuous(limits = c(0.15,2.85), 
                      labels = c('1', '2'),
                      breaks = c(1,2)) +
@@ -307,7 +309,7 @@ text2 <- ggplot(data = df1, mapping = aes(x = Day, y = Value)) +
 
 raincloud3 <- sm_raincloud(data = df1, x = Day, y = Value, 
              boxplot_alpha = 0.5, color = 'white', shape = 21,
-             sep_level = 4, line_alpha = 0.2, which_side = 'left') +
+             sep_level = 4, which_side = 'left') +
   scale_x_continuous(limits = c(0.15,2.85), 
                      labels = c('1', '2'),
                      breaks = c(1,2)) +
@@ -334,7 +336,7 @@ raincloud_2x_all <- plot_grid(raincloud1, text1,
 
 raincloud4 <- sm_raincloud(data = df2, x = Day, y = Value, 
              boxplot_alpha = 0.5, color = 'white', shape = 21,
-             sep_level = 2, line_alpha = 0.2) +
+             sep_level = 2) +
   scale_x_continuous(limits = c(0.25,4.75), 
                      labels = c('1', '2', '3', '4'),
                      breaks = c(1,2,3,4)) +

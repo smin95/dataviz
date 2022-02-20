@@ -532,8 +532,8 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
 
 
 ```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
-sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.5, 
-              color = 'white', shape = 21, sep_level = 2, line_alpha = 0.4) +
+sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
+              color = 'white', shape = 21, sep_level = 2) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 
@@ -543,8 +543,8 @@ sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.
 - You can also flip the raincloud plot by setting `which_side` to `left`.
 
 ```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
-sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.5, 
-              color = 'white', shape = 21, sep_level = 2, line_alpha = 0.4, which_side = 'left') +
+sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
+              color = 'white', shape = 21, sep_level = 2, which_side = 'left') +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 
@@ -554,8 +554,8 @@ sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.
 - So far the distribution plots (violin plots) have been vertical. We can change their configuration by setting `vertical = FALSE`. 
 
 ```{r, fig.width = 3.7, fig.height = 5.7, warning = F}
-sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.5, 
-              color = 'white', shape = 21, sep_level = 2, line_alpha = 0.4, which_side = 'left', vertical = FALSE) +
+sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
+              color = 'white', shape = 21, sep_level = 2, which_side = 'left', vertical = FALSE) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 
@@ -565,8 +565,8 @@ sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.
 - The orientation is not correct, so let's change it by setting `which_side = 'right'`. 
 
 ```{r, fig.width = 3.7, fig.height = 5.7, warning = F}
-sm_raincloud(data = df2, x = Day, y = Value, group = Subject, boxplot_alpha = 0.5, 
-              color = 'white', shape = 21, sep_level = 2, line_alpha = 0.4, which_side = 'right', vertical = FALSE) +
+sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
+              color = 'white', shape = 21, sep_level = 2, which_side = 'right', vertical = FALSE) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 

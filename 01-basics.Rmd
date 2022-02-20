@@ -139,7 +139,6 @@ TRUE*FALSE # 1 * 0
 - So, you will need to install some packages, such as ggplot2 and smplot. Please type the codes below.
 
 ```{r, eval = FALSE}
-install.packages('tidyverse') # tidyverse was created by Hadley Wickham at RStudio, tidyverse includes ggplot2
 install.packages('devtools')
 devtools::install_github('smin95/smplot') # requires VPN if you are in China
 ```
