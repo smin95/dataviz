@@ -526,18 +526,18 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
   scale_fill_manual(values = sm_palette(4))
 ```
 
-- Since this dataset is a repeated measures (same subject across days), we can also include lines that show the trend of each subject by adding `group` argument in `sm_raincloud()`.
 - `sep_level` is an argument to specify the degree of separation among points, boxplots and violin plots. When `sep_level = 0`, they will all be crowded. When `sep_level = 4`, they will all be separated from each other. 
   - I personally prefer when the boxplot and violin plots are together, but not the points. So I will set it `sep_level = 2`.
-
+  - Shown below is an example when `sep_level = 4` with a horizontal grid theme `sm_hgrid()`.
 
 ```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
-              color = 'white', shape = 21, sep_level = 2) +
+              color = 'white', shape = 21, sep_level = 4) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 
-  scale_fill_manual(values = sm_palette(4))
+  scale_fill_manual(values = sm_palette(4)) +
+  sm_hgrid()
 ```
 
 - You can also flip the raincloud plot by setting `which_side` to `left`.
