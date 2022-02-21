@@ -85,7 +85,7 @@ This book guides the reader to be familiar with R, a programming language, for d
 
 ## Major updates on smplot {-}
 
-If you downloaded **before Feb. 21st, 2022**, please **re-download** it. Some updates are： 
+If you downloaded **before Feb. 21st, 2022**, please **re-download ssmplot**. Some updates are： 
 - `sm_violin()` and `sm_bar()` work properly; their errorbars of 95% confidence intervals (`errorbar_type = 'ci'`) can be displayed without an issue. 
 - `sm_raincloud()` works properly. However, the points can no longer be grouped. 
 
@@ -102,10 +102,8 @@ devtools::install_github('smin95/smplot')
 
 Please read Chapter 4. 
 
-## Issues and Contact {-}
+## Issues and contact {-}
 If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the 'smplot' package, please pull-request on [Github](https://github.com/smin95/smplot).
 
 ## License {-}
 smplot is under the MIT license. This tutorial is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
-
-

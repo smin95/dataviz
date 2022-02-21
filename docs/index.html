@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-02-17" />
+<meta name="date" content="2022-02-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -142,7 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates-on-smplot"><i class="fa fa-check"></i>Major updates on smplot</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#please-cite-this-paper-when-smplot-is-used"><i class="fa fa-check"></i>Please cite this paper when smplot is used</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-r-and-ggplot2-experts"><i class="fa fa-check"></i>For R and ggplot2 experts</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and Contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>1</b> Download RStudio &amp; Basics of R</a>
@@ -307,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Data Visualization in R Using smplot</h1>
 <p class="author"><em>Seung Hyun Min</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2022-02-17</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2022-02-20</em></p>
 </div>
 <div id="index" class="section level1 unnumbered">
 <h1>Welcome!</h1>
@@ -315,7 +315,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This book guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package <strong>smplot</strong>, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility.</p>
 <div id="major-updates-on-smplot" class="section level2 unnumbered">
 <h2>Major updates on smplot</h2>
-<p>If you downloaded <strong>before Feb. 17th, 2022</strong>, please <strong>re-download</strong> it. After the update, <code>sm_violin()</code> and <code>sm_bar()</code> work properly; their errorbars of 95% confidence intervals (<code>errorbar_type = 'ci'</code>) can be displayed without an issue.</p>
+<p>If you downloaded <strong>before Feb. 21st, 2022</strong>, please <strong>re-download ssmplot</strong>. Some updates are：
+- <code>sm_violin()</code> and <code>sm_bar()</code> work properly; their errorbars of 95% confidence intervals (<code>errorbar_type = 'ci'</code>) can be displayed without an issue.
+- <code>sm_raincloud()</code> works properly. However, the points can no longer be grouped.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
 <span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot&#39;</span>)</span></code></pre></div>
 </div>
@@ -328,7 +330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Please read Chapter 4.</p>
 </div>
 <div id="issues-and-contact" class="section level2 unnumbered">
-<h2>Issues and Contact</h2>
+<h2>Issues and contact</h2>
 <p>If you spot any mistakes in this online book, please pull-request on <a href="https://github.com/smin95/dataviz">Github</a> or email me <a href="mailto:seung.min@mail.mcgill.ca" class="email">seung.min@mail.mcgill.ca</a>. If you find issues with the ‘smplot’ package, please pull-request on <a href="https://github.com/smin95/smplot">Github</a>.</p>
 </div>
 <div id="license" class="section level2 unnumbered">
