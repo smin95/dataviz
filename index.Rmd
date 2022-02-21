@@ -85,7 +85,8 @@ This book guides the reader to be familiar with R, a programming language, for d
 
 ## Major updates on smplot {-}
 
-If you downloaded **before Feb. 21st, 2022**, please **re-download ssmplot**. Some updates are： 
+If you downloaded **before Feb. 21st, 2022**, please **re-download smplot**. Some updates are： 
+
 - `sm_violin()` and `sm_bar()` work properly; their errorbars of 95% confidence intervals (`errorbar_type = 'ci'`) can be displayed without an issue. 
 - `sm_raincloud()` works properly. However, the points can no longer be grouped. 
 
