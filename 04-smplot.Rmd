@@ -46,9 +46,9 @@ library(smplot)
 
 - Its color palette can be accessed via two functions: `sm_color()` and `sm_palette()`.
 - `sm_color()` accepts the **character string** of the color name.
-- `sm_palette()` accepts the **number of colors** (up to **16**) and returns the hex codes accordingly.
+- `sm_palette()` accepts the **number of colors** (up to **20**) and returns the hex codes accordingly.
 
-```{r, echo=FALSE, fig.align = 'center',fig.cap="smplot's color palette", out.width = '55%'}
+```{r, echo=FALSE, fig.align = 'center',fig.cap="smplot's color palette", out.width = '90%'}
 knitr::include_graphics("img/color.png")
 ```
 
