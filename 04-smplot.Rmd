@@ -182,11 +182,11 @@ head(df_corr)
 
 # correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
-  geom_point(shape = 21, fill = sm_color('cyan'), color = 'white',
+  geom_point(shape = 21, fill = sm_color('crimson'), color = 'white',
              size = 3) + sm_corr_theme(borders = FALSE) +
   scale_y_continuous(limits = c(-2.5,2.5)) +
   scale_x_continuous(limits = c(-2.5,2.5)) +
-  sm_statCorr(color = sm_color('cyan'), corr_method = 'pearson',
+  sm_statCorr(color = sm_color('crimson'), corr_method = 'pearson',
               label_x = -2.2, label_y = 2.3) +
   ggtitle('Correlation plot') + 
   xlab('Method 1') + ylab('Method 2') 
@@ -197,7 +197,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 # bar graph using data frame 'df_general'
 ggplot(data = df_general, mapping = aes(x = Method, y = Value, fill = Method)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
-  scale_fill_manual(values = sm_color('cyan','green'))
+  scale_fill_manual(values = sm_color('crimson','green'))
 ```
 
 ### Correlation plot with both regression and reference lines
@@ -209,12 +209,12 @@ ggplot(data = df_general, mapping = aes(x = Method, y = Value, fill = Method)) +
 
 # correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
-  geom_point(shape = 21, fill = sm_color('cyan'), color = 'white',
+  geom_point(shape = 21, fill = sm_color('crimson'), color = 'white',
              size = 3) + sm_corr_theme(borders = FALSE) +
   geom_abline(slope = 1, linetype = 'dashed') +
   scale_y_continuous(limits = c(-2.8,2.8),  expand = c(0,0)) +
   scale_x_continuous(limits = c(-2.8,2.8), expand = c(0,0)) +
-  sm_statCorr(color = sm_color('cyan'), corr_method = 'pearson',
+  sm_statCorr(color = sm_color('crimson'), corr_method = 'pearson',
               label_x = -2.2, label_y = 2.3) +
   ggtitle('Correlation plot') + 
   xlab('Method 1') + ylab('Method 2') 
@@ -370,7 +370,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
                                 fill = Day)) +
   sm_bar() +
   scale_color_manual(values = sm_palette(16)) +
-  scale_fill_manual(values = sm_color('lightorange','skyblue'))
+  scale_fill_manual(values = sm_color('lightbrown','skyblue'))
 ```
 
 ## Slope Chart - `sm_slope()` 

@@ -51,6 +51,7 @@ basic-statistics
 t-test
 effect-size
 power-analysis
+data-analysis-part-2
 recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
 figure-2---bar-plot

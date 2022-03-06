@@ -1,0 +1,10 @@
+---
+output: html_document
+chapter: Data analysis 
+editor_options:
+  chunk_output_type: console
+---
+
+# Data Analysis (Part 2)
+
+This chapter is under development. 

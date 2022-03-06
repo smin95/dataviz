@@ -29,7 +29,6 @@ head(df)
 There are 4 columns in this data frame:
 
 - First, `Subject` refers to each participant. There are 10 participants total. 
-
 - Next, `Day` refers to the day of testing. The participants were tested on Day 1, 2, 3, 4 and 5. We will only use Day from 1 and 5.
 
 - `Time` refers to the number of minutes after an experimental manipulation (ex. monocular deprivation). These are 0, 3, 6, 12, 24 and 48 minutes, but in the data frame, it says 0, 1, 2, 3, 4 and 5; we will change the labels manually. 

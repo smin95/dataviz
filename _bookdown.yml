@@ -15,5 +15,6 @@ rmd_files: [
   '03-violinBox.Rmd',
   '04-smplot.Rmd',
   '05-Data.Rmd',
-  '06-manuscriptFig.Rmd'
+  '06-Data2.Rmd',
+  '07-manuscriptFig.Rmd'
 ]
