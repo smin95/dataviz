@@ -21,7 +21,7 @@ library(tidyverse)
 
 
 ```{r}
-df <- read_csv('https://raw.githubusercontent.com/smin95/dataviz/master/min2019.csv')
+df <- read_csv('https://www.smin95.com/min2019.csv')
 df$Day <- factor(df$Day)
 head(df)
 ```

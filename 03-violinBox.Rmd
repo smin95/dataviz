@@ -19,7 +19,8 @@ library(smplot)
 
 ### Download requirements {-}
 
-- Download **data.csv** from https://raw.githubusercontent.com/smin95/dataviz/master/data.csv
+- Download **data.csv** from
+https://www.smin95.com/data.csv
 - Put the file **data.csv** in your **LearnR** folder
 
 ### Before we get started {-}

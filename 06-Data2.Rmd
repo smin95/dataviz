@@ -7,6 +7,11 @@ editor_options:
 
 # Data Analysis Part 2
 
+<<<<<<< HEAD
+This chapter is in progress (unfinished).
+
+=======
+>>>>>>> 6c43d5019c8f3505d2a09dff2883e5b245fcd763
 In this chapter, we will continue to use data from this paper:
 
 **Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.**
@@ -19,7 +24,13 @@ Let's begin by loading the `tidyverse` library and uploading the csv file `min20
 
 ```{r}
 library(tidyverse)
+<<<<<<< HEAD
+library(smplot)
+library(cowplot)
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+=======
 df <- read_csv('min2019b.csv') 
+>>>>>>> 6c43d5019c8f3505d2a09dff2883e5b245fcd763
 head(df)
 ```
 
@@ -86,7 +97,11 @@ I will use `%>%` from now on due to my personal preference.
 
 Let's use the data set `avg_day1` to plot data only from Day 1.
 
+<<<<<<< HEAD
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+=======
 ```{r}
+>>>>>>> 6c43d5019c8f3505d2a09dff2883e5b245fcd763
 avg_day1 %>% ggplot(aes(x = Time, y = Average)) +
   geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
    geom_point(size = 4.5, color = sm_color('skyblue')) +
@@ -121,7 +136,11 @@ subj_b_day1 <- df %>% filter(Day == 1 & Subject == 'b')
 subj_b_day1
 ```
 
+<<<<<<< HEAD
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+=======
 ```{r}
+>>>>>>> 6c43d5019c8f3505d2a09dff2883e5b245fcd763
 subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
   geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
    geom_point(size = 4.5, color = sm_color('skyblue')) +
@@ -146,8 +165,82 @@ sm_auc(x, subj_b_day1$Cbratio)
 
 The AUC equals 60.53. This shows that for subject `b`, the effect is large and long-lasting. 
 
+<<<<<<< HEAD
+Now let's visualize the data of subject `b` from Day 2. 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+subj_b_day2 <- df %>% filter(Day == 2 & Subject == 'b')
+
+subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
+  geom_area(fill = sm_color('yelloworange'), alpha = 0.4) +
+   geom_point(size = 4.5, color = sm_color('yelloworange')) +
+  geom_line(size = 1, color = sm_color('yelloworange')) +
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = FALSE) +
+  ggtitle("Day 2, Subject b") +
+  xlab("Minutes after monocular deprivation") +
+  ylab("\u0394 Contrast balance ratio (dB)") 
+```
+
+Now, let's calculate the AUC for subject `b` from Day 2. 
+
+```{r}
+sm_auc(x, subj_b_day2$Cbratio)
+```
+
+The AUC equals 80.38. In the case of subject `b`, the effect seems to have increased on Day 2 relative to Day 1. How do we know if there is a statistically significant difference across five days? We will cover some more statistics later in this chapter.
+
+So far,we have 9 more subjects across five days and subject `b` from three other days. This will require us to compute 48 more AUCs total. This process is rater repetitive. Should we manually compute AUC for each one? Luckily, the answer is no. Let's use `sm_auc_list()`.
+
+```{r}
+sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+```
+
+`sm_auc_list()` creates a new data frame with AUC for each subject and condition (in this case, Day). It has five arguments:
+
+- `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.
+- `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the condition is the day. It must strings, ex. `'Day'`, not `Day`.
+- `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are 0, 3, 6, 12, 24 minutes. It must  strings, ex. `'Time'`, not `Time`.
+- `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'Cbratio'`, not `Cbratio`.
+- `data` = this argument requires the variable that stores the data frame. In our case, it is `df`.
+
+We can store the results from `sm_auc_list()` into a new variable. I will call the new variable `auc_df`.
+
+```{r}
+auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+```
+
+Now we can plot the AUCs using `sm_bar()`, `sm_boxplot` etc. Let's have a try.
+
+Here is a bar graph showing `auc_df`'s data. This figure is similar to Figure 3E in the original paper (Min, Baldwin and Hess, 2019).
+
+- re: means relative. The data are the differences 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+auc_df %>% ggplot(aes(x = Day, y = AUC_Cbratio, fill = Day)) +
+   sm_bar(shape = 21, color = 'white', 
+          bar_fill_color = 'gray80',
+          point_alpha = 1) +
+  scale_fill_manual(values = sm_palette(5)) +
+  ggtitle('\u0394 AUC re: Each day\'s baseline')
+```
+
+Here is a box plot showing `auc_df`'s data. 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+auc_df %>% ggplot(mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
+  sm_boxplot(alpha = 0.6) + 
+  scale_color_manual(values = sm_palette(5)) +
+  ggtitle('\u0394 AUC re: Each day\'s baseline')
+=======
 Now, we have 9 more subjects across five days and subject `b` from four other days. This will require us to compute 49 more AUCs total. This process is repetitive. Should we manually compute AUC for each one? Luckily, the answer is no. Let's use `sm_auc_list()`.
 
 ```{r}
 sm_auc_list(df$Subject, df$Day, df$Time, df$Cbratio)
+>>>>>>> 6c43d5019c8f3505d2a09dff2883e5b245fcd763
 ```

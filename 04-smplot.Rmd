@@ -46,9 +46,9 @@ library(smplot)
 
 - Its color palette can be accessed via two functions: `sm_color()` and `sm_palette()`.
 - `sm_color()` accepts the **character string** of the color name.
-- `sm_palette()` accepts the **number of colors** (up to **20**) and returns the hex codes accordingly.
+- `sm_palette()` accepts the **number of colors** (up to **16**) and returns the hex codes accordingly.
 
-```{r, echo=FALSE, fig.align = 'center',fig.cap="smplot's color palette", out.width = '90%'}
+```{r, echo=FALSE, fig.align = 'center',fig.cap="smplot's color palette", out.width = '55%'}
 knitr::include_graphics("img/color.png")
 ```
 
@@ -239,7 +239,7 @@ df <- cbind(Subject, Data, Day)
 
 - Now, let's make a boxplot using `sm_boxplot()`. 
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.7, fig.height=3.7, warning = F}
 # a boxplot with the random data, all black points
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot(fill = 'black')
@@ -247,7 +247,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) +
 
 - Now let's apply different color for each Day.
 
-```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+```{r, fig.width = 3.7, fig.height=3.7, warning = F}
 # a boxplot with different colored points
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_boxplot(shape = 21, color = 'white') +
@@ -270,7 +270,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 - One can also use `sm_boxplot()` to plot individual points with unique colors. 
 - But `sm_boxplot()` cannot print distinct box colors across distinct x levels (i.e., in this example, all boxes are grey). This is because the author thinks it is not a good practice to print different colors of boxes as they tend to distract the reader. 
 
-```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+```{r, fig.width = 3.7, fig.height=3.7, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject)) +
   sm_boxplot(shape = 21, color = 'white') +
   scale_fill_manual(values = sm_palette(16))
@@ -279,7 +279,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject)) +
 
 ## Violin Plot - `sm_violin()` 
 
-- `sm_violin()` plots a violin plot, individual points and lines that indiciate means and +/- 1 standard deviation at the same time.
+- `sm_violin()` plots a violin plot, individual points and lines that indicate means and +/- 1 standard deviation at the same time.
 - It is very similar to `sm_boxplot()` except there is no option for `notch = TRUE` in `sm_violin()`.
 - Also `sm_violin()` uses both `color` (for the lines of mean and SD) and `fill` (for the colors of the points) arguments. 
 - The default border color of the points is `white`.
@@ -370,7 +370,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
                                 fill = Day)) +
   sm_bar() +
   scale_color_manual(values = sm_palette(16)) +
-  scale_fill_manual(values = sm_color('lightbrown','skyblue'))
+  scale_fill_manual(values = sm_color('yelloworange','skyblue'))
 ```
 
 ## Slope Chart - `sm_slope()` 

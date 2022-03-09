@@ -17,7 +17,7 @@ knitr::opts_chunk$set(cache = FALSE)
 library(tidyverse)
 library(cowplot)
 library(smplot)
-df <- read_csv('https://raw.githubusercontent.com/smin95/dataviz/master/data.csv') 
+df <- read_csv('https://www.smin95.com/data.csv') 
 df$Day <- factor(df$Day, levels = c('One','Two','Three'))
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
   sm_boxplot(color = 'white', shape = 21) + 
