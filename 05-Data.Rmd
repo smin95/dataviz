@@ -13,7 +13,7 @@ In this example, we will be using data from this paper:
 
 **Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.**
 
-We will be creating similar figures to those in the paper (ex. **Figure 3A** and **Figure A2**) using **smplot**. For the PDF copy, please visit https://www.smin95.com/pubs/min2019.pdf. 
+We will be creating similar figures to those in the paper (ex. **Figure 3A** and **Figure A2**) using **smplot**. For the PDF copy, please visit [this link](https://www.smin95.com/pubs/min2019.pdf).
 
 ```{r}
 library(tidyverse)
@@ -26,7 +26,7 @@ df$Day <- factor(df$Day)
 head(df)
 ```
 
-There are 4 columns in this data frame:
+There are four columns in this data frame:
 
 - First, `Subject` refers to each participant. There are 10 participants total. 
 - Next, `Day` refers to the day of testing. The participants were tested on Day 1, 2, 3, 4 and 5. We will only use Day from 1 and 5.
