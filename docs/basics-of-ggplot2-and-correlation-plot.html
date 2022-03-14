@@ -770,13 +770,12 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb71-1" aria-hidden="true" tabindex="-1"></a>figure1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
 <span id="cb71-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb71-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(number_of_classes)) <span class="sc">+</span> </span>
-<span id="cb71-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span>
-<span id="cb71-5"><a href="basics-of-ggplot2-and-correlation-plot.html#cb71-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-6"><a href="basics-of-ggplot2-and-correlation-plot.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="co"># make your graph disappear</span></span>
-<span id="cb71-7"><a href="basics-of-ggplot2-and-correlation-plot.html#cb71-7" aria-hidden="true" tabindex="-1"></a>figure1 <span class="co"># it will appear again by calling this variable </span></span></code></pre></div>
+<span id="cb71-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb71-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
 <ul>
-<li>Now you will able to call forth the graph just by calling the <strong>figure1</strong> variable in the console.</li>
+<li><strong>Notice that when you store a figure into a variable, the figure is not displayed</strong> when you run the code that makes the figure, ex. <code>figure1 &lt;- ggplot(data = mpg, mapping = ...</code>. To display the figure, please type the variable name in the console.</li>
 </ul>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb72-1" aria-hidden="true" tabindex="-1"></a>figure1 <span class="co"># it will appear again by calling this variable </span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-56-1.png" width="499.2" /></p>
 </div>
 <div id="lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1." class="section level3 unnumbered">
 <h3>Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</h3>
@@ -790,11 +789,11 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li>If there is no legend, then <code>base_asp = 1</code> is recommended.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;figure1.png&#39;</span>, figure1, <span class="at">base_asp =</span> <span class="fl">1.4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;figure1.png&#39;</span>, figure1, <span class="at">base_asp =</span> <span class="fl">1.4</span>)</span></code></pre></div>
 <ul>
 <li><strong>Exercise</strong>: try to save it again with a name <strong>figure1b.png</strong> by typing:</li>
 </ul>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;figure1b.png&#39;</span>, figure1)</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;figure1b.png&#39;</span>, figure1)</span></code></pre></div>
 <ul>
 <li><p>How’s the picture? Why does it look different? Type <code>?save_plot</code> to see what the default <code>base_asp</code> is.</p></li>
 <li><p>Done! The graph (in png file) should be in your <strong>LearnR</strong> folder.</p></li>

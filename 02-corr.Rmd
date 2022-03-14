@@ -447,18 +447,20 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 - Let's store this graph using a **variable** called `figure1`. 
 
-```{r, eval = F}
+```{r, eval = T}
 figure1 <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point() + 
   scale_color_manual(values = sm_palette(number_of_classes)) + 
   sm_corr_theme()
+```
 
-ggplot(data = mpg) # make your graph disappear
+- **Notice that when you store a figure into a variable, the figure is not displayed** when you run the code that makes the figure, ex.  `figure1 <- ggplot(data = mpg, mapping = ...`. To display the figure, please type the variable name in the console.
+
+```{r, fig.width = 5.2, fig.height = 3.7, warning = F}
 figure1 # it will appear again by calling this variable 
 ```
 
- - Now you will able to call forth the graph just by calling the **figure1** variable in the console.
- 
+
 ### Let's save the plot as an image in your folder **LearnR** by using the variable **figure1**. {-}
  
 - To save the figure as an image, we will use a function from the **cowplot** package. 
