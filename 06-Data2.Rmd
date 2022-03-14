@@ -5,7 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Data Analysis Part 2
+# Data Analysis Part 2 (in progress)
 
 
 This chapter is in progress (unfinished).
@@ -16,7 +16,7 @@ In this chapter, we will continue to use data from this paper ([PDF](https://www
 
 In Chapter 5 of the online guide, we only dealt with data from Days 1 and 5. In this chapter, we will use data from Days 1, 2, 3, 4 and 5. 
 
-Let's begin by loading the `tidyverse` library and uploading the csv file `min2019b.csv` using `read_csv()` from the `tidyverse` package.
+Let's begin by loading the `tidyverse` and other libraries, and uploading the csv file `min2019b.csv` using `read_csv()` from the `tidyverse` package.
 
 `head()` returns the first 6 rows of the data frame. `tail()` returns the last 6 rows of the data frame. 
 
@@ -206,7 +206,7 @@ Now we can plot the AUCs using `sm_bar()`, `sm_boxplot` etc. Let's have a try.
 
 Here is a bar graph showing `auc_df`'s data. This figure is similar to Figure 3E in the original paper (Min, Baldwin and Hess, 2019).
 
-- re: means relative. The data are the differences 
+- re: means relative to X. The data are the differences compared to the baseline (re: Baseline).
 
 ```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
 auc_df %>% ggplot(aes(x = Day, y = AUC_Cbratio, fill = Day)) +
@@ -225,5 +225,118 @@ auc_df %>% ggplot(mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
   scale_color_manual(values = sm_palette(5)) +
   ggtitle('\u0394 AUC re: Each day\'s baseline')
 ```
+
+## Reproducing figures in the paper (Min et al., 2019)
+
+Let's redraw some of the figures in the paper. In 2019, where the paper was published, there was no smplot. However, the themes I developed during then have become part of smplot. 
+
+### Figure 3B (a best-fit line with points and error bars)
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+# filter data from Days 2-4. | means OR.
+df1 <- df %>% filter(Day == 2 | Day == 3 | Day == 4) %>% group_by(Day, Time) %>% 
+  summarise(avg = mean(Cbratio), se = sm_stdErr(Cbratio)) 
+# mean and standard error computed for each day and time, both of which have been grouped.
+
+df1$Time <- as.numeric(df1$Time)
+df1$Day <- as.factor(df1$Day) # Day has to be factored here because they will be labelled as different colors. Factor means categorical variables. 
+
+colors <- c("#55A868", "#C44E52", "#8172B2")
+
+df1 %>% ggplot(aes(x = Time, y = avg, color = Day)) +
+  geom_point(size = 4.5) +
+  geom_errorbar(aes(ymin = avg - se, ymax = avg + se), size = .5, width = 1) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                   labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = TRUE) +
+  scale_color_manual(values = colors,
+                     labels = c("Day 2", "Day 3", "Day 4")) +
+  ggtitle("Recovery of the patching effect") +
+  xlab("Time after monocular deprivation (min)") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  theme(legend.justification = c(1,0), 
+        legend.position = c(0.96, 0.67), 
+        legend.title = element_blank()) 
+
+```
+
+### Figure 3D (a bar graph)
+
+This a bar graph that has been plotted with `sm_bar()`. The y-axis has been set with the function `coord_cartesian()`. 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+
+baseline <- read_csv('https://www.smin95.com/baseline.csv') 
+
+colors <- c("#4C72B0", "#55A868", "#C44E52",
+       "#8172B2", "#D55E00")
+
+baseline$Day <- as.factor(baseline$Day)
+
+baseline %>%  ggplot(aes(x = Day, y= Baseline, fill = Day)) +
+  sm_bar(points = FALSE, bar_width = 0.9, errSize = 0.5) +
+  scale_fill_manual(values = colors) + 
+  ggtitle("Baseline across days") +
+  coord_cartesian(ylim = c(-2, 2))  +
+  ylab("Contrast balance ratio (dB)") +
+  xlab('Patching day')
+
+```
+
+### Figure 3E (modeling in Matlab and plotting in R)
+
+The grey shades have actually been approximated using Matlab. The results have been saved in the .csv file `fit_error_shade.csv`. They are then imported into R, where the final figure is plotted.
+
+Notice that two data frames are used to create this plot, `df_shade1` and `auc_df1`. The former contains the values from the modeling in Matlab, the latter contains AUC values.
+
+So do not worry if your field does not use R for data analysis. One can still perform data visualization using R. 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+
+df_shade <- read_csv('https://www.smin95.com/fit_error_shade.csv')
+df_shade1 <- df_shade %>% mutate(yUpp = y_mean + y_se, yLow = y_mean - y_se)
+
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+
+auc_df1 <- auc_df %>% group_by(Day) %>% 
+  summarise(y_mean = mean(AUC_Cbratio), std_err = sm_stdErr(AUC_Cbratio))
+
+auc_df1$Day <- as.numeric(auc_df1$Day)
+
+colors <- c("#4C72B0", "#55A868", "#C44E52",
+       "#8172B2", "#D55E00")
+
+df_shade1 %>% ggplot(aes(x=x, y=y_mean)) + 
+  geom_ribbon(aes(ymin = yLow, ymax = yUpp), alpha = .08) +
+  geom_linerange(data = auc_df1, aes(Day, ymin = y_mean - std_err, ymax = y_mean + std_err), size = .5) +
+  geom_point(data = auc_df1, aes(Day, y_mean, color = as.factor(Day), size = 5)) +
+  sm_hgrid(legends = FALSE) +
+  scale_x_continuous(limits = c(1, 5)) +
+  scale_y_continuous(limits = c(0, 90)) +
+  scale_color_manual(values = colors) +
+  ylab("Area Under Curve (dB min)") +
+  xlab("Patching Day") +  
+  ggtitle("\u0394 AUC re: Each Day's Baseline") +
+  annotate("text", label = "y = -5.8(Day) + 67.8", x = 2.0, y=  5) +
+  annotate("text", label = "***", x = 1, y = 82, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 2, y = 75, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 3, y = 68, size = 3.5, fontface="bold") +
+  annotate("text", label = "*", x = 4, y = 65, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 5, y = 60, size = 3.5, fontface="bold")
+```
+
+
+## More Statistics (ex. Anova)
+
+The reader may wonder what the asterisks indicate in Figure 3E. These denote statistically significant difference between the AUC from each day and 0. This can be computed using **one-sample t-test**.
+
+The reader may be curious as to how she can determine whether the AUCs across five days significantly differ. If the AUCs significantly differ, then the results might be more interesting. This can be achieved by using **one-way analysis of variance (ANOVA)**.
+
 
 
