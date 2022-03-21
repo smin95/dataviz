@@ -651,8 +651,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="basic-statistics-in-progress.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rstatix&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="basic-statistics-in-progress.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb278-2"><a href="basic-statistics-in-progress.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code></pre></div>
-<p>Note: We will use <code>rstatix</code> to perform ANOVA. However, both <code>tidyverse</code> and <code>rstatix</code> packages have the function called <code>filter()</code>. To use <code>filter()</code> from the <code>tidyverse</code> (or <code>dplyr</code>) package, as we have done so before, you will need to type <code>dplyr::filter</code> rather than <code>filter</code> instead to specify <code>filter()</code> from the <code>dplyr</code> package.</p>
-<p>To perform ANOVA, we have to some assumptions about the data:</p>
+<p><strong>Note:</strong> We will use <code>rstatix</code> to perform ANOVA. However, both <code>tidyverse</code> and <code>rstatix</code> packages have the function called <code>filter()</code>. To use <code>filter()</code> from the <code>tidyverse</code> (or <code>dplyr</code>) package, as we have done so before, you will need to type <code>dplyr::filter</code> rather than <code>filter</code> instead to specify <code>filter()</code> from the <code>dplyr</code> package.</p>
+<p>To perform ANOVA, we have to make some assumptions about the data:</p>
 <ul>
 <li><p>Data should be normally distributed. This can be confirmed by using a Shapiro-Wilk test (<code>shapiro.test()</code>).</p></li>
 <li><p>No outliers.</p></li>
@@ -670,14 +670,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   &lt;fct&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
 ## 1 4     f              117. TRUE       TRUE      
 ## 2 4     g              132. TRUE       TRUE</code></pre>
-<p>In this case, we have 2 outliers of AUC data on Day 4. Since Figure 3E indicates that Day 4 is not outrageously different than the averaged AUCs of other days, I will infer that these 2 outliers do not significantly affect the data. Therefore, I will include these 2 outliers in my data analysis.</p>
+<p>In this case, we have <strong>2 outliers</strong> of AUC data on Day 4. Since Figure 3E indicates that Day 4 is not outrageously different than the averaged AUCs of other days, I will infer that these 2 outliers do not significantly affect the data. Therefore, I will include these 2 outliers in my data analysis.</p>
 <p>However, if your data set has too many outliers, then it might be inappropriate to proceed to one-way ANOVA.</p>
+<p>Let’s visually confirm whether there are 2 outliers in the AUC data from Day 4 by plotting a boxplot using <code>sm_boxplot()</code>.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="basic-statistics-in-progress.html#cb281-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb281-2"><a href="basic-statistics-in-progress.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
+<span id="cb281-3"><a href="basic-statistics-in-progress.html#cb281-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb281-4"><a href="basic-statistics-in-progress.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-224-1.png" width="350.4" /></p>
+<p>We see that there are two orange plots that reside outside the whiskers of the boxplot. Points that are outside the whiskers represent outliers. Therefore, we confirm visually that there are two outliers on Day 4, and no outliers on any other days.</p>
 </div>
 <div id="checking-for-normality-of-data" class="section level3" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> Checking for Normality of Data</h3>
 <p>Rather than using <code>shapiro.test()</code>, we will be using <code>shapiro_test()</code> from the <code>rstatix</code> package because we will be sorting data (<code>group_by()</code> by <code>Day</code>) using the pipe <code>%&gt;%</code>.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="basic-statistics-in-progress.html#cb281-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span></span>
-<span id="cb281-2"><a href="basic-statistics-in-progress.html#cb281-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(AUC_Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="basic-statistics-in-progress.html#cb282-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span></span>
+<span id="cb282-2"><a href="basic-statistics-in-progress.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(AUC_Cbratio)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##   Day   variable    statistic       p
 ##   &lt;fct&gt; &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;
@@ -688,7 +695,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 5     AUC_Cbratio     0.975 0.935</code></pre>
 <p>In this data set, Days 1, 2, 3 and 5 have normally distributed data sets. However, the data from Day 4 do not seem to be normally distributed. This could because there are 2 outliers on Day 4. Since bulk of the data are normally distributed, I will use <strong>parametric</strong> method to analyze the data, i.e., one-way ANOVA. If most of your data are not normally distributed, then one-way ANOVA should not be used.</p>
 <p>We perform one-way ANOVA by comparing whether <code>AUC_Cbratio</code> values significantly differ across <code>Day</code>.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="basic-statistics-in-progress.html#cb283-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">anova_test</span>(AUC_Cbratio <span class="sc">~</span> Day)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="basic-statistics-in-progress.html#cb284-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">anova_test</span>(AUC_Cbratio <span class="sc">~</span> Day)</span></code></pre></div>
 <pre><code>## ANOVA Table (type II tests)
 ## 
 ##   Effect DFn DFd     F     p p&lt;.05  ges
@@ -699,8 +706,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="post-hoc-tests" class="section level3" number="7.6.3">
 <h3><span class="header-section-number">7.6.3</span> Post-hoc tests</h3>
 <p>If one-way ANOVA shows a significant difference (p &lt; 0.05), then the reader should perform <strong>Tukey HSD</strong> post-hoc pairwise comparison tests to see which two specific groups vary significantly. In the example, I have saved the results in the variable <code>res</code> (short for results).</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="basic-statistics-in-progress.html#cb285-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">tukey_hsd</span>(AUC_Cbratio <span class="sc">~</span> Day)</span>
-<span id="cb285-2"><a href="basic-statistics-in-progress.html#cb285-2" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="basic-statistics-in-progress.html#cb286-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">tukey_hsd</span>(AUC_Cbratio <span class="sc">~</span> Day)</span>
+<span id="cb286-2"><a href="basic-statistics-in-progress.html#cb286-2" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
 <pre><code>## # A tibble: 10 x 9
 ##    term  group1 group2 null.value estimate conf.low conf.high p.adj
 ##  * &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -716,7 +723,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Day   4      5               0    -2.19    -51.3      46.9 1    
 ## # ... with 1 more variable: p.adj.signif &lt;chr&gt;</code></pre>
 <p>As expected from one-way ANOVA which shows no significant difference across days, the post-hoc pairwise tests (Tukey HSD test) yield p-values higher than 0.05.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="basic-statistics-in-progress.html#cb287-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.adj</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="basic-statistics-in-progress.html#cb288-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.adj</span></code></pre></div>
 <pre><code>##  [1] 0.982 0.879 0.747 0.672 0.995 0.963 0.932 0.999 0.995 1.000</code></pre>
 <p>If one-way ANOVA yielded p &lt; 0.05, then we could expect to see a p-value lower than 0.05 in the Tukey HSD post-hoc test.</p>
 
