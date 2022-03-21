@@ -5,7 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Basic Statistics
+# Basic Statistics (in progress)
 
 As in the previous two chapters, we will continue to use data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
 
@@ -134,7 +134,7 @@ Now, let's plot a bar graph to display the AUC from Days 1 and 5 using `sm_bar()
 ```{r, fig.width = 3.7, fig.height=3.7, warning = F}
 ggplot(data = auc_df_day15, mapping = aes(x = Day, y = AUC_Cbratio, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
-  scale_fill_manual(values = sm_palette(2)) +
+  scale_fill_manual(values = sm_color('blue','orange')) +
   ggtitle('AUC in Days 1 and 5')
 ```
 

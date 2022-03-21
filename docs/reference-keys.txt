@@ -54,7 +54,7 @@ reproducing-figures-in-the-paper-min-et-al.-2019
 figure-3b-a-best-fit-line-with-points-and-error-bars
 figure-3d-a-bar-graph
 figure-3e-modeling-in-matlab-and-plotting-in-r
-basic-statistics
+basic-statistics-in-progress
 one-sample-t-test
 sample-t-test
 wilcoxon-signed-rank-test
