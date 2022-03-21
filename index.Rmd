@@ -85,9 +85,9 @@ This book guides the reader to be familiar with R, a programming language, for d
 
 ## Major updates on smplot {-}
 
-If you downloaded **before Mar. 7th, 2022**, please **re-download smplot**. Some updates are： 
+If you downloaded **before Mar. 17th, 2022**, please **re-download smplot**. Some updates include： 
 
-- Four new colors have been added in `sm_color()`. 
+- New functions `sm_auc()` and `sm_auc_list()`, both of which are used for computing area under a curve. 
 
 ```{r, eval = FALSE}
 install.packages("devtools")

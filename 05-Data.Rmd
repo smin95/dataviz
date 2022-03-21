@@ -1,11 +1,11 @@
 ---
 output: html_document
-chapter: Data analysis 
+chapter: Combining Plots with Common Axes
 editor_options:
   chunk_output_type: console
 ---
 
-# Data Analysis 
+# Combining Plots with Common Axes
 
 First, you need to load data (.csv file). When you are loading your own .csv file for your data analysis, make sure you place the .csv file of your interest in the folder that has been set to the **working directory**. 
 
@@ -553,113 +553,4 @@ To be honest, for adding the titles of the axes and the graph, using **Adobe Ill
 If you do not understand some of these functions, you can type in your console `?add_sub`, `?grid.arrange` to learn about these functions.
 
 An astute reader will realize that the codes are quite repetitive. Could the codes be shortened? The answer is yes! However, this method is quite complex and beyond the scope of this book.
-
-
-## Basic Statistics
-
-We will use the **df** dataset for this example to demonstrate t-test, effect size and power analysis.
-
-```{r}
-head(df)
-```
-
-### T-test
-
-In this example, we will compare changes in sensory eye dominance after short-term monocular deprivation in Day 1 vs Day 5. These values are shown in the `Cbratio` column.
-
-Let's filter only for data that are `Time == 0` for Day 1 and Day 5, which refers to 0 minutes after short-term monocular deprivation for 120 minutes. 
-
-```{r}
-# 0 minutes after short-term monocular deprivation 
-df_0min <- filter(df, Time == 0)
-```
-
-Now, let's plot a bar graph to display contrast balance ratio (`Cbratio`) from Days 1 and 5 at 0 minutes after short-term monocular deprivation using `sm_bar()`.
-
-```{r, fig.width = 3.7, fig.height=3.7, warning = F}
-ggplot(data = df_0min, mapping = aes(x = Day, y = Cbratio, fill = Day)) +
-  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
-  scale_fill_manual(values = sm_color('blue','orange')) +
-  ggtitle('Cbratio at 0min')
-```
-
-There seems to be a very small difference in the contrast balance ratio (`Cbratio`) between Days 1 and 5. The error bars (in this case, standard error) are overlapping; this indicates that there is no significant difference (p < 0.05) between the two datasets. Let's take a look if my prediction is correct by using a **t-test** using the function `t.test`.
-
-```{r}
-df_0min
-```
-
-`t.test` allows us to compare whether data between two different groups are significantly different. Since we will only compare values in the `Cbratio` column, let's select for the `Cbratio` column and use these values in our `t.test`. 
-
-```{r}
-df_0min_day1 <- select(filter(df_0min, Day == 1), Cbratio)
-print(df_0min_day1)
-print(df_0min_day1$Cbratio)
-
-df_0min_day5 <- select(filter(df_0min, Day == 5), Cbratio)
-print(df_0min_day5)
-
-```
-
-Notice that when `df_0min_day1` has a column entitled `Cbratio` with 10 rows of data. However, `df_0min_day1$Cbratio` prints ONLY the values within the `Cbratio` column. This is because `$` is used to **extract** a specific column within a data frame. You could type `df_0min$` ,  press the **Tab** button from the keyboard, and see what happens. 
-
-```{r}
-t.test(df_0min_day1$Cbratio, df_0min_day5$Cbratio, paired = TRUE)
-```
-
-In this case, the subjects are **paired** because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set `paired = FALSE`. 
-
-If we are reporting the results, we should report it as such, t(9) = -0.35, p = 0.736. The difference between Days 1 and 5 is not significant.
-
-### Effect Size
-
-However, even if p-value is larger than 0.05, this does not mean that there is no significant difference between the two groups. In fact, even a strong drug effect in a study that compares placebo vs. drug can result in p > 0.05 if the sample size is too small. 
-
-On the other hand, if a study is conducted a very large sample size (1000 patients per group) to examine the effect of a very weak drug, the data between weak drug and control can give us a p < 0.05, which indicates a statistically significant difference. 
-
-In short, **p-value is not everything because it depends on the sample size.**
-
-If the sample size is small, p-value can be larger than 0.05. But as the sample gets larger, p-value will decrease even if the mean difference between the two groups remains the same. 
-
-In this example, the sample size is not large (n=10). Therefore, one might ask whether our conclusion that there is no significant difference between Days 1 and 5 is truly valid. One might also believe that if our sample size was larger (ex. n=50), we would have found a significant difference between Days 1 and 5.
-
-To respond to this concern, we might need to calculate the **effect size**. If the effect size is large, there is a large difference between the sample groups. **Unlike the p-value, the effect size does not depend on the sample size.** 
-
-One measure to capture the effect size is **Cohen's d**. We can use `sm_effsize()` to calculate Cohen's d as a measure for the effect size. 
-
-- **Small** effect size: Cohen's d around **0.2** 
-- **Medium** effect size: Cohen's d around **0.5** 
-- **Large** effect size: Cohen's d > **0.8**.
-
-The inputs for `sm_effsize()` are the data of two sample groups, just as they were in `t.test()`. 
-
-
-```{r}
-sm_effsize(df_0min_day1$Cbratio, df_0min_day5$Cbratio)
-```
-
-Cohen's d equals **0.185**, which is a very small effect size. This indicates that there is a very small difference in data between Days 1 and 5. 
-
-Also, it is recommended that **both p-value and effect size are reported** in scientific papers. In this example, I would report the results as: **t(9) = -0.35, p = 0.74, Cohen's d = 0.19**.
-
-### Power Analysis
-
-We got p > 0.05 with our small sample size (n = 10). As we previously mentioned, we know that p-value gets smaller with an increasing sample size. **Therefore, given the mean difference between two sample groups (i.e., same effect size), the p-value can change depending on the sample size**. So, it is important to report both the p-value and the effect size.
-
-So, one might be concerned with what would be the minimal sample size to detect a statistically significant difference between the two groups (Days 1 and 5). This can be achieved using **power analysis**. Note that p can always be less than 0.05 as long as the sample size meets the requirement (i.e., very large). 
-
-If the effect size was large but the data yielded p > 0.05, then we could predict that the minimal sample size from power analysis would be not large. If the effect size was small and the data yielded p > 0.05, as it was for my data, the minimal sample size to yield p < 0.05 would need to be very large.
-
-If the minimal sample size from power analysis was not large (hence, large effect size), then one could conclude that I did not collect enough data and incorrectly concluded that there was no significant difference between the two groups. This would be so because if the sample size was larger, I would have gotten p < 0.05. 
-
- **Power analysis**  can be performed using `sm_power()`. The inputs for `sm_power()` are data of two sample groups, just as they were in `t.test()`.
-
-```{r}
-sm_power(df_0min_day1$Cbratio, df_0min_day5$Cbratio, 
-         paired = TRUE)
-```
-
-According to our power analysis (significant level = 0.05, power = 80%), we would need **232 subjects** per group (`n = 231.1206`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in contrast balance ratio between Days 1 and 5. In other words, the difference between Days 1 and 5 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
-
-To learn more about performing statistical tests in R, please check out the book entitled **YaRrr! The Pirate's Guide to R** by Nathaniel Phillips (https://bookdown.org/ndphillips/YaRrr/).
 
