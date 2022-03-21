@@ -59,6 +59,7 @@ figure-3b-a-best-fit-line-with-points-and-error-bars
 figure-3d-a-bar-graph
 figure-3e-modeling-in-matlab-and-plotting-in-r
 more-statistics-ex.-anova
+one-sample-t-test
 recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
 figure-2---bar-plot

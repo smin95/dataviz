@@ -516,7 +516,8 @@ You don't have to understand the codes below to use the codes.
 
 title <- ggdraw() + 
   draw_label('Recovery of the patching effect',
-                               size = 17, hjust = 0.45, vjust = 1.2) # title of the 3x3 figure. 
+                               size = 17, hjust = 0.45, vjust = 1.2,
+             fontface = 'bold') # title of the 3x3 figure. 
 # vjust controls the vertical position of the title. 
 # hjust controls the horizontal position of the title.
 

@@ -62,7 +62,7 @@ avg_day1 <- summarise(by_time_day1, Average = mean(Cbratio),
 
 ```
 
-The steps above can be simplified by using pipe `%>%` as shown below.
+The steps above (`filter()`, `group_by()` and `summarise()`) are coded separately. Each line has one of these steps. However, these can be combined in one line by using pipe `%>%` as shown below.
 
 ```{r}
 avg_day1 <- df %>% filter(Day == 1) %>% group_by(Time) %>%
@@ -70,9 +70,9 @@ avg_day1 <- df %>% filter(Day == 1) %>% group_by(Time) %>%
           StdError = sm_stdErr(Cbratio))
 ```
 
-Pipe `%>%` is extremely useful because it allows you to write codes
-that are easier to understand. Notice that if you use `%>%`, the input
-does not have to written because the input is actually the code that is written just before. For example:
+Now the steps (`filter()`, `group_by()` and `summarise()`) are written from left-to-right in a continuous fashion, rather than a separate step. 
+
+Pipe `%>%` is part of the `tidyverse` package, and it is deemed a necessary tool for data analysis using R. It is extremely useful because it allows you to write codes that are easier to understand. Notice that if you use `%>%`, the input does not have to written because the input is actually the code that is written just before. For example:
 
 ```{r}
 df %>% filter(Day == 1)
@@ -103,7 +103,8 @@ avg_day1 %>% ggplot(aes(x = Time, y = Average)) +
   sm_hgrid(legends = FALSE) +
   ggtitle("Day 1") +
   xlab("Minutes after monocular deprivation") +
-  ylab("\u0394 Contrast balance ratio (dB)") 
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 16, y = 0.3, label = 'Area under curve')
 ```
 
 One way to show data is to calculate the area under a curve (as shown by the colored area) in the figure above. Area under a curve is useful because it reduces a number of data points (6 in this case due to 6 time points) into one. In our context, a large area under a curve represents a large change in contrast balance ratio over time. In short, it captures both the magnitude and longevity of the effect.
@@ -138,7 +139,8 @@ subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
   sm_hgrid(legends = FALSE) +
   ggtitle("Day 1, Subject b") +
   xlab("Minutes after monocular deprivation") +
-  ylab("\u0394 Contrast balance ratio (dB)") 
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 16, y = 0.2, label = 'Area under curve = ?')
 ```
 
 The variable `subj_b_day1` now stores the data of subject `b` on Day 1. Now let's calculate the area under a curve (AUC) from `subj_b_day1` using `sm_auc()`.
@@ -152,6 +154,20 @@ sm_auc(x, subj_b_day1$Cbratio)
 ```
 
 The AUC equals 60.53. This shows that for subject `b`, the effect is large and long-lasting. 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
+  geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
+   geom_point(size = 4.5, color = sm_color('skyblue')) +
+  geom_line(size = 1, color = sm_color('skyblue')) +
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = FALSE) +
+  ggtitle("Day 1, Subject b") +
+  xlab("Minutes after monocular deprivation") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 17.5, y = 0.2, label = 'Area under curve = 60.5')
+```
 
 Now let's visualize the data of subject `b` from Day 2. 
 
@@ -167,7 +183,8 @@ subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
   sm_hgrid(legends = FALSE) +
   ggtitle("Day 2, Subject b") +
   xlab("Minutes after monocular deprivation") +
-  ylab("\u0394 Contrast balance ratio (dB)") 
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 16, y = 0.2, label = 'Area under curve = ?')
 ```
 
 Now, let's calculate the AUC for subject `b` from Day 2. 
@@ -176,7 +193,24 @@ Now, let's calculate the AUC for subject `b` from Day 2.
 sm_auc(x, subj_b_day2$Cbratio)
 ```
 
-The AUC equals 80.38. In the case of subject `b`, the effect seems to have increased on Day 2 relative to Day 1. How do we know if there is a statistically significant difference across five days? We will cover some more statistics later in this chapter.
+The AUC equals 80.38. In the case of subject `b`, the effect seems to have increased on Day 2 relative to Day 1. 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+subj_b_day2 <- df %>% filter(Day == 2 & Subject == 'b')
+
+subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
+  geom_area(fill = sm_color('yelloworange'), alpha = 0.4) +
+   geom_point(size = 4.5, color = sm_color('yelloworange')) +
+  geom_line(size = 1, color = sm_color('yelloworange')) +
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = FALSE) +
+  ggtitle("Day 2, Subject b") +
+  xlab("Minutes after monocular deprivation") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 17.5, y = 0.2, label = 'Area under curve = 80.4')
+```
+
 
 So far,we have 9 more subjects across five days and subject `b` from three other days. This will require us to compute 48 more AUCs total. This process is rater repetitive. Should we manually compute AUC for each one? Luckily, the answer is no. Let's use `sm_auc_list()`.
 
@@ -336,7 +370,10 @@ df_shade1 %>% ggplot(aes(x=x, y=y_mean)) +
 
 The reader may wonder what the asterisks indicate in Figure 3E. These denote statistically significant difference between the AUC from each day and 0. This can be computed using **one-sample t-test**.
 
-The reader may be curious as to how she can determine whether the AUCs across five days significantly differ. If the AUCs significantly differ, then the results might be more interesting. This can be achieved by using **one-way analysis of variance (ANOVA)**.
+The reader may be curious as to how she can determine whether the AUCs across five days significantly differ. In short, how can one analyze if the effect of one variable (i.e., Day) significantly influences the data. If the AUCs significantly differ across days, then the results might be more interesting. This could be achieved by using a **one-way analysis of variance (ANOVA)**.
 
+The reader may also question how I have compared each point as shown in Figure 3B across different time points and days. In short, how can one determine whether the effects of two variables (ex. Day and Time after patching) significantly influence the data? This could be done using a **two-way analysis of variance (ANOVA)**. 
 
+Let's talk about each method.
 
+### One-sample t-test
