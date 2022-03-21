@@ -292,3 +292,85 @@ According to our power analysis (significant level = 0.05, power = 80%), we woul
 To learn more about performing statistical tests in R, please check out the book entitled **YaRrr! The Pirate's Guide to R** by Nathaniel Phillips (https://bookdown.org/ndphillips/YaRrr/).
 
 ## One-way ANOVA
+
+One-way analysis of variance (ANOVA) is used to compare the mean of multiple groups (2 groups or more). It can also be referred to as one-factor ANOVA. The data are separated into multiple groups based on one categorical variable (such as patching days, conditions or subject groups).
+
+When one is comparing two groups, one-way ANOVA and two-sample t-test can yield the same results because both of these tests would compare two groups.
+
+For detailed information about ANOVA in R, please check out this link: https://www.datanovia.com/en/lessons/anova-in-r/. 
+
+To do ANOVA, we will use `rstatix` package. Install the package if you have not done so.
+
+```{r, eval = F}
+install.packages('rstatix')
+```
+
+```{r, warning = F}
+library(tidyverse)
+library(rstatix)
+```
+
+Note: We will use `rstatix` to perform ANOVA. However, both `tidyverse` and `rstatix` packages have the function called `filter()`. To use  `filter()` from the `tidyverse` (or `dplyr`) package, as we have done so before, you will need to type `dplyr::filter` rather than `filter` instead to specify `filter()` from the `dplyr` package.
+
+To perform ANOVA, we have to some assumptions about the data:
+
+- Data should be normally distributed. This can be confirmed by using a Shapiro-Wilk test (`shapiro.test()`).
+
+- No outliers.
+
+- Homogeneity of variance. The variance of the data should be consistent as a function of the predictor (x-axis). 
+
+- Observations should be independent The data from one group should have no relationship with other data within the same group. In short, each observation should be unique and come from an unique individual. 
+
+Let's investigate whether AUC data differ significantly across days (Days 1 to 5). To do so, we will need to perform one-way ANOVA where the factor is `Day`.
+
+### Check for outliers
+
+We will check for outliers in the `auc_df` data frame, which stores the results of AUCs. Since we will compare the AUCs across different days (factor: `Day`), we will group each observation (each row) of the data frame by `Day`. Next, we will use the function `identify_outliers()` from the `rstatix` package to see if there are any outliers in the data set.
+
+```{r}
+auc_df %>% group_by(Day) %>%
+  identify_outliers(AUC_Cbratio)
+```
+
+In this case, we have 2 outliers of AUC data on Day 4. Since Figure 3E indicates that Day 4 is not outrageously different than the averaged AUCs of other days, I will infer that these 2 outliers do not significantly affect the data. Therefore, I will include these 2 outliers in my data analysis.
+
+However, if your data set has too many outliers, then it might be inappropriate to proceed to one-way ANOVA.
+
+### Checking for Normality of Data
+
+Rather than using `shapiro.test()`, we will be using `shapiro_test()` from the `rstatix` package because we will be sorting data (`group_by()` by `Day`) using the pipe `%>%`. 
+
+```{r}
+auc_df %>% group_by(Day) %>%
+  shapiro_test(AUC_Cbratio)
+```
+
+In this data set, Days 1, 2, 3 and 5 have normally distributed data sets. However, the data from Day 4 do not seem to be normally distributed. This could because there are 2 outliers on Day 4. Since bulk of the data are normally distributed, I will use **parametric** method to analyze the data, i.e., one-way ANOVA. If most of your data are not normally distributed, then one-way ANOVA should not be used.
+
+We perform one-way ANOVA by comparing whether `AUC_Cbratio` values significantly differ across `Day`.
+
+```{r}
+auc_df %>% anova_test(AUC_Cbratio ~ Day)
+```
+
+The p-value is 0.67, which is larger than 0.05. This indicates that there is no significant difference across days in AUCs.
+
+If your data show a p value less than 0.05, then you should proceed to the next step of performing post-hoc pairwise comparison tests.
+
+### Post-hoc tests
+
+If one-way ANOVA shows a significant difference (p < 0.05), then the reader should perform **Tukey HSD** post-hoc pairwise comparison tests to see which two specific groups vary significantly. In the example, I have saved the results in the variable `res` (short for results).
+
+```{r}
+res <- auc_df %>% tukey_hsd(AUC_Cbratio ~ Day)
+res
+```
+
+As expected from one-way ANOVA which shows no significant difference across days, the post-hoc pairwise tests (Tukey HSD test) yield p-values higher than 0.05.
+
+```{r}
+res$p.adj
+```
+
+If one-way ANOVA yielded p < 0.05, then we could expect to see a p-value lower than 0.05 in the Tukey HSD post-hoc test.

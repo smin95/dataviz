@@ -61,6 +61,9 @@ wilcoxon-signed-rank-test
 effect-size
 power-analysis
 one-way-anova
+check-for-outliers
+checking-for-normality-of-data
+post-hoc-tests
 recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
 figure-2---bar-plot
