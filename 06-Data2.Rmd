@@ -5,10 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Data Analysis Part 2 (in progress)
-
-
-This chapter is in progress (unfinished).
+# Data Analysis - Area under a Curve 
 
 In this chapter, we will continue to use data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
 
@@ -366,14 +363,3 @@ df_shade1 %>% ggplot(aes(x=x, y=y_mean)) +
 ```
 
 
-## More Statistics (ex. Anova)
-
-The reader may wonder what the asterisks indicate in Figure 3E. These denote statistically significant difference between the AUC from each day and 0. This can be computed using **one-sample t-test**.
-
-The reader may be curious as to how she can determine whether the AUCs across five days significantly differ. In short, how can one analyze if the effect of one variable (i.e., Day) significantly influences the data. If the AUCs significantly differ across days, then the results might be more interesting. This could be achieved by using a **one-way analysis of variance (ANOVA)**.
-
-The reader may also question how I have compared each point as shown in Figure 3B across different time points and days. In short, how can one determine whether the effects of two variables (ex. Day and Time after patching) significantly influence the data? This could be done using a **two-way analysis of variance (ANOVA)**. 
-
-Let's talk about each method.
-
-### One-sample t-test

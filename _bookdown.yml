@@ -16,5 +16,6 @@ rmd_files: [
   '04-smplot.Rmd',
   '05-Data.Rmd',
   '06-Data2.Rmd',
-  '07-manuscriptFig.Rmd'
+  '07-statistics.Rmd',
+  '08-manuscriptFig.Rmd'
 ]

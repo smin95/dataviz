@@ -1,0 +1,294 @@
+---
+output: html_document
+chapter: Basic Statistics
+editor_options:
+  chunk_output_type: console
+---
+
+# Basic Statistics
+
+As in the previous two chapters, we will continue to use data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
+
+**Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.**
+
+Load the `tidyverse` and other libraries, and the csv file `min2019b.csv` using `read_csv()` from the `tidyverse` package.
+
+```{r}
+library(tidyverse)
+library(smplot)
+library(cowplot)
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+head(df)
+```
+
+## One-sample t-test
+
+One sample t-test compares the mean of a sample to a hypothesized mean (often 0). 
+
+For example, here is Figure 3E from the paper. What do the \*\*\* mean? How about \*\* and \*? Let's take a look. 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F, echo = FALSE}
+
+df_shade <- read_csv('https://www.smin95.com/fit_error_shade.csv')
+df_shade1 <- df_shade %>% mutate(yUpp = y_mean + y_se, yLow = y_mean - y_se)
+
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+
+auc_df1 <- auc_df %>% group_by(Day) %>% 
+  summarise(y_mean = mean(AUC_Cbratio), std_err = sm_stdErr(AUC_Cbratio))
+
+auc_df1$Day <- as.numeric(auc_df1$Day)
+
+colors <- c("#4C72B0", "#55A868", "#C44E52",
+       "#8172B2", "#D55E00")
+
+df_shade1 %>% ggplot(aes(x=x, y=y_mean)) + 
+  geom_ribbon(aes(ymin = yLow, ymax = yUpp), alpha = .08) +
+  geom_linerange(data = auc_df1, aes(Day, ymin = y_mean - std_err, ymax = y_mean + std_err), size = .5) +
+  geom_point(data = auc_df1, aes(Day, y_mean, color = as.factor(Day), size = 5)) +
+  sm_hgrid(legends = FALSE) +
+  scale_x_continuous(limits = c(1, 5)) +
+  scale_y_continuous(limits = c(0, 90)) +
+  scale_color_manual(values = colors) +
+  ylab("Area Under Curve (dB min)") +
+  xlab("Patching Day") +  
+  ggtitle("\u0394 AUC re: Each Day's Baseline") +
+  annotate("text", label = "y = -5.8(Day) + 67.8", x = 2.0, y=  5) +
+  annotate("text", label = "***", x = 1, y = 82, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 2, y = 75, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 3, y = 68, size = 3.5, fontface="bold") +
+  annotate("text", label = "*", x = 4, y = 65, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 5, y = 60, size = 3.5, fontface="bold")
+```
+
+For instance, to determine if the area under curve (changes in contrast balance ratio over time) after patching is significant, so much so that one can confidently say that it is different from 0, we can perform a one-sample t-test using `t.test()`.
+
+Let's use data from the sampe paper. We import the data from online using `read_csv()` and store them into a variable (in this case, `df`). Then, we compute the area under a curve using `sm_auc_list()` and store the values in the variable `auc_df`.
+
+
+```{r}
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+
+df$Day <- as.factor(df$Day)
+
+auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+
+head(auc_df)
+```
+
+The `Day` column of `df` has to be factored using `as.factor()` because `Day` here is a categorical, rather than, continuous variable.
+
+To determine if the area under curve data on Day 1 were significantly different from 0, we could use one-sample t-test. First, let's filter for data from only Day 1.
+
+```{r}
+auc_df_day1 <- auc_df %>% filter(Day == 1)
+auc_df_day1
+```
+
+Then, lets extract the values from the `AUC_Cbratio` column and perform one-sample t-test using `t.test()`.
+
+```{r}
+t.test(auc_df_day1$AUC_Cbratio, mu = 0)
+```
+
+The p-value must be less than **0.05** to be considered statistically significant. It is labelled with one asterisk \*. 0.001 < p < 0.01 corresponds to \*\*, and p < 0.001 corresponds to \*\*\*. Since the p-value reported here is less than 0.001, Figure 3E has \*\*\* for Day 1's area under a curve.
+
+We can repeat this for Days 2-5. For brevity, we repeat the example with Days 2 and 4 only.
+
+```{r}
+auc_df_day2 <- auc_df %>% filter(Day == 2)
+t.test(auc_df_day2$AUC_Cbratio, mu = 0)
+```
+
+0.001 < p < 0.01 in this case, which is often denoted as \*\*. Figure 3E shows the AUC of Day 2 with \*\*.
+
+```{r}
+auc_df_day4 <- auc_df %>% filter(Day == 4)
+t.test(auc_df_day4$AUC_Cbratio, mu = 0)
+```
+
+0.01 < p < 0.05 in this case. Therefore one asterisk \* is used to label the statistical significance. 
+
+## 2-sample t-test
+
+A two-sample t-test is used to compare the mean of one sample to that of another sample. 
+
+For example, let's compare changes in sensory eye dominance after short-term monocular deprivation in Day 1 vs Day 5. These values are shown in the `Cbratio` column.
+
+Let's filter only for AUC data from Days 1 and 5. 
+
+```{r}
+auc_df_day1 <- auc_df %>% filter(Day == 1)
+auc_df_day5 <- auc_df %>% filter(Day == 5)
+
+auc_df_day15 <- auc_df %>% filter(Day == 1 | Day == 5)
+```
+
+Now, let's plot a bar graph to display the AUC from Days 1 and 5 using `sm_bar()`.
+
+```{r, fig.width = 3.7, fig.height=3.7, warning = F}
+ggplot(data = auc_df_day15, mapping = aes(x = Day, y = AUC_Cbratio, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
+  scale_fill_manual(values = sm_palette(2)) +
+  ggtitle('AUC in Days 1 and 5')
+```
+
+There seems to be a  difference in the AUC `AUC_Cbratio` between Days 1 and 5. The error bars (in this case, standard error) are barely overlapping. If the error bars are clearly overlapping, there is often no significant difference (p < 0.05) between the two data sets. If there is no overlap, it is highly likely that a statistical test will show a significant difference (p < 0.05). Let's take a look using **t-test** using the function `t.test()`.
+
+`t.test()` allows us to compare whether data between two different groups are significantly different. Here, `$` is used to **extract** data from a specific column within a data frame. You could type `df_0min$`,  press the **Tab** button from the keyboard, and see what happens. Since we will only compare values in the `AUC_Cbratio` column, let's select for the `AUC_Cbratio` column and use these values in our `t.test()`. 
+
+```{r}
+t.test(auc_df_day1$AUC_Cbratio, auc_df_day5$AUC_Cbratio, paired = TRUE)
+```
+
+In this case, the subjects are **paired** because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set `paired = FALSE`. 
+
+If we are reporting the results, we should report it as such, t(9) = 1.60, p = 0.15. The difference between Days 1 and 5 is not statistically significant.
+
+T-test can only be used when the data assume normality. In other word, the data that are to be analyzed using `t.test()` must have a normal distribution (shown below).
+
+```{r, fig.width = 3.7, fig.height= 3.7, warning = F, echo = FALSE}
+
+ggplot(data = data.frame(x = c(-40,40)), aes(x)) + 
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 10),
+                color = sm_color('blue'), size = 1) +
+  ylab("") + scale_y_continuous(name = 'Frequency') +
+  sm_hgrid() + 
+  xlab('Data points (ex. AUC)') +
+  ggtitle('Normal distribution') 
+```
+
+Whether the data have a normal distribution can be checked using a Shaprio-Wilk test (`shapiro.test()`). If p > 0.05, then the data have a normal distribution, and therefore, t-test can be used to analyze the data. If p < 0.05, the data are not normally distributed, and t-test cannot be used.
+
+For example, let's check whether the AUC data from Day 1 have a normal distribution. 
+
+```{r}
+shapiro.test(auc_df_day1$AUC_Cbratio)
+```
+
+P value is 0.67, which is larger than 0.05. Therefore, the AUCs from Day 1 have a normal distribution.
+
+```{r}
+shapiro.test(auc_df_day5$AUC_Cbratio)
+```
+
+P value is 0.935, which is larger than 0.05. Therefore, the AUCs from Day 5 have a normal distribution. More information about `shapiro.test()` can be found in this link: http://www.sthda.com/english/wiki/normality-test-in-r. 
+
+T-test is a type of **parametric** statistical test, which is used to analyze data that are normally distributed. If the data are not normally distributed, **non-parametric** statistical test can be used.
+
+## Wilcoxon Signed Rank Test
+
+Wilcoxon Signed Rank Test is a **non-parametric** statistical test that is used instead of a t-test when the data are **not normally distributed**.
+
+If we assume that the Shaprio-Wilk test yields p < 0.05 for the following datasets, necessitating us to use a Wilcoxon Signed Rank Test for both one-sample and two-sample tests.
+
+```{r}
+# one-sample Wilcoxon Signed Rank Test
+wilcox.test(auc_df_day1$AUC_Cbratio, mu = 0)
+```
+
+The p-value is 0.0039, which is less than 0.05. Therefore, according to the Wilcoxon test, the AUCs from Day 1 are significantly different from 0.
+
+```{r}
+# two-sample Wilcoxon test
+wilcox.test(auc_df_day1$AUC_Cbratio, auc_df_day5$AUC_Cbratio, paired = TRUE)
+```
+
+The p-value is 0.13, which is larger than 0.05. Therefore, according to the Wilcoxon test, the AUCs from Days 1 and 2 are not significantly different.
+
+
+## Effect Size
+
+However, even if p-value is larger than 0.05, this does not mean that there is no significant difference between the two groups/conditions. In fact, even a strong drug effect in a study that compares placebo vs. drug can result in p > 0.05 if the sample size is too small. 
+
+On the other hand, if a study is conducted a very large sample size (1000 patients per group) to examine the effect of a very weak drug, the data between weak drug and control can give us a p < 0.05, which indicates a statistically significant difference. 
+
+In short, **p-value is not everything because it depends on the sample size.**
+
+If the sample size is small, p-value can be larger than 0.05. But as the sample gets larger, p-value will decrease even if the mean difference between the two groups remains the same. 
+
+In this example, the sample size is not large (n=10). Therefore, one might ask whether our conclusion that there is no significant difference between Days 1 and 5 is truly valid. One might also believe that if our sample size was larger (ex. n=50), we would have found a significant difference between Days 1 and 5.
+
+To respond to this concern, we might need to calculate the **effect size**. If the effect size is large, there is a large difference between the sample groups. **Unlike the p-value, the effect size does not depend on the sample size.** 
+
+One measure to capture the effect size is **Cohen's d**. We can use `sm_effsize()` to calculate Cohen's d as a measure for the effect size. 
+
+- **Small** effect size: Cohen's d around **0.2** 
+- **Medium** effect size: Cohen's d around **0.5** 
+- **Large** effect size: Cohen's d > **0.8**.
+
+The inputs for `sm_effsize()` are the data of two sample groups, just as they were in `t.test()`. 
+
+Let's compute the effect size (Cohen's d) using AUC data from Days 1 and 2.
+
+```{r}
+sm_effsize(auc_df_day1$AUC_Cbratio, auc_df_day2$AUC_Cbratio)
+```
+
+Cohen's d equals **0.224**, which is a very small effect size. This indicates that there is a very small difference in AUC between Days 1 and 2. 
+
+```{r}
+t.test(auc_df_day1$AUC_Cbratio, auc_df_day2$AUC_Cbratio,
+       paired = TRUE)
+```
+
+Also, it is recommended that **both p-value and effect size are reported** at all times. In this example, I would report the results as: **t(9) = 0.46, p = 0.65, Cohen's d = 0.22**.
+
+Let's see what happens in the effect size and p-value from t-test if there are 1000 subjects. 
+
+```{r}
+auc_df_day1b <- do.call('rbind', replicate(100, auc_df_day1, simplify = FALSE))
+auc_df_day1b$Subject <- paste0('S',1:1000)
+head(auc_df_day1b, 30)
+```
+
+We have replicated all the rows of the data frame `auc_df_day1` by 100 times to create 1000 rows total (i.e., 1000 subjects). 
+
+```{r}
+auc_df_day2b <- do.call('rbind', replicate(100, auc_df_day2, simplify = FALSE))
+auc_df_day2b$Subject <- paste0('S',1:1000)
+head(auc_df_day2b, 30)
+```
+
+We have replicated all the rows of the data frame `auc_df_day2` by 100 times to create 1000 rows total (i.e., 1000 subjects). 
+
+```{r}
+sm_effsize(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio)
+```
+
+The effect size is 0.24. It has barely changed. Theoretically, it should **not** change (i.e., stay at 0.224), but for some reason here, it has changed very slightly.
+
+```{r}
+t.test(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
+       paired = T)
+```
+
+Now, the p-value is **much less than 0.001**, rather than staying at 0.65. Therefore, we can now observe that p-value is heavily affected by the sample size, whereas the effect size (Cohen's d) does not. In short, as the sample size increases, the p-value decreases even if the effect size stays the same.
+
+## Power Analysis
+
+We got p > 0.05 with our small sample size (n = 10). As we previously mentioned, we know that p-value gets smaller with an increasing sample size. **Therefore, given the mean difference between two sample groups (i.e., same effect size), the p-value can change depending on the sample size**. So, it is important to report both the p-value and the effect size.
+
+So, one might be concerned with what would be the minimal sample size to detect a statistically significant difference between the two groups (Days 1 and 5). This can be achieved using **power analysis**. Note that p can always be less than 0.05 as long as the sample size meets the requirement (i.e., very large). 
+
+If the effect size was large but the data yielded p > 0.05, then we could predict that the minimal sample size from power analysis would be not large. If the effect size was small and the data yielded p > 0.05, as it was for my data, the minimal sample size to yield p < 0.05 would need to be very large.
+
+If the minimal sample size from power analysis was not large (hence, large effect size), then one could conclude that I did not collect enough data and incorrectly concluded that there was no significant difference between the two groups. This would be so because if the sample size was larger, I would have gotten p < 0.05. 
+
+ **Power analysis**  can be performed using `sm_power()`. The inputs for `sm_power()` are data of two sample groups, just as they were in `t.test()`.
+
+```{r}
+sm_power(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
+         paired = TRUE)
+```
+
+According to our power analysis (significant level = 0.05, power = 80%), we would need about **143 subjects** per group (`n = 143.0411`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in AUCs between Days 1 and 2. In other words, the difference between Days 1 and 2 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
+
+To learn more about performing statistical tests in R, please check out the book entitled **YaRrr! The Pirate's Guide to R** by Nathaniel Phillips (https://bookdown.org/ndphillips/YaRrr/).
+
+## One-way ANOVA
