@@ -283,8 +283,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html"><i class="fa fa-check"></i><b>7</b> Basic Statistics (in progress)</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample t-test</a></li>
-<li class="chapter" data-level="7.2" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#sample-t-test"><i class="fa fa-check"></i><b>7.2</b> 2-sample t-test</a></li>
-<li class="chapter" data-level="7.3" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.3</b> Wilcoxon Signed Rank Test</a></li>
+<li class="chapter" data-level="7.2" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#two-sample-t-test"><i class="fa fa-check"></i><b>7.2</b> Two-sample t-test</a></li>
+<li class="chapter" data-level="7.3" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.3</b> Wilcoxon Signed-Rank Test</a></li>
 <li class="chapter" data-level="7.4" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#effect-size"><i class="fa fa-check"></i><b>7.4</b> Effect Size</a></li>
 <li class="chapter" data-level="7.5" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#power-analysis"><i class="fa fa-check"></i><b>7.5</b> Power Analysis</a></li>
 <li class="chapter" data-level="7.6" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#one-way-anova"><i class="fa fa-check"></i><b>7.6</b> One-way ANOVA</a>
@@ -424,8 +424,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  43.45404</code></pre>
 <p>The p-value is 0.013, which is less than 0.05 but larger than 0.01. Therefore one asterisk * is used to label the statistical significance.</p>
 </div>
-<div id="sample-t-test" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> 2-sample t-test</h2>
+<div id="two-sample-t-test" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> Two-sample t-test</h2>
 <p>A two-sample t-test is used to compare the mean of one sample to that of another sample.</p>
 <p>For example, let’s compare changes in sensory eye dominance after short-term monocular deprivation in Day 1 vs Day 5. These values are shown in the <code>Cbratio</code> column.</p>
 <p>Let’s filter only for AUC data from Days 1 and 5.</p>
@@ -476,10 +476,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>T-test is a type of <strong>parametric</strong> statistical test, which is used to analyze data that are normally distributed. If the data are not normally distributed, <strong>non-parametric</strong> statistical test can be used.</p>
 </div>
 <div id="wilcoxon-signed-rank-test" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Wilcoxon Signed Rank Test</h2>
-<p>Wilcoxon Signed Rank Test is a <strong>non-parametric</strong> statistical test that is used instead of a t-test when the data are <strong>not normally distributed</strong>.</p>
+<h2><span class="header-section-number">7.3</span> Wilcoxon Signed-Rank Test</h2>
+<p>Wilcoxon Signed-Rank Test is a <strong>non-parametric</strong> statistical test that is used instead of a t-test when the data are <strong>not normally distributed</strong>.</p>
 <p>If we assume that the Shaprio-Wilk test yields p &lt; 0.05 for the following datasets, necessitating us to use a Wilcoxon Signed Rank Test for both one-sample and two-sample tests.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="basic-statistics-in-progress.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one-sample Wilcoxon Signed Rank Test</span></span>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="basic-statistics-in-progress.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one-sample Wilcoxon Signed-Rank Test</span></span>
 <span id="cb259-2"><a href="basic-statistics-in-progress.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank exact test
@@ -678,7 +678,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb281-3"><a href="basic-statistics-in-progress.html#cb281-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
 <span id="cb281-4"><a href="basic-statistics-in-progress.html#cb281-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-224-1.png" width="350.4" /></p>
-<p>We see that there are two orange plots that reside outside the whiskers of the boxplot. Points that are outside the whiskers represent outliers. Therefore, we confirm visually that there are two outliers on Day 4, and no outliers on any other days.</p>
+<p>We see that there are two orange points that reside outside the whiskers of the boxplot. Points that are outside the whiskers represent outliers. Therefore, we confirm visually that there are two outliers on Day 4, and no outliers on any other days.</p>
 </div>
 <div id="checking-for-normality-of-data" class="section level3" number="7.6.2">
 <h3><span class="header-section-number">7.6.2</span> Checking for Normality of Data</h3>

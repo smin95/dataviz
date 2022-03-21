@@ -56,7 +56,7 @@ figure-3d-a-bar-graph
 figure-3e-modeling-in-matlab-and-plotting-in-r
 basic-statistics-in-progress
 one-sample-t-test
-sample-t-test
+two-sample-t-test
 wilcoxon-signed-rank-test
 effect-size
 power-analysis
