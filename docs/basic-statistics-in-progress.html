@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of x 
 ##  64.31045</code></pre>
-<p>The p-value must be less than <strong>0.05</strong> to be considered statistically significant. It is labelled with one asterisk *. 0.001 &lt; p &lt; 0.01 corresponds to **, and p &lt; 0.001 corresponds to ***. Since the p-value reported here is less than 0.001, Figure 3E has *** for Day 1’s area under a curve.</p>
+<p>The p-value must be less than <strong>0.05</strong> to be considered statistically significant. It is labelled with one asterisk *. 0.001 &lt; p &lt; 0.01 is denoted with two asterisks **, and p &lt; 0.001 is denoted with three asterisks ***. Since the p-value reported here is less than 0.001, Figure 3E has *** for Day 1’s area under a curve.</p>
 <p>We can repeat this for Days 2-5. For brevity, we repeat the example with Days 2 and 4 only.</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="basic-statistics-in-progress.html#cb247-1" aria-hidden="true" tabindex="-1"></a>auc_df_day2 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">2</span>)</span>
 <span id="cb247-2"><a href="basic-statistics-in-progress.html#cb247-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day2<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
@@ -403,7 +403,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of x 
 ##  54.92521</code></pre>
-<p>0.001 &lt; p &lt; 0.01 in this case, which is often denoted as **. Figure 3E shows the AUC of Day 2 with **.</p>
+<p>The p value is 0.0065, which is less than 0.01 but larger than 0.001. In this case, the statistical significane is denoted as **. Likewise, Figure 3E shows the AUC of Day 2 with **.</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="basic-statistics-in-progress.html#cb249-1" aria-hidden="true" tabindex="-1"></a>auc_df_day4 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">4</span>)</span>
 <span id="cb249-2"><a href="basic-statistics-in-progress.html#cb249-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day4<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 
@@ -417,7 +417,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of x 
 ##  43.45404</code></pre>
-<p>0.01 &lt; p &lt; 0.05 in this case. Therefore one asterisk * is used to label the statistical significance.</p>
+<p>The p-value is 0.013, which is less than 0.05 but larger than 0.01. Therefore one asterisk * is used to label the statistical significance.</p>
 </div>
 <div id="sample-t-test" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> 2-sample t-test</h2>

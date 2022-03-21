@@ -96,7 +96,7 @@ Then, lets extract the values from the `AUC_Cbratio` column and perform one-samp
 t.test(auc_df_day1$AUC_Cbratio, mu = 0)
 ```
 
-The p-value must be less than **0.05** to be considered statistically significant. It is labelled with one asterisk \*. 0.001 < p < 0.01 corresponds to \*\*, and p < 0.001 corresponds to \*\*\*. Since the p-value reported here is less than 0.001, Figure 3E has \*\*\* for Day 1's area under a curve.
+The p-value must be less than **0.05** to be considered statistically significant. It is labelled with one asterisk \*. 0.001 < p < 0.01 is denoted with two asterisks \*\*, and p < 0.001 is denoted with three asterisks \*\*\*. Since the p-value reported here is less than 0.001, Figure 3E has \*\*\* for Day 1's area under a curve.
 
 We can repeat this for Days 2-5. For brevity, we repeat the example with Days 2 and 4 only.
 
@@ -105,14 +105,14 @@ auc_df_day2 <- auc_df %>% filter(Day == 2)
 t.test(auc_df_day2$AUC_Cbratio, mu = 0)
 ```
 
-0.001 < p < 0.01 in this case, which is often denoted as \*\*. Figure 3E shows the AUC of Day 2 with \*\*.
+The p value is 0.0065, which is less than 0.01 but larger than 0.001. In this case, the statistical significane is denoted as \*\*. Likewise, Figure 3E shows the AUC of Day 2 with \*\*.
 
 ```{r}
 auc_df_day4 <- auc_df %>% filter(Day == 4)
 t.test(auc_df_day4$AUC_Cbratio, mu = 0)
 ```
 
-0.01 < p < 0.05 in this case. Therefore one asterisk \* is used to label the statistical significance. 
+The p-value is 0.013, which is less than 0.05 but larger than 0.01. Therefore one asterisk \* is used to label the statistical significance. 
 
 ## 2-sample t-test
 
