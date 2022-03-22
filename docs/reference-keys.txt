@@ -54,7 +54,7 @@ reproducing-figures-in-the-paper-min-et-al.-2019
 figure-3b-a-best-fit-line-with-points-and-error-bars
 figure-3d-a-bar-graph
 figure-3e-modeling-in-matlab-and-plotting-in-r
-basic-statistics-in-progress
+basic-statistics
 one-sample-t-test
 two-sample-t-test
 shapiro-wilk-test-to-test-for-normality-of-data
@@ -64,13 +64,16 @@ power-analysis
 one-way-anova
 check-for-outliers
 checking-for-normality-of-data
+is-the-homogeneity-of-variance-assumption-met
 computing-one-way-anova
 post-hoc-tests
-one-way-repeated-anova
+one-way-repeated-measures-anova
 two-way-anova
-checking-for-normality-of-data-1
 identifying-outliers
+checking-for-normality-of-data-1
 computing-two-way-anova
+post-hoc-test
+extra-resources
 recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
 figure-2---bar-plot
