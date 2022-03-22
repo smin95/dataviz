@@ -64,7 +64,7 @@ power-analysis
 one-way-anova
 check-for-outliers
 checking-for-normality-of-data
-is-the-homogeneity-of-variance-assumption-met
+checking-the-assumption-for-homogeneity-of-variance
 computing-one-way-anova
 post-hoc-tests
 one-way-repeated-measures-anova
