@@ -8,7 +8,7 @@ editor_options:
 
 # Manual and Examples of smplot
 
-This chapter is a manual for **smplot**; it includes numerous examples. It also includes tutorials about `sm_bar()`, `sm_bland_altman()` and `sm_raincloud()`, all of which are not mentioned in the preceding chapters. However, this chapter does not describe `sm_effsize()`, `sm_power()` and `sm_common_axis()`; these functions are described in Chapter 5.
+This chapter is a manual for **smplot**; it includes numerous examples. It also includes tutorials about `sm_bar()`, `sm_bland_altman()` and `sm_raincloud()`, all of which are not mentioned in the preceding chapters. However, this chapter does not describe `sm_effsize()`, `sm_power()` and `sm_common_axis()`; these functions are described in Chapters 5-7.
 
 - If you are not sure about any of the functions, please type `?` before the function names, ex. `?sm_bar`. 
 

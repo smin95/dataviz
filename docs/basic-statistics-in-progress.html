@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-03-21" />
+<meta name="date" content="2022-03-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -283,7 +283,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html"><i class="fa fa-check"></i><b>7</b> Basic Statistics (in progress)</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#one-sample-t-test"><i class="fa fa-check"></i><b>7.1</b> One-sample t-test</a></li>
-<li class="chapter" data-level="7.2" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#two-sample-t-test"><i class="fa fa-check"></i><b>7.2</b> Two-sample t-test</a></li>
+<li class="chapter" data-level="7.2" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#two-sample-t-test"><i class="fa fa-check"></i><b>7.2</b> Two-sample t-test</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#shapiro-wilk-test-to-test-for-normality-of-data"><i class="fa fa-check"></i><b>7.2.1</b> Shapiro-Wilk Test to test for Normality of Data</a></li>
+</ul></li>
 <li class="chapter" data-level="7.3" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>7.3</b> Wilcoxon Signed-Rank Test</a></li>
 <li class="chapter" data-level="7.4" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#effect-size"><i class="fa fa-check"></i><b>7.4</b> Effect Size</a></li>
 <li class="chapter" data-level="7.5" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#power-analysis"><i class="fa fa-check"></i><b>7.5</b> Power Analysis</a></li>
@@ -291,7 +294,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="7.6.1" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#check-for-outliers"><i class="fa fa-check"></i><b>7.6.1</b> Check for outliers</a></li>
 <li class="chapter" data-level="7.6.2" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#checking-for-normality-of-data"><i class="fa fa-check"></i><b>7.6.2</b> Checking for Normality of Data</a></li>
-<li class="chapter" data-level="7.6.3" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.6.3</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="7.6.3" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#computing-one-way-anova"><i class="fa fa-check"></i><b>7.6.3</b> Computing one-way ANOVA</a></li>
+<li class="chapter" data-level="7.6.4" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#post-hoc-tests"><i class="fa fa-check"></i><b>7.6.4</b> Post-hoc tests</a></li>
+<li class="chapter" data-level="7.6.5" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#one-way-repeated-anova"><i class="fa fa-check"></i><b>7.6.5</b> One-way repeated ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#two-way-anova"><i class="fa fa-check"></i><b>7.7</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="7.7.1" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#checking-for-normality-of-data-1"><i class="fa fa-check"></i><b>7.7.1</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="7.7.2" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#identifying-outliers"><i class="fa fa-check"></i><b>7.7.2</b> Identifying Outliers</a></li>
+<li class="chapter" data-level="7.7.3" data-path="basic-statistics-in-progress.html"><a href="basic-statistics-in-progress.html#computing-two-way-anova"><i class="fa fa-check"></i><b>7.7.3</b> Computing two-way ANOVA</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html"><i class="fa fa-check"></i><b>8</b> Recreating Figures from Front. Genetics (2021)</a>
@@ -455,6 +466,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                 23.0508</code></pre>
 <p>In this case, the subjects are <strong>paired</strong> because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set <code>paired = FALSE</code>.</p>
 <p>If we are reporting the results, we should report it as such, t(9) = 1.60, p = 0.15. The difference between Days 1 and 5 is not statistically significant.</p>
+<div id="shapiro-wilk-test-to-test-for-normality-of-data" class="section level3" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Shapiro-Wilk Test to test for Normality of Data</h3>
 <p>T-test can only be used when the data assume normality. In other word, the data that are to be analyzed using <code>t.test()</code> must have a normal distribution (shown below).</p>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-209-1.png" width="355.2" /></p>
 <p>Whether the data have a normal distribution can be checked using a Shaprio-Wilk test (<code>shapiro.test()</code>). If p &gt; 0.05, then the data have a normal distribution, and therefore, t-test can be used to analyze the data. If p &lt; 0.05, the data are not normally distributed, and t-test cannot be used.</p>
@@ -474,6 +487,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## W = 0.97531, p-value = 0.9353</code></pre>
 <p>P value is 0.935, which is larger than 0.05. Therefore, the AUCs from Day 5 have a normal distribution. More information about <code>shapiro.test()</code> can be found in this link: <a href="http://www.sthda.com/english/wiki/normality-test-in-r" class="uri">http://www.sthda.com/english/wiki/normality-test-in-r</a>.</p>
 <p>T-test is a type of <strong>parametric</strong> statistical test, which is used to analyze data that are normally distributed. If the data are not normally distributed, <strong>non-parametric</strong> statistical test can be used.</p>
+</div>
 </div>
 <div id="wilcoxon-signed-rank-test" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Wilcoxon Signed-Rank Test</h2>
@@ -654,10 +668,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Note:</strong> We will use <code>rstatix</code> to perform ANOVA. However, both <code>tidyverse</code> and <code>rstatix</code> packages have the function called <code>filter()</code>. To use <code>filter()</code> from the <code>tidyverse</code> (or <code>dplyr</code>) package, as we have done so before, you will need to type <code>dplyr::filter</code> rather than <code>filter</code> instead to specify <code>filter()</code> from the <code>dplyr</code> package.</p>
 <p>To perform ANOVA, we have to make some assumptions about the data:</p>
 <ul>
-<li><p>Data should be normally distributed. This can be confirmed by using a Shapiro-Wilk test (<code>shapiro.test()</code>).</p></li>
+<li><p>Data should be normally distributed. This can be confirmed by using a Shapiro-Wilk test.</p></li>
 <li><p>No outliers.</p></li>
-<li><p>Homogeneity of variance. The variance of the data should be consistent as a function of the predictor (x-axis).</p></li>
-<li><p>Observations should be independent The data from one group should have no relationship with other data within the same group. In short, each observation should be unique and come from an unique individual.</p></li>
+<li><p>Homogeneity of variance. The variance of the data should be consistent as a function of the predictor (x-axis). This is beyond the scope of this book and therefore not covered.</p></li>
+<li><p>Observations should be independent: The data from one group should have no relationship with other data within the same group. In short, each observation should be unique and come from an unique individual.</p></li>
 </ul>
 <p>Let’s investigate whether AUC data differ significantly across days (Days 1 to 5). To do so, we will need to perform one-way ANOVA where the factor is <code>Day</code>.</p>
 <div id="check-for-outliers" class="section level3" number="7.6.1">
@@ -694,7 +708,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 4     AUC_Cbratio     0.770 0.00620
 ## 5 5     AUC_Cbratio     0.975 0.935</code></pre>
 <p>In this data set, Days 1, 2, 3 and 5 have normally distributed data sets. However, the data from Day 4 do not seem to be normally distributed. This could because there are 2 outliers on Day 4. Since bulk of the data are normally distributed, I will use <strong>parametric</strong> method to analyze the data, i.e., one-way ANOVA. If most of your data are not normally distributed, then one-way ANOVA should not be used.</p>
-<p>We perform one-way ANOVA by comparing whether <code>AUC_Cbratio</code> values significantly differ across <code>Day</code>.</p>
+</div>
+<div id="computing-one-way-anova" class="section level3" number="7.6.3">
+<h3><span class="header-section-number">7.6.3</span> Computing one-way ANOVA</h3>
+<p>We perform one-way ANOVA by comparing whether <code>AUC_Cbratio</code> values significantly differ across <code>Day</code>. <code>~</code> (tilde) defines the relationship between dependent and independent variables. <code>y = m*x + b</code> can be described with <code>~</code> as <code>y~x</code>, where the value of x can affect the value of y. In the example below, it is written as <code>AUC_Cbratio ~ Day</code> because <code>AUC_Cbratio</code> (dependent variable) is affected by <code>Day</code> (independent variable).</p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="basic-statistics-in-progress.html#cb284-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">anova_test</span>(AUC_Cbratio <span class="sc">~</span> Day)</span></code></pre></div>
 <pre><code>## ANOVA Table (type II tests)
 ## 
@@ -703,8 +720,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The p-value is 0.67, which is larger than 0.05. This indicates that there is no significant difference across days in AUCs.</p>
 <p>If your data show a p value less than 0.05, then you should proceed to the next step of performing post-hoc pairwise comparison tests.</p>
 </div>
-<div id="post-hoc-tests" class="section level3" number="7.6.3">
-<h3><span class="header-section-number">7.6.3</span> Post-hoc tests</h3>
+<div id="post-hoc-tests" class="section level3" number="7.6.4">
+<h3><span class="header-section-number">7.6.4</span> Post-hoc tests</h3>
 <p>If one-way ANOVA shows a significant difference (p &lt; 0.05), then the reader should perform <strong>Tukey HSD</strong> post-hoc pairwise comparison tests to see which two specific groups vary significantly. In the example, I have saved the results in the variable <code>res</code> (short for results).</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="basic-statistics-in-progress.html#cb286-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">tukey_hsd</span>(AUC_Cbratio <span class="sc">~</span> Day)</span>
 <span id="cb286-2"><a href="basic-statistics-in-progress.html#cb286-2" aria-hidden="true" tabindex="-1"></a>res</span></code></pre></div>
@@ -725,7 +742,91 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As expected from one-way ANOVA which shows no significant difference across days, the post-hoc pairwise tests (Tukey HSD test) yield p-values higher than 0.05.</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="basic-statistics-in-progress.html#cb288-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>p.adj</span></code></pre></div>
 <pre><code>##  [1] 0.982 0.879 0.747 0.672 0.995 0.963 0.932 0.999 0.995 1.000</code></pre>
-<p>If one-way ANOVA yielded p &lt; 0.05, then we could expect to see a p-value lower than 0.05 in the Tukey HSD post-hoc test.</p>
+<p>If one-way ANOVA yielded p &lt; 0.05, then we could expect to see a p-value lower than 0.05 in the Tukey HSD post-hoc test. Therefore, when one-way ANOVA yields p &gt; 0.05, it is not necessary to perform a pairwise post-hoc comparison (Tukey HSD) using the data set.</p>
+</div>
+<div id="one-way-repeated-anova" class="section level3" number="7.6.5">
+<h3><span class="header-section-number">7.6.5</span> One-way repeated ANOVA</h3>
+<p>If the subjects are paired across the variable (or <code>Day</code>), then the arguments of <code>anova_test()</code> might need to be specified as follows.</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="basic-statistics-in-progress.html#cb290-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">anova_test</span>(AUC_Cbratio <span class="sc">~</span> Day, <span class="at">wid =</span> Subject,</span>
+<span id="cb290-2"><a href="basic-statistics-in-progress.html#cb290-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">within =</span> Day)</span></code></pre></div>
+<pre><code>## ANOVA Table (type II tests)
+## 
+##   Effect DFn DFd     F     p p&lt;.05  ges
+## 1    Day   4  45 0.588 0.673       0.05</code></pre>
+<p><code>wid</code> is the column name containing individuals/subjects identifiers. It should be unique to each individual. <code>within</code> is an <strong>optional</strong> argument that contains within subject variable, which in this case is <code>Day</code> as the same subjects were tested across days.</p>
+<p>If different subjects were tested on each day, then <code>wid</code> should be empty. In this example, regardless of whether <code>wid</code> is filled in <code>anova_test()</code>, the p-value is the same because the subject identifiers (ex. <code>S1</code>, <code>S2</code>) are unique to each subject.</p>
+</div>
+</div>
+<div id="two-way-anova" class="section level2" number="7.7">
+<h2><span class="header-section-number">7.7</span> Two-way ANOVA</h2>
+<p>In a two-way ANOVA, the effects of two factors (or variables) are examined. In our example, we will use the data set from the paper, and examine the effects of <code>Day</code> and <code>Time</code>, which is the time point after short-term monocular deprivation (minutes).</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="basic-statistics-in-progress.html#cb292-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
+<span id="cb292-2"><a href="basic-statistics-in-progress.html#cb292-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb292-3"><a href="basic-statistics-in-progress.html#cb292-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>Day)</span></code></pre></div>
+<p>As before, let’s check for some of the assumptions that are required to perform ANOVA.</p>
+<div id="checking-for-normality-of-data-1" class="section level3" number="7.7.1">
+<h3><span class="header-section-number">7.7.1</span> Checking for Normality of Data</h3>
+<p>Let’s check for the normality of the data using <code>shapiro_test()</code> from the <code>rstatix</code> package for each <code>Day</code> and <code>Time</code>. To do so, we will have to group our data using <code>group_by()</code> for <code>Day</code> and <code>Time</code>.</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="basic-statistics-in-progress.html#cb293-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
+<span id="cb293-2"><a href="basic-statistics-in-progress.html#cb293-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(Cbratio)</span></code></pre></div>
+<pre><code>## # A tibble: 30 x 5
+##    Day    Time variable statistic     p
+##    &lt;fct&gt; &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
+##  1 1         0 Cbratio      0.913 0.306
+##  2 1         3 Cbratio      0.947 0.630
+##  3 1         6 Cbratio      0.899 0.213
+##  4 1        12 Cbratio      0.897 0.201
+##  5 1        24 Cbratio      0.918 0.341
+##  6 1        48 Cbratio      0.964 0.831
+##  7 2         0 Cbratio      0.925 0.398
+##  8 2         3 Cbratio      0.912 0.292
+##  9 2         6 Cbratio      0.900 0.221
+## 10 2        12 Cbratio      0.934 0.493
+## # ... with 20 more rows</code></pre>
+<p>Only the first 10 rows are shown. To view the entire results, store the results into a variable and use <code>View()</code>.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="basic-statistics-in-progress.html#cb295-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
+<span id="cb295-2"><a href="basic-statistics-in-progress.html#cb295-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(Cbratio)</span>
+<span id="cb295-3"><a href="basic-statistics-in-progress.html#cb295-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb295-4"><a href="basic-statistics-in-progress.html#cb295-4" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="basic-statistics-in-progress.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(res<span class="sc">$</span>p <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<pre><code>## Warning: Unknown or uninitialised column: `p`.</code></pre>
+<pre><code>## [1] 0</code></pre>
+<p>We see that there are 3 p-values (out of 30 combinations of <code>Day</code> and <code>Time</code>) that are smaller than 0.05. Ideally, we would want all of them to have a p-value higher than 0.05 for the data to be considered as normally distributed. However, since most data seem to be normally distributed in our example, it is okay to proceed to use a two-way ANOVA, which is a parametric procedure.</p>
+</div>
+<div id="identifying-outliers" class="section level3" number="7.7.2">
+<h3><span class="header-section-number">7.7.2</span> Identifying Outliers</h3>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="basic-statistics-in-progress.html#cb299-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
+<span id="cb299-2"><a href="basic-statistics-in-progress.html#cb299-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Cbratio)</span></code></pre></div>
+<pre><code>## # A tibble: 13 x 6
+##    Day    Time Subject Cbratio is.outlier is.extreme
+##    &lt;fct&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
+##  1 1        12 f         3.43  TRUE       FALSE     
+##  2 2        24 d        -0.916 TRUE       FALSE     
+##  3 2        24 e         5.20  TRUE       TRUE      
+##  4 2        48 j         2.75  TRUE       FALSE     
+##  5 3        24 b         2.79  TRUE       FALSE     
+##  6 3        24 u        -0.389 TRUE       FALSE     
+##  7 4         0 f         7.47  TRUE       FALSE     
+##  8 4         3 e         8.70  TRUE       TRUE      
+##  9 4         6 f         2.38  TRUE       FALSE     
+## 10 4        24 g         3.45  TRUE       FALSE     
+## 11 4        48 e        -2.37  TRUE       FALSE     
+## 12 4        48 g         3.21  TRUE       FALSE     
+## 13 5         6 d        -2.88  TRUE       TRUE</code></pre>
+<p>We observe that there are 13 outliers, 2 of which are considered to be extreme points. <code>identify_outliers()</code> pinpoint outliers based on the definition of boxplots. Outliers in boxplots can be ignored. However, extreme points can be considered to be slightly troublesome. In this example, 2 out of 230 (<code>nrow(df)</code>) observations seem to be extreme points. Therefore, the data set meets the requirement to be analyzed using two-way ANOVA.</p>
+</div>
+<div id="computing-two-way-anova" class="section level3" number="7.7.3">
+<h3><span class="header-section-number">7.7.3</span> Computing two-way ANOVA</h3>
+<p>As before, when ANOVA is computed using <code>anova_test()</code>, <code>group_by()</code> is not necessary because you are not summarising raw data into average or median etc.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="basic-statistics-in-progress.html#cb301-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">anova_test</span>(Cbratio <span class="sc">~</span> Day <span class="sc">*</span> Time)</span></code></pre></div>
+<pre><code>## ANOVA Table (type II tests)
+## 
+##     Effect DFn DFd      F        p p&lt;.05   ges
+## 1      Day   4 290  0.955 4.33e-01       0.013
+## 2     Time   1 290 30.113 8.89e-08     * 0.094
+## 3 Day:Time   4 290  0.307 8.73e-01       0.004</code></pre>
+<p>The <code>*</code> represents the statistically significant of <code>Time</code>. However, it is absent for the effects of <code>Day</code> and the interaction between <code>Day</code> and <code>Time</code>.</p>
+<p>It appears that there is a statistically significant effect of <code>Time</code>, F(1, 290) = 30.11, p &lt; 0.001. But the effect of <code>Day</code> seems to be not significant, F(4,290) = 0.96, p &gt; 0.05. Also the effect of interaction between <code>Day</code> and <code>Time</code> is not significant, F(4,290) = 0.31, p &gt; 0.05.</p>
 
 </div>
 </div>
