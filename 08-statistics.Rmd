@@ -187,7 +187,7 @@ T-test is a type of **parametric** statistical test, which is used to analyze da
 
 Wilcoxon Signed-rank Test is a **non-parametric** statistical test that is used instead of a t-test when the data are **not normally distributed**.
 
-If we assume that the Shaprio-Wilk test yields p < 0.05 for the following datasets, necessitating us to use a Wilcoxon Signed Rank Test for both one-sample and two-sample tests.
+If eShaprio-Wilk test yields p < 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.
 
 ```{r}
 # one-sample Wilcoxon Signed-rank Test

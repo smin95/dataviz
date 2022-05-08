@@ -81,13 +81,14 @@ all <- plot_grid(add_four, raincloud, ncol = 1,
 print(all)
 ```
 
-This book guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. 
+This book (https://smin95.com/dataviz) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. 
 
 ## Major updates on smplot {-}
 
-If you downloaded **before Mar. 17th, 2022**, please **re-download smplot**. Some updates include： 
+If you downloaded **before May 8th, 2022**, please **re-download smplot**. Some updates include： 
 
-- New functions `sm_auc()` and `sm_auc_list()`, both of which are used for computing area under a curve. 
+- `sm_auc_list()` has a new argument `groups`. 
+- `sm_slope_list()` has also been created.
 
 ```{r, eval = FALSE}
 install.packages("devtools")
@@ -100,10 +101,10 @@ devtools::install_github('smin95/smplot')
 
 ## For R and ggplot2 experts {-}
 
-Please read Chapter 4. 
+Please read Chapter 4, which is a manual for **smplot**.
 
 ## Issues and contact {-}
 If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the 'smplot' package, please pull-request on [Github](https://github.com/smin95/smplot).
 
 ## License {-}
-smplot is under the MIT license. This tutorial is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+smplot is under the MIT license. This tutorial is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Seung Hyun Min is the sole creator of **smplot**.

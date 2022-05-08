@@ -11,7 +11,7 @@ In this chapter, we will continue to use data from this paper ([PDF](https://www
 
 **Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.**
 
-In Chapter 5 of the online guide, we only dealt with data from Days 1 and 5. In this chapter, we will use data from Days 1, 2, 3, 4 and 5. 
+In Chapter 5, we only dealt with data from Days 1 and 5. In this chapter, we will use data from Days 1, 2, 3, 4 and 5. 
 
 Let's begin by loading the `tidyverse` and other libraries, and uploading the csv file `min2019b.csv` using `read_csv()` from the `tidyverse` package.
 
@@ -142,7 +142,7 @@ subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
 
 The variable `subj_b_day1` now stores the data of subject `b` on Day 1. Now let's calculate the area under a curve (AUC) from `subj_b_day1` using `sm_auc()`.
 
-`sm_auc()` calculates the AUC using the trapezoid method. It has two arguments:
+`sm_auc()` calculates the AUC using the method of trapezoid integration; this is equivalent to `trapz` function in Matlab and `numpy.trapz` in Python. It has two arguments:
 - The first argument is the x point. In this case, it is the minutes after monocular deprivation (0, 3, 6, 12, 24 and 48). If this argument is left empty, it will use 0, 1, 2, 3 etc as default. For more information, please type `?sm_auc` in the command console.
 - The second argument is the data, which is shown by the y-axis in the blue graph. In this case, it is the change of contrast balance ratio (dB). These values can be extracted from `subj_b_day1` using `$`.
 
@@ -219,11 +219,12 @@ sm_auc_list(subjects = 'Subject', conditions = 'Day',
 
 `sm_auc_list()` creates a new data frame with AUC for each subject and condition (in this case, Day). It has five arguments:
 
+- `data` = this argument requires the variable that stores the data frame. In our case, it is `df`.
 - `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.
+- `groups` = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be `Group` column that contains two groups: `Normal` and `Amblyopia` (see next chapter on Slope Analysis).
 - `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the condition is the day. It must strings, ex. `'Day'`, not `Day`.
 - `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are 0, 3, 6, 12, 24 minutes. It must  strings, ex. `'Time'`, not `Time`.
 - `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'Cbratio'`, not `Cbratio`.
-- `data` = this argument requires the variable that stores the data frame. In our case, it is `df`.
 
 We can store the results from `sm_auc_list()` into a new variable. I will call the new variable `auc_df`.
 
