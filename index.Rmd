@@ -92,7 +92,7 @@ If you downloaded **before May 8th, 2022**, please **re-download smplot**. Some 
 
 ```{r, eval = FALSE}
 install.packages("devtools")
-devtools::install_github('smin95/smplot')
+devtools::install_github('smin95/smplot', force = TRUE)
 ```
 
 ## Please cite this paper when smplot is used {-}
