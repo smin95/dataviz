@@ -187,7 +187,7 @@ T-test is a type of **parametric** statistical test, which is used to analyze da
 
 Wilcoxon Signed-rank Test is a **non-parametric** statistical test that is used instead of a t-test when the data are **not normally distributed**.
 
-If eShaprio-Wilk test yields p < 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.
+If Shaprio-Wilk test yields p < 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.
 
 ```{r}
 # one-sample Wilcoxon Signed-rank Test
@@ -208,7 +208,7 @@ The p-value is 0.13, which is larger than 0.05. Therefore, according to the Wilc
 
 However, even if p-value is larger than 0.05, this does not mean that there is no significant difference between the two groups/conditions. In fact, even a strong drug effect in a study that compares placebo vs. drug can result in p > 0.05 if the sample size is too small. 
 
-On the other hand, if a study is conducted a very large sample size (1000 patients per group) to examine the effect of a very weak drug, the data between weak drug and control can give us a p < 0.05, which indicates a statistically significant difference. 
+On the other hand, if a study is conducted with a very large sample size (1000 patients per group) to examine the effect of a very weak drug, the data between weak drug and control can give us a p < 0.05, which indicates a statistically significant difference. 
 
 In short, **p-value is not everything because it depends on the sample size.**
 
@@ -263,7 +263,7 @@ We have replicated all the rows of the data frame `auc_df_day2` by 100 times to 
 sm_effsize(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio)
 ```
 
-The effect size is 0.24. It has barely changed. Theoretically, it should **not** change (i.e., stay at 0.224), but for some reason here, it has changed very slightly.
+The effect size is 0.24. It has barely changed despite the significantly larger sample size. 
 
 ```{r}
 t.test(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,

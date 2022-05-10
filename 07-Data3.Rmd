@@ -200,7 +200,7 @@ slope_df_one$Group <- factor(slope_df_one$Group,
 ```
 
 
-Here is a box plot showing `slope_df_one`'s data. 
+Here is a boxplot showing `slope_df_one`'s data. 
 
 ```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
 slope_df_one %>% ggplot(mapping = aes(x = Group, y = Slope, color = Group)) +

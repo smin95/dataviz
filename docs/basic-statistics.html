@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-05-09" />
+<meta name="date" content="2022-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -501,7 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wilcoxon-signed-rank-test" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> Wilcoxon Signed-rank Test</h2>
 <p>Wilcoxon Signed-rank Test is a <strong>non-parametric</strong> statistical test that is used instead of a t-test when the data are <strong>not normally distributed</strong>.</p>
-<p>If eShaprio-Wilk test yields p &lt; 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.</p>
+<p>If Shaprio-Wilk test yields p &lt; 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="basic-statistics.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one-sample Wilcoxon Signed-rank Test</span></span>
 <span id="cb307-2"><a href="basic-statistics.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 
@@ -524,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="effect-size" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Effect Size</h2>
 <p>However, even if p-value is larger than 0.05, this does not mean that there is no significant difference between the two groups/conditions. In fact, even a strong drug effect in a study that compares placebo vs. drug can result in p &gt; 0.05 if the sample size is too small.</p>
-<p>On the other hand, if a study is conducted a very large sample size (1000 patients per group) to examine the effect of a very weak drug, the data between weak drug and control can give us a p &lt; 0.05, which indicates a statistically significant difference.</p>
+<p>On the other hand, if a study is conducted with a very large sample size (1000 patients per group) to examine the effect of a very weak drug, the data between weak drug and control can give us a p &lt; 0.05, which indicates a statistically significant difference.</p>
 <p>In short, <strong>p-value is not everything because it depends on the sample size.</strong></p>
 <p>If the sample size is small, p-value can be larger than 0.05. But as the sample gets larger, p-value will decrease even if the mean difference between the two groups remains the same.</p>
 <p>In this example, the sample size is not large (n=10). Therefore, one might ask whether our conclusion that there is no significant difference between Days 1 and 5 is truly valid. One might also believe that if our sample size was larger (ex. n=50), we would have found a significant difference between Days 1 and 5.</p>
@@ -627,7 +627,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have replicated all the rows of the data frame <code>auc_df_day2</code> by 100 times to create 1000 rows total (i.e., 1000 subjects).</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="basic-statistics.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_effsize</span>(auc_df_day1b<span class="sc">$</span>AUC_Cbratio, auc_df_day2b<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
 <pre><code>## [1] 0.2358451</code></pre>
-<p>The effect size is 0.24. It has barely changed. Theoretically, it should <strong>not</strong> change (i.e., stay at 0.224), but for some reason here, it has changed very slightly.</p>
+<p>The effect size is 0.24. It has barely changed despite the significantly larger sample size.</p>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="basic-statistics.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1b<span class="sc">$</span>AUC_Cbratio, auc_df_day2b<span class="sc">$</span>AUC_Cbratio,</span>
 <span id="cb321-2"><a href="basic-statistics.html#cb321-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> T)</span></code></pre></div>
 <pre><code>## 

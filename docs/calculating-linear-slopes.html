@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-05-09" />
+<meta name="date" content="2022-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -572,7 +572,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="calculating-linear-slopes.html#cb281-1" aria-hidden="true" tabindex="-1"></a>slope_df_one <span class="ot">&lt;-</span> slope_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Condition <span class="sc">==</span> <span class="st">&#39;One&#39;</span>)</span>
 <span id="cb281-2"><a href="calculating-linear-slopes.html#cb281-2" aria-hidden="true" tabindex="-1"></a>slope_df_one<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(slope_df_one<span class="sc">$</span>Group, </span>
 <span id="cb281-3"><a href="calculating-linear-slopes.html#cb281-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Normal&#39;</span>,<span class="st">&#39;Amblyopia&#39;</span>))</span></code></pre></div>
-<p>Here is a box plot showing <code>slope_df_one</code>’s data.</p>
+<p>Here is a boxplot showing <code>slope_df_one</code>’s data.</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="calculating-linear-slopes.html#cb282-1" aria-hidden="true" tabindex="-1"></a>slope_df_one <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Slope, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
 <span id="cb282-2"><a href="calculating-linear-slopes.html#cb282-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb282-3"><a href="calculating-linear-slopes.html#cb282-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
