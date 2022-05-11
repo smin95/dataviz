@@ -260,7 +260,7 @@ auc_df %>% ggplot(mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
 
 ## Reproducing figures in the paper (Min et al., 2019)
 
-Let's redraw some of the figures in the paper. In 2019, where the paper was published, there was no smplot. However, the themes I developed during then have become part of smplot. 
+Let's redraw some of the figures in the paper. In 2019, when the paper was published, there was no smplot. However, the themes I developed during then have become part of smplot. So, I have incorporated functions from smplot to reproduce the figures here. 
 
 ### Figure 3B (a best-fit line with points and error bars)
 
