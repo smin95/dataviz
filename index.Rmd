@@ -85,10 +85,9 @@ This book (https://smin95.com/dataviz) guides the reader to be familiar with R, 
 
 ## Major updates on smplot {-}
 
-If you downloaded **before May 8th, 2022**, please **re-download smplot**. Some updates include： 
+If you downloaded **before May 25th, 2022**, please **re-download smplot**. Some updates include： 
 
-- `sm_auc_list()` has a new argument `groups`. 
-- `sm_slope_list()` has also been created.
+- `sm_slope_list()` has been fixed.
 
 ```{r, eval = FALSE}
 install.packages("devtools")
