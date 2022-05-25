@@ -457,7 +457,7 @@ plot_s1_b <- plot_s1 + sm_common_axis(location = 'topleft')
 
 plot_s2_b <- plot_s2 + sm_common_axis(location = 'topcenter')
 
-plot_s3_b <- plot_s1 + sm_common_axis(location = 'topright')
+plot_s3_b <- plot_s3 + sm_common_axis(location = 'topright')
 
 plot_s4_b <- plot_s4 + sm_common_axis(location = 'topleft')
 
@@ -467,7 +467,7 @@ plot_s6_b <- plot_s6 + sm_common_axis(location = 'topright')
 
 plot_s7_b <- plot_s7 + sm_common_axis(location = 'bottomleft')
 
-plot_s8_b <- plot_s1 + sm_common_axis(location = 'bottomcenter')
+plot_s8_b <- plot_s8 + sm_common_axis(location = 'bottomcenter')
 
 plot_s9_b <- plot_s9 + sm_common_axis(location = 'bottomright')
 
