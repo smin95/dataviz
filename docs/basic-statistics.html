@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-05-25" />
+<meta name="date" content="2022-05-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -413,6 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean of x 
 ##  64.31045</code></pre>
+<p><code>mu = 0</code> is included as an argument when performing one-sample <code>t.test</code>; this means an average of 0. In this case, you are comparing the data from <code>auc_df_day1$AUC_Cbratio</code> to <code>mu = 0</code>.</p>
 <p>The p-value must be less than <strong>0.05</strong> to be considered statistically significant. It is labelled with one asterisk *. 0.001 &lt; p &lt; 0.01 is denoted with two asterisks **, and p &lt; 0.001 is denoted with three asterisks ***. Since the p-value reported here is less than 0.001, Figure 3E has *** for Day 1’s area under a curve.</p>
 <p>We can repeat this for Days 2-5. For brevity, we repeat the example with Days 2 and 4 only.</p>
 <div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="basic-statistics.html#cb295-1" aria-hidden="true" tabindex="-1"></a>auc_df_day2 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">2</span>)</span>
@@ -474,7 +475,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of the differences 
 ##                 23.0508</code></pre>
 <p>In this case, the subjects are <strong>paired</strong> because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set <code>paired = FALSE</code>.</p>
-<p>If we are reporting the results, we should report it as such, t(9) = 1.60, p = 0.15. The difference between Days 1 and 5 is not statistically significant.</p>
+<p>If we are reporting the results, we should report it as such, t(9) = 1.57, p = 0.15. The difference between Days 1 and 5 is not statistically significant.</p>
 <div id="shapiro-wilk-test-to-test-for-normality-of-data" class="section level3" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Shapiro-Wilk Test to test for Normality of Data</h3>
 <p>T-test can only be used when the data assume normality. In other word, the data that are to be analyzed using <code>t.test()</code> must have a normal distribution (shown below).</p>

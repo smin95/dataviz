@@ -90,11 +90,13 @@ auc_df_day1 <- auc_df %>% filter(Day == 1)
 auc_df_day1
 ```
 
-Then, lets extract the values from the `AUC_Cbratio` column and perform one-sample t-test using `t.test()`.
+Then, lets extract the values from the `AUC_Cbratio` column and perform one-sample t-test using `t.test()`. 
 
 ```{r}
 t.test(auc_df_day1$AUC_Cbratio, mu = 0)
 ```
+
+`mu = 0 ` is included as an argument when performing one-sample `t.test`; this means an average of 0. In this case, you are comparing the data from `auc_df_day1$AUC_Cbratio` to `mu = 0`. 
 
 The p-value must be less than **0.05** to be considered statistically significant. It is labelled with one asterisk \*. 0.001 < p < 0.01 is denoted with two asterisks \*\*, and p < 0.001 is denoted with three asterisks \*\*\*. Since the p-value reported here is less than 0.001, Figure 3E has \*\*\* for Day 1's area under a curve.
 
@@ -148,7 +150,7 @@ t.test(auc_df_day1$AUC_Cbratio, auc_df_day5$AUC_Cbratio, paired = TRUE)
 
 In this case, the subjects are **paired** because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set `paired = FALSE`. 
 
-If we are reporting the results, we should report it as such, t(9) = 1.60, p = 0.15. The difference between Days 1 and 5 is not statistically significant.
+If we are reporting the results, we should report it as such, t(9) = 1.57, p = 0.15. The difference between Days 1 and 5 is not statistically significant.
 
 ### Shapiro-Wilk Test to test for Normality of Data
 
