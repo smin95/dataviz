@@ -4,11 +4,11 @@ fig:unnamed-chunk-5
 fig:unnamed-chunk-6
 fig:unnamed-chunk-23
 fig:unnamed-chunk-91
-fig:unnamed-chunk-168
 fig:unnamed-chunk-170
 fig:unnamed-chunk-172
-fig:unnamed-chunk-173
+fig:unnamed-chunk-174
 fig:unnamed-chunk-175
+fig:unnamed-chunk-177
 download-rstudio-basics-of-r
 setting-up-rstudio
 how-to-run-your-code
@@ -85,3 +85,7 @@ figure-4---violin-plot
 figure-5---slope-chart
 figure-6---raincloud-plot
 figure-7---case-study
+plotting-the-contrast-sensitivity-function
+brief-introduction
+data-visualization
+facetting-the-contrast-sensitivity-functions

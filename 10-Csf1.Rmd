@@ -1,0 +1,275 @@
+---
+output: html_document
+chapter: Plotting the Contrast Sensitivity Function
+editor_options:
+  chunk_output_type: console
+---
+
+# Plotting the Contrast Sensitivity Function
+
+In this section, we will plot the contrast sensitivity function using the **smCSF** package. I will complement it with **smplot** for aesthetics. 
+
+We will use data of achromatic contrast sensitivity from 10 normal observers from this paper (a subset of the entire dataset):
+
+**Kim, Y. J., Reynaud, A., Hess, R. F., & Mullen, K. T. (2017). A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology & visual science, 58(9), 3628-3636.**
+
+Luckily, the data are publicly available. I have reorganized the data so that we could easily use them in the form of a data frame. Let's load the data from online.
+
+
+```{r}
+library(tidyverse)
+library(smplot)
+library(smCSF)
+```
+
+```{r, eval = F}
+ACh <- read_csv('https://www.smin95.com/data_ACh.csv')
+```
+
+```{r, echo = F}
+ACh <- read_csv('data_Ach.csv')
+```
+
+```{r}
+head(ACh)
+```
+
+There are four columns in this data frame:
+
+- First, `Subject` refers to each participant. There are 10 participants total in the .csv file.
+
+- Next, `Repetition` refers to each repetition of the measurement The participants performed two repetitions of the contrast sensitivity measurement.
+
+- `SpatialFreq` refers to spatial frequency of the stimuli that were shown to test the observers' contrast sensitivity. There are a total of 12 spatial frequencies.
+
+- The `Sensitivity` column refers to the linear values of the contrast sensitivity.
+
+## Brief Introduction
+
+The contrast sensitivity function (CSF) how the observer is sensitive to an image. This image could be large (low spatial frequency) or small (high spatal frequency). To obtain the CSF, the measurement test must measure the threshold. Threshold refers to the difference in stimulus magnitude between the states of presence and absence. If the observer can just barely discriminate between these two states of the visual stimulus, this can be described as the threshold for detection. 
+
+## Data Visualization
+
+First, let's compute the average and standard errors using the dataset. It is recommended that the reader has read Chapters 5 and 6 already. Understanding of `summarise()`, `filter()`, `mutate()` and `%>%` are assumed.
+
+The code below reorganizes the `ACh` dataset so that instead of containing the data of each subject, it now contains the averaged data across `Repetition` and `SpatialFreq` as well as their standard errors and standard deviations.
+
+```{r}
+ACh_avg <- ACh %>% 
+  group_by(Repetition, SpatialFreq) %>%
+  summarise(avgSens = mean(Sensitivity),
+            stdErrSens = sm_stdErr(Sensitivity),
+            stdDevSens = sd(Sensitivity))
+  
+ACh_avg
+```
+
+Let's create a variable that stores the data for each `Repetition`. Before we do that, however, it is important that we convert the data type of the `Repetition` column from `<dbl>` to `<fct>`, which refers from **double** to **factor**. **Double** refers to continuous data, whereas **factor** refers to categorical data. 
+
+```{r}
+ACh_avg$Repetition <- factor(ACh_avg$Repetition) # factor
+
+ACh_avg1 <- ACh_avg %>% filter(Repetition == 1) # repetition 1
+ACh_avg2 <- ACh_avg %>% filter(Repetition == 2) # repetition 2
+```
+
+Let's now plot the data for each repetition using **ggplot2**. Understanding of Chapters 1-4 is assumed. 
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  geom_point() +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 1 (n=10)')
+```
+
+So far, this graph does not show the contrast sensitivity function, which as a rotund shape. Instead, if we connect the points, we get this plot instead.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  geom_point() +
+  geom_line() +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 1 (n=10)')
+```
+
+The function is still not a smooth, rotund shape. This is because it is standard to plot the contrast sensitivity function in log10 scales in both x and y axes. The code below shows the plot in the log scale.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  geom_point() +
+  geom_line() +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 1 (n=10)') +
+  scale_x_continuous(trans = 'log10') +
+  scale_y_continuous(trans = 'log10')
+```
+
+This plot shows the averaged sensitivity for each spatial frequency during the second repetition. However, the contrast sensitivity function is still missing because this plot instead shows the plot that is connected between a pair of the points. To plot the contrast sensitivity function with the data, `sm_CSF()` is required.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_CSF()
+```
+
+Notice that even if the data frame contains data in **linear units**, the plotted data from `sm_CSF()` are in log10 scales. It shows a nice, rotund shape that is typical of the contrast sensitivity function. The function can also plot the linear curve by setting `sm_CSF(logXY = FALSE)`. The default is `sm_CSF(logXY = TRUE)`.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_CSF(logXY = FALSE)
+```
+
+Now let's plot a prettier contrast sensitivity function.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_CSF(color = sm_color('wine')) +
+  geom_point(color = sm_color('darkred'), size = 3) +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 1 (n=10)') 
+```
+
+We can also plot the data using `ACh_avg2`.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_CSF(color = sm_color('lightgreen')) +
+  geom_point(color = sm_color('viridian'), size = 3) +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 2 (n=10)') 
+```
+
+Notice that `sm_CSF()` is written first because the curve has to appear before the points (`geom_point()`); else, the points will be covered the CSF curve. This example is shown below.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  geom_point(color = sm_color('viridian'), size = 3) +
+   sm_CSF(color = sm_color('lightgreen')) +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 2 (n=10)') 
+```
+
+**smCSF** also offers a function that fill the area of the CSF curve. This function is `sm_areaCSF()`. The default is set to plot the area in log10 scales, `sm_areaCSF(logXY = TRUE)`.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_areaCSF() +
+  sm_CSF() 
+```
+
+To plot the linear CSF and its area, `logXY = FALSE` has to be set `FALSE` in both `sm_areaCSF()` and `sm_CSF()`.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_areaCSF(logXY = FALSE) +
+  sm_CSF(logXY = FALSE) 
+```
+
+The **smCSF** package also offers a function that draws a ribbon shade to denote standard error or standard deviation. This function works exactly the same as `geom_ribbon()`. It requires the uses to specify `ymin` and `ymax`. The example below plots standard error using `sm_ribbonCSF()`.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_ribbonCSF(aes(ymin = avgSens - stdErrSens,
+                   ymax = avgSens + stdErrSens)) +
+  sm_CSF() 
+```
+
+Let's make this plot prettier using functions from **smplot**.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_ribbonCSF(aes(ymin = avgSens - stdErrSens,
+                   ymax = avgSens + stdErrSens),
+               fill = sm_color('lightgreen'), # fill controls the color of the shade
+               alpha = 0.5) +
+  sm_CSF(color = sm_color('viridian')) +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 2 (n=51)') +
+  sm_hgrid()
+```
+
+You can also shade standard deviation instead, where `ymin = avgSens - stdDevSens` and `ymax = avgSens + stdDevSens`.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens)) +
+  sm_CSF() 
+```
+
+Let's make the plot prettier using **smplot**.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens),
+               fill = sm_color('wine'), alpha = 0.4) +
+  sm_CSF(color = sm_color('darkred')) +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 2 (n=51)') +
+  sm_hgrid()
+```
+
+Unfortunately, in this case, the standard deviation is quite broad. Let's plot the averaged data across all repetitions and see if the standard deviation is still too broad.
+
+```{r}
+ACh_avg_final <- ACh %>% group_by(SpatialFreq) %>%
+  summarise(avgSens = mean(Sensitivity),
+            stdErrSens = sm_stdErr(Sensitivity),
+            stdDevSens = sd(Sensitivity))
+
+head(ACh_avg_final)
+```
+
+Here is the new data frame `ACh_avg_final`.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens),
+               fill = sm_color('skyblue'), alpha = 0.4) +
+  sm_CSF(color = sm_color('blue')) +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 2 (n=51)') +
+  sm_hgrid()
+```
+
+The standard deviation seems to be still broad.
+
+## Facetting the Contrast Sensitivity Functions
+
+To facet means to split the plot into multiple plots based on a certain variable. We will facet the contrast sensitivity function plot above (blue curve) into two panels, each of which represents each repetition (red and green).
+
+```{r, fig.width = 6.8, fig.height = 3.65, warning = F, echo = F}
+ACh_avg %>%
+  ggplot(aes(x = SpatialFreq, y = avgSens,
+             group = Repetition, color = Repetition,
+             fill = Repetition)) +
+   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens), alpha = 0.4) +
+   sm_CSF() +
+   sm_hgrid() +
+   sm_facet_header() +
+   scale_fill_manual(values = sm_color('wine','lightgreen')) +
+   scale_color_manual(values = sm_color('darkred','viridian')) +
+   xlab('Spatial frequency (c/deg)') +
+   ylab('Averaged sensitivity') +
+   facet_wrap(~ Repetition,
+             labeller = labeller(Repetition = sm_facet_label('Repetition ',
+                                                             sep_by = '',
+                                                    ACh_avg$Repetition))) 
+```

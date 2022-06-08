@@ -18,5 +18,6 @@ rmd_files: [
   '06-Data2.Rmd',
   '07-Data3.Rmd',
   '08-statistics.Rmd',
-  '09-manuscriptFig.Rmd'
+  '09-manuscriptFig.Rmd',
+  '10-Csf1.Rmd'
 ]

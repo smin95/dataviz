@@ -20,8 +20,15 @@ library(tidyverse)
 ```
 
 
-```{r}
+```{r, eval  = F}
 df <- read_csv('https://www.smin95.com/min2019.csv')
+```
+
+```{r, echo  = F}
+df <- read_csv('min2019.csv')
+```
+
+```{r}
 df$Day <- factor(df$Day)
 head(df)
 ```
