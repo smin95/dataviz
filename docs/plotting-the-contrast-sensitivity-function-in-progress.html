@@ -548,7 +548,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5        0.94    29.4      0.938       9.48
 ## 6        1.31    33.0      0.977       9.87</code></pre>
 <p>Here is the new data frame <code>ACh_avg_final</code>.</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-1" aria-hidden="true" tabindex="-1"></a>ACh_avg1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-1" aria-hidden="true" tabindex="-1"></a>ACh_avg_final <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
 <span id="cb400-2"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_ribbonCSF</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> avgSens <span class="sc">-</span> stdDevSens,</span>
 <span id="cb400-3"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ymax =</span> avgSens <span class="sc">+</span> stdDevSens),</span>
 <span id="cb400-4"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.25</span>) <span class="sc">+</span></span>
@@ -556,11 +556,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb400-6"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
 <span id="cb400-7"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb400-8"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
-<span id="cb400-9"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb400-9"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Contrast Sensitivity (n=51)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb400-10"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
-<span id="cb400-11"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<span id="cb400-11"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb400-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>), <span class="at">size =</span> <span class="dv">3</span>) </span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-296-1.png" width="350.4" /></p>
-<p>However, the standard deviation seems to be still broad.</p>
+<p>The standard deviation seems to be still broad.</p>
 </div>
 <div id="facetting-the-contrast-sensitivity-functions" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> Facetting the Contrast Sensitivity Functions</h2>

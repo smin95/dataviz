@@ -255,7 +255,7 @@ head(ACh_avg_final)
 Here is the new data frame `ACh_avg_final`.
 
 ```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
-ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+ACh_avg_final %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens),
                fill = sm_color('skyblue'), alpha = 0.25) +
@@ -263,12 +263,13 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
          linetype = 'dashed') +
   xlab('Spatial frequency (c/deg)') +
   ylab('Averaged sensitivity') +
-  ggtitle('Repetition 2 (n=51)') +
+  ggtitle('Contrast Sensitivity (n=51)') +
   sm_hgrid() +
-  geom_point(color = sm_color('blue'), size = 3)
+  geom_point(color = sm_color('blue'), size = 3) 
 ```
 
-However, the standard deviation seems to be still broad.
+
+The standard deviation seems to be still broad.
 
 ## Facetting the Contrast Sensitivity Functions
 
@@ -281,9 +282,10 @@ ACh_avg %>%
              fill = Repetition)) +
    sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens), alpha = 0.4) +
-   sm_CSF() +
+   sm_CSF(linetype = 'dashed') +
    sm_hgrid() +
-   sm_facet_header() +
+   sm_facet_header(font_size=11) +
+   geom_point(size = 3) +
    scale_fill_manual(values = sm_color('wine','lightgreen')) +
    scale_color_manual(values = sm_color('darkred','viridian')) +
    xlab('Spatial frequency (c/deg)') +
