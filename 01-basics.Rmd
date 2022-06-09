@@ -145,7 +145,14 @@ devtools::install_github('smin95/smplot', force = TRUE) # requires VPN if you ar
 
 - You only need to install them once, but you will need to reload them whenever you start a new session in RStudio using the function `library()`.
 
+```{r, eval = F}
+install.packages('tidyverse') # only need to install once
+install.packages('cowplot')
+```
+
 ```{r}
+# packages must be loaded every time by using library() when you run your script
+
 library(tidyverse) # it has ggplot2 package
 library(cowplot) # it allows you to save figures in .png file
 library(smplot)

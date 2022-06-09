@@ -394,7 +394,7 @@ We can also change the number of rows and columns using `facet_wrap()`. Lets mak
 
 ```{r}
 set.seed(1)
-spatFreqNum <- length(unique(ACh_avg_4rep$SpatialFreq))
+spatFreqNum <- length(unique(ACh_avg$SpatialFreq))
 ACh_avg_4rep <- rbind(ACh_avg,ACh_avg)
 ACh_avg_4rep$Repetition <- rep(1:4,each=spatFreqNum)
 ACh_avg_4rep[25:nrow(ACh_avg_4rep), 3:5] <- ACh_avg_4rep[25:nrow(ACh_avg_4rep), 3:5] + round(rnorm(24),1) 
