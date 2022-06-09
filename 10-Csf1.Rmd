@@ -273,7 +273,7 @@ The standard deviation seems to be still broad.
 
 ## Facetting the Contrast Sensitivity Functions
 
-To facet means to split the plot into multiple plots based on a certain variable. We will facet the contrast sensitivity function plot above (the blue curve) into two panels, each of which represents each repetition (red and green).
+To facet means to split the plot into multiple plots based on a categorical variable (i.e., **factor**). We will facet the contrast sensitivity function plot above (the blue curve) into two panels based on two repetitions (red and green below).
 
 ```{r, fig.width = 6.8, fig.height = 3.65, warning = F, echo = F}
 ACh_avg %>%
@@ -291,7 +291,142 @@ ACh_avg %>%
    xlab('Spatial frequency (c/deg)') +
    ylab('Averaged sensitivity') +
    facet_wrap(~ Repetition,
-             labeller = labeller(Repetition = sm_facet_label('Repetition ',
-                                                             sep_by = '',
-                                                    ACh_avg$Repetition))) 
+             labeller = as_labeller(c('1' = 'Repetition 1',
+                                      '2' = 'Repetition 2')))  
 ```
+
+To facet the plot, you need to have a data frame that has data with a column that specifies the categorical variable. For instance, let's look at the data frame `ACh_avg`.
+
+```{r}
+ACh_avg
+```
+
+We see that the first column of `Ach_avg` has a column named `Repetition` which stores whether the given data are from the first or second repetition. To see all the unique levels of `Repetition`, we can use the function `unique()`.
+
+```{r}
+unique(ACh_avg$Repetition)
+```
+
+To facet a plot using ggplot2, the function `facet_wrap()` has to be used.
+
+```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+ACh_avg %>%
+  ggplot(aes(x = SpatialFreq, y = avgSens)) +
+   sm_CSF() +
+   facet_wrap(~ Repetition) 
+```
+
+The argument inside `facet_wrap` has to include the tilde (`~`). The right side the tilde (`~`) should be the name of the categorical variable by which you wish to facet the plot. If the variable however happens to be continuous, `facet_wrap()` would not work properly.
+
+```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+ACh_avg %>%
+  ggplot(aes(x = SpatialFreq, y = avgSens)) +
+   sm_CSF() +
+   facet_wrap(~ stdErrSens) 
+```
+
+However, I do not often use `facet_wrap()` because the plot often ends up not being pretty. Let's try to make it prettier.
+
+```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+ACh_avg %>%
+  ggplot(aes(x = SpatialFreq, y = avgSens,
+             group = Repetition, color = Repetition,
+             fill = Repetition)) +
+   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens), alpha = 0.4) +
+   sm_CSF(linetype = 'dashed') +
+   sm_hgrid() +
+   geom_point(size = 3) +
+   scale_fill_manual(values = sm_color('wine','lightgreen')) +
+   scale_color_manual(values = sm_color('darkred','viridian')) +
+   xlab('Spatial frequency (c/deg)') +
+   ylab('Averaged sensitivity') +
+   facet_wrap(~ Repetition) 
+```
+
+Personally, I do not like the grey-filled header of each panel. Since I personally will find myself repeatedly bypassing the default grey color into a color of my choice, I have created the function myself `sm_facet_header()` as part of the **smCSF** package.
+
+```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+ACh_avg %>%
+  ggplot(aes(x = SpatialFreq, y = avgSens,
+             group = Repetition, color = Repetition,
+             fill = Repetition)) +
+   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens), alpha = 0.4) +
+   sm_CSF(linetype = 'dashed') +
+   sm_hgrid() +
+   geom_point(size = 3) +
+   scale_fill_manual(values = sm_color('wine','lightgreen')) +
+   scale_color_manual(values = sm_color('darkred','viridian')) +
+   xlab('Spatial frequency (c/deg)') +
+   ylab('Averaged sensitivity') +
+   facet_wrap(~ Repetition) +
+   sm_facet_header()
+```
+
+Now the title of each plot has been bolded and the filled color is white. I personally think that this plot is a lot cleaner than the default one.
+
+Next, I wish to change the titles of each panel because `1` and `2` are not descriptive. To do so, we need to use the argument `labeller` within `facet_wrap()` to specify the title of each panel.
+
+```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+ACh_avg %>%
+  ggplot(aes(x = SpatialFreq, y = avgSens,
+             group = Repetition, color = Repetition,
+             fill = Repetition)) +
+   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens), alpha = 0.4) +
+   sm_CSF(linetype = 'dashed') +
+   sm_hgrid() +
+   sm_facet_header(font_size=11) +
+   geom_point(size = 3) +
+   scale_fill_manual(values = sm_color('wine','lightgreen')) +
+   scale_color_manual(values = sm_color('darkred','viridian')) +
+   xlab('Spatial frequency (c/deg)') +
+   ylab('Averaged sensitivity') +
+   facet_wrap(~ Repetition,
+             labeller = as_labeller(c('1' = 'Repetition 1',
+                                      '2' = 'Repetition 2'))) 
+```
+
+We use the function `as_labeller()` as part of the argument `labeller()` inside `facet_wrap()` to specify that factor level `1` should be shown as `Repetition 1` and `2` as `Repetition 2`.
+
+We can also change the number of rows and columns using `facet_wrap()`. Lets make a data frame that has 4 repetitions instead of 2. 
+
+```{r}
+set.seed(1)
+spatFreqNum <- length(unique(ACh_avg_4rep$SpatialFreq))
+ACh_avg_4rep <- rbind(ACh_avg,ACh_avg)
+ACh_avg_4rep$Repetition <- rep(1:4,each=spatFreqNum)
+ACh_avg_4rep[25:nrow(ACh_avg_4rep), 3:5] <- ACh_avg_4rep[25:nrow(ACh_avg_4rep), 3:5] + round(rnorm(24),1) 
+ACh_avg_4rep$Repetition <- factor(ACh_avg_4rep$Repetition)
+```
+
+We can specify the number of columns (ex. `ncol = 2`) and rows (ex. `nrow = 2`) inside the function `facet_wrap()`, as shown in the example below.
+
+```{r, fig.width = 6.8, fig.height = 6.8, warning = F}
+ACh_avg_4rep %>%
+  ggplot(aes(x = SpatialFreq, y = avgSens,
+             group = Repetition, color = Repetition,
+             fill = Repetition,
+             alpha = Repetition)) +
+   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens)) +
+   sm_CSF(linetype = 'dashed') +
+   sm_hgrid() +
+   sm_facet_header(font_size=11) +
+   geom_point(size = 3, alpha = 1) +
+   scale_fill_manual(values = sm_color('wine','lightgreen','yelloworange', 'pink')) +
+   scale_color_manual(values = sm_color('darkred','viridian', 'orange','crimson')) +
+   scale_alpha_manual(values = c(0.4,0.4,0.3,0.2)) +
+   xlab('Spatial frequency (c/deg)') +
+   ylab('Averaged sensitivity') +
+   facet_wrap(~ Repetition, nrow=2, ncol=2,
+             labeller = as_labeller(c('1' = 'Repetition 1',
+                                      '2' = 'Repetition 2',
+                                      '3' = 'Repetition 3',
+                                      '4' = 'Repetition 4'))) 
+```
+
+Notice that when `facet_wrap()` is used, there is no need to create variable for each plot like we have done in Chapter 5 and use `sm_common_axis()`. The preference can vary depending on the user. I still prefer to store each plot so that I can have freedom to decide where to place each panel wherever I want. 
+
+In the next chapter, we will discuss on some techniques to analyze the data of contrast sensitivity.
