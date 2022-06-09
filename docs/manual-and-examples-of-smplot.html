@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-06-08" />
+<meta name="date" content="2022-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -323,11 +323,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.6" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-6---raincloud-plot"><i class="fa fa-check"></i><b>9.6</b> Figure 6 - Raincloud Plot</a></li>
 <li class="chapter" data-level="9.7" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-7---case-study"><i class="fa fa-check"></i><b>9.7</b> Figure 7 - Case Study</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>10</b> Plotting the Contrast Sensitivity Function</a>
+<li class="chapter" data-level="10" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>10</b> Plotting the Contrast Sensitivity Function (in Progress)</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>10.1</b> Brief Introduction</a></li>
-<li class="chapter" data-level="10.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>10.2</b> Data Visualization</a></li>
-<li class="chapter" data-level="10.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>10.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+<li class="chapter" data-level="10.1" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#brief-introduction"><i class="fa fa-check"></i><b>10.1</b> Brief Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#data-visualization"><i class="fa fa-check"></i><b>10.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="10.3" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>10.3</b> Facetting the Contrast Sensitivity Functions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -929,8 +929,8 @@ should convert the column as factor and establish the levels correctly.</li>
 <div id="overriding-defaults-of-smplot-colors" class="section level2" number="4.11">
 <h2><span class="header-section-number">4.11</span> Overriding Defaults of smplot Colors</h2>
 <ul>
-<li><p><code>sm_color('blue)</code> prints a hex code for the corresponding. Likewise, <code>sm_color('blue','orange')</code> prints out two hex codes.</p></li>
-<li><p>Therefore, instead of using <code>sm_color()</code> function to call forth the colors, you can directly write the hex codes.</p></li>
+<li><p><code>sm_color('blue)</code> prints a hex code of the <code>blue</code>. Likewise, <code>sm_color('blue','orange')</code> prints out two hex codes, one for <code>blue</code> and another for <code>orange</code>.</p></li>
+<li><p>Therefore, instead of using <code>sm_color()</code> function to call forth the colors, you can directly write the hex codes of colors that are not included in <strong>smplot</strong>.</p></li>
 </ul>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="manual-and-examples-of-smplot.html#cb162-1" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;#ff1493&#39;</span>, <span class="st">&#39;#483d8B&#39;</span>) <span class="co"># pink and lavender</span></span>
 <span id="cb162-2"><a href="manual-and-examples-of-smplot.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>

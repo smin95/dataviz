@@ -85,7 +85,7 @@ figure-4---violin-plot
 figure-5---slope-chart
 figure-6---raincloud-plot
 figure-7---case-study
-plotting-the-contrast-sensitivity-function
+plotting-the-contrast-sensitivity-function-in-progress
 brief-introduction
 data-visualization
 facetting-the-contrast-sensitivity-functions

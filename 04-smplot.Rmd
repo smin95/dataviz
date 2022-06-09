@@ -608,9 +608,9 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 ## Overriding Defaults of smplot Colors
 
-- `sm_color('blue)` prints a hex code for the corresponding. Likewise, `sm_color('blue','orange')` prints out two hex codes. 
+- `sm_color('blue)` prints a hex code of the `blue`. Likewise, `sm_color('blue','orange')` prints out two hex codes, one for `blue` and another for `orange`.
 
-- Therefore, instead of using `sm_color()` function to call forth the colors, you can directly write the hex codes.
+- Therefore, instead of using `sm_color()` function to call forth the colors, you can directly write the hex codes of colors that are not included in **smplot**.
 
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 
