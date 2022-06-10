@@ -134,4 +134,40 @@ Notice that the AULCSF is very similar to AUC. This suggests that the CSF fit (a
 sm_r2(ACh_avg1$SpatialFreq, ACh_avg1$avgSens)
 ```
 
-We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note that sm_r2() is a function specific for CSF fit only.
+We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note that `sm_r2()` is a function specific for CSF fit only.
+
+To visualize what R2 captures, we need to understand **residuals**, which is the difference or distance between the actual data and the predicted data from the given fit, such as the CSF.
+
+```{r,  fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_CSF(color = sm_color('wine'), linetype = 'dashed') +
+  geom_point(color = sm_color('darkred')) +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 1 (n=51)') +
+  annotate('text', x = 0.7, y = 1.3)
+```
+
+If the residual is very low, then the distance between the actual and predicted data should be close to 0. We see that the residual is low when the spatial frequency is at about 2 c/deg. In this case, the general fit is very faithful to the original data, so the residual is low and R2 is high (close to 1). In sum, the lower the residuals, the higher the R2, which ranges from 0 to 1.
+
+## Calculating area and R2 of all subjects, groups and conditions
+
+Now that we know how to calculate AUC, AULCSF and R2 for each subject, let's calculate slopes of our entire dataset.
+
+```{r}
+ACh
+```
+
+We see that there are 51 subjects total, each of which has completed two repetitions (i.e., conditions) So there are 102 slopes to calculate! Does that mean we need to use `sm_trapz()`, `sm_AULCSF()` and `sm_r2()` 102 times?
+
+As the reader might expect, the answer is **no**. **smCSF** has a function `sm_slope_list()` that returns a dataframe of slopes from **linear regression**. It works similarly to `sm_auc_list()`.
+
+- `data` = this argument requires the variable that stores the data frame. In our case, it is `df`.
+- `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.
+- `groups` = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be `Group` column that contains two groups: `Normal` and `Amblyopia`.
+- `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the two conditions are `One` and `Two`.
+- `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the `logSF` column of `df`. It must  strings, ex. `'logSF'`, not `logSF`.
+- `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'absBP'`, not `absBP`.
+
+We can store the results from `sm_slope_list()` into a new variable. I will call the new variable `slope_df`.
