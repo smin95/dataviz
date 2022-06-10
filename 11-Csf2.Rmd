@@ -1,17 +1,17 @@
 ---
 output: html_document
-chapter: Data Analysis with the Contrast Sensitivity Function 
+chapter: AUC, AULCSF and R2 of the Contrast Sensitivity Function
 editor_options:
   chunk_output_type: console
 ---
 
-# Data Analysis with the Contrast Sensitivity Function (in Progress)
+# Area under Curve, AULCSF and R2 of the CSF
 
-In this section, we will analyze the contrast sensitivity function using the smCSF package. I will complement it with smplot for aesthetics.
+In this section, we will analyze the contrast sensitivity function (CSF) using the **smCSF** package. I will complement it with smplot for aesthetics.
 
 As in the previous chapter, we will use data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):
 
-**Kim, Y. J., Reynaud, A., Hess, R. F., & Mullen, K. T. (2017).** A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology & visual science, 58(9), 3628-3636.
+**Kim, Y. J., Reynaud, A., Hess, R. F., & Mullen, K. T. (2017). A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology & visual science, 58(9), 3628-3636.**
 
 Without further ado, let’s load the necessary packages.
 
@@ -87,7 +87,7 @@ ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 Here is an example of the AULCSF.
 
-```{r}
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
 ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_areaCSF(fill = sm_color('lightgreen'), alpha = 0.5) +
   sm_CSF(color = sm_color('viridian'), size = .8) +
@@ -158,9 +158,9 @@ Now that we know how to calculate AUC, AULCSF and R2 for each subject, let's cal
 ACh
 ```
 
-We see that there are 51 subjects total, each of which has completed two repetitions (i.e., conditions) So there are 102 slopes to calculate! Does that mean we need to use `sm_trapz()`, `sm_AULCSF()` and `sm_r2()` 102 times?
+We see that there are 51 subjects total, each of which has completed two repetitions (i.e., conditions). So there are 102 slopes to calculate! Does that mean we need to use `sm_trapz()`, `sm_AULCSF()` and `sm_r2()` 102 times?
 
-As the reader might expect, the answer is **no**. **smCSF** has a functions `sm_trapz_list()`, `sm_AULCSF_list()` and `sm_r2_list()` that return a data frame of AUCs, AULCSFs and R2s, respectively. They works similarly to `sm_auc_list()` and `sm_slope_list()` from **smplot**.
+As the reader might expect from the previous chapters, the answer is **no**. **smCSF** has a functions `sm_trapz_list()`, `sm_AULCSF_list()` and `sm_r2_list()` that return a data frame of AUCs, AULCSFs and R2s, respectively. They works similarly to `sm_auc_list()` and `sm_slope_list()` from **smplot**.
 
 - `data` = this argument requires the variable that stores the data frame. In our case, it is `ACh`. It is recommended that the data are in linear units.
 - `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.
@@ -168,7 +168,7 @@ As the reader might expect, the answer is **no**. **smCSF** has a functions `sm_
 - `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the two conditions are `1` and `2` from the `Repetition` column.
 - `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the `SpatialFreq` column of `ACh`. It must  strings, ex. `'SpatialFreq'`, not `SpatialFreq`.
 - `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'Sensitivity'`, not `Sensitivity`.
-- `logXY` = thus argument's default is `sm_trapz_list(logXY = TRUE)` and `sm_AULCSF_list(logXY = TRUE)`, so it computes the log10 units (`x` and `values` vector) of AUC and AULCSF. When `logXY = FALSE`, it computes the linear units (`x` and `values` vector) AUC and AULCSF. `sm_r2_list()` does not 
+- `logXY` (for `sm_trapz_list()` and `sm_AULCSF_list()`) = thus argument's default is `sm_trapz_list(logXY = TRUE)` and `sm_AULCSF_list(logXY = TRUE)`, so it computes the log10 units (`x` and `values` vector) of AUC and AULCSF. When `logXY = FALSE`, it computes the linear units (`x` and `values` vector) AUC and AULCSF. `sm_r2_list()` does not 
 
 Let's calculate the AUCs first. We can store the results from `sm_trapz_list()` into a new variable. I will call the new variable `trapz_df`.
 
@@ -179,7 +179,7 @@ trapz_df <- sm_trapz_list(subjects = 'Subject',
                           values = 'Sensitivity', 
                           data = ACh)
 
-trapz_df 
+head(trapz_df) # first 6 rows
 ```
 
 Likewise, we can store the results from `sm_AULCSF_list()` in a new variable. I will call the new variable `aulcsf_df`.
@@ -191,7 +191,7 @@ aulcsf_df <- sm_AULCSF_list(subjects = 'Subject',
                           values = 'Sensitivity', 
                           data = ACh)
 
-aulcsf_df 
+head(aulcsf_df) # first 6 rows
 ```
 
 Finally, we can store the results from `sm_r2_list()` in a new variable. I will call the new variable `r2`_df`.
@@ -203,7 +203,7 @@ r2_df <- sm_r2_list(subjects = 'Subject',
                           values = 'Sensitivity', 
                           data = ACh)
 
-r2_df 
+head(r2_df) # first 6 rows
 ```
 
 We see that R2 is very good except for few observers in certain repetitions. Let's see how many rows of the data frame contains R2 less than 0.75.
@@ -214,4 +214,4 @@ length(ind)
 r2_df[ind,]
 ```
 
-Out of 102 rows of the R2s, 8 of them contain poor R2. I think this should be acceptable.
+Out of 102 rows of the R2s, only 8 of them contain poor R2. I think the contrast sensitivity function fit is acceptable to model the dataset of achromatic sensitivity in 51 normal observers.

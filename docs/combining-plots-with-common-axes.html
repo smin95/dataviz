@@ -329,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#data-visualization"><i class="fa fa-check"></i><b>10.2</b> Data Visualization</a></li>
 <li class="chapter" data-level="10.3" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>10.3</b> Facetting the Contrast Sensitivity Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>11</b> Data Analysis with the Contrast Sensitivity Function (in Progress)</a>
+<li class="chapter" data-level="11" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>11</b> Area under Curve, AULCSF and R2 of the CSF</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
-<li class="chapter" data-level="11.2" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
-<li class="chapter" data-level="11.3" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="11.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="11.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="11.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -614,7 +614,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb182-14"><a href="combining-plots-with-common-axes.html#cb182-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
 <span id="cb182-15"><a href="combining-plots-with-common-axes.html#cb182-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.96</span>, <span class="fl">0.67</span>), </span>
 <span id="cb182-16"><a href="combining-plots-with-common-axes.html#cb182-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-160-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-159-1.png" width="350.4" /></p>
 </div>
 <div id="plotting-individual-data" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Plotting Individual Data</h2>
@@ -652,7 +652,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb185-16"><a href="combining-plots-with-common-axes.html#cb185-16" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
 <span id="cb185-17"><a href="combining-plots-with-common-axes.html#cb185-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb185-18"><a href="combining-plots-with-common-axes.html#cb185-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s1)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-163-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-162-1.png" width="350.4" /></p>
 <p>Then make each one for the other subjects (S2-S9).</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="combining-plots-with-common-axes.html#cb186-1" aria-hidden="true" tabindex="-1"></a>df_s2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S2&#39;</span>) </span>
 <span id="cb186-2"><a href="combining-plots-with-common-axes.html#cb186-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -669,7 +669,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb186-13"><a href="combining-plots-with-common-axes.html#cb186-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
 <span id="cb186-14"><a href="combining-plots-with-common-axes.html#cb186-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb186-15"><a href="combining-plots-with-common-axes.html#cb186-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s2)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-164-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-163-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="combining-plots-with-common-axes.html#cb187-1" aria-hidden="true" tabindex="-1"></a>df_s3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S3&#39;</span>)</span>
 <span id="cb187-2"><a href="combining-plots-with-common-axes.html#cb187-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb187-3"><a href="combining-plots-with-common-axes.html#cb187-3" aria-hidden="true" tabindex="-1"></a>plot_s3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s3, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -685,7 +685,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb187-13"><a href="combining-plots-with-common-axes.html#cb187-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
 <span id="cb187-14"><a href="combining-plots-with-common-axes.html#cb187-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb187-15"><a href="combining-plots-with-common-axes.html#cb187-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s3)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-165-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-164-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="combining-plots-with-common-axes.html#cb188-1" aria-hidden="true" tabindex="-1"></a>df_s4 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S4&#39;</span>)</span>
 <span id="cb188-2"><a href="combining-plots-with-common-axes.html#cb188-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb188-3"><a href="combining-plots-with-common-axes.html#cb188-3" aria-hidden="true" tabindex="-1"></a>plot_s4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s4, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -701,7 +701,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb188-13"><a href="combining-plots-with-common-axes.html#cb188-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
 <span id="cb188-14"><a href="combining-plots-with-common-axes.html#cb188-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb188-15"><a href="combining-plots-with-common-axes.html#cb188-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s4)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-166-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-165-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="combining-plots-with-common-axes.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 5</span></span>
 <span id="cb189-2"><a href="combining-plots-with-common-axes.html#cb189-2" aria-hidden="true" tabindex="-1"></a>df_s5 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S5&#39;</span>) </span>
 <span id="cb189-3"><a href="combining-plots-with-common-axes.html#cb189-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S5 in the Subject column</span></span>
@@ -721,7 +721,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb189-17"><a href="combining-plots-with-common-axes.html#cb189-17" aria-hidden="true" tabindex="-1"></a><span class="co"># location of legend (color label)</span></span>
 <span id="cb189-18"><a href="combining-plots-with-common-axes.html#cb189-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb189-19"><a href="combining-plots-with-common-axes.html#cb189-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s5)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-167-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-166-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="combining-plots-with-common-axes.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 6</span></span>
 <span id="cb190-2"><a href="combining-plots-with-common-axes.html#cb190-2" aria-hidden="true" tabindex="-1"></a>df_s6 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S6&#39;</span>) </span>
 <span id="cb190-3"><a href="combining-plots-with-common-axes.html#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S6 in the Subject column</span></span>
@@ -739,7 +739,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb190-15"><a href="combining-plots-with-common-axes.html#cb190-15" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
 <span id="cb190-16"><a href="combining-plots-with-common-axes.html#cb190-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb190-17"><a href="combining-plots-with-common-axes.html#cb190-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s6)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-168-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-167-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="combining-plots-with-common-axes.html#cb191-1" aria-hidden="true" tabindex="-1"></a>df_s7 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S7&#39;</span>)</span>
 <span id="cb191-2"><a href="combining-plots-with-common-axes.html#cb191-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb191-3"><a href="combining-plots-with-common-axes.html#cb191-3" aria-hidden="true" tabindex="-1"></a>plot_s7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s7, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -755,7 +755,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb191-13"><a href="combining-plots-with-common-axes.html#cb191-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
 <span id="cb191-14"><a href="combining-plots-with-common-axes.html#cb191-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb191-15"><a href="combining-plots-with-common-axes.html#cb191-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s7)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-169-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-168-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="combining-plots-with-common-axes.html#cb192-1" aria-hidden="true" tabindex="-1"></a>df_s8 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S8&#39;</span>)</span>
 <span id="cb192-2"><a href="combining-plots-with-common-axes.html#cb192-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb192-3"><a href="combining-plots-with-common-axes.html#cb192-3" aria-hidden="true" tabindex="-1"></a>plot_s8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s8, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -771,7 +771,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb192-13"><a href="combining-plots-with-common-axes.html#cb192-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
 <span id="cb192-14"><a href="combining-plots-with-common-axes.html#cb192-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb192-15"><a href="combining-plots-with-common-axes.html#cb192-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s8)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-169-1.png" width="350.4" /></p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="combining-plots-with-common-axes.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 9</span></span>
 <span id="cb193-2"><a href="combining-plots-with-common-axes.html#cb193-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb193-3"><a href="combining-plots-with-common-axes.html#cb193-3" aria-hidden="true" tabindex="-1"></a>df_s9 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S9&#39;</span>) </span>
@@ -789,9 +789,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb193-15"><a href="combining-plots-with-common-axes.html#cb193-15" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
 <span id="cb193-16"><a href="combining-plots-with-common-axes.html#cb193-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb193-17"><a href="combining-plots-with-common-axes.html#cb193-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s9)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-171-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-1.png" width="350.4" /></p>
 <p>Now let’s put them together in a 3x3 figure (3 rows, 3 columns) using the function <code>plot_grid</code> from the <strong>cowplot</strong> package. Here is the illustration of what we are going to do.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-172"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-171"></span>
 <img src="img/rc33.png" alt="3x3 figure. It has 3 columns and 3 rows" width="75%" />
 <p class="caption">
 Figure 5.1: 3x3 figure. It has 3 columns and 3 rows
@@ -816,7 +816,7 @@ Figure 5.1: 3x3 figure. It has 3 columns and 3 rows
 <span id="cb194-14"><a href="combining-plots-with-common-axes.html#cb194-14" aria-hidden="true" tabindex="-1"></a>          <span class="co"># top of the plot. </span></span>
 <span id="cb194-15"><a href="combining-plots-with-common-axes.html#cb194-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb194-16"><a href="combining-plots-with-common-axes.html#cb194-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(together1)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-173-1.png" width="1094.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-172-1.png" width="1094.4" /></p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="combining-plots-with-common-axes.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;together1.png&#39;</span>,together1,<span class="at">nrow=</span><span class="dv">3</span>,<span class="at">ncol=</span><span class="dv">3</span>,<span class="at">base_asp=</span><span class="fl">0.95</span>) </span>
 <span id="cb195-2"><a href="combining-plots-with-common-axes.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="co"># save as an image. ncol and nrow in save_plot() </span></span>
 <span id="cb195-3"><a href="combining-plots-with-common-axes.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nrow and ncol in save_plot() have to match the values in plot_grid() as shown above. </span></span></code></pre></div>
@@ -830,7 +830,7 @@ Figure 5.1: 3x3 figure. It has 3 columns and 3 rows
 <li><p>The picture here illustrates what you will need to write for <code>location</code> in the function <code>sm_common_axis()</code>.</p></li>
 <li><p>Example: <code>sm_common_axis(location = 'topleft')</code> for the very top left panel of the 3x3 combined figure.</p></li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-174"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-173"></span>
 <img src="img/rc_arg.png" alt="Arguments for location in sm_common_axis for 3x3 figure." width="75%" />
 <p class="caption">
 Figure 5.2: Arguments for location in sm_common_axis for 3x3 figure.
@@ -868,21 +868,21 @@ Figure 5.2: Arguments for location in sm_common_axis for 3x3 figure.
 <span id="cb196-30"><a href="combining-plots-with-common-axes.html#cb196-30" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># 0 is the very left of the plot. </span></span>
 <span id="cb196-31"><a href="combining-plots-with-common-axes.html#cb196-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb196-32"><a href="combining-plots-with-common-axes.html#cb196-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(together2)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-175-1.png" width="1065.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-174-1.png" width="1065.6" /></p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="combining-plots-with-common-axes.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;together2.png&#39;</span>,together2,<span class="at">nrow=</span><span class="dv">3</span>,<span class="at">ncol=</span><span class="dv">3</span>,<span class="at">base_asp=</span><span class="fl">0.95</span>)</span>
 <span id="cb197-2"><a href="combining-plots-with-common-axes.html#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="co"># save as an image. ncol and nrow in save_plot() </span></span>
 <span id="cb197-3"><a href="combining-plots-with-common-axes.html#cb197-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nrow and ncol in save_plot() have to match the </span></span>
 <span id="cb197-4"><a href="combining-plots-with-common-axes.html#cb197-4" aria-hidden="true" tabindex="-1"></a><span class="co"># values in plot_grid() as shown above. </span></span></code></pre></div>
 <p>Open <code>together2.png</code> in your directory folder. I think it looks a lot cleaner!</p>
 <p>If you are planning to make a 1x3 figure (1 row, 3 columns), here is the illustration.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-176"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-175"></span>
 <img src="img/rc13.png" alt="Arguments for location in sm_common_axis for 1x3 figure." width="75%" />
 <p class="caption">
 Figure 5.3: Arguments for location in sm_common_axis for 1x3 figure.
 </p>
 </div>
 <p>If you are planning to make a 2x2 figure (2 rows, 2 columns), here is the illustration.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-177"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-176"></span>
 <img src="img/rc22.png" alt="Arguments for location in sm_common_axis for 2x2 figure." width="55%" />
 <p class="caption">
 Figure 5.4: Arguments for location in sm_common_axis for 2x2 figure.
@@ -912,12 +912,12 @@ Figure 5.4: Arguments for location in sm_common_axis for 2x2 figure.
 <span id="cb198-19"><a href="combining-plots-with-common-axes.html#cb198-19" aria-hidden="true" tabindex="-1"></a>                              <span class="at">left =</span> <span class="fu">textGrob</span>(<span class="st">&quot;\u0394 Contrast Balance Ratio (dB)&quot;</span>,</span>
 <span id="cb198-20"><a href="combining-plots-with-common-axes.html#cb198-20" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fontsize =</span> <span class="dv">17</span>), </span>
 <span id="cb198-21"><a href="combining-plots-with-common-axes.html#cb198-21" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">rot =</span> <span class="dv">90</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-178-1.png" width="1104" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-177-1.png" width="1104" /></p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="combining-plots-with-common-axes.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;combined_plot.png&quot;</span>, combined_plot, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>,</span>
 <span id="cb199-2"><a href="combining-plots-with-common-axes.html#cb199-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">base_aspect_ratio =</span> .<span class="dv">9</span>, <span class="at">limitsize =</span> F)</span></code></pre></div>
 <p>Open <code>combined_plot.png</code> file in your directory folder. Does it look similar to the one in the web browser? On my computer, they look very different, and I much prefer the <strong>png</strong> file.</p>
 <p>Here is the actual <strong>png</strong> file:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-179"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-178"></span>
 <img src="img/combined_plot.png" alt="Combined plot" width="100%" />
 <p class="caption">
 Figure 5.5: Combined plot

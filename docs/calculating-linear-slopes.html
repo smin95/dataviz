@@ -329,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#data-visualization"><i class="fa fa-check"></i><b>10.2</b> Data Visualization</a></li>
 <li class="chapter" data-level="10.3" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>10.3</b> Facetting the Contrast Sensitivity Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>11</b> Data Analysis with the Contrast Sensitivity Function (in Progress)</a>
+<li class="chapter" data-level="11" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>11</b> Area under Curve, AULCSF and R2 of the CSF</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
-<li class="chapter" data-level="11.2" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
-<li class="chapter" data-level="11.3" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="11.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="11.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="11.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -467,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="calculating-linear-slopes.html#cb255-1" aria-hidden="true" tabindex="-1"></a>A3_second <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> logSF, <span class="at">y =</span> absBP)) <span class="sc">+</span></span>
 <span id="cb255-2"><a href="calculating-linear-slopes.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb255-3"><a href="calculating-linear-slopes.html#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.4582</span>, <span class="at">intercept =</span> <span class="fl">0.3046</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-213-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-212-1.png" width="350.4" /></p>
 <p>Instead of writing the slope and intercept manually, we can subset these values using <code>$</code>.</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="calculating-linear-slopes.html#cb256-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##     (Intercept) A3_second$logSF 
@@ -492,7 +492,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 <span id="cb262-10"><a href="calculating-linear-slopes.html#cb262-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&#39;Slope =&#39;</span>,<span class="fu">round</span>(res<span class="sc">$</span>coefficients[[<span class="dv">2</span>]],<span class="dv">2</span>))) <span class="sc">+</span></span>
 <span id="cb262-11"><a href="calculating-linear-slopes.html#cb262-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="fl">0.9</span>, <span class="at">size =</span> <span class="fl">3.5</span>,</span>
 <span id="cb262-12"><a href="calculating-linear-slopes.html#cb262-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&#39;Intercept =&#39;</span>, <span class="fu">round</span>(res<span class="sc">$</span>coefficients[[<span class="dv">1</span>]],<span class="dv">2</span>)))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-217-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-216-1.png" width="350.4" /></p>
 <p>In summary, you can compute the slope of a linear function between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> and using <code>lm()</code>, where you use <code>~</code> to describe the relationship. You also need to use <code>$</code> to subset the slopes directly.</p>
 </div>
 <div id="calculating-slopes-of-all-subjects-groups-and-conditions" class="section level2" number="7.2">
@@ -589,7 +589,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 <span id="cb274-2"><a href="calculating-linear-slopes.html#cb274-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb274-3"><a href="calculating-linear-slopes.html#cb274-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb274-4"><a href="calculating-linear-slopes.html#cb274-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-223-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-222-1.png" width="350.4" /></p>
 <p>Here is a bar graph showing <code>slope_df</code>’s data for <code>One</code> condition only. This figure is similar to Figure 3B in the paper (Mao et al., 2020).</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="calculating-linear-slopes.html#cb275-1" aria-hidden="true" tabindex="-1"></a>slope_df_one <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Slope, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb275-2"><a href="calculating-linear-slopes.html#cb275-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, </span>
@@ -597,7 +597,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 <span id="cb275-4"><a href="calculating-linear-slopes.html#cb275-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">point_alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb275-5"><a href="calculating-linear-slopes.html#cb275-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb275-6"><a href="calculating-linear-slopes.html#cb275-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Binocular imbalance&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-224-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-223-1.png" width="350.4" /></p>
 
 </div>
 </div>

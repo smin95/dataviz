@@ -329,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#data-visualization"><i class="fa fa-check"></i><b>10.2</b> Data Visualization</a></li>
 <li class="chapter" data-level="10.3" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>10.3</b> Facetting the Contrast Sensitivity Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>11</b> Data Analysis with the Contrast Sensitivity Function (in Progress)</a>
+<li class="chapter" data-level="11" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>11</b> Area under Curve, AULCSF and R2 of the CSF</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
-<li class="chapter" data-level="11.2" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
-<li class="chapter" data-level="11.3" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="11.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="11.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="11.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -413,7 +413,7 @@ Figure 1.1: Rstudio layout, image from <a href="http://www.sthda.com/english/wik
 </div>
 <div id="lets-make-a-folder-and-set-it-as-working-directory" class="section level3 unnumbered">
 <h3>Let’s make a folder and set it as working directory</h3>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-4"></span>
 <img src="img/setwd.png" alt="Setting your working directory, image from https://www.ucl.ac.uk/~uctqiax/PUBLG100/2015/faq/setwd.html" width="80%" />
 <p class="caption">
 Figure 1.2: Setting your working directory, image from <a href="https://www.ucl.ac.uk/~uctqiax/PUBLG100/2015/faq/setwd.html" class="uri">https://www.ucl.ac.uk/~uctqiax/PUBLG100/2015/faq/setwd.html</a>
@@ -433,7 +433,7 @@ Figure 1.2: Setting your working directory, image from <a href="https://www.ucl.
 <li><p>You can run code in 2 ways.</p></li>
 <li><p>First, you can type it in the script and run it after highlighting the codes you would like to run.</p></li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-5"></span>
 <img src="img/run_code.PNG" alt="How to run your code - script" width="100%" />
 <p class="caption">
 Figure 1.3: How to run your code - script
@@ -442,7 +442,7 @@ Figure 1.3: How to run your code - script
 <ul>
 <li>Second, you can type your code directly in the console.</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-6"></span>
 <img src="img/run_code_console.PNG" alt="How to run your code - console" width="100%" />
 <p class="caption">
 Figure 1.4: How to run your code - console

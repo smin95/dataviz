@@ -329,11 +329,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#data-visualization"><i class="fa fa-check"></i><b>10.2</b> Data Visualization</a></li>
 <li class="chapter" data-level="10.3" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>10.3</b> Facetting the Contrast Sensitivity Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>11</b> Data Analysis with the Contrast Sensitivity Function (in Progress)</a>
+<li class="chapter" data-level="11" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>11</b> Area under Curve, AULCSF and R2 of the CSF</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
-<li class="chapter" data-level="11.2" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
-<li class="chapter" data-level="11.3" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="11.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="11.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="11.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -416,7 +416,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb353-51"><a href="recreating-figures-from-front.-genetics-2021.html#cb353-51" aria-hidden="true" tabindex="-1"></a>                 <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb353-52"><a href="recreating-figures-from-front.-genetics-2021.html#cb353-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb353-53"><a href="recreating-figures-from-front.-genetics-2021.html#cb353-53" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(corr_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-269-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-268-1.png" width="696" /></p>
 <div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="recreating-figures-from-front.-genetics-2021.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;corr_plots.png&quot;</span>, </span>
 <span id="cb354-2"><a href="recreating-figures-from-front.-genetics-2021.html#cb354-2" aria-hidden="true" tabindex="-1"></a>          corr_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb354-3"><a href="recreating-figures-from-front.-genetics-2021.html#cb354-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -460,7 +460,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb355-35"><a href="recreating-figures-from-front.-genetics-2021.html#cb355-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb355-36"><a href="recreating-figures-from-front.-genetics-2021.html#cb355-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb355-37"><a href="recreating-figures-from-front.-genetics-2021.html#cb355-37" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(bar_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-270-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-269-1.png" width="696" /></p>
 <div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="recreating-figures-from-front.-genetics-2021.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;bars.png&quot;</span>, </span>
 <span id="cb356-2"><a href="recreating-figures-from-front.-genetics-2021.html#cb356-2" aria-hidden="true" tabindex="-1"></a>          bar_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb356-3"><a href="recreating-figures-from-front.-genetics-2021.html#cb356-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -500,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb357-31"><a href="recreating-figures-from-front.-genetics-2021.html#cb357-31" aria-hidden="true" tabindex="-1"></a>                      <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb357-32"><a href="recreating-figures-from-front.-genetics-2021.html#cb357-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb357-33"><a href="recreating-figures-from-front.-genetics-2021.html#cb357-33" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(boxplot_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-271-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-270-1.png" width="696" /></p>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="recreating-figures-from-front.-genetics-2021.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;boxplots.png&quot;</span>, </span>
 <span id="cb358-2"><a href="recreating-figures-from-front.-genetics-2021.html#cb358-2" aria-hidden="true" tabindex="-1"></a>          boxplot_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb358-3"><a href="recreating-figures-from-front.-genetics-2021.html#cb358-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -536,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb359-27"><a href="recreating-figures-from-front.-genetics-2021.html#cb359-27" aria-hidden="true" tabindex="-1"></a>                         <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb359-28"><a href="recreating-figures-from-front.-genetics-2021.html#cb359-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb359-29"><a href="recreating-figures-from-front.-genetics-2021.html#cb359-29" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(violin_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-272-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-271-1.png" width="696" /></p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="recreating-figures-from-front.-genetics-2021.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;violins.png&quot;</span>, </span>
 <span id="cb360-2"><a href="recreating-figures-from-front.-genetics-2021.html#cb360-2" aria-hidden="true" tabindex="-1"></a>          violin_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb360-3"><a href="recreating-figures-from-front.-genetics-2021.html#cb360-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -584,7 +584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb361-39"><a href="recreating-figures-from-front.-genetics-2021.html#cb361-39" aria-hidden="true" tabindex="-1"></a>          <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb361-40"><a href="recreating-figures-from-front.-genetics-2021.html#cb361-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb361-41"><a href="recreating-figures-from-front.-genetics-2021.html#cb361-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(slopes)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-273-1.png" width="768" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-272-1.png" width="768" /></p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="recreating-figures-from-front.-genetics-2021.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;slopes.png&quot;</span>, </span>
 <span id="cb362-2"><a href="recreating-figures-from-front.-genetics-2021.html#cb362-2" aria-hidden="true" tabindex="-1"></a>          slopes, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb362-3"><a href="recreating-figures-from-front.-genetics-2021.html#cb362-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -686,7 +686,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb363-92"><a href="recreating-figures-from-front.-genetics-2021.html#cb363-92" aria-hidden="true" tabindex="-1"></a>                           <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">7.5</span>,<span class="fl">2.5</span>))</span>
 <span id="cb363-93"><a href="recreating-figures-from-front.-genetics-2021.html#cb363-93" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb363-94"><a href="recreating-figures-from-front.-genetics-2021.html#cb363-94" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(raincloud_all)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-274-1.png" width="696" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-273-1.png" width="696" /></p>
 <div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="recreating-figures-from-front.-genetics-2021.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;rainclouds.png&quot;</span>, </span>
 <span id="cb364-2"><a href="recreating-figures-from-front.-genetics-2021.html#cb364-2" aria-hidden="true" tabindex="-1"></a>          raincloud_all, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb364-3"><a href="recreating-figures-from-front.-genetics-2021.html#cb364-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
@@ -752,7 +752,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb365-57"><a href="recreating-figures-from-front.-genetics-2021.html#cb365-57" aria-hidden="true" tabindex="-1"></a>                     <span class="at">scale =</span> <span class="fl">0.95</span>)</span>
 <span id="cb365-58"><a href="recreating-figures-from-front.-genetics-2021.html#cb365-58" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb365-59"><a href="recreating-figures-from-front.-genetics-2021.html#cb365-59" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(case_study)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-275-1.png" width="1051.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-274-1.png" width="1051.2" /></p>
 <div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="recreating-figures-from-front.-genetics-2021.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;case_study.png&quot;</span>, </span>
 <span id="cb366-2"><a href="recreating-figures-from-front.-genetics-2021.html#cb366-2" aria-hidden="true" tabindex="-1"></a>          case_study, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">base_asp =</span> .<span class="dv">95</span>,</span>
 <span id="cb366-3"><a href="recreating-figures-from-front.-genetics-2021.html#cb366-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">dpi =</span> <span class="dv">600</span>)</span></code></pre></div>
