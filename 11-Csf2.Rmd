@@ -134,7 +134,7 @@ Notice that the AULCSF is very similar to AUC. This suggests that the CSF fit (a
 sm_r2(ACh_avg1$SpatialFreq, ACh_avg1$avgSens)
 ```
 
-We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note that `sm_r2()` is a function specific for CSF fit only.
+We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note that `sm_r2()` is a function specific for CSF fit only, and the `x` and `y` arguments should contain data in linear units, not log units.
 
 To visualize what R2 captures, we need to understand **residuals**, which is the difference or distance between the actual data and the predicted data from the given fit, such as the CSF.
 
@@ -145,11 +145,10 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_hgrid() +
   xlab('Spatial frequency (c/deg)') +
   ylab('Averaged sensitivity') +
-  ggtitle('Repetition 1 (n=51)') +
-  annotate('text', x = 0.7, y = 1.3)
+  ggtitle('Repetition 1 (n=51)')
 ```
 
-If the residual is very low, then the distance between the actual and predicted data should be close to 0. We see that the residual is low when the spatial frequency is at about 2 c/deg. In this case, the general fit is very faithful to the original data, so the residual is low and R2 is high (close to 1). In sum, the lower the residuals, the higher the R2, which ranges from 0 to 1.
+If the residual is very low, then the distance between the actual and predicted data should be close to 0. We see that the residual is low when the spatial frequency is between 3 and 10 c/deg. In this case, the general fit is very faithful to the original data, so the residual is low and R2 is high (close to 1). In sum, the lower the residuals, the higher the R2, which ranges from 0 to 1.
 
 ## Calculating area and R2 of all subjects, groups and conditions
 
@@ -161,13 +160,58 @@ ACh
 
 We see that there are 51 subjects total, each of which has completed two repetitions (i.e., conditions) So there are 102 slopes to calculate! Does that mean we need to use `sm_trapz()`, `sm_AULCSF()` and `sm_r2()` 102 times?
 
-As the reader might expect, the answer is **no**. **smCSF** has a function `sm_slope_list()` that returns a dataframe of slopes from **linear regression**. It works similarly to `sm_auc_list()`.
+As the reader might expect, the answer is **no**. **smCSF** has a functions `sm_trapz_list()`, `sm_AULCSF_list()` and `sm_r2_list()` that return a data frame of AUCs, AULCSFs and R2s, respectively. They works similarly to `sm_auc_list()` and `sm_slope_list()` from **smplot**.
 
-- `data` = this argument requires the variable that stores the data frame. In our case, it is `df`.
+- `data` = this argument requires the variable that stores the data frame. In our case, it is `ACh`. It is recommended that the data are in linear units.
 - `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.
 - `groups` = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be `Group` column that contains two groups: `Normal` and `Amblyopia`.
-- `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the two conditions are `One` and `Two`.
-- `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the `logSF` column of `df`. It must  strings, ex. `'logSF'`, not `logSF`.
-- `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'absBP'`, not `absBP`.
+- `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the two conditions are `1` and `2` from the `Repetition` column.
+- `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the `SpatialFreq` column of `ACh`. It must  strings, ex. `'SpatialFreq'`, not `SpatialFreq`.
+- `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'Sensitivity'`, not `Sensitivity`.
+- `logXY` = thus argument's default is `sm_trapz_list(logXY = TRUE)` and `sm_AULCSF_list(logXY = TRUE)`, so it computes the log10 units (`x` and `values` vector) of AUC and AULCSF. When `logXY = FALSE`, it computes the linear units (`x` and `values` vector) AUC and AULCSF. `sm_r2_list()` does not 
 
-We can store the results from `sm_slope_list()` into a new variable. I will call the new variable `slope_df`.
+Let's calculate the AUCs first. We can store the results from `sm_trapz_list()` into a new variable. I will call the new variable `trapz_df`.
+
+```{r}
+trapz_df <- sm_trapz_list(subjects = 'Subject', 
+                          conditions = 'Repetition',
+                          x = 'SpatialFreq', 
+                          values = 'Sensitivity', 
+                          data = ACh)
+
+trapz_df 
+```
+
+Likewise, we can store the results from `sm_AULCSF_list()` in a new variable. I will call the new variable `aulcsf_df`.
+
+```{r}
+aulcsf_df <- sm_AULCSF_list(subjects = 'Subject', 
+                          conditions = 'Repetition',
+                          x = 'SpatialFreq', 
+                          values = 'Sensitivity', 
+                          data = ACh)
+
+aulcsf_df 
+```
+
+Finally, we can store the results from `sm_r2_list()` in a new variable. I will call the new variable `r2`_df`.
+
+```{r}
+r2_df <- sm_r2_list(subjects = 'Subject', 
+                          conditions = 'Repetition',
+                          x = 'SpatialFreq', 
+                          values = 'Sensitivity', 
+                          data = ACh)
+
+r2_df 
+```
+
+We see that R2 is very good except for few observers in certain repetitions. Let's see how many rows of the data frame contains R2 less than 0.75.
+
+```{r}
+ind <- which(r2_df$R2 < 0.75)
+length(ind)
+r2_df[ind,]
+```
+
+Out of 102 rows of the R2s, 8 of them contain poor R2. I think this should be acceptable.

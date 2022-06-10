@@ -333,6 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
 <li class="chapter" data-level="11.2" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="11.3" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -355,15 +356,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-analysis-with-the-contrast-sensitivity-function-in-progress" class="section level1" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Data Analysis with the Contrast Sensitivity Function (in Progress)</h1>
-<p>In this section, we will analyze the contrast sensitivity function using the <strong>smCSF</strong> package. I will complement it with <strong>smplot</strong> for aesthetics.</p>
+<p>In this section, we will analyze the contrast sensitivity function using the smCSF package. I will complement it with smplot for aesthetics.</p>
 <p>As in the previous chapter, we will use data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):</p>
-<p><strong>Kim, Y. J., Reynaud, A., Hess, R. F., &amp; Mullen, K. T. (2017). A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology &amp; visual science, 58(9), 3628-3636.</strong></p>
+<p><strong>Kim, Y. J., Reynaud, A., Hess, R. F., &amp; Mullen, K. T. (2017).</strong> A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology &amp; visual science, 58(9), 3628-3636.</p>
 <p>Without further ado, let’s load the necessary packages.</p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb413-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span>
-<span id="cb413-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb413-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smCSF)</span></code></pre></div>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb414-1" aria-hidden="true" tabindex="-1"></a>ACh <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/data_ACh.csv&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ACh)</span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb403-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb403-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb403-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span>
+<span id="cb403-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb403-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smCSF)</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb404-1" aria-hidden="true" tabindex="-1"></a>ACh <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/data_ACh.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ACh)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   Subject Repetition SpatialFreq Sensitivity
 ##   &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -373,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 S4               1        0.25        5.14
 ## 5 S5               1        0.25       16.0 
 ## 6 S6               1        0.25       10.9</code></pre>
-<p>As a reminder, there are four columns in this data frame:</p>
+<p>There are four columns in this data frame:</p>
 <ul>
 <li><p>First, <code>Subject</code> refers to each participant. There are 51 participants total in the .csv file.</p></li>
 <li><p>Next, <code>Repetition</code> refers to each repetition of the measurement The participants performed two repetitions of the contrast sensitivity measurement.</p></li>
@@ -384,13 +385,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.1</span> Area under a Curve</h2>
 <p>The contrast sensitivity function (CSF) can be analyzed by the computation of an area under a curve. There are two ways to calculate the area: 1) trapezoidal integration of the log CSF, and 2) area under the log CSF (AULCSF). Both are both popular methods.</p>
 <p>Let’s create a data frame <code>ACh_avg</code> that contains the averaged contrast sensitivity data for each repetition and spatial frequency across 51 subjects.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb417-1" aria-hidden="true" tabindex="-1"></a>ACh_avg <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> </span>
-<span id="cb417-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb417-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Repetition, SpatialFreq) <span class="sc">%&gt;%</span></span>
-<span id="cb417-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb417-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgSens =</span> <span class="fu">mean</span>(Sensitivity),</span>
-<span id="cb417-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb417-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdErrSens =</span> <span class="fu">sm_stdErr</span>(Sensitivity),</span>
-<span id="cb417-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb417-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdDevSens =</span> <span class="fu">sd</span>(Sensitivity))</span>
-<span id="cb417-6"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb417-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb417-7"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb417-7" aria-hidden="true" tabindex="-1"></a>ACh_avg</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb407-1" aria-hidden="true" tabindex="-1"></a>ACh_avg <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> </span>
+<span id="cb407-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb407-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Repetition, SpatialFreq) <span class="sc">%&gt;%</span></span>
+<span id="cb407-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb407-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgSens =</span> <span class="fu">mean</span>(Sensitivity),</span>
+<span id="cb407-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb407-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdErrSens =</span> <span class="fu">sm_stdErr</span>(Sensitivity),</span>
+<span id="cb407-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb407-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdDevSens =</span> <span class="fu">sd</span>(Sensitivity))</span>
+<span id="cb407-6"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb407-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb407-7"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb407-7" aria-hidden="true" tabindex="-1"></a>ACh_avg</span></code></pre></div>
 <pre><code>## # A tibble: 24 x 5
 ## # Groups:   Repetition [2]
 ##    Repetition SpatialFreq avgSens stdErrSens stdDevSens
@@ -407,36 +408,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10          1        4.93    18.1      0.960       6.85
 ## # ... with 14 more rows</code></pre>
 <p>As in the previous chapter, lets store the data into proper data frames for each repetition.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb419-1" aria-hidden="true" tabindex="-1"></a>ACh_avg<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh_avg<span class="sc">$</span>Repetition) <span class="co"># factor</span></span>
-<span id="cb419-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb419-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb419-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb419-3" aria-hidden="true" tabindex="-1"></a>ACh_avg1 <span class="ot">&lt;-</span> ACh_avg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Repetition <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># repetition 1</span></span>
-<span id="cb419-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb419-4" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="ot">&lt;-</span> ACh_avg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Repetition <span class="sc">==</span> <span class="dv">2</span>) <span class="co"># repetition 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb409-1" aria-hidden="true" tabindex="-1"></a>ACh_avg<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh_avg<span class="sc">$</span>Repetition) <span class="co"># factor</span></span>
+<span id="cb409-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb409-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb409-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb409-3" aria-hidden="true" tabindex="-1"></a>ACh_avg1 <span class="ot">&lt;-</span> ACh_avg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Repetition <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># repetition 1</span></span>
+<span id="cb409-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb409-4" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="ot">&lt;-</span> ACh_avg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Repetition <span class="sc">==</span> <span class="dv">2</span>) <span class="co"># repetition 2</span></span></code></pre></div>
 <p>Here is an example of trapezoidal integration of the contrast sensitivity function (i.e., AUC). AUC is an abbreviation of <strong>a</strong>rea <strong>u</strong>nder a <strong>c</strong>urve from trapezoidal integration.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-1" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
-<span id="cb420-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;lightgreen&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb420-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb420-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb420-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
-<span id="cb420-6"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb420-7"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
-<span id="cb420-8"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb420-9"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
-<span id="cb420-10"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
-<span id="cb420-11"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb420-12"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">0.7</span>, <span class="at">y =</span> <span class="fl">1.3</span>, <span class="at">label =</span> <span class="st">&#39;Trapezoidal AUC&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-314-1.png" width="350.4" /></p>
-<p>Here is an example of the AULCSF.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-1" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
-<span id="cb421-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_areaCSF</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;lightgreen&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb421-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>), <span class="at">size =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb421-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb421-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
-<span id="cb421-6"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb421-7"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
-<span id="cb421-8"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb421-9"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb421-10"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">1.3</span>, <span class="at">label =</span> <span class="st">&#39;AULCSF&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-1" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb410-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;lightgreen&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb410-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb410-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb410-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb410-6"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb410-7"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb410-8"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb410-9"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
+<span id="cb410-10"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
+<span id="cb410-11"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb410-12"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb410-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">0.7</span>, <span class="at">y =</span> <span class="fl">1.3</span>, <span class="at">label =</span> <span class="st">&#39;Trapezoidal AUC&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-315-1.png" width="350.4" /></p>
+<p>Here is an example of the AULCSF.</p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-1" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb411-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_areaCSF</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;lightgreen&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb411-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>), <span class="at">size =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb411-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb411-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb411-6"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb411-7"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb411-8"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb411-9"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb411-10"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb411-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">1.3</span>, <span class="at">label =</span> <span class="st">&#39;AULCSF&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-316-1.png" width="672" /></p>
 <p>Notice that these that AUC and AULCSF are slightly different. AUC denotes the area that is enclosed by the lines that connect each point. AULCSF refers to the area that is enclosed by the fitted contrast sensitivity function. The astute reader may realize that if the fit of the contrast sensitivity function is poor, then the AULCSF might not be accurate. Hence, it might be necessary to prove that the CSF fit is robust with the given data. To avoid these hassles, some researchers use AUC instead. Nevertheless, <strong>smCSF</strong> offers functions that compute both AUC and AULCSF.</p>
 <p>The higher the AUC and AULCSF are, the higher the overall sensitivity of the observer. Therefore, when potential treatment is being studied, it is of interest to see an increase in AUC and AULCSF in the visually impaired after their treatment.</p>
 </div>
@@ -444,34 +445,421 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">11.2</span> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></h2>
 <p>This section is identical to what we have seen in Chapter 6. For those who have read Chapter 6, the only difference is that these AUCs should be in log scales (both x and y scales) in the context of contrast sensitivity.</p>
 <p>Recall that <code>ACh_avg</code> contains averaged contrast sensitivity for each spatial frequency across 51 observers for the first repetition.</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb422-1" aria-hidden="true" tabindex="-1"></a>ACh_avg1</span></code></pre></div>
-<pre><code>## # A tibble: 12 x 5
-## # Groups:   Repetition [1]
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb412-1" aria-hidden="true" tabindex="-1"></a>ACh_avg </span></code></pre></div>
+<pre><code>## # A tibble: 24 x 5
+## # Groups:   Repetition [2]
 ##    Repetition SpatialFreq avgSens stdErrSens stdDevSens
 ##    &lt;fct&gt;            &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-##  1 1                 0.25   12.6       0.743       5.31
-##  2 1                 0.35   14.7       0.777       5.55
-##  3 1                 0.49   18.6       0.993       7.09
-##  4 1                 0.68   23.7       1.22        8.71
-##  5 1                 0.94   28.7       1.36        9.68
-##  6 1                 1.31   32.0       1.40        9.99
-##  7 1                 1.83   32.4       1.43       10.2 
-##  8 1                 2.54   29.6       1.39        9.93
-##  9 1                 3.54   24.3       1.22        8.70
-## 10 1                 4.93   18.1       0.960       6.85
-## 11 1                 6.87   12.2       0.720       5.14
-## 12 1                 9.57    7.56      0.540       3.85</code></pre>
+##  1 1                 0.25    12.6      0.743       5.31
+##  2 1                 0.35    14.7      0.777       5.55
+##  3 1                 0.49    18.6      0.993       7.09
+##  4 1                 0.68    23.7      1.22        8.71
+##  5 1                 0.94    28.7      1.36        9.68
+##  6 1                 1.31    32.0      1.40        9.99
+##  7 1                 1.83    32.4      1.43       10.2 
+##  8 1                 2.54    29.6      1.39        9.93
+##  9 1                 3.54    24.3      1.22        8.70
+## 10 1                 4.93    18.1      0.960       6.85
+## # ... with 14 more rows</code></pre>
 <p>To compute the trapezoidal AUC, we can use the function <code>sm_trapz()</code>.</p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_trapz</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_trapz</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
 <pre><code>## [1] 2.081833</code></pre>
 <p>The difference between <code>sm_trapz()</code> and <code>sm_auc()</code> is that <code>sm_trapz()</code> automatically converts the <code>x</code> and <code>y</code> vectors into log10 scales. This default can be overcome when <code>logXY = FALSE</code>. When, <code>logXY = FALSE</code>, <code>sm_trapz()</code> becomes identical to <code>sm_auc()</code>. <code>sm_trapz()</code> has been created as a separate function to create a convenient and straightforward workflow for those who wish to analyze the contrast sensitivity data.</p>
 <p>In addition, to compute the trapezoidal AUC, we can use the function <code>sm_AULCSF()</code>.</p>
-<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_AULCSF</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_AULCSF</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
 <pre><code>## [1] 2.089264</code></pre>
 <p>Notice that the AULCSF is very similar to AUC. This suggests that the CSF fit (as generated by <code>sm_CSF()</code>) is very good. This can verified by computing R2 (R-squared), which ranges from 0 (worst model fit) to 1 (best model fit), using <code>sm_r2()</code>.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_r2</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_r2</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
 <pre><code>## [1] 0.9672</code></pre>
-<p>We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note that <code>sm_r2()</code> is a function specific for CSF fit only.</p>
+<p>We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note that <code>sm_r2()</code> is a function specific for CSF fit only, and the <code>x</code> and <code>y</code> arguments should contain data in linear units, not log units.</p>
+<p>To visualize what R2 captures, we need to understand <strong>residuals</strong>, which is the difference or distance between the actual data and the predicted data from the given fit, such as the CSF.</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-1" aria-hidden="true" tabindex="-1"></a>ACh_avg1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb420-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;wine&#39;</span>), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb420-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb420-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb420-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb420-6"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb420-7"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb420-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 1 (n=51)&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-321-1.png" width="350.4" /></p>
+<p>If the residual is very low, then the distance between the actual and predicted data should be close to 0. We see that the residual is low when the spatial frequency is between 3 and 10 c/deg. In this case, the general fit is very faithful to the original data, so the residual is low and R2 is high (close to 1). In sum, the lower the residuals, the higher the R2, which ranges from 0 to 1.</p>
+</div>
+<div id="calculating-area-and-r2-of-all-subjects-groups-and-conditions" class="section level2" number="11.3">
+<h2><span class="header-section-number">11.3</span> Calculating area and R2 of all subjects, groups and conditions</h2>
+<p>Now that we know how to calculate AUC, AULCSF and R2 for each subject, let’s calculate slopes of our entire dataset.</p>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb421-1" aria-hidden="true" tabindex="-1"></a>ACh</span></code></pre></div>
+<pre><code>## # A tibble: 1,224 x 4
+##    Subject Repetition SpatialFreq Sensitivity
+##    &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 S1               1        0.25       23.8 
+##  2 S2               1        0.25       18.0 
+##  3 S3               1        0.25       14.2 
+##  4 S4               1        0.25        5.14
+##  5 S5               1        0.25       16.0 
+##  6 S6               1        0.25       10.9 
+##  7 S7               1        0.25        8.41
+##  8 S8               1        0.25       10.5 
+##  9 S9               1        0.25        9.06
+## 10 S10              1        0.25        3.57
+## # ... with 1,214 more rows</code></pre>
+<p>We see that there are 51 subjects total, each of which has completed two repetitions (i.e., conditions) So there are 102 slopes to calculate! Does that mean we need to use <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code> 102 times?</p>
+<p>As the reader might expect, the answer is <strong>no</strong>. <strong>smCSF</strong> has a functions <code>sm_trapz_list()</code>, <code>sm_AULCSF_list()</code> and <code>sm_r2_list()</code> that return a data frame of AUCs, AULCSFs and R2s, respectively. They works similarly to <code>sm_auc_list()</code> and <code>sm_slope_list()</code> from <strong>smplot</strong>.</p>
+<ul>
+<li><code>data</code> = this argument requires the variable that stores the data frame. In our case, it is <code>ACh</code>. It is recommended that the data are in linear units.</li>
+<li><code>subjects</code> = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. <code>'Subject'</code>, not <code>Subject</code>.</li>
+<li><code>groups</code> = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be <code>Group</code> column that contains two groups: <code>Normal</code> and <code>Amblyopia</code>.</li>
+<li><code>conditions</code> = this argument requires name of the column of the data frame that contains each condition. In our example, the two conditions are <code>1</code> and <code>2</code> from the <code>Repetition</code> column.</li>
+<li><code>x</code> = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the <code>SpatialFreq</code> column of <code>ACh</code>. It must strings, ex. <code>'SpatialFreq'</code>, not <code>SpatialFreq</code>.</li>
+<li><code>values</code> = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. <code>'Sensitivity'</code>, not <code>Sensitivity</code>.</li>
+<li><code>logXY</code> = thus argument’s default is <code>sm_trapz_list(logXY = TRUE)</code> and <code>sm_AULCSF_list(logXY = TRUE)</code>, so it computes the log10 units (<code>x</code> and <code>values</code> vector) of AUC and AULCSF. When <code>logXY = FALSE</code>, it computes the linear units (<code>x</code> and <code>values</code> vector) AUC and AULCSF. <code>sm_r2_list()</code> does not</li>
+</ul>
+<p>Let’s calculate the AUCs first. We can store the results from <code>sm_trapz_list()</code> into a new variable. I will call the new variable <code>trapz_df</code>.</p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb423-1" aria-hidden="true" tabindex="-1"></a>trapz_df <span class="ot">&lt;-</span> <span class="fu">sm_trapz_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb423-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb423-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb423-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb423-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb423-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb423-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb423-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb423-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
+<pre><code>## [1] &quot;Trapezoid AUC = Sensitivity * SpatialFreq&quot;</code></pre>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb425-1" aria-hidden="true" tabindex="-1"></a>trapz_df </span></code></pre></div>
+<pre><code>##     Subject Repetition AUC_Sensitivity
+## 1        S1          1        2.299290
+## 2        S1          2        2.032390
+## 3        S2          1        2.246943
+## 4        S2          2        2.215784
+## 5        S3          1        1.973220
+## 6        S3          2        2.204566
+## 7        S4          1        1.964747
+## 8        S4          2        2.047264
+## 9        S5          1        2.091790
+## 10       S5          2        2.013751
+## 11       S6          1        1.766890
+## 12       S6          2        1.546097
+## 13       S7          1        1.736414
+## 14       S7          2        1.752443
+## 15       S8          1        2.150160
+## 16       S8          2        2.047596
+## 17       S9          1        1.907825
+## 18       S9          2        2.077658
+## 19      S10          1        1.892278
+## 20      S10          2        1.973516
+## 21      S11          1        1.572013
+## 22      S11          2        1.706026
+## 23      S12          1        2.088700
+## 24      S12          2        2.361077
+## 25      S13          1        2.088003
+## 26      S13          2        2.135866
+## 27      S14          1        2.154963
+## 28      S14          2        2.350293
+## 29      S15          1        2.160122
+## 30      S15          2        2.015894
+## 31      S16          1        1.994840
+## 32      S16          2        1.944036
+## 33      S17          1        2.115142
+## 34      S17          2        2.260118
+## 35      S18          1        1.750826
+## 36      S18          2        2.099658
+## 37      S19          1        2.138397
+## 38      S19          2        2.107824
+## 39      S20          1        2.215741
+## 40      S20          2        2.277524
+## 41      S21          1        2.075045
+## 42      S21          2        2.050900
+## 43      S22          1        2.083117
+## 44      S22          2        2.252527
+## 45      S23          1        1.849868
+## 46      S23          2        2.143992
+## 47      S24          1        2.092768
+## 48      S24          2        2.029430
+## 49      S25          1        1.972616
+## 50      S25          2        2.223518
+## 51      S26          1        1.799174
+## 52      S26          2        2.028705
+## 53      S27          1        2.208267
+## 54      S27          2        2.093140
+## 55      S28          1        1.969226
+## 56      S28          2        2.014739
+## 57      S29          1        2.160755
+## 58      S29          2        2.434530
+## 59      S30          1        2.032186
+## 60      S30          2        2.116574
+## 61      S31          1        1.879125
+## 62      S31          2        1.848404
+## 63      S32          1        1.947677
+## 64      S32          2        2.077147
+## 65      S33          1        2.018092
+## 66      S33          2        2.255958
+## 67      S34          1        2.592233
+## 68      S34          2        2.498511
+## 69      S35          1        2.139330
+## 70      S35          2        2.218518
+## 71      S36          1        2.050358
+## 72      S36          2        2.082699
+## 73      S37          1        2.258253
+## 74      S37          2        2.360522
+## 75      S38          1        2.064047
+## 76      S38          2        2.161496
+## 77      S39          1        1.838652
+## 78      S39          2        2.171687
+## 79      S40          1        2.342761
+## 80      S40          2        2.188948
+## 81      S41          1        1.928709
+## 82      S41          2        2.036555
+## 83      S42          1        2.256353
+## 84      S42          2        2.231861
+## 85      S43          1        2.171212
+## 86      S43          2        2.162428
+## 87      S44          1        1.830542
+## 88      S44          2        2.048850
+## 89      S45          1        1.509942
+## 90      S45          2        1.356619
+## 91      S46          1        2.049390
+## 92      S46          2        1.919358
+## 93      S47          1        2.056875
+## 94      S47          2        1.980931
+## 95      S48          1        1.911910
+## 96      S48          2        2.083711
+## 97      S49          1        2.427640
+## 98      S49          2        2.163561
+## 99      S50          1        1.903564
+## 100     S50          2        2.020460
+## 101     S51          1        1.936358
+## 102     S51          2        1.973427</code></pre>
+<p>Likewise, we can store the results from <code>sm_AULCSF_list()</code> in a new variable. I will call the new variable <code>aulcsf_df</code>.</p>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb427-1" aria-hidden="true" tabindex="-1"></a>aulcsf_df <span class="ot">&lt;-</span> <span class="fu">sm_AULCSF_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb427-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb427-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb427-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb427-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb427-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb427-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb427-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb427-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
+<pre><code>## [1] &quot;AULCSF = Sensitivity * SpatialFreq&quot;</code></pre>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb429-1" aria-hidden="true" tabindex="-1"></a>aulcsf_df </span></code></pre></div>
+<pre><code>##     Subject Repetition   AULCSF
+## 1        S1          1 2.307217
+## 2        S1          2 2.038921
+## 3        S2          1 2.254705
+## 4        S2          2 2.222592
+## 5        S3          1 1.979206
+## 6        S3          2 2.214169
+## 7        S4          1 1.971058
+## 8        S4          2 2.053616
+## 9        S5          1 2.097616
+## 10       S5          2 2.022009
+## 11       S6          1 1.766830
+## 12       S6          2 1.555496
+## 13       S7          1 1.743351
+## 14       S7          2 1.766056
+## 15       S8          1 2.156026
+## 16       S8          2 2.056850
+## 17       S9          1 1.919613
+## 18       S9          2 2.082068
+## 19      S10          1 1.902193
+## 20      S10          2 1.983765
+## 21      S11          1 1.580522
+## 22      S11          2 1.710917
+## 23      S12          1 2.098548
+## 24      S12          2 2.367481
+## 25      S13          1 2.099083
+## 26      S13          2 2.143630
+## 27      S14          1 2.166316
+## 28      S14          2 2.360065
+## 29      S15          1 2.163463
+## 30      S15          2 2.023576
+## 31      S16          1 2.002357
+## 32      S16          2 1.950334
+## 33      S17          1 2.121314
+## 34      S17          2 2.272304
+## 35      S18          1 1.765177
+## 36      S18          2 2.109220
+## 37      S19          1 2.146388
+## 38      S19          2 2.117045
+## 39      S20          1 2.222242
+## 40      S20          2 2.281038
+## 41      S21          1 2.079412
+## 42      S21          2 2.057479
+## 43      S22          1 2.093814
+## 44      S22          2 2.266805
+## 45      S23          1 1.853657
+## 46      S23          2 2.152998
+## 47      S24          1 2.096723
+## 48      S24          2 2.039641
+## 49      S25          1 1.978514
+## 50      S25          2 2.232912
+## 51      S26          1 1.804816
+## 52      S26          2 2.032880
+## 53      S27          1 2.220540
+## 54      S27          2 2.099689
+## 55      S28          1 1.979186
+## 56      S28          2 2.019825
+## 57      S29          1 2.170310
+## 58      S29          2 2.440813
+## 59      S30          1 2.036231
+## 60      S30          2 2.121877
+## 61      S31          1 1.883169
+## 62      S31          2 1.857959
+## 63      S32          1 1.955343
+## 64      S32          2 2.083752
+## 65      S33          1 2.021706
+## 66      S33          2 2.257123
+## 67      S34          1 2.601821
+## 68      S34          2 2.504184
+## 69      S35          1 2.144959
+## 70      S35          2 2.226232
+## 71      S36          1 2.055593
+## 72      S36          2 2.092451
+## 73      S37          1 2.262241
+## 74      S37          2 2.364971
+## 75      S38          1 2.071222
+## 76      S38          2 2.166585
+## 77      S39          1 1.850819
+## 78      S39          2 2.171231
+## 79      S40          1 2.350973
+## 80      S40          2 2.197270
+## 81      S41          1 1.936201
+## 82      S41          2 2.042739
+## 83      S42          1 2.264135
+## 84      S42          2 2.240965
+## 85      S43          1 2.178427
+## 86      S43          2 2.171503
+## 87      S44          1 1.839252
+## 88      S44          2 2.054865
+## 89      S45          1 1.515004
+## 90      S45          2 1.363824
+## 91      S46          1 2.058883
+## 92      S46          2 1.919902
+## 93      S47          1 2.062897
+## 94      S47          2 1.990560
+## 95      S48          1 1.918448
+## 96      S48          2 2.088752
+## 97      S49          1 2.432652
+## 98      S49          2 2.168029
+## 99      S50          1 1.921096
+## 100     S50          2 2.035888
+## 101     S51          1 1.941236
+## 102     S51          2 1.980052</code></pre>
+<p>Finally, we can store the results from <code>sm_r2_list()</code> in a new variable. I will call the new variable <code>r2</code>_df`.</p>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb431-1" aria-hidden="true" tabindex="-1"></a>r2_df <span class="ot">&lt;-</span> <span class="fu">sm_r2_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb431-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb431-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb431-3"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb431-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb431-4"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb431-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb431-5"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb431-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
+<pre><code>## [1] &quot;R2 (0-worst, 1-best) for each subject&quot;</code></pre>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb433-1" aria-hidden="true" tabindex="-1"></a>r2_df </span></code></pre></div>
+<pre><code>##     Subject Repetition     R2
+## 1        S1          1 0.8605
+## 2        S1          2 1.0000
+## 3        S2          1 0.9086
+## 4        S2          2 0.8731
+## 5        S3          1 0.7505
+## 6        S3          2 0.9947
+## 7        S4          1 1.0000
+## 8        S4          2 1.0000
+## 9        S5          1 0.8458
+## 10       S5          2 0.8739
+## 11       S6          1 0.5294
+## 12       S6          2 0.8362
+## 13       S7          1 1.0000
+## 14       S7          2 0.9816
+## 15       S8          1 0.9993
+## 16       S8          2 0.8874
+## 17       S9          1 0.8764
+## 18       S9          2 0.6518
+## 19      S10          1 0.9911
+## 20      S10          2 0.8879
+## 21      S11          1 0.9868
+## 22      S11          2 1.0000
+## 23      S12          1 0.9792
+## 24      S12          2 0.9354
+## 25      S13          1 0.9267
+## 26      S13          2 0.9786
+## 27      S14          1 0.9201
+## 28      S14          2 0.8804
+## 29      S15          1 0.5664
+## 30      S15          2 0.9696
+## 31      S16          1 1.0000
+## 32      S16          2 0.9996
+## 33      S17          1 0.9577
+## 34      S17          2 0.9042
+## 35      S18          1 0.9796
+## 36      S18          2 0.9643
+## 37      S19          1 0.9881
+## 38      S19          2 0.9818
+## 39      S20          1 1.0000
+## 40      S20          2 1.0000
+## 41      S21          1 1.0000
+## 42      S21          2 0.9789
+## 43      S22          1 0.8399
+## 44      S22          2 0.9399
+## 45      S23          1 0.7944
+## 46      S23          2 0.9802
+## 47      S24          1 1.0000
+## 48      S24          2 0.8736
+## 49      S25          1 0.9515
+## 50      S25          2 0.8503
+## 51      S26          1 0.9977
+## 52      S26          2 0.7820
+## 53      S27          1 0.7932
+## 54      S27          2 0.9964
+## 55      S28          1 0.9949
+## 56      S28          2 1.0000
+## 57      S29          1 0.9647
+## 58      S29          2 1.0000
+## 59      S30          1 1.0000
+## 60      S30          2 0.9930
+## 61      S31          1 0.6935
+## 62      S31          2 0.9163
+## 63      S32          1 0.9445
+## 64      S32          2 0.9845
+## 65      S33          1 0.8003
+## 66      S33          2 0.6041
+## 67      S34          1 0.9346
+## 68      S34          2 1.0000
+## 69      S35          1 1.0000
+## 70      S35          2 0.9937
+## 71      S36          1 1.0000
+## 72      S36          2 0.9646
+## 73      S37          1 1.0000
+## 74      S37          2 1.0000
+## 75      S38          1 0.9867
+## 76      S38          2 0.9988
+## 77      S39          1 0.8945
+## 78      S39          2 0.5018
+## 79      S40          1 0.9905
+## 80      S40          2 0.9024
+## 81      S41          1 0.7724
+## 82      S41          2 1.0000
+## 83      S42          1 0.8818
+## 84      S42          2 0.8689
+## 85      S43          1 0.9975
+## 86      S43          2 0.9912
+## 87      S44          1 0.9395
+## 88      S44          2 0.7240
+## 89      S45          1 1.0000
+## 90      S45          2 0.8227
+## 91      S46          1 0.9624
+## 92      S46          2 0.5190
+## 93      S47          1 1.0000
+## 94      S47          2 0.9376
+## 95      S48          1 1.0000
+## 96      S48          2 0.9999
+## 97      S49          1 0.9999
+## 98      S49          2 1.0000
+## 99      S50          1 0.9097
+## 100     S50          2 0.8570
+## 101     S51          1 1.0000
+## 102     S51          2 0.9917</code></pre>
+<p>We see that R2 is very good except for few observers in certain repetitions. Let’s see how many rows of the data frame contains R2 less than 0.75.</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb435-1" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">which</span>(r2_df<span class="sc">$</span>R2 <span class="sc">&lt;</span> <span class="fl">0.75</span>)</span>
+<span id="cb435-2"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb435-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ind)</span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#cb437-1" aria-hidden="true" tabindex="-1"></a>r2_df[ind,]</span></code></pre></div>
+<pre><code>##    Subject Repetition     R2
+## 11      S6          1 0.5294
+## 18      S9          2 0.6518
+## 29     S15          1 0.5664
+## 61     S31          1 0.6935
+## 66     S33          2 0.6041
+## 78     S39          2 0.5018
+## 88     S44          2 0.7240
+## 92     S46          2 0.5190</code></pre>
+<p>Out of 102 rows of the R2s, 8 of them contain poor R2. I think this should be acceptable.</p>
 
 </div>
 </div>
