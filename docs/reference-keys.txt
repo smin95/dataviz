@@ -89,3 +89,6 @@ plotting-the-contrast-sensitivity-function-in-progress
 brief-introduction
 data-visualization
 facetting-the-contrast-sensitivity-functions
+data-analysis-with-the-contrast-sensitivity-function-in-progress
+area-under-a-curve-1
+sm_trapz-sm_aulcsf-and-sm_r2

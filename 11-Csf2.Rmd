@@ -1,0 +1,137 @@
+---
+output: html_document
+chapter: Data Analysis with the Contrast Sensitivity Function 
+editor_options:
+  chunk_output_type: console
+---
+
+# Data Analysis with the Contrast Sensitivity Function (in Progress)
+
+In this section, we will analyze the contrast sensitivity function using the smCSF package. I will complement it with smplot for aesthetics.
+
+As in the previous chapter, we will use data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):
+
+**Kim, Y. J., Reynaud, A., Hess, R. F., & Mullen, K. T. (2017).** A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology & visual science, 58(9), 3628-3636.
+
+Without further ado, let’s load the necessary packages.
+
+```{r}
+library(tidyverse)
+library(smplot)
+library(smCSF)
+```
+
+```{r, eval = F}
+ACh <- read_csv('https://www.smin95.com/data_ACh.csv')
+```
+
+```{r, echo = F}
+ACh <- read_csv('data_Ach.csv')
+```
+
+```{r}
+head(ACh)
+```
+
+There are four columns in this data frame:
+
+- First, `Subject` refers to each participant. There are 51 participants total in the .csv file.
+
+- Next, `Repetition` refers to each repetition of the measurement The participants performed two repetitions of the contrast sensitivity measurement.
+
+- `SpatialFreq` refers to spatial frequency of the stimuli that were shown to test the observers' contrast sensitivity. There are a total of 12 spatial frequencies.
+
+- The `Sensitivity` column refers to the linear values of the contrast sensitivity.
+
+## Area under a Curve
+
+The contrast sensitivity function (CSF) can be analyzed by the computation of an area under a curve. There are two ways to calculate the area: 1) trapezoidal integration of the log CSF, and 2) area under the log CSF (AULCSF). Both are both popular methods.
+
+Let’s create a data frame `ACh_avg` that contains the averaged contrast sensitivity data for each repetition and spatial frequency across 51 subjects.
+
+```{r}
+ACh_avg <- ACh %>% 
+  group_by(Repetition, SpatialFreq) %>%
+  summarise(avgSens = mean(Sensitivity),
+            stdErrSens = sm_stdErr(Sensitivity),
+            stdDevSens = sd(Sensitivity))
+  
+ACh_avg
+```
+
+As in the previous chapter, lets store the data into proper data frames for each repetition.
+
+```{r}
+ACh_avg$Repetition <- factor(ACh_avg$Repetition) # factor
+
+ACh_avg1 <- ACh_avg %>% filter(Repetition == 1) # repetition 1
+ACh_avg2 <- ACh_avg %>% filter(Repetition == 2) # repetition 2
+```
+
+Here is an example of trapezoidal integration of the contrast sensitivity function (i.e., AUC). AUC is an abbreviation of **a**rea **u**nder a **c**urve from trapezoidal integration.
+
+```{r,  fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  geom_area(fill = sm_color('lightgreen'), alpha = 0.5) +
+  geom_point(color = sm_color('viridian')) +
+  geom_line(color = sm_color('viridian')) +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 2 (n=51)') +
+  scale_x_continuous(trans = 'log10') +
+  scale_y_continuous(trans = 'log10') +
+  scale_y_log10(limits = c(1,100)) +
+  annotate('text', x = 0.7, y = 1.3, label = 'Trapezoidal AUC')
+```
+
+Here is an example of the AULCSF.
+
+```{r}
+ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
+  sm_areaCSF(fill = sm_color('lightgreen'), alpha = 0.5) +
+  sm_CSF(color = sm_color('viridian'), size = .8) +
+  geom_point(color = sm_color('viridian')) +
+  sm_hgrid() +
+  xlab('Spatial frequency (c/deg)') +
+  ylab('Averaged sensitivity') +
+  ggtitle('Repetition 2 (n=51)') +
+  scale_y_log10(limits = c(1,100)) +
+  annotate('text', x = 0.5, y = 1.3, label = 'AULCSF')
+```
+
+Notice that these that AUC and AULCSF are slightly different. AUC denotes the area that is enclosed by the lines that connect each point. AULCSF refers to the area that is enclosed by the fitted contrast sensitivity function. The astute reader may realize that if the fit of the contrast sensitivity function is poor, then the AULCSF might not be accurate. Hence, it might be necessary to prove that the CSF fit is robust with the given data. To avoid these hassles, some researchers use AUC instead. Nevertheless, **smCSF** offers functions that compute both AUC and AULCSF.
+
+The higher the AUC and AULCSF are, the higher the overall sensitivity of the observer. Therefore, when potential treatment is being studied, it is of interest to see an increase in AUC and AULCSF in the visually impaired after their treatment.
+
+## `sm_trapz()`, `sm_AULCSF()` and `sm_r2()`
+
+This section is identical to what we have seen in Chapter 6. For those who have read Chapter 6, the only difference is that these AUCs should be in log scales (both x and y scales) in the context of contrast sensitivity.
+
+Recall that `ACh_avg` contains averaged contrast sensitivity for each spatial frequency across 51 observers for the first repetition.
+
+```{r}
+ACh_avg 
+```
+
+To compute the trapezoidal AUC, we can use the function `sm_trapz()`.
+
+```{r}
+sm_trapz(ACh_avg1$SpatialFreq, ACh_avg1$avgSens)
+```
+
+The difference between `sm_trapz()` and `sm_auc()` is that `sm_trapz()` automatically converts the `x` and `y` vectors into log10 scales. This default can be overcome when `logXY = FALSE`. When, `logXY = FALSE`, `sm_trapz()` becomes identical to `sm_auc()`. `sm_trapz()` has been created as a separate function to create a convenient and straightforward workflow for those who wish to analyze the contrast sensitivity data.
+
+In addition, to compute the trapezoidal AUC, we can use the function `sm_AULCSF()`.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+sm_AULCSF(ACh_avg1$SpatialFreq, ACh_avg1$avgSens)
+```
+
+Notice that the AULCSF is very similar to AUC. This suggests that the CSF fit (as generated by `sm_CSF()`) is very good. This can verified by computing R2 (R-squared), which ranges from 0 (worst model fit) to 1 (best model fit), using `sm_r2()`.
+
+```{r}
+sm_r2(ACh_avg1$SpatialFreq, ACh_avg1$avgSens)
+```
+
+We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note that sm_r2() is a function specific for CSF fit only.

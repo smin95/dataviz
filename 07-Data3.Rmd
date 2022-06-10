@@ -156,7 +156,7 @@ df
 
 We see that there are 20 subjects total, each of which has completed two conditions. So there are 40 slopes to calculate! Does that mean we need to use `lm()` 40 times?
 
-The answer is **no**. smplot has a function `sm_slope_list()` that returns a dataframe of slopes from **linear regression**. It works similarly to `sm_auc_list()`.
+The answer is **no**. **smplot** has a function `sm_slope_list()` that returns a dataframe of slopes from **linear regression**. It works similarly to `sm_auc_list()`.
 
 - `data` = this argument requires the variable that stores the data frame. In our case, it is `df`.
 - `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.

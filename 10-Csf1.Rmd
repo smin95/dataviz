@@ -415,9 +415,9 @@ ACh_avg_4rep %>%
    sm_hgrid() +
    sm_facet_header(font_size=11) +
    geom_point(size = 3, alpha = 1) +
-   scale_fill_manual(values = sm_color('wine','lightgreen','yelloworange', 'pink')) +
-   scale_color_manual(values = sm_color('darkred','viridian', 'orange','crimson')) +
-   scale_alpha_manual(values = c(0.4,0.4,0.3,0.2)) +
+   scale_fill_manual(values = sm_color('wine','lightgreen','yelloworange', 'crimson')) +
+   scale_color_manual(values = sm_color('darkred','viridian', 'orange','red')) +
+   scale_alpha_manual(values = c(0.4,0.4,0.3,0.1)) +
    xlab('Spatial frequency (c/deg)') +
    ylab('Averaged sensitivity') +
    facet_wrap(~ Repetition, nrow=2, ncol=2,
@@ -429,4 +429,4 @@ ACh_avg_4rep %>%
 
 Notice that when `facet_wrap()` is used, there is no need to create variable for each plot like we have done in Chapter 5 and use `sm_common_axis()`. The preference can vary depending on the user. I still prefer to store each plot so that I can have freedom to decide where to place each panel wherever I want. 
 
-In the next chapter, we will discuss on some techniques to analyze the data of contrast sensitivity.
+In the next chapter, we will discuss about some techniques on how to analyze contrast sensitivity data.

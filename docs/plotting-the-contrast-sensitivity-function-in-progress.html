@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-06-09" />
+<meta name="date" content="2022-06-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="recreating-figures-from-front.-genetics-2021.html"/>
-
+<link rel="next" href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -328,6 +328,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#brief-introduction"><i class="fa fa-check"></i><b>10.1</b> Brief Introduction</a></li>
 <li class="chapter" data-level="10.2" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#data-visualization"><i class="fa fa-check"></i><b>10.2</b> Data Visualization</a></li>
 <li class="chapter" data-level="10.3" data-path="plotting-the-contrast-sensitivity-function-in-progress.html"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>10.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>11</b> Data Analysis with the Contrast Sensitivity Function (in Progress)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="11.2" data-path="data-analysis-with-the-contrast-sensitivity-function-in-progress.html"><a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -672,9 +677,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb412-9"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
 <span id="cb412-10"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_facet_header</span>(<span class="at">font_size=</span><span class="dv">11</span>) <span class="sc">+</span></span>
 <span id="cb412-11"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb412-12"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;wine&#39;</span>,<span class="st">&#39;lightgreen&#39;</span>,<span class="st">&#39;yelloworange&#39;</span>, <span class="st">&#39;pink&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb412-13"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>, <span class="st">&#39;orange&#39;</span>,<span class="st">&#39;crimson&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb412-14"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-14" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.3</span>,<span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb412-12"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;wine&#39;</span>,<span class="st">&#39;lightgreen&#39;</span>,<span class="st">&#39;yelloworange&#39;</span>, <span class="st">&#39;crimson&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb412-13"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>, <span class="st">&#39;orange&#39;</span>,<span class="st">&#39;red&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb412-14"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-14" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.3</span>,<span class="fl">0.1</span>)) <span class="sc">+</span></span>
 <span id="cb412-15"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-15" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb412-16"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-16" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
 <span id="cb412-17"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">facet_wrap</span>(<span class="sc">~</span> Repetition, <span class="at">nrow=</span><span class="dv">2</span>, <span class="at">ncol=</span><span class="dv">2</span>,</span>
@@ -684,7 +689,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb412-21"><a href="plotting-the-contrast-sensitivity-function-in-progress.html#cb412-21" aria-hidden="true" tabindex="-1"></a>                                      <span class="st">&#39;4&#39;</span> <span class="ot">=</span> <span class="st">&#39;Repetition 4&#39;</span>))) </span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-307-1.png" width="652.8" /></p>
 <p>Notice that when <code>facet_wrap()</code> is used, there is no need to create variable for each plot like we have done in Chapter 5 and use <code>sm_common_axis()</code>. The preference can vary depending on the user. I still prefer to store each plot so that I can have freedom to decide where to place each panel wherever I want.</p>
-<p>In the next chapter, we will discuss on some techniques to analyze the data of contrast sensitivity.</p>
+<p>In the next chapter, we will discuss about some techniques on how to analyze contrast sensitivity data.</p>
 
 </div>
 </div>
@@ -693,8 +698,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="recreating-figures-from-front.-genetics-2021.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="recreating-figures-from-front.-genetics-2021.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-analysis-with-the-contrast-sensitivity-function-in-progress.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
