@@ -5,6 +5,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+# (PART) Data Analysis with smplot {-}
+
 # Combining Plots with Common Axes
 
 First, you need to load data (.csv file). When you are loading your own .csv file for your data analysis, make sure you place the .csv file of your interest in the folder that has been set to the **working directory**. 

@@ -4,7 +4,6 @@ chapter: Download RStudio & Basics of R
 editor_options:
   chunk_output_type: console
 ---
-
 # Download RStudio & Basics of R
 
 ## Setting up RStudio

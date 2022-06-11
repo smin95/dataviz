@@ -1,0 +1,12 @@
+---
+output: html_document
+chapter: Understanding the Contrast Sensitivity Function
+editor_options:
+  chunk_output_type: console
+---
+
+# Understanding the Contrast Sensitivity Function (in Progress)
+
+ In this section, the model that is used to fit the contrast sensitivity function (CSF) in `sm_CSF()` is discussed in detail. If readers decide to use **smCSF**, it is necessary to understand and report these details on their manuscripts.
+ 
+ 

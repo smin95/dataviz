@@ -5,6 +5,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+# (PART) Appendix {-}
+
 # Recreating Figures from Front. Genetics (2021)
 
 This chapter refers to this paper: **Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). Frontiers in Genetics, 12:802894.**

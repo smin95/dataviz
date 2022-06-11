@@ -5,6 +5,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+# (PART) Contrast Sensitivity Function {-}
+
 # Plotting the Contrast Sensitivity Function 
 
 In this section, we will plot the contrast sensitivity function using the **smCSF** package. I will complement it with **smplot** for aesthetics. 

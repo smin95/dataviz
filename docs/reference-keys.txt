@@ -77,14 +77,6 @@ checking-for-normality-of-data-1
 computing-two-way-anova
 post-hoc-test
 extra-resources
-recreating-figures-from-front.-genetics-2021
-figure-1---correlation-plot
-figure-2---bar-plot
-figure-3---boxplot
-figure-4---violin-plot
-figure-5---slope-chart
-figure-6---raincloud-plot
-figure-7---case-study
 plotting-the-contrast-sensitivity-function
 brief-introduction
 data-visualization
@@ -94,3 +86,12 @@ area-under-a-curve-1
 sm_trapz-sm_aulcsf-and-sm_r2
 calculating-area-and-r2-of-all-subjects-groups-and-conditions
 case-study
+recreating-figures-from-front.-genetics-2021
+figure-1---correlation-plot
+figure-2---bar-plot
+figure-3---boxplot
+figure-4---violin-plot
+figure-5---slope-chart
+figure-6---raincloud-plot
+figure-7---case-study
+understanding-the-contrast-sensitivity-function-in-progress

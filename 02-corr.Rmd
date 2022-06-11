@@ -5,6 +5,8 @@ editor_options:
   chunk_output_type: console
 ---
 
+# (PART) Data Visualization with smplot {-}
+
 # Basics of ggplot2 and Correlation Plot
 
 Load these packages by typing the codes below.

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 11 Area under Curve, AULCSF and R2 of the CSF | Data Analysis and Visualization in R Using smplot</title>
-  <meta name="description" content="Chapter 11 Area under Curve, AULCSF and R2 of the CSF | Data Analysis and Visualization in R Using smplot" />
+  <title>Chapter 10 Area under Curve, AULCSF and R2 of the CSF | Data Analysis and Visualization in R Using smplot</title>
+  <meta name="description" content="Chapter 10 Area under Curve, AULCSF and R2 of the CSF | Data Analysis and Visualization in R Using smplot" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 11 Area under Curve, AULCSF and R2 of the CSF | Data Analysis and Visualization in R Using smplot" />
+  <meta property="og:title" content="Chapter 10 Area under Curve, AULCSF and R2 of the CSF | Data Analysis and Visualization in R Using smplot" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 11 Area under Curve, AULCSF and R2 of the CSF | Data Analysis and Visualization in R Using smplot" />
+  <meta name="twitter:title" content="Chapter 10 Area under Curve, AULCSF and R2 of the CSF | Data Analysis and Visualization in R Using smplot" />
   
   
   
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="plotting-the-contrast-sensitivity-function.html"/>
-
+<link rel="next" href="recreating-figures-from-front.-genetics-2021.html"/>
 <script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -139,11 +139,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates-on-smplot"><i class="fa fa-check"></i>Major updates on smplot</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates-on-smplot-and-smcsf"><i class="fa fa-check"></i>Major updates on smplot and smCSF</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#please-cite-this-paper-when-smplot-is-used"><i class="fa fa-check"></i>Please cite this paper when smplot is used</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-r-and-ggplot2-experts"><i class="fa fa-check"></i>For R and ggplot2 experts</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the Author</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>1</b> Download RStudio &amp; Basics of R</a>
 <ul>
@@ -163,6 +164,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#more-installation"><i class="fa fa-check"></i>More installation</a></li>
 </ul></li>
 </ul></li>
+<li class="part"><span><b>I Data Visualization with smplot</b></span></li>
 <li class="chapter" data-level="2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html"><i class="fa fa-check"></i><b>2</b> Basics of ggplot2 and Correlation Plot</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#uploading-data"><i class="fa fa-check"></i><b>2.1</b> Uploading data</a>
@@ -258,6 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.10" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#overriding-defaults-of-smplots-themes"><i class="fa fa-check"></i><b>4.10</b> Overriding Defaults of smplot’s Themes</a></li>
 <li class="chapter" data-level="4.11" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#overriding-defaults-of-smplot-colors"><i class="fa fa-check"></i><b>4.11</b> Overriding Defaults of smplot Colors</a></li>
 </ul></li>
+<li class="part"><span><b>II Data Analysis with smplot</b></span></li>
 <li class="chapter" data-level="5" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>5</b> Combining Plots with Common Axes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>5.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
@@ -313,29 +316,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>8.8</b> Extra Resources</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html"><i class="fa fa-check"></i><b>9</b> Recreating Figures from Front. Genetics (2021)</a>
+<li class="part"><span><b>III Contrast Sensitivity Function</b></span></li>
+<li class="chapter" data-level="9" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>9</b> Plotting the Contrast Sensitivity Function</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-1---correlation-plot"><i class="fa fa-check"></i><b>9.1</b> Figure 1 - Correlation Plot</a></li>
-<li class="chapter" data-level="9.2" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-2---bar-plot"><i class="fa fa-check"></i><b>9.2</b> Figure 2 - Bar Plot</a></li>
-<li class="chapter" data-level="9.3" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-3---boxplot"><i class="fa fa-check"></i><b>9.3</b> Figure 3 - Boxplot</a></li>
-<li class="chapter" data-level="9.4" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-4---violin-plot"><i class="fa fa-check"></i><b>9.4</b> Figure 4 - Violin Plot</a></li>
-<li class="chapter" data-level="9.5" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-5---slope-chart"><i class="fa fa-check"></i><b>9.5</b> Figure 5 - Slope Chart</a></li>
-<li class="chapter" data-level="9.6" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-6---raincloud-plot"><i class="fa fa-check"></i><b>9.6</b> Figure 6 - Raincloud Plot</a></li>
-<li class="chapter" data-level="9.7" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-7---case-study"><i class="fa fa-check"></i><b>9.7</b> Figure 7 - Case Study</a></li>
+<li class="chapter" data-level="9.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>9.1</b> Brief Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>9.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="9.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>9.3</b> Facetting the Contrast Sensitivity Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>10</b> Plotting the Contrast Sensitivity Function</a>
+<li class="chapter" data-level="10" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>10</b> Area under Curve, AULCSF and R2 of the CSF</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>10.1</b> Brief Introduction</a></li>
-<li class="chapter" data-level="10.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>10.2</b> Data Visualization</a></li>
-<li class="chapter" data-level="10.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>10.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+<li class="chapter" data-level="10.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>10.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="10.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>10.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="10.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>10.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="10.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>10.4</b> Case Study</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>11</b> Area under Curve, AULCSF and R2 of the CSF</a>
+<li class="part"><span><b>IV Appendix</b></span></li>
+<li class="chapter" data-level="11" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html"><i class="fa fa-check"></i><b>11</b> Recreating Figures from Front. Genetics (2021)</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>11.1</b> Area under a Curve</a></li>
-<li class="chapter" data-level="11.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>11.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
-<li class="chapter" data-level="11.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
-<li class="chapter" data-level="11.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>11.4</b> Case Study</a></li>
+<li class="chapter" data-level="11.1" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-1---correlation-plot"><i class="fa fa-check"></i><b>11.1</b> Figure 1 - Correlation Plot</a></li>
+<li class="chapter" data-level="11.2" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-2---bar-plot"><i class="fa fa-check"></i><b>11.2</b> Figure 2 - Bar Plot</a></li>
+<li class="chapter" data-level="11.3" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-3---boxplot"><i class="fa fa-check"></i><b>11.3</b> Figure 3 - Boxplot</a></li>
+<li class="chapter" data-level="11.4" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-4---violin-plot"><i class="fa fa-check"></i><b>11.4</b> Figure 4 - Violin Plot</a></li>
+<li class="chapter" data-level="11.5" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-5---slope-chart"><i class="fa fa-check"></i><b>11.5</b> Figure 5 - Slope Chart</a></li>
+<li class="chapter" data-level="11.6" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-6---raincloud-plot"><i class="fa fa-check"></i><b>11.6</b> Figure 6 - Raincloud Plot</a></li>
+<li class="chapter" data-level="11.7" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-7---case-study"><i class="fa fa-check"></i><b>11.7</b> Figure 7 - Case Study</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>12</b> Understanding the Contrast Sensitivity Function (in Progress)</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -355,17 +361,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="area-under-curve-aulcsf-and-r2-of-the-csf" class="section level1" number="11">
-<h1><span class="header-section-number">Chapter 11</span> Area under Curve, AULCSF and R2 of the CSF</h1>
+<div id="area-under-curve-aulcsf-and-r2-of-the-csf" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Area under Curve, AULCSF and R2 of the CSF</h1>
 <p>In this section, we will analyze the contrast sensitivity function (CSF) using the <strong>smCSF</strong> package. I will complement it with smplot for aesthetics.</p>
 <p>As in the previous chapter, we will use data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):</p>
 <p><strong>Kim, Y. J., Reynaud, A., Hess, R. F., &amp; Mullen, K. T. (2017). A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology &amp; visual science, 58(9), 3628-3636.</strong></p>
 <p>Without further ado, let’s load the necessary packages.</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb412-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb412-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span>
-<span id="cb412-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb412-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smCSF)</span></code></pre></div>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb413-1" aria-hidden="true" tabindex="-1"></a>ACh <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/data_ACh.csv&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ACh)</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb397-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb397-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot)</span>
+<span id="cb397-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb397-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smCSF)</span></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb398-1" aria-hidden="true" tabindex="-1"></a>ACh <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/data_ACh.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(ACh)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 4
 ##   Subject Repetition SpatialFreq Sensitivity
 ##   &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -382,17 +388,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><code>SpatialFreq</code> refers to spatial frequency of the stimuli that were shown to test the observers’ contrast sensitivity. There are a total of 12 spatial frequencies.</p></li>
 <li><p>The <code>Sensitivity</code> column refers to the linear values of the contrast sensitivity.</p></li>
 </ul>
-<div id="area-under-a-curve-1" class="section level2" number="11.1">
-<h2><span class="header-section-number">11.1</span> Area under a Curve</h2>
+<div id="area-under-a-curve-1" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Area under a Curve</h2>
 <p>The contrast sensitivity function (CSF) can be analyzed by the computation of an area under a curve. There are two ways to calculate the area: 1) trapezoidal integration of the contrast sensitivity data as a function of spatial frequency, and 2) area under the fitted log CSF (AULCSF). Both are both popular methods.</p>
 <p>Let’s create a data frame <code>ACh_avg</code> that contains the averaged contrast sensitivity data for each repetition and spatial frequency across 51 subjects.</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb416-1" aria-hidden="true" tabindex="-1"></a>ACh_avg <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> </span>
-<span id="cb416-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb416-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Repetition, SpatialFreq) <span class="sc">%&gt;%</span></span>
-<span id="cb416-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb416-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgSens =</span> <span class="fu">mean</span>(Sensitivity),</span>
-<span id="cb416-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb416-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdErrSens =</span> <span class="fu">sm_stdErr</span>(Sensitivity),</span>
-<span id="cb416-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb416-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdDevSens =</span> <span class="fu">sd</span>(Sensitivity))</span>
-<span id="cb416-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb416-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb416-7"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb416-7" aria-hidden="true" tabindex="-1"></a>ACh_avg</span></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb401-1" aria-hidden="true" tabindex="-1"></a>ACh_avg <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> </span>
+<span id="cb401-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb401-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Repetition, SpatialFreq) <span class="sc">%&gt;%</span></span>
+<span id="cb401-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb401-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgSens =</span> <span class="fu">mean</span>(Sensitivity),</span>
+<span id="cb401-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb401-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdErrSens =</span> <span class="fu">sm_stdErr</span>(Sensitivity),</span>
+<span id="cb401-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb401-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdDevSens =</span> <span class="fu">sd</span>(Sensitivity))</span>
+<span id="cb401-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb401-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb401-7"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb401-7" aria-hidden="true" tabindex="-1"></a>ACh_avg</span></code></pre></div>
 <pre><code>## # A tibble: 24 x 5
 ## # Groups:   Repetition [2]
 ##    Repetition SpatialFreq avgSens stdErrSens stdDevSens
@@ -409,44 +415,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10          1        4.93    18.1      0.960       6.85
 ## # ... with 14 more rows</code></pre>
 <p>As in the previous chapter, lets store the data into proper data frames for each repetition.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb418-1" aria-hidden="true" tabindex="-1"></a>ACh_avg<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh_avg<span class="sc">$</span>Repetition) <span class="co"># factor</span></span>
-<span id="cb418-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb418-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb418-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb418-3" aria-hidden="true" tabindex="-1"></a>ACh_avg1 <span class="ot">&lt;-</span> ACh_avg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Repetition <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># repetition 1</span></span>
-<span id="cb418-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb418-4" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="ot">&lt;-</span> ACh_avg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Repetition <span class="sc">==</span> <span class="dv">2</span>) <span class="co"># repetition 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb403-1" aria-hidden="true" tabindex="-1"></a>ACh_avg<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh_avg<span class="sc">$</span>Repetition) <span class="co"># factor</span></span>
+<span id="cb403-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb403-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb403-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb403-3" aria-hidden="true" tabindex="-1"></a>ACh_avg1 <span class="ot">&lt;-</span> ACh_avg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Repetition <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># repetition 1</span></span>
+<span id="cb403-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb403-4" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="ot">&lt;-</span> ACh_avg <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Repetition <span class="sc">==</span> <span class="dv">2</span>) <span class="co"># repetition 2</span></span></code></pre></div>
 <p>Here is an example of trapezoidal integration of the contrast sensitivity function (i.e., AUC). AUC is an abbreviation of <strong>a</strong>rea <strong>u</strong>nder a <strong>c</strong>urve from trapezoidal integration.</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-1" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
-<span id="cb419-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;lightgreen&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb419-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb419-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb419-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
-<span id="cb419-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb419-7"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
-<span id="cb419-8"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb419-9"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
-<span id="cb419-10"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
-<span id="cb419-11"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb419-12"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">0.7</span>, <span class="at">y =</span> <span class="fl">1.3</span>, <span class="at">label =</span> <span class="st">&#39;Trapezoidal AUC&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-313-1.png" width="350.4" /></p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-1" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb404-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;lightgreen&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb404-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb404-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb404-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb404-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb404-7"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb404-8"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb404-9"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
+<span id="cb404-10"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
+<span id="cb404-11"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb404-12"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb404-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">0.7</span>, <span class="at">y =</span> <span class="fl">1.3</span>, <span class="at">label =</span> <span class="st">&#39;Trapezoidal AUC&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-305-1.png" width="350.4" /></p>
 <p>Here is an example of the AULCSF.</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-1" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
-<span id="cb420-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_areaCSF</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;lightgreen&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb420-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>), <span class="at">size =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
-<span id="cb420-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb420-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
-<span id="cb420-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb420-7"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
-<span id="cb420-8"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb420-9"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
-<span id="cb420-10"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb420-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">1.3</span>, <span class="at">label =</span> <span class="st">&#39;AULCSF&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-314-1.png" width="350.4" /></p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-1" aria-hidden="true" tabindex="-1"></a>ACh_avg2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb405-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_areaCSF</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;lightgreen&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb405-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>), <span class="at">size =</span> .<span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb405-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb405-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb405-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb405-7"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb405-8"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 2 (n=51)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb405-9"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb405-10"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb405-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">1.3</span>, <span class="at">label =</span> <span class="st">&#39;AULCSF&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-306-1.png" width="350.4" /></p>
 <p>Notice that these that AUC and AULCSF are slightly different. AUC denotes the area that is enclosed by the lines that connect each point. AULCSF refers to the area that is enclosed by the fitted contrast sensitivity function. The astute reader may realize that if the fit of the contrast sensitivity function is poor, then the AULCSF might not be accurate. Hence, it might be necessary to prove that the CSF fit is robust with the given data. To avoid these hassles, some researchers use AUC instead. Nevertheless, <strong>smCSF</strong> offers functions that compute both AUC and AULCSF.</p>
 <p>The higher the AUC and AULCSF are, the higher the overall sensitivity of the observer. Therefore, when potential treatment is being studied, it is of interest to see an increase in AUC and AULCSF in the visually impaired after their treatment.</p>
 </div>
-<div id="sm_trapz-sm_aulcsf-and-sm_r2" class="section level2" number="11.2">
-<h2><span class="header-section-number">11.2</span> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></h2>
+<div id="sm_trapz-sm_aulcsf-and-sm_r2" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></h2>
 <p>This section is identical to what we have seen in Chapter 6. For those who have read Chapter 6, the only difference is that these AUCs should be in log scales (both x and y scales) in the context of contrast sensitivity.</p>
 <p>Recall that <code>ACh_avg</code> contains averaged contrast sensitivity for each spatial frequency across 51 observers for the first repetition.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb421-1" aria-hidden="true" tabindex="-1"></a>ACh_avg </span></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb406-1" aria-hidden="true" tabindex="-1"></a>ACh_avg </span></code></pre></div>
 <pre><code>## # A tibble: 24 x 5
 ## # Groups:   Repetition [2]
 ##    Repetition SpatialFreq avgSens stdErrSens stdDevSens
@@ -463,31 +469,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 1                 4.93    18.1      0.960       6.85
 ## # ... with 14 more rows</code></pre>
 <p>To compute the trapezoidal AUC, we can use the function <code>sm_trapz()</code>.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_trapz</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_trapz</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
 <pre><code>## [1] 2.081833</code></pre>
 <p>The difference between <code>sm_trapz()</code> and <code>sm_auc()</code> is that <code>sm_trapz()</code> automatically converts the <code>x</code> and <code>y</code> vectors into log10 scales. This default can be overcome when <code>logXY = FALSE</code>. When, <code>logXY = FALSE</code>, <code>sm_trapz()</code> becomes identical to <code>sm_auc()</code>. <code>sm_trapz()</code> has been created as a separate function to create a convenient and straightforward workflow for those who wish to analyze the contrast sensitivity data.</p>
 <p>In addition, to compute the trapezoidal AUC, we can use the function <code>sm_AULCSF()</code>.</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_AULCSF</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_AULCSF</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
 <pre><code>## [1] 2.089264</code></pre>
 <p>Notice that the AULCSF is very similar to AUC. This suggests that the CSF fit (as generated by <code>sm_CSF()</code>) is very good. This can verified by computing R2 (R-squared), which ranges from 0 (worst model fit) to 1 (best model fit), using <code>sm_r2()</code>.</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_r2</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_r2</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
 <pre><code>## [1] 0.9672</code></pre>
 <p>We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note that <code>sm_r2()</code> is a function specific for CSF fit only, and the <code>x</code> and <code>y</code> arguments should contain data in linear units, not log units.</p>
 <p>To visualize what R2 captures, we need to understand <strong>residuals</strong>, which is the difference or distance between the actual data and the predicted data from the given fit, such as the CSF.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-1" aria-hidden="true" tabindex="-1"></a>ACh_avg1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
-<span id="cb429-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;wine&#39;</span>), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
-<span id="cb429-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb429-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
-<span id="cb429-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
-<span id="cb429-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
-<span id="cb429-7"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 1 (n=51)&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-319-1.png" width="350.4" /></p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb414-1" aria-hidden="true" tabindex="-1"></a>ACh_avg1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb414-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb414-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;wine&#39;</span>), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb414-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb414-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb414-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb414-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb414-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb414-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb414-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb414-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb414-7"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb414-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Repetition 1 (n=51)&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-311-1.png" width="350.4" /></p>
 <p>If the residual is very low, then the distance between the actual and predicted data should be close to 0. We see that the residual is low when the spatial frequency is between 3 and 10 c/deg. In this case, the general fit is very faithful to the original data, so the residual is low and R2 is high (close to 1). In sum, the lower the residuals, the higher the R2, which ranges from 0 to 1.</p>
 </div>
-<div id="calculating-area-and-r2-of-all-subjects-groups-and-conditions" class="section level2" number="11.3">
-<h2><span class="header-section-number">11.3</span> Calculating area and R2 of all subjects, groups and conditions</h2>
+<div id="calculating-area-and-r2-of-all-subjects-groups-and-conditions" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Calculating area and R2 of all subjects, groups and conditions</h2>
 <p>Now that we know how to calculate AUC, AULCSF and R2 for each subject, let’s calculate slopes of our entire dataset.</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb430-1" aria-hidden="true" tabindex="-1"></a>ACh</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb415-1" aria-hidden="true" tabindex="-1"></a>ACh</span></code></pre></div>
 <pre><code>## # A tibble: 1,224 x 4
 ##    Subject Repetition SpatialFreq Sensitivity
 ##    &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
@@ -514,13 +520,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>logXY</code> (for <code>sm_trapz_list()</code> and <code>sm_AULCSF_list()</code>) = thus argument’s default is <code>sm_trapz_list(logXY = TRUE)</code> and <code>sm_AULCSF_list(logXY = TRUE)</code>, so it computes the log10 units (<code>x</code> and <code>values</code> vector) of AUC and AULCSF. When <code>logXY = FALSE</code>, it computes the linear units (<code>x</code> and <code>values</code> vector) AUC and AULCSF. <code>sm_r2_list()</code> does not</li>
 </ul>
 <p>Let’s calculate the AUCs first. We can store the results from <code>sm_trapz_list()</code> into a new variable. I will call the new variable <code>trapz_df</code>.</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb432-1" aria-hidden="true" tabindex="-1"></a>trapz_df <span class="ot">&lt;-</span> <span class="fu">sm_trapz_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
-<span id="cb432-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb432-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
-<span id="cb432-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb432-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
-<span id="cb432-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb432-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
-<span id="cb432-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb432-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb417-1" aria-hidden="true" tabindex="-1"></a>trapz_df <span class="ot">&lt;-</span> <span class="fu">sm_trapz_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb417-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb417-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb417-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb417-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb417-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb417-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb417-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb417-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
 <pre><code>## [1] &quot;Trapezoid AUC = Sensitivity * SpatialFreq&quot;</code></pre>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(trapz_df) <span class="co"># first 6 rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(trapz_df) <span class="co"># first 6 rows</span></span></code></pre></div>
 <pre><code>##   Subject Repetition AUC_Sensitivity
 ## 1      S1          1        2.299290
 ## 2      S1          2        2.032390
@@ -529,13 +535,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5      S3          1        1.973220
 ## 6      S3          2        2.204566</code></pre>
 <p>Likewise, we can store the results from <code>sm_AULCSF_list()</code> in a new variable. I will call the new variable <code>aulcsf_df</code>.</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb436-1" aria-hidden="true" tabindex="-1"></a>aulcsf_df <span class="ot">&lt;-</span> <span class="fu">sm_AULCSF_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
-<span id="cb436-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb436-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
-<span id="cb436-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb436-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
-<span id="cb436-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb436-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
-<span id="cb436-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb436-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb421-1" aria-hidden="true" tabindex="-1"></a>aulcsf_df <span class="ot">&lt;-</span> <span class="fu">sm_AULCSF_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb421-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb421-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb421-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb421-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb421-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb421-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb421-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb421-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
 <pre><code>## [1] &quot;AULCSF = Sensitivity * SpatialFreq&quot;</code></pre>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aulcsf_df) <span class="co"># first 6 rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aulcsf_df) <span class="co"># first 6 rows</span></span></code></pre></div>
 <pre><code>##   Subject Repetition   AULCSF
 ## 1      S1          1 2.307217
 ## 2      S1          2 2.038921
@@ -544,13 +550,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5      S3          1 1.979206
 ## 6      S3          2 2.214169</code></pre>
 <p>Finally, we can store the results from <code>sm_r2_list()</code> in a new variable. I will call the new variable <code>r2</code>_df`.</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb440-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb440-1" aria-hidden="true" tabindex="-1"></a>r2_df <span class="ot">&lt;-</span> <span class="fu">sm_r2_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
-<span id="cb440-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb440-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
-<span id="cb440-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb440-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
-<span id="cb440-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb440-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
-<span id="cb440-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb440-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb425-1" aria-hidden="true" tabindex="-1"></a>r2_df <span class="ot">&lt;-</span> <span class="fu">sm_r2_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb425-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb425-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb425-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb425-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb425-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb425-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb425-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb425-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
 <pre><code>## [1] &quot;R2 (0-worst, 1-best) for each subject&quot;</code></pre>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb442-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(r2_df) <span class="co"># first 6 rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(r2_df) <span class="co"># first 6 rows</span></span></code></pre></div>
 <pre><code>##   Subject Repetition     R2
 ## 1      S1          1 0.8605
 ## 2      S1          2 1.0000
@@ -559,10 +565,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5      S3          1 0.7505
 ## 6      S3          2 0.9947</code></pre>
 <p>We see that R2 is very good except for few observers in certain repetitions. Let’s see how many rows of the data frame contains R2 less than 0.75.</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb444-1" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">which</span>(r2_df<span class="sc">$</span>R2 <span class="sc">&lt;</span> <span class="fl">0.75</span>)</span>
-<span id="cb444-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ind)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-1" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">which</span>(r2_df<span class="sc">$</span>R2 <span class="sc">&lt;</span> <span class="fl">0.75</span>)</span>
+<span id="cb429-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb429-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(ind)</span></code></pre></div>
 <pre><code>## [1] 8</code></pre>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb446-1" aria-hidden="true" tabindex="-1"></a>r2_df[ind,]</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb431-1" aria-hidden="true" tabindex="-1"></a>r2_df[ind,]</span></code></pre></div>
 <pre><code>##    Subject Repetition     R2
 ## 11      S6          1 0.5294
 ## 18      S9          2 0.6518
@@ -574,27 +580,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 92     S46          2 0.5190</code></pre>
 <p>Out of 102 rows of the R2s, only 8 of them contain poor R2. I think the contrast sensitivity function fit is acceptable to model the dataset of achromatic sensitivity in 51 normal observers.</p>
 </div>
-<div id="case-study" class="section level2" number="11.4">
-<h2><span class="header-section-number">11.4</span> Case Study</h2>
+<div id="case-study" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Case Study</h2>
 <p>If one is interested in seeing whether a clinical treatment can improve the overall contrast sensitivity of the visually impaired, one can do so by comparing the area (AUC or AULCSF) before and after the treatment.</p>
 <p>Let’s generate some fake data with <code>ACh</code>. We will create a new column using <code>mutate()</code> by creating a new column <code>BeforeAfter</code>, which replaces <code>1</code> with <code>Before</code> and <code>2</code> with <code>After</code> to denote before and after receiving clinical treatment. Since <code>BeforeAfter</code> is derived from the <code>Repetition</code> column, it is a <code>&lt;fct&gt;</code> column, as it is so with the <code>Repetition</code> column. This new data frame is stored in the variable named <code>ACh1</code>. We assume that the 51 subjects are visually impaired patients who received clinical treatment for visual improvement.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb448-1" aria-hidden="true" tabindex="-1"></a>ACh<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh<span class="sc">$</span>Repetition)</span>
-<span id="cb448-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb448-2" aria-hidden="true" tabindex="-1"></a>ACh1 <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">BeforeAfter =</span> <span class="fu">fct_recode</span>(Repetition,</span>
-<span id="cb448-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb448-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&#39;Before&#39;</span> <span class="ot">=</span> <span class="st">&#39;1&#39;</span>,</span>
-<span id="cb448-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb448-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&#39;After&#39;</span> <span class="ot">=</span> <span class="st">&#39;2&#39;</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb448-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb448-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Repetition)</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb433-1" aria-hidden="true" tabindex="-1"></a>ACh<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh<span class="sc">$</span>Repetition)</span>
+<span id="cb433-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb433-2" aria-hidden="true" tabindex="-1"></a>ACh1 <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">BeforeAfter =</span> <span class="fu">fct_recode</span>(Repetition,</span>
+<span id="cb433-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb433-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&#39;Before&#39;</span> <span class="ot">=</span> <span class="st">&#39;1&#39;</span>,</span>
+<span id="cb433-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb433-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&#39;After&#39;</span> <span class="ot">=</span> <span class="st">&#39;2&#39;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb433-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb433-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Repetition)</span></code></pre></div>
 <p>Now, lets increase the values from the <code>Sensitivity</code> column in rows that have <code>BeforeAfter == After</code> using positive random numbers from a normal distribution that has a mean of <code>31</code> and a standard deviation of <code>35</code> using <code>rnorm()</code>.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
-<span id="cb449-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb449-2" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">which</span>(ACh1<span class="sc">$</span>BeforeAfter <span class="sc">==</span> <span class="st">&#39;After&#39;</span>)</span>
-<span id="cb449-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb449-3" aria-hidden="true" tabindex="-1"></a>ACh1[ind,]<span class="sc">$</span>Sensitivity <span class="ot">&lt;-</span> ACh1[ind,]<span class="sc">$</span>Sensitivity <span class="sc">+</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(ind), <span class="dv">31</span>, <span class="dv">35</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
+<span id="cb434-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb434-2" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">which</span>(ACh1<span class="sc">$</span>BeforeAfter <span class="sc">==</span> <span class="st">&#39;After&#39;</span>)</span>
+<span id="cb434-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb434-3" aria-hidden="true" tabindex="-1"></a>ACh1[ind,]<span class="sc">$</span>Sensitivity <span class="ot">&lt;-</span> ACh1[ind,]<span class="sc">$</span>Sensitivity <span class="sc">+</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(ind), <span class="dv">31</span>, <span class="dv">35</span>))</span></code></pre></div>
 <p>Now let’s calculate both the trapezoidal AUC and AULCSF and using <code>sm_trapz_list()</code> and <code>sm_AULCSF_list()</code>, both of which have defaults <code>logXY = TRUE</code>.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb450-1" aria-hidden="true" tabindex="-1"></a>trapz_df <span class="ot">&lt;-</span> <span class="fu">sm_trapz_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
-<span id="cb450-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb450-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;BeforeAfter&#39;</span>,</span>
-<span id="cb450-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb450-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
-<span id="cb450-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb450-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
-<span id="cb450-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb450-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh1)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb435-1" aria-hidden="true" tabindex="-1"></a>trapz_df <span class="ot">&lt;-</span> <span class="fu">sm_trapz_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb435-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb435-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;BeforeAfter&#39;</span>,</span>
+<span id="cb435-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb435-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb435-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb435-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb435-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb435-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh1)</span></code></pre></div>
 <pre><code>## [1] &quot;Trapezoid AUC = Sensitivity * SpatialFreq&quot;</code></pre>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(trapz_df) <span class="co"># first 6 rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(trapz_df) <span class="co"># first 6 rows</span></span></code></pre></div>
 <pre><code>##   Subject BeforeAfter AUC_Sensitivity
 ## 1      S1      Before        2.299290
 ## 2      S1       After        2.867173
@@ -602,13 +608,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4      S2       After        2.817482
 ## 5      S3      Before        1.973220
 ## 6      S3       After        2.856290</code></pre>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb454-1" aria-hidden="true" tabindex="-1"></a>aulcsf_df <span class="ot">&lt;-</span> <span class="fu">sm_AULCSF_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
-<span id="cb454-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb454-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;BeforeAfter&#39;</span>,</span>
-<span id="cb454-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb454-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
-<span id="cb454-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb454-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
-<span id="cb454-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb454-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh1)</span></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb439-1" aria-hidden="true" tabindex="-1"></a>aulcsf_df <span class="ot">&lt;-</span> <span class="fu">sm_AULCSF_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb439-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb439-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;BeforeAfter&#39;</span>,</span>
+<span id="cb439-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb439-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb439-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb439-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb439-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb439-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh1)</span></code></pre></div>
 <pre><code>## [1] &quot;AULCSF = Sensitivity * SpatialFreq&quot;</code></pre>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aulcsf_df) <span class="co"># first 6 rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb441-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(aulcsf_df) <span class="co"># first 6 rows</span></span></code></pre></div>
 <pre><code>##   Subject BeforeAfter   AULCSF
 ## 1      S1      Before 2.307217
 ## 2      S1       After 2.874242
@@ -617,32 +623,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5      S3      Before 1.979206
 ## 6      S3       After 2.849016</code></pre>
 <p>Now let’s plot a bar graph using <code>sm_bar()</code> that compares both the trapezoidal AUCs and AULCSFs between before and after the visually impaired patients have received the clinical treatment.</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb458-1" aria-hidden="true" tabindex="-1"></a>trapz_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BeforeAfter, <span class="at">y =</span> AUC_Sensitivity,</span>
-<span id="cb458-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb458-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">fill =</span> BeforeAfter)) <span class="sc">+</span></span>
-<span id="cb458-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb458-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>,</span>
-<span id="cb458-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb458-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">point_alpha =</span> .<span class="dv">3</span>, <span class="at">bar_width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb458-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb458-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb458-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb458-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">4.5</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-329-1.png" width="355.2" /></p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb459-1" aria-hidden="true" tabindex="-1"></a>aulcsf_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BeforeAfter, <span class="at">y =</span> AULCSF,</span>
-<span id="cb459-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb459-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">fill =</span> BeforeAfter)) <span class="sc">+</span></span>
-<span id="cb459-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb459-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>,</span>
-<span id="cb459-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb459-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">point_alpha =</span> .<span class="dv">3</span>, <span class="at">bar_width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb459-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb459-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
-<span id="cb459-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb459-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">4.5</span>)) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-330-1.png" width="355.2" /></p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb443-1" aria-hidden="true" tabindex="-1"></a>trapz_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BeforeAfter, <span class="at">y =</span> AUC_Sensitivity,</span>
+<span id="cb443-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb443-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">fill =</span> BeforeAfter)) <span class="sc">+</span></span>
+<span id="cb443-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb443-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>,</span>
+<span id="cb443-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb443-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">point_alpha =</span> .<span class="dv">3</span>, <span class="at">bar_width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb443-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb443-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb443-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb443-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">4.5</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-321-1.png" width="355.2" /></p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb444-1" aria-hidden="true" tabindex="-1"></a>aulcsf_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BeforeAfter, <span class="at">y =</span> AULCSF,</span>
+<span id="cb444-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb444-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">fill =</span> BeforeAfter)) <span class="sc">+</span></span>
+<span id="cb444-3"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb444-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>,</span>
+<span id="cb444-4"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb444-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">point_alpha =</span> .<span class="dv">3</span>, <span class="at">bar_width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb444-5"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb444-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb444-6"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb444-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">4.5</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-322-1.png" width="355.2" /></p>
 <p>Both graphs suggest that the visual improvement has brought a large improvement of the overall contrast sensitivity in the patients who received the visual treatment. <strong>Chapter 8 Basic Statistics</strong> covers some methods to analyze data, and the reader can attempt to use the concepts in the previous chapter to analyze whether these differences from the simulated data are statistically significant.</p>
 <p>Instead of focusing on the overall sensitivity of the observers, one can focus on observing whether the sensitivity of the high-spatial frequency range has improved after receiving the treatment. This, however, requires an understanding of the parameters that are used to fit the contrast sensitivity function. We will discuss these parameters in the next chapter.</p>
 
 </div>
 </div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="plotting-the-contrast-sensitivity-function.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="plotting-the-contrast-sensitivity-function.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="recreating-figures-from-front.-genetics-2021.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
