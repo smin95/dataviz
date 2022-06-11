@@ -45,7 +45,7 @@ There are four columns in this data frame:
 
 ## Area under a Curve
 
-The contrast sensitivity function (CSF) can be analyzed by the computation of an area under a curve. There are two ways to calculate the area: 1) trapezoidal integration of the log CSF, and 2) area under the log CSF (AULCSF). Both are both popular methods.
+The contrast sensitivity function (CSF) can be analyzed by the computation of an area under a curve. There are two ways to calculate the area: 1) trapezoidal integration of the contrast sensitivity data as a function of spatial frequency, and 2) area under the fitted log CSF (AULCSF). Both are both popular methods.
 
 Let’s create a data frame `ACh_avg` that contains the averaged contrast sensitivity data for each repetition and spatial frequency across 51 subjects.
 
@@ -215,3 +215,75 @@ r2_df[ind,]
 ```
 
 Out of 102 rows of the R2s, only 8 of them contain poor R2. I think the contrast sensitivity function fit is acceptable to model the dataset of achromatic sensitivity in 51 normal observers.
+
+## Case Study 
+
+If one is interested in seeing whether a clinical treatment can improve the overall contrast sensitivity of the visually impaired, one can do so by comparing the area (AUC or AULCSF) before and after the treatment.
+
+Let's generate some fake data with `ACh`. We will create a new column using `mutate()` by creating a new column `BeforeAfter`, which replaces `1` with `Before` and `2` with `After` to denote before and after receiving clinical treatment. Since `BeforeAfter` is derived from the `Repetition` column, it is a `<fct>` column, as it is so with the `Repetition` column. This new data frame is stored in the variable named `ACh1`. We assume that the 51 subjects are visually impaired patients who received clinical treatment for visual improvement.
+
+
+
+```{r}
+ACh$Repetition <- factor(ACh$Repetition)
+ACh1 <- ACh %>% mutate(BeforeAfter = fct_recode(Repetition,
+                                        'Before' = '1',
+                                        'After' = '2')) %>%
+  select(-Repetition)
+
+
+```
+
+Now, lets increase the values from the `Sensitivity` column in rows that have `BeforeAfter == After` using positive random numbers from a normal distribution that has a mean of `31` and a standard deviation of `35` using `rnorm()`.
+
+```{r}
+set.seed(33)
+ind <- which(ACh1$BeforeAfter == 'After')
+ACh1[ind,]$Sensitivity <- ACh1[ind,]$Sensitivity + abs(rnorm(length(ind), 31, 35))
+```
+
+Now let's calculate both the trapezoidal AUC and AULCSF and using `sm_trapz_list()` and `sm_AULCSF_list()`, both of which have defaults `logXY = TRUE`.
+
+```{r}
+trapz_df <- sm_trapz_list(subjects = 'Subject', 
+                          conditions = 'BeforeAfter',
+                          x = 'SpatialFreq', 
+                          values = 'Sensitivity', 
+                          data = ACh1)
+
+head(trapz_df) # first 6 rows
+```
+
+```{r}
+aulcsf_df <- sm_AULCSF_list(subjects = 'Subject', 
+                          conditions = 'BeforeAfter',
+                          x = 'SpatialFreq', 
+                          values = 'Sensitivity', 
+                          data = ACh1)
+
+head(aulcsf_df) # first 6 rows
+```
+
+Now let's plot a bar graph using `sm_bar()` that compares both the trapezoidal AUCs and AULCSFs between before and after the visually impaired patients have received the clinical treatment. 
+
+```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+trapz_df %>% ggplot(aes(x = BeforeAfter, y = AUC_Sensitivity,
+                        fill = BeforeAfter)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80',
+         point_alpha = .3, bar_width = 0.5) +
+  scale_fill_manual(values = sm_palette(2)) +
+  scale_y_continuous(limits = c(0,4.5))
+```
+
+```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+aulcsf_df %>% ggplot(aes(x = BeforeAfter, y = AULCSF,
+                        fill = BeforeAfter)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80',
+         point_alpha = .3, bar_width = 0.5) +
+  scale_fill_manual(values = sm_palette(2)) +
+  scale_y_continuous(limits = c(0,4.5)) 
+```
+
+Both graphs suggest that the visual improvement has brought a large improvement of the overall contrast sensitivity in the patients who received the visual treatment. **Chapter 8 Basic Statistics** covers some methods to analyze data, and the reader can attempt to use the concepts in the previous chapter to analyze whether these differences from the simulated data are statistically significant. 
+
+Instead of focusing on the overall sensitivity of the observers, one can focus on observing whether the sensitivity of the high-spatial frequency range has improved after receiving the treatment. This, however, requires an understanding of the parameters that are used to fit the contrast sensitivity function. We will discuss these parameters in the next chapter. 

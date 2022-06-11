@@ -85,7 +85,7 @@ figure-4---violin-plot
 figure-5---slope-chart
 figure-6---raincloud-plot
 figure-7---case-study
-plotting-the-contrast-sensitivity-function-in-progress
+plotting-the-contrast-sensitivity-function
 brief-introduction
 data-visualization
 facetting-the-contrast-sensitivity-functions
@@ -93,3 +93,4 @@ area-under-curve-aulcsf-and-r2-of-the-csf
 area-under-a-curve-1
 sm_trapz-sm_aulcsf-and-sm_r2
 calculating-area-and-r2-of-all-subjects-groups-and-conditions
+case-study
