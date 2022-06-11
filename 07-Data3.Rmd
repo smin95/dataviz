@@ -133,10 +133,10 @@ A separate data frame `y_int` containing the y-intercept is created below. The c
 y_int <- data.frame(logSF = 0, absBP = res$coefficients[[1]])
 
 A3_second %>% ggplot(aes(x = logSF, y = absBP)) +
-  geom_point() +
+  geom_point(size = 3) +
   geom_abline(slope = res$coefficients[[2]], 
               intercept = res$coefficients[[1]]) +
-  geom_point(data = y_int, color = sm_color('red'), size = 2) +
+  geom_point(data = y_int, color = sm_color('red'), size = 3) +
   sm_corr_theme() +
   annotate('text', x = 0, y = 1.2, size = 3.5,
            label = paste('Slope =',round(res$coefficients[[2]],2))) +
