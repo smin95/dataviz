@@ -20,6 +20,6 @@ rmd_files: [
   '08-statistics.Rmd',
   '10-Csf1.Rmd',
   '11-Csf2.Rmd',
-  '09-manuscriptFig.Rmd',
-  '12-Csf3.Rmd'
+  '12-Csf3.Rmd',
+  '09-manuscriptFig.Rmd'
 ]
