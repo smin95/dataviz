@@ -139,8 +139,8 @@ p1 + sm_corr_theme() +
 p1 + sm_corr_theme() + 
   sm_statCorr(color = sm_color('green'),
                line_type = 'solid',
-               label_x = 3.5,
-               label_y = 30,
+               label_x = 3.7,
+               label_y = 11,
                text_size = 5)
 ```
 
@@ -268,7 +268,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 ### Plotting individual points with unique colors
 
 - One can also use `sm_boxplot()` to plot individual points with unique colors. 
-- But `sm_boxplot()` cannot print distinct box colors across distinct x levels (i.e., in this example, all boxes are grey). This is because the author thinks it is not a good practice to print different colors of boxes as they tend to distract the reader. 
+- However, `sm_boxplot()` cannot print distinct box colors across distinct x levels (i.e., in this example, all boxes are grey). This is because I think that it is not a good practice to print different colors of boxes when each point has unique color as well. 
 
 ```{r, fig.width = 3.7, fig.height=3.7, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject)) +
@@ -302,7 +302,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 - One can also use `sm_violin()` to plot individual points with unique colors. 
 - The x-level has to be grouped in the aesthetics (ex. `group = Day`).
-- But `sm_violin()` cannot print distinct violin colors across distinct x levels (i.e., in this example, all boxes are grey). This is because the author thinks it is not a good practice to print different colors of boxes as they tend to distract the reader. 
+- But `sm_violin()` cannot print distinct violin colors across distinct x levels (i.e., in this example, all violins are grey). This is because it is aesthetically distracting to assign different colors of the violin across distinct x-levels. 
 
 ```{r, fig.width = 3.7, fig.height=3.7,warning = F}
 
