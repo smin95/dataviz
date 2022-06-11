@@ -225,6 +225,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 
 - `sm_boxplot()` generates a boxplot and individual points at the same time. 
 - It automatically uses `sm_hgrid()` as its default theme. 
+- It also has arguments `borders` and `legends`, both of which have been set to `FALSE` as defaults. 
 - First, let's generate some random data. 
 
 ```{r}
@@ -284,6 +285,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject)) +
 - Also `sm_violin()` uses both `color` (for the lines of mean and SD) and `fill` (for the colors of the points) arguments. 
 - The default border color of the points is `white`.
 - `sm_violin()` automatically uses `sm_hgrid()` as its default theme.
+- It also has arguments `borders` and `legends`, both of which have been set to `FALSE` as defaults. 
 
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 # a violin plot with the random data, all black points and lines
@@ -326,7 +328,8 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject,
 
 ## Bar Plot - `sm_bar()` 
 
-- It automatically uses `sm_bar_theme()` / `sm_hgrid()`.
+- `sm_bar()` automatically uses `sm_bar_theme()` / `sm_hgrid()`.
+- It also has arguments `borders` and `legends`, both of which have been set to `FALSE` as defaults. 
 - Let's use data (`df`) we generated before.
 
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
@@ -375,7 +378,8 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
 
 ## Slope Chart - `sm_slope()` 
 
-- This function plots a slope chart. 
+- `sm_slope()` plots a slope chart. 
+- It also has the argument `legends`, which has been set to `FALSE` as the default. 
 - A slope chart is useful to describe changes between two different timepoints for each measurement (ex. a participant).
 - It automatically uses `sm_slope_theme()`.
 - Let's use `df` that we generated before.
@@ -480,6 +484,8 @@ sm_bland_altman(df3$first, df3$second, shape = 21, fill = sm_color('green'), col
 
 ## Raincloud plot - `sm_raincloud()`
 
+- `sm_raincloud()` generates a raincloud plot. 
+- It also has arguments `borders` and `legends`, both of which have been set to `FALSE` as defaults. 
 - A raincloud plot is a combination of jittered points, a boxplot and a violin plot. 
 - However, this plot can be visually crowded. Some people like to use raincloud plots, some do not. So, the choice to use it is entirely yours. 
 - Let's generate some random data.
