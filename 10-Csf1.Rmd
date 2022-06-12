@@ -425,6 +425,29 @@ ACh_avg_4rep %>%
    sm_facet_header(font_size=11)
 ```
 
-Notice that when `facet_wrap()` is used, there is no need to create variable for each plot like we have done in Chapter 5 and use `sm_common_axis()`. The preference can vary depending on the user. I still prefer to store each plot so that I can have freedom to decide where to place each panel wherever I want. 
+Notice that when `facet_wrap()` is used, there is no need to create variable for each plot like we have done in Chapter 5 and use `sm_common_axis()`. The preference can vary depending on the user. Rather than using `facet_wrap()`, however, I still prefer to store each plot so that I can have freedom to decide where to place each panel wherever I want . 
+
+Another issue with plotting each contrast sensitivity function per panel is that it is visually difficult to compare whether the functions between the panels are different. One way to overcome this problem is to plot all the plots together. In this case, legend is necessary, which can be generated using `sm_hgrid(legends = TRUE)`. Let's use the data frame `ACh_avg` which has two levels in the `Repetition` column.
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+ACh_avg %>%
+  ggplot(aes(x = SpatialFreq, y = avgSens,
+             group = Repetition, color = Repetition,
+             fill = Repetition)) +
+   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
+                   ymax = avgSens + stdDevSens), alpha = 0.2) +
+   sm_CSF(linetype = 'dashed') +
+   sm_hgrid(legends = T) +
+   scale_fill_manual(values = sm_color('wine','lightgreen')) +
+   scale_color_manual(values = sm_color('darkred','viridian')) +
+   xlab('Spatial frequency (c/deg)') +
+   ylab('Averaged sensitivity') +
+   scale_y_log10(limits = c(1,100)) +
+   theme(legend.position = c(0.8,0.2)) +
+   ggtitle('Achromatic CSF (n=51)')
+
+```
+
+We see that these two curves are nearly identical, except that the green curve is uniformly higher than the red curve.
 
 In the next chapter, we will discuss about some techniques on how to analyze contrast sensitivity data.

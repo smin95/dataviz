@@ -87,6 +87,12 @@ sm_trapz-sm_aulcsf-and-sm_r2
 calculating-area-and-r2-of-all-subjects-groups-and-conditions
 case-study
 understanding-the-contrast-sensitivity-function-in-progress
+contrast-sensitivity-function-model
+understanding-sm_csf
+sm_params
+sm_cutoff
+understanding-sm_ribboncsf
+calculating-the-5-parameters-of-all-subjects-groups-and-conditions
 recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
 figure-2---bar-plot

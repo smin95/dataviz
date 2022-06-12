@@ -168,7 +168,7 @@ As the reader might expect from the previous chapters, the answer is **no**. **s
 - `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the two conditions are `1` and `2` from the `Repetition` column.
 - `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the `SpatialFreq` column of `ACh`. It must  strings, ex. `'SpatialFreq'`, not `SpatialFreq`.
 - `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'Sensitivity'`, not `Sensitivity`.
-- `logXY` (for `sm_trapz_list()` and `sm_AULCSF_list()`) = thus argument's default is `sm_trapz_list(logXY = TRUE)` and `sm_AULCSF_list(logXY = TRUE)`, so it computes the log10 units (`x` and `values` vector) of AUC and AULCSF. When `logXY = FALSE`, it computes the linear units (`x` and `values` vector) AUC and AULCSF. `sm_r2_list()` does not 
+- `logXY` (for `sm_trapz_list()` and `sm_AULCSF_list()`) = thus argument's default is `sm_trapz_list(logXY = TRUE)` and `sm_AULCSF_list(logXY = TRUE)`, so it computes the log10 units (`x` and `values` vector) of AUC and AULCSF. When `logXY = FALSE`, it computes the linear units (`x` and `values` vector) AUC and AULCSF. 
 
 Let's calculate the AUCs first. We can store the results from `sm_trapz_list()` into a new variable. I will call the new variable `trapz_df`.
 

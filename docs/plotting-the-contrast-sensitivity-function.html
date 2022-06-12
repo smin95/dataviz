@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-06-11" />
+<meta name="date" content="2022-06-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -330,7 +330,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>10.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
 <li class="chapter" data-level="10.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>10.4</b> Case Study</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>11</b> Understanding the Contrast Sensitivity Function (in Progress)</a></li>
+<li class="chapter" data-level="11" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html"><i class="fa fa-check"></i><b>11</b> Understanding the Contrast Sensitivity Function (in Progress)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html#contrast-sensitivity-function-model"><i class="fa fa-check"></i><b>11.1</b> Contrast Sensitivity Function Model</a></li>
+<li class="chapter" data-level="11.2" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html#understanding-sm_csf"><i class="fa fa-check"></i><b>11.2</b> Understanding <code>sm_CSF()</code></a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html#sm_params"><i class="fa fa-check"></i><b>11.2.1</b> <code>sm_params()</code></a></li>
+<li class="chapter" data-level="11.2.2" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html#sm_cutoff"><i class="fa fa-check"></i><b>11.2.2</b> <code>sm_cutOff()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html#understanding-sm_ribboncsf"><i class="fa fa-check"></i><b>11.3</b> Understanding <code>sm_ribbonCSF()</code></a></li>
+<li class="chapter" data-level="11.4" data-path="understanding-the-contrast-sensitivity-function-in-progress.html"><a href="understanding-the-contrast-sensitivity-function-in-progress.html#calculating-the-5-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.4</b> Calculating the 5 parameters of all subjects, groups and conditions</a></li>
+</ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
 <li class="chapter" data-level="12" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html"><i class="fa fa-check"></i><b>12</b> Recreating Figures from Front. Genetics (2021)</a>
 <ul>
@@ -692,7 +702,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb396-21"><a href="plotting-the-contrast-sensitivity-function.html#cb396-21" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
 <span id="cb396-22"><a href="plotting-the-contrast-sensitivity-function.html#cb396-22" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_facet_header</span>(<span class="at">font_size=</span><span class="dv">11</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-298-1.png" width="652.8" /></p>
-<p>Notice that when <code>facet_wrap()</code> is used, there is no need to create variable for each plot like we have done in Chapter 5 and use <code>sm_common_axis()</code>. The preference can vary depending on the user. I still prefer to store each plot so that I can have freedom to decide where to place each panel wherever I want.</p>
+<p>Notice that when <code>facet_wrap()</code> is used, there is no need to create variable for each plot like we have done in Chapter 5 and use <code>sm_common_axis()</code>. The preference can vary depending on the user. Rather than using <code>facet_wrap()</code>, however, I still prefer to store each plot so that I can have freedom to decide where to place each panel wherever I want .</p>
+<p>Another issue with plotting each contrast sensitivity function per panel is that it is visually difficult to compare whether the functions between the panels are different. One way to overcome this problem is to plot all the plots together. In this case, legend is necessary, which can be generated using <code>sm_hgrid(legends = TRUE)</code>. Let’s use the data frame <code>ACh_avg</code> which has two levels in the <code>Repetition</code> column.</p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="plotting-the-contrast-sensitivity-function.html#cb397-1" aria-hidden="true" tabindex="-1"></a>ACh_avg <span class="sc">%&gt;%</span></span>
+<span id="cb397-2"><a href="plotting-the-contrast-sensitivity-function.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens,</span>
+<span id="cb397-3"><a href="plotting-the-contrast-sensitivity-function.html#cb397-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> Repetition, <span class="at">color =</span> Repetition,</span>
+<span id="cb397-4"><a href="plotting-the-contrast-sensitivity-function.html#cb397-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">fill =</span> Repetition)) <span class="sc">+</span></span>
+<span id="cb397-5"><a href="plotting-the-contrast-sensitivity-function.html#cb397-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_ribbonCSF</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> avgSens <span class="sc">-</span> stdDevSens,</span>
+<span id="cb397-6"><a href="plotting-the-contrast-sensitivity-function.html#cb397-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ymax =</span> avgSens <span class="sc">+</span> stdDevSens), <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb397-7"><a href="plotting-the-contrast-sensitivity-function.html#cb397-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_CSF</span>(<span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb397-8"><a href="plotting-the-contrast-sensitivity-function.html#cb397-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> T) <span class="sc">+</span></span>
+<span id="cb397-9"><a href="plotting-the-contrast-sensitivity-function.html#cb397-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;wine&#39;</span>,<span class="st">&#39;lightgreen&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb397-10"><a href="plotting-the-contrast-sensitivity-function.html#cb397-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb397-11"><a href="plotting-the-contrast-sensitivity-function.html#cb397-11" aria-hidden="true" tabindex="-1"></a>   <span class="fu">xlab</span>(<span class="st">&#39;Spatial frequency (c/deg)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb397-12"><a href="plotting-the-contrast-sensitivity-function.html#cb397-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ylab</span>(<span class="st">&#39;Averaged sensitivity&#39;</span>) <span class="sc">+</span></span>
+<span id="cb397-13"><a href="plotting-the-contrast-sensitivity-function.html#cb397-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">100</span>)) <span class="sc">+</span></span>
+<span id="cb397-14"><a href="plotting-the-contrast-sensitivity-function.html#cb397-14" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.8</span>,<span class="fl">0.2</span>)) <span class="sc">+</span></span>
+<span id="cb397-15"><a href="plotting-the-contrast-sensitivity-function.html#cb397-15" aria-hidden="true" tabindex="-1"></a>   <span class="fu">ggtitle</span>(<span class="st">&#39;Achromatic CSF (n=51)&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-299-1.png" width="350.4" /></p>
+<p>We see that these two curves are nearly identical, except that the green curve is uniformly higher than the red curve.</p>
 <p>In the next chapter, we will discuss about some techniques on how to analyze contrast sensitivity data.</p>
 
 </div>
