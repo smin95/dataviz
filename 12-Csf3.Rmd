@@ -5,7 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Understanding the Contrast Sensitivity Function (in Progress)
+# Understanding the Contrast Sensitivity Function 
 
  In this section, the model that is used to fit the contrast sensitivity function (CSF) in `sm_CSF()` is discussed in detail. If readers decide to use **smCSF**, it is necessary to understand and report these details on their manuscripts.
  
@@ -95,6 +95,9 @@ The first four parameters (`logGain`, `logPeakSF`, `logOctaveWidth` and `logTrun
 
 Using the first three parameters (`logGain`, `logPeakSF` and `logOctaveWidth`), `sm_cutOff()` computes the cutoff spatial frequency, which is also printed as the 5th parameter from `sm_params()`. In other words, `sm_params()` also runs the function `sm_cutOff()` to obtain the cutoff spatial frequency.
 
+It has a fourth argument called `setLinSF`. The default is set to 1. 
+This refers to the sensitivity level that the user wishes to measure the cut-off spatial frequency. This means that the cut-off SF is measured when the linear sensitivity equals to 1 for the default,.
+
 ```{r}
 params[[5]]
 ```
@@ -148,7 +151,7 @@ ACh1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   scale_y_log10(limits = c(min(grid$y), max(grid$y)), breaks = c(1,3,10,30)) 
 ```
 
-In both plots, it is visually clear that at about 31 c/deg, the linear sensitivity approaches 1 (i.e., log-sensitivity = 0). We can also directly see the fitted values in the `grid` data frame and confirm our qualitative observation.
+From the first plot, it is visually clear that at about 31 c/deg, the linear sensitivity approaches 1 (i.e., log-sensitivity = 0). We can also directly see the fitted values in the `grid` data frame and confirm our qualitative observation.
 
 ```{r}
 tail(grid)
@@ -192,7 +195,7 @@ ACh2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 We now have recreated the same plot without using `sm_ribbonCSF()`.
 
-## Calculating the 5 parameters of all subjects, groups and conditions
+## Calculating the 5 (4 + 1) parameters of all subjects, groups and conditions
 
 So far, we have discussed in detail what the parameters mean and how `sm_CSF()` and `sm_ribbonCSF()` plot the CSF curves. We have also discussed how to use `sm_params()` with the given data. Now, lets use `sm_params_list()` to compute the five parameters of all subjects across groups and conditions. To do so, we will need a data frame that contains the data of each observer that has been assigned to a group and condition. `ACh1` is an example of such a data frame.
 
@@ -221,4 +224,63 @@ params_df <- sm_params_list(subjects = 'Subject',
 
 head(params_df[[1]])
 params_df[[2]]
+```
+
+`sm_params_list()` returns results that is a `list`. There are two elements in the list. The first element has a data frame of all the parameters as well as the identifiers for `conditions` and `subjects`. The second element contains a vector that has `x`, which in this case is the linear units of spatial frequency.
+
+## Case Study 
+
+In the previous chapter, I foreshadow that there is a parameter that can inform us about whether the high-spatial frequency range has improved or not. There are two parameters: 1) bandwidth, and 2) cut-off spatial frequency. Kim et al does not use the bandwidth to analyze their results because the authors believe that analyzing both bandwidth and cut-off spatial frequency is redundant. Likewise, this case study only shows the analysis of cut-off spatial frequency but this can be applied to all other parameters as well.
+
+As in the previous chapter, let's make some fake data with `ACh`. This new data frame is stored in the variable named `ACh3`. We assume that the 51 subjects are visually impaired patients who received clinical treatment for visual improvement.
+
+```{r}
+ACh$Repetition <- factor(ACh$Repetition)
+ACh3 <- ACh %>% mutate(BeforeAfter = fct_recode(Repetition,
+                                        'Before' = '1',
+                                        'After' = '2')) %>%
+  select(-Repetition)
+
+set.seed(33)
+ind <- which(ACh3$BeforeAfter == 'After')
+ACh3[ind,]$Sensitivity <- ACh3[ind,]$Sensitivity + abs(rnorm(length(ind), 31, 35))
+```
+
+Now let's calculate five parameters using `sm_params_list()`.
+
+```{r}
+params_df <- sm_params_list(subjects = 'Subject', 
+                          conditions = 'BeforeAfter',
+                          x = 'SpatialFreq', 
+                          values = 'Sensitivity', 
+                          data = ACh3)
+
+head(params_df[[1]])
+```
+
+Let's store the results of cut-off spatial frequency in a new variable `cut_sf` along with `Subject` and `BeforeAfter` columns.
+
+```{r}
+cut_sf <- params_df[[1]][c(1,2,7)]
+head(cut_sf)
+```
+
+Now let's plot a bar graph to show the results and see whether cut-off SF has increased. If it increases, it shows that the high spatial frequncy range's overall sensitivity has improved. This also applies to the bandwidth.
+
+Now let's convert the cut-off SF into linear units.
+
+```{r}
+cut_sf$linCutOff <- 10^cut_sf$logCutOffSF
+```
+
+```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+cut_sf %>% ggplot(aes(x = BeforeAfter, y = linCutOff,
+                        fill = BeforeAfter)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80',
+         point_alpha = .3, bar_width = 0.5) +
+  scale_fill_manual(values = sm_palette(2)) +
+  scale_y_continuous(trans = 'log10') +
+  ggtitle('Cut-off spatial frequency') +
+  ylab('Cut-off SF (c/deg)') +
+  xlab('Before/after treatment') 
 ```
