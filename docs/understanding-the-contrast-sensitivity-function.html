@@ -633,8 +633,7 @@ This refers to the sensitivity level that the user wishes to measure the cut-off
 ## 4      S2       After    1.975513
 ## 5      S3      Before    1.531413
 ## 6      S3       After    1.545456</code></pre>
-<p>Now let’s plot a bar graph to show the results and see whether cut-off SF has increased. If it increases, it shows that the high spatial frequncy range’s overall sensitivity has improved. This also applies to the bandwidth.</p>
-<p>Now let’s convert the cut-off SF into linear units.</p>
+<p>After we convert the cut-off SF into linear units, let’s plot a bar graph to show the results and see whether cut-off SF has increased. If it increases, it shows that the high spatial frequncy range’s overall sensitivity has improved. This also applies to the bandwidth.</p>
 <div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="understanding-the-contrast-sensitivity-function.html#cb483-1" aria-hidden="true" tabindex="-1"></a>cut_sf<span class="sc">$</span>linCutOff <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span>cut_sf<span class="sc">$</span>logCutOffSF</span></code></pre></div>
 <div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="understanding-the-contrast-sensitivity-function.html#cb484-1" aria-hidden="true" tabindex="-1"></a>cut_sf <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BeforeAfter, <span class="at">y =</span> linCutOff,</span>
 <span id="cb484-2"><a href="understanding-the-contrast-sensitivity-function.html#cb484-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">fill =</span> BeforeAfter)) <span class="sc">+</span></span>

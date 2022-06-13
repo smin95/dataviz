@@ -265,9 +265,9 @@ cut_sf <- params_df[[1]][c(1,2,7)]
 head(cut_sf)
 ```
 
-Now let's plot a bar graph to show the results and see whether cut-off SF has increased. If it increases, it shows that the high spatial frequncy range's overall sensitivity has improved. This also applies to the bandwidth.
 
-Now let's convert the cut-off SF into linear units.
+After we convert the cut-off SF into linear units, let's plot a bar graph to show the results and see whether cut-off SF has increased. If it increases, it shows that the high spatial frequncy range's overall sensitivity has improved. This also applies to the bandwidth.
+
 
 ```{r}
 cut_sf$linCutOff <- 10^cut_sf$logCutOffSF
