@@ -28,7 +28,7 @@ $f_{c} = f_{max}*10^{\frac{\beta'}{2}\sqrt\frac{log_{10}(\gamma_{max})}{\kappa}}
 
 `sm_params` calculates all of these parameters automatically.
 
-As I have already stated, if the reader decides to use **smCSF**, it is important to mention in their reports and understand these parameters.
+As I have already stated, if the reader decides to use **smCSF**, it is important to mention in their reports about the parameters and the equations, as well as to understand them.
 
 ## Understanding `sm_CSF()`
 
@@ -41,7 +41,7 @@ library(smCSF)
 ACh <- read_csv('https://www.smin95.com/data_ACh.csv')
 ```
 
-```{r, echo = F}
+```{r, echo = F, message = F}
 library(tidyverse)
 library(smplot)
 library(smCSF)
@@ -123,7 +123,11 @@ grid <- data.frame(x = seq(min(ACh1$SpatialFreq),31, length = 200))
 grid$y <- 10^sm_findQCSF(log10(grid$x), 
                          params[[1]], params[[2]],
                          params[[3]], params[[4]])
+
+head(grid,10) # first 10 rows
 ```
+
+`grid` variable contains all the fitted values as a function of the `x` values.
 
 Now let's plot the fitted values.
 
@@ -195,7 +199,7 @@ ACh2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 We now have recreated the same plot without using `sm_ribbonCSF()`.
 
-## Calculating the 5 (4 + 1) parameters of all subjects, groups and conditions
+## Calculating the five parameters of all subjects, groups and conditions
 
 So far, we have discussed in detail what the parameters mean and how `sm_CSF()` and `sm_ribbonCSF()` plot the CSF curves. We have also discussed how to use `sm_params()` with the given data. Now, lets use `sm_params_list()` to compute the five parameters of all subjects across groups and conditions. To do so, we will need a data frame that contains the data of each observer that has been assigned to a group and condition. `ACh1` is an example of such a data frame.
 
@@ -271,7 +275,10 @@ After we convert the cut-off SF into linear units, let's plot a bar graph to sho
 
 ```{r}
 cut_sf$linCutOff <- 10^cut_sf$logCutOffSF
+head(cut_sf)
 ```
+
+Notice that we have created a new column entitled `linCutOff`. We will now plot the values from the column, as shown below.
 
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 cut_sf %>% ggplot(aes(x = BeforeAfter, y = linCutOff,

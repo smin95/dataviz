@@ -102,3 +102,4 @@ figure-4---violin-plot
 figure-5---slope-chart
 figure-6---raincloud-plot
 figure-7---case-study
+calculating-the-five-parameters-of-all-subjects-groups-and-conditions
