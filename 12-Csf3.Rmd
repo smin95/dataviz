@@ -95,8 +95,7 @@ The first four parameters (`logGain`, `logPeakSF`, `logOctaveWidth` and `logTrun
 
 Using the first three parameters (`logGain`, `logPeakSF` and `logOctaveWidth`), `sm_cutOff()` computes the cutoff spatial frequency, which is also printed as the 5th parameter from `sm_params()`. In other words, `sm_params()` also runs the function `sm_cutOff()` to obtain the cutoff spatial frequency.
 
-It has a fourth argument called `setLinSF`. The default is set to 1. 
-This refers to the sensitivity level that the user wishes to measure the cut-off spatial frequency. This means that the cut-off SF is measured when the linear sensitivity equals to 1 for the default,.
+The a fourth argument of `sm_cutOff()` is `sensCutOff`. The default is set to 1. This refers to the sensitivity level that the user wishes to measure the cut-off spatial frequency. This means that the cut-off SF is measured when the linear sensitivity equals to 1 for the default,.
 
 ```{r}
 params[[5]]

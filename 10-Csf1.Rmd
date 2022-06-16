@@ -251,7 +251,7 @@ ACh_avg_final %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
                    ymax = avgSens + stdDevSens),
                fill = sm_color('skyblue'), alpha = 0.25) +
   sm_CSF(color = sm_color('blue'),
-         linetype = 'dashed') +
+         alpha = 0.4) +
   xlab('Spatial frequency (c/deg)') +
   ylab('Averaged sensitivity') +
   ggtitle('Contrast Sensitivity (n=51)') +
@@ -274,7 +274,7 @@ ACh_avg %>%
              fill = Repetition)) +
    sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens), alpha = 0.4) +
-   sm_CSF(linetype = 'dashed') +
+   sm_CSF(alpha = 0.4) +
    sm_hgrid() +
    sm_facet_header(font_size=11) +
    geom_point(size = 2.5) +
@@ -327,7 +327,7 @@ ACh_avg %>%
              fill = Repetition)) +
    sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens), alpha = 0.4) +
-   sm_CSF(linetype = 'dashed') +
+   sm_CSF(alpha = 0.4) +
    sm_hgrid() +
    geom_point(size = 2.5) +
    scale_fill_manual(values = sm_color('wine','lightgreen')) +
@@ -347,7 +347,7 @@ ACh_avg %>%
              fill = Repetition)) +
    sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens), alpha = 0.4) +
-   sm_CSF(linetype = 'dashed') +
+   sm_CSF(alpha = 0.4) +
    sm_hgrid() +
    geom_point(size = 2.5) +
    scale_fill_manual(values = sm_color('wine','lightgreen')) +
@@ -370,7 +370,7 @@ ACh_avg %>%
              fill = Repetition)) +
    sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens), alpha = 0.4) +
-   sm_CSF(linetype = 'dashed') +
+   sm_CSF(alpha = 0.4) +
    sm_hgrid() +
    geom_point(size = 2.5) +
    scale_fill_manual(values = sm_color('wine','lightgreen')) +
@@ -408,7 +408,7 @@ ACh_avg_4rep %>%
              alpha = Repetition)) +
    sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens)) +
-   sm_CSF(linetype = 'dashed') +
+   sm_CSF(alpha = 0.4) +
    sm_hgrid() +
    geom_point(alpha = 1, size = 2.5) +
    scale_fill_manual(values = sm_color('wine','lightgreen','yelloworange', 'crimson')) +
@@ -436,7 +436,7 @@ ACh_avg %>%
              fill = Repetition)) +
    sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens), alpha = 0.2) +
-   sm_CSF(linetype = 'dashed') +
+   sm_CSF(alpha = 0.4) +
    sm_hgrid(legends = T) +
    scale_fill_manual(values = sm_color('wine','lightgreen')) +
    scale_color_manual(values = sm_color('darkred','viridian')) +

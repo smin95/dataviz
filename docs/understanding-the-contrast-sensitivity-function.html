@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-06-14" />
+<meta name="date" content="2022-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -442,8 +442,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sm_cutoff" class="section level3" number="11.2.2">
 <h3><span class="header-section-number">11.2.2</span> <code>sm_cutOff()</code></h3>
 <p>Using the first three parameters (<code>logGain</code>, <code>logPeakSF</code> and <code>logOctaveWidth</code>), <code>sm_cutOff()</code> computes the cutoff spatial frequency, which is also printed as the 5th parameter from <code>sm_params()</code>. In other words, <code>sm_params()</code> also runs the function <code>sm_cutOff()</code> to obtain the cutoff spatial frequency.</p>
-<p>It has a fourth argument called <code>setLinSF</code>. The default is set to 1.
-This refers to the sensitivity level that the user wishes to measure the cut-off spatial frequency. This means that the cut-off SF is measured when the linear sensitivity equals to 1 for the default,.</p>
+<p>The a fourth argument of <code>sm_cutOff()</code> is <code>sensCutOff</code>. The default is set to 1. This refers to the sensitivity level that the user wishes to measure the cut-off spatial frequency. This means that the cut-off SF is measured when the linear sensitivity equals to 1 for the default,.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="understanding-the-contrast-sensitivity-function.html#cb8-1" aria-hidden="true" tabindex="-1"></a>params[[<span class="dv">5</span>]]</span></code></pre></div>
 <pre><code>## [1] 1.490961</code></pre>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="understanding-the-contrast-sensitivity-function.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_cutOff</span>(params[[<span class="dv">1</span>]], params[[<span class="dv">2</span>]], params[[<span class="dv">3</span>]])</span></code></pre></div>
