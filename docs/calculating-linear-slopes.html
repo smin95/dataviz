@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-06-13" />
+<meta name="date" content="2022-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -339,7 +339,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.2.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_cutoff"><i class="fa fa-check"></i><b>11.2.2</b> <code>sm_cutOff()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_ribboncsf"><i class="fa fa-check"></i><b>11.3</b> Understanding <code>sm_ribbonCSF()</code></a></li>
-<li class="chapter" data-level="11.4" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#calculating-the-5-4-1-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.4</b> Calculating the 5 (4 + 1) parameters of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="11.4" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#calculating-the-five-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>11.4</b> Calculating the five parameters of all subjects, groups and conditions</a></li>
 <li class="chapter" data-level="11.5" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#case-study-1"><i class="fa fa-check"></i><b>11.5</b> Case Study</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
@@ -398,8 +398,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>First, <code>Subject</code> column has all the subjects. People with amblyopia (a visual disorder) are labelled with <code>A</code>. First subject with amblyopia is written as <code>A1</code>. Normal subject is written with <code>N</code>; first normal subject is <code>N1</code>. We see that there are 10 subjects per group, so there are 20 subjects total.</li>
 </ul>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="calculating-linear-slopes.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Subject)</span></code></pre></div>
-<pre><code>##  [1] &quot;A1&quot;  &quot;A10&quot; &quot;A2&quot;  &quot;A3&quot;  &quot;A4&quot;  &quot;A5&quot;  &quot;A6&quot;  &quot;A7&quot;  &quot;A8&quot;  &quot;A9&quot;  &quot;N1&quot; 
-## [12] &quot;N10&quot; &quot;N2&quot;  &quot;N3&quot;  &quot;N4&quot;  &quot;N5&quot;  &quot;N6&quot;  &quot;N7&quot;  &quot;N8&quot;  &quot;N9&quot;</code></pre>
+<pre><code>##  [1] &quot;A1&quot;  &quot;A10&quot; &quot;A2&quot;  &quot;A3&quot;  &quot;A4&quot;  &quot;A5&quot;  &quot;A6&quot;  &quot;A7&quot;  &quot;A8&quot;  &quot;A9&quot; 
+## [11] &quot;N1&quot;  &quot;N10&quot; &quot;N2&quot;  &quot;N3&quot;  &quot;N4&quot;  &quot;N5&quot;  &quot;N6&quot;  &quot;N7&quot;  &quot;N8&quot;  &quot;N9&quot;</code></pre>
 <ul>
 <li><p>Second, <code>absBP</code> is the data of our interest.</p></li>
 <li><p>Third, <code>SF</code> refers to spatial frequency. We will be calculating slopes of <code>absBP</code> as a function of <code>SF</code>. So these are our x-coordinates for slope calculations (see sections below). Each unit increases by a factor of 2, so it is also helpful to convert the values into log2 units.</p></li>

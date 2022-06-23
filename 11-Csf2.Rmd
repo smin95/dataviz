@@ -82,7 +82,7 @@ ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   scale_x_continuous(trans = 'log10') +
   scale_y_continuous(trans = 'log10') +
   scale_y_log10(limits = c(1,100)) +
-  annotate('text', x = 0.7, y = 1.3, label = 'Trapezoidal AUC')
+  annotate('text', x = 0.6, y = 1.3, label = 'Trapezoidal AUC')
 ```
 
 Here is an example of the AULCSF.
@@ -97,7 +97,7 @@ ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   ylab('Averaged sensitivity') +
   ggtitle('Repetition 2 (n=51)') +
   scale_y_log10(limits = c(1,100)) +
-  annotate('text', x = 0.5, y = 1.3, label = 'AULCSF')
+  annotate('text', x = 0.4, y = 1.3, label = 'AULCSF')
 ```
 
 Notice that these that AUC and AULCSF are slightly different. AUC denotes the area that is enclosed by the lines that connect each point. AULCSF refers to the area that is enclosed by the fitted contrast sensitivity function. The astute reader may realize that if the fit of the contrast sensitivity function is poor, then the AULCSF might not be accurate. Hence, it might be necessary to prove that the CSF fit is robust with the given data. To avoid these hassles, some researchers use AUC instead. Nevertheless, **smCSF** offers functions that compute both AUC and AULCSF.

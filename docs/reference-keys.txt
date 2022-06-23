@@ -92,7 +92,7 @@ understanding-sm_csf
 sm_params
 sm_cutoff
 understanding-sm_ribboncsf
-calculating-the-5-4-1-parameters-of-all-subjects-groups-and-conditions
+calculating-the-five-parameters-of-all-subjects-groups-and-conditions
 case-study-1
 recreating-figures-from-front.-genetics-2021
 figure-1---correlation-plot
@@ -102,4 +102,3 @@ figure-4---violin-plot
 figure-5---slope-chart
 figure-6---raincloud-plot
 figure-7---case-study
-calculating-the-five-parameters-of-all-subjects-groups-and-conditions
