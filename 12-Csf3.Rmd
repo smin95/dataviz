@@ -234,7 +234,7 @@ params_df[[2]]
 ## Visualization of the parameters 
 
 
-Here is a visual representation of the parameters. The contrast sensitivity function has been drawn with the four parameters that have been obtained from the `ACh` data set. The four parameters have been used to draw the contrast sensitivity function all the way to 30 c/deg. The function then has been drawn. As an exercise, the reader can produce the example below. This plot has been entirely drawn with R, including the arrow and text annotations.
+Here is a visual representation of the parameters. The contrast sensitivity function has been drawn with the four parameters that have been obtained from the `ACh` data set. The four parameters have been used to draw the contrast sensitivity function all the way to 30 c/deg. As an exercise, the reader can produce the example below. This plot has been entirely drawn with R, including the arrow and text annotations.
 
 ```{r, echo = FALSE, message = FALSE}
 grid <- data.frame(x = seq(min(ACh1$SpatialFreq),31, length = 5000))
