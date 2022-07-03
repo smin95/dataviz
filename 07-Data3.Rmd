@@ -206,7 +206,7 @@ Here is a boxplot showing `slope_df_one`'s data.
 slope_df_one %>% ggplot(mapping = aes(x = Group, y = Slope, color = Group)) +
   sm_boxplot(alpha = 0.6) + 
   scale_color_manual(values = sm_palette(2)) +
-  ggtitle('\u0394 AUC re: Each day\'s baseline')
+  ggtitle('Binocular imbalance')
 ```
 
 Here is a bar graph showing `slope_df`'s data for `One` condition only. This figure is similar to Figure 3B in the paper (Mao et al., 2020).

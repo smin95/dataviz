@@ -109,5 +109,5 @@ If you spot any mistakes in this online book, please pull-request on [Github](ht
 ## License {-}
 smplot is under the MIT license. This tutorial is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). Seung Hyun Min is the sole creator of **smplot**.
 
-## About the Author {-}
+## About the author {-}
 I am Assistant Professor in Dept. Ophthalmology and Optometry at Wenzhou Medical University. On June 2021, I received my PhD at McGill University under the supervision of Dr. Robert F. Hess. My research is focused on amblyopia, neural plasticity and binocular vision. More details, such as my publications, are on my website: https://www.smin95.com. 
