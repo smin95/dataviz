@@ -804,14 +804,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>geom_violin() vs sm_violin()</h3>
 <ul>
 <li><code>geom_violin()</code> does not show individual data. You need to add geom_jitter().</li>
-<li><code>sm_violin()</code> shows both a boxplot and individual data.
+<li><code>sm_violin()</code> shows both a violin plot and individual data.
 <ul>
 <li>It automatically uses <code>sm_hgrid()</code>.</li>
 <li>It also display lines that represent the mean and +/- standard deviation.</li>
 </ul></li>
 <li>In <code>sm_violin()</code>, the default shape (<code>'point_shape'</code>) is 16, which is the circle without borders.</li>
 <li><strong>Let’s try using <code>sm_violin()</code>.</strong></li>
-<li><code>color</code> here filling color of the jittered points. Also, <code>color</code> affects the color of the lines that show the mean and +/- standard deviation.</li>
+<li><code>color</code> here filling color of the individual points. Also, <code>color</code> affects the color of the lines that show the mean and +/- standard deviation.</li>
 <li>Let’s set <code>color = Day</code> in <code>aes()</code> so that we can apply different colors of the lines and the points for each group.</li>
 <li>Make sure you have <code>scale_color_manual()</code>.</li>
 </ul>

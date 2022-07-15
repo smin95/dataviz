@@ -443,12 +443,12 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 ### geom_violin() vs sm_violin() {-}
 
 - `geom_violin()` does not show individual data. You need to add geom_jitter().
-- `sm_violin()` shows both a boxplot and individual data.
+- `sm_violin()` shows both a violin plot and individual data.
   - It automatically uses `sm_hgrid()`.
   - It also display lines that represent the mean and +/- standard deviation. 
 - In `sm_violin()`, the default shape (`'point_shape'`) is 16, which is the circle without borders.
 - **Let's try using `sm_violin()`.** 
-- `color` here filling color of the jittered points. Also, `color` affects the color of the lines that show the mean and +/- standard deviation. 
+- `color` here filling color of the individual points. Also, `color` affects the color of the lines that show the mean and +/- standard deviation. 
 - Let’s set `color = Day` in `aes()` so that we can apply different colors of the lines and the points for each group.
 - Make sure you have `scale_color_manual()`.
 
