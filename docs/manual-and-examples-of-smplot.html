@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-07-03" />
+<meta name="date" content="2022-07-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -796,9 +796,9 @@ Figure 4.1: smplot’s color palette
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-128-1.png" width="355.2" /></p>
 <ul>
 <li>The upper dashed line represents the upper limit of the difference between two measurements (mean difference + 1.96 * standard deviation of the difference).</li>
-<li>The upper dashed line represents the upper limit of the difference between two measurements (mean difference - 1.96 * standard deviation of the difference).</li>
+<li>The lower dashed line represents the lower limit of the difference between two measurements (mean difference - 1.96 * standard deviation of the difference).</li>
 <li>The middle dashed line represents the mean difference.</li>
-<li>The shaded region is the 95% confidence interval of the difference between the two measuremnts from one-sample t-test (difference vs 0).
+<li>The shaded region is the 95% confidence interval of the difference between the two measurements from one-sample t-test (difference vs 0).
 <ul>
 <li>If the shaded region includes 0 in the y-axis, then there is no significant difference (p &gt; 0.05) between 0 and the difference.</li>
 <li>If it does not include 0, then there is a significant difference. This indicates that the two measurement results are considerably different.</li>
@@ -953,7 +953,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb162-2"><a href="manual-and-examples-of-smplot.html#cb162-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb162-3"><a href="manual-and-examples-of-smplot.html#cb162-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb162-4"><a href="manual-and-examples-of-smplot.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
-<span id="cb162-5"><a href="manual-and-examples-of-smplot.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Value&#39;</span>) <span class="sc">+</span></span>
+<span id="cb162-5"><a href="manual-and-examples-of-smplot.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Reading speed&#39;</span>) <span class="sc">+</span></span>
 <span id="cb162-6"><a href="manual-and-examples-of-smplot.html#cb162-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Reading performance in children&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-141-1.png" width="355.2" /></p>
 </div>

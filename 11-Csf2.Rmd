@@ -45,7 +45,7 @@ There are four columns in this data frame:
 
 ## Area under a Curve
 
-The contrast sensitivity function (CSF) can be analyzed by the computation of an area under a curve. There are two ways to calculate the area: 1) trapezoidal integration of the contrast sensitivity data as a function of spatial frequency, and 2) area under the fitted log CSF (AULCSF). Both are both popular methods.
+Area under a curve under the contrast sensitivity function (CSF) as an index of visual performance or sensitivity. The higher the areal measure, the better the visual performance. There are two ways to calculate the area: 1) trapezoidal integration of the contrast sensitivity data as a function of spatial frequency, and 2) area under the fitted log CSF (AULCSF).
 
 Let’s create a data frame `ACh_avg` that contains the averaged contrast sensitivity data for each repetition and spatial frequency across 51 subjects.
 

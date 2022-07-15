@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-07-03" />
+<meta name="date" content="2022-07-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -402,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div id="area-under-a-curve-1" class="section level2" number="10.1">
 <h2><span class="header-section-number">10.1</span> Area under a Curve</h2>
-<p>The contrast sensitivity function (CSF) can be analyzed by the computation of an area under a curve. There are two ways to calculate the area: 1) trapezoidal integration of the contrast sensitivity data as a function of spatial frequency, and 2) area under the fitted log CSF (AULCSF). Both are both popular methods.</p>
+<p>Area under a curve under the contrast sensitivity function (CSF) as an index of visual performance or sensitivity. The higher the areal measure, the better the visual performance. There are two ways to calculate the area: 1) trapezoidal integration of the contrast sensitivity data as a function of spatial frequency, and 2) area under the fitted log CSF (AULCSF).</p>
 <p>Let’s create a data frame <code>ACh_avg</code> that contains the averaged contrast sensitivity data for each repetition and spatial frequency across 51 subjects.</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb402-1" aria-hidden="true" tabindex="-1"></a>ACh_avg <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> </span>
 <span id="cb402-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Repetition, SpatialFreq) <span class="sc">%&gt;%</span></span>

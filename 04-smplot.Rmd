@@ -444,9 +444,9 @@ sm_bland_altman(df3$first, df3$second, color = sm_color('green')) +
 ```
 
 - The upper dashed line represents the upper limit of the difference between two measurements (mean difference + 1.96 * standard deviation of the difference). 
-- The upper dashed line represents the upper limit of the difference between two measurements (mean difference - 1.96 * standard deviation of the difference). 
+- The lower dashed line represents the lower limit of the difference between two measurements (mean difference - 1.96 * standard deviation of the difference). 
 - The middle dashed line represents the mean difference.
-- The shaded region is the 95% confidence interval of the difference between the two measuremnts from one-sample t-test (difference vs 0).
+- The shaded region is the 95% confidence interval of the difference between the two measurements from one-sample t-test (difference vs 0).
   - If the shaded region includes 0 in the y-axis, then there is no significant difference (p > 0.05) between 0 and the difference.
   - If it does not include 0, then there is a significant difference. This indicates that the two measurement results are considerably different.
 - I usually label them with `annotate()`, which is a function
@@ -608,7 +608,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
   scale_fill_manual(values = sm_color('blue','orange')) +
   theme(axis.title.x = element_blank()) +
-  ylab('Value') +
+  ylab('Reading speed') +
   ggtitle('Reading performance in children')
 ```
 
