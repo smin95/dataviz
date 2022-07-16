@@ -90,10 +90,10 @@ filter(df, Day == 1 & Subject == 'S1')
 The above can be read as: **filter** for all rows of the data frame **df** that have `1` in the `Day` column **AND** have `S1` in the `Subject` column.
 
 ```{r}
-filter(df, Day == 1 & Subject == 'S1')
+filter(df, Day == 1 | Subject == 'S1')
 ```
 
-The above can be read as: **filter** for all rows of the data frame **df** that have `1` in the `Day` column **OR** have `S1` in the `Subject` column.
+The above can be read as: **filter** for all rows of the data frame **df** that have `1` in the `Day` column **OR** have `S1` in the `Subject` column. `|` represents **OR**, `&` represents **AND**.
 
 ### `select()` for columns
 
