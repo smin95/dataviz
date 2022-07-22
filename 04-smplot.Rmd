@@ -514,7 +514,7 @@ sm_raincloud(data = df2, x = Day, y = Value)
 
 ```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value) +
-  scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
+  scale_x_continuous(limits = c(0.25,4.75), labels = c('First', 'Second', 'Third', 'Fourth'), breaks = c(1,2,3,4)) +
   xlab('Day') 
 ```
 
@@ -526,7 +526,7 @@ sm_raincloud(data = df2, x = Day, y = Value) +
 ```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
               color = 'white', shape = 21, sep_level = 2) +
-  scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
+  scale_x_continuous(limits = c(0.25,4.75), labels = c('One', 'Two', 'Three', 'Four'), breaks = c(1,2,3,4)) +
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 
   scale_fill_manual(values = sm_palette(4))
