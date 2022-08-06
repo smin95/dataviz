@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-07-22" />
+<meta name="date" content="2022-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>5.1.2</b> <code>select()</code> for columns</a></li>
 <li class="chapter" data-level="5.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>5.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-average-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting average data with error bars</a></li>
+<li class="chapter" data-level="5.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting the averaged data with error bars</a></li>
 <li class="chapter" data-level="5.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.3</b> Plotting Individual Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>6</b> Calculating Area under a Curve</a>
@@ -580,20 +580,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb471-5"><a href="understanding-the-contrast-sensitivity-function.html#cb471-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
 <pre><code>## [1] &quot;CSF parameters = Sensitivity ~ SpatialFreq&quot;</code></pre>
 <div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="understanding-the-contrast-sensitivity-function.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(params_df[[<span class="dv">1</span>]])</span></code></pre></div>
-<pre><code>##   Subject Repetition  logGain  logPeakSF logOctaveWidth logTrunc
-## 1      S1          1 1.629834 0.09807101      0.6119619 -0.30103
-## 2      S1          2 1.569498 0.01320197      0.5270044 -0.30103
-## 3      S2          1 1.562791 0.18084246      0.6510530 -0.30103
-## 4      S2          2 1.521231 0.22933453      0.6888543 -0.30103
-## 5      S3          1 1.394250 0.14405204      0.6446500 -0.30103
-## 6      S3          2 1.668939 0.17290997      0.5060525 -0.30103
-##   logCutOffSF
-## 1    1.522009
-## 2    1.216546
-## 3    1.664255
-## 4    1.777866
-## 5    1.531413
-## 6    1.364456</code></pre>
+<pre><code>##   Subject Repetition  logGain  logPeakSF logOctaveWidth logTrunc logCutOffSF
+## 1      S1          1 1.629834 0.09807101      0.6119619 -0.30103    1.522009
+## 2      S1          2 1.569498 0.01320197      0.5270044 -0.30103    1.216546
+## 3      S2          1 1.562791 0.18084246      0.6510530 -0.30103    1.664255
+## 4      S2          2 1.521231 0.22933453      0.6888543 -0.30103    1.777866
+## 5      S3          1 1.394250 0.14405204      0.6446500 -0.30103    1.531413
+## 6      S3          2 1.668939 0.17290997      0.5060525 -0.30103    1.364456</code></pre>
 <div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="understanding-the-contrast-sensitivity-function.html#cb475-1" aria-hidden="true" tabindex="-1"></a>params_df[[<span class="dv">2</span>]]</span></code></pre></div>
 <pre><code>##  [1] 0.25 0.35 0.49 0.68 0.94 1.31 1.83 2.54 3.54 4.93 6.87 9.57</code></pre>
 <p><code>sm_params_list()</code> returns results that is a <code>list</code>. There are two elements in the list. The first element has a data frame of all the parameters as well as the identifiers for <code>conditions</code> and <code>subjects</code>. The second element contains a vector that has <code>x</code>, which in this case is the linear units of spatial frequency.</p>
@@ -624,20 +617,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb478-5"><a href="understanding-the-contrast-sensitivity-function.html#cb478-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh3)</span></code></pre></div>
 <pre><code>## [1] &quot;CSF parameters = Sensitivity ~ SpatialFreq&quot;</code></pre>
 <div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="understanding-the-contrast-sensitivity-function.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(params_df[[<span class="dv">1</span>]])</span></code></pre></div>
-<pre><code>##   Subject BeforeAfter  logGain   logPeakSF logOctaveWidth logTrunc
-## 1      S1      Before 1.629834  0.09807101      0.6119619 -0.30103
-## 2      S1       After 1.902661  0.48036071      0.8259008 -0.30103
-## 3      S2      Before 1.562791  0.18084246      0.6510530 -0.30103
-## 4      S2       After 1.892264  0.20854797      0.7047611 -0.30103
-## 5      S3      Before 1.394250  0.14405204      0.6446500 -0.30103
-## 6      S3       After 2.005334 -0.02095422      0.6068997 -0.30103
-##   logCutOffSF
-## 1    1.522009
-## 2    2.556726
-## 3    1.664255
-## 4    1.975513
-## 5    1.531413
-## 6    1.545456</code></pre>
+<pre><code>##   Subject BeforeAfter  logGain   logPeakSF logOctaveWidth logTrunc logCutOffSF
+## 1      S1      Before 1.629834  0.09807101      0.6119619 -0.30103    1.522009
+## 2      S1       After 1.902661  0.48036071      0.8259008 -0.30103    2.556726
+## 3      S2      Before 1.562791  0.18084246      0.6510530 -0.30103    1.664255
+## 4      S2       After 1.892264  0.20854797      0.7047611 -0.30103    1.975513
+## 5      S3      Before 1.394250  0.14405204      0.6446500 -0.30103    1.531413
+## 6      S3       After 2.005334 -0.02095422      0.6068997 -0.30103    1.545456</code></pre>
 <p>Let’s store the results of cut-off spatial frequency in a new variable <code>cut_sf</code> along with <code>Subject</code> and <code>BeforeAfter</code> columns.</p>
 <div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="understanding-the-contrast-sensitivity-function.html#cb482-1" aria-hidden="true" tabindex="-1"></a>cut_sf <span class="ot">&lt;-</span> params_df[[<span class="dv">1</span>]][<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">7</span>)]</span>
 <span id="cb482-2"><a href="understanding-the-contrast-sensitivity-function.html#cb482-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cut_sf)</span></code></pre></div>

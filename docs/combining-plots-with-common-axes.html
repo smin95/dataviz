@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-07-22" />
+<meta name="date" content="2022-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>5.1.2</b> <code>select()</code> for columns</a></li>
 <li class="chapter" data-level="5.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>5.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-average-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting average data with error bars</a></li>
+<li class="chapter" data-level="5.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting the averaged data with error bars</a></li>
 <li class="chapter" data-level="5.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.3</b> Plotting Individual Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>6</b> Calculating Area under a Curve</a>
@@ -511,13 +511,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="summarise-for-grouped-summaries" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> <code>summarise()</code> for grouped summaries</h3>
 <p><strong>df</strong> contains individual data for all subjects on Days 1 and 5 across all time points. However, it does not contain average data either for each <strong>Day</strong> or <strong>Time</strong>.</p>
-<p><code>summarise()</code> can help us enable us to collapse multiple rows of observations into values such as the mean.</p>
+<p><code>summarise()</code> can collapse multiple rows of observations into values such as the mean.</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="combining-plots-with-common-axes.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df, <span class="at">average =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   average
 ##     &lt;dbl&gt;
 ## 1    1.35</code></pre>
-<p>However, in this case, we got an example of <code>Cbratio</code> across <code>Subject</code>, <code>Day</code> and <code>Time</code>. This average value itself is not so meaningful. If we wish to obtain the average for each <code>Day</code> and <code>Time</code>, we can use the function <code>group_by()</code> to group data for each day and time.</p>
+<p>However, in this case, we get an example of <code>Cbratio</code> across <code>Subject</code>, <code>Day</code> and <code>Time</code>. This average value itself is not so meaningful. If we wish to obtain the average for each <code>Day</code> and <code>Time</code>, we can use the function <code>group_by()</code> to group data for each day and time.</p>
 <ul>
 <li><p>As it was the case before, the first argument of <code>group_by()</code> is a data frame.</p></li>
 <li><p>The second argument of <code>group_by()</code> is the name of the column through which you would like to group the data.</p></li>
@@ -558,10 +558,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 11 5         4           0.759
 ## 12 5         5           0.452</code></pre>
 <p>This new data frame yields average for each Day and Time. We have now created a new column <code>Average_Cbratio</code> which stores all the average data of <code>Cbratio</code>.</p>
-<p>Therefore, <code>group_by()</code> and <code>summarise()</code> are very useful together. They provide grouped summaries, such as the average. However, <code>summarise()</code> alone may not be so useful.</p>
+<p>Therefore, <code>group_by()</code> and <code>summarise()</code> are very useful together. They provide grouped summaries, such as the average. However, <code>summarise()</code> alone may not be so useful. <code>group_by()</code> alone is also rarely used.</p>
 <p>Besides the <strong>average</strong>, one might also be interested in obtaining either <strong>standard deviation</strong> or <strong>standard error</strong>.</p>
-<p>However, our <strong>df</strong> does not contain any data about the <strong>standard deviation</strong> or <strong>standard error</strong> per Day or Time, etc. Standard error can be computed with <code>sm_stdErr()</code>.</p>
-<p>We could obtain standard error with the help of the <code>summarise()</code> function for each <code>Day</code> and <code>Time</code>.</p>
+<p>However, our <strong>df</strong> does not contain any data about the <strong>standard deviation</strong> or <strong>standard error</strong> per Day or Time, etc. Standard deviation can be calculated via <code>sd()</code> and standard error can be computed with <code>sm_stdErr()</code>.</p>
+<p>Below, we obtain standard error with the help of the <code>summarise()</code> function for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="combining-plots-with-common-axes.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 1
 ##   standard_error
@@ -607,16 +607,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 5         3   1.15     0.224
 ## 11 5         4   0.759    0.292
 ## 12 5         5   0.452    0.193</code></pre>
-<p>Now you see that the original <strong>df</strong>, which contains data for each subject, has now been transformed to a new data frame that contains grouped summaries, such as group averages and standard errors.</p>
+<p>The original <strong>df</strong>, which contains data for each subject, has now been transformed to a new data frame that contains grouped summaries, such as group averages and standard errors.</p>
 <p>If you are interested in learning more about this topic (data transformation), please check out Chapter 5 of R for Data Science by Hadley Wickham (<a href="https://r4ds.had.co.nz/transform.html" class="uri">https://r4ds.had.co.nz/transform.html</a>).</p>
 </div>
 </div>
-<div id="plotting-average-data-with-error-bars" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Plotting average data with error bars</h2>
+<div id="plotting-the-averaged-data-with-error-bars" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Plotting the averaged data with error bars</h2>
+<p>Plotting the averaged data can be done with a data frame that contains individual observation (ex. each subject, condition, etc). This data frame can be modified to only contain summary values, such as mean and standard error, using <code>group_by()</code> and <code>summarise()</code> together as shown above.</p>
 <p>We will plot a similar graph to <strong>Figure 3A</strong> in the Vision Research paper (Min et al., 2019) in this section.</p>
 <ul>
-<li>Usually, a data frame that has grouped summary information, such as average and standard error across subject, is required to plot a graph that depicts average values.</li>
-<li><code>geom_errorbar()</code> is required to plot the error bar.</li>
+<li>A data frame that has grouped summary information (<code>group_by()</code> and <code>summarise()</code>), such as average and standard error across subject, is needed to plot a graph that shows the average data with error bars.</li>
+<li><code>geom_errorbar()</code> is required to plot the error bar of the sample.</li>
 <li>Legend title has been removed with the <code>theme()</code> function.</li>
 <li>Greek letter <strong>Delta</strong> is printed with <code>\u0394</code>.</li>
 <li>X-tick labels are originally 0, 1, 2, 3, 4, 5 (as specified in the <strong>df</strong> data frame). However, they can be manually changed using <code>labels =</code> argument in the <code>scale_x_continuous()</code> function.</li>
@@ -898,14 +899,14 @@ Figure 5.2: Arguments for location in sm_common_axis for 3x3 figure.
 <span id="cb207-3"><a href="combining-plots-with-common-axes.html#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nrow and ncol in save_plot() have to match the </span></span>
 <span id="cb207-4"><a href="combining-plots-with-common-axes.html#cb207-4" aria-hidden="true" tabindex="-1"></a><span class="co"># values in plot_grid() as shown above. </span></span></code></pre></div>
 <p>Open <code>together2.png</code> in your directory folder. I think it looks a lot cleaner!</p>
-<p>If you are planning to make a 1x3 figure (1 row, 3 columns), here is the illustration.</p>
+<p>The figure shows how to make a 1x3 figure (1 row, 3 columns).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-175"></span>
 <img src="img/rc13.png" alt="Arguments for location in sm_common_axis for 1x3 figure." width="75%" />
 <p class="caption">
 Figure 5.3: Arguments for location in sm_common_axis for 1x3 figure.
 </p>
 </div>
-<p>If you are planning to make a 2x2 figure (2 rows, 2 columns), here is the illustration.</p>
+<p>If you are planning to make a 2x2 figure (2 rows, 2 columns), please understand the diagram below.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-176"></span>
 <img src="img/rc22.png" alt="Arguments for location in sm_common_axis for 2x2 figure." width="55%" />
 <p class="caption">

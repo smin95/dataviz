@@ -45,7 +45,7 @@ filter-select-and-summarise
 filter-for-rows
 select-for-columns
 summarise-for-grouped-summaries
-plotting-average-data-with-error-bars
+plotting-the-averaged-data-with-error-bars
 plotting-individual-data
 calculating-area-under-a-curve
 pipe

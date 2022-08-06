@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-07-22" />
+<meta name="date" content="2022-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>5.1.2</b> <code>select()</code> for columns</a></li>
 <li class="chapter" data-level="5.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>5.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-average-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting average data with error bars</a></li>
+<li class="chapter" data-level="5.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting the averaged data with error bars</a></li>
 <li class="chapter" data-level="5.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.3</b> Plotting Individual Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>6</b> Calculating Area under a Curve</a>
@@ -427,8 +427,8 @@ Figure 4.1: smplot’s color palette
 <li>But, do not form a single vector that contains two characters. If so, <code>sm_color()</code> will only return the first color.</li>
 </ul>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="manual-and-examples-of-smplot.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_color</span>(<span class="fu">c</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;red&#39;</span>))</span></code></pre></div>
-<pre><code>## Warning in if (color == &quot;blue&quot;) return(&quot;#1262b3&quot;): the condition has length
-## &gt; 1 and only the first element will be used</code></pre>
+<pre><code>## Warning in if (color == &quot;blue&quot;) return(&quot;#1262b3&quot;): the condition has length &gt; 1 and
+## only the first element will be used</code></pre>
 <pre><code>## [1] &quot;#1262b3&quot;</code></pre>
 <ul>
 <li>If you need 5 colors, you can use <code>sm_palette()</code>.</li>

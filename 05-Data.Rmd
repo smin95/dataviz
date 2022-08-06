@@ -112,13 +112,13 @@ There are 10 rows (i.e., 10 subjects) in this filtered data frame and 1 column, 
 
 **df** contains individual data for all subjects on Days 1 and 5 across all time points. However, it does not contain average data either for each **Day** or **Time**.
 
-`summarise()` can help us enable us to collapse multiple rows of observations into values such as the mean.
+`summarise()` can collapse multiple rows of observations into values such as the mean.
 
 ```{r}
 summarise(df, average = mean(Cbratio))
 ```
 
-However, in this case, we got an example of `Cbratio` across `Subject`, `Day` and `Time`. This average value itself is not so meaningful. If we wish to obtain the average for each `Day` and `Time`, we can use the function `group_by()` to group data for each day and time. 
+However, in this case, we get an example of `Cbratio` across `Subject`, `Day` and `Time`. This average value itself is not so meaningful. If we wish to obtain the average for each `Day` and `Time`, we can use the function `group_by()` to group data for each day and time. 
 
 - As it was the case before, the first argument of `group_by()` is a data frame. 
 
@@ -138,13 +138,13 @@ summarise(by_day_time, Average_Cbratio = mean(Cbratio))
 
 This new data frame yields average for each Day and Time. We have now created a new column `Average_Cbratio` which stores all the average data of `Cbratio`. 
 
-Therefore, `group_by()` and `summarise()` are very useful together. They provide grouped summaries, such as the average. However, `summarise()` alone may not be so useful. 
+Therefore, `group_by()` and `summarise()` are very useful together. They provide grouped summaries, such as the average. However, `summarise()` alone may not be so useful. `group_by()` alone is also rarely used. 
 
 Besides the **average**, one might also be interested in obtaining either **standard deviation** or **standard error**.
 
-However, our **df** does not contain any data about the **standard deviation** or **standard error** per Day or Time, etc. Standard error can be computed with `sm_stdErr()`. 
+However, our **df** does not contain any data about the **standard deviation** or **standard error** per Day or Time, etc. Standard deviation can be calculated via `sd()` and standard error can be computed with `sm_stdErr()`. 
 
-We could obtain standard error with the help of the `summarise()` function for each `Day` and `Time`.
+Below, we obtain standard error with the help of the `summarise()` function for each `Day` and `Time`.
 
 ```{r}
 summarise(df, standard_error = sm_stdErr(Cbratio))
@@ -167,16 +167,18 @@ by_day_time1 <- summarise(by_day_time, Average = mean(Cbratio),
 print(by_day_time1)
 ```
 
-Now you see that the original **df**, which contains data for each subject, has now been transformed to a new data frame that contains grouped summaries, such as group averages and standard errors.
+The original **df**, which contains data for each subject, has now been transformed to a new data frame that contains grouped summaries, such as group averages and standard errors.
 
 If you are interested in learning more about this topic (data transformation), please check out Chapter 5 of R for Data Science by Hadley Wickham (https://r4ds.had.co.nz/transform.html).
 
-## Plotting average data with error bars
+## Plotting the averaged data with error bars
+
+Plotting the averaged data can be done with a data frame that contains individual observation (ex. each subject, condition, etc). This data frame can be modified to only contain summary values, such as mean and standard error, using `group_by()` and `summarise()` together as shown above.
 
 We will plot a similar graph to **Figure 3A** in the Vision Research paper (Min et al., 2019) in this section.
 
-- Usually, a data frame that has grouped summary information, such as average and standard error across subject, is required to plot a graph that depicts average values. 
-- `geom_errorbar()` is required to plot the error bar.
+- A data frame that has grouped summary information (`group_by()` and `summarise()`), such as average and standard error across subject, is needed to plot a graph that shows the average data with error bars. 
+- `geom_errorbar()` is required to plot the error bar of the sample.
 - Legend title has been removed with the `theme()` function.
 - Greek letter **Delta** is printed with `\u0394`. 
 - X-tick labels are originally 0, 1, 2, 3, 4, 5 (as specified in the **df** data frame). However, they can be manually changed using `labels = ` argument in the `scale_x_continuous()` function. 
@@ -438,7 +440,7 @@ save_plot('together1.png',together1,nrow=3,ncol=3,base_asp=0.95)
 # nrow and ncol in save_plot() have to match the values in plot_grid() as shown above. 
 ```
 
-Open `together1.png` in your directory folder. Notice that the **png** file may look different from the one printed in your RStudio screen or on the browser as shown in this guide. As long as your **png** file looks good, it should be okay. 
+Open `together1.png` in your directory folder. Notice that the **png** file may look different from the one printed in your RStudio screen or on the browser as shown in this guide. As long as your **png** file looks good, it should be okay.
 
 Note that are some repeating x and y-axes labels. We can remove them. For instance, the top left panel's x-axis labels can be removed because the bottom left panel also has the x-axis labels. 
 
@@ -503,13 +505,13 @@ save_plot('together2.png',together2,nrow=3,ncol=3,base_asp=0.95)
 
 Open `together2.png` in your directory folder. I think it looks a lot cleaner!
 
-If you are planning to make a 1x3 figure (1 row, 3 columns), here is the illustration.
+The figure shows how to make a 1x3 figure (1 row, 3 columns).
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 1x3 figure.", out.width = '75%'}
 knitr::include_graphics("img/rc13.png")
 ```
 
-If you are planning to make a 2x2 figure (2 rows, 2 columns), here is the illustration.
+If you are planning to make a 2x2 figure (2 rows, 2 columns), please understand the diagram below.
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 2x2 figure.", out.width = '55%'}
 knitr::include_graphics("img/rc22.png")

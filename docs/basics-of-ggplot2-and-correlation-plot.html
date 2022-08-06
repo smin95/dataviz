@@ -24,7 +24,7 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-07-22" />
+<meta name="date" content="2022-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -269,7 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>5.1.2</b> <code>select()</code> for columns</a></li>
 <li class="chapter" data-level="5.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>5.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-average-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting average data with error bars</a></li>
+<li class="chapter" data-level="5.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>5.2</b> Plotting the averaged data with error bars</a></li>
 <li class="chapter" data-level="5.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>5.3</b> Plotting Individual Data</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>6</b> Calculating Area under a Curve</a>
@@ -395,18 +395,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb21-1" aria-hidden="true" tabindex="-1"></a>mpg</span></code></pre></div>
 <pre><code>## # A tibble: 234 x 11
-##    manufacturer model displ  year   cyl trans drv     cty   hwy fl    class
-##    &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 audi         a4      1.8  1999     4 auto~ f        18    29 p     comp~
-##  2 audi         a4      1.8  1999     4 manu~ f        21    29 p     comp~
-##  3 audi         a4      2    2008     4 manu~ f        20    31 p     comp~
-##  4 audi         a4      2    2008     4 auto~ f        21    30 p     comp~
-##  5 audi         a4      2.8  1999     6 auto~ f        16    26 p     comp~
-##  6 audi         a4      2.8  1999     6 manu~ f        18    26 p     comp~
-##  7 audi         a4      3.1  2008     6 auto~ f        18    27 p     comp~
-##  8 audi         a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~
-##  9 audi         a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~
-## 10 audi         a4 q~   2    2008     4 manu~ 4        20    28 p     comp~
+##    manufacturer model      displ  year   cyl trans     drv     cty   hwy fl    class
+##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 audi         a4           1.8  1999     4 auto(l5)  f        18    29 p     comp~
+##  2 audi         a4           1.8  1999     4 manual(m~ f        21    29 p     comp~
+##  3 audi         a4           2    2008     4 manual(m~ f        20    31 p     comp~
+##  4 audi         a4           2    2008     4 auto(av)  f        21    30 p     comp~
+##  5 audi         a4           2.8  1999     6 auto(l5)  f        16    26 p     comp~
+##  6 audi         a4           2.8  1999     6 manual(m~ f        18    26 p     comp~
+##  7 audi         a4           3.1  2008     6 auto(av)  f        18    27 p     comp~
+##  8 audi         a4 quattro   1.8  1999     4 manual(m~ 4        18    26 p     comp~
+##  9 audi         a4 quattro   1.8  1999     4 auto(l5)  4        16    25 p     comp~
+## 10 audi         a4 quattro   2    2008     4 manual(m~ 4        20    28 p     comp~
 ## # ... with 224 more rows</code></pre>
 <ul>
 <li>Notice that some columns and rows are not shown. You can type <code>View(mpg)</code> to see the entire <strong>data frame</strong>.</li>
