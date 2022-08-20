@@ -40,7 +40,7 @@ library(smplot)
 - It was first developed in May 2021.
 - It is **free** and **open source** (https://github.com/smin95/smplot).
 
-## smplot's Color Palette and Graph Themes
+## Colors and Graph Themes of smplot
 
 ### smplot's color palette {-}
 
@@ -72,16 +72,15 @@ sm_palette(5)
 ### smplot's graph themes {-}
 
 - There are several its graph themes. The text positions and the font are all similar.
-- `sm_corr_theme()` and `sm_hvgrid()` are **equivalent**. They have major horizontal and vertical grids.
-  - This theme is useful for correlation, so I created a duplicate function `sm_corr_theme()`.
-- `sm_bar_theme()` and `sm_hgrid()` are **equivalent**. They have major horizontal grids.
-  - This theme is useful for a bar graph, so I created a duplicate function `sm_bar_theme()`.
+- `sm_corr_theme()` and `sm_hvgrid()` are **equivalent**. They have major horizontal and vertical grids. 
+- `sm_hgrid()` has major horizontal grids.This is the default theme of `sm_raincloud()`, which creates a raincloud plot.
 - `sm_minimal` has no major grid. This is useful when a graph has a lot of annotation, such as texts and arrows. 
-- `sm_slope_theme()` is a theme for a slope chart. It removes everything except the y-axis.
-- All of these functions, except for `sm_slope_theme()`, have two arguments: `borders` and `legends`.
+- `sm_slope_theme()` is a theme for a slope chart. It removes everything except the y-axis. This is the default theme of `sm_slope()`.
+- `sm_classic()` has no grid. This is useful for all types of plots, such as bar graph, correlation plot and Bland-Altman plot. It has a typical x-axis and y-axis without panel borders. Visit section **4.9** to see a Bland-Altman that uses `sm_classic()` automatically.
+- `sm_vgrid()` has major vertical grids. 
+- All of these functions, except for `sm_slope_theme()` and `sm_minimal()`, have two arguments: `borders` and `legends`. The two exceptions only have the argument `legends`.
   - For some of these functions, the defaults are set to `borders = TRUE` and `legends = TRUE`.
   - You can check the defaults by typing `?` in front of the function. Ex: `?sm_corr_theme`
-  - There is no option for `borders` in `sm_slope_theme()`.
 
 - `p1` has the default theme of **ggplot2**.
 
@@ -109,6 +108,49 @@ p2
 
 ```{r,fig.width = 3.7, fig.height=3.7}
 p2 + scale_color_manual(values = sm_palette(7))
+```
+
+- We can also apply `sm_hgrid()`.
+
+```{r,fig.width = 3.7, fig.height=3.7}
+p1 + sm_hgrid()
+```
+
+- Let's try `sm_vgrid()`.
+
+
+```{r,fig.width = 5.3, fig.height=3.7}
+p1 + sm_vgrid()
+```
+
+- You can remove the legend as shown below.
+
+```{r,fig.width = 3.7, fig.height=3.7}
+p1 + sm_vgrid(legends = FALSE)
+```
+
+- `sm_classic()` is one of my favourites! 
+
+```{r,fig.width = 3.7, fig.height=3.7}
+p1 + sm_classic()
+```
+
+- You can add the legend as shown below.
+
+```{r,fig.width = 5.15, fig.height=3.7}
+p1 + sm_classic(legends = TRUE)
+```
+
+- Another choice is `sm_minimal()`.
+
+```{r,fig.width = 3.7, fig.height=3.7}
+p1 + sm_minimal()
+```
+
+- You can choose to include the legend in `sm_minimal()`.
+
+```{r,fig.width = 5.15, fig.height=3.7}
+p1 + sm_minimal(legends = TRUE)
 ```
 
 ## Correlation Plot 
@@ -417,7 +459,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)) +
   sm_slope(labels = c('Day 1','Day 2'), shape = 21, color = 'white',
-           fill = sm_color('blue'), line_color = '#ADD8E6',
+           fill = sm_color('blue'), line_color = '#bfd5db',
            line_size = 0.6)
 ```
 
@@ -534,7 +576,7 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
 
 - `sep_level` is an argument to specify the degree of separation among points, boxplots and violin plots. When `sep_level = 0`, they will all be crowded. When `sep_level = 4`, they will all be separated from each other. 
   - I personally prefer when the boxplot and violin plots are together, but not the points. So I set the default to `sep_level = 2`.
-  - Shown below is an example when `sep_level = 4` with a horizontal grid theme `sm_hgrid()`.
+  - Shown below is an example when `sep_level = 4` with a grid theme `sm_minimal()`.
 
 ```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
@@ -543,7 +585,7 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 
   scale_fill_manual(values = sm_palette(4)) +
-  sm_hgrid()
+  sm_minimal()
 ```
 
 - You can also flip the raincloud plot by setting `which_side` to `left`.
@@ -554,7 +596,8 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 
-  scale_fill_manual(values = sm_palette(4))
+  scale_fill_manual(values = sm_palette(4)) +
+  sm_minimal()
 ```
 
 - So far the distribution plots (violin plots) have been vertical. We can change their configuration by setting `vertical = FALSE`. 
@@ -565,7 +608,8 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
   xlab('Day') +
   scale_color_manual(values = rep('transparent',4)) + 
-  scale_fill_manual(values = sm_palette(4))
+  scale_fill_manual(values = sm_palette(4)) +
+  sm_minimal()
 ```
 
 - The orientation is not correct, so let's change it by setting `which_side = 'right'`. 

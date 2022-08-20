@@ -4,11 +4,11 @@ fig:unnamed-chunk-5
 fig:unnamed-chunk-6
 fig:unnamed-chunk-24
 fig:unnamed-chunk-92
-fig:unnamed-chunk-171
-fig:unnamed-chunk-173
-fig:unnamed-chunk-175
-fig:unnamed-chunk-176
 fig:unnamed-chunk-178
+fig:unnamed-chunk-180
+fig:unnamed-chunk-182
+fig:unnamed-chunk-183
+fig:unnamed-chunk-185
 download-rstudio-basics-of-r
 setting-up-rstudio
 how-to-run-your-code
@@ -25,7 +25,7 @@ violin-plot
 summary-1
 manual-and-examples-of-smplot
 installation-of-the-package
-smplots-color-palette-and-graph-themes
+colors-and-graph-themes-of-smplot
 correlation-plot
 data-frame-for-a-correlation-plot
 correlation-plot-with-both-regression-and-reference-lines

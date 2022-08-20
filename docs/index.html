@@ -24,7 +24,6 @@
 <meta name="author" content="Seung Hyun Min" />
 
 
-<meta name="date" content="2022-08-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -232,7 +231,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="manual-and-examples-of-smplot.html#what-is-smplot">What is <code>smplot</code>?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#smplots-color-palette-and-graph-themes"><i class="fa fa-check"></i><b>4.2</b> smplot’s Color Palette and Graph Themes</a>
+<li class="chapter" data-level="4.2" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#colors-and-graph-themes-of-smplot"><i class="fa fa-check"></i><b>4.2</b> Colors and Graph Themes of smplot</a>
 <ul>
 <li class="chapter" data-level="" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#smplots-color-palette"><i class="fa fa-check"></i>smplot’s color palette</a></li>
 <li class="chapter" data-level="" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#smplots-graph-themes"><i class="fa fa-check"></i>smplot’s graph themes</a></li>
@@ -376,7 +375,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Data Analysis and Visualization in R Using smplot</h1>
 <p class="author"><em>Seung Hyun Min</em></p>
-<p class="date"><em>2022-08-06</em></p>
+<p class="date"><em>Last Updated: 2022-08-20</em></p>
 </div>
 <div id="index" class="section level1 unnumbered">
 <h1>Welcome!</h1>
@@ -384,9 +383,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This book (<a href="https://smin95.com/dataviz" class="uri">https://smin95.com/dataviz</a>) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package <strong>smplot</strong>, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility.</p>
 <div id="major-updates-on-smplot-and-smcsf" class="section level2 unnumbered">
 <h2>Major updates on smplot and smCSF</h2>
-<p>If you downloaded <strong>before May 25th, 2022</strong>, please <strong>re-download smplot</strong>. Some updates include：</p>
+<p><strong>smplot</strong>: Latest updates have been made on <strong>August 20th, 2022</strong>. Please <strong>re-download smplot</strong>. These include：</p>
 <ul>
-<li><code>sm_slope_list()</code> has been fixed.</li>
+<li>Changes/fixes in <code>sm_minimal()</code> and <code>sm_raincloud()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
 <span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span>

@@ -461,7 +461,6 @@ knitr::include_graphics("img/rc_arg.png")
 ```
 
 
-
 ```{r, fig.width = 11.1, fig.height = 11.3}
 
 plot_s1_b <- plot_s1 + sm_common_axis(location = 'topleft')
@@ -517,7 +516,7 @@ If you are planning to make a 2x2 figure (2 rows, 2 columns), please understand 
 knitr::include_graphics("img/rc22.png")
 ```
 
-We are almost done now. You need to add the y-axis label (`'Contrast balance ratio'`), x-axis label (`'Minutes after monocular deprivation'`) and the title (`'Recovery of the patching effect'`) as shown in the original paper (Vision Research 2019).
+We are almost done now. Now, you will need to add the y-axis label (`'Contrast balance ratio'`), x-axis label (`'Minutes after monocular deprivation'`) and the title (`'Recovery of the patching effect'`) as shown in the original paper (Vision Research 2019).
 
 You can do this in **Adobe Illustrator** or directly in **R**. Here, I present a solution with **R**.
 
@@ -551,7 +550,7 @@ save_plot("combined_plot.png", combined_plot, ncol = 3, nrow = 3,
           base_aspect_ratio = .9, limitsize = F)
 ```
 
-Open `combined_plot.png` file in your directory folder. Does it look similar to the one in the web browser? On my computer, they look very different, and I much prefer the **png** file. 
+Open `combined_plot.png` file in your directory folder. Does it look similar to the one in the web browser? On my computer, it looks very different, and I much prefer the **png** file. 
 
 Here is the actual **png** file:
 
@@ -559,7 +558,7 @@ Here is the actual **png** file:
 knitr::include_graphics("img/combined_plot.png")
 ```
 
-To be honest, for adding the titles of the axes and the graph, using **Adobe Illustrator** might be much easier. I just included the codes here to demonstrate that everything, however, can be done in R.
+To be honest, for adding the titles of the axes and the graph, using **Adobe Illustrator** might be much easier. I have just included the codes here to demonstrate that everything, however, could be done in R.
 
 If you do not understand some of these functions, you can type in your console `?add_sub`, `?grid.arrange` to learn about these functions.
 

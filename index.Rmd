@@ -1,7 +1,7 @@
 --- 
 title: "Data Analysis and Visualization in R Using smplot"
 author: "Seung Hyun Min"
-date: "`r Sys.Date()`"
+date: "Last Updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 ---
@@ -85,9 +85,9 @@ This book (https://smin95.com/dataviz) guides the reader to be familiar with R, 
 
 ## Major updates on smplot and smCSF {-}
 
-If you downloaded **before May 25th, 2022**, please **re-download smplot**. Some updates include： 
+**smplot**: Latest updates have been made on **August 20th, 2022**. Please **re-download smplot**. These include： 
 
-- `sm_slope_list()` has been fixed.
+- Changes/fixes in `sm_minimal()` and `sm_raincloud()`.
 
 ```{r, eval = FALSE}
 install.packages("devtools")
