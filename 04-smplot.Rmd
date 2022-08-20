@@ -527,7 +527,7 @@ sm_bland_altman(df3$first, df3$second, shape = 21, fill = sm_color('green'), col
 ## Raincloud plot - `sm_raincloud()`
 
 - `sm_raincloud()` generates a raincloud plot. 
-- It also has arguments `borders` and `legends`, both of which have been set to `FALSE` as defaults. 
+- It also has arguments `borders` and `legends`. The the default of the former has been set as `TRUE` and that of the latter as `FALSE`.
 - A raincloud plot is a combination of jittered points, a boxplot and a violin plot. 
 - However, this plot can be visually crowded. Some people like to use raincloud plots, some do not. So, the choice to use it is entirely yours. 
 - Let's generate some random data.
