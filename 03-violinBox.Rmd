@@ -171,14 +171,14 @@ plot_grid(points, bar, rel_widths = c(.65, 1), nrow = 1)
 - Also, you will need to specify the x- and y-axes in the `mapping` argument within `ggplot()`.
   - `x = Day` and `y = Value`.
   
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value))
 ```
 
 - However, as we learned in the last lesson, **ggplot** requires **geom** objects to plot something. Last time we used **geom_point()**, which plots points.
 - Now, let's use **geom_boxplot()** to plot a boxplot.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot()
 ```
 
@@ -255,7 +255,7 @@ df
 
 - Now let's draw the boxplot again.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot()
 ```
 
@@ -267,7 +267,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot()
 
 - There are many ways to do this. Here is a simple solution by using `geom_jitter()`. For more information, type `?geom_jitter`.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot() + 
   geom_jitter()
 ```
@@ -275,7 +275,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot() +
 - I think the points are too spread. So let's set the `width` of the spread in `geom_jitter()` to 0.15.
 - Also, let's apply a different color of points for each **Day**.
 
-```{r,fig.width = 5.1, fig.height=3.7, warning = F}
+```{r,fig.width = 4.8, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   geom_boxplot() + 
   geom_jitter(width = 0.15)
@@ -284,7 +284,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 - Now we can make the boxplot prettier with `sm_minimal()`, which removes all grids in the graph. We can also set `legends = FALSE` to remove the legends.
 - Let's also add a title **Visual improvement after treatment** using `ggtitle()`, which is a function from the **ggplot2** package.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   geom_boxplot() + 
   geom_jitter(width = 0.15) + 
@@ -295,7 +295,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 - Now let's set the colors using `sm_palette()`. Remember from the last lesson that we set the colors in **ggplot** by using `scale_color_manual()` for points without borders.
 - Let's write `3` in `sm_palette()` because we need 3 colors (for each **Day**).
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   geom_boxplot() + 
   geom_jitter(width = 0.15) + 
@@ -307,7 +307,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 - If you need horizontal grids, you can simply replace `sm_minimal()` with `sm_hgrid()`. There is also `sm_vgrid()` but I will not try it here because it is not so useful in our context.
 
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   geom_boxplot() + 
   geom_jitter(width = 0.15) + 
@@ -322,7 +322,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 - `sm_boxplot()` shows both a boxplot and individual data.
   - It automatically uses `sm_hgrid()`.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   sm_boxplot() + 
   ggtitle('Visual improvement after treatment') +
@@ -336,7 +336,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   - Also, `color` here only affects the border color. Let's set it to `white`. 
 - Make sure you change `scale_color_manual()` to `scale_fill_manual()`.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
   sm_boxplot(shape = 21, color = 'white') + 
   ggtitle('Visual improvement after treatment') +
@@ -345,7 +345,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 - Now, pick your favorite boxplot and store it in a variable called **my_boxplot** using `<-`.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 my_boxplot <- ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
   sm_boxplot(shape = 21, color = 'white') + 
   ggtitle('Visual improvement after treatment') +
@@ -400,7 +400,7 @@ plot_grid(p_points, p_violin, rel_widths = c(.65, 1), nrow = 1)
 
 - Let's draw the violin plot. Specify the x-axis to **Day** and the y-axis to **Value** using data frame **df**.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_violin()
 ```
 
@@ -412,7 +412,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_violin()
 - Let's add individual points to the violin plot by using `geom_jitter()`. 
   - Set `width` of the spread to `0.15`.
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) + 
   geom_violin() + 
   geom_jitter(width = 0.15)
@@ -421,7 +421,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) +
 - Now let's apply different color to each **Day** like we did in boxplot by using `scale_color_manual()`.
   - Let's use `sm_palette(3)`.
   
-```{r,fig.width = 4.8, fig.height=3.7, warning = F}
+```{r,fig.width = 4.54, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   geom_violin() + 
   geom_jitter(width = 0.15) +
@@ -431,7 +431,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 - Finally, let's make it pretty and remove the **legend** by applying `sm_hgrid()` theme, which only has horizontal grids.
 - Let's also add a title **Visual improvement after treatment** using `ggtitle()`.
 
-```{r, fig.width = 3.7, fig.height=3.7, warning = F}
+```{r, fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   geom_violin() + 
   geom_jitter(width = 0.15) +
@@ -452,7 +452,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 - Let’s set `color = Day` in `aes()` so that we can apply different colors of the lines and the points for each group.
 - Make sure you have `scale_color_manual()`.
 
-```{r, fig.width = 3.7, fig.height=3.7, warning = F}
+```{r, fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   sm_violin() + 
   scale_color_manual(values = sm_palette(3)) +

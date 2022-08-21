@@ -84,7 +84,7 @@ sm_palette(5)
 
 - `p1` has the default theme of **ggplot2**.
 
-```{r,fig.width = 5.3, fig.height=3.7}
+```{r,fig.width = 4.9, fig.height=3.5}
 library(tidyverse)
 p1 <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point(size = 2)
@@ -93,63 +93,63 @@ p1
 
 - Now we can change the theme using `sm_corr_theme()`.
 
-```{r,fig.width = 5.3, fig.height=3.7}
+```{r,fig.width = 5, fig.height=3.5}
 p1 + sm_corr_theme()
 ```
 
 - We can also remove `borders` and `legends` by setting them as `FALSE`.
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p2 <- p1 + sm_corr_theme(borders = FALSE, legends = FALSE)
 p2
 ```
 
 - You can also apply smplot's colors by using `scale_color_manual()`.
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p2 + scale_color_manual(values = sm_palette(7))
 ```
 
 - We can also apply `sm_hgrid()`.
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_hgrid()
 ```
 
 - Let's try `sm_vgrid()`.
 
 
-```{r,fig.width = 5.3, fig.height=3.7}
+```{r,fig.width = 5, fig.height=3.5}
 p1 + sm_vgrid()
 ```
 
 - You can remove the legend as shown below.
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_vgrid(legends = FALSE)
 ```
 
 - `sm_classic()` is one of my favourites! 
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_classic()
 ```
 
 - You can add the legend as shown below.
 
-```{r,fig.width = 5.15, fig.height=3.7}
+```{r,fig.width = 5., fig.height=3.5}
 p1 + sm_classic(legends = TRUE)
 ```
 
 - Another choice is `sm_minimal()`.
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_minimal()
 ```
 
 - You can choose to include the legend in `sm_minimal()`.
 
-```{r,fig.width = 5.15, fig.height=3.7}
+```{r,fig.width = 5, fig.height=3.5}
 p1 + sm_minimal(legends = TRUE)
 ```
 
@@ -159,7 +159,7 @@ p1 + sm_minimal(legends = TRUE)
 
 - This is the plot using the default theme of **ggplot2**. 
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p1 <- ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = sm_color('green'), color = 'white', size = 3) 
 p1
@@ -169,7 +169,7 @@ p1
 - **Important:** `sm_statCorr()` recognizes the data for the y- and x-axes from the `mapping = aes()` in `ggplot()` function.
   - There is no `mapping` argument in `sm_statCorr()`.
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_corr_theme() + 
   sm_statCorr(color = sm_color('green'))
 ```
@@ -177,7 +177,7 @@ p1 + sm_corr_theme() +
 - You can also change the `line_type` to `'solid'` in `sm_statCorr()`, and change the location of the printed texts by using `label_x` and `label_y` arguments. 
 - You can also change the font size of the printed texts by setting `text_size` to a larger numerical value.
 
-```{r,fig.width = 3.7, fig.height=3.7}
+```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_corr_theme() + 
   sm_statCorr(color = sm_color('green'),
                line_type = 'solid',
@@ -220,7 +220,7 @@ head(df_corr)
 
 - Notice that `df_corr` has two columns, each of which represents a measurement group. 
 
-```{r, fig.width = 3.7, fig.height=3.7}
+```{r, fig.width = 3.5, fig.height=3.5}
 
 # correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
@@ -235,7 +235,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 
 ```
 
-```{r, fig.width = 3.7, fig.height=3.7}
+```{r, fig.width = 3.5, fig.height=3.5}
 # bar graph using data frame 'df_general'
 ggplot(data = df_general, mapping = aes(x = Method, y = Value, fill = Method)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
@@ -247,7 +247,7 @@ ggplot(data = df_general, mapping = aes(x = Method, y = Value, fill = Method)) +
 - You can also add a reference line (slope = 1) in a correlation plot.
 - This can be done with `geom_abline()`. In this example, the reference line's slope is set to 1 and it has a dashed line style.
 
-```{r, fig.width = 3.7, fig.height=3.7}
+```{r, fig.width = 3.5, fig.height=3.5}
 
 # correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
@@ -282,7 +282,7 @@ df <- cbind(Subject, Data, Day)
 
 - Now, let's make a boxplot using `sm_boxplot()`. 
 
-```{r,fig.width = 3.7, fig.height=3.7, warning = F}
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 # a boxplot with the random data, all black points
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot(fill = 'black')
@@ -290,7 +290,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) +
 
 - Now let's apply different color for each Day.
 
-```{r, fig.width = 3.7, fig.height=3.7, warning = F}
+```{r, fig.width = 3.5, fig.height=3.5, warning = F}
 # a boxplot with different colored points
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_boxplot(shape = 21, color = 'white') +
@@ -302,7 +302,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   - The notches are used for group comparison.
   - If the notch of each box does not overlap, there is a strong likelihood that the medians are significantly different between groups.
 
-```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+```{r, fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_boxplot(shape = 21, point_size = 4, notch = 'TRUE', alpha = 0.5) +
   scale_fill_manual(values = sm_color('blue','orange'))
@@ -313,7 +313,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 - One can also use `sm_boxplot()` to plot individual points with unique colors. 
 - However, `sm_boxplot()` cannot print distinct box colors across distinct x levels (i.e., in this example, all boxes are grey). This is because I think that it is not a good practice to print different colors of boxes when each point has unique color as well. 
 
-```{r, fig.width = 3.7, fig.height=3.7, warning = F}
+```{r, fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject)) +
   sm_boxplot(shape = 21, color = 'white') +
   scale_fill_manual(values = sm_palette(16))
@@ -329,13 +329,13 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject)) +
 - `sm_violin()` automatically uses `sm_hgrid()` as its default theme.
 - It also has arguments `borders` and `legends`, both of which have been set to `FALSE` as defaults. 
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 # a violin plot with the random data, all black points and lines
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_violin(fill = 'black') 
 ```
 
-```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+```{r, fig.width = 3.5, fig.height=3.5,warning = F}
 # a violin plot with different colored points and lines
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_violin() + 
@@ -348,7 +348,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 - The x-level has to be grouped in the aesthetics (ex. `group = Day`).
 - But `sm_violin()` cannot print distinct violin colors across distinct x levels (i.e., in this example, all violins are grey). This is because it is aesthetically distracting to assign different colors of the violin across distinct x-levels. 
 
-```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+```{r, fig.width = 3.5, fig.height=3.5,warning = F}
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject,
                                 group = Day)) +
@@ -358,7 +358,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject,
 ```
 
 
-```{r, fig.width = 3.7, fig.height=3.7,warning = F}
+```{r, fig.width = 3.5, fig.height=3.5,warning = F}
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject,
                                 group = Day, color = Day)) +
@@ -374,7 +374,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Subject,
 - It also has arguments `borders` and `legends`, both of which have been set to `FALSE` as defaults. 
 - Let's use data (`df`) we generated before.
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
   scale_fill_manual(values = sm_color('blue','orange'))
@@ -383,26 +383,37 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 - In this case, the error bar represents **standard error**. If you prefer to show **standard deviation**, then you should set `errorbar_type  = 'sd'` in `sm_bar()`.
   
   
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80', errorbar_type = 'sd') +
   scale_fill_manual(values = sm_color('blue','orange'))
 ```
 
-- 95% confidence interval also be displayed with `errorbar_type  = 'ci'`. 
+- 95% confidence interval can also be displayed with `errorbar_type  = 'ci'`. 
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80', errorbar_type = 'ci') +
   scale_fill_manual(values = sm_color('blue','orange'))
 ```
+
+- You can also make the bar slightly transparent by setting `bar_alpha` to less than 1. 
+
+```{r,fig.width = 3.7, fig.height=3.5,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80', 
+         errorbar_type = 'ci', bar_alpha = 0.7) +
+  scale_fill_manual(values = sm_color('blue','orange'))
+```
+
+
 
 ### Plotting individual points with unique colors
 
 - One can also use `sm_bar()` to plot individual points with unique colors. 
 
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
   sm_bar(bar_fill_color = 'gray80') +
   scale_color_manual(values = sm_palette(16)) 
@@ -410,7 +421,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
 
 - `sm_bar()` can also print distinct box colors across distinct x levels.
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
                                 fill = Day)) +
   sm_bar() +
@@ -431,7 +442,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
 - The x-axis cannot be **continuous**. It has to be **discrete**. So, it should take the form of `character` or `factor` (ex. 'One', 'Two', 'Three'). If x-axis only has number (i.e., `double` form, such as 1.02, 1.05, 1.5), then `sm_slope()` will produce an error.
 - `labels` argument is required to use `sm_slope()`. This refers to the labels of the ticks in the x-axis. Ex. `labels = c('Day 1', 'Day 2')`.
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject)) +
   sm_slope(labels = c('Day 1', 'Day 2'))
 ```
@@ -440,7 +451,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject)) +
 - Let's make the border color to `white`.
 - Let's apply the same color to each **Day**.
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject)) +
   sm_slope(labels = c('Day 1','Day 2'), shape = 21, color = 'white', fill = sm_color('blue'))
 ```
@@ -448,7 +459,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject)) +
 - You could also apply different color for each `Day` using `scale_fill_manual()`.
 
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)) +
   sm_slope(labels = c('Day 1','Day 2'), shape = 21, color = 'white') +
   scale_fill_manual(values = sm_color('blue','orange'))
@@ -456,7 +467,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)
 
 - You can also change the line color and other aesthetics. For more information, please type `?sm_slope`. 
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)) +
   sm_slope(labels = c('Day 1','Day 2'), shape = 21, color = 'white',
            fill = sm_color('blue'), line_color = '#bfd5db',
@@ -480,7 +491,7 @@ df3 <- as_tibble(cbind(first,second)) # requires library(tidyverse)
 - Now let's draw a Bland Altman plot using `sm_bland_altman()`, which requires two arguments: first dataset, second dataset. They have to be numerical vectors of equal length.
   - This function automatically uses `sm_classic()` theme.
 
-```{r, fig.width = 3.7, fig.height = 3.7, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 sm_bland_altman(df3$first, df3$second, color = sm_color('green')) + 
   scale_y_continuous(limits = c(-4,4))
 ```
@@ -497,7 +508,7 @@ from **ggplot2**. This process can be tedious.
 necessary to draw a Bland-Altman plot, such as the mean difference, upper and lower limits. This function is used to annotate the values in the plot.
   - The arguments for this function are first and second datasets, just like in `sm_bland_altman()`.
 
-```{r, fig.width = 3.7, fig.height = 3.7, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 res <- sm_statBlandAlt(df3$first,df3$second) # store the results in res variable 
 
 sm_bland_altman(df3$first, df3$second, color = sm_color('green')) + 
@@ -512,7 +523,7 @@ sm_bland_altman(df3$first, df3$second, color = sm_color('green')) +
 
 - Let's change the border color of the circles to white. To do so, we will have to change their shape to 21.
 
-```{r, fig.width = 3.7, fig.height = 3.7, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 
 sm_bland_altman(df3$first, df3$second, shape = 21, fill = sm_color('green'), color = 'white') + 
   scale_y_continuous(limits = c(-4,4)) +
@@ -548,13 +559,13 @@ df2 <- cbind(Subject, Data, Day)
 should convert the column as factor and establish the levels correctly.
 - Now let's draw a raincloud plot using `sm_raincloud()`.
 
-```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
+```{r, fig.width = 5.4, fig.height = 3.5, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value) 
 ```
 
 - Let's change the x-axis labels.
 
-```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
+```{r, fig.width = 5.4, fig.height = 3.5, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('First', 'Second', 'Third', 'Fourth'), breaks = c(1,2,3,4)) +
   xlab('Day') 
@@ -565,7 +576,7 @@ sm_raincloud(data = df2, x = Day, y = Value) +
   - I will set it `transparent` to remove the border of the violin plots. 
 - The color of the points can be used by either of the 2 functions depending on the shape, which can be set within `sm_raincloud()`.
 
-```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
+```{r, fig.width = 5.4, fig.height = 3.5, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
               color = 'white', shape = 21, sep_level = 2) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('One', 'Two', 'Three', 'Four'), breaks = c(1,2,3,4)) +
@@ -578,7 +589,7 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
   - I personally prefer when the boxplot and violin plots are together, but not the points. So I set the default to `sep_level = 2`.
   - Shown below is an example when `sep_level = 4` with a grid theme `sm_minimal()`.
 
-```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
+```{r, fig.width = 5.4, fig.height = 3.5, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
               color = 'white', shape = 21, sep_level = 4) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
@@ -590,7 +601,7 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
 
 - You can also flip the raincloud plot by setting `which_side` to `left`.
 
-```{r, fig.width = 5.7, fig.height = 3.7, warning = F}
+```{r, fig.width = 5.4, fig.height = 3.5, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
               color = 'white', shape = 21, sep_level = 2, which_side = 'left') +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
@@ -602,7 +613,7 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
 
 - So far the distribution plots (violin plots) have been vertical. We can change their configuration by setting `vertical = FALSE`. 
 
-```{r, fig.width = 3.7, fig.height = 5.7, warning = F}
+```{r, fig.width = 3.5, fig.height = 5.4, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
               color = 'white', shape = 21, sep_level = 2, which_side = 'left', vertical = FALSE) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
@@ -614,7 +625,7 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
 
 - The orientation is not correct, so let's change it by setting `which_side = 'right'`. 
 
-```{r, fig.width = 3.7, fig.height = 5.7, warning = F}
+```{r, fig.width = 3.5, fig.height = 5.4, warning = F}
 sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5, 
               color = 'white', shape = 21, sep_level = 2, which_side = 'right', vertical = FALSE) +
   scale_x_continuous(limits = c(0.25,4.75), labels = c('1', '2', '3', '4'), breaks = c(1,2,3,4)) +
@@ -630,7 +641,7 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
 
 - Here is a bar graph. 
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
   scale_fill_manual(values = sm_color('blue','orange'))
@@ -638,7 +649,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 - Now let's remove the x-axis title **Day**.
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
   scale_fill_manual(values = sm_color('blue','orange')) +
@@ -647,7 +658,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 - Let's customise the graph more by changing the y-axis title and adding a main title.
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
   scale_fill_manual(values = sm_color('blue','orange')) +
@@ -662,7 +673,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 - Therefore, instead of using `sm_color()` function to call forth the colors, you can directly write the hex codes of colors that are not included in **smplot**.
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 
 my_colors <- c('#ff1493', '#483d8B') # pink and lavender
 

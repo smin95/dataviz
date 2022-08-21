@@ -519,13 +519,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="boxplot-and-violin-plot.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-65-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-65-1.png" width="336" /></p>
 <ul>
 <li>However, as we learned in the last lesson, <strong>ggplot</strong> requires <strong>geom</strong> objects to plot something. Last time we used <strong>geom_point()</strong>, which plots points.</li>
 <li>Now, let’s use <strong>geom_boxplot()</strong> to plot a boxplot.</li>
 </ul>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="boxplot-and-violin-plot.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-66-1.png" width="336" /></p>
 <ul>
 <li>Here’s the boxplot! But I think there is a problem here.</li>
 <li>Day <strong>Three</strong> precedes Day <strong>Two</strong> in the x-axis.</li>
@@ -629,7 +629,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Now let’s draw the boxplot again.</li>
 </ul>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="boxplot-and-violin-plot.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="336" /></p>
 <ul>
 <li>Since we have converted the <strong>Day</strong> column of <strong>df</strong> into factor, the boxplot successfully plots each day in the correct order.</li>
 </ul>
@@ -642,7 +642,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="boxplot-and-violin-plot.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
 <span id="cb90-2"><a href="boxplot-and-violin-plot.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="336" /></p>
 <ul>
 <li>I think the points are too spread. So let’s set the <code>width</code> of the spread in <code>geom_jitter()</code> to 0.15.</li>
 <li>Also, let’s apply a different color of points for each <strong>Day</strong>.</li>
@@ -650,7 +650,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="boxplot-and-violin-plot.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
 <span id="cb91-2"><a href="boxplot-and-violin-plot.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
 <span id="cb91-3"><a href="boxplot-and-violin-plot.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-74-1.png" width="489.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-74-1.png" width="460.8" /></p>
 <ul>
 <li>Now we can make the boxplot prettier with <code>sm_minimal()</code>, which removes all grids in the graph. We can also set <code>legends = FALSE</code> to remove the legends.</li>
 <li>Let’s also add a title <strong>Visual improvement after treatment</strong> using <code>ggtitle()</code>, which is a function from the <strong>ggplot2</strong> package.</li>
@@ -660,7 +660,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb92-3"><a href="boxplot-and-violin-plot.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>) <span class="sc">+</span> </span>
 <span id="cb92-4"><a href="boxplot-and-violin-plot.html#cb92-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_minimal</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb92-5"><a href="boxplot-and-violin-plot.html#cb92-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Visual improvement after treatment&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" width="336" /></p>
 <ul>
 <li>Now let’s set the colors using <code>sm_palette()</code>. Remember from the last lesson that we set the colors in <strong>ggplot</strong> by using <code>scale_color_manual()</code> for points without borders.</li>
 <li>Let’s write <code>3</code> in <code>sm_palette()</code> because we need 3 colors (for each <strong>Day</strong>).</li>
@@ -671,7 +671,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb93-4"><a href="boxplot-and-violin-plot.html#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_minimal</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb93-5"><a href="boxplot-and-violin-plot.html#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Visual improvement after treatment&#39;</span>) <span class="sc">+</span></span>
 <span id="cb93-6"><a href="boxplot-and-violin-plot.html#cb93-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-76-1.png" width="336" /></p>
 <ul>
 <li>If you need horizontal grids, you can simply replace <code>sm_minimal()</code> with <code>sm_hgrid()</code>. There is also <code>sm_vgrid()</code> but I will not try it here because it is not so useful in our context.</li>
 </ul>
@@ -681,7 +681,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb94-4"><a href="boxplot-and-violin-plot.html#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb94-5"><a href="boxplot-and-violin-plot.html#cb94-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Visual improvement after treatment&#39;</span>) <span class="sc">+</span></span>
 <span id="cb94-6"><a href="boxplot-and-violin-plot.html#cb94-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-77-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-77-1.png" width="336" /></p>
 </div>
 <div id="geom_boxplot-vs-sm_boxplot" class="section level3 unnumbered">
 <h3><code>geom_boxplot()</code> vs <code>sm_boxplot()</code></h3>
@@ -696,7 +696,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb95-2"><a href="boxplot-and-violin-plot.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>() <span class="sc">+</span> </span>
 <span id="cb95-3"><a href="boxplot-and-violin-plot.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Visual improvement after treatment&#39;</span>) <span class="sc">+</span></span>
 <span id="cb95-4"><a href="boxplot-and-violin-plot.html#cb95-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-78-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-78-1.png" width="336" /></p>
 <ul>
 <li>Let’s keep the color of the boxplot the same across <strong>Day</strong>. So we should remove <code>color = Day</code> in <code>aes()</code>.
 <ul>
@@ -713,7 +713,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb96-2"><a href="boxplot-and-violin-plot.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb96-3"><a href="boxplot-and-violin-plot.html#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Visual improvement after treatment&#39;</span>) <span class="sc">+</span></span>
 <span id="cb96-4"><a href="boxplot-and-violin-plot.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-79-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-79-1.png" width="336" /></p>
 <ul>
 <li>Now, pick your favorite boxplot and store it in a variable called <strong>my_boxplot</strong> using <code>&lt;-</code>.</li>
 </ul>
@@ -758,7 +758,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s draw the violin plot. Specify the x-axis to <strong>Day</strong> and the y-axis to <strong>Value</strong> using data frame <strong>df</strong>.</li>
 </ul>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="boxplot-and-violin-plot.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> <span class="fu">geom_violin</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-83-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-83-1.png" width="336" /></p>
 <ul>
 <li>Notice that since we have already converted the <strong>Day</strong> column of df into <strong>factor</strong>, the violin plot’s x-axis is in the correct order.</li>
 <li>Also, notice that we can just replace <code>geom_boxplot()</code> with <code>geom_violin()</code>.</li>
@@ -775,7 +775,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="boxplot-and-violin-plot.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span> </span>
 <span id="cb100-2"><a href="boxplot-and-violin-plot.html#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
 <span id="cb100-3"><a href="boxplot-and-violin-plot.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-84-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-84-1.png" width="336" /></p>
 <ul>
 <li>Now let’s apply different color to each <strong>Day</strong> like we did in boxplot by using <code>scale_color_manual()</code>.
 <ul>
@@ -786,7 +786,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb101-2"><a href="boxplot-and-violin-plot.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span> </span>
 <span id="cb101-3"><a href="boxplot-and-violin-plot.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
 <span id="cb101-4"><a href="boxplot-and-violin-plot.html#cb101-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-85-1.png" width="460.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-85-1.png" width="435.84" /></p>
 <ul>
 <li>Finally, let’s make it pretty and remove the <strong>legend</strong> by applying <code>sm_hgrid()</code> theme, which only has horizontal grids.</li>
 <li>Let’s also add a title <strong>Visual improvement after treatment</strong> using <code>ggtitle()</code>.</li>
@@ -797,7 +797,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb102-4"><a href="boxplot-and-violin-plot.html#cb102-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>)) <span class="sc">+</span></span>
 <span id="cb102-5"><a href="boxplot-and-violin-plot.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
 <span id="cb102-6"><a href="boxplot-and-violin-plot.html#cb102-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Visual improvement after treatment&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-86-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-86-1.png" width="336" /></p>
 </div>
 <div id="geom_violin-vs-sm_violin" class="section level3 unnumbered">
 <h3>geom_violin() vs sm_violin()</h3>
@@ -818,7 +818,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb103-2"><a href="boxplot-and-violin-plot.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_violin</span>() <span class="sc">+</span> </span>
 <span id="cb103-3"><a href="boxplot-and-violin-plot.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>)) <span class="sc">+</span></span>
 <span id="cb103-4"><a href="boxplot-and-violin-plot.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Visual improvement after treatment&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-87-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-87-1.png" width="336" /></p>
 </div>
 <div id="save-your-violin-plot" class="section level3 unnumbered">
 <h3>Save your violin plot</h3>

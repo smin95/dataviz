@@ -89,7 +89,7 @@ I will use `%>%` from now on due to my personal preference.
 Let's use the data set `avg_day1` to plot data only from Day 1.
 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 avg_day1 %>% ggplot(aes(x = Time, y = Average)) +
   geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
    geom_point(size = 4.5, color = sm_color('skyblue')) +
@@ -126,7 +126,7 @@ subj_b_day1
 ```
 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
   geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
    geom_point(size = 4.5, color = sm_color('skyblue')) +
@@ -152,7 +152,7 @@ sm_auc(x, subj_b_day1$Cbratio)
 
 The AUC equals 60.53. This shows that for subject `b`, the effect is large and long-lasting. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
   geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
    geom_point(size = 4.5, color = sm_color('skyblue')) +
@@ -168,7 +168,7 @@ subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
 
 Now let's visualize the data of subject `b` from Day 2. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 subj_b_day2 <- df %>% filter(Day == 2 & Subject == 'b')
 
 subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
@@ -192,7 +192,7 @@ sm_auc(x, subj_b_day2$Cbratio)
 
 The AUC equals 80.38. In the case of subject `b`, the effect seems to have increased on Day 2 relative to Day 1. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 subj_b_day2 <- df %>% filter(Day == 2 & Subject == 'b')
 
 subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
@@ -254,7 +254,7 @@ Here is a bar graph showing `auc_df`'s data. This figure is similar to Figure 3E
 
 - re: means relative to X. The data are the differences compared to the baseline (re: Baseline).
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 auc_df %>% ggplot(aes(x = Day, y = AUC_Cbratio, fill = Day)) +
    sm_bar(shape = 21, color = 'white', 
           bar_fill_color = 'gray80',
@@ -265,7 +265,7 @@ auc_df %>% ggplot(aes(x = Day, y = AUC_Cbratio, fill = Day)) +
 
 Here is a box plot showing `auc_df`'s data. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 auc_df %>% ggplot(mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
   sm_boxplot(alpha = 0.6) + 
   scale_color_manual(values = sm_palette(5)) +
@@ -278,7 +278,7 @@ Let's redraw some of the figures in the paper. In 2019, when the paper was publi
 
 ### Figure 3B (a best-fit line with points and error bars)
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 df <- read_csv('https://www.smin95.com/min2019b.csv') 
 # filter data from Days 2-4. | means OR.
 df1 <- df %>% filter(Day == 2 | Day == 3 | Day == 4) %>% group_by(Day, Time) %>% 
@@ -313,7 +313,7 @@ df1 %>% ggplot(aes(x = Time, y = avg, color = Day)) +
 
 This a bar graph that has been plotted with `sm_bar()`. The y-axis has been set with the function `coord_cartesian()`. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 
 baseline <- read_csv('https://www.smin95.com/baseline.csv') 
 
@@ -340,7 +340,7 @@ Notice that two data frames are used to create this plot, `df_shade1` and `auc_d
 
 So do not worry if your field does not use R for data analysis. One can still perform data visualization using R. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 
 df_shade <- read_csv('https://www.smin95.com/fit_error_shade.csv')
 df_shade1 <- df_shade %>% mutate(yUpp = y_mean + y_se, yLow = y_mean - y_se)

@@ -4,11 +4,11 @@ fig:unnamed-chunk-5
 fig:unnamed-chunk-6
 fig:unnamed-chunk-24
 fig:unnamed-chunk-92
-fig:unnamed-chunk-178
-fig:unnamed-chunk-180
-fig:unnamed-chunk-182
+fig:unnamed-chunk-179
+fig:unnamed-chunk-181
 fig:unnamed-chunk-183
-fig:unnamed-chunk-185
+fig:unnamed-chunk-184
+fig:unnamed-chunk-186
 download-rstudio-basics-of-r
 setting-up-rstudio
 how-to-run-your-code

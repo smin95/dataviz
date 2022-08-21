@@ -102,7 +102,7 @@ We see that the y-intercept $b$ is 0.4582 under the column `Estimate`. We also s
 
 Let's visualize the data of A3 and fit a linear slope.
 
-```{r, fig.width = 3.65, fig.height = 3.65}
+```{r, fig.width = 3.5, fig.height = 3.5}
 A3_second %>% ggplot(aes(x = logSF, y = absBP)) +
   geom_point() +
   geom_abline(slope = 0.4582, intercept = 0.3046)
@@ -129,7 +129,7 @@ res$coefficients[[2]]
 Now let's plot the graph again and label the y-intercept as well.
 A separate data frame `y_int` containing the y-intercept is created below. The code below is a bit challenging, so please use `?` to figure out each function if you are not sure. 
 
-```{r, fig.width = 3.65, fig.height = 3.65}
+```{r, fig.width = 3.5, fig.height = 3.5}
 y_int <- data.frame(logSF = 0, absBP = res$coefficients[[1]])
 
 A3_second %>% ggplot(aes(x = logSF, y = absBP)) +
@@ -217,7 +217,7 @@ slope_df_one$Group <- factor(slope_df_one$Group,
 
 Here is a boxplot showing `slope_df_one`'s data. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 slope_df_one %>% ggplot(mapping = aes(x = Group, y = Slope, color = Group)) +
   sm_boxplot(alpha = 0.6) + 
   scale_color_manual(values = sm_palette(2)) +
@@ -226,7 +226,7 @@ slope_df_one %>% ggplot(mapping = aes(x = Group, y = Slope, color = Group)) +
 
 Here is a bar graph showing `slope_df`'s data for `One` condition only. This figure is similar to Figure 3B in the paper (Mao et al., 2020).
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 slope_df_one %>% ggplot(aes(x = Group, y = Slope, fill = Group)) +
    sm_bar(shape = 21, color = 'white', 
           bar_fill_color = 'gray80',

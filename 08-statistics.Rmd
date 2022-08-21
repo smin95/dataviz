@@ -27,7 +27,7 @@ One sample t-test compares the mean of a sample to a hypothesized mean (often 0)
 
 For example, here is Figure 3E from the paper. What do the \*\*\* mean? How about \*\* and \*? Let's take a look. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F, echo = FALSE}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F, echo = FALSE}
 
 df_shade <- read_csv('https://www.smin95.com/fit_error_shade.csv')
 df_shade1 <- df_shade %>% mutate(yUpp = y_mean + y_se, yLow = y_mean - y_se)
@@ -340,7 +340,7 @@ However, if your data set has too many outliers, then it might be inappropriate 
 
 Let's visually confirm whether there are 2 outliers in the AUC data from Day 4 by plotting a boxplot using `sm_boxplot()`.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 auc_df %>% ggplot(mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
   sm_boxplot(alpha = 0.6) + 
   scale_color_manual(values = sm_palette(5)) +
@@ -482,7 +482,7 @@ It appears that there is a statistically significant effect of `Time`, F(5, 270)
 
 An interaction effect between A and B exists when the effect of factor A (ex. `Day`) is different at different levels of factor B (ex. `Time`). Let's understand how the effect of interaction could affect the data.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F, echo = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F, echo = F}
 df <- read_csv('https://www.smin95.com/min2019b.csv') 
 # filter data from Days 2-4. | means OR.
 df1 <- df %>% filter(Day == 2 | Day == 3 | Day == 4) %>% group_by(Day, Time) %>% 
