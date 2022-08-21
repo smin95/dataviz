@@ -165,7 +165,8 @@ The answer is **no**. **smplot** has a function `sm_slope_list()` that returns a
 - `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the `logSF` column of `df`. It must be strings, ex. `'logSF'`, not `logSF`. Also, it must be **numeric**/**double**, NOT **factor**. Make sure you check that the column is numeric. If its not, convert the column of the dataframe into **double** beforehand. ex. `df$logSF <- as.numeric(df$logSF)` or `df$SpatialFreq <- as.numeric(df$SpatialFreq)`. 
 - `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'absBP'`, not `absBP`.
 
-We can store the results from `sm_slope_list()` into a new variable. I will call the new variable `slope_df`.
+Before using `sm_slope_list()`, you will need to check for a few things. First, check if the x column is numeric, not factor, by using `is.numeric()` function. If it is numeric, proceed with using `sm_slope_list()`. Second, see if the x levels (ex. 0, 3, 6, 12, 24 and 48 etc) are identical for each subject and condition (ex. no 7, 16, 29 minutes for subject 10). 
+
 
 ```{r}
 # check if the x column is numeric
@@ -178,7 +179,8 @@ is.factor(df$logSF)
 df$logSF <- as.numeric(df$logSF)
 ```
 
-Before using `sm_slope_list()`, you will need to check for a few things. First, check if the x column is numeric, not factor, by using `is.numeric()` function. If it is numeric, proceed with using `sm_slope_list()`. Second, see if the x levels (ex. 0, 3, 6, 12, 24 and 48 etc) are identical for each subject and condition (ex. no 7, 16, 29 minutes for subject 10). 
+
+After checking, we can store the results from `sm_slope_list()` into a new variable. I will call the new variable `slope_df`.
 
 ```{r}
 slope_df <- sm_slope_list(subjects = 'Subject', 
