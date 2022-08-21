@@ -223,10 +223,23 @@ sm_auc_list(subjects = 'Subject', conditions = 'Day',
 - `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.
 - `groups` = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be `Group` column that contains two groups: `Normal` and `Amblyopia` (see next chapter on Slope Analysis).
 - `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the condition is the day. It must strings, ex. `'Day'`, not `Day`.
-- `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are 0, 3, 6, 12, 24 minutes. It must  strings, ex. `'Time'`, not `Time`.
+- `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are 0, 3, 6, 12, 24 minutes. It must be strings, ex. `'Time'`, not `Time`. Also, it must be **numeric**/**double**, NOT **factor**. Make sure you check that the column is numeric. If its not, convert the column of the dataframe into **double** beforehand. ex. `df$Time <- as.numeric(df$Time)` or `df$SpatialFreq <- as.numeric(df$Time)`.
 - `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'Cbratio'`, not `Cbratio`.
 
 We can store the results from `sm_auc_list()` into a new variable. I will call the new variable `auc_df`.
+
+```{r}
+# check if the x column is numeric
+is.numeric(df$Time) 
+
+# check if the x column is factor
+is.factor(df$Time)
+
+# if it is factor and not numeric:
+df$Time <- as.numeric(df$Time)
+```
+
+Before using `sm_auc_list()`, you will need to check for a few things. First, check if the x column is numeric, not factor, by using `is.numeric()` function. If it is numeric, proceed with using `sm_auc_list()`. Second, see if the x levels (ex. 0, 3, 6, 12, 24 and 48 etc) are identical for each subject and condition (ex. no 7, 16, 29 minutes for subject 10). 
 
 ```{r}
 auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
