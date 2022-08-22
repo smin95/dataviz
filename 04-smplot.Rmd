@@ -5,7 +5,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-
 # Manual and Examples of smplot
 
 This chapter is a manual for **smplot**; it includes numerous examples. It also includes tutorials about `sm_bar()`, `sm_bland_altman()` and `sm_raincloud()`, all of which are not mentioned in the preceding chapters. However, this chapter does not describe `sm_effsize()`, `sm_power()` and `sm_common_axis()`; these functions are described in Chapters 5-7.
@@ -76,13 +75,14 @@ sm_palette(5)
 - `sm_hgrid()` has major horizontal grids.This is the default theme of `sm_raincloud()`, which creates a raincloud plot.
 - `sm_minimal` has no major grid. This is useful when a graph has a lot of annotation, such as texts and arrows. 
 - `sm_slope_theme()` is a theme for a slope chart. It removes everything except the y-axis. This is the default theme of `sm_slope()`.
-- `sm_classic()` has no grid. This is useful for all types of plots, such as bar graph, correlation plot and Bland-Altman plot. It has a typical x-axis and y-axis without panel borders. Visit section **4.9** to see a Bland-Altman that uses `sm_classic()` automatically.
+- `sm_classic()` has no grid. This is useful for all types of plots, such as bar graph, correlation plot and Bland-Altman plot. It has a typical x-axis and y-axis without panel borders. The Bland-Altman plot created using **smplot**
+uses `sm_classic()` automatically.
 - `sm_vgrid()` has major vertical grids. 
 - All of these functions, except for `sm_slope_theme()` and `sm_minimal()`, have two arguments: `borders` and `legends`. The two exceptions only have the argument `legends`.
   - For some of these functions, the defaults are set to `borders = TRUE` and `legends = TRUE`.
   - You can check the defaults by typing `?` in front of the function. Ex: `?sm_corr_theme`
 
-- `p1` has the default theme of **ggplot2**.
+- Let's explore these themes in depth. First, let's create `p1`, which has the default theme of **ggplot2**.
 
 ```{r,fig.width = 4.9, fig.height=3.5}
 library(tidyverse)

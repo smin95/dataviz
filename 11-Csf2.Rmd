@@ -70,7 +70,7 @@ ACh_avg2 <- ACh_avg %>% filter(Repetition == 2) # repetition 2
 
 Here is an example of trapezoidal integration of the contrast sensitivity function (i.e., AUC). AUC is an abbreviation of **a**rea **u**nder a **c**urve from trapezoidal integration.
 
-```{r,  fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r,  fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   geom_area(fill = sm_color('lightgreen'), alpha = 0.5) +
   geom_point(color = sm_color('viridian')) +
@@ -87,7 +87,7 @@ ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 Here is an example of the AULCSF.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_areaCSF(fill = sm_color('lightgreen'), alpha = 0.5) +
   sm_CSF(color = sm_color('viridian'), size = .8) +
@@ -124,7 +124,7 @@ The difference between `sm_trapz()` and `sm_auc()` is that `sm_trapz()` automati
 
 In addition, to compute the trapezoidal AUC, we can use the function `sm_AULCSF()`.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 sm_AULCSF(ACh_avg1$SpatialFreq, ACh_avg1$avgSens)
 ```
 
@@ -138,7 +138,7 @@ We see that R2 of the CSF fit is 0.9672, which is considered excellent. Note tha
 
 To visualize what R2 captures, we need to understand **residuals**, which is the difference or distance between the actual data and the predicted data from the given fit, such as the CSF.
 
-```{r,  fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r,  fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF(color = sm_color('wine'), linetype = 'dashed') +
   geom_point(color = sm_color('darkred')) +
@@ -275,7 +275,7 @@ trapz_df %>% ggplot(aes(x = BeforeAfter, y = AUC_Sensitivity,
   scale_y_continuous(limits = c(0,4.5))
 ```
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 aulcsf_df %>% ggplot(aes(x = BeforeAfter, y = AULCSF,
                         fill = BeforeAfter)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80',

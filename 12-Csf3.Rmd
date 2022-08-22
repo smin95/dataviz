@@ -58,7 +58,7 @@ ACh1 <- ACh %>%
 ACh1
 ```
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF()
 ```
@@ -130,7 +130,7 @@ head(grid,10) # first 10 rows
 
 Now let's plot the fitted values.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 grid %>% ggplot(aes(x = x, y = y)) +
   geom_point() +
   scale_x_continuous(trans = 'log10') +
@@ -146,7 +146,7 @@ grid %>% ggplot(aes(x = x, y = y)) +
 
 If you use `sm_CSF()`, you will get the same plot, but this plot only has a x-range from the minimum and maximum values of the spatial frequency within the `SpatialFreq` column of `ACh1`. You might get some warning messages after the running the example code below but you can ignore them altogether.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F, message = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F, message = F}
 ACh1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF() +
   sm_hgrid() +
@@ -164,7 +164,7 @@ tail(grid)
 
 Another highlight of the **smCSF** package is the function `sm_ribbonCSF()`, which magically plots the ribbon shades around the fitted CSF from `sm_CSF()`.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens)) +
@@ -188,7 +188,7 @@ ACh2
 
 The code below will generate warning messages but these are trivial, so you can ignore them.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F, message = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F, message = F}
 ACh2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF() +
   sm_CSF(aes(x = SpatialFreq, y = ymin), linetype = 'dashed') +
@@ -244,7 +244,7 @@ grid$y <- 10^sm_findQCSF(log10(grid$x),
                          params[[3]], params[[4]])
 ```
 
-```{r, echo = FALSE, message = FALSE, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, echo = FALSE, message = FALSE, fig.width = 3.5, fig.height = 3.5, warning = F}
 ind <- which(grid$y == max(grid$y))
 peak_sens <- data.frame(x = grid$x[ind], y = grid$y[ind])
 half_ind1 <- which(round(grid$y,1) == 16.4)[[1]]
@@ -288,7 +288,7 @@ grid %>% ggplot(aes(x = x, y = y)) +
            label = 'Cutoff\nSF', color = sm_color('orange'))
 ```
 
-```{r, echo = FALSE, message = FALSE, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, echo = FALSE, message = FALSE, fig.width = 3.5, fig.height = 3.5, warning = F}
 ind <- which(grid$y == max(grid$y))
 peak_sens <- data.frame(x = grid$x[ind], y = grid$y[ind])
 half_ind1 <- which(round(grid$y,1) == 16.4)[[1]]
@@ -384,7 +384,7 @@ head(cut_sf)
 
 Notice that we have created a new column entitled `linCutOff`. We will now plot the values from the column, as shown below.
 
-```{r,fig.width = 3.7, fig.height=3.7,warning = F}
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 cut_sf %>% ggplot(aes(x = BeforeAfter, y = linCutOff,
                         fill = BeforeAfter)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80',

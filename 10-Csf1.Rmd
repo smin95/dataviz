@@ -77,7 +77,7 @@ ACh_avg2 <- ACh_avg %>% filter(Repetition == 2) # repetition 2
 
 Let's now plot the data for each repetition using **ggplot2**. Understanding of Chapters 1-4 is assumed. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   geom_point() +
   sm_hgrid() +
@@ -88,7 +88,7 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 So far, this graph does not show the contrast sensitivity function, which has a rotund shape. Instead, if we connect the points, we get this plot instead.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   geom_point() +
   geom_line() +
@@ -100,7 +100,7 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 The function is still not a smooth, rotund shape. This is because it is standard to plot the contrast sensitivity function in log10 scales in both x and y axes. The code below shows the plot in the log scale.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   geom_point() +
   geom_line() +
@@ -114,21 +114,21 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 This plot shows the averaged sensitivity for each spatial frequency during the first repetition. However, the contrast sensitivity function is still missing because this plot instead shows the plot that is connected between a pair of the points. To plot the contrast sensitivity function with the data, `sm_CSF()` is required.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF()
 ```
 
 Notice that even if the data frame contains data in **linear units**, the plotted data from `sm_CSF()` are in log10 scales. It shows a nice, rotund shape that is typical of the contrast sensitivity function. The function can also plot the linear curve by setting `sm_CSF(logXY = FALSE)`. The default is `sm_CSF(logXY = TRUE)`.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF(logXY = FALSE)
 ```
 
 Now let's plot a prettier contrast sensitivity function.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF(color = sm_color('wine')) +
   geom_point(color = sm_color('darkred'), size = 3) +
@@ -140,7 +140,7 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 We can also plot the data using `ACh_avg2`, which contains data from the second repetition rather than first.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF(color = sm_color('lightgreen')) +
   geom_point(color = sm_color('viridian'), size = 3) +
@@ -152,7 +152,7 @@ ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 Notice that `sm_CSF()` is written first because the curve has to appear before the points (`geom_point()`); else, the points will be covered by the CSF curve. This example is shown below.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   geom_point(color = sm_color('viridian'), size = 3) +
    sm_CSF(color = sm_color('lightgreen')) +
@@ -166,7 +166,7 @@ The curve appears later in this plot, so it covers some overlapping points.
 
 **smCSF** also offers a function that fill the area of the CSF curve. This function is `sm_areaCSF()`. The default is set to plot the area in log10 scales, `sm_areaCSF(logXY = TRUE)`.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_areaCSF() +
   sm_CSF() 
@@ -174,7 +174,7 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 To plot the linear CSF and its area, `logXY = FALSE` has to be set `FALSE` in both `sm_areaCSF()` and `sm_CSF()`. The functions of `smCSF` have defaults `logXY = TRUE`, therefore, it is recommended that the user uploads a data frame that contains the linear data of spatial frequencies and contrast sensitivities. The functions then will convert them into log scale by default.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_areaCSF(logXY = FALSE) +
   sm_CSF(logXY = FALSE) 
@@ -182,7 +182,7 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 We can make the area plot prettier.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_areaCSF(fill = sm_color('lightgreen'), alpha = 0.5) +
   sm_CSF(color = sm_color('viridian')) +
@@ -198,7 +198,7 @@ You might get a warning that says `Scale for 'y' is already present. Adding anot
 
 The **smCSF** package also offers a function that draws a ribbon shade to denote standard error or standard deviation. This function works exactly the same as `geom_ribbon()`. It requires the uses to specify `ymin` and `ymax`. The example below plots standard deviation using `sm_ribbonCSF()`, where `ymin = avgSens - stdDevSens` and `ymax = avgSens + stdDevSens`. As before, its default is `logXY = TRUE`. Therefore, even if `ACh_avg2` contains data in linear units, the ribbon shade that is generated by `sm_ribbonCSF()` will be in log unit. 
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens)) +
@@ -208,7 +208,7 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 Let's make the plot prettier using **smplot**.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens),
@@ -223,7 +223,7 @@ ACh_avg1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
 
 You can also shade standard error instead, but the ribbon is barely visible.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_ribbonCSF(aes(ymin = avgSens - stdErrSens,
                    ymax = avgSens + stdErrSens)) +
@@ -245,7 +245,7 @@ head(ACh_avg_final)
 
 Here is the new data frame `ACh_avg_final`.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg_final %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
                    ymax = avgSens + stdDevSens),
@@ -267,7 +267,7 @@ The standard deviation seems to be still broad.
 
 To facet means to split the plot into multiple plots based on a categorical variable (i.e., **factor**). We will facet the contrast sensitivity function plot above (the blue curve) into two panels based on two repetitions (red and green below).
 
-```{r, fig.width = 6.8, fig.height = 3.65, warning = F, echo = F}
+```{r, fig.width = 6.5, fig.height = 3.5, warning = F, echo = F}
 ACh_avg %>%
   ggplot(aes(x = SpatialFreq, y = avgSens,
              group = Repetition, color = Repetition,
@@ -302,7 +302,7 @@ unique(ACh_avg$Repetition)
 
 To facet a plot using ggplot2, the function `facet_wrap()` has to be used.
 
-```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+```{r, fig.width = 6.5, fig.height = 3.5, warning = F}
 ACh_avg %>%
   ggplot(aes(x = SpatialFreq, y = avgSens)) +
    sm_CSF() +
@@ -311,7 +311,7 @@ ACh_avg %>%
 
 The argument inside `facet_wrap` has to include the tilde (`~`). The right side the tilde (`~`) should be the name of the categorical variable by which you wish to facet the plot. If the variable however happens to be continuous, `facet_wrap()` would not work properly.
 
-```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+```{r, fig.width = 6.5, fig.height = 3.5, warning = F}
 ACh_avg %>%
   ggplot(aes(x = SpatialFreq, y = avgSens)) +
    sm_CSF() +
@@ -320,7 +320,7 @@ ACh_avg %>%
 
 However, I do not often use `facet_wrap()` because the plot often ends up not being pretty. Let's try to make it prettier.
 
-```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+```{r, fig.width = 6.5, fig.height = 3.5, warning = F}
 ACh_avg %>%
   ggplot(aes(x = SpatialFreq, y = avgSens,
              group = Repetition, color = Repetition,
@@ -340,7 +340,7 @@ ACh_avg %>%
 
 Personally, I do not like the grey-filled header of each panel. Since I personally will find myself repeatedly bypassing the default grey color into a color of my choice, I have created the function myself `sm_facet_header()` as part of the **smCSF** package.
 
-```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+```{r, fig.width = 6.5, fig.height = 3.5, warning = F}
 ACh_avg %>%
   ggplot(aes(x = SpatialFreq, y = avgSens,
              group = Repetition, color = Repetition,
@@ -363,7 +363,7 @@ Now the title of each plot has been bolded and the filled color is white. I pers
 
 Next, I wish to change the titles of each panel because `1` and `2` are not descriptive. To do so, we need to use the argument `labeller` within `facet_wrap()` to specify the title of each panel.
 
-```{r, fig.width = 6.8, fig.height = 3.65, warning = F}
+```{r, fig.width = 6.5, fig.height = 3.5, warning = F}
 ACh_avg %>%
   ggplot(aes(x = SpatialFreq, y = avgSens,
              group = Repetition, color = Repetition,
@@ -429,7 +429,7 @@ Notice that when `facet_wrap()` is used, there is no need to create variable for
 
 Another issue with plotting each contrast sensitivity function per panel is that it is visually difficult to compare whether the functions between the panels are different. One way to overcome this problem is to plot all the plots together. In this case, legend is necessary, which can be generated using `sm_hgrid(legends = TRUE)`. Let's use the data frame `ACh_avg` which has two levels in the `Repetition` column.
 
-```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh_avg %>%
   ggplot(aes(x = SpatialFreq, y = avgSens,
              group = Repetition, color = Repetition,

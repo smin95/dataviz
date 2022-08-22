@@ -443,14 +443,15 @@ Figure 4.1: smplot’s color palette
 <li><code>sm_hgrid()</code> has major horizontal grids.This is the default theme of <code>sm_raincloud()</code>, which creates a raincloud plot.</li>
 <li><code>sm_minimal</code> has no major grid. This is useful when a graph has a lot of annotation, such as texts and arrows.</li>
 <li><code>sm_slope_theme()</code> is a theme for a slope chart. It removes everything except the y-axis. This is the default theme of <code>sm_slope()</code>.</li>
-<li><code>sm_classic()</code> has no grid. This is useful for all types of plots, such as bar graph, correlation plot and Bland-Altman plot. It has a typical x-axis and y-axis without panel borders. Visit section <strong>4.9</strong> to see a Bland-Altman that uses <code>sm_classic()</code> automatically.</li>
+<li><code>sm_classic()</code> has no grid. This is useful for all types of plots, such as bar graph, correlation plot and Bland-Altman plot. It has a typical x-axis and y-axis without panel borders. The Bland-Altman plot created using <strong>smplot</strong>
+uses <code>sm_classic()</code> automatically.</li>
 <li><code>sm_vgrid()</code> has major vertical grids.</li>
 <li>All of these functions, except for <code>sm_slope_theme()</code> and <code>sm_minimal()</code>, have two arguments: <code>borders</code> and <code>legends</code>. The two exceptions only have the argument <code>legends</code>.
 <ul>
 <li>For some of these functions, the defaults are set to <code>borders = TRUE</code> and <code>legends = TRUE</code>.</li>
 <li>You can check the defaults by typing <code>?</code> in front of the function. Ex: <code>?sm_corr_theme</code></li>
 </ul></li>
-<li><code>p1</code> has the default theme of <strong>ggplot2</strong>.</li>
+<li>Let’s explore these themes in depth. First, let’s create <code>p1</code>, which has the default theme of <strong>ggplot2</strong>.</li>
 </ul>
 <div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="manual-and-examples-of-smplot.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb115-2"><a href="manual-and-examples-of-smplot.html#cb115-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
