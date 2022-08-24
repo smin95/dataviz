@@ -92,7 +92,7 @@ Let's use the data set `avg_day1` to plot data only from Day 1.
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 avg_day1 %>% ggplot(aes(x = Time, y = Average)) +
   geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
-   geom_point(size = 4.5, color = sm_color('skyblue')) +
+  geom_point(size = 4.5, color = sm_color('skyblue')) +
   geom_line(size = 1, color = sm_color('skyblue')) +
   geom_errorbar(aes(ymin = Average - StdError, ymax = Average + StdError), size = .75, width = .05, color = sm_color('skyblue')) +
   scale_x_continuous(breaks = unique(df$Time), 
@@ -129,7 +129,7 @@ subj_b_day1
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
   geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
-   geom_point(size = 4.5, color = sm_color('skyblue')) +
+  geom_point(size = 4.5, color = sm_color('skyblue')) +
   geom_line(size = 1, color = sm_color('skyblue')) +
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
@@ -155,7 +155,7 @@ The AUC equals 60.53. This shows that for subject `b`, the effect is large and l
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
   geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
-   geom_point(size = 4.5, color = sm_color('skyblue')) +
+  geom_point(size = 4.5, color = sm_color('skyblue')) +
   geom_line(size = 1, color = sm_color('skyblue')) +
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
@@ -173,7 +173,7 @@ subj_b_day2 <- df %>% filter(Day == 2 & Subject == 'b')
 
 subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
   geom_area(fill = sm_color('yelloworange'), alpha = 0.4) +
-   geom_point(size = 4.5, color = sm_color('yelloworange')) +
+  geom_point(size = 4.5, color = sm_color('yelloworange')) +
   geom_line(size = 1, color = sm_color('yelloworange')) +
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
@@ -197,7 +197,7 @@ subj_b_day2 <- df %>% filter(Day == 2 & Subject == 'b')
 
 subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
   geom_area(fill = sm_color('yelloworange'), alpha = 0.4) +
-   geom_point(size = 4.5, color = sm_color('yelloworange')) +
+  geom_point(size = 4.5, color = sm_color('yelloworange')) +
   geom_line(size = 1, color = sm_color('yelloworange')) +
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
@@ -278,7 +278,7 @@ Let's redraw some of the figures in the paper. In 2019, when the paper was publi
 
 ### Figure 3B (a best-fit line with points and error bars)
 
-```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F}
 df <- read_csv('https://www.smin95.com/min2019b.csv') 
 # filter data from Days 2-4. | means OR.
 df1 <- df %>% filter(Day == 2 | Day == 3 | Day == 4) %>% group_by(Day, Time) %>% 
