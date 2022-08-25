@@ -727,7 +727,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 
 ```
 
-This is the original plot with `expand = c(0,0)`. It looks much nicer because the margin at the outer ends of the y-axis is reduced.
+Notice that even we have specified the x- and y-limits from -2.8 to 2.8, we still see -3 and 3. This is because **ggplot2** default provides extra margin space. Also, the plot above is not pretty because the grid lines at the outer ends act as pseudo-borders. So it is best to remove them. We can do this by removing the margin in both x- and y-axes using `expand = c(0,0)`, which reduces the margin for both x and y axes. 
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 
@@ -745,6 +745,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 
 ```
 
+It (the original plot from the correlation section) looks much nicer.
 
 ## Overriding Defaults of smplot Colors
 

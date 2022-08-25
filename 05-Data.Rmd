@@ -444,11 +444,15 @@ save_plot('together1.png',together1,nrow=3,ncol=3,base_asp=0.95)
 
 Open `together1.png` in your directory folder. Notice that the **png** file may look different from the one printed in your RStudio screen or on the browser as shown in this guide. As long as your **png** file looks good, it should be okay.
 
-Note that are some repeating x and y-axes labels. **We can remove them in this example because the y-axis and x-axis scales are set to the same limit** using `scale_x_continuous()` and `scale_y_continuous()`. In other words, the maximum and minimum values of the axes are the same across the panels. For example, the top left panel's x-axis labels can be removed because the bottom left panel also has the same x-axis labels. In addition, the major grids are identical. Each line of the major grid represents the same x-axis value. The range of the x-axis of the panels is also the same.
+Note that there are some repeating x and y-axes labels. **We can remove them in this example because the y-axis and x-axis scales are set to the same limit** using `scale_x_continuous()` and `scale_y_continuous()`. In other words, the maximum and minimum values of the axes are the same across the panels. For example, the top left panel's x-axis labels can be removed because the bottom left panel also has the same x-axis labels. In addition, the horizontal grids are located at the same places. Each grid line represents the same x-axis value. The range of the x-axis of the panels is also the same. Moreover, the y-axis labels of the top right panel can be removed because the top left panel has the same label. 
 
-Moreover, the y-axis labels of the top right panel can be removed because the top left panel has the same label. 
+In short, to combine multiple plots together, you must ensure that:
 
-If you remove the common x-axis and y-axis labels, you will realize that there will be a lot of empty space between the panels. This has to be reduced.
+- The scales of the x and y are equal between plots.
+
+- The grids are identical. Otherwise, you won't be able to decipher what the points mean in panels without x- or y-tick labels.
+
+After confirming these and combining the plots by removing the common x-axis and y-axis labels, you will realize that there will be a lot of empty space between the panels. This has to be reduced.
 
 - We will use the function `sm_common_axis()` to resolve these issues.
 
