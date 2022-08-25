@@ -667,6 +667,85 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   ggtitle('Reading performance in children')
 ```
 
+### Scaling the y-axis 
+
+A bar plot is shown below using this random data. 
+
+```{r}
+set.seed(1) # generate random data
+day1 = abs(rnorm(16,1,1))
+day2 = abs(rnorm(16,5,1))
+Subject <- rep(paste0('S',seq(1:16)), 2)
+Data <- data.frame(Value = matrix(c(day1,day2),ncol=1))
+Day <- rep(c('Day 1', 'Day 2'), each = length(day1))
+df <- cbind(Subject, Data, Day)
+```
+
+However, there is something weird going on regarding the y-axis limit.
+
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
+  scale_fill_manual(values = sm_color('blue','orange'))
+```
+
+The y-axis limit does not start from 0. Let's specify the y-axis limit manually using `scale_y_continuous()`.
+
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
+  scale_fill_manual(values = sm_color('blue','orange')) +
+  scale_y_continuous(limits = c(0,7))
+```
+
+Although we have specified that the y-axis limit begins from 0 and ends at 7, there is still a small margin below 0. What is going on here?
+
+The default of **ggplot2** is that there is always a small margin below the lowest point of the y-axis limit and above the largest point of the y-axis.The empty space below 0 and above 7 can be removed by using `expand = c(0,0)` within `scale_y_continuous()`.
+
+```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
+  scale_fill_manual(values = sm_color('blue','orange')) +
+  scale_y_continuous(limits = c(0,7), expand = c(0,0))
+```
+
+Note that `expand = c(0,0)` has already been used in this chapter where it discusses the correlation plot (with both regression and reference lines). You can plot it without `expand = c(0,0)` and see what happens.
+
+```{r, fig.width = 3.5, fig.height=3.5}
+
+# correlation plot using data frame 'df_corr' 
+ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
+  geom_point(shape = 21, fill = sm_color('crimson'), color = 'white',
+             size = 3) + sm_corr_theme(borders = FALSE) +
+  geom_abline(slope = 1, linetype = 'dashed') +
+  scale_y_continuous(limits = c(-2.8,2.8)) +
+  scale_x_continuous(limits = c(-2.8,2.8)) +
+  sm_statCorr(color = sm_color('crimson'), corr_method = 'pearson',
+              label_x = -2.2, label_y = 2.3) +
+  ggtitle('Correlation plot') + 
+  xlab('Method 1') + ylab('Method 2') 
+
+```
+
+This is the original plot with `expand = c(0,0)`. It looks much nicer because the margin at the outer ends of the y-axis is reduced.
+
+```{r, fig.width = 3.5, fig.height=3.5}
+
+# correlation plot using data frame 'df_corr' 
+ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
+  geom_point(shape = 21, fill = sm_color('crimson'), color = 'white',
+             size = 3) + sm_corr_theme(borders = FALSE) +
+  geom_abline(slope = 1, linetype = 'dashed') +
+  scale_y_continuous(limits = c(-2.8,2.8),  expand = c(0,0)) +
+  scale_x_continuous(limits = c(-2.8,2.8), expand = c(0,0)) +
+  sm_statCorr(color = sm_color('crimson'), corr_method = 'pearson',
+              label_x = -2.2, label_y = 2.3) +
+  ggtitle('Correlation plot') + 
+  xlab('Method 1') + ylab('Method 2') 
+
+```
+
+
 ## Overriding Defaults of smplot Colors
 
 - `sm_color('blue)` prints a hex code of the `blue`. Likewise, `sm_color('blue','orange')` prints out two hex codes, one for `blue` and another for `orange`.
@@ -679,5 +758,8 @@ my_colors <- c('#ff1493', '#483d8B') # pink and lavender
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
-  scale_fill_manual(values = my_colors)
+  scale_fill_manual(values = my_colors) +
+  scale_y_continuous(limits = c(0,7), expand = c(0,0))
 ```
+
+

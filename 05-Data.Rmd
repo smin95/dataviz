@@ -404,6 +404,8 @@ plot_s9 <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
 print(plot_s9)
 ```
 
+## Putting multiple plots together 
+
 Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `plot_grid` from the **cowplot** package. Here is the illustration of what we are going to do. 
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="3x3 figure. It has 3 columns and 3 rows", out.width = '75%'}
@@ -412,7 +414,7 @@ knitr::include_graphics("img/rc33.png")
 
 When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot()` have to match the values in `plot_grid()` as shown below. 
 
-`plot_grid()` is a function that puts different graphs together (ex. 3x3 structure).
+`plot_grid()` is a function that puts different graphs together (ex. 3x3 structure).  For more information about the function `plot_grid`, please type `?plot_grid` in the console.
 
 `save_plot()` is a function that saves a selected graph into an image or PDF file (or eps, etc).  
 
@@ -442,11 +444,11 @@ save_plot('together1.png',together1,nrow=3,ncol=3,base_asp=0.95)
 
 Open `together1.png` in your directory folder. Notice that the **png** file may look different from the one printed in your RStudio screen or on the browser as shown in this guide. As long as your **png** file looks good, it should be okay.
 
-Note that are some repeating x and y-axes labels. We can remove them. For instance, the top left panel's x-axis labels can be removed because the bottom left panel also has the x-axis labels. 
+Note that are some repeating x and y-axes labels. **We can remove them in this example because the y-axis and x-axis scales are set to the same limit** using `scale_x_continuous()` and `scale_y_continuous()`. In other words, the maximum and minimum values of the axes are the same across the panels. For example, the top left panel's x-axis labels can be removed because the bottom left panel also has the same x-axis labels. In addition, the major grids are identical. Each line of the major grid represents the same x-axis value. The range of the x-axis of the panels is also the same.
 
-Another instance is that the y-axis labels of the top right panel can be removed because the top left panel has the same label. 
+Moreover, the y-axis labels of the top right panel can be removed because the top left panel has the same label. 
 
-Also, it seems that there are some empty space between amongst panel. Let's remove them by reducing the margin of each panel. For more information about the function `plot_grid`, please type `?plot_grid` in the console.
+If you remove the common x-axis and y-axis labels, you will realize that there will be a lot of empty space between the panels. This has to be reduced.
 
 - We will use the function `sm_common_axis()` to resolve these issues.
 

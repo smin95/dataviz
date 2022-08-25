@@ -4,11 +4,11 @@ fig:unnamed-chunk-5
 fig:unnamed-chunk-6
 fig:unnamed-chunk-24
 fig:unnamed-chunk-92
-fig:unnamed-chunk-179
-fig:unnamed-chunk-181
-fig:unnamed-chunk-183
-fig:unnamed-chunk-184
-fig:unnamed-chunk-186
+fig:unnamed-chunk-185
+fig:unnamed-chunk-187
+fig:unnamed-chunk-189
+fig:unnamed-chunk-190
+fig:unnamed-chunk-192
 download-rstudio-basics-of-r
 setting-up-rstudio
 how-to-run-your-code
@@ -39,6 +39,7 @@ slope-chart---sm_slope
 a-bland-altman-plot---sm_bland_altman
 raincloud-plot---sm_raincloud
 overriding-defaults-of-smplots-themes
+scaling-the-y-axis
 overriding-defaults-of-smplot-colors
 combining-plots-with-common-axes
 filter-select-and-summarise
@@ -47,6 +48,7 @@ select-for-columns
 summarise-for-grouped-summaries
 plotting-the-averaged-data-with-error-bars
 plotting-individual-data
+putting-multiple-plots-together
 calculating-area-under-a-curve
 pipe
 area-under-a-curve
