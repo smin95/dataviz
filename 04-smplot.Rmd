@@ -761,7 +761,7 @@ my_colors <- c('#ff1493', '#483d8B') # pink and lavender
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80') +
   scale_fill_manual(values = my_colors) +
-  scale_y_continuous(limits = c(0,7), expand = c(0,0))
+  scale_y_continuous(limits = c(0,7), expand = c(0,0.05))
 ```
 
 

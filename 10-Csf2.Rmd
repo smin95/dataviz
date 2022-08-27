@@ -7,13 +7,11 @@ editor_options:
 
 # Area under Curve, AULCSF and R2 of the CSF
 
-In this section, we will analyze the contrast sensitivity function (CSF) using the **smCSF** package. I will complement it with smplot for aesthetics.
-
-As in the previous chapter, we will use data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):
+As in the previous chapter, we will use data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset) and  the **smCSF** package:
 
 **Kim, Y. J., Reynaud, A., Hess, R. F., & Mullen, K. T. (2017). A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology & visual science, 58(9), 3628-3636.**
 
-Without further ado, let’s load the necessary packages.
+Let's load the necessary packages.
 
 ```{r}
 library(tidyverse)
