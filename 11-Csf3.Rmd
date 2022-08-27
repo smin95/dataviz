@@ -229,7 +229,7 @@ head(params_df[[1]])
 params_df[[2]]
 ```
 
-`sm_params_list()` returns results that is a `list`. There are two elements in the list. The first element has a data frame of all the parameters as well as the identifiers for `conditions` and `subjects`. The second element contains a vector that has `x`, which in this case is the linear units of spatial frequency.
+`sm_params_list()` returns a `list`, which as two elements. The first element has a data frame of all the parameters as well as the identifiers for `conditions` and `subjects`. The second element contains a vector that has `x`, which in this case is the linear units of spatial frequency.
 
 ## Visualization of the parameters 
 

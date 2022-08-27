@@ -138,7 +138,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates-on-smplot-and-smcsf"><i class="fa fa-check"></i>Major updates on smplot and smCSF</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i>Major updates</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#please-cite-this-paper-when-smplot-is-used"><i class="fa fa-check"></i>Please cite this paper when smplot is used</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-r-and-ggplot2-experts"><i class="fa fa-check"></i>For R and ggplot2 experts</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
@@ -379,21 +379,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Data Analysis and Visualization in R Using smplot</h1>
 <p class="author"><em>Seung Hyun Min</em></p>
-<p class="date"><em>Last Updated: 2022-08-25</em></p>
+<p class="date"><em>Last Updated: 2022-08-27</em></p>
 </div>
 <div id="index" class="section level1 unnumbered">
 <h1>Welcome!</h1>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="710.4" /></p>
 <p>This book (<a href="https://smin95.com/dataviz" class="uri">https://smin95.com/dataviz</a>) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package <strong>smplot</strong>, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility.</p>
-<div id="major-updates-on-smplot-and-smcsf" class="section level2 unnumbered">
-<h2>Major updates on smplot and smCSF</h2>
+<div id="major-updates" class="section level2 unnumbered">
+<h2>Major updates</h2>
 <p><strong>smplot</strong>: Latest updates have been made on <strong>August 20th, 2022</strong>. Please <strong>re-download smplot</strong>. These include：</p>
 <ul>
 <li>Changes/fixes in <code>sm_minimal()</code> and <code>sm_raincloud()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smCSF&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><strong>smCSF</strong> is under <strong>development</strong>. It will undergo massive changes until the <strong>end of 2022</strong>. If you have downloaded already and do not plan to use it in imminent future, please remove it from your computer.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="st">&#39;smCSF&#39;</span>) </span></code></pre></div>
 </div>
 <div id="please-cite-this-paper-when-smplot-is-used" class="section level2 unnumbered">
 <h2>Please cite this paper when smplot is used</h2>
@@ -409,11 +410,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="license" class="section level2 unnumbered">
 <h2>License</h2>
-<p>smplot is under the MIT license. This tutorial is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. Seung Hyun Min is the sole creator of <strong>smplot</strong>.</p>
+<p><strong>smplot</strong> is under the MIT license. This tutorial is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>. I am the sole creator of <strong>smplot</strong>.</p>
 </div>
 <div id="about-the-author" class="section level2 unnumbered">
 <h2>About the author</h2>
-<p>I am Assistant Professor in Dept. Ophthalmology and Optometry at Wenzhou Medical University. On June 2021, I received my PhD at McGill University under the supervision of Dr. Robert F. Hess. My research is focused on amblyopia, neural plasticity and binocular vision. More details, such as my publications, are on my website: <a href="https://www.smin95.com" class="uri">https://www.smin95.com</a>.</p>
+<p>I am Assistant Professor in Dept. Ophthalmology and Optometry at Wenzhou Medical University. On June 2021, I received my PhD at McGill University under the supervision of Dr. Robert F. Hess. My research is focused on amblyopia, neural plasticity and binocular vision. During spare time, I play the clarinet and develop R packages. More details, such as my publications, are on my website: <a href="https://www.smin95.com" class="uri">https://www.smin95.com</a>.</p>
 
 </div>
 </div>

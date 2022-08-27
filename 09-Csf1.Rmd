@@ -7,9 +7,14 @@ editor_options:
 
 # (PART) Contrast Sensitivity Function {-}
 
-# Plotting the Contrast Sensitivity Function 
+For the next three chapters, you will use **smCSF**. Make sure you have downloaded it.
 
-In this section, we will plot the contrast sensitivity function using the **smCSF** package. I will complement it with **smplot** for aesthetics. 
+```{r, eval = FALSE}
+install.packages("devtools")
+devtools::install_github('smin95/smCSF', force = TRUE)
+```
+
+# Plotting the Contrast Sensitivity Function 
 
 We will use data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):
 

@@ -70,7 +70,7 @@ sm_palette(5)
 
 ### smplot's graph themes {-}
 
-- There are several its graph themes. The text positions and the font are all similar.
+- There are several graph themes. The text positions and the font are all similar.
 - `sm_corr_theme()` and `sm_hvgrid()` are **equivalent**. They have major horizontal and vertical grids. 
 - `sm_hgrid()` has major horizontal grids.This is the default theme of `sm_raincloud()`, which creates a raincloud plot.
 - `sm_minimal` has no major grid. This is useful when a graph has a lot of annotation, such as texts and arrows. 
@@ -474,6 +474,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, group = Subject, fill = Day)
            line_size = 0.6)
 ```
 
+
 ## A Bland Altman Plot - `sm_bland_altman()`
 
 - `sm_bland_altman()` and `sm_statBlandAlt()` functions can be used to create a Bland-Altman plot.
@@ -727,7 +728,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 
 ```
 
-Notice that even we have specified the x- and y-limits from -2.8 to 2.8, we still see -3 and 3. This is because **ggplot2** default provides extra margin space. Also, the plot above is not pretty because the grid lines at the outer ends act as pseudo-borders. So it is best to remove them. We can do this by removing the margin in both x- and y-axes using `expand = c(0,0)`, which reduces the margin for both x and y axes. 
+Notice that even we have specified the x- and y-limits from -2.8 to 2.8, we still see -3 and 3. This is because **ggplot2** default provides extra margin space. Also, the plot above is not pretty because the grid lines at the outer ends act as pseudo-borders. So it is best to remove them. We can do this with `expand = c(0,0)`, which reduces the margin for both x and y axes. 
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 
@@ -745,7 +746,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 
 ```
 
-It (the original plot from the correlation section) looks much nicer.
+I think this looks much nicer.
 
 ## Overriding Defaults of smplot Colors
 
