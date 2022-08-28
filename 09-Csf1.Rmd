@@ -16,7 +16,7 @@ install.packages("devtools")
 devtools::install_github('smin95/smCSF', force = TRUE)
 ```
 
-For data, We will use the data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):
+Also, we will use the data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):
 
 **Kim, Y. J., Reynaud, A., Hess, R. F., & Mullen, K. T. (2017). A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology & visual science, 58(9), 3628-3636.**
 
