@@ -98,7 +98,7 @@ summary(res)
 
 `summary()` is a function that prints all the outputs from a given model object. Here, the model object is `res`, which has been created using the `lm()` function. When using `lm()`, it is advisable to always store the results and print the results using `summary()`. For more information about `summary()`, please check out `?summary`.
 
-We see that the y-intercept $b$ is 0.4582 under the column `Estimate`. We also see that the slope $m$ is 0.3046 under the column `Estimate`. You can ignore all the other values for now. 
+We see that the y-intercept $b$ is 0.3046 under the column `Estimate`. We also see that the slope $m$ is 0.4582 under the column `Estimate`. You can ignore all the other values for now. 
 
 Let's visualize the data of A3 and fit a linear slope.
 
