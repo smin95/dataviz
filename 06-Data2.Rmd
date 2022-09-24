@@ -53,7 +53,7 @@ format of the dataframe into a new variable using `<-` or `->`.
 
 ```{r}
 df_day1 <- filter(df, Day == 1)
-by_time_day1 <- group_by(df, Time)
+by_time_day1 <- group_by(df_day1, Time)
 avg_day1 <- summarise(by_time_day1, Average = mean(Cbratio),
           StdError = sm_stdErr(Cbratio))
 
