@@ -203,7 +203,7 @@ The p-value is 0.0039, which is less than 0.05. Therefore, according to the Wilc
 wilcox.test(auc_df_day1$AUC_Cbratio, auc_df_day5$AUC_Cbratio, paired = TRUE)
 ```
 
-The p-value is 0.13, which is larger than 0.05. Therefore, according to the Wilcoxon test, the AUCs from Days 1 and 2 are not significantly different.
+The p-value is 0.13, which is larger than 0.05. Therefore, according to the Wilcoxon test, the AUCs from Days 1 and 5 are not significantly different.
 
 
 ## Effect Size
