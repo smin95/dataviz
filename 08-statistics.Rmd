@@ -365,7 +365,7 @@ In this data set, Days 1, 2, 3 and 5 have normally distributed data sets. Howeve
 We can examine whether the variance of the response values (y values) is homogeneous using `levene_test()`.
 
 ```{r}
-auc_df %>%levene_test(AUC_Cbratio ~ Day)
+auc_df %>% levene_test(AUC_Cbratio ~ Day)
 ```
 
 The Levene's test shows that the p-value is 0.64, which is larger than 0.05. Therefore, we can assume that the variance is homogeneous across different days. Therefore, we can proceed to using ANOVA. 
@@ -445,11 +445,13 @@ df %>% group_by(Day, Time) %>%
 
 Only the first 10 rows are shown. To view the entire results, store the results into a variable and use `View()`. 
 
-```{r, eval = F}
+```{r}
 res <- df %>% group_by(Day, Time) %>%
   shapiro_test(Cbratio)
+```
 
-print(res)
+```{r, eval=F}
+View(res)
 ```
 
 ```{r}
@@ -508,7 +510,7 @@ df1 %>% ggplot(aes(x = Time, y = avg, color = Day)) +
   xlab("Time after monocular deprivation (min)") +
   ylab("\u0394 Contrast balance ratio (dB)") +
   theme(legend.justification = c(1,0), 
-        legend.position = c(0.96, 0.67), 
+        legend.position = c(0.96, 0.62), 
         legend.title = element_blank()) 
 
 ```
