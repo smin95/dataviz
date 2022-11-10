@@ -475,7 +475,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb235-10"><a href="calculating-area-under-a-curve.html#cb235-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
 <span id="cb235-11"><a href="calculating-area-under-a-curve.html#cb235-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb235-12"><a href="calculating-area-under-a-curve.html#cb235-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">16</span>, <span class="at">y =</span> <span class="fl">0.3</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-200-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-201-1.png" width="336" /></p>
 <p>One way to show data is to calculate the area under a curve (as shown by the colored area) in the figure above. Area under a curve is useful because it reduces a number of data points (6 in this case due to 6 time points) into one. In our context, a large area under a curve represents a large change in contrast balance ratio over time. In short, it captures both the magnitude and longevity of the effect.</p>
 <p>Let’s calculate area under a curve for each subject and day across 0 to 48 minutes in the x-axis (minutes after monocular deprivation) using <code>sm_auc()</code>.</p>
 <div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="calculating-area-under-a-curve.html#cb236-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">24</span>,<span class="dv">48</span>)</span></code></pre></div>
@@ -504,7 +504,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb240-9"><a href="calculating-area-under-a-curve.html#cb240-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
 <span id="cb240-10"><a href="calculating-area-under-a-curve.html#cb240-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb240-11"><a href="calculating-area-under-a-curve.html#cb240-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">16</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve = ?&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-204-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-205-1.png" width="336" /></p>
 <p>The variable <code>subj_b_day1</code> now stores the data of subject <code>b</code> on Day 1. Now let’s calculate the area under a curve (AUC) from <code>subj_b_day1</code> using <code>sm_auc()</code>.</p>
 <p><code>sm_auc()</code> calculates the AUC using the method of trapezoid integration; this is equivalent to <code>trapz</code> function in Matlab and <code>numpy.trapz</code> in Python. It has two arguments:
 - The first argument is the x point. In this case, it is the minutes after monocular deprivation (0, 3, 6, 12, 24 and 48). If this argument is left empty, it will use 0, 1, 2, 3 etc as default. For more information, please type <code>?sm_auc</code> in the command console.
@@ -523,7 +523,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb243-9"><a href="calculating-area-under-a-curve.html#cb243-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
 <span id="cb243-10"><a href="calculating-area-under-a-curve.html#cb243-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb243-11"><a href="calculating-area-under-a-curve.html#cb243-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">17.5</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve = 60.5&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-206-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-207-1.png" width="336" /></p>
 <p>Now let’s visualize the data of subject <code>b</code> from Day 2.</p>
 <div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="calculating-area-under-a-curve.html#cb244-1" aria-hidden="true" tabindex="-1"></a>subj_b_day2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">2</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;b&#39;</span>)</span>
 <span id="cb244-2"><a href="calculating-area-under-a-curve.html#cb244-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -538,7 +538,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb244-11"><a href="calculating-area-under-a-curve.html#cb244-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
 <span id="cb244-12"><a href="calculating-area-under-a-curve.html#cb244-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb244-13"><a href="calculating-area-under-a-curve.html#cb244-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">16</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve = ?&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-207-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-208-1.png" width="336" /></p>
 <p>Now, let’s calculate the AUC for subject <code>b</code> from Day 2.</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="calculating-area-under-a-curve.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_auc</span>(x, subj_b_day2<span class="sc">$</span>Cbratio)</span></code></pre></div>
 <pre><code>## [1] 80.38215</code></pre>
@@ -556,7 +556,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb247-11"><a href="calculating-area-under-a-curve.html#cb247-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
 <span id="cb247-12"><a href="calculating-area-under-a-curve.html#cb247-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb247-13"><a href="calculating-area-under-a-curve.html#cb247-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">17.5</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve = 80.4&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-209-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-210-1.png" width="336" /></p>
 <p>So far,we have 9 more subjects across five days and subject <code>b</code> from three other days. This will require us to compute 48 more AUCs total. This process is rater repetitive. Should we manually compute AUC for each one? Luckily, the answer is no. Let’s use <code>sm_auc_list()</code>.</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="calculating-area-under-a-curve.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_auc_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, <span class="at">conditions =</span> <span class="st">&#39;Day&#39;</span>, </span>
 <span id="cb248-2"><a href="calculating-area-under-a-curve.html#cb248-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="at">values =</span> <span class="st">&#39;Cbratio&#39;</span>,</span>
@@ -647,13 +647,13 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb258-4"><a href="calculating-area-under-a-curve.html#cb258-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">point_alpha =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb258-5"><a href="calculating-area-under-a-curve.html#cb258-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
 <span id="cb258-6"><a href="calculating-area-under-a-curve.html#cb258-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-213-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-214-1.png" width="336" /></p>
 <p>Here is a box plot showing <code>auc_df</code>’s data.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="calculating-area-under-a-curve.html#cb259-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb259-2"><a href="calculating-area-under-a-curve.html#cb259-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb259-3"><a href="calculating-area-under-a-curve.html#cb259-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
 <span id="cb259-4"><a href="calculating-area-under-a-curve.html#cb259-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-214-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-215-1.png" width="336" /></p>
 </div>
 <div id="reproducing-figures-in-the-paper-min-et-al.-2019" class="section level2" number="6.3">
 <h2><span class="header-section-number">6.3</span> Reproducing figures in the paper (Min et al., 2019)</h2>
@@ -687,7 +687,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb260-25"><a href="calculating-area-under-a-curve.html#cb260-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
 <span id="cb260-26"><a href="calculating-area-under-a-curve.html#cb260-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.96</span>, <span class="fl">0.67</span>), </span>
 <span id="cb260-27"><a href="calculating-area-under-a-curve.html#cb260-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-215-1.png" width="350.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-216-1.png" width="350.4" /></p>
 </div>
 <div id="figure-3d-a-bar-graph" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Figure 3D (a bar graph)</h3>
@@ -706,7 +706,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb261-12"><a href="calculating-area-under-a-curve.html#cb261-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))  <span class="sc">+</span></span>
 <span id="cb261-13"><a href="calculating-area-under-a-curve.html#cb261-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb261-14"><a href="calculating-area-under-a-curve.html#cb261-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Patching day&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-216-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-217-1.png" width="336" /></p>
 </div>
 <div id="figure-3e-modeling-in-matlab-and-plotting-in-r" class="section level3" number="6.3.3">
 <h3><span class="header-section-number">6.3.3</span> Figure 3E (modeling in Matlab and plotting in R)</h3>
@@ -746,7 +746,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <span id="cb264-23"><a href="calculating-area-under-a-curve.html#cb264-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;**&quot;</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">68</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
 <span id="cb264-24"><a href="calculating-area-under-a-curve.html#cb264-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;*&quot;</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">65</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
 <span id="cb264-25"><a href="calculating-area-under-a-curve.html#cb264-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;**&quot;</span>, <span class="at">x =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">60</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-217-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-218-1.png" width="336" /></p>
 
 </div>
 </div>

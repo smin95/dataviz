@@ -422,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 12        9.57    7.81      0.381       3.85</code></pre>
 <div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="understanding-the-contrast-sensitivity-function.html#cb476-1" aria-hidden="true" tabindex="-1"></a>ACh1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
 <span id="cb476-2"><a href="understanding-the-contrast-sensitivity-function.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-346-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-347-1.png" width="336" /></p>
 <p>Notice that <code>ACh1</code> does not contain any predicted values from the <strong>truncated log-parabola model</strong> of the CSF. And yet, somehow, <code>sm_CSF()</code> manages to plot the <strong>predicted values</strong> from the model with the given data, rather than the points of the actual data themselves. Let’s walk through these steps to understand what is happening behind the scenes.</p>
 <div id="sm_params" class="section level3" number="11.2.1">
 <h3><span class="header-section-number">11.2.1</span> <code>sm_params()</code></h3>
@@ -437,8 +437,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb478-2"><a href="understanding-the-contrast-sensitivity-function.html#cb478-2" aria-hidden="true" tabindex="-1"></a>          param_upLimit, param_lowLimit)</span>
 <span id="cb478-3"><a href="understanding-the-contrast-sensitivity-function.html#cb478-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb478-4"><a href="understanding-the-contrast-sensitivity-function.html#cb478-4" aria-hidden="true" tabindex="-1"></a>params</span></code></pre></div>
-<pre><code>##        logGain      logPeakSF logOctaveWidth       logTrunc    logCutOffSF 
-##      1.5114544      0.1450387      0.6006582     -0.3010300      1.4909611</code></pre>
+<pre><code>##        logGain      logPeakSF logOctaveWidth       logTrunc 
+##      1.5114544      0.1450387      0.6006582     -0.3010300 
+##    logCutOffSF 
+##      1.4909611</code></pre>
 <p>The first four parameters (<code>logGain</code>, <code>logPeakSF</code>, <code>logOctaveWidth</code> and <code>logTrunc</code>) yield the lowest RSS possible between the actual data and the fitted values.</p>
 </div>
 <div id="sm_cutoff" class="section level3" number="11.2.2">
@@ -452,8 +454,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>sm_cutOff()</code> computes the cutoff spatial frequency and returns it in a log10 unit. In a linear spatial frequency, this can be about 30.97 c/deg.</p>
 <div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="understanding-the-contrast-sensitivity-function.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="co"># linear conversion of the log units</span></span>
 <span id="cb484-2"><a href="understanding-the-contrast-sensitivity-function.html#cb484-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">^</span>params</span></code></pre></div>
-<pre><code>##        logGain      logPeakSF logOctaveWidth       logTrunc    logCutOffSF 
-##      32.467917       1.396493       3.987110       0.500000      30.971422</code></pre>
+<pre><code>##        logGain      logPeakSF logOctaveWidth       logTrunc 
+##      32.467917       1.396493       3.987110       0.500000 
+##    logCutOffSF 
+##      30.971422</code></pre>
 <p>Let’s visually confirm whether the cut-off spatial frequency yields sensitivity that is equal to 0. First, we will need to create a sequence of x values (about 200) to plot a continuous function of the CSF model from the minimum tested SF (<code>min(ACh1$SpatialFreq)</code>) to 31 c/deg. This can be done using <code>seq()</code> function.</p>
 <p>Then using the sequence of the x values, we plug them into the CSF formulas with the parameters that we have obtained using <code>sm_params()</code> to obtain the fitted values.</p>
 <div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="understanding-the-contrast-sensitivity-function.html#cb486-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="fu">min</span>(ACh1<span class="sc">$</span>SpatialFreq),<span class="dv">31</span>, <span class="at">length =</span> <span class="dv">200</span>))</span>
@@ -487,14 +491,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb488-9"><a href="understanding-the-contrast-sensitivity-function.html#cb488-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="fl">1.5</span>, </span>
 <span id="cb488-10"><a href="understanding-the-contrast-sensitivity-function.html#cb488-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;maximum tested</span><span class="sc">\n</span><span class="st">SF&#39;</span>, <span class="at">color =</span> </span>
 <span id="cb488-11"><a href="understanding-the-contrast-sensitivity-function.html#cb488-11" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sm_color</span>(<span class="st">&#39;red&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-353-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-354-1.png" width="336" /></p>
 <p>If you use <code>sm_CSF()</code>, you will get the same plot, but this plot only has a x-range from the minimum and maximum values of the spatial frequency within the <code>SpatialFreq</code> column of <code>ACh1</code>. You might get some warning messages after the running the example code below but you can ignore them altogether.</p>
 <div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="understanding-the-contrast-sensitivity-function.html#cb489-1" aria-hidden="true" tabindex="-1"></a>ACh1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
 <span id="cb489-2"><a href="understanding-the-contrast-sensitivity-function.html#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>() <span class="sc">+</span></span>
 <span id="cb489-3"><a href="understanding-the-contrast-sensitivity-function.html#cb489-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
 <span id="cb489-4"><a href="understanding-the-contrast-sensitivity-function.html#cb489-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">min</span>(grid<span class="sc">$</span>x),<span class="fu">max</span>(grid<span class="sc">$</span>x))) <span class="sc">+</span></span>
 <span id="cb489-5"><a href="understanding-the-contrast-sensitivity-function.html#cb489-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">min</span>(grid<span class="sc">$</span>y), <span class="fu">max</span>(grid<span class="sc">$</span>y)), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">30</span>)) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-354-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-355-1.png" width="336" /></p>
 <p>From the first plot, it is visually clear that at about 31 c/deg, the linear sensitivity approaches 1 (i.e., log-sensitivity = 0). We can also directly see the fitted values in the <code>grid</code> data frame and confirm our qualitative observation.</p>
 <div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="understanding-the-contrast-sensitivity-function.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(grid)</span></code></pre></div>
 <pre><code>##            x        y
@@ -514,7 +518,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb492-3"><a href="understanding-the-contrast-sensitivity-function.html#cb492-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ymax =</span> avgSens <span class="sc">+</span> stdDevSens)) <span class="sc">+</span></span>
 <span id="cb492-4"><a href="understanding-the-contrast-sensitivity-function.html#cb492-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>() <span class="sc">+</span> </span>
 <span id="cb492-5"><a href="understanding-the-contrast-sensitivity-function.html#cb492-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-356-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-357-1.png" width="336" /></p>
 <p>How is that the plot above shows the standard deviation across the sequence of x-values even if the contrast sensitivity has been tested at across only 12 unique spatial frequencies?</p>
 <p>This is because the plot shown above shows <strong>3 fits</strong> of the CSF rather than 1. The one that the reader can obviously recognize is the CSF fit using the raw data, shown as the black line. The other 2 fits are less apparent. These are basically the upper and lower bounds of the CSF ribbon.</p>
 <p>The upper fit of the CSF is created using values from <code>ymax = avgSens + stdDevSens</code>. The lower fit of the CSF is done so using values from <code>ymin = avgSens - stdDevSens</code>. <code>ymax</code> and <code>ymin</code> values are used to estimate the 4 parameters of the CSF fit each. These are then used to fit the CSF curves.</p>
@@ -543,7 +547,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb495-3"><a href="understanding-the-contrast-sensitivity-function.html#cb495-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> ymin), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
 <span id="cb495-4"><a href="understanding-the-contrast-sensitivity-function.html#cb495-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> ymax), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
 <span id="cb495-5"><a href="understanding-the-contrast-sensitivity-function.html#cb495-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-358-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-359-1.png" width="336" /></p>
 <p>We now have recreated the same plot without using <code>sm_ribbonCSF()</code>.</p>
 </div>
 <div id="calculating-the-five-parameters-of-all-subjects-groups-and-conditions" class="section level2" number="11.4">
@@ -583,13 +587,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb498-5"><a href="understanding-the-contrast-sensitivity-function.html#cb498-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
 <pre><code>## [1] &quot;CSF parameters = Sensitivity ~ SpatialFreq&quot;</code></pre>
 <div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="understanding-the-contrast-sensitivity-function.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(params_df[[<span class="dv">1</span>]])</span></code></pre></div>
-<pre><code>##   Subject Repetition  logGain  logPeakSF logOctaveWidth logTrunc logCutOffSF
-## 1      S1          1 1.629834 0.09807101      0.6119619 -0.30103    1.522009
-## 2      S1          2 1.569498 0.01320197      0.5270044 -0.30103    1.216546
-## 3      S2          1 1.562791 0.18084246      0.6510530 -0.30103    1.664255
-## 4      S2          2 1.521231 0.22933453      0.6888543 -0.30103    1.777866
-## 5      S3          1 1.394250 0.14405204      0.6446500 -0.30103    1.531413
-## 6      S3          2 1.668939 0.17290997      0.5060525 -0.30103    1.364456</code></pre>
+<pre><code>##   Subject Repetition  logGain  logPeakSF logOctaveWidth logTrunc
+## 1      S1          1 1.629834 0.09807101      0.6119619 -0.30103
+## 2      S1          2 1.569498 0.01320197      0.5270044 -0.30103
+## 3      S2          1 1.562791 0.18084246      0.6510530 -0.30103
+## 4      S2          2 1.521231 0.22933453      0.6888543 -0.30103
+## 5      S3          1 1.394250 0.14405204      0.6446500 -0.30103
+## 6      S3          2 1.668939 0.17290997      0.5060525 -0.30103
+##   logCutOffSF
+## 1    1.522009
+## 2    1.216546
+## 3    1.664255
+## 4    1.777866
+## 5    1.531413
+## 6    1.364456</code></pre>
 <div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="understanding-the-contrast-sensitivity-function.html#cb502-1" aria-hidden="true" tabindex="-1"></a>params_df[[<span class="dv">2</span>]]</span></code></pre></div>
 <pre><code>##  [1] 0.25 0.35 0.49 0.68 0.94 1.31 1.83 2.54 3.54 4.93 6.87 9.57</code></pre>
 <p><code>sm_params_list()</code> returns a <code>list</code>, which as two elements. The first element has a data frame of all the parameters as well as the identifiers for <code>conditions</code> and <code>subjects</code>. The second element contains a vector that has <code>x</code>, which in this case is the linear units of spatial frequency.</p>
@@ -597,7 +608,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="visualization-of-the-parameters" class="section level2" number="11.5">
 <h2><span class="header-section-number">11.5</span> Visualization of the parameters</h2>
 <p>Here is a visual representation of the parameters. The contrast sensitivity function has been drawn with the four parameters that have been obtained from the <code>ACh</code> data set. The four parameters have been used to draw the contrast sensitivity function all the way to 30 c/deg. As an exercise, the reader can produce the example below. This plot has been entirely drawn with R, including the arrow and text annotations.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-362-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-363-1.png" width="336" /></p>
 </div>
 <div id="case-study-1" class="section level2" number="11.6">
 <h2><span class="header-section-number">11.6</span> Case Study</h2>
@@ -620,13 +631,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb505-5"><a href="understanding-the-contrast-sensitivity-function.html#cb505-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh3)</span></code></pre></div>
 <pre><code>## [1] &quot;CSF parameters = Sensitivity ~ SpatialFreq&quot;</code></pre>
 <div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="understanding-the-contrast-sensitivity-function.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(params_df[[<span class="dv">1</span>]])</span></code></pre></div>
-<pre><code>##   Subject BeforeAfter  logGain   logPeakSF logOctaveWidth logTrunc logCutOffSF
-## 1      S1      Before 1.629834  0.09807101      0.6119619 -0.30103    1.522009
-## 2      S1       After 1.902661  0.48036071      0.8259008 -0.30103    2.556726
-## 3      S2      Before 1.562791  0.18084246      0.6510530 -0.30103    1.664255
-## 4      S2       After 1.892264  0.20854797      0.7047611 -0.30103    1.975513
-## 5      S3      Before 1.394250  0.14405204      0.6446500 -0.30103    1.531413
-## 6      S3       After 2.005334 -0.02095422      0.6068997 -0.30103    1.545456</code></pre>
+<pre><code>##   Subject BeforeAfter  logGain   logPeakSF logOctaveWidth logTrunc
+## 1      S1      Before 1.629834  0.09807101      0.6119619 -0.30103
+## 2      S1       After 1.902661  0.48036071      0.8259008 -0.30103
+## 3      S2      Before 1.562791  0.18084246      0.6510530 -0.30103
+## 4      S2       After 1.892264  0.20854797      0.7047611 -0.30103
+## 5      S3      Before 1.394250  0.14405204      0.6446500 -0.30103
+## 6      S3       After 2.005334 -0.02095422      0.6068997 -0.30103
+##   logCutOffSF
+## 1    1.522009
+## 2    2.556726
+## 3    1.664255
+## 4    1.975513
+## 5    1.531413
+## 6    1.545456</code></pre>
 <p>Let’s store the results of cut-off spatial frequency in a new variable <code>cut_sf</code> along with <code>Subject</code> and <code>BeforeAfter</code> columns.</p>
 <div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="understanding-the-contrast-sensitivity-function.html#cb509-1" aria-hidden="true" tabindex="-1"></a>cut_sf <span class="ot">&lt;-</span> params_df[[<span class="dv">1</span>]][<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">7</span>)]</span>
 <span id="cb509-2"><a href="understanding-the-contrast-sensitivity-function.html#cb509-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cut_sf)</span></code></pre></div>
@@ -657,7 +675,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb513-7"><a href="understanding-the-contrast-sensitivity-function.html#cb513-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Cut-off spatial frequency&#39;</span>) <span class="sc">+</span></span>
 <span id="cb513-8"><a href="understanding-the-contrast-sensitivity-function.html#cb513-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Cut-off SF (c/deg)&#39;</span>) <span class="sc">+</span></span>
 <span id="cb513-9"><a href="understanding-the-contrast-sensitivity-function.html#cb513-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Before/after treatment&#39;</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-368-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-369-1.png" width="336" /></p>
 
 </div>
 </div>

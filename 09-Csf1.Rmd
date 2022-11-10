@@ -405,7 +405,7 @@ ACh_avg_4rep$Repetition <- factor(ACh_avg_4rep$Repetition)
 
 We can specify the number of columns (ex. `ncol = 2`) and rows (ex. `nrow = 2`) inside the function `facet_wrap()`, as shown in the example below.
 
-```{r, fig.width = 6.8, fig.height = 6.8, warning = F}
+```{r, fig.width = 6.5, fig.height = 6.5, warning = F}
 ACh_avg_4rep %>%
   ggplot(aes(x = SpatialFreq, y = avgSens,
              group = Repetition, color = Repetition,
@@ -430,7 +430,9 @@ ACh_avg_4rep %>%
    sm_facet_header(font_size=11)
 ```
 
-Notice that when `facet_wrap()` is used, there is no need to create variable for each plot like we have done in Chapter 5 and use `sm_common_axis()`. The preference can vary depending on the user. Rather than using `facet_wrap()`, however, I still prefer to store each plot so that I can have freedom to decide where to place each panel wherever I want . 
+Notice that when `facet_wrap()` is used, there is no need to create variable for each plot like we have done in Chapter 5 and use `sm_common_axis()`. The preference can vary depending on the user. Rather than using `facet_wrap()`, however, I still prefer to store each plot separately so that I can have freedom to decide where to place each panel wherever I want using `sm_common_axis()`.
+
+Also, make sure that when you combine the plots using `facet_wrap()` you set the size of the figure properly within the `save_plot()` function or else the figure will appear to be too crowded. You can use `base_height` and `base_width` arguments within `facet_wrap()`.
 
 Another issue with plotting each contrast sensitivity function per panel is that it is visually difficult to compare whether the functions between the panels are different. One way to overcome this problem is to plot all the plots together. In this case, legend is necessary, which can be generated using `sm_hgrid(legends = TRUE)`. Let's use the data frame `ACh_avg` which has two levels in the `Repetition` column.
 

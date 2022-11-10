@@ -13,7 +13,7 @@ knitr::opts_chunk$set(cache = FALSE)
 
 # Welcome! {-#index}
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 7.4, fig.height= 11.7,warning = F}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 7.4, fig.height= 11.7}
 library(tidyverse)
 library(cowplot)
 library(smplot)
@@ -85,9 +85,32 @@ This book (https://smin95.com/dataviz) guides the reader to be familiar with R, 
 
 ## Major updates {-}
 
-**smplot**: Latest updates have been made on **August 20th, 2022**. Please **re-download smplot**. These include： 
+**smplot**: Latest updates have been made on **November 10th, 2022**. Please **re-download smplot**. These include： 
 
-- Changes/fixes in `sm_minimal()` and `sm_raincloud()`.
+- `sm_ci()` is a new function that computes the confidence interval.
+- `sm_forest()` is a new function that visualizes a forest plot.
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 2.8, fig.height= 4.8}
+set.seed(2) # generate random data
+day1 = rnorm(20,0,1)
+day2 = rnorm(20,5,1)
+day3 = rnorm(20,6,1.5)
+day4 = rnorm(20,7,2)
+Subject <- rep(paste0('S',seq(1:20)), 4)
+Data <- data.frame(Value = matrix(c(day1,day2,day3,day4),ncol=1))
+Day <- rep(c('Day 1', 'Day 2', 'Day 3', 'Day 4'), each = length(day1))
+df2 <- cbind(Subject, Data, Day)
+
+sm_forest(data = df2, x = Value, y = Day, alpha = 0.2,
+                 error_type = 'sd',
+                 err_side = 'top',
+          jitter_width = 0.1, sep_level = 0,
+           avg_point_shape= 23, shape = 21) +
+  scale_color_manual(values = rep('transparent',4)) +
+  scale_fill_manual(values = sm_palette(4)) +
+  ylab('Day') +
+  ggtitle('Forest plot')
+```
 
 ```{r, eval = FALSE}
 install.packages("devtools")

@@ -415,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>sm_color()</code> accepts the <strong>character string</strong> of the color name.</li>
 <li><code>sm_palette()</code> accepts the <strong>number of colors</strong> (up to <strong>20</strong>) and returns the hex codes accordingly.</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-93"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-94"></span>
 <img src="img/color.png" alt="smplot's color palette" width="85%" />
 <p class="caption">
 Figure 4.1: smplot’s color palette
@@ -430,8 +430,8 @@ Figure 4.1: smplot’s color palette
 <li>But, do not form a single vector that contains two characters. If so, <code>sm_color()</code> will only return the first color.</li>
 </ul>
 <div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="manual-and-examples-of-smplot.html#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_color</span>(<span class="fu">c</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;red&#39;</span>))</span></code></pre></div>
-<pre><code>## Warning in if (color == &quot;blue&quot;) return(&quot;#1262b3&quot;): the condition has length &gt; 1 and
-## only the first element will be used</code></pre>
+<pre><code>## Warning in if (color == &quot;blue&quot;) return(&quot;#1262b3&quot;): the condition has
+## length &gt; 1 and only the first element will be used</code></pre>
 <pre><code>## [1] &quot;#1262b3&quot;</code></pre>
 <ul>
 <li>If you need 5 colors, you can use <code>sm_palette()</code>.</li>
@@ -461,58 +461,58 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb116-2"><a href="manual-and-examples-of-smplot.html#cb116-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
 <span id="cb116-3"><a href="manual-and-examples-of-smplot.html#cb116-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span>
 <span id="cb116-4"><a href="manual-and-examples-of-smplot.html#cb116-4" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-97-1.png" width="470.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-98-1.png" width="470.4" /></p>
 <ul>
 <li>Now we can change the theme using <code>sm_corr_theme()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="manual-and-examples-of-smplot.html#cb117-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-98-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-99-1.png" width="480" /></p>
 <ul>
 <li>We can also remove <code>borders</code> and <code>legends</code> by setting them as <code>FALSE</code>.</li>
 </ul>
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="manual-and-examples-of-smplot.html#cb118-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">sm_corr_theme</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>, <span class="at">legends =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb118-2"><a href="manual-and-examples-of-smplot.html#cb118-2" aria-hidden="true" tabindex="-1"></a>p2</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-99-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-100-1.png" width="336" /></p>
 <ul>
 <li>You can also apply smplot’s colors by using <code>scale_color_manual()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="manual-and-examples-of-smplot.html#cb119-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">7</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-100-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-101-1.png" width="336" /></p>
 <ul>
 <li>We can also apply <code>sm_hgrid()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="manual-and-examples-of-smplot.html#cb120-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_hgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-101-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-102-1.png" width="336" /></p>
 <ul>
 <li>Let’s try <code>sm_vgrid()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="manual-and-examples-of-smplot.html#cb121-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_vgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-102-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-103-1.png" width="480" /></p>
 <ul>
 <li>You can remove the legend as shown below.</li>
 </ul>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="manual-and-examples-of-smplot.html#cb122-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_vgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-103-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-104-1.png" width="336" /></p>
 <ul>
 <li><code>sm_classic()</code> is one of my favourites!</li>
 </ul>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="manual-and-examples-of-smplot.html#cb123-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_classic</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-104-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-105-1.png" width="336" /></p>
 <ul>
 <li>You can add the legend as shown below.</li>
 </ul>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="manual-and-examples-of-smplot.html#cb124-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_classic</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-105-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-106-1.png" width="480" /></p>
 <ul>
 <li>Another choice is <code>sm_minimal()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="manual-and-examples-of-smplot.html#cb125-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-106-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-107-1.png" width="336" /></p>
 <ul>
 <li>You can choose to include the legend in <code>sm_minimal()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="manual-and-examples-of-smplot.html#cb126-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_minimal</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-107-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-108-1.png" width="480" /></p>
 </div>
 </div>
 <div id="correlation-plot" class="section level2" number="4.3">
@@ -524,7 +524,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="manual-and-examples-of-smplot.html#cb127-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
 <span id="cb127-2"><a href="manual-and-examples-of-smplot.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) </span>
 <span id="cb127-3"><a href="manual-and-examples-of-smplot.html#cb127-3" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-108-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-109-1.png" width="336" /></p>
 <ul>
 <li>The next plot uses <code>sm_corr_theme()</code> to apply the smplot’s theme and <code>sm_statCorr()</code> to print linear regression slope and statistical results from a paired correlation test (Pearson’s).</li>
 <li><strong>Important:</strong> <code>sm_statCorr()</code> recognizes the data for the y- and x-axes from the <code>mapping = aes()</code> in <code>ggplot()</code> function.
@@ -534,7 +534,7 @@ uses <code>sm_classic()</code> automatically.</li>
 </ul>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="manual-and-examples-of-smplot.html#cb128-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
 <span id="cb128-2"><a href="manual-and-examples-of-smplot.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-109-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-110-1.png" width="336" /></p>
 <ul>
 <li>You can also change the <code>line_type</code> to <code>'solid'</code> in <code>sm_statCorr()</code>, and change the location of the printed texts by using <code>label_x</code> and <code>label_y</code> arguments.</li>
 <li>You can also change the font size of the printed texts by setting <code>text_size</code> to a larger numerical value.</li>
@@ -545,7 +545,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb129-4"><a href="manual-and-examples-of-smplot.html#cb129-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">label_x =</span> <span class="fl">3.7</span>,</span>
 <span id="cb129-5"><a href="manual-and-examples-of-smplot.html#cb129-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">label_y =</span> <span class="dv">11</span>,</span>
 <span id="cb129-6"><a href="manual-and-examples-of-smplot.html#cb129-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">text_size =</span> <span class="dv">5</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-110-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-111-1.png" width="336" /></p>
 <div id="data-frame-for-a-correlation-plot" class="section level3" number="4.3.1">
 <h3><span class="header-section-number">4.3.1</span> Data frame for a correlation plot</h3>
 <ul>
@@ -599,12 +599,12 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb135-8"><a href="manual-and-examples-of-smplot.html#cb135-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_x =</span> <span class="sc">-</span><span class="fl">2.2</span>, <span class="at">label_y =</span> <span class="fl">2.3</span>) <span class="sc">+</span></span>
 <span id="cb135-9"><a href="manual-and-examples-of-smplot.html#cb135-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Correlation plot&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb135-10"><a href="manual-and-examples-of-smplot.html#cb135-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Method 1&#39;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&#39;Method 2&#39;</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-114-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-115-1.png" width="336" /></p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="manual-and-examples-of-smplot.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bar graph using data frame &#39;df_general&#39;</span></span>
 <span id="cb136-2"><a href="manual-and-examples-of-smplot.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_general, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Method, <span class="at">y =</span> Value, <span class="at">fill =</span> Method)) <span class="sc">+</span></span>
 <span id="cb136-3"><a href="manual-and-examples-of-smplot.html#cb136-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb136-4"><a href="manual-and-examples-of-smplot.html#cb136-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;crimson&#39;</span>,<span class="st">&#39;green&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-115-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-116-1.png" width="336" /></p>
 </div>
 <div id="correlation-plot-with-both-regression-and-reference-lines" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Correlation plot with both regression and reference lines</h3>
@@ -623,7 +623,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb137-9"><a href="manual-and-examples-of-smplot.html#cb137-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_x =</span> <span class="sc">-</span><span class="fl">2.2</span>, <span class="at">label_y =</span> <span class="fl">2.3</span>) <span class="sc">+</span></span>
 <span id="cb137-10"><a href="manual-and-examples-of-smplot.html#cb137-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Correlation plot&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb137-11"><a href="manual-and-examples-of-smplot.html#cb137-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Method 1&#39;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&#39;Method 2&#39;</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-116-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-117-1.png" width="336" /></p>
 </div>
 </div>
 <div id="boxplot---sm_boxplot" class="section level2" number="4.4">
@@ -647,7 +647,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="manual-and-examples-of-smplot.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a boxplot with the random data, all black points</span></span>
 <span id="cb139-2"><a href="manual-and-examples-of-smplot.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb139-3"><a href="manual-and-examples-of-smplot.html#cb139-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">fill =</span> <span class="st">&#39;black&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-118-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-119-1.png" width="336" /></p>
 <ul>
 <li>Now let’s apply different color for each Day.</li>
 </ul>
@@ -655,7 +655,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb140-2"><a href="manual-and-examples-of-smplot.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb140-3"><a href="manual-and-examples-of-smplot.html#cb140-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span></span>
 <span id="cb140-4"><a href="manual-and-examples-of-smplot.html#cb140-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-119-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-1.png" width="336" /></p>
 <ul>
 <li>You can change the shape of the boxplot by setting <code>notch = TRUE</code>. You can also change the size of the individual points using <code>point_size</code> argument.</li>
 <li>A notched boxplot shows the confidence interval around the median (+/- 1.58 * interquartile range / sqrt(n)).
@@ -667,7 +667,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="manual-and-examples-of-smplot.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb141-2"><a href="manual-and-examples-of-smplot.html#cb141-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">point_size =</span> <span class="dv">4</span>, <span class="at">notch =</span> <span class="st">&#39;TRUE&#39;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb141-3"><a href="manual-and-examples-of-smplot.html#cb141-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-121-1.png" width="336" /></p>
 <div id="plotting-individual-points-with-unique-colors" class="section level3" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Plotting individual points with unique colors</h3>
 <ul>
@@ -677,7 +677,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="manual-and-examples-of-smplot.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Subject)) <span class="sc">+</span></span>
 <span id="cb142-2"><a href="manual-and-examples-of-smplot.html#cb142-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span></span>
 <span id="cb142-3"><a href="manual-and-examples-of-smplot.html#cb142-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-121-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-1.png" width="336" /></p>
 </div>
 </div>
 <div id="violin-plot---sm_violin" class="section level2" number="4.5">
@@ -693,12 +693,12 @@ uses <code>sm_classic()</code> automatically.</li>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="manual-and-examples-of-smplot.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a violin plot with the random data, all black points and lines</span></span>
 <span id="cb143-2"><a href="manual-and-examples-of-smplot.html#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb143-3"><a href="manual-and-examples-of-smplot.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_violin</span>(<span class="at">fill =</span> <span class="st">&#39;black&#39;</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-122-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-123-1.png" width="336" /></p>
 <div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="manual-and-examples-of-smplot.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a violin plot with different colored points and lines</span></span>
 <span id="cb144-2"><a href="manual-and-examples-of-smplot.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb144-3"><a href="manual-and-examples-of-smplot.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_violin</span>() <span class="sc">+</span> </span>
 <span id="cb144-4"><a href="manual-and-examples-of-smplot.html#cb144-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-123-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-124-1.png" width="336" /></p>
 <div id="plotting-individual-points-with-unique-colors-1" class="section level3" number="4.5.1">
 <h3><span class="header-section-number">4.5.1</span> Plotting individual points with unique colors</h3>
 <ul>
@@ -710,13 +710,13 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb145-2"><a href="manual-and-examples-of-smplot.html#cb145-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">group =</span> Day)) <span class="sc">+</span></span>
 <span id="cb145-3"><a href="manual-and-examples-of-smplot.html#cb145-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_violin</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">point_alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb145-4"><a href="manual-and-examples-of-smplot.html#cb145-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>)) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-124-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-125-1.png" width="336" /></p>
 <div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="manual-and-examples-of-smplot.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Subject,</span>
 <span id="cb146-2"><a href="manual-and-examples-of-smplot.html#cb146-2" aria-hidden="true" tabindex="-1"></a>                                <span class="at">group =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb146-3"><a href="manual-and-examples-of-smplot.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_violin</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">point_alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb146-4"><a href="manual-and-examples-of-smplot.html#cb146-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>)) <span class="sc">+</span></span>
 <span id="cb146-5"><a href="manual-and-examples-of-smplot.html#cb146-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-125-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-126-1.png" width="336" /></p>
 </div>
 </div>
 <div id="bar-plot---sm_bar" class="section level2" number="4.6">
@@ -729,21 +729,21 @@ uses <code>sm_classic()</code> automatically.</li>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="manual-and-examples-of-smplot.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb147-2"><a href="manual-and-examples-of-smplot.html#cb147-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb147-3"><a href="manual-and-examples-of-smplot.html#cb147-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-126-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-127-1.png" width="336" /></p>
 <ul>
 <li>In this case, the error bar represents <strong>standard error</strong>. If you prefer to show <strong>standard deviation</strong>, then you should set <code>errorbar_type  = 'sd'</code> in <code>sm_bar()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="manual-and-examples-of-smplot.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb148-2"><a href="manual-and-examples-of-smplot.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>, <span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>) <span class="sc">+</span></span>
 <span id="cb148-3"><a href="manual-and-examples-of-smplot.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-127-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-128-1.png" width="336" /></p>
 <ul>
 <li>95% confidence interval can also be displayed with <code>errorbar_type  = 'ci'</code>.</li>
 </ul>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="manual-and-examples-of-smplot.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb149-2"><a href="manual-and-examples-of-smplot.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>, <span class="at">errorbar_type =</span> <span class="st">&#39;ci&#39;</span>) <span class="sc">+</span></span>
 <span id="cb149-3"><a href="manual-and-examples-of-smplot.html#cb149-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-128-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-1.png" width="336" /></p>
 <ul>
 <li>You can also make the bar slightly transparent by setting <code>bar_alpha</code> to less than 1.</li>
 </ul>
@@ -751,7 +751,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb150-2"><a href="manual-and-examples-of-smplot.html#cb150-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>, </span>
 <span id="cb150-3"><a href="manual-and-examples-of-smplot.html#cb150-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">errorbar_type =</span> <span class="st">&#39;ci&#39;</span>, <span class="at">bar_alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
 <span id="cb150-4"><a href="manual-and-examples-of-smplot.html#cb150-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-130-1.png" width="355.2" /></p>
 <div id="plotting-individual-points-with-unique-colors-2" class="section level3" number="4.6.1">
 <h3><span class="header-section-number">4.6.1</span> Plotting individual points with unique colors</h3>
 <ul>
@@ -760,7 +760,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="manual-and-examples-of-smplot.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Subject)) <span class="sc">+</span></span>
 <span id="cb151-2"><a href="manual-and-examples-of-smplot.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb151-3"><a href="manual-and-examples-of-smplot.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>)) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-130-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-131-1.png" width="336" /></p>
 <ul>
 <li><code>sm_bar()</code> can also print distinct box colors across distinct x levels.</li>
 </ul>
@@ -769,7 +769,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb152-3"><a href="manual-and-examples-of-smplot.html#cb152-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
 <span id="cb152-4"><a href="manual-and-examples-of-smplot.html#cb152-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>)) <span class="sc">+</span></span>
 <span id="cb152-5"><a href="manual-and-examples-of-smplot.html#cb152-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;yelloworange&#39;</span>,<span class="st">&#39;skyblue&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-131-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-132-1.png" width="336" /></p>
 </div>
 </div>
 <div id="slope-chart---sm_slope" class="section level2" number="4.7">
@@ -790,7 +790,7 @@ uses <code>sm_classic()</code> automatically.</li>
 </ul>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="manual-and-examples-of-smplot.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">group =</span> Subject)) <span class="sc">+</span></span>
 <span id="cb153-2"><a href="manual-and-examples-of-smplot.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>, <span class="st">&#39;Day 2&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-132-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-133-1.png" width="336" /></p>
 <ul>
 <li>Let’s set the shape to 21.</li>
 <li>Let’s make the border color to <code>white</code>.</li>
@@ -798,14 +798,14 @@ uses <code>sm_classic()</code> automatically.</li>
 </ul>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="manual-and-examples-of-smplot.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">group =</span> Subject)) <span class="sc">+</span></span>
 <span id="cb154-2"><a href="manual-and-examples-of-smplot.html#cb154-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>,<span class="st">&#39;Day 2&#39;</span>), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-133-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-134-1.png" width="336" /></p>
 <ul>
 <li>You could also apply different color for each <code>Day</code> using <code>scale_fill_manual()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="manual-and-examples-of-smplot.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">group =</span> Subject, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb155-2"><a href="manual-and-examples-of-smplot.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>,<span class="st">&#39;Day 2&#39;</span>), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>) <span class="sc">+</span></span>
 <span id="cb155-3"><a href="manual-and-examples-of-smplot.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-134-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-135-1.png" width="336" /></p>
 <ul>
 <li>You can also change the line color and other aesthetics. For more information, please type <code>?sm_slope</code>.</li>
 </ul>
@@ -813,7 +813,7 @@ uses <code>sm_classic()</code> automatically.</li>
 <span id="cb156-2"><a href="manual-and-examples-of-smplot.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>,<span class="st">&#39;Day 2&#39;</span>), <span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
 <span id="cb156-3"><a href="manual-and-examples-of-smplot.html#cb156-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>), <span class="at">line_color =</span> <span class="st">&#39;#bfd5db&#39;</span>,</span>
 <span id="cb156-4"><a href="manual-and-examples-of-smplot.html#cb156-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">line_size =</span> <span class="fl">0.6</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-135-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-136-1.png" width="336" /></p>
 </div>
 <div id="a-bland-altman-plot---sm_bland_altman" class="section level2" number="4.8">
 <h2><span class="header-section-number">4.8</span> A Bland Altman Plot - <code>sm_bland_altman()</code></h2>
@@ -835,7 +835,7 @@ uses <code>sm_classic()</code> automatically.</li>
 </ul>
 <div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="manual-and-examples-of-smplot.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_bland_altman</span>(df3<span class="sc">$</span>first, df3<span class="sc">$</span>second, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>)) <span class="sc">+</span> </span>
 <span id="cb158-2"><a href="manual-and-examples-of-smplot.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-137-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-138-1.png" width="336" /></p>
 <ul>
 <li>The upper dashed line represents the upper limit of the difference between two measurements (mean difference + 1.96 * standard deviation of the difference).</li>
 <li>The lower dashed line represents the lower limit of the difference between two measurements (mean difference - 1.96 * standard deviation of the difference).</li>
@@ -863,7 +863,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb159-8"><a href="manual-and-examples-of-smplot.html#cb159-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>upper_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>upper_limit <span class="sc">-</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb159-9"><a href="manual-and-examples-of-smplot.html#cb159-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Lower limit&#39;</span>, <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit <span class="sc">+</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb159-10"><a href="manual-and-examples-of-smplot.html#cb159-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>lower_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit<span class="fl">-0.4</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-138-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-139-1.png" width="336" /></p>
 <ul>
 <li>Let’s change the border color of the circles to white. To do so, we will have to change their shape to 21.</li>
 </ul>
@@ -875,7 +875,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb160-6"><a href="manual-and-examples-of-smplot.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>upper_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>upper_limit <span class="sc">-</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb160-7"><a href="manual-and-examples-of-smplot.html#cb160-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Lower limit&#39;</span>, <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit <span class="sc">+</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb160-8"><a href="manual-and-examples-of-smplot.html#cb160-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>lower_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit<span class="fl">-0.4</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-139-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-140-1.png" width="336" /></p>
 </div>
 <div id="raincloud-plot---sm_raincloud" class="section level2" number="4.9">
 <h2><span class="header-section-number">4.9</span> Raincloud plot - <code>sm_raincloud()</code></h2>
@@ -901,14 +901,14 @@ should convert the column as factor and establish the levels correctly.</li>
 <li>Now let’s draw a raincloud plot using <code>sm_raincloud()</code>.</li>
 </ul>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="manual-and-examples-of-smplot.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_raincloud</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Day, <span class="at">y =</span> Value) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-141-1.png" width="518.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-1.png" width="518.4" /></p>
 <ul>
 <li>Let’s change the x-axis labels.</li>
 </ul>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="manual-and-examples-of-smplot.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_raincloud</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Day, <span class="at">y =</span> Value) <span class="sc">+</span></span>
 <span id="cb163-2"><a href="manual-and-examples-of-smplot.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fl">0.25</span>,<span class="fl">4.75</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;First&#39;</span>, <span class="st">&#39;Second&#39;</span>, <span class="st">&#39;Third&#39;</span>, <span class="st">&#39;Fourth&#39;</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)) <span class="sc">+</span></span>
 <span id="cb163-3"><a href="manual-and-examples-of-smplot.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-1.png" width="518.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="518.4" /></p>
 <ul>
 <li>The filling colors of the violin plots and boxplots can be modified by using <code>scale_fill_manual()</code>.</li>
 <li>The border color of the violin plot can be changed by using <code>scale_color_manual()</code>.
@@ -923,7 +923,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb164-4"><a href="manual-and-examples-of-smplot.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>) <span class="sc">+</span></span>
 <span id="cb164-5"><a href="manual-and-examples-of-smplot.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">4</span>)) <span class="sc">+</span> </span>
 <span id="cb164-6"><a href="manual-and-examples-of-smplot.html#cb164-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="518.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-144-1.png" width="518.4" /></p>
 <ul>
 <li><code>sep_level</code> is an argument to specify the degree of separation among points, boxplots and violin plots. When <code>sep_level = 0</code>, they will all be crowded. When <code>sep_level = 4</code>, they will all be separated from each other.
 <ul>
@@ -938,7 +938,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb165-5"><a href="manual-and-examples-of-smplot.html#cb165-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">4</span>)) <span class="sc">+</span> </span>
 <span id="cb165-6"><a href="manual-and-examples-of-smplot.html#cb165-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
 <span id="cb165-7"><a href="manual-and-examples-of-smplot.html#cb165-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-144-1.png" width="518.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-145-1.png" width="518.4" /></p>
 <ul>
 <li>You can also flip the raincloud plot by setting <code>which_side</code> to <code>left</code>.</li>
 </ul>
@@ -949,7 +949,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb166-5"><a href="manual-and-examples-of-smplot.html#cb166-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">4</span>)) <span class="sc">+</span> </span>
 <span id="cb166-6"><a href="manual-and-examples-of-smplot.html#cb166-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
 <span id="cb166-7"><a href="manual-and-examples-of-smplot.html#cb166-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-145-1.png" width="518.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-146-1.png" width="518.4" /></p>
 <ul>
 <li>So far the distribution plots (violin plots) have been vertical. We can change their configuration by setting <code>vertical = FALSE</code>.</li>
 </ul>
@@ -960,7 +960,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb167-5"><a href="manual-and-examples-of-smplot.html#cb167-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">4</span>)) <span class="sc">+</span> </span>
 <span id="cb167-6"><a href="manual-and-examples-of-smplot.html#cb167-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
 <span id="cb167-7"><a href="manual-and-examples-of-smplot.html#cb167-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-146-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-147-1.png" width="336" /></p>
 <ul>
 <li>The orientation is not correct, so let’s change it by setting <code>which_side = 'right'</code>.</li>
 </ul>
@@ -970,7 +970,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb168-4"><a href="manual-and-examples-of-smplot.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Day&#39;</span>) <span class="sc">+</span></span>
 <span id="cb168-5"><a href="manual-and-examples-of-smplot.html#cb168-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">rep</span>(<span class="st">&#39;transparent&#39;</span>,<span class="dv">4</span>)) <span class="sc">+</span> </span>
 <span id="cb168-6"><a href="manual-and-examples-of-smplot.html#cb168-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-147-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-148-1.png" width="336" /></p>
 </div>
 <div id="overriding-defaults-of-smplots-themes" class="section level2" number="4.10">
 <h2><span class="header-section-number">4.10</span> Overriding Defaults of smplot’s Themes</h2>
@@ -981,7 +981,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="manual-and-examples-of-smplot.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb169-2"><a href="manual-and-examples-of-smplot.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb169-3"><a href="manual-and-examples-of-smplot.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-148-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-149-1.png" width="336" /></p>
 <ul>
 <li>Now let’s remove the x-axis title <strong>Day</strong>.</li>
 </ul>
@@ -989,7 +989,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb170-2"><a href="manual-and-examples-of-smplot.html#cb170-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb170-3"><a href="manual-and-examples-of-smplot.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb170-4"><a href="manual-and-examples-of-smplot.html#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-149-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-150-1.png" width="336" /></p>
 <ul>
 <li>Let’s customise the graph more by changing the y-axis title and adding a main title.</li>
 </ul>
@@ -999,7 +999,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb171-4"><a href="manual-and-examples-of-smplot.html#cb171-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb171-5"><a href="manual-and-examples-of-smplot.html#cb171-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Reading speed&#39;</span>) <span class="sc">+</span></span>
 <span id="cb171-6"><a href="manual-and-examples-of-smplot.html#cb171-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Reading performance in children&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-150-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-151-1.png" width="336" /></p>
 <div id="scaling-the-y-axis" class="section level3" number="4.10.1">
 <h3><span class="header-section-number">4.10.1</span> Scaling the y-axis</h3>
 <p>A bar plot is shown below using this random data.</p>
@@ -1014,20 +1014,20 @@ should convert the column as factor and establish the levels correctly.</li>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="manual-and-examples-of-smplot.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb173-2"><a href="manual-and-examples-of-smplot.html#cb173-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb173-3"><a href="manual-and-examples-of-smplot.html#cb173-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-152-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-153-1.png" width="336" /></p>
 <p>The y-axis limit does not start from 0. Let’s specify the y-axis limit manually using <code>scale_y_continuous()</code>.</p>
 <div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="manual-and-examples-of-smplot.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb174-2"><a href="manual-and-examples-of-smplot.html#cb174-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb174-3"><a href="manual-and-examples-of-smplot.html#cb174-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb174-4"><a href="manual-and-examples-of-smplot.html#cb174-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">7</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-153-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-154-1.png" width="336" /></p>
 <p>Although we have specified that the y-axis limit begins from 0 and ends at 7, there is still a small margin below 0. What is going on here?</p>
 <p>The default of <strong>ggplot2</strong> is that there is always a small margin below the lowest point of the y-axis limit and above the largest point of the y-axis.The empty space below 0 and above 7 can be removed by using <code>expand = c(0,0)</code> within <code>scale_y_continuous()</code>.</p>
 <div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="manual-and-examples-of-smplot.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
 <span id="cb175-2"><a href="manual-and-examples-of-smplot.html#cb175-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb175-3"><a href="manual-and-examples-of-smplot.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb175-4"><a href="manual-and-examples-of-smplot.html#cb175-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">7</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-154-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-155-1.png" width="336" /></p>
 <p>Note that <code>expand = c(0,0)</code> has already been used in this chapter where it discusses the correlation plot (with both regression and reference lines). You can plot it without <code>expand = c(0,0)</code> and see what happens.</p>
 <div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="manual-and-examples-of-smplot.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation plot using data frame &#39;df_corr&#39; </span></span>
 <span id="cb176-2"><a href="manual-and-examples-of-smplot.html#cb176-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_corr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> first, <span class="at">y =</span> second)) <span class="sc">+</span> </span>
@@ -1040,7 +1040,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb176-9"><a href="manual-and-examples-of-smplot.html#cb176-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_x =</span> <span class="sc">-</span><span class="fl">2.2</span>, <span class="at">label_y =</span> <span class="fl">2.3</span>) <span class="sc">+</span></span>
 <span id="cb176-10"><a href="manual-and-examples-of-smplot.html#cb176-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Correlation plot&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb176-11"><a href="manual-and-examples-of-smplot.html#cb176-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Method 1&#39;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&#39;Method 2&#39;</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-155-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-156-1.png" width="336" /></p>
 <p>Notice that even we have specified the x- and y-limits from -2.8 to 2.8, we still see -3 and 3. This is because <strong>ggplot2</strong> default provides extra margin space. Also, the plot above is not pretty because the grid lines at the outer ends act as pseudo-borders. So it is best to remove them. We can do this with <code>expand = c(0,0)</code>, which reduces the margin for both x and y axes.</p>
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="manual-and-examples-of-smplot.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation plot using data frame &#39;df_corr&#39; </span></span>
 <span id="cb177-2"><a href="manual-and-examples-of-smplot.html#cb177-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_corr, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> first, <span class="at">y =</span> second)) <span class="sc">+</span> </span>
@@ -1053,7 +1053,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb177-9"><a href="manual-and-examples-of-smplot.html#cb177-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">label_x =</span> <span class="sc">-</span><span class="fl">2.2</span>, <span class="at">label_y =</span> <span class="fl">2.3</span>) <span class="sc">+</span></span>
 <span id="cb177-10"><a href="manual-and-examples-of-smplot.html#cb177-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Correlation plot&#39;</span>) <span class="sc">+</span> </span>
 <span id="cb177-11"><a href="manual-and-examples-of-smplot.html#cb177-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Method 1&#39;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&#39;Method 2&#39;</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-156-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-157-1.png" width="336" /></p>
 <p>I think this looks much nicer.</p>
 </div>
 </div>
@@ -1069,7 +1069,7 @@ should convert the column as factor and establish the levels correctly.</li>
 <span id="cb178-4"><a href="manual-and-examples-of-smplot.html#cb178-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb178-5"><a href="manual-and-examples-of-smplot.html#cb178-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> my_colors) <span class="sc">+</span></span>
 <span id="cb178-6"><a href="manual-and-examples-of-smplot.html#cb178-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">7</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-157-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-158-1.png" width="336" /></p>
 
 </div>
 </div>

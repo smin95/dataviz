@@ -400,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One sample t-test compares the mean of a sample to a hypothesized mean (often 0).</p>
 <p>For example, here is Figure 3E from the paper. What do the *** mean? How about ** and *? Let’s take a look.</p>
 <pre><code>## [1] &quot;AUC = Cbratio * Time&quot;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-242-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-243-1.png" width="336" /></p>
 <p>For instance, to determine if the area under curve (changes in contrast balance ratio over time) after patching is significant, so much so that one can confidently say that it is different from 0, we can perform a one-sample t-test using <code>t.test()</code>.</p>
 <p>Let’s use data from the sampe paper. We import the data from online using <code>read_csv()</code> and store them into a variable (in this case, <code>df</code>). Then, we compute the area under a curve using <code>sm_auc_list()</code> and store the values in the variable <code>auc_df</code>.</p>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="basic-statistics.html#cb314-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
@@ -493,7 +493,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb327-2"><a href="basic-statistics.html#cb327-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">bar_fill_color =</span> <span class="st">&#39;gray80&#39;</span>) <span class="sc">+</span></span>
 <span id="cb327-3"><a href="basic-statistics.html#cb327-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb327-4"><a href="basic-statistics.html#cb327-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;AUC in Days 1 and 5&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-249-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-250-1.png" width="355.2" /></p>
 <p>There seems to be a difference in the AUC <code>AUC_Cbratio</code> between Days 1 and 5. The error bars (in this case, standard error) are barely overlapping. If the error bars are clearly overlapping, there is often no significant difference (p &lt; 0.05) between the two data sets. If there is no overlap, it is highly likely that a statistical test will show a significant difference (p &lt; 0.05). Let’s take a look using <strong>t-test</strong> using the function <code>t.test()</code>.</p>
 <p><code>t.test()</code> allows us to compare whether data between two different groups are significantly different. Here, <code>$</code> is used to <strong>extract</strong> data from a specific column within a data frame. You could type <code>df_0min$</code>, press the <strong>Tab</strong> button from the keyboard, and see what happens. Since we will only compare values in the <code>AUC_Cbratio</code> column, let’s select for the <code>AUC_Cbratio</code> column and use these values in our <code>t.test()</code>.</p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="basic-statistics.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day5<span class="sc">$</span>AUC_Cbratio, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
@@ -513,7 +513,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="shapiro-wilk-test-to-test-for-normality-of-data" class="section level3" number="8.2.1">
 <h3><span class="header-section-number">8.2.1</span> Shapiro-Wilk Test to test for Normality of Data</h3>
 <p>T-test can only be used when the data assume normality. In other word, the data that are to be analyzed using <code>t.test()</code> must have a normal distribution (shown below).</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-251-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-252-1.png" width="355.2" /></p>
 <p>Whether the data have a normal distribution can be checked using a Shaprio-Wilk test (<code>shapiro.test()</code>). If p &gt; 0.05, then the data have a normal distribution, and therefore, t-test can be used to analyze the data. If p &lt; 0.05, the data are not normally distributed, and t-test cannot be used.</p>
 <p>For example, let’s check whether the AUC data from Day 1 have a normal distribution.</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="basic-statistics.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
@@ -733,7 +733,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb356-2"><a href="basic-statistics.html#cb356-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> </span>
 <span id="cb356-3"><a href="basic-statistics.html#cb356-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
 <span id="cb356-4"><a href="basic-statistics.html#cb356-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-266-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-267-1.png" width="336" /></p>
 <p>We see that there are two orange points that reside outside the whiskers of the boxplot. Points that are outside the whiskers represent outliers. Therefore, we confirm visually that there are two outliers on Day 4, and no outliers on any other days.</p>
 </div>
 <div id="checking-for-normality-of-data" class="section level3" number="8.6.2">
@@ -894,7 +894,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>It appears that there is a statistically significant effect of <code>Time</code>, F(5, 270) = 7.83, p &lt; 0.001. But the effect of <code>Day</code> seems to be not significant, F(4,270) = 0.49, p = 0.44. Also the effect of interaction between <code>Day</code> and <code>Time</code> is not significant, F(20,270) = 0.97, p &gt; 0.05.</p>
 <p>An interaction effect between A and B exists when the effect of factor A (ex. <code>Day</code>) is different at different levels of factor B (ex. <code>Time</code>). Let’s understand how the effect of interaction could affect the data.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-280-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-281-1.png" width="336" /></p>
 <p>We see that best-fit regression slopes of the green, red and purple lines are almost identical. This is because the factor <code>Time</code> affects <code>Cbratio</code> at different levels of the factor <code>Day</code> (i.e., different days). This suggests that the slope of decay (decrease in changes in Contrast balance ratio) over time is similar across days. In other words, the interaction effect between <code>Time</code> and <code>Day</code> is not significant (p &lt; 0.05).</p>
 <p>Conversely, if <code>Time</code> affects <code>Cbratio</code> differently across different days, we would see that the best-fit regression slopes would be different among days.</p>
 </div>
