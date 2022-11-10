@@ -104,7 +104,7 @@ df2 <- cbind(Subject, Data, Day)
 sm_forest(data = df2, x = Value, y = Day, alpha = 0.2,
                  error_type = 'sd',
                  err_side = 'top',
-          jitter_width = 0.1, sep_level = 0,
+          jitter_width = 0, sep_level = 2,
            avg_point_shape= 23, shape = 21) +
   scale_color_manual(values = rep('transparent',4)) +
   scale_fill_manual(values = sm_palette(4)) +
