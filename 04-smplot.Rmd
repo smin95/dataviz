@@ -635,6 +635,91 @@ sm_raincloud(data = df2, x = Day, y = Value, boxplot_alpha = 0.5,
   scale_fill_manual(values = sm_palette(4))
 ```
 
+## Forest plot - `sm_forest()`
+
+- As the name suggests, `sm_forest()` draws a forest plot.
+- It has very similar arguments to those in `sm_raincloud()`.
+  - `sep_level` sets the separation level between the average point and individual points. When `sep_level = 0`, they overlap. When `sep_level = 3`, they are separated. The values range from 0 to 3.
+- The shape and the color of the average point can be set by arguments `avg_point_shape` and `avg_point_size`.
+- The range of the error bar can be either at `top` or `bottom`, which could be set by the argument `range_side`.
+- The type of the error bar can be set using the argument `errorbar_type`, the default of which is `ci`, short for confidence interval (95%).
+- `borders` and `legends` can be used to remove the borders and legends as you can do in `sm_raincloud()`.
+- Most importantly, `x` is required to be a continuous variable. `y` should be a categorical variable (i.e., `factor`). 
+
+First, generate random numbers. 
+
+```{r}
+set.seed(2) # generate random data
+day1 = rnorm(20,0,1)
+day2 = rnorm(20,5,1)
+day3 = rnorm(20,6,1.5)
+day4 = rnorm(20,7,2)
+Subject <- rep(paste0('S',seq(1:20)), 4)
+Data <- data.frame(Value = matrix(c(day1,day2,day3,day4),ncol=1))
+Day <- rep(c('Day 1', 'Day 2', 'Day 3', 'Day 4'), each = length(day1))
+df2 <- cbind(Subject, Data, Day)
+```
+
+When drawing a forest plot, the ratio of the figure is very important, and we will do an example until we save it properly. `x` here is set to be the value, and `y` the categorical variable. In `sm_raincloud`, it was the opposite. 
+
+```{r, fig.width = 2.8, fig.height= 4.8}
+sm_forest(data = df2, x = Value, y = Day) 
+```
+
+Therefore, the x and y scales have been flipped compared to the raincloud plots above. Notice that `sm_forest()` automatically calculates the mean, 95% confidence interval and plots individual points as well. 
+
+We can further customise the aesthetics.
+
+```{r, fig.width = 2.8, fig.height= 4.8}
+sm_forest(data = df2, x = Value, y = Day, alpha = 0.2,
+           avg_point_shape= 23, shape = 21) +
+  scale_color_manual(values = rep('transparent',4)) +
+  scale_fill_manual(values = sm_palette(4))
+```
+
+By changing the shape of the average point to `23` (diamond with outline), we can include the line `scale_color_manual(values = rep('transparent',4))`.
+
+You can also change `jitter_width` and `sep_level`. 
+
+```{r, fig.width = 2.8, fig.height= 4.8}
+sm_forest(data = df2, x = Value, y = Day, alpha = 0.2,
+           avg_point_shape= 23, shape = 21,
+          jitter_width = 0.1, sep_level = 0) +
+  scale_color_manual(values = rep('transparent',4)) +
+  scale_fill_manual(values = sm_palette(4)) +
+  ylab('Day') +
+  ggtitle('Forest plot')
+```
+
+Now we can save the plot as an image file.
+First store the plot into a variable, then set the correct width (`base_width = 3`) and height (`base_height = 5`) using `save_plot()`. 
+
+```{r}
+forest_plot <- sm_forest(data = df2, x = Value, y = Day, alpha = 0.2,
+           avg_point_shape= 23, shape = 21,
+          jitter_width = 0.15, sep_level = 0) +
+  scale_color_manual(values = rep('transparent',4)) +
+  scale_fill_manual(values = sm_palette(4)) +
+  ylab('Day') +
+  ggtitle('Forest plot')
+
+save_plot('forest.png', forest_plot,  base_height = 5,
+          base_width = 3)
+```
+
+You can also set `errorbar_type = sd` so that the the error bar and the text denote the standard deviation of each sample.
+
+```{r, fig.width = 2.8, fig.height= 4.8}
+sm_forest(data = df2, x = Value, y = Day, alpha = 0.2,
+           avg_point_shape= 23, shape = 21,
+          jitter_width = 0.1, sep_level = 0,
+          errorbar_type = 'sd') +
+  scale_color_manual(values = rep('transparent',4)) +
+  scale_fill_manual(values = sm_palette(4)) +
+  ylab('Day') +
+  ggtitle('Forest plot')
+```
+
 
 ## Overriding Defaults of smplot's Themes 
 
