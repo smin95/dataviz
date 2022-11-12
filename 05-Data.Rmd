@@ -5,7 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# (PART) Data Analysis with smplot {-}
+# (PART) Data Analysis with smplot2 {-}
 
 # Combining Plots with Common Axes
 

@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.12" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#overriding-defaults-of-smplot-colors"><i class="fa fa-check"></i><b>4.12</b> Overriding Defaults of smplot Colors</a></li>
 </ul></li>
-<li class="part"><span><b>II Data Analysis with smplot</b></span></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
 <li class="chapter" data-level="5" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>5</b> Combining Plots with Common Axes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>5.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
@@ -380,24 +380,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Data Analysis and Visualization in R Using smplot</h1>
 <p class="author"><em>Seung Hyun Min</em></p>
-<p class="date"><em>Last Updated: 2022-11-10</em></p>
+<p class="date"><em>Last Updated: 2022-11-13</em></p>
 </div>
 <div id="index" class="section level1 unnumbered">
 <h1>Welcome!</h1>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="710.4" /></p>
-<p>This book (<a href="https://smin95.com/dataviz" class="uri">https://smin95.com/dataviz</a>) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package <strong>smplot</strong>, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="710.4" /></p>
+<p>This book (<a href="https://smin95.com/dataviz0" class="uri">https://smin95.com/dataviz0</a>) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package <strong>smplot</strong>, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility.</p>
 <div id="major-updates" class="section level2 unnumbered">
 <h2>Major updates</h2>
-<p><strong>smplot</strong>: Latest updates have been made on <strong>November 10th, 2022</strong>. Please <strong>re-download smplot</strong>. These include：</p>
-<ul>
-<li><code>sm_ci()</code> is a new function that computes the confidence interval.</li>
-<li><code>sm_forest()</code> is a new function that visualizes a forest plot.</li>
-</ul>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="268.8" /></p>
+<p>On November 12, 2022 <strong>smplot2</strong> has been created separately from <strong>smplot</strong> because most visualization functions (from Ch2-4) have been entirely redesigned for more flexibility as well as the fact that new ones have been created.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><strong>smCSF</strong> is under <strong>development</strong>. It will undergo massive changes until the <strong>end of 2022</strong>. If you have downloaded already and do not plan to use it in imminent future, please remove it from your computer.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="st">&#39;smCSF&#39;</span>) </span></code></pre></div>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot2&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>When you decide to load <strong>smplot2</strong> into your console in RStudio, make sure you have already detached (unloaded) <strong>smplot</strong> since names of the functions are identical.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">detach</span>(<span class="st">&#39;package:smplot, unload = T)</span></span></code></pre></div>
+<p>You could also delete <strong>smplot</strong> to entirely prevent its functions from masking those in <strong>smplot2</strong> in the global environment.</p>
+<p>This website (<a href="https://smin95.com/dataviz0" class="uri">https://smin95.com/dataviz0</a>) is a guide for <strong>smplot</strong> only. The original websites (<a href="https://smin95.com/dataviz" class="uri">https://smin95.com/dataviz</a> <strong>AND</strong> smin95.github.io/dataviz) are strictly for <strong>smplot2</strong>.</p>
+<p>I recommend that users adapt to <strong>smplot2</strong> as it will offer much more freedom for visualization and less technical issues. Changes will be made as quickly as possible to avoid trouble for users. I apologize for any inconvenience that I may have caused.</p>
+<p>The primary reason why I have made these changes is because I have recently learned programming methods that I should have used 18 months ago when creating the package in the first place.</p>
 </div>
 <div id="please-cite-this-paper-when-smplot-is-used" class="section level2 unnumbered">
 <h2>Please cite this paper when smplot is used</h2>

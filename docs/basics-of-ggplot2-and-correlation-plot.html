@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.12" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#overriding-defaults-of-smplot-colors"><i class="fa fa-check"></i><b>4.12</b> Overriding Defaults of smplot Colors</a></li>
 </ul></li>
-<li class="part"><span><b>II Data Analysis with smplot</b></span></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
 <li class="chapter" data-level="5" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>5</b> Combining Plots with Common Axes</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>5.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
@@ -399,18 +399,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb22-1" aria-hidden="true" tabindex="-1"></a>mpg</span></code></pre></div>
 <pre><code>## # A tibble: 234 x 11
-##    manufacturer model      displ  year   cyl trans  drv     cty   hwy fl    class
-##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
-##  1 audi         a4           1.8  1999     4 auto(~ f        18    29 p     comp~
-##  2 audi         a4           1.8  1999     4 manua~ f        21    29 p     comp~
-##  3 audi         a4           2    2008     4 manua~ f        20    31 p     comp~
-##  4 audi         a4           2    2008     4 auto(~ f        21    30 p     comp~
-##  5 audi         a4           2.8  1999     6 auto(~ f        16    26 p     comp~
-##  6 audi         a4           2.8  1999     6 manua~ f        18    26 p     comp~
-##  7 audi         a4           3.1  2008     6 auto(~ f        18    27 p     comp~
-##  8 audi         a4 quattro   1.8  1999     4 manua~ 4        18    26 p     comp~
-##  9 audi         a4 quattro   1.8  1999     4 auto(~ 4        16    25 p     comp~
-## 10 audi         a4 quattro   2    2008     4 manua~ 4        20    28 p     comp~
+##    manufacturer model      displ  year   cyl trans      drv     cty   hwy fl    class 
+##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; 
+##  1 audi         a4           1.8  1999     4 auto(l5)   f        18    29 p     compa~
+##  2 audi         a4           1.8  1999     4 manual(m5) f        21    29 p     compa~
+##  3 audi         a4           2    2008     4 manual(m6) f        20    31 p     compa~
+##  4 audi         a4           2    2008     4 auto(av)   f        21    30 p     compa~
+##  5 audi         a4           2.8  1999     6 auto(l5)   f        16    26 p     compa~
+##  6 audi         a4           2.8  1999     6 manual(m5) f        18    26 p     compa~
+##  7 audi         a4           3.1  2008     6 auto(av)   f        18    27 p     compa~
+##  8 audi         a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compa~
+##  9 audi         a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compa~
+## 10 audi         a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compa~
 ## # ... with 224 more rows</code></pre>
 <ul>
 <li>Notice that some columns and rows are not shown. You can type <code>View(mpg)</code> to see the entire <strong>data frame</strong>.</li>
@@ -430,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb25-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-19-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-17-1.png" width="336" /></p>
 <ul>
 <li>We find that a smaller car has a higher efficiency and that a larger car has a lower efficiency. In other words, we see a negative relationship.</li>
 </ul>
@@ -464,24 +464,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb27-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-19-1.png" width="480" /></p>
 <ul>
 <li>You can also set different shapes for each group of the data.</li>
 </ul>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb28-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">shape =</span> class))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-20-1.png" width="480" /></p>
 <ul>
 <li>Or size or transparency (not recommended). But you get the idea. Using <code>aes()</code> in a geom function (ex. <code>geom_point()</code>), you can label different group of points.</li>
 </ul>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># different levels of transparency (alpha) for each group</span></span>
 <span id="cb29-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span></span>
 <span id="cb29-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">alpha =</span> class))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-23-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="480" /></p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># different sizes of the points for each group</span></span>
 <span id="cb30-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb30-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">size =</span> class))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-22-1.png" width="480" /></p>
 </div>
 <div id="different-color-shape-for-each-group" class="section level3 unnumbered">
 <h3>Different color &amp; shape for each group</h3>
@@ -494,7 +494,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb31-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class,</span>
 <span id="cb31-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb31-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">shape =</span> class))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-25-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-23-1.png" width="480" /></p>
 </div>
 <div id="same-shape-across-all-groups" class="section level3 unnumbered">
 <h3>Same shape across all groups</h3>
@@ -508,12 +508,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb32-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy,</span>
 <span id="cb32-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb32-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">color =</span> class), <span class="at">shape =</span> <span class="dv">17</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-26-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-1.png" width="480" /></p>
 <ul>
 <li>Notice that the <code>color</code> is different for each group because it is inside the function <code>aes()</code>. However, all the points are triangle because we have typed <code>shape = 17</code> outside the function <code>aes()</code>.</li>
 <li><strong>Exercise:</strong> try changing the shape of the points to the circle with the border.</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-27"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
 <img src="img/shape.JPG" alt="image from http://www.sthda.com/english/wiki/ggplot2-point-shapes" width="25%" />
 <p class="caption">
 Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-shapes" class="uri">http://www.sthda.com/english/wiki/ggplot2-point-shapes</a>
@@ -530,7 +530,7 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 </ul>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb33-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class), <span class="at">shape =</span> <span class="dv">21</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-28-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-26-1.png" width="480" /></p>
 <ul>
 <li>Notice that the border color is different for each group, but not the color that fills the circle.</li>
 <li>Shapes without their borders (15-20) are filled with <code>color</code>.</li>
@@ -539,7 +539,7 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 </ul>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb34-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">fill =</span> class), <span class="at">shape =</span> <span class="dv">21</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-29-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-27-1.png" width="480" /></p>
 </div>
 <div id="how-do-we-draw-the-best-fit-line-of-the-graph" class="section level3 unnumbered">
 <h3>How do we draw the best-fit line of the graph?</h3>
@@ -548,7 +548,7 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 </ul>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb35-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-30-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-28-1.png" width="336" /></p>
 <ul>
 <li>There seems to be a negative relationship.</li>
 <li>How do we draw the best-fit line of the graph’s negative relationship?</li>
@@ -556,47 +556,51 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 </ul>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
 <span id="cb36-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-31-1.png" width="336" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-29-1.png" width="336" /></p>
 </div>
 <div id="geom_point-geom_smooth" class="section level3 unnumbered">
 <h3>geom_point() + geom_smooth()</h3>
 <ul>
 <li>Now let’s combine geom_point() + geom_smooth() into one graph.</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb37-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
-<span id="cb37-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-33-1.png" width="336" /></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb38-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb38-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-31-1.png" width="336" /></p>
 <ul>
 <li><code>ggplot()</code> acts as a system where you can add multiple <code>geom</code> objects, such as <code>geom_point()</code> and <code>geom_smooth()</code>.</li>
 <li>You can add multiple layers of geom in a single plot, like shown here.</li>
 <li><code>ggplot()</code> and <strong>at least one geom</strong> function are necessary to draw a graph.</li>
 <li><code>ggplot()</code> alone does not draw a graph. Try it on your own.</li>
 </ul>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-34-1.png" width="336" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-32-1.png" width="336" /></p>
 </div>
 <div id="writing-shorter-codes" class="section level3 unnumbered">
 <h3>Writing shorter codes</h3>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
-<span id="cb39-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
-<span id="cb39-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg) <span class="sc">+</span> </span>
+<span id="cb41-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span></code></pre></div>
 <ul>
 <li>Notice that we have typed <code>mapping = aes(x = displ, y = hwy)</code> twice. This is <strong>repetitive</strong>.</li>
 <li>If you type the <code>mapping</code> argument in <code>ggplot()</code>, you won’t need to type them anymore in the subsequent <code>geom</code> functions.</li>
 </ul>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
-<span id="cb40-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb40-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-36-1.png" width="336" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb42-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb42-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-34-1.png" width="336" /></p>
 <ul>
 <li><p>This is exactly the same as the previous graph. In both cases, the mapping has been set so that the x-axis is <code>displ</code> and the y-axis is <code>hwy</code> in both <code>geom_point()</code> and <code>geom_smooth()</code>.</p></li>
 <li><p>Now let’s apply different color of points and the fit the line for each group.</p></li>
 </ul>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb41-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb41-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-37-1.png" width="480" /></p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb44-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb44-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-35-1.png" width="480" /></p>
 <ul>
 <li>Okay, this is extremely messy and probably a bad idea.
 <ul>
@@ -605,10 +609,11 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li>Let’s plot the best-fit line across all groups (i.e., one best-fit line) but apply different color for each class (i.e., many colors).</li>
 <li>To do so, type <code>color = class</code> in geom_point, not <code>ggplot()</code>. This enables you to specify that you will apply different color for each class <strong>only</strong> in <code>geom_point()</code> but not in <code>geom_smooth()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
-<span id="cb42-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
-<span id="cb42-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-38-1.png" width="480" /></p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb46-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> class)) <span class="sc">+</span></span>
+<span id="cb46-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-36-1.png" width="480" /></p>
 </div>
 </div>
 <div id="improve-data-visualization-using-smplot" class="section level2" number="2.3">
@@ -621,9 +626,9 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li>There are too many grids.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb43-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-39-1.png" width="480" /></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb48-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-37-1.png" width="480" /></p>
 <ul>
 <li>Let’s make this graph prettier by using functions from <strong>smplot</strong>.
 <ul>
@@ -632,38 +637,38 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li><strong>smplot</strong> is not necessary to make a <strong>ggplot</strong> graph or change its style. It is possible to change every aspect of the graph with <strong>ggplot2</strong> but this requires about 8-20 lines of codes (based on my experience). Instead, <strong>smplot</strong> function does so in one line of code.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb44-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb44-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-40-1.png" width="480" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb49-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb49-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-38-1.png" width="480" /></p>
 <ul>
 <li>Now let’s remove the border within <code>sm_corr_theme()</code> by setting <code>borders = FALSE</code>.</li>
 </ul>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb45-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb45-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-41-1.png" width="480" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb50-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb50-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-39-1.png" width="480" /></p>
 <ul>
 <li><strong>Exercise:</strong> You can also set <code>borders = TRUE</code> and see what happens.</li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb46-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb46-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">borders =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb51-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb51-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">borders =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <ul>
 <li><p>You might notice that borders come back. This is exactly what happens when you do not include <code>borders</code> argument in <code>sm_corr_theme()</code>. This is because <code>sm_corr_theme()</code> is set to <code>borders = TRUE</code> as default.</p></li>
 <li><p>I think the one with the border looks better.</p></li>
 <li><p>You can also remove the legend by setting <code>legends = FALSE</code> in <code>sm_corr_theme()</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb47-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb47-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-43-1.png" width="336" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb52-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb52-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-41-1.png" width="336" /></p>
 <ul>
 <li><strong>Exercise</strong> Set <code>legends = TRUE</code> and see what happens. Type <code>?sm_corr_theme</code> to see why legends appear without directly writing <code>legends = TRUE</code>.</li>
 </ul>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb48-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb48-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb53-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb53-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <ul>
 <li>However, in this case, I think we need a legend because there are many <strong>classes</strong>.</li>
 </ul>
@@ -681,25 +686,25 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li>Since <code>shape = 21</code> refers to the circle with a border, <code>fill</code> is the color that fills the points and <code>color</code> is the border color.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb49-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
-<span id="cb49-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb49-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-45-1.png" width="336" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb54-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
+<span id="cb54-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb54-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-43-1.png" width="336" /></p>
 <ul>
 <li><p><strong>drat</strong> and <strong>mpg</strong> have a positive relationship.</p></li>
 <li><p>Now let’s make it pretty by adding <code>sm_corr_theme()</code>.</p></li>
 </ul>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb50-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb50-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-46-1.png" width="336" /></p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb55-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb55-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-44-1.png" width="336" /></p>
 <ul>
 <li>You can remove borders too by setting <code>borders = FALSE</code> in <code>sm_corr_theme()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb51-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb51-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-47-1.png" width="336" /></p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb56-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb56-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-45-1.png" width="336" /></p>
 </div>
 <div id="reporting-statistics-from-a-paired-correlation" class="section level3 unnumbered">
 <h3>Reporting statistics from a paired correlation</h3>
@@ -711,10 +716,11 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 </ul></li>
 <li>Let’s add a function <code>sm_statCorr()</code>. The statistical results are from Pearson’s correlation test.</li>
 </ul>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb52-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb52-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
-<span id="cb52-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-48-1.png" width="336" /></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb57-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
+<span id="cb57-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>()</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-46-1.png" width="336" /></p>
 <ul>
 <li>I don’t really like how the line color is different from that of the points. Let’s change the color to green.</li>
 <li>Also let’s get results from Spearman’s correlation test rather than from Pearson’s.
@@ -722,18 +728,19 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li>To do so, type <code>corr_method = 'spearman'</code> in the function <code>sm_statCorr()</code>. You will get a different <strong>R</strong> value from 0.68, which is from Pearson’s correlation test.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb53-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb53-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb53-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
-<span id="cb53-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">corr_method =</span> <span class="st">&#39;spearman&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-49-1.png" width="336" /></p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb59-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb59-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
+<span id="cb59-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">corr_method =</span> <span class="st">&#39;spearman&#39;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-47-1.png" width="336" /></p>
 <ul>
 <li><strong>Exercise</strong>: Set <code>corr_method = 'pearson'</code>and see what happens.</li>
 </ul>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb54-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb54-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
-<span id="cb54-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb54-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">corr_method =</span> <span class="st">&#39;pearson&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb61-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb61-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
+<span id="cb61-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="st">&#39;#0f993d&#39;</span>, <span class="at">corr_method =</span> <span class="st">&#39;pearson&#39;</span>)</span></code></pre></div>
 <ul>
 <li><p>You will see that this is exactly the same as when <code>corr_method</code> argument is not included in <code>sm_statCorr()</code>. In short, the <strong>default</strong> correlation method for <code>sm_statCorr()</code> is <code>'pearson'</code>. So, if you don’t write anything for <code>corr_method</code>, it will give results from Pearson’s correlation test. Type <code>?sm_statCorr</code> to see the default of <code>line_type</code>.</p></li>
 <li><p><code>#0f993d</code> is a specific green that I like.</p></li>
@@ -742,10 +749,11 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li>This <code>'green'</code> is the default green color of <strong>R</strong>.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb55-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;green&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
-<span id="cb55-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="st">&#39;green&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-51-1.png" width="336" /></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb62-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&#39;green&#39;</span>, <span class="at">color =</span> <span class="st">&#39;white&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
+<span id="cb62-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="st">&#39;green&#39;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-49-1.png" width="336" /></p>
 <ul>
 <li>Which one do you prefer?</li>
 </ul>
@@ -758,23 +766,24 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li>You do not have to. You can type <code>sm_color('green')</code> instead. This is a function from the <strong>smplot</strong> package.</li>
 <li><code>sm_color()</code> accepts the name of the color. If you want to get the hex codes (color codes) for red and green, type <code>sm_color('red','green')</code>.</li>
 </ul>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_color</span>(<span class="st">&#39;red&#39;</span>,<span class="st">&#39;green&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_color</span>(<span class="st">&#39;red&#39;</span>,<span class="st">&#39;green&#39;</span>)</span></code></pre></div>
 <ul>
 <li>Again, <code>sm_color()</code> has been built based on my preference. So it returns the hex codes of colors that I use most often.</li>
 <li>There are many more color themes that are available in R. For more information, please check out Chapter 28 of <em>R for Data Science</em> (<a href="https://r4ds.had.co.nz/graphics-for-communication.html" class="uri">https://r4ds.had.co.nz/graphics-for-communication.html</a>).</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb57-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb57-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
-<span id="cb57-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" width="336" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb65-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb65-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
+<span id="cb65-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>))</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-51-1.png" width="336" /></p>
 <ul>
 <li><strong>Exercise</strong> Change the color of the points and the best-fit line to <code>blue</code> using <code>sm_color()</code>. If you want to see all the color options for <code>sm_color()</code>, type <code>?sm_color</code>. There are 16 colors total.</li>
 </ul>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb58-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
-<span id="cb58-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
-<span id="cb58-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
+<span id="cb67-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>), <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb67-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span> </span>
+<span id="cb67-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb67-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_statCorr</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>))</span></code></pre></div>
 </div>
 <div id="different-color-for-each-group-but-with-other-colors" class="section level3 unnumbered">
 <h3>Different color for each group but with other colors</h3>
@@ -788,9 +797,9 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li><code>fill = class</code> is needed when the shape of the point is set to 21-25.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb59-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-55-1.png" width="480" /></p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb68-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" width="480" /></p>
 <ul>
 <li>To use other colors, we could use a function from <strong>ggplot2</strong> called <code>scale_color_manual()</code>.
 <ul>
@@ -798,36 +807,36 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 </ul></li>
 <li>To find how many colors we need total, we need to find how many groups exist.</li>
 </ul>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb60-1" aria-hidden="true" tabindex="-1"></a>unique_classes <span class="ot">&lt;-</span> <span class="fu">unique</span>(mpg<span class="sc">$</span>class)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb69-1" aria-hidden="true" tabindex="-1"></a>unique_classes <span class="ot">&lt;-</span> <span class="fu">unique</span>(mpg<span class="sc">$</span>class)</span></code></pre></div>
 <ul>
 <li>In R, you can extract data from one column by using <code>$</code>. You can try it with different variables too.</li>
 <li><code>unique()</code> returns unique values in the selected data.</li>
 <li>Then compute the number of unique values using <code>length()</code> function.</li>
 </ul>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb61-1" aria-hidden="true" tabindex="-1"></a>number_of_classes <span class="ot">&lt;-</span> <span class="fu">length</span>(unique_classes)</span>
-<span id="cb61-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb61-2" aria-hidden="true" tabindex="-1"></a>number_of_classes</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb70-1" aria-hidden="true" tabindex="-1"></a>number_of_classes <span class="ot">&lt;-</span> <span class="fu">length</span>(unique_classes)</span>
+<span id="cb70-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb70-2" aria-hidden="true" tabindex="-1"></a>number_of_classes</span></code></pre></div>
 <pre><code>## [1] 7</code></pre>
 <ul>
 <li><code>sm_palette</code> accepts the number of colors as input. It returns colors that I use most often.</li>
 <li>Now that we know we need 7 colors total, we can type <code>sm_palette(7)</code> or <code>sm_palette(number_of_classes)</code> for <code>values</code> in <code>scale_color_manual()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb63-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb63-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(number_of_classes)) <span class="sc">+</span> </span>
-<span id="cb63-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb63-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-58-1.png" width="480" /></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb72-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb72-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(number_of_classes)) <span class="sc">+</span> </span>
+<span id="cb72-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-56-1.png" width="480" /></p>
 <ul>
 <li>Let’s store this graph using a <strong>variable</strong> called <code>figure1</code>.</li>
 </ul>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb64-1" aria-hidden="true" tabindex="-1"></a>figure1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb64-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb64-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb64-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(number_of_classes)) <span class="sc">+</span> </span>
-<span id="cb64-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb64-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb73-1" aria-hidden="true" tabindex="-1"></a>figure1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb73-2"><a href="basics-of-ggplot2-and-correlation-plot.html#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb73-3"><a href="basics-of-ggplot2-and-correlation-plot.html#cb73-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(number_of_classes)) <span class="sc">+</span> </span>
+<span id="cb73-4"><a href="basics-of-ggplot2-and-correlation-plot.html#cb73-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>()</span></code></pre></div>
 <ul>
 <li><strong>Notice that when you store a figure into a variable, the figure is not displayed</strong> when you run the code that makes the figure, ex. <code>figure1 &lt;- ggplot(data = mpg, mapping = ...</code>. To display the figure, please type the variable name in the console.</li>
 </ul>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb65-1" aria-hidden="true" tabindex="-1"></a>figure1 <span class="co"># it will appear again by calling this variable </span></span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-60-1.png" width="480" /></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb74-1" aria-hidden="true" tabindex="-1"></a>figure1 <span class="co"># it will appear again by calling this variable </span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-58-1.png" width="480" /></p>
 </div>
 <div id="lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1." class="section level3 unnumbered">
 <h3>Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</h3>
@@ -841,11 +850,11 @@ Figure 2.1: image from <a href="http://www.sthda.com/english/wiki/ggplot2-point-
 <li>If there is no legend, then <code>base_asp = 1</code> is recommended.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;figure1.png&#39;</span>, figure1, <span class="at">base_asp =</span> <span class="fl">1.4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;figure1.png&#39;</span>, figure1, <span class="at">base_asp =</span> <span class="fl">1.4</span>)</span></code></pre></div>
 <ul>
 <li><strong>Exercise</strong>: try to save it again with a name <strong>figure1b.png</strong> by typing:</li>
 </ul>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;figure1b.png&#39;</span>, figure1)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;figure1b.png&#39;</span>, figure1)</span></code></pre></div>
 <ul>
 <li><p>How’s the picture? Why does it look different? Type <code>?save_plot</code> to see what the default <code>base_asp</code> is.</p></li>
 <li><p>Done! The graph (in png file) should be in your <strong>LearnR</strong> folder.</p></li>

@@ -81,49 +81,31 @@ all <- plot_grid(add_four, raincloud, ncol = 1,
 print(all)
 ```
 
-This book (https://smin95.com/dataviz) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. 
+This book (https://smin95.com/dataviz0) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. 
 
 ## Major updates {-}
 
-**smplot**: Latest updates have been made on **November 10th, 2022**. Please **re-download smplot**. These include： 
-
-- `sm_ci()` is a new function that computes the confidence interval.
-- `sm_forest()` is a new function that visualizes a forest plot.
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 2.8, fig.height= 4.8}
-set.seed(2) # generate random data
-day1 = rnorm(20,0,1)
-day2 = rnorm(20,5,1)
-day3 = rnorm(20,6,1.5)
-day4 = rnorm(20,7,2)
-Subject <- rep(paste0('S',seq(1:20)), 4)
-Data <- data.frame(Value = matrix(c(day1,day2,day3,day4),ncol=1))
-Day <- rep(c('Day 1', 'Day 2', 'Day 3', 'Day 4'), each = length(day1))
-df2 <- cbind(Subject, Data, Day)
-
-sm_forest(data = df2, x = Value, y = Day, alpha = 0.2,
-                 error_type = 'sd',
-                 range_side = 'top',
-          jitter_width = 0, sep_level = 2,
-           avg_point_shape= 23, shape = 21) +
-  scale_color_manual(values = rep('transparent',4)) +
-  scale_fill_manual(values = sm_palette(4)) +
-  ylab('Day') +
-  ggtitle('Forest plot')
-```
-
-
+On November 12, 2022 **smplot2** has been created separately from **smplot** because most visualization functions (from Ch2-4) have been entirely redesigned for more flexibility as well as the fact that new ones have been created. 
 
 ```{r, eval = FALSE}
 install.packages("devtools")
-devtools::install_github('smin95/smplot', force = TRUE)
+devtools::install_github('smin95/smplot2', force = TRUE)
 ```
 
-**smCSF** is under **development**. It will undergo massive changes until the **end of 2022**. If you have downloaded already and do not plan to use it in imminent future, please remove it from your computer.
+When you decide to load **smplot2** into your console in RStudio, make sure you have already detached (unloaded) **smplot** since names of the functions are identical.
 
 ```{r, eval = FALSE}
-remove.packages('smCSF') 
+detach('package:smplot, unload = T)
 ```
+
+You could also delete **smplot** to entirely prevent its functions from masking those in **smplot2** in the global environment.
+
+This website (https://smin95.com/dataviz0) is a guide for **smplot** only. The original websites (https://smin95.com/dataviz **AND** smin95.github.io/dataviz) are strictly for **smplot2**. 
+
+I recommend that users adapt to **smplot2** as it will offer much more freedom for visualization and less technical issues. Changes will be made as quickly as possible to avoid trouble for users. I apologize for any inconvenience that I may have caused. 
+
+The primary reason why I have made these changes is because I have recently learned programming methods that I should have used 18 months ago when creating the package in the first place.
+
 
 ## Please cite this paper when smplot is used {-}
 
