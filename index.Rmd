@@ -179,7 +179,9 @@ bottom_four <- plot_grid(forest, shadow, raincloud2, boxplot2,
 
 all <- plot_grid(top_four, histogram2, bottom_four, ncol =1,
                  nrow=3, rel_widths = c(1,1,1),
-                 rel_heights = c(2,0.8,2))
+                 rel_heights = c(2,0.8,2)) 
+
+#save_plot('all.png', all, ncol = 2, nrow = 5, base_asp = 1)
 
 print(all)
 ```
@@ -190,7 +192,7 @@ The old website (on **smplot**) can be accessed using this link (https://smin95.
 
 ## Major updates {-}
 
-On November 2022, **smplot2** has been created from **smplot**. The updates are too big and drastic to keep everything in the original **smplot**.
+**smplot2** has been developed from **smplot**. The updates are too big and drastic to keep everything in the original **smplot**.
 
 ```{r, eval = FALSE}
 install.packages("devtools")

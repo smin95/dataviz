@@ -255,11 +255,9 @@ Here is a bar graph showing `auc_df`'s data. This figure is similar to Figure 3E
 - re: means relative to X. The data are the differences compared to the baseline (re: Baseline).
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
-auc_df %>% ggplot(aes(x = Day, y = AUC_Cbratio, fill = Day)) +
-   sm_bar(shape = 21, color = 'white', 
-          bar_fill_color = 'gray80',
-          point_alpha = 1) +
-  scale_fill_manual(values = sm_palette(5)) +
+auc_df %>% ggplot(aes(x = Day, y = AUC_Cbratio, color = Day)) +
+   sm_bar() +
+  scale_color_manual(values = sm_palette(5)) +
   ggtitle('\u0394 AUC re: Each day\'s baseline')
 ```
 
