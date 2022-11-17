@@ -1,0 +1,570 @@
+---
+output: html_document
+chapter: Basic Statistics
+editor_options:
+  chunk_output_type: console
+---
+
+# Basic Statistics
+
+As in the previous two chapters, we will continue to use data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
+
+**Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.**
+
+Load the `tidyverse` and other libraries, and the csv file `min2019b.csv` using `read_csv()` from the `tidyverse` package.
+
+```{r, warning = FALSE, message = FALSE}
+library(tidyverse)
+library(smplot2)
+library(cowplot)
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+head(df)
+```
+
+## One-sample t-test
+
+One sample t-test compares the mean of a sample to a hypothesized mean (often 0). 
+
+For example, here is Figure 3E from the paper. What do the \*\*\* mean? How about \*\* and \*? Let's take a look. 
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F, echo = FALSE}
+
+df_shade <- read_csv('https://www.smin95.com/fit_error_shade.csv')
+df_shade1 <- df_shade %>% mutate(yUpp = y_mean + y_se, yLow = y_mean - y_se)
+
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+
+auc_df1 <- auc_df %>% group_by(Day) %>% 
+  summarise(y_mean = mean(AUC_Cbratio), std_err = sm_stdErr(AUC_Cbratio))
+
+auc_df1$Day <- as.numeric(auc_df1$Day)
+
+colors <- c("#4C72B0", "#55A868", "#C44E52",
+       "#8172B2", "#D55E00")
+
+df_shade1 %>% ggplot(aes(x=x, y=y_mean)) + 
+  geom_ribbon(aes(ymin = yLow, ymax = yUpp), alpha = .08) +
+  geom_linerange(data = auc_df1, aes(Day, ymin = y_mean - std_err, ymax = y_mean + std_err), size = .5) +
+  geom_point(data = auc_df1, aes(Day, y_mean, color = as.factor(Day), size = 5)) +
+  sm_hgrid(legends = FALSE) +
+  scale_x_continuous(limits = c(1, 5)) +
+  scale_y_continuous(limits = c(0, 90)) +
+  scale_color_manual(values = colors) +
+  ylab("Area Under Curve (dB min)") +
+  xlab("Patching Day") +  
+  ggtitle("\u0394 AUC re: Each Day's Baseline") +
+  annotate("text", label = "y = -5.8(Day) + 67.8", x = 2.0, y=  5) +
+  annotate("text", label = "***", x = 1, y = 82, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 2, y = 75, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 3, y = 68, size = 3.5, fontface="bold") +
+  annotate("text", label = "*", x = 4, y = 65, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 5, y = 60, size = 3.5, fontface="bold")
+```
+
+For instance, to determine if the area under curve (changes in contrast balance ratio over time) after patching is significant, so much so that one can confidently say that it is different from 0, we can perform a one-sample t-test using `t.test()`.
+
+Let's use data from the sampe paper. We import the data from online using `read_csv()` and store them into a variable (in this case, `df`). Then, we compute the area under a curve using `sm_auc_list()` and store the values in the variable `auc_df`.
+
+
+```{r, warning = FALSE, message = FALSE}
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+
+df$Day <- as.factor(df$Day)
+
+auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+
+head(auc_df)
+```
+
+The `Day` column of `df` has to be factored using `as.factor()` because `Day` here is a categorical, rather than, continuous variable.
+
+To determine if the area under curve data on Day 1 were significantly different from 0, we could use one-sample t-test. First, let's filter for data from only Day 1.
+
+```{r}
+auc_df_day1 <- auc_df %>% filter(Day == 1)
+auc_df_day1
+```
+
+Then, lets extract the values from the `AUC_Cbratio` column and perform one-sample t-test using `t.test()`. 
+
+```{r}
+t.test(auc_df_day1$AUC_Cbratio, mu = 0)
+```
+
+`mu = 0 ` is included as an argument when performing one-sample `t.test`; this means an average of 0. In this case, you are comparing the data from `auc_df_day1$AUC_Cbratio` to `mu = 0`. 
+
+The p-value must be less than **0.05** to be considered statistically significant. It is labelled with one asterisk \*. 0.001 < p < 0.01 is denoted with two asterisks \*\*, and p < 0.001 is denoted with three asterisks \*\*\*. Since the p-value reported here is less than 0.001, Figure 3E has \*\*\* for Day 1's area under a curve.
+
+We can repeat this for Days 2-5. For brevity, we repeat the example with Days 2 and 4 only.
+
+```{r}
+auc_df_day2 <- auc_df %>% filter(Day == 2)
+t.test(auc_df_day2$AUC_Cbratio, mu = 0)
+```
+
+The p value is 0.0065, which is less than 0.01 but larger than 0.001. In this case, the statistical significane is denoted as \*\*. Likewise, Figure 3E shows the AUC of Day 2 with \*\*.
+
+```{r}
+auc_df_day4 <- auc_df %>% filter(Day == 4)
+t.test(auc_df_day4$AUC_Cbratio, mu = 0)
+```
+
+The p-value is 0.013, which is less than 0.05 but larger than 0.01. Therefore one asterisk \* is used to label the statistical significance. 
+
+## Two-sample t-test
+
+A two-sample t-test is used to compare the mean of one sample to that of another sample. 
+
+For example, let's compare changes in sensory eye dominance after short-term monocular deprivation in Day 1 vs Day 5. These values are shown in the `Cbratio` column.
+
+Let's filter only for AUC data from Days 1 and 5. 
+
+```{r}
+auc_df_day1 <- auc_df %>% filter(Day == 1)
+auc_df_day5 <- auc_df %>% filter(Day == 5)
+
+auc_df_day15 <- auc_df %>% filter(Day == 1 | Day == 5)
+```
+
+Now, let's plot a bar graph to display the AUC from Days 1 and 5 using `sm_bar()`.
+
+```{r, fig.width = 3.7, fig.height=3.7, warning = F}
+ggplot(data = auc_df_day15, mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
+  sm_bar(shape = 21) +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  ggtitle('AUC in Days 1 and 5')
+```
+
+There seems to be a  difference in the AUC `AUC_Cbratio` between Days 1 and 5. The error bars (in this case, standard error) are barely overlapping. If the error bars are clearly overlapping, there is often no significant difference (p < 0.05) between the two data sets. If there is no overlap, it is highly likely that a statistical test will show a significant difference (p < 0.05). Let's take a look using **t-test** using the function `t.test()`.
+
+`t.test()` allows us to compare whether data between two different groups are significantly different. Here, `$` is used to **extract** data from a specific column within a data frame. You could type `df_0min$`,  press the **Tab** button from the keyboard, and see what happens. Since we will only compare values in the `AUC_Cbratio` column, let's select for the `AUC_Cbratio` column and use these values in our `t.test()`. 
+
+```{r}
+t.test(auc_df_day1$AUC_Cbratio, auc_df_day5$AUC_Cbratio, paired = TRUE)
+```
+
+In this case, the subjects are **paired** because the 10 subjects performed on both Days 1 and 5. If your data are not paired (ex. patients vs controls) and you want to perform a t-test, you can set `paired = FALSE`. 
+
+If we are reporting the results, we should report it as such, t(9) = 1.57, p = 0.15. The difference between Days 1 and 5 is not statistically significant.
+
+### Shapiro-Wilk Test to test for Normality of Data
+
+T-test can only be used when the data assume normality. In other word, the data that are to be analyzed using `t.test()` must have a normal distribution (shown below).
+
+```{r, fig.width = 3.7, fig.height= 3.7, warning = F, echo = FALSE}
+
+ggplot(data = data.frame(x = c(-40,40)), aes(x)) + 
+  stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 10),
+                color = sm_color('blue'), size = 1) +
+  ylab("") + scale_y_continuous(name = 'Frequency') +
+  sm_hgrid() + 
+  xlab('Data points (ex. AUC)') +
+  ggtitle('Normal distribution') 
+```
+
+Whether the data have a normal distribution can be checked using a Shaprio-Wilk test (`shapiro.test()`). If p > 0.05, then the data have a normal distribution, and therefore, t-test can be used to analyze the data. If p < 0.05, the data are not normally distributed, and t-test cannot be used.
+
+For example, let's check whether the AUC data from Day 1 have a normal distribution. 
+
+```{r}
+shapiro.test(auc_df_day1$AUC_Cbratio)
+```
+
+P value is 0.67, which is larger than 0.05. Therefore, the AUCs from Day 1 have a normal distribution.
+
+```{r}
+shapiro.test(auc_df_day5$AUC_Cbratio)
+```
+
+P value is 0.935, which is larger than 0.05. Therefore, the AUCs from Day 5 have a normal distribution. More information about `shapiro.test()` can be found in this link: http://www.sthda.com/english/wiki/normality-test-in-r. 
+
+T-test is a type of **parametric** statistical test, which is used to analyze data that are normally distributed. If the data are not normally distributed, **non-parametric** statistical test can be used.
+
+## Wilcoxon Signed-rank Test
+
+Wilcoxon Signed-rank Test is a **non-parametric** statistical test that is used instead of a t-test when the data are **not normally distributed**.
+
+If Shaprio-Wilk test yields p < 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.
+
+```{r}
+# one-sample Wilcoxon Signed-rank Test
+wilcox.test(auc_df_day1$AUC_Cbratio, mu = 0)
+```
+
+The p-value is 0.0039, which is less than 0.05. Therefore, according to the Wilcoxon test, the AUCs from Day 1 are significantly different from 0.
+
+```{r}
+# two-sample Wilcoxon test
+wilcox.test(auc_df_day1$AUC_Cbratio, auc_df_day5$AUC_Cbratio, paired = TRUE)
+```
+
+The p-value is 0.13, which is larger than 0.05. Therefore, according to the Wilcoxon test, the AUCs from Days 1 and 5 are not significantly different.
+
+
+## Effect Size
+
+However, even if p-value is larger than 0.05, this does not mean that there is no significant difference between the two groups/conditions. In fact, even a strong drug effect in a study that compares placebo vs. drug can result in p > 0.05 if the sample size is too small. 
+
+On the other hand, if a study is conducted with a very large sample size (1000 patients per group) to examine the effect of a very weak drug, the data between weak drug and control can give us a p < 0.05, which indicates a statistically significant difference. 
+
+In short, **p-value is not everything because it depends on the sample size.**
+
+If the sample size is small, p-value can be larger than 0.05. But as the sample gets larger, p-value will decrease even if the mean difference between the two groups remains the same. 
+
+In this example, the sample size is not large (n=10). Therefore, one might ask whether our conclusion that there is no significant difference between Days 1 and 5 is truly valid. One might also believe that if our sample size was larger (ex. n=50), we would have found a significant difference between Days 1 and 5.
+
+To respond to this concern, we might need to calculate the **effect size**. If the effect size is large, there is a large difference between the sample groups. **Unlike the p-value, the effect size does not depend on the sample size.** 
+
+One measure to capture the effect size is **Cohen's d**. We can use `sm_effsize()` to calculate Cohen's d as a measure for the effect size. 
+
+- **Small** effect size: Cohen's d around **0.2** 
+- **Medium** effect size: Cohen's d around **0.5** 
+- **Large** effect size: Cohen's d > **0.8**.
+
+The inputs for `sm_effsize()` are the data of two sample groups, just as they were in `t.test()`. 
+
+Let's compute the effect size (Cohen's d) using AUC data from Days 1 and 2.
+
+```{r}
+sm_effsize(auc_df_day1$AUC_Cbratio, auc_df_day2$AUC_Cbratio)
+```
+
+Cohen's d equals **0.224**, which is a very small effect size. This indicates that there is a very small difference in AUC between Days 1 and 2. 
+
+```{r}
+t.test(auc_df_day1$AUC_Cbratio, auc_df_day2$AUC_Cbratio,
+       paired = TRUE)
+```
+
+Also, it is recommended that **both p-value and effect size are reported** at all times. In this example, I would report the results as: **t(9) = 0.46, p = 0.65, Cohen's d = 0.22**.
+
+Let's see what happens in the effect size and p-value from t-test if there are 1000 subjects. 
+
+```{r}
+auc_df_day1b <- do.call('rbind', replicate(100, auc_df_day1, simplify = FALSE))
+auc_df_day1b$Subject <- paste0('S',1:1000)
+head(auc_df_day1b, 30)
+```
+
+We have replicated all the rows of the data frame `auc_df_day1` by 100 times to create 1000 rows total (i.e., 1000 subjects). 
+
+```{r}
+auc_df_day2b <- do.call('rbind', replicate(100, auc_df_day2, simplify = FALSE))
+auc_df_day2b$Subject <- paste0('S',1:1000)
+head(auc_df_day2b, 30)
+```
+
+We have replicated all the rows of the data frame `auc_df_day2` by 100 times to create 1000 rows total (i.e., 1000 subjects). 
+
+```{r}
+sm_effsize(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio)
+```
+
+The effect size is 0.24. It has barely changed despite the significantly larger sample size. 
+
+```{r}
+t.test(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
+       paired = T)
+```
+
+Now, the p-value is **much less than 0.001**, rather than staying at 0.65. Therefore, we can now observe that p-value is heavily affected by the sample size, whereas the effect size (Cohen's d) does not. In short, as the sample size increases, the p-value decreases even if the effect size stays the same.
+
+## Power Analysis
+
+We got p > 0.05 with our small sample size (n = 10). As we previously mentioned, we know that p-value gets smaller with an increasing sample size. **Therefore, given the mean difference between two sample groups (i.e., same effect size), the p-value can change depending on the sample size**. So, it is important to report both the p-value and the effect size.
+
+So, one might be concerned with what would be the minimal sample size to detect a statistically significant difference between the two groups (Days 1 and 5). This can be achieved using **power analysis**. Note that p can always be less than 0.05 as long as the sample size meets the requirement (i.e., very large). 
+
+If the effect size was large but the data yielded p > 0.05, then we could predict that the minimal sample size from power analysis would be not large. If the effect size was small and the data yielded p > 0.05, as it was for my data, the minimal sample size to yield p < 0.05 would need to be very large.
+
+If the minimal sample size from power analysis was not large (hence, large effect size), then one could conclude that I did not collect enough data and incorrectly concluded that there was no significant difference between the two groups. This would be so because if the sample size was larger, I would have gotten p < 0.05. 
+
+ **Power analysis**  can be performed using `sm_power()`. The inputs for `sm_power()` are data of two sample groups, just as they were in `t.test()`.
+
+```{r}
+sm_power(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
+         paired = TRUE)
+```
+
+According to our power analysis (significant level = 0.05, power = 80%), we would need about **143 subjects** per group (`n = 143.0411`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in AUCs between Days 1 and 2. In other words, the difference between Days 1 and 2 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
+
+
+## One-way ANOVA
+
+One-way analysis of variance (ANOVA) is used to compare the mean of multiple groups (2 groups or more). It can also be referred to as one-factor ANOVA. The data are separated into multiple groups based on one categorical variable (such as patching days, conditions or subject groups).
+
+When one is comparing two groups, one-way ANOVA and two-sample t-test can yield the same results because both of these tests would compare two groups.
+
+To do ANOVA, we will use `rstatix` package. Install the package if you have not done so.
+
+```{r, eval = F}
+install.packages('rstatix')
+```
+
+```{r, warning = F}
+library(tidyverse)
+library(rstatix)
+```
+
+**Note:** We will use `rstatix` to perform some statistical tests. However, both `tidyverse` and `rstatix` packages have the function called `filter()`. To use  `filter()` from the `tidyverse` (or `dplyr`) package, as we have done so before, you will need to type `dplyr::filter` rather than `filter` instead to specify `filter()` from the `dplyr` package.
+
+To perform ANOVA, we have to make some assumptions about the data:
+
+- Data should be normally distributed. This can be confirmed by using a Shapiro-Wilk test.
+
+- No outliers.
+
+- Homogeneity of variance. The variance of the data should be consistent as a function of the predictor (x-axis). This can be examined with the Levene's test.
+
+- Observations should be independent: The data from one group should have no relationship with other data within the same group. In short, each observation should be unique and come from an unique individual. 
+
+Let's investigate whether AUC data differ significantly across days (Days 1 to 5). To do so, we will need to perform one-way ANOVA where the factor is `Day`.
+
+### Check for Outliers
+
+We will check for outliers in the `auc_df` data frame, which stores the results of AUCs. Since we will compare the AUCs across different days (factor: `Day`), we will group each observation (each row) of the data frame by `Day`. Next, we will use the function `identify_outliers()` from the `rstatix` package to see if there are any outliers in the data set.
+
+```{r}
+auc_df %>% group_by(Day) %>%
+  identify_outliers(AUC_Cbratio)
+```
+
+In this case, we have **2 outliers** of AUC data on Day 4. Since Figure 3E indicates that Day 4 is not outrageously different than the averaged AUCs of other days, I will infer that these 2 outliers do not significantly affect the data. Therefore, I will include these 2 outliers in my data analysis.
+
+However, if your data set has too many outliers, then it might be inappropriate to proceed to one-way ANOVA.
+
+Let's visually confirm whether there are 2 outliers in the AUC data from Day 4 by plotting a boxplot using `sm_boxplot()`.
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+auc_df %>% ggplot(mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
+  sm_boxplot(alpha = 0.6,
+             point.params = list(size = 2.2)) + 
+  scale_color_manual(values = sm_palette(5)) +
+  ggtitle('\u0394 AUC re: Each day\'s baseline')
+```
+
+We see that there are two orange points that reside outside the whiskers of the boxplot. Points that are outside the whiskers represent outliers. Therefore, we confirm visually that there are two outliers on Day 4, and no outliers on any other days.
+
+### Checking for Normality of Data 
+
+Rather than using `shapiro.test()`, we will be using `shapiro_test()` from the `rstatix` package because we will be sorting data (`group_by()` by `Day`) using the pipe `%>%`. 
+
+```{r}
+auc_df %>% group_by(Day) %>%
+  shapiro_test(AUC_Cbratio)
+```
+
+In this data set, Days 1, 2, 3 and 5 have normally distributed data sets. However, the data from Day 4 do not seem to be normally distributed. This could because there are 2 outliers on Day 4. Since bulk of the data are normally distributed, I will use **parametric** method to analyze the data, i.e., one-way ANOVA. If most of your data are not normally distributed, then one-way ANOVA should not be used.
+
+### Checking the Assumption for Homogeneity of Variance
+
+We can examine whether the variance of the response values (y values) is homogeneous using `levene_test()`.
+
+```{r}
+auc_df %>% levene_test(AUC_Cbratio ~ Day)
+```
+
+The Levene's test shows that the p-value is 0.64, which is larger than 0.05. Therefore, we can assume that the variance is homogeneous across different days. Therefore, we can proceed to using ANOVA. 
+
+### Computing One-way ANOVA
+
+We perform one-way ANOVA by comparing whether `AUC_Cbratio` values significantly differ across `Day`. `~` (tilde) defines the relationship between dependent and independent variables. `y = m*x + b` can be described with `~` as `y~x`, where the value of x can affect the value of y. In the example below, it is written as `AUC_Cbratio ~ Day` because `AUC_Cbratio` (dependent variable) is affected by `Day` (independent variable).
+
+```{r}
+res <- aov(formula = AUC_Cbratio ~ Day, data = auc_df)
+summary(res)
+```
+
+`aov()` is used to perform **a**nalysis **o**f **v**ariance. In this example, the result from `aov()` is stored in the variable `res`. The summary of the results can be displayed using the function `summary()`.
+
+The p-value is 0.67, which is larger than 0.05. This indicates that there is no significant difference across days in AUCs.
+
+If your data show a p value less than 0.05, then you should proceed to the next step of performing post-hoc pairwise comparison tests.
+
+### Post-hoc Tests
+
+If one-way ANOVA shows a significant difference (p < 0.05), then the reader should perform **Tukey HSD** post-hoc pairwise comparison (**H**onestly **S**ignificant **D**ifference) tests to see which two specific groups vary significantly. In the example, I have saved the results in the variable `res` (short for results).
+
+```{r}
+TukeyHSD(res)
+```
+
+As expected from one-way ANOVA, which shows no significant difference across days, the post-hoc pairwise tests (Tukey HSD test) yield p-values higher than 0.05 between any combinations of two different days.
+
+If one-way ANOVA yielded p < 0.05, then we could expect to see a p-value lower than 0.05 in the Tukey HSD post-hoc test. Therefore, when one-way ANOVA yields p > 0.05, it is not necessary to perform a pairwise post-hoc comparison (Tukey HSD) using the data set.
+
+### One-way Repeated Measures ANOVA
+
+If the subjects are identical across the factor (ex. `Day`), then `anova_test()` (from the `rstatix` package) can be used to perform repeated measures ANOVA.
+
+```{r}
+auc_df %>% anova_test(AUC_Cbratio ~ Day, wid = Subject,
+                      within = Day)
+```
+
+`wid` is the column name containing individuals/subjects identifiers. It should be unique to each individual. `within` is an **optional** argument that contains within subject variable, which in this case is `Day` as the same subjects were tested across days.
+
+If different subjects were tested on each day, then `wid` should be empty. In both occasions, the p-value is the same because the subject identifiers (ex. `S1`, `S2`) are unique to each subject. Therefore, `R` just recognizes that it should perform repeated measures ANOVA.
+
+## Two-way ANOVA
+
+In a two-way ANOVA, the effects of two factors are examined. In our example, we will use the data set from the paper, and examine the effects of `Day` and `Time`, which is the time point after short-term monocular deprivation (minutes).
+
+Since we will be investigating whether the effects of `Day` and `Time` as variables significantly affect the values of `Cbratio`, we need to convert the columns `Day` and `Time` of `df` as factor using `as.factor()`. 
+
+```{r}
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+
+df$Day <- as.factor(df$Day)
+df$Time <- as.factor(df$Time)
+```
+
+As before, let's check for some of the assumptions that are required to perform ANOVA.
+
+### Identifying Outliers
+
+```{r}
+df %>% group_by(Day, Time) %>%
+  identify_outliers(Cbratio)
+```
+
+We observe that there are 13 outliers, 2 of which are considered to be extreme points. `identify_outliers()` pinpoint outliers based on the definition of boxplots. Outliers in boxplots can be ignored. However, extreme points can be considered to be slightly troublesome. In this example, 2 out of 230 (`nrow(df)`) observations seem to be extreme points. Therefore, the data set meets the requirement to be analyzed using two-way ANOVA.
+
+### Checking for Normality of Data
+
+Let's check for the normality of the data using `shapiro_test()` from the `rstatix` package for each `Day` and `Time`. To do so, we will have to group our data using `group_by()` for `Day` and `Time`.
+
+```{r}
+df %>% group_by(Day, Time) %>%
+  shapiro_test(Cbratio)
+```
+
+Only the first 10 rows are shown. To view the entire results, store the results into a variable and use `View()`. 
+
+```{r}
+res <- df %>% group_by(Day, Time) %>%
+  shapiro_test(Cbratio)
+```
+
+```{r, eval=F}
+View(res)
+```
+
+```{r}
+sum(res$p < 0.05)
+```
+
+We see that there are 3 p-values (out of 30 combinations of `Day` and `Time`) that are smaller than 0.05. Ideally, we would want all of them to have a p-value higher than 0.05 for the data to be considered as normally distributed. However, since most data seem to be normally distributed in our example, it is okay to proceed to use a two-way ANOVA, which is a parametric procedure.
+
+
+### Computing Two-way ANOVA
+
+As before, let's use `aov()` function to compute ANOVA.
+
+```{r}
+res <- aov(formula = Cbratio ~ Day + Time + Day:Time,
+           data = df)
+summary(res)
+```
+
+As before, we specify the `formula` using tilde (`~`); its left side is the dependent variable (`Cbratio`), and the right side includes the independent variables (or predictors, ex. `Day` and `Time`). `+` is used to add more independent variables in the model formula. Interaction between the effects of `Day` and `Time` should also be included by `:`. 
+
+Another way of writing the model formula is shown below. It uses `*` as a shortcut to include the effects of `Day`, `Time` and their interactions. Notice that the results of both ANOVAs are identical because the model formulas are the same. 
+
+```{r}
+res2 <- aov(formula = Cbratio ~ Day*Time, data = df)
+summary(res2)
+```
+
+It appears that there is a statistically significant effect of `Time`, F(5, 270) = 7.83, p < 0.001. But the effect of `Day` seems to be not significant, F(4,270) = 0.49, p = 0.44. Also the effect of interaction between `Day` and `Time` is not significant, F(20,270) = 0.97, p > 0.05. 
+
+An interaction effect between A and B exists when the effect of factor A (ex. `Day`) is different at different levels of factor B (ex. `Time`). Let's understand how the effect of interaction could affect the data.
+
+```{r, fig.width = 3.5, fig.height = 3.5, message = F, warning = F, echo = F}
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+# filter data from Days 2-4. | means OR.
+df1 <- df %>% filter(Day == 2 | Day == 3 | Day == 4) %>% group_by(Day, Time) %>% 
+  summarise(avg = mean(Cbratio), se = sm_stdErr(Cbratio)) 
+# mean and standard error computed for each day and time, both of which have been grouped.
+
+df1$Time <- as.numeric(df1$Time)
+df1$Day <- as.factor(df1$Day) # Day has to be factored here because they will be labelled as different colors. Factor means categorical variables. 
+
+colors <- c("#55A868", "#C44E52", "#8172B2")
+
+df1 %>% ggplot(aes(x = Time, y = avg, color = Day)) +
+  geom_point(size = 4.5) +
+  geom_errorbar(aes(ymin = avg - se, ymax = avg + se), size = .5, width = 1) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                   labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = TRUE) +
+  scale_color_manual(values = colors,
+                     labels = c("Day 2", "Day 3", "Day 4")) +
+  ggtitle("Recovery of the patching effect") +
+  xlab("Time after monocular deprivation (min)") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  theme(legend.justification = c(1,0), 
+        legend.position = c(0.96, 0.62), 
+        legend.title = element_blank()) 
+
+```
+
+We see that best-fit regression slopes of the green, red and purple lines are almost identical. This is because the factor `Time` affects `Cbratio` at different levels of the factor `Day` (i.e., different days). This suggests that the slope of decay (decrease in changes in Contrast balance ratio) over time is similar across days. In other words, the interaction effect between `Time` and `Day` is not significant (p < 0.05). 
+
+Conversely, if `Time` affects `Cbratio` differently across different days, we would see that the best-fit regression slopes would be different among days.
+
+### Post-hoc Test 
+
+The procedure for post-hoc analysis differs depending on whether the interaction effect is statistically significant (p < 0.05) or not (p > 0.05). 
+
+Post-hoc test should be performed when there is a significant main effect from one of the factors (ex. `Time` or `Day`) in the two-way ANOVA. If not, it should not be performed.
+
+If there is a significant main effect but the interaction effect is not significant, only interpret the results of post-hoc analysis that are related to the main effects. For example, if `Time` was a significant main effect, we could analyze the data as following.
+
+```{r}
+TukeyHSD(res, which = 'Time')
+```
+
+If there is a significant interaction effect between `Day` and `Time`, we can examine how the effect of `Time` varies across different days.
+
+
+```{r}
+df %>% group_by(Day) %>%
+  anova_test(Cbratio ~ Time, wid = Subject, within = Day) %>%
+  get_anova_table() %>%
+  adjust_pvalue(method = 'bonferroni')
+```
+
+`within` refers to the within-subject factor, which in this case `Day`. If there are different subjects associated with each `Day`, then `between` argument can be filled instead of `within` in the `anova_test()` function.
+
+It seems that the effect of `Time` is not statistically significant at different levels of the factor `Day`, except for Day 3. This means that the decrease of `Cbratio` over time does not differ significantly across most days. This (sort of) agrees with our results that the interaction effect is not statistically significant. 
+
+Let's pretend that the interaction effect is still significant. If so, we can examine whether the second independent variable (`Day` in our case) differs across different levels of the first independent variable (`Time` in our example).
+
+```{r}
+df %>% group_by(Time) %>%
+  anova_test(Cbratio ~ Day, wid = Subject, within = Time) %>%
+  get_anova_table() %>%
+  adjust_pvalue(method = 'bonferroni')
+```
+
+It seems that the effect of `Day` remains insignificant across all time points. 
+
+You may realize that this result from the above is strange. Indeed, it is inappropriate to report these two results because the interaction effect is not statistically significant. Therefore, it is more appropriate to just report the post-hoc analysis that is only concerned with the effect of `Time`. 
+
+```{r}
+TukeyHSD(res, which = 'Time')
+```
+
+## Extra Resources
+
+For detailed information about ANOVA in R, please check out this link: https://www.datanovia.com/en/lessons/anova-in-r/. 
+
+To learn more about performing statistical tests in R, please check out the book entitled **YaRrr! The Pirate's Guide to R** by Nathaniel Phillips (https://bookdown.org/ndphillips/YaRrr/).

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Bar plot, slope chart and point plot | Data Analysis and Visualization in R Using smplot2</title>
+  <meta name="description" content="Chapter 5 Bar plot, slope chart and point plot | Data Analysis and Visualization in R Using smplot2" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Bar plot, slope chart and point plot | Data Analysis and Visualization in R Using smplot2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Bar plot, slope chart and point plot | Data Analysis and Visualization in R Using smplot2" />
+  
+  
+  
+
+<meta name="author" content="Seung Hyun Min" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="boxplot-and-violin-plot.html"/>
+<link rel="next" href="manual-and-examples-of-smplot.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dataviz with smplot</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i>Major updates</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#please-cite-this-paper-when-smplot-is-used"><i class="fa fa-check"></i>Please cite this paper when smplot is used</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#for-r-and-ggplot2-experts"><i class="fa fa-check"></i>For R and ggplot2 experts</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="updates-from-smplot2.html"><a href="updates-from-smplot2.html"><i class="fa fa-check"></i><b>1</b> Updates from smplot2</a></li>
+<li class="chapter" data-level="2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>2</b> Download RStudio &amp; Basics of R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#setting-up-rstudio"><i class="fa fa-check"></i><b>2.1</b> Setting up RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#why-use-r-for-data-visualization"><i class="fa fa-check"></i>Why use R for data visualization?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#other-available-resources-for-r"><i class="fa fa-check"></i>Other available resources for R</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#download-requirements-for-rstudio"><i class="fa fa-check"></i>Download requirements for RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#open-rstudio"><i class="fa fa-check"></i>Open RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-make-a-folder-and-set-it-as-working-directory"><i class="fa fa-check"></i>Let’s make a folder and set it as working directory</a></li>
+<li class="chapter" data-level="2.1.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-to-run-your-code"><i class="fa fa-check"></i><b>2.1.1</b> How to run your code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#basics-of-r"><i class="fa fa-check"></i><b>2.2</b> Basics of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-type-some-codes"><i class="fa fa-check"></i>Let’s type some codes</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-can-i-learn-most-effectively-with-the-notes"><i class="fa fa-check"></i>How can I learn most effectively with the notes?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#more-installation"><i class="fa fa-check"></i>More installation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Data Visualization with smplot2</b></span></li>
+<li class="chapter" data-level="3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html"><i class="fa fa-check"></i><b>3</b> Basics of ggplot2 and Correlation Plot</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#uploading-data"><i class="fa fa-check"></i><b>3.1</b> Uploading data</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#sample-data-mpg"><i class="fa fa-check"></i>Sample data: mpg</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Basics of ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-make-some-graphs"><i class="fa fa-check"></i>Let’s make some graphs</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-ggplot-works"><i class="fa fa-check"></i>How ggplot works</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-of-points-for-each-unique-group"><i class="fa fa-check"></i>Different color of points for each unique group</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-shape-for-each-group"><i class="fa fa-check"></i>Different color &amp; shape for each group</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#same-shape-across-all-groups"><i class="fa fa-check"></i>Same shape across all groups</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#exercise-try-changing-the-shape-of-the-points-to-the-circle-with-the-border."><i class="fa fa-check"></i>Exercise: try changing the shape of the points to the circle with the border.</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-do-we-draw-the-best-fit-line-of-the-graph"><i class="fa fa-check"></i>How do we draw the best-fit line of the graph?</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#geom_point-geom_smooth"><i class="fa fa-check"></i>geom_point() + geom_smooth()</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#writing-shorter-codes"><i class="fa fa-check"></i>Writing shorter codes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#improve-data-visualization-using-smplot"><i class="fa fa-check"></i><b>3.3</b> Improve Data Visualization using smplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#positive-relationship-between-x--and-y-axes"><i class="fa fa-check"></i>Positive relationship between x- and y-axes</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#reporting-statistics-from-a-paired-correlation"><i class="fa fa-check"></i>Reporting statistics from a paired correlation</a></li>
+<li class="chapter" data-level="3.3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#changing-the-text"><i class="fa fa-check"></i><b>3.3.1</b> Changing the text</a></li>
+<li><a href="basics-of-ggplot2-and-correlation-plot.html#fill-0f993d-vs-fill-green"><code>fill = '#0f993d'</code> vs <code>fill = 'green'</code></a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-for-each-group-but-with-other-colors"><i class="fa fa-check"></i>Different color for each group but with other colors</a></li>
+<li><a href="basics-of-ggplot2-and-correlation-plot.html#lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1.">Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html"><i class="fa fa-check"></i><b>4</b> Boxplot and Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#upload-sample-data-csv-file-in-rstudio"><i class="fa fa-check"></i><b>4.1</b> Upload Sample Data (csv file) in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#download-requirements"><i class="fa fa-check"></i>Download requirements</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#before-we-get-started"><i class="fa fa-check"></i>Before we get started</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#data.csv"><i class="fa fa-check"></i>data.csv</a></li>
+<li><a href="boxplot-and-violin-plot.html#read_csvdata.csv"><code>read_csv('data.csv')</code></a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#best-way-to-plot-data"><i class="fa fa-check"></i>Best way to plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot"><i class="fa fa-check"></i><b>4.2</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#what-is-a-boxplot"><i class="fa fa-check"></i>What is a boxplot?</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-vs-bar-graph"><i class="fa fa-check"></i>Boxplot vs bar graph</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-using-ggplot2"><i class="fa fa-check"></i>Boxplot using ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#problem-alphabetical-order"><i class="fa fa-check"></i>Problem: Alphabetical order</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#displaying-characters-in-a-non-alphabetical-order"><i class="fa fa-check"></i>Displaying characters in a non-alphabetical order</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#double-check-if-the-day-column-is-factor"><i class="fa fa-check"></i>Double-check if the ‘Day’ column is factor</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#back-to-boxplot-using-ggplot2"><i class="fa fa-check"></i>Back to boxplot using ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#a-boxplot-with-individual-data"><i class="fa fa-check"></i>A boxplot with individual data</a></li>
+<li><a href="boxplot-and-violin-plot.html#geom_boxplot-vs-sm_boxplot"><code>geom_boxplot()</code> vs <code>sm_boxplot()</code></a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-boxplot"><i class="fa fa-check"></i>Save boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot"><i class="fa fa-check"></i><b>4.3</b> Violin Plot</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#structure-of-the-violin-plot"><i class="fa fa-check"></i>Structure of the violin plot</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-ggplot2"><i class="fa fa-check"></i>Violin plot with ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-individual-points"><i class="fa fa-check"></i>Violin plot with individual points</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_violin-vs-sm_violin"><i class="fa fa-check"></i>geom_violin() vs sm_violin()</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-your-violin-plot"><i class="fa fa-check"></i>Save your violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#summary-1"><i class="fa fa-check"></i><b>4.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bar-plot-slope-chart-and-point-plot.html"><a href="bar-plot-slope-chart-and-point-plot.html"><i class="fa fa-check"></i><b>5</b> Bar plot, slope chart and point plot</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bar-plot-slope-chart-and-point-plot.html"><a href="bar-plot-slope-chart-and-point-plot.html#bar-graph"><i class="fa fa-check"></i><b>5.1</b> Bar graph</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html"><i class="fa fa-check"></i><b>6</b> Manual and Examples of smplot</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#installation-of-the-package"><i class="fa fa-check"></i><b>6.1</b> Installation of the Package</a>
+<ul>
+<li><a href="manual-and-examples-of-smplot.html#what-is-smplot">What is <code>smplot</code>?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#colors-and-graph-themes-of-smplot"><i class="fa fa-check"></i><b>6.2</b> Colors and Graph Themes of smplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#smplots-color-palette"><i class="fa fa-check"></i>smplot’s color palette</a></li>
+<li class="chapter" data-level="" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#smplots-graph-themes"><i class="fa fa-check"></i>smplot’s graph themes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#correlation-plot"><i class="fa fa-check"></i><b>6.3</b> Correlation Plot</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#data-frame-for-a-correlation-plot"><i class="fa fa-check"></i><b>6.3.1</b> Data frame for a correlation plot</a></li>
+<li class="chapter" data-level="6.3.2" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#correlation-plot-with-both-regression-and-reference-lines"><i class="fa fa-check"></i><b>6.3.2</b> Correlation plot with both regression and reference lines</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>6.4</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>6.4.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>6.5</b> Violin Plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>6.5.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>6.6</b> Bar Plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>6.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>6.7</b> Slope Chart - <code>sm_slope()</code></a></li>
+<li class="chapter" data-level="6.8" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>6.8</b> A Bland Altman Plot - <code>sm_bland_altman()</code></a></li>
+<li class="chapter" data-level="6.9" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>6.9</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
+<li class="chapter" data-level="6.10" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#forest-plot---sm_forest"><i class="fa fa-check"></i><b>6.10</b> Forest plot - <code>sm_forest()</code></a></li>
+<li class="chapter" data-level="6.11" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#overriding-defaults-of-smplots-themes"><i class="fa fa-check"></i><b>6.11</b> Overriding Defaults of smplot’s Themes</a>
+<ul>
+<li class="chapter" data-level="6.11.1" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#scaling-the-y-axis"><i class="fa fa-check"></i><b>6.11.1</b> Scaling the y-axis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.12" data-path="manual-and-examples-of-smplot.html"><a href="manual-and-examples-of-smplot.html#overriding-defaults-of-smplot-colors"><i class="fa fa-check"></i><b>6.12</b> Overriding Defaults of smplot Colors</a></li>
+</ul></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
+<li class="chapter" data-level="7" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>7</b> Combining Plots with Common Axes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-for-rows"><i class="fa fa-check"></i><b>7.1.1</b> <code>filter()</code> for rows</a></li>
+<li class="chapter" data-level="7.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>7.1.2</b> <code>select()</code> for columns</a></li>
+<li class="chapter" data-level="7.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>7.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>7.2</b> Plotting the averaged data with error bars</a></li>
+<li class="chapter" data-level="7.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>7.3</b> Plotting Individual Data</a></li>
+<li class="chapter" data-level="7.4" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#putting-multiple-plots-together"><i class="fa fa-check"></i><b>7.4</b> Putting multiple plots together</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>8</b> Calculating Area under a Curve</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#pipe"><i class="fa fa-check"></i><b>8.1</b> Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="8.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#area-under-a-curve"><i class="fa fa-check"></i><b>8.2</b> Area under a curve</a></li>
+<li class="chapter" data-level="8.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#reproducing-figures-in-the-paper-min-et-al.-2019"><i class="fa fa-check"></i><b>8.3</b> Reproducing figures in the paper (Min et al., 2019)</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3b-a-best-fit-line-with-points-and-error-bars"><i class="fa fa-check"></i><b>8.3.1</b> Figure 3B (a best-fit line with points and error bars)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3d-a-bar-graph"><i class="fa fa-check"></i><b>8.3.2</b> Figure 3D (a bar graph)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3e-modeling-in-matlab-and-plotting-in-r"><i class="fa fa-check"></i><b>8.3.3</b> Figure 3E (modeling in Matlab and plotting in R)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html"><i class="fa fa-check"></i><b>9</b> Calculating Linear Slopes</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#linear-relationship-using-lm"><i class="fa fa-check"></i><b>9.1</b> Linear relationship using <code>lm()</code></a></li>
+<li class="chapter" data-level="9.2" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#calculating-slopes-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>9.2</b> Calculating slopes of all subjects, groups and conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>10.1</b> One-sample t-test</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#two-sample-t-test"><i class="fa fa-check"></i><b>10.2</b> Two-sample t-test</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#shapiro-wilk-test-to-test-for-normality-of-data"><i class="fa fa-check"></i><b>10.2.1</b> Shapiro-Wilk Test to test for Normality of Data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-rank Test</a></li>
+<li class="chapter" data-level="10.4" data-path="basic-statistics.html"><a href="basic-statistics.html#effect-size"><i class="fa fa-check"></i><b>10.4</b> Effect Size</a></li>
+<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#power-analysis"><i class="fa fa-check"></i><b>10.5</b> Power Analysis</a></li>
+<li class="chapter" data-level="10.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>10.6</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="basic-statistics.html"><a href="basic-statistics.html#check-for-outliers"><i class="fa fa-check"></i><b>10.6.1</b> Check for Outliers</a></li>
+<li class="chapter" data-level="10.6.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data"><i class="fa fa-check"></i><b>10.6.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.6.3" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-the-assumption-for-homogeneity-of-variance"><i class="fa fa-check"></i><b>10.6.3</b> Checking the Assumption for Homogeneity of Variance</a></li>
+<li class="chapter" data-level="10.6.4" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-one-way-anova"><i class="fa fa-check"></i><b>10.6.4</b> Computing One-way ANOVA</a></li>
+<li class="chapter" data-level="10.6.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>10.6.5</b> Post-hoc Tests</a></li>
+<li class="chapter" data-level="10.6.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>10.6.6</b> One-way Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="basic-statistics.html"><a href="basic-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>10.7</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="basic-statistics.html"><a href="basic-statistics.html#identifying-outliers"><i class="fa fa-check"></i><b>10.7.1</b> Identifying Outliers</a></li>
+<li class="chapter" data-level="10.7.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data-1"><i class="fa fa-check"></i><b>10.7.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.7.3" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-two-way-anova"><i class="fa fa-check"></i><b>10.7.3</b> Computing Two-way ANOVA</a></li>
+<li class="chapter" data-level="10.7.4" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-test"><i class="fa fa-check"></i><b>10.7.4</b> Post-hoc Test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.8</b> Extra Resources</a></li>
+</ul></li>
+<li class="part"><span><b>III Contrast Sensitivity Function</b></span></li>
+<li class="chapter" data-level="11" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>11</b> Plotting the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>11.1</b> Brief Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>11.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="11.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>11.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>12</b> Area under Curve, AULCSF and R2 of the CSF</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>12.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="12.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>12.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="12.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>12.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="12.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>12.4</b> Case Study</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>13</b> Understanding the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#contrast-sensitivity-function-model"><i class="fa fa-check"></i><b>13.1</b> Contrast Sensitivity Function Model</a></li>
+<li class="chapter" data-level="13.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_csf"><i class="fa fa-check"></i><b>13.2</b> Understanding <code>sm_CSF()</code></a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_params"><i class="fa fa-check"></i><b>13.2.1</b> <code>sm_params()</code></a></li>
+<li class="chapter" data-level="13.2.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_cutoff"><i class="fa fa-check"></i><b>13.2.2</b> <code>sm_cutOff()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_ribboncsf"><i class="fa fa-check"></i><b>13.3</b> Understanding <code>sm_ribbonCSF()</code></a></li>
+<li class="chapter" data-level="13.4" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#calculating-the-five-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>13.4</b> Calculating the five parameters of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="13.5" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#visualization-of-the-parameters"><i class="fa fa-check"></i><b>13.5</b> Visualization of the parameters</a></li>
+<li class="chapter" data-level="13.6" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#case-study-1"><i class="fa fa-check"></i><b>13.6</b> Case Study</a></li>
+</ul></li>
+<li class="part"><span><b>IV Appendix</b></span></li>
+<li class="chapter" data-level="14" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html"><i class="fa fa-check"></i><b>14</b> Recreating Figures from Front. Genetics (2021)</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-1---correlation-plot"><i class="fa fa-check"></i><b>14.1</b> Figure 1 - Correlation Plot</a></li>
+<li class="chapter" data-level="14.2" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-2---bar-plot"><i class="fa fa-check"></i><b>14.2</b> Figure 2 - Bar Plot</a></li>
+<li class="chapter" data-level="14.3" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-3---boxplot"><i class="fa fa-check"></i><b>14.3</b> Figure 3 - Boxplot</a></li>
+<li class="chapter" data-level="14.4" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-4---violin-plot"><i class="fa fa-check"></i><b>14.4</b> Figure 4 - Violin Plot</a></li>
+<li class="chapter" data-level="14.5" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-5---slope-chart"><i class="fa fa-check"></i><b>14.5</b> Figure 5 - Slope Chart</a></li>
+<li class="chapter" data-level="14.6" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-6---raincloud-plot"><i class="fa fa-check"></i><b>14.6</b> Figure 6 - Raincloud Plot</a></li>
+<li class="chapter" data-level="14.7" data-path="recreating-figures-from-front.-genetics-2021.html"><a href="recreating-figures-from-front.-genetics-2021.html#figure-7---case-study"><i class="fa fa-check"></i><b>14.7</b> Figure 7 - Case Study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis and Visualization in R Using smplot2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bar-plot-slope-chart-and-point-plot" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Bar plot, slope chart and point plot</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb1-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) </span>
+<span id="cb1-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span></code></pre></div>
+<div id="bar-graph" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Bar graph</h2>
+<p>Even if a bar graph does not provide as much information as a boxplot or a violin plot, it has been proved extremely useful due to its minimal aesthetics. Moreover, in general, providing a bar, jittered individual points and a respective error bar is enough in psychological research.</p>
+<p>For this reason, I think that it is necessary to discuss in detail about the usage of bar graph.</p>
+<p>Over time, I’ve learned that many users directly use the aesthetic defaults of <code>sm_bar()</code>. So in this chapter, we will discuss ways to overcome the defaults and make something creative with the additional flexibility that <strong>smplot2</strong> provides.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">211</span>) <span class="co"># generate random data</span></span>
+<span id="cb2-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb2-2" aria-hidden="true" tabindex="-1"></a>group1 <span class="ot">=</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="fl">2.5</span>,<span class="dv">1</span>))</span>
+<span id="cb2-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb2-3" aria-hidden="true" tabindex="-1"></a>group2 <span class="ot">=</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">1</span>))</span>
+<span id="cb2-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb2-4" aria-hidden="true" tabindex="-1"></a>Subject <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)), <span class="dv">2</span>)</span>
+<span id="cb2-5"><a href="bar-plot-slope-chart-and-point-plot.html#cb2-5" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Value =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(group1,group2),<span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb2-6"><a href="bar-plot-slope-chart-and-point-plot.html#cb2-6" aria-hidden="true" tabindex="-1"></a>Group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;Group 1&#39;</span>, <span class="st">&#39;Group 2&#39;</span>), <span class="at">each =</span> <span class="fu">length</span>(group1))</span>
+<span id="cb2-7"><a href="bar-plot-slope-chart-and-point-plot.html#cb2-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Subject, Data, Group)</span></code></pre></div>
+<p>After generating the random data, let’s plot a bar graph. In this case, there are two distinct instances / time points.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A bar graph&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="336" /></p>
+<p><code>sm_bar()</code> automatically uses <code>sm_hgrid()</code>, which provides horizontal major grids. Moreover, it has arguments <code>borders</code> and <code>legends</code> so that the user can wish to remove border or legend easily.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A bar graph&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-4-1.png" width="336" /></p>
+<p>The default of the error bar’s type is standard error, i.e., <code>errorbar_type = 'se'</code>. There are three options: standard error (<code>se</code>), standard deviation (<code>sd</code>) and 95% confidence interval (<code>ci</code>). The <code>sd</code> and <code>ci</code> are shown below.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A bar graph&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="336" /></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">errorbar_type =</span> <span class="st">&#39;ci&#39;</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;A bar graph&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-6-1.png" width="336" /></p>
+<p>You can also use <code>theme()</code> to finely modify the aesthetics. For instance, you can remove the title of the x-axis <code>Group</code>. <code>ylab()</code> and <code>xlab()</code> are functions to modify the title of y- and x-axes.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="bar-plot-slope-chart-and-point-plot.html#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Reading performance in children&#39;</span>) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="bar-plot-slope-chart-and-point-plot.html#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Reading speed&#39;</span>) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="336" /></p>
+<p>Upon a closer look, we realize that the y-axis starts from below 0 even if all data are higher than 0. We can specify the y-axis limit manually using <code>scale_y_continuous()</code> between 0 and 8.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="bar-plot-slope-chart-and-point-plot.html#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Reading performance in children&#39;</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="bar-plot-slope-chart-and-point-plot.html#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Reading speed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="bar-plot-slope-chart-and-point-plot.html#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">8</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-8-1.png" width="336" /></p>
+<p>Although we have specified that the y-axis limit begins from 0 and ends at 7, there is still a small margin below 0. What is going on here?</p>
+<p>The default of <strong>ggplot2</strong> is that there is always a small margin below the lowest point of the y-axis limit and above the largest point of the y-axis.The empty space below 0 and above 7 can be removed by using <code>expand = c(0,0)</code> within <code>scale_y_continuous()</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb9-5"><a href="bar-plot-slope-chart-and-point-plot.html#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Reading performance in children&#39;</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="bar-plot-slope-chart-and-point-plot.html#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Reading speed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="bar-plot-slope-chart-and-point-plot.html#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-9-1.png" width="336" /></p>
+<p>If you would like a small margin between the bottom of the plot and the bars, you could so by replacing <code>0</code> with <code>0.05</code>, i.e., <code>expand = c(0,0.05)</code>. Then the vertical margin will slightly increase.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="bar-plot-slope-chart-and-point-plot.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="bar-plot-slope-chart-and-point-plot.html#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
+<span id="cb10-3"><a href="bar-plot-slope-chart-and-point-plot.html#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="bar-plot-slope-chart-and-point-plot.html#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="bar-plot-slope-chart-and-point-plot.html#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Reading performance in children&#39;</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="bar-plot-slope-chart-and-point-plot.html#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Reading speed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="bar-plot-slope-chart-and-point-plot.html#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/w-1.png" width="336" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="boxplot-and-violin-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="manual-and-examples-of-smplot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/smin95/dataviz/edit/master/04-barSlopePoint.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/smin95/dataviz/blob/master/04-barSlopePoint.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

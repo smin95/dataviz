@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Raincloud and Forest Plots | Data Analysis and Visualization in R Using smplot2</title>
+  <meta name="description" content="Chapter 6 Raincloud and Forest Plots | Data Analysis and Visualization in R Using smplot2" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Raincloud and Forest Plots | Data Analysis and Visualization in R Using smplot2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Raincloud and Forest Plots | Data Analysis and Visualization in R Using smplot2" />
+  
+  
+  
+
+<meta name="author" content="Seung Hyun Min" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="bar-graph-slope-chart-and-point-plot.html"/>
+<link rel="next" href="combining-plots-with-common-axes.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dataviz with smplot</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i>Major updates</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="opening-remarks.html"><a href="opening-remarks.html"><i class="fa fa-check"></i><b>1</b> Opening Remarks</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="opening-remarks.html"><a href="opening-remarks.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.1</b> How to read this book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>2</b> Download RStudio &amp; Basics of R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#setting-up-rstudio"><i class="fa fa-check"></i><b>2.1</b> Setting up RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#why-use-r-for-data-visualization"><i class="fa fa-check"></i>Why use R for data visualization?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#other-available-resources-for-r"><i class="fa fa-check"></i>Other available resources for R</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#download-requirements-for-rstudio"><i class="fa fa-check"></i>Download requirements for RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#open-rstudio"><i class="fa fa-check"></i>Open RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-make-a-folder-and-set-it-as-working-directory"><i class="fa fa-check"></i>Let’s make a folder and set it as working directory</a></li>
+<li class="chapter" data-level="2.1.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-to-run-your-code"><i class="fa fa-check"></i><b>2.1.1</b> How to run your code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#basics-of-r"><i class="fa fa-check"></i><b>2.2</b> Basics of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-type-some-codes"><i class="fa fa-check"></i>Let’s type some codes</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-can-i-learn-most-effectively-with-the-notes"><i class="fa fa-check"></i>How can I learn most effectively with the notes?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#more-installation"><i class="fa fa-check"></i>More installation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Data Visualization with smplot2</b></span></li>
+<li class="chapter" data-level="3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html"><i class="fa fa-check"></i><b>3</b> Basics of ggplot2 and Correlation Plot</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#uploading-data"><i class="fa fa-check"></i><b>3.1</b> Uploading data</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#sample-data-mpg"><i class="fa fa-check"></i>Sample data: mpg</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Basics of ggplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-make-some-graphs"><i class="fa fa-check"></i>Let’s make some graphs</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-ggplot-works"><i class="fa fa-check"></i>How ggplot works</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-of-points-for-each-unique-group"><i class="fa fa-check"></i>Different color of points for each unique group</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-shape-for-each-group"><i class="fa fa-check"></i>Different color &amp; shape for each group</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#same-shape-across-all-groups"><i class="fa fa-check"></i>Same shape across all groups</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-do-we-draw-the-best-fit-line-of-the-graph"><i class="fa fa-check"></i>How do we draw the best-fit line of the graph?</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#geom_point-geom_smooth"><i class="fa fa-check"></i>geom_point() + geom_smooth()</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#writing-shorter-codes"><i class="fa fa-check"></i>Writing shorter codes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#improve-data-visualization-using-smplot2"><i class="fa fa-check"></i><b>3.3</b> Improve data visualization using smplot2</a>
+<ul>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#positive-relationship-between-x--and-y-axes"><i class="fa fa-check"></i>Positive relationship between x- and y-axes</a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#reporting-statistics-from-a-paired-correlation"><i class="fa fa-check"></i>Reporting statistics from a paired correlation</a></li>
+<li class="chapter" data-level="3.3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#changing-the-text"><i class="fa fa-check"></i><b>3.3.1</b> Changing the text</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#plotting-the-average-with-standard-errors"><i class="fa fa-check"></i><b>3.3.2</b> Plotting the average with standard errors</a></li>
+<li><a href="basics-of-ggplot2-and-correlation-plot.html#fill-0f993d-vs-fill-green"><code>fill = '#0f993d'</code> vs <code>fill = 'green'</code></a></li>
+<li class="chapter" data-level="" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-for-each-group-but-with-other-colors"><i class="fa fa-check"></i>Different color for each group but with other colors</a></li>
+<li><a href="basics-of-ggplot2-and-correlation-plot.html#lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1.">Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html"><i class="fa fa-check"></i><b>4</b> Boxplot and Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#upload-sample-data-csv-file-in-rstudio"><i class="fa fa-check"></i><b>4.1</b> Upload sample data (csv file) in RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#download-requirements"><i class="fa fa-check"></i>Download requirements</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#before-we-get-started"><i class="fa fa-check"></i>Before we get started</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#data.csv"><i class="fa fa-check"></i>data.csv</a></li>
+<li><a href="boxplot-and-violin-plot.html#read_csvdata.csv"><code>read_csv('data.csv')</code></a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#best-way-to-plot-data"><i class="fa fa-check"></i>Best way to plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot"><i class="fa fa-check"></i><b>4.2</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#what-is-a-boxplot"><i class="fa fa-check"></i>What is a boxplot?</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-vs-bar-graph"><i class="fa fa-check"></i>Boxplot vs bar graph</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-using-ggplot2"><i class="fa fa-check"></i>Boxplot using ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#problem-alphabetical-order"><i class="fa fa-check"></i>Problem: Alphabetical order</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#displaying-characters-in-a-non-alphabetical-order"><i class="fa fa-check"></i>Displaying characters in a non-alphabetical order</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#double-check-if-the-day-column-is-factor"><i class="fa fa-check"></i>Double-check if the ‘Day’ column is factor</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#back-to-boxplot-using-ggplot2"><i class="fa fa-check"></i>Back to boxplot using ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#a-boxplot-with-individual-data"><i class="fa fa-check"></i>A boxplot with individual data</a></li>
+<li><a href="boxplot-and-violin-plot.html#geom_boxplot-vs-sm_boxplot"><code>geom_boxplot()</code> vs <code>sm_boxplot()</code></a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-boxplot"><i class="fa fa-check"></i>Save boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot"><i class="fa fa-check"></i><b>4.3</b> Violin Plot</a>
+<ul>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#structure-of-the-violin-plot"><i class="fa fa-check"></i>Structure of the violin plot</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-ggplot2"><i class="fa fa-check"></i>Violin plot with ggplot2</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-individual-points"><i class="fa fa-check"></i>Violin plot with individual points</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_violin-vs-sm_violin"><i class="fa fa-check"></i>geom_violin() vs sm_violin()</a></li>
+<li class="chapter" data-level="" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-your-violin-plot"><i class="fa fa-check"></i>Save your violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#summary-1"><i class="fa fa-check"></i><b>4.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html"><i class="fa fa-check"></i><b>5</b> Bar Graph, Slope Chart and Point plot</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph"><i class="fa fa-check"></i><b>5.1</b> Bar graph</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#scaling-the-y-axis"><i class="fa fa-check"></i><b>5.1.1</b> Scaling the y-axis</a></li>
+<li class="chapter" data-level="5.1.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>5.1.2</b> Plotting individual points with unique colors</a></li>
+<li class="chapter" data-level="5.1.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#other-parameters"><i class="fa fa-check"></i><b>5.1.3</b> Other parameters</a></li>
+<li class="chapter" data-level="5.1.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph-with-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.1.4</b> Bar graph with data of multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart"><i class="fa fa-check"></i><b>5.2</b> Slope chart</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot"><i class="fa fa-check"></i><b>5.2.1</b> Slope chart with mean plot</a></li>
+<li class="chapter" data-level="5.2.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot-and-error-bar"><i class="fa fa-check"></i><b>5.2.2</b> Slope chart with mean plot and error bar</a></li>
+<li class="chapter" data-level="5.2.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-x-levels"><i class="fa fa-check"></i><b>5.2.3</b> Slope chart with multiple x levels</a></li>
+<li class="chapter" data-level="5.2.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-groups-and-x-levels"><i class="fa fa-check"></i><b>5.2.4</b> Slope chart with multiple groups and x levels</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot"><i class="fa fa-check"></i><b>5.3</b> Point plot</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#data-with-more-than-two-groups"><i class="fa fa-check"></i><b>5.3.1</b> Data with more than two groups</a></li>
+<li class="chapter" data-level="5.3.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-one-group"><i class="fa fa-check"></i><b>5.3.2</b> Point plot with a shadow using data of one group</a></li>
+<li class="chapter" data-level="5.3.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.3.3</b> Point plot with a shadow using data of multiple groups</a></li>
+<li class="chapter" data-level="5.3.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#adding-and-modifying-legends"><i class="fa fa-check"></i><b>5.3.4</b> Adding and modifying legends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html"><i class="fa fa-check"></i><b>6</b> Raincloud and Forest Plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot"><i class="fa fa-check"></i><b>6.1</b> Raincloud plot</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changing-the-x-axis-labels"><i class="fa fa-check"></i><b>6.1.1</b> Changing the x-axis labels</a></li>
+<li class="chapter" data-level="6.1.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#separating-the-components-and-configuration"><i class="fa fa-check"></i><b>6.1.2</b> Separating the components and configuration</a></li>
+<li class="chapter" data-level="6.1.3" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changng-the-theme-and-orientation"><i class="fa fa-check"></i><b>6.1.3</b> Changng the theme and orientation</a></li>
+<li class="chapter" data-level="6.1.4" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot-with-data-from-multiple-groups"><i class="fa fa-check"></i><b>6.1.4</b> Raincloud plot with data from multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#forest-plot"><i class="fa fa-check"></i><b>6.2</b> Forest plot</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#plotting-the-forest-plot-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>6.2.1</b> Plotting the forest plot using data of multiple groups</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
+<li class="chapter" data-level="7" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>7</b> Combining Plots with Common Axes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-for-rows"><i class="fa fa-check"></i><b>7.1.1</b> <code>filter()</code> for rows</a></li>
+<li class="chapter" data-level="7.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>7.1.2</b> <code>select()</code> for columns</a></li>
+<li class="chapter" data-level="7.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>7.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>7.2</b> Plotting the averaged data with error bars</a></li>
+<li class="chapter" data-level="7.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>7.3</b> Plotting individual data</a></li>
+<li class="chapter" data-level="7.4" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#putting-multiple-plots-together"><i class="fa fa-check"></i><b>7.4</b> Putting multiple plots together</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>8</b> Calculating Area under a Curve</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#pipe"><i class="fa fa-check"></i><b>8.1</b> Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="8.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#area-under-a-curve"><i class="fa fa-check"></i><b>8.2</b> Area under a curve</a></li>
+<li class="chapter" data-level="8.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#reproducing-figures-in-the-paper-min-et-al.-2019"><i class="fa fa-check"></i><b>8.3</b> Reproducing figures in the paper (Min et al., 2019)</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3b-a-best-fit-line-with-points-and-error-bars"><i class="fa fa-check"></i><b>8.3.1</b> Figure 3B (a best-fit line with points and error bars)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3d-a-bar-graph"><i class="fa fa-check"></i><b>8.3.2</b> Figure 3D (a bar graph)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3e-modeling-in-matlab-and-plotting-in-r"><i class="fa fa-check"></i><b>8.3.3</b> Figure 3E (modeling in Matlab and plotting in R)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html"><i class="fa fa-check"></i><b>9</b> Calculating Linear Slopes</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#linear-relationship-using-lm"><i class="fa fa-check"></i><b>9.1</b> Linear relationship using <code>lm()</code></a></li>
+<li class="chapter" data-level="9.2" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#calculating-slopes-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>9.2</b> Calculating slopes of all subjects, groups and conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>10.1</b> One-sample t-test</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#two-sample-t-test"><i class="fa fa-check"></i><b>10.2</b> Two-sample t-test</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#shapiro-wilk-test-to-test-for-normality-of-data"><i class="fa fa-check"></i><b>10.2.1</b> Shapiro-Wilk Test to test for Normality of Data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-rank Test</a></li>
+<li class="chapter" data-level="10.4" data-path="basic-statistics.html"><a href="basic-statistics.html#effect-size"><i class="fa fa-check"></i><b>10.4</b> Effect Size</a></li>
+<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#power-analysis"><i class="fa fa-check"></i><b>10.5</b> Power Analysis</a></li>
+<li class="chapter" data-level="10.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>10.6</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="basic-statistics.html"><a href="basic-statistics.html#check-for-outliers"><i class="fa fa-check"></i><b>10.6.1</b> Check for Outliers</a></li>
+<li class="chapter" data-level="10.6.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data"><i class="fa fa-check"></i><b>10.6.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.6.3" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-the-assumption-for-homogeneity-of-variance"><i class="fa fa-check"></i><b>10.6.3</b> Checking the Assumption for Homogeneity of Variance</a></li>
+<li class="chapter" data-level="10.6.4" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-one-way-anova"><i class="fa fa-check"></i><b>10.6.4</b> Computing One-way ANOVA</a></li>
+<li class="chapter" data-level="10.6.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>10.6.5</b> Post-hoc Tests</a></li>
+<li class="chapter" data-level="10.6.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>10.6.6</b> One-way Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="basic-statistics.html"><a href="basic-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>10.7</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="basic-statistics.html"><a href="basic-statistics.html#identifying-outliers"><i class="fa fa-check"></i><b>10.7.1</b> Identifying Outliers</a></li>
+<li class="chapter" data-level="10.7.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data-1"><i class="fa fa-check"></i><b>10.7.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.7.3" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-two-way-anova"><i class="fa fa-check"></i><b>10.7.3</b> Computing Two-way ANOVA</a></li>
+<li class="chapter" data-level="10.7.4" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-test"><i class="fa fa-check"></i><b>10.7.4</b> Post-hoc Test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.8</b> Extra Resources</a></li>
+</ul></li>
+<li class="part"><span><b>III Manual for smplot2</b></span></li>
+<li class="chapter" data-level="11" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><i class="fa fa-check"></i><b>11</b> Themes, Colors, Correlations, Boxplots, Violins and Bars (Part 1)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#installation-of-the-package"><i class="fa fa-check"></i><b>11.1</b> Installation of the Package</a></li>
+<li class="chapter" data-level="11.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#color-palette"><i class="fa fa-check"></i><b>11.2</b> Color palette</a></li>
+<li class="chapter" data-level="11.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#graph-themes"><i class="fa fa-check"></i><b>11.3</b> Graph themes</a></li>
+<li class="chapter" data-level="11.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot"><i class="fa fa-check"></i><b>11.4</b> Correlation plot</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_statcorr"><i class="fa fa-check"></i><b>11.4.1</b> <code>sm_statCorr()</code></a></li>
+<li class="chapter" data-level="11.4.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_corr_avgerr"><i class="fa fa-check"></i><b>11.4.2</b> <code>sm_corr_avgErr()</code></a></li>
+<li class="chapter" data-level="11.4.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#structure-of-data-frame"><i class="fa fa-check"></i><b>11.4.3</b> Structure of data frame</a></li>
+<li class="chapter" data-level="11.4.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot-with-both-regression-and-reference-lines"><i class="fa fa-check"></i><b>11.4.4</b> Correlation plot with both regression and reference lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>11.5</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>11.5.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>11.6</b> Violin Plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>11.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>11.7</b> Bar plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-3"><i class="fa fa-check"></i><b>11.7.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><i class="fa fa-check"></i><b>12</b> Slope Charts, Point plots, Bland-Altman, Forests, Rainclouds, Histograms (Part 2)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.1</b> Drawing the mean plot</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#point-plot---sm_pointplot"><i class="fa fa-check"></i><b>12.2</b> Point plot - <code>sm_pointplot()</code></a></li>
+<li class="chapter" data-level="12.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>12.3</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
+<li class="chapter" data-level="12.4" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#forest-plot---sm_forest"><i class="fa fa-check"></i><b>12.4</b> Forest plot - <code>sm_forest()</code></a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#annotation-using-sm_forest_annot"><i class="fa fa-check"></i><b>12.4.1</b> Annotation using <code>sm_forest_annot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>12.5</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
+<li class="chapter" data-level="12.6" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#histogram---sm_hist"><i class="fa fa-check"></i><b>12.6</b> Histogram - <code>sm_hist()</code></a></li>
+</ul></li>
+<li class="part"><span><b>IV Contrast Sensitivity Function</b></span></li>
+<li class="chapter" data-level="13" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>13</b> Plotting the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>13.1</b> Brief Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>13.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="13.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>13.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>14</b> Area under Curve, AULCSF and R2 of the CSF</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>14.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="14.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>14.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="14.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>14.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="14.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>14.4</b> Case Study</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>15</b> Understanding the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#contrast-sensitivity-function-model"><i class="fa fa-check"></i><b>15.1</b> Contrast Sensitivity Function Model</a></li>
+<li class="chapter" data-level="15.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_csf"><i class="fa fa-check"></i><b>15.2</b> Understanding <code>sm_CSF()</code></a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_params"><i class="fa fa-check"></i><b>15.2.1</b> <code>sm_params()</code></a></li>
+<li class="chapter" data-level="15.2.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_cutoff"><i class="fa fa-check"></i><b>15.2.2</b> <code>sm_cutOff()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_ribboncsf"><i class="fa fa-check"></i><b>15.3</b> Understanding <code>sm_ribbonCSF()</code></a></li>
+<li class="chapter" data-level="15.4" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#calculating-the-five-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>15.4</b> Calculating the five parameters of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="15.5" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#visualization-of-the-parameters"><i class="fa fa-check"></i><b>15.5</b> Visualization of the parameters</a></li>
+<li class="chapter" data-level="15.6" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#case-study-1"><i class="fa fa-check"></i><b>15.6</b> Case Study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis and Visualization in R Using smplot2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="raincloud-and-forest-plots" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Raincloud and Forest Plots</h1>
+<p>These packages are required to be loaded in this chapter, where we will focus on drawing and understanding the forest plot and the raincloud plot. The usage of the raincloud plot is somewhat controversial, and we will discuss it here.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="raincloud-and-forest-plots.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb214-2"><a href="raincloud-and-forest-plots.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) </span>
+<span id="cb214-3"><a href="raincloud-and-forest-plots.html#cb214-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span></code></pre></div>
+<div id="raincloud-plot" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Raincloud plot</h2>
+<p>A raincloud plot shows the raw data, probability density and summary statistics such as the median, quantiles etc by presenting individual data, a violin plot and a boxplot together.</p>
+<p>On the surface, these might be an appealing idea to present all these at once to provide maximal amount of information. However, whether this is truly necessary in the field of psychological/neuroscience research has not been entirely resolved.</p>
+<p>Nevertheless, since many people have been captivated by it, I have decided to create a function <code>sm_raincloud()</code> with updates from <strong>smplot2</strong> for vast flexibility.</p>
+<p>Let’s generate random data to explore this function.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="raincloud-and-forest-plots.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">211</span>) <span class="co"># generate random data</span></span>
+<span id="cb215-2"><a href="raincloud-and-forest-plots.html#cb215-2" aria-hidden="true" tabindex="-1"></a>group1 <span class="ot">=</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="fl">2.5</span>,<span class="dv">1</span>))</span>
+<span id="cb215-3"><a href="raincloud-and-forest-plots.html#cb215-3" aria-hidden="true" tabindex="-1"></a>group2 <span class="ot">=</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">1</span>))</span>
+<span id="cb215-4"><a href="raincloud-and-forest-plots.html#cb215-4" aria-hidden="true" tabindex="-1"></a>Subject <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)), <span class="dv">2</span>)</span>
+<span id="cb215-5"><a href="raincloud-and-forest-plots.html#cb215-5" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Value =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(group1,group2),<span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb215-6"><a href="raincloud-and-forest-plots.html#cb215-6" aria-hidden="true" tabindex="-1"></a>Group <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;Group 1&#39;</span>, <span class="st">&#39;Group 2&#39;</span>), <span class="at">each =</span> <span class="fu">length</span>(group1))</span>
+<span id="cb215-7"><a href="raincloud-and-forest-plots.html#cb215-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Subject, Data, Group)</span></code></pre></div>
+<p>In this dataset, there are two distinct groups.</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="raincloud-and-forest-plots.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb216-2"><a href="raincloud-and-forest-plots.html#cb216-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>() <span class="sc">+</span></span>
+<span id="cb216-3"><a href="raincloud-and-forest-plots.html#cb216-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-194-1.png" width="336" /></p>
+<p>The default of the individual points’ <code>shape</code> is 21, which is circle with borders, due to <strong>smplot2</strong>. Therefore <code>fill</code> parameter has to be specified to change the colors. As for the boxplot and violin, they both have parameters <code>fill</code> and <code>color</code> because these are shapes with borders.</p>
+<p>After removing the defaults from <strong>smplot2</strong> by writing <code>xxx.param = list()</code>, you can paint them as all in the same color by setting <code>color = 'black'</code> as generic parameter to control for the aesthetics. In this case, <code>shape</code> of the point becomes 16. Therefore <code>color</code> affects the filling color.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="raincloud-and-forest-plots.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb217-2"><a href="raincloud-and-forest-plots.html#cb217-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">color =</span> <span class="st">&#39;black&#39;</span>, <span class="at">point.params =</span> <span class="fu">list</span>(),</span>
+<span id="cb217-3"><a href="raincloud-and-forest-plots.html#cb217-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">boxplot.params =</span> <span class="fu">list</span>(),</span>
+<span id="cb217-4"><a href="raincloud-and-forest-plots.html#cb217-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">violin.params =</span> <span class="fu">list</span>()) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-195-1.png" width="336" /></p>
+<p>The limitation of this function is that you cannot assign unique to the boxplot for each group. We can test this using the script below.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="raincloud-and-forest-plots.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb218-2"><a href="raincloud-and-forest-plots.html#cb218-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">point.params =</span> <span class="fu">list</span>(),</span>
+<span id="cb218-3"><a href="raincloud-and-forest-plots.html#cb218-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">boxplot.params =</span> <span class="fu">list</span>(),</span>
+<span id="cb218-4"><a href="raincloud-and-forest-plots.html#cb218-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">violin.params =</span> <span class="fu">list</span>()) <span class="sc">+</span></span>
+<span id="cb218-5"><a href="raincloud-and-forest-plots.html#cb218-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-196-1.png" width="336" /></p>
+<p>In this example, the <code>color</code> affects the border color of the violin. Boxplot’s line color is set as <code>black</code> here because it is set so that the box plots always have the same color across groups.</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="raincloud-and-forest-plots.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb219-2"><a href="raincloud-and-forest-plots.html#cb219-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">point.params =</span> <span class="fu">list</span>(),</span>
+<span id="cb219-3"><a href="raincloud-and-forest-plots.html#cb219-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">boxplot.params =</span> <span class="fu">list</span>(),</span>
+<span id="cb219-4"><a href="raincloud-and-forest-plots.html#cb219-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">violin.params =</span> <span class="fu">list</span>()) <span class="sc">+</span></span>
+<span id="cb219-5"><a href="raincloud-and-forest-plots.html#cb219-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-197-1.png" width="336" /></p>
+<p>In this example, the <code>fill</code> affects the filling color of the violin but not points.</p>
+<p>In the case of <code>sm_raincloud()</code>, there might be no need to change the defaults of <strong>smplot2</strong> as I have realized from users that it is already the most popular choice for aesthetics except for changing colors.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="raincloud-and-forest-plots.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb220-2"><a href="raincloud-and-forest-plots.html#cb220-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>() <span class="sc">+</span></span>
+<span id="cb220-3"><a href="raincloud-and-forest-plots.html#cb220-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-198-1.png" width="336" /></p>
+<p>Notice that there is an outlier in Group 2. The black circle at the top that is aligned to the top <code>viridian</code> point indicates that the <code>viridian</code> point is an outlier. This option of indicating outlier can be removed setting <code>boxplot.params = list(outlier.shape = NA)</code>.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="raincloud-and-forest-plots.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb221-2"><a href="raincloud-and-forest-plots.html#cb221-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb221-3"><a href="raincloud-and-forest-plots.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-199-1.png" width="336" /></p>
+<p>To truly modify each component of the raincloud plot that is generated using <code>sm_raincloud()</code>, you have to understand these <code>xxx.param = list()</code>:</p>
+<ul>
+<li><p><code>boxplot.params</code> feeds arguments to <code>geom_half_boxplot()</code> (almost identical to <code>geom_boxplot()</code>) to plot the boxplot with specified <code>color</code>, <code>fill</code>, <code>outlier.shape</code> etc.</p></li>
+<li><p><code>violin.params</code> feeds arguments to <code>geom_half_violin()</code> (almost identical to <code>geom_violin()</code>) to plot the violin plot with specified <code>color</code>, <code>alpha</code> and <code>fill</code>, etc</p></li>
+<li><p><code>point.params</code> feeds arguments to <code>geom_point()</code> to plot the points in the shadow with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</p></li>
+</ul>
+<div id="changing-the-x-axis-labels" class="section level3" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Changing the x-axis labels</h3>
+<p>Note that the x-axis title is <code>Group</code> and the x-axis tick also says <code>Group 1</code> and <code>Group 2</code>, making the labels repetitive. Therefore we can consider to modify the tick labels as <code>One</code> and <code>Two</code> using <code>scale_x_discrete()</code>.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="raincloud-and-forest-plots.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb222-2"><a href="raincloud-and-forest-plots.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb222-3"><a href="raincloud-and-forest-plots.html#cb222-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb222-4"><a href="raincloud-and-forest-plots.html#cb222-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;One&#39;</span>, <span class="st">&#39;Two&#39;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-200-1.png" width="336" /></p>
+<p>Note that in <strong>smplot</strong>, <code>scale_x_continous()</code> was used to modify the label at each x level. In <strong>smplot2</strong>, <code>scale_x_discrete()</code> is used instead because <code>sm_raincloud()</code> keeps the x-axis <code>discrete</code> rather than forcibly converting it to becoming <code>continuous</code>.</p>
+<p><code>scale_x_discrete()</code> is used here because the data frame that is used to plot the data has categorical x variables as shown below.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="raincloud-and-forest-plots.html#cb223-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Group</span></code></pre></div>
+<pre><code>##  [1] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
+##  [8] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
+## [15] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 2&quot;
+## [22] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;
+## [29] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;
+## [36] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;</code></pre>
+<p>This shows that <code>df$Group</code> is discrete and has two unique levels.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="raincloud-and-forest-plots.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Group)</span></code></pre></div>
+<pre><code>## [1] &quot;Group 1&quot; &quot;Group 2&quot;</code></pre>
+<p>Instead of changing the x-tick label, we can remove the x-axis title instead by writing <code>theme(axis.title.x = element_blank())</code>.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="raincloud-and-forest-plots.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb227-2"><a href="raincloud-and-forest-plots.html#cb227-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>)) <span class="sc">+</span></span>
+<span id="cb227-3"><a href="raincloud-and-forest-plots.html#cb227-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb227-4"><a href="raincloud-and-forest-plots.html#cb227-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-203-1.png" width="336" /></p>
+</div>
+<div id="separating-the-components-and-configuration" class="section level3" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Separating the components and configuration</h3>
+<p><code>sm_raincloud()</code> has an interesting parameter that enables users to separate components of the raincloud plot using the argument <code>sep_level</code>, which is a short for seperation level and has a range between 0 and 4.</p>
+<p>When <code>sep_level = 0</code>, all components are overlapped. If <code>sep_level = 4</code>, all components are separated. The default of <code>sm_raincloud()</code> is set to <code>sep_level = 2</code>.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="raincloud-and-forest-plots.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb228-2"><a href="raincloud-and-forest-plots.html#cb228-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>),</span>
+<span id="cb228-3"><a href="raincloud-and-forest-plots.html#cb228-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">sep_level =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb228-4"><a href="raincloud-and-forest-plots.html#cb228-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb228-5"><a href="raincloud-and-forest-plots.html#cb228-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-204-1.png" width="336" /></p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="raincloud-and-forest-plots.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb229-2"><a href="raincloud-and-forest-plots.html#cb229-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>),</span>
+<span id="cb229-3"><a href="raincloud-and-forest-plots.html#cb229-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">sep_level =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb229-4"><a href="raincloud-and-forest-plots.html#cb229-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb229-5"><a href="raincloud-and-forest-plots.html#cb229-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-205-1.png" width="336" /></p>
+<p>You also change the configuration of the raincloud plot so that it faces to the left rather than to the right using the argument <code>which_side</code>.</p>
+<ul>
+<li><code>which_side</code> controls the configuration of the raincloud plot. It accepts <code>'r'</code> and <code>'right'</code> for right configuration (violin plot facing to the right), and <code>'l'</code> and <code>'left'</code> for left configuration.</li>
+</ul>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="raincloud-and-forest-plots.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb230-2"><a href="raincloud-and-forest-plots.html#cb230-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>),</span>
+<span id="cb230-3"><a href="raincloud-and-forest-plots.html#cb230-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">sep_level =</span> <span class="dv">0</span>,</span>
+<span id="cb230-4"><a href="raincloud-and-forest-plots.html#cb230-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">which_side =</span> <span class="st">&#39;l&#39;</span>) <span class="sc">+</span></span>
+<span id="cb230-5"><a href="raincloud-and-forest-plots.html#cb230-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb230-6"><a href="raincloud-and-forest-plots.html#cb230-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-206-1.png" width="336" /></p>
+</div>
+<div id="changng-the-theme-and-orientation" class="section level3" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Changng the theme and orientation</h3>
+<p><code>sm_raincloud()</code> uses <code>sm_hgrid()</code> automatically and receives <code>legends</code> and <code>borders</code> as arguments as all other visualizing functions of <strong>smplot2</strong>.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="raincloud-and-forest-plots.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb231-2"><a href="raincloud-and-forest-plots.html#cb231-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>() <span class="sc">+</span></span>
+<span id="cb231-3"><a href="raincloud-and-forest-plots.html#cb231-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb231-4"><a href="raincloud-and-forest-plots.html#cb231-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-207-1.png" width="336" /></p>
+<p>We can remove the borders by setting <code>borders = FALSE</code>.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="raincloud-and-forest-plots.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb232-2"><a href="raincloud-and-forest-plots.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">borders =</span> F) <span class="sc">+</span></span>
+<span id="cb232-3"><a href="raincloud-and-forest-plots.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb232-4"><a href="raincloud-and-forest-plots.html#cb232-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-208-1.png" width="336" /></p>
+<p>Also, you can bypass <code>sm_hgrid()</code> by adding another theme, such as <code>sm_minimal()</code>.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="raincloud-and-forest-plots.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb233-2"><a href="raincloud-and-forest-plots.html#cb233-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>() <span class="sc">+</span></span>
+<span id="cb233-3"><a href="raincloud-and-forest-plots.html#cb233-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb233-4"><a href="raincloud-and-forest-plots.html#cb233-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb233-5"><a href="raincloud-and-forest-plots.html#cb233-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_minimal</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-209-1.png" width="336" /></p>
+<p>You can also change the orientation of the raincloud plot from vertical to horizontal by setting <code>vertical = FALSE</code>.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="raincloud-and-forest-plots.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb234-2"><a href="raincloud-and-forest-plots.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">vertical =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb234-3"><a href="raincloud-and-forest-plots.html#cb234-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-210-1.png" width="336" /></p>
+<p>We can remove the y-axis title of the plot by using <code>theme(axis.title.y = element_blank())</code> instead <code>theme(axis.title.x = element_blank())</code>.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="raincloud-and-forest-plots.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb235-2"><a href="raincloud-and-forest-plots.html#cb235-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">vertical =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb235-3"><a href="raincloud-and-forest-plots.html#cb235-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb235-4"><a href="raincloud-and-forest-plots.html#cb235-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.y =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-211-1.png" width="336" /></p>
+</div>
+<div id="raincloud-plot-with-data-from-multiple-groups" class="section level3" number="6.1.4">
+<h3><span class="header-section-number">6.1.4</span> Raincloud plot with data from multiple groups</h3>
+<p><code>sm_raincloud()</code> can also raincloud plots for data from multiple groups. Let’s load this fake dataset.</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="raincloud-and-forest-plots.html#cb236-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/amblyopia_random.csv&#39;</span>)</span>
+<span id="cb236-2"><a href="raincloud-and-forest-plots.html#cb236-2" aria-hidden="true" tabindex="-1"></a>df2a <span class="ot">&lt;-</span> <span class="fu">filter</span>(df2, Condition <span class="sc">==</span> <span class="st">&#39;One&#39;</span>)  </span>
+<span id="cb236-3"><a href="raincloud-and-forest-plots.html#cb236-3" aria-hidden="true" tabindex="-1"></a>df2a <span class="ot">&lt;-</span> <span class="fu">filter</span>(df2, SF <span class="sc">%in%</span> <span class="fu">c</span>(<span class="fl">0.5</span>,<span class="dv">8</span>))</span>
+<span id="cb236-4"><a href="raincloud-and-forest-plots.html#cb236-4" aria-hidden="true" tabindex="-1"></a>df2a<span class="sc">$</span>SF <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df2a<span class="sc">$</span>SF)</span></code></pre></div>
+<p>Make sure <code>SF</code> is converted to <code>factor</code> first because the x-scale has to be <strong>discrete</strong>, not continuous. In this example, we have filtered for <code>SF</code> that equals <code>0.5</code> or <code>8</code>.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="raincloud-and-forest-plots.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2a, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">fill =</span> Group,</span>
+<span id="cb237-2"><a href="raincloud-and-forest-plots.html#cb237-2" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb237-3"><a href="raincloud-and-forest-plots.html#cb237-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">sep_level =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb237-4"><a href="raincloud-and-forest-plots.html#cb237-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>,<span class="st">&#39;viridian&#39;</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-213-1.png" width="336" /></p>
+<p>We immediately see that the plot is extremely crowded because there are four violin plots, four boxplots and overlapping individual points.</p>
+<p>We could still try to make it visually neat, however. In the upcoming approach, we will use two separate data frames, one for each group (<code>Normal</code> and <code>Amblyopia</code>).</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="raincloud-and-forest-plots.html#cb238-1" aria-hidden="true" tabindex="-1"></a>df2amb <span class="ot">&lt;-</span>  <span class="fu">filter</span>(df2a, Group <span class="sc">==</span> <span class="st">&#39;Amblyopia&#39;</span>)</span>
+<span id="cb238-2"><a href="raincloud-and-forest-plots.html#cb238-2" aria-hidden="true" tabindex="-1"></a>df2norm <span class="ot">&lt;-</span>  <span class="fu">filter</span>(df2a, Group <span class="sc">==</span> <span class="st">&#39;Normal&#39;</span>)</span></code></pre></div>
+<p>Next we first plot the data from one of the data frames. Make sure that the first set of raincloud plot is faced slightly to the right using <code>position_nudge()</code>.</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="raincloud-and-forest-plots.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb239-2"><a href="raincloud-and-forest-plots.html#cb239-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df2amb, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="sc">+</span><span class="fl">0.3</span>)) <span class="sc">+</span></span>
+<span id="cb239-3"><a href="raincloud-and-forest-plots.html#cb239-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-215-1.png" width="336" /></p>
+<p>Next, we plot the <code>viridian</code> (<code>Normal</code>) data on the figure which <code>left</code> configuration.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="raincloud-and-forest-plots.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb240-2"><a href="raincloud-and-forest-plots.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df2amb, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="sc">+</span><span class="fl">0.15</span>),</span>
+<span id="cb240-3"><a href="raincloud-and-forest-plots.html#cb240-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb240-4"><a href="raincloud-and-forest-plots.html#cb240-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;transparent&#39;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
+<span id="cb240-5"><a href="raincloud-and-forest-plots.html#cb240-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">position =</span> sdamr<span class="sc">::</span><span class="fu">position_jitternudge</span>(<span class="at">nudge.x =</span> <span class="fl">0.06</span>, </span>
+<span id="cb240-6"><a href="raincloud-and-forest-plots.html#cb240-6" aria-hidden="true" tabindex="-1"></a>                                                                   <span class="at">jitter.width =</span> <span class="fl">0.06</span>))) <span class="sc">+</span></span>
+<span id="cb240-7"><a href="raincloud-and-forest-plots.html#cb240-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb240-8"><a href="raincloud-and-forest-plots.html#cb240-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df2norm, <span class="at">which_side =</span> <span class="st">&#39;left&#39;</span>,</span>
+<span id="cb240-9"><a href="raincloud-and-forest-plots.html#cb240-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fl">0.15</span>),</span>
+<span id="cb240-10"><a href="raincloud-and-forest-plots.html#cb240-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb240-11"><a href="raincloud-and-forest-plots.html#cb240-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;transparent&#39;</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>,</span>
+<span id="cb240-12"><a href="raincloud-and-forest-plots.html#cb240-12" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">position =</span> sdamr<span class="sc">::</span><span class="fu">position_jitternudge</span>(<span class="at">nudge.x =</span> <span class="sc">-</span><span class="fl">0.06</span>, </span>
+<span id="cb240-13"><a href="raincloud-and-forest-plots.html#cb240-13" aria-hidden="true" tabindex="-1"></a>                                                                   <span class="at">jitter.width =</span> <span class="fl">0.06</span>)))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-216-1.png" width="336" /></p>
+<p>I think this attempt is somewhat acceptable. Let’s improve the aesthetics slightly by adjusting the <code>size</code> of the point and adding <code>legends</code>.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="raincloud-and-forest-plots.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb241-2"><a href="raincloud-and-forest-plots.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df2amb, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="sc">+</span><span class="fl">0.15</span>),</span>
+<span id="cb241-3"><a href="raincloud-and-forest-plots.html#cb241-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb241-4"><a href="raincloud-and-forest-plots.html#cb241-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb241-5"><a href="raincloud-and-forest-plots.html#cb241-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;transparent&#39;</span>, </span>
+<span id="cb241-6"><a href="raincloud-and-forest-plots.html#cb241-6" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">show.legend =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb241-7"><a href="raincloud-and-forest-plots.html#cb241-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb241-8"><a href="raincloud-and-forest-plots.html#cb241-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">position =</span> sdamr<span class="sc">::</span><span class="fu">position_jitternudge</span>(<span class="at">nudge.x =</span> <span class="fl">0.06</span>, <span class="at">seed =</span> <span class="dv">10</span>,</span>
+<span id="cb241-9"><a href="raincloud-and-forest-plots.html#cb241-9" aria-hidden="true" tabindex="-1"></a>                                                                   <span class="at">jitter.width =</span> <span class="fl">0.06</span>))) <span class="sc">+</span></span>
+<span id="cb241-10"><a href="raincloud-and-forest-plots.html#cb241-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb241-11"><a href="raincloud-and-forest-plots.html#cb241-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">data =</span> df2norm, <span class="at">which_side =</span> <span class="st">&#39;left&#39;</span>,</span>
+<span id="cb241-12"><a href="raincloud-and-forest-plots.html#cb241-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb241-13"><a href="raincloud-and-forest-plots.html#cb241-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">x =</span> <span class="sc">-</span><span class="fl">0.15</span>),</span>
+<span id="cb241-14"><a href="raincloud-and-forest-plots.html#cb241-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
+<span id="cb241-15"><a href="raincloud-and-forest-plots.html#cb241-15" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">show.legend =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb241-16"><a href="raincloud-and-forest-plots.html#cb241-16" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;transparent&#39;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb241-17"><a href="raincloud-and-forest-plots.html#cb241-17" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">position =</span> sdamr<span class="sc">::</span><span class="fu">position_jitternudge</span>(<span class="at">nudge.x =</span> <span class="sc">-</span><span class="fl">0.06</span>, <span class="at">seed =</span> <span class="dv">10</span>,</span>
+<span id="cb241-18"><a href="raincloud-and-forest-plots.html#cb241-18" aria-hidden="true" tabindex="-1"></a>                                                                   <span class="at">jitter.width =</span> <span class="fl">0.06</span>))) <span class="sc">+</span></span>
+<span id="cb241-19"><a href="raincloud-and-forest-plots.html#cb241-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>,<span class="fl">0.85</span>),</span>
+<span id="cb241-20"><a href="raincloud-and-forest-plots.html#cb241-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb241-21"><a href="raincloud-and-forest-plots.html#cb241-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>)) <span class="sc">+</span></span>
+<span id="cb241-22"><a href="raincloud-and-forest-plots.html#cb241-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Raincloud plot of two groups&#39;</span>) <span class="sc">+</span></span>
+<span id="cb241-23"><a href="raincloud-and-forest-plots.html#cb241-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">2.5</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-217-1.png" width="336" /></p>
+<p>Another solution is to plot the raincloud plot for each group per panel, and put two panels together. In fact, I don’t recommend the reader to plot data of multiple groups within the same figure when drawing a raincloud plot.</p>
+<p><strong>Exercise</strong>: By using this script above with some minor changes, you can also generate boxplot (<code>sm_boxplot()</code>) and violin (<code>sm_violin()</code>) using data from multiple groups. You can try them on your own.</p>
+</div>
+</div>
+<div id="forest-plot" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Forest plot</h2>
+<p>A forest plot is commonly known as a visualization method to summarise data across multiple studies or experiments. For this reason, it has been widely used in meta analysis studies that aim to summarise the results of tens or hundreds of studies into a few figures. I believe that forest plot’s usage can exceed beyond simple meta analysis, all the way to describing results from a single study with numerous experimental conditions.</p>
+<p>Let’s generate some random data first and draw a forest plot using <code>sm_forest()</code> to explore what the function provides.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="raincloud-and-forest-plots.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>) <span class="co"># generate random data</span></span>
+<span id="cb242-2"><a href="raincloud-and-forest-plots.html#cb242-2" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">0</span>,<span class="dv">1</span>)</span>
+<span id="cb242-3"><a href="raincloud-and-forest-plots.html#cb242-3" aria-hidden="true" tabindex="-1"></a>day2 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">5</span>,<span class="dv">1</span>)</span>
+<span id="cb242-4"><a href="raincloud-and-forest-plots.html#cb242-4" aria-hidden="true" tabindex="-1"></a>day3 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">6</span>,<span class="fl">1.5</span>)</span>
+<span id="cb242-5"><a href="raincloud-and-forest-plots.html#cb242-5" aria-hidden="true" tabindex="-1"></a>day4 <span class="ot">=</span> <span class="fu">rnorm</span>(<span class="dv">20</span>,<span class="dv">7</span>,<span class="dv">2</span>)</span>
+<span id="cb242-6"><a href="raincloud-and-forest-plots.html#cb242-6" aria-hidden="true" tabindex="-1"></a>Subject <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="fu">seq</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>)), <span class="dv">4</span>)</span>
+<span id="cb242-7"><a href="raincloud-and-forest-plots.html#cb242-7" aria-hidden="true" tabindex="-1"></a>Data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Value =</span> <span class="fu">matrix</span>(<span class="fu">c</span>(day1,day2,day3,day4),<span class="at">ncol=</span><span class="dv">1</span>))</span>
+<span id="cb242-8"><a href="raincloud-and-forest-plots.html#cb242-8" aria-hidden="true" tabindex="-1"></a>Day <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&#39;Day 1&#39;</span>, <span class="st">&#39;Day 2&#39;</span>, <span class="st">&#39;Day 3&#39;</span>, <span class="st">&#39;Day 4&#39;</span>), <span class="at">each =</span> <span class="fu">length</span>(day1))</span>
+<span id="cb242-9"><a href="raincloud-and-forest-plots.html#cb242-9" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Subject, Data, Day)</span></code></pre></div>
+<p>When using <code>sm_forest()</code>, <code>x</code> is required to be a continuous variable. <code>y</code> should be a categorical variable (i.e., <code>factor</code>).</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="raincloud-and-forest-plots.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb243-2"><a href="raincloud-and-forest-plots.html#cb243-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>() </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-219-1.png" width="297.6" /></p>
+<p><code>sm_forest()</code> has various <code>xxx.params</code> arguments as well as <code>...</code> generic parameter to control the aesthetics across various components of the plot.</p>
+<ul>
+<li><p><code>avgPoint.params</code> sends arguments to <code>geom_point()</code> to plot the average point with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</p></li>
+<li><p><code>err.params = list()</code> sends arguments, such as <code>color</code>, to <code>geom_linerange()</code> to plot the error bar.</p></li>
+<li><p><code>point.params = list()</code> sends arguments, such as <code>color</code>, <code>fill</code>, and <code>alpha</code> to <code>geom_point()</code> to plot the individual points.</p></li>
+<li><p><code>refLine.params = list()</code> sends arguments, such as <code>color</code> and <code>size</code> to <code>geom_vline()</code> to plot the reference line.</p></li>
+</ul>
+<p>We can reset all the defaults by listing these parameters as <code>xxx.params = list()</code>.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="raincloud-and-forest-plots.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb244-2"><a href="raincloud-and-forest-plots.html#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">avgPoint.params =</span> <span class="fu">list</span>(),</span>
+<span id="cb244-3"><a href="raincloud-and-forest-plots.html#cb244-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">err.params =</span> <span class="fu">list</span>(),</span>
+<span id="cb244-4"><a href="raincloud-and-forest-plots.html#cb244-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">point.params =</span> <span class="fu">list</span>())</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-220-1.png" width="297.6" /></p>
+<p>Let’s restore the defaults and change colors now using <code>scale_color_manual()</code>.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="raincloud-and-forest-plots.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb245-2"><a href="raincloud-and-forest-plots.html#cb245-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>() <span class="sc">+</span></span>
+<span id="cb245-3"><a href="raincloud-and-forest-plots.html#cb245-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-221-1.png" width="297.6" /></p>
+<p>These points could be jittered (<code>point_jitter_width</code>) and increase the separation level between the average point and the individual points (<code>sep_level</code>), which has no limited range as opposed to 0-4 in <code>sm_raincloud()</code>.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="raincloud-and-forest-plots.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb246-2"><a href="raincloud-and-forest-plots.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.12</span>, <span class="at">sep_level =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb246-3"><a href="raincloud-and-forest-plots.html#cb246-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-222-1.png" width="297.6" /></p>
+<p>If <code>sep_level</code> is positive, the average point is above the individual points. If <code>sep_level</code> is negative, then the average point is below the individual points.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="raincloud-and-forest-plots.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb247-2"><a href="raincloud-and-forest-plots.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.12</span>, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb247-3"><a href="raincloud-and-forest-plots.html#cb247-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-223-1.png" width="297.6" /></p>
+<p>The default error bar type is 95% confidence interval (<code>errorbar_type = 'ci'</code>). You can change it to either standard error (<code>'se'</code>) or standard deviation (<code>'sd'</code>). Here is standard deviation.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="raincloud-and-forest-plots.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb248-2"><a href="raincloud-and-forest-plots.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.12</span>, <span class="at">sep_level =</span> <span class="dv">3</span>,</span>
+<span id="cb248-3"><a href="raincloud-and-forest-plots.html#cb248-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>) <span class="sc">+</span></span>
+<span id="cb248-4"><a href="raincloud-and-forest-plots.html#cb248-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-224-1.png" width="297.6" /></p>
+<p>A common practice is to annotate the error range (95% confidence interval) in text on on the forest plot. This could be done using <code>sm_forest_annot()</code>.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="raincloud-and-forest-plots.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb249-2"><a href="raincloud-and-forest-plots.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.12</span>, <span class="at">sep_level =</span> <span class="dv">3</span>,</span>
+<span id="cb249-3"><a href="raincloud-and-forest-plots.html#cb249-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>) <span class="sc">+</span></span>
+<span id="cb249-4"><a href="raincloud-and-forest-plots.html#cb249-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb249-5"><a href="raincloud-and-forest-plots.html#cb249-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">sep_level =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-225-1.png" width="297.6" /></p>
+<p><code>sm_forest_annot()</code> has various arguments. These arguments should be identical to what you have provided <code>ggplot(data = ..., aes(x = ..., y = ...)</code>.</p>
+<ul>
+<li><p>The <code>data</code> argument requires the variable that stores the data frame that is used to plot the data, which is <code>df2</code> in this example.</p></li>
+<li><p><code>x</code> argument is the variable that is plotted along the x-axis.</p></li>
+<li><p><code>y</code> argument is the variable that is plotted along the y-axis.</p></li>
+</ul>
+<p>Also, there are some additional arguments.</p>
+<ul>
+<li><p><code>sep_level</code> refers to the separation level between the text annotation and the average point. If it is positive, the text will be above the mean point. <strong>In practice, put the same value of</strong> <code>sep_level</code> <strong>in both</strong> <code>sm_forest()</code> <strong>and </strong><code>sm_forest_annot()</code>. The default is <code>sep_level = 2</code>, which is also found in <code>sm_forest()</code>.</p></li>
+<li><p><code>errorbar_type</code> refers to the type of error by which the text annotation should be written. <strong>In practice, put the same argument of</strong> <code>sep_level</code> <strong>in both</strong> <code>sm_forest()</code> <strong>and </strong><code>sm_forest_annot()</code>. The default is set to confidence interval (<code>errorbar_type = 'ci'</code>).</p></li>
+<li><p><code>text.params</code> feeds arguments to <code>geom_text()</code> to set the aesthetics of the texts such as <code>color</code> and <code>size</code>.</p></li>
+</ul>
+<p>We can try <code>sep_level = -3</code> across <code>sm_forest()</code> and <code>sm_forest_annot()</code> to see what happens.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="raincloud-and-forest-plots.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb250-2"><a href="raincloud-and-forest-plots.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.12</span>, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>,</span>
+<span id="cb250-3"><a href="raincloud-and-forest-plots.html#cb250-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>) <span class="sc">+</span></span>
+<span id="cb250-4"><a href="raincloud-and-forest-plots.html#cb250-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb250-5"><a href="raincloud-and-forest-plots.html#cb250-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-226-1.png" width="297.6" /></p>
+<p>We see that the positions of the individual points and texts have been flipped in relation to the average points.</p>
+<p>You can also draw a vertical reference line by setting <code>refLine = TRUE</code>.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="raincloud-and-forest-plots.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb251-2"><a href="raincloud-and-forest-plots.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.12</span>, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>,</span>
+<span id="cb251-3"><a href="raincloud-and-forest-plots.html#cb251-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>,</span>
+<span id="cb251-4"><a href="raincloud-and-forest-plots.html#cb251-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">refLine =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb251-5"><a href="raincloud-and-forest-plots.html#cb251-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb251-6"><a href="raincloud-and-forest-plots.html#cb251-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-227-1.png" width="297.6" /></p>
+<p>We could change the reference line’s location using the argument <code>xintercept</code>.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="raincloud-and-forest-plots.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb252-2"><a href="raincloud-and-forest-plots.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.12</span>, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>,</span>
+<span id="cb252-3"><a href="raincloud-and-forest-plots.html#cb252-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>,</span>
+<span id="cb252-4"><a href="raincloud-and-forest-plots.html#cb252-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">refLine =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb252-5"><a href="raincloud-and-forest-plots.html#cb252-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">xintercept =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb252-6"><a href="raincloud-and-forest-plots.html#cb252-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb252-7"><a href="raincloud-and-forest-plots.html#cb252-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-228-1.png" width="297.6" /></p>
+<p>We could change the aesthetics of the reference line using <code>refLine.params</code>.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="raincloud-and-forest-plots.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb253-2"><a href="raincloud-and-forest-plots.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.12</span>, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>,</span>
+<span id="cb253-3"><a href="raincloud-and-forest-plots.html#cb253-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>,</span>
+<span id="cb253-4"><a href="raincloud-and-forest-plots.html#cb253-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">refLine =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb253-5"><a href="raincloud-and-forest-plots.html#cb253-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">xintercept =</span> <span class="dv">4</span>,</span>
+<span id="cb253-6"><a href="raincloud-and-forest-plots.html#cb253-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">ref.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb253-7"><a href="raincloud-and-forest-plots.html#cb253-7" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>))) <span class="sc">+</span></span>
+<span id="cb253-8"><a href="raincloud-and-forest-plots.html#cb253-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
+<span id="cb253-9"><a href="raincloud-and-forest-plots.html#cb253-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-229-1.png" width="297.6" /></p>
+<div id="plotting-the-forest-plot-using-data-of-multiple-groups" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Plotting the forest plot using data of multiple groups</h3>
+<p>Plotting the forest plot using data of multiple groups is also possible with <code>sm_forest()</code>. To explore this feature, lets upload data from online.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="raincloud-and-forest-plots.html#cb254-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/amblyopia_random.csv&#39;</span>)</span>
+<span id="cb254-2"><a href="raincloud-and-forest-plots.html#cb254-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>SF <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>SF)</span>
+<span id="cb254-3"><a href="raincloud-and-forest-plots.html#cb254-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Condition <span class="sc">==</span> <span class="st">&#39;One&#39;</span>) </span></code></pre></div>
+<p>Now let’s plot these data using <code>sm_forest()</code>. Make sure that group the data for each group <code>group = Group</code>.</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="raincloud-and-forest-plots.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group, <span class="at">group =</span> Group)) <span class="sc">+</span></span>
+<span id="cb255-2"><a href="raincloud-and-forest-plots.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">sep_level =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb255-3"><a href="raincloud-and-forest-plots.html#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb255-4"><a href="raincloud-and-forest-plots.html#cb255-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Forest plot of two groups&#39;</span>) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-231-1.png" width="297.6" /></p>
+<p>We could also set the transparency of the points so that the <code>alpha</code> increases over <code>SF</code>.</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="raincloud-and-forest-plots.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group, <span class="at">alpha =</span> SF, <span class="at">group =</span>Group)) <span class="sc">+</span></span>
+<span id="cb256-2"><a href="raincloud-and-forest-plots.html#cb256-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">sep_level =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb256-3"><a href="raincloud-and-forest-plots.html#cb256-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb256-4"><a href="raincloud-and-forest-plots.html#cb256-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.7</span>,<span class="fl">0.85</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb256-5"><a href="raincloud-and-forest-plots.html#cb256-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Forest plot of two groups&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-232-1.png" width="297.6" /></p>
+<p>The issue with this plot is that the individual points are overlapped, as well as the mean points at <code>0.5</code> on the y-axis <code>SF</code>. You could use <code>position_dodge()</code> to <code>dodge</code> the position of one group to prevent the overlap.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="raincloud-and-forest-plots.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group, <span class="at">alpha =</span> SF, <span class="at">group =</span>Group)) <span class="sc">+</span></span>
+<span id="cb257-2"><a href="raincloud-and-forest-plots.html#cb257-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">sep_level =</span> <span class="dv">3</span>,</span>
+<span id="cb257-3"><a href="raincloud-and-forest-plots.html#cb257-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb257-4"><a href="raincloud-and-forest-plots.html#cb257-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb257-5"><a href="raincloud-and-forest-plots.html#cb257-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.7</span>,<span class="fl">0.85</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb257-6"><a href="raincloud-and-forest-plots.html#cb257-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Forest plot of two groups&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-233-1.png" width="297.6" /></p>
+<p>As in <code>sm_raincloud()</code>, we could split the data frames into two and plot them separately.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="raincloud-and-forest-plots.html#cb258-1" aria-hidden="true" tabindex="-1"></a>df1amb <span class="ot">&lt;-</span> <span class="fu">filter</span>(df1, Group <span class="sc">==</span> <span class="st">&#39;Amblyopia&#39;</span>)</span>
+<span id="cb258-2"><a href="raincloud-and-forest-plots.html#cb258-2" aria-hidden="true" tabindex="-1"></a>df1norm <span class="ot">&lt;-</span> <span class="fu">filter</span>(df1, Group <span class="sc">==</span> <span class="st">&#39;Normal&#39;</span>)</span></code></pre></div>
+<p>We could plot each group separately using the two data frames. First, plot the <code>Amblyopia</code> group.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="raincloud-and-forest-plots.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb259-2"><a href="raincloud-and-forest-plots.html#cb259-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">data =</span> df1amb) <span class="sc">+</span></span>
+<span id="cb259-3"><a href="raincloud-and-forest-plots.html#cb259-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-235-1.png" width="297.6" /></p>
+<p>Next, apply <code>position_nudge()</code> to move all the components.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="raincloud-and-forest-plots.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb260-2"><a href="raincloud-and-forest-plots.html#cb260-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">data =</span> df1amb, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">+</span><span class="fl">0.25</span>)) <span class="sc">+</span></span>
+<span id="cb260-3"><a href="raincloud-and-forest-plots.html#cb260-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-236-1.png" width="297.6" /></p>
+<p>We see that <code>sep_level = 2</code> no longer works when we apply <code>position_nudge()</code> here because <code>sep_level</code> also controls the position of the components using <code>position_nudge()</code>. We have bypassed its control by explicitly writing <code>position_nudge()</code>. Therefore, we will need to separate the points from the mean points manually by using <code>point.params</code>.</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="raincloud-and-forest-plots.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb261-2"><a href="raincloud-and-forest-plots.html#cb261-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">data =</span> df1amb, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">+</span><span class="fl">0.25</span>),</span>
+<span id="cb261-3"><a href="raincloud-and-forest-plots.html#cb261-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>,</span>
+<span id="cb261-4"><a href="raincloud-and-forest-plots.html#cb261-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">show.legend =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb261-5"><a href="raincloud-and-forest-plots.html#cb261-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="fl">0.45</span>))) <span class="sc">+</span></span>
+<span id="cb261-6"><a href="raincloud-and-forest-plots.html#cb261-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-237-1.png" width="297.6" /></p>
+<p>Then, we can plot the data of <code>Normal</code> on top of the <code>Amblyopia</code> plot.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="raincloud-and-forest-plots.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb262-2"><a href="raincloud-and-forest-plots.html#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">data =</span> df1amb, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">+</span><span class="fl">0.25</span>),</span>
+<span id="cb262-3"><a href="raincloud-and-forest-plots.html#cb262-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb262-4"><a href="raincloud-and-forest-plots.html#cb262-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="fl">0.45</span>))) <span class="sc">+</span></span>
+<span id="cb262-5"><a href="raincloud-and-forest-plots.html#cb262-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb262-6"><a href="raincloud-and-forest-plots.html#cb262-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">data =</span> df1norm,</span>
+<span id="cb262-7"><a href="raincloud-and-forest-plots.html#cb262-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.3</span>),</span>
+<span id="cb262-8"><a href="raincloud-and-forest-plots.html#cb262-8" aria-hidden="true" tabindex="-1"></a>               <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>,</span>
+<span id="cb262-9"><a href="raincloud-and-forest-plots.html#cb262-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">show.legend =</span> <span class="cn">FALSE</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb262-10"><a href="raincloud-and-forest-plots.html#cb262-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.1</span>)))  <span class="sc">+</span></span>
+<span id="cb262-11"><a href="raincloud-and-forest-plots.html#cb262-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Forest plot of two groups&#39;</span>) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-238-1.png" width="297.6" /></p>
+<p>This looks acceptable. Another solution is to just remove the individual points altogether by setting <code>sm_forest(points = FALSE)</code>. In this method, we do not need to split the data frame into two.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="raincloud-and-forest-plots.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df1, <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group, <span class="at">alpha =</span> SF, <span class="at">group =</span> Group)) <span class="sc">+</span></span>
+<span id="cb263-2"><a href="raincloud-and-forest-plots.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">sep_level =</span> <span class="dv">3</span>,</span>
+<span id="cb263-3"><a href="raincloud-and-forest-plots.html#cb263-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>), <span class="at">points =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb263-4"><a href="raincloud-and-forest-plots.html#cb263-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb263-5"><a href="raincloud-and-forest-plots.html#cb263-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="fl">0.3</span>,<span class="fl">0.5</span>,<span class="fl">0.7</span>,<span class="fl">0.85</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb263-6"><a href="raincloud-and-forest-plots.html#cb263-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Forest plot of two groups&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-239-1.png" width="297.6" /></p>
+<p>Also, <code>sm_forest_annot()</code> can be used to provide text annotations for the error range when presenting data of multiple groups. However, first, we will need to separate the two data frames as shown below for each group: <code>Amblyopia</code> and <code>Normal</code>.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="raincloud-and-forest-plots.html#cb264-1" aria-hidden="true" tabindex="-1"></a>df1amb <span class="ot">&lt;-</span> <span class="fu">filter</span>(df1, Group <span class="sc">==</span> <span class="st">&#39;Amblyopia&#39;</span>)</span>
+<span id="cb264-2"><a href="raincloud-and-forest-plots.html#cb264-2" aria-hidden="true" tabindex="-1"></a>df1norm <span class="ot">&lt;-</span> <span class="fu">filter</span>(df1, Group <span class="sc">==</span> <span class="st">&#39;Normal&#39;</span>)</span></code></pre></div>
+<p>Next, we will have to <code>position_nudge</code> for each annotation and group. There are five numbers that are provided in <code>position_nudge()</code>; the first one is for <code>SF = 0.5</code>, and the last one is for <code>SF = 8</code>.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="raincloud-and-forest-plots.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> absBP, <span class="at">y =</span> SF, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb265-2"><a href="raincloud-and-forest-plots.html#cb265-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">data =</span> df1amb, <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">+</span><span class="fl">0.15</span>),</span>
+<span id="cb265-3"><a href="raincloud-and-forest-plots.html#cb265-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">points =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb265-4"><a href="raincloud-and-forest-plots.html#cb265-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df1amb, <span class="at">x =</span> absBP, <span class="at">y =</span> SF,</span>
+<span id="cb265-5"><a href="raincloud-and-forest-plots.html#cb265-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">0.2</span>,<span class="sc">-</span><span class="fl">0.2</span>), </span>
+<span id="cb265-6"><a href="raincloud-and-forest-plots.html#cb265-6" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">x =</span> <span class="fu">c</span>(<span class="fl">0.4</span>,<span class="fl">0.4</span>,<span class="fl">0.1</span>,<span class="dv">0</span>,<span class="dv">0</span>)),</span>
+<span id="cb265-7"><a href="raincloud-and-forest-plots.html#cb265-7" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>), </span>
+<span id="cb265-8"><a href="raincloud-and-forest-plots.html#cb265-8" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">size =</span> <span class="fl">3.5</span>)) <span class="sc">+</span></span>
+<span id="cb265-9"><a href="raincloud-and-forest-plots.html#cb265-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;darkred&#39;</span>, <span class="st">&#39;viridian&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb265-10"><a href="raincloud-and-forest-plots.html#cb265-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">data =</span> df1norm,</span>
+<span id="cb265-11"><a href="raincloud-and-forest-plots.html#cb265-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="sc">-</span><span class="fl">0.3</span>),</span>
+<span id="cb265-12"><a href="raincloud-and-forest-plots.html#cb265-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">points =</span> <span class="cn">FALSE</span>)  <span class="sc">+</span></span>
+<span id="cb265-13"><a href="raincloud-and-forest-plots.html#cb265-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df1norm, <span class="at">x =</span> absBP, <span class="at">y =</span> SF,</span>
+<span id="cb265-14"><a href="raincloud-and-forest-plots.html#cb265-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">position =</span> <span class="fu">position_nudge</span>(<span class="at">y =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.25</span>,<span class="fl">0.1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), </span>
+<span id="cb265-15"><a href="raincloud-and-forest-plots.html#cb265-15" aria-hidden="true" tabindex="-1"></a>                                            <span class="at">x =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="dv">0</span>, <span class="fl">0.05</span>, <span class="dv">0</span>,<span class="dv">0</span>)), </span>
+<span id="cb265-16"><a href="raincloud-and-forest-plots.html#cb265-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;viridian&#39;</span>),</span>
+<span id="cb265-17"><a href="raincloud-and-forest-plots.html#cb265-17" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">size =</span> <span class="fl">3.5</span>)) <span class="sc">+</span></span>
+<span id="cb265-18"><a href="raincloud-and-forest-plots.html#cb265-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Forest plot of two groups&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-241-1.png" width="297.6" /></p>
+<p>Here is the forest plot with data from multiple groups with text annotations but without individual points.</p>
+
+</div>
+</div>
+</div>
+
+
+
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="bar-graph-slope-chart-and-point-plot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="combining-plots-with-common-axes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/smin95/dataviz/edit/master/forestRaincloud.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/smin95/dataviz/blob/master/forestRaincloud.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,383 @@
+---
+output: html_document
+chapter: Calculating Area under a Curve 
+editor_options:
+  chunk_output_type: console
+---
+
+# Calculating Area under a Curve 
+
+In this chapter, we will continue to use data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
+
+**Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.**
+
+In Chapter 5, we only dealt with data from Days 1 and 5. In this chapter, we will use data from Days 1, 2, 3, 4 and 5. 
+
+Let's begin by loading the `tidyverse` and other libraries, and uploading the csv file `min2019b.csv` using `read_csv()` from the `tidyverse` package.
+
+`head()` returns the first 6 rows of the data frame. `tail()` returns the last 6 rows of the data frame. 
+
+```{r}
+library(tidyverse)
+library(smplot2)
+library(cowplot)
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+head(df)
+```
+
+`unique()` returns unique values in the data set. Let's see how many unique values there are in the `Day` column of the data set. A column can be extracted by using `$`. 
+
+```{r}
+df$Day <- factor(df$Day)
+unique(df$Day)
+```
+
+Notice that there are now five different days in the data set. 
+
+As previously mentioned, there are four columns in this data frame:
+
+- First, `Subject` refers to each participant. There are 10 participants total. 
+- Next, `Day` refers to the day of testing. The participants were tested on Days 1, 2, 3, 4 and 5, ad we will using all data.
+
+- `Time` refers to the number of minutes after an experimental manipulation (ex. monocular deprivation). These are 0, 3, 6, 12, 24 and 48 minutes, but in the data frame, it says 0, 1, 2, 3, 4 and 5; we will change the labels manually. 
+
+- The `Cbratio` column refers to the actual data that will be used for
+data analysis.
+
+## Pipe `%>%`
+
+Let's plot data from Day 1 only. 
+
+To do so, we will need to first filter for data from Day 1 using `filter()`, compute the average and standard error across subjects using `summarise()` and `sm_stdErr()`, and save the changed
+format of the dataframe into a new variable using `<-` or `->`. 
+
+```{r}
+df_day1 <- filter(df, Day == 1)
+by_time_day1 <- group_by(df_day1, Time)
+avg_day1 <- summarise(by_time_day1, Average = mean(Cbratio),
+          StdError = sm_stdErr(Cbratio))
+
+```
+
+The steps above (`filter()`, `group_by()` and `summarise()`) are coded separately. Each line has one of these steps. However, these can be combined in one line by using pipe `%>%` as shown below.
+
+```{r}
+avg_day1 <- df %>% filter(Day == 1) %>% group_by(Time) %>%
+  summarise(Average = mean(Cbratio),
+          StdError = sm_stdErr(Cbratio))
+```
+
+Now the steps (`filter()`, `group_by()` and `summarise()`) are written from left-to-right in a continuous fashion, rather than a separate step. 
+
+Pipe `%>%` is part of the `tidyverse` package, and it is deemed a necessary tool for data analysis using R. It is extremely useful because it allows you to write codes that are easier to understand. Notice that if you use `%>%`, the input does not have to written because the input is actually the code that is written just before. For example:
+
+```{r}
+df %>% filter(Day == 1)
+```
+
+```{r}
+filter(df, Day == 1)
+```
+
+These two are identical. But notice that if you do not use pipe,
+you might have to save the intermediate variables (such as `df_day1` and `by_time_day1`) multiple times, which can be tedious. Notice that when pipe `%>%` is used, the need to save these variables disappears.
+
+I will use `%>%` from now on due to my personal preference.
+
+## Area under a curve
+
+Let's use the data set `avg_day1` to plot data only from Day 1.
+
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+avg_day1 %>% ggplot(aes(x = Time, y = Average)) +
+  geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
+  geom_point(size = 4.5, color = sm_color('skyblue')) +
+  geom_line(size = 1, color = sm_color('skyblue')) +
+  geom_errorbar(aes(ymin = Average - StdError, ymax = Average + StdError), size = .75, width = .05, color = sm_color('skyblue')) +
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = FALSE) +
+  ggtitle("Day 1") +
+  xlab("Minutes after monocular deprivation") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 13, y = 0.3, label = 'Area under curve')
+```
+
+One way to show data is to calculate the area under a curve (as shown by the colored area) in the figure above. Area under a curve is useful because it reduces a number of data points (6 in this case due to 6 time points) into one. In our context, a large area under a curve represents a large change in contrast balance ratio over time. In short, it captures both the magnitude and longevity of the effect.
+
+Let's calculate area under a curve for each subject and day across 0 to 48 minutes in the x-axis (minutes after monocular deprivation) using `sm_auc()`.
+
+```{r}
+x <- c(0,3,6,12,24,48)
+```
+
+On the x-axis of the graph, there are six time points. You will need to store these values in a new variable, which I will call `x` here because it represents the x-axis. Instead of manually writing them down, you could extract the unique number of `Time` from the data frame.
+
+```{r}
+x <- unique(df$Time) # this is my preferred way
+```
+
+Now let's filter for one subject's data (subject `b`) on Day 1 using `filter()` and pipe `%>%`.
+
+```{r}
+subj_b_day1 <- df %>% filter(Day == 1 & Subject == 'b')
+subj_b_day1
+```
+
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
+  geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
+  geom_point(size = 4.5, color = sm_color('skyblue')) +
+  geom_line(size = 1, color = sm_color('skyblue')) +
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = FALSE) +
+  ggtitle("Day 1, Subject b") +
+  xlab("Minutes after monocular deprivation") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 13, y = 0.2, label = 'Area under curve = ?')
+```
+
+The variable `subj_b_day1` now stores the data of subject `b` on Day 1. Now let's calculate the area under a curve (AUC) from `subj_b_day1` using `sm_auc()`.
+
+`sm_auc()` calculates the AUC using the method of trapezoid integration; this is equivalent to `trapz` function in Matlab and `numpy.trapz` in Python. It has two arguments:
+- The first argument is the x point. In this case, it is the minutes after monocular deprivation (0, 3, 6, 12, 24 and 48). If this argument is left empty, it will use 0, 1, 2, 3 etc as default. For more information, please type `?sm_auc` in the command console.
+- The second argument is the data, which is shown by the y-axis in the blue graph. In this case, it is the change of contrast balance ratio (dB). These values can be extracted from `subj_b_day1` using `$`.
+
+```{r}
+sm_auc(x, subj_b_day1$Cbratio)
+```
+
+The AUC equals 60.53. This shows that for subject `b`, the effect is large and long-lasting. 
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
+  geom_area(fill = sm_color('skyblue'), alpha = 0.4) +
+  geom_point(size = 4.5, color = sm_color('skyblue')) +
+  geom_line(size = 1, color = sm_color('skyblue')) +
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = FALSE) +
+  ggtitle("Day 1, Subject b") +
+  xlab("Minutes after monocular deprivation") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 14.5, y = 0.2, label = 'Area under curve = 60.5')
+```
+
+Now let's visualize the data of subject `b` from Day 2. 
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+subj_b_day2 <- df %>% filter(Day == 2 & Subject == 'b')
+
+subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
+  geom_area(fill = sm_color('yelloworange'), alpha = 0.4) +
+  geom_point(size = 4.5, color = sm_color('yelloworange')) +
+  geom_line(size = 1, color = sm_color('yelloworange')) +
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = FALSE) +
+  ggtitle("Day 2, Subject b") +
+  xlab("Minutes after monocular deprivation") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 13, y = 0.2, label = 'Area under curve = ?')
+```
+
+Now, let's calculate the AUC for subject `b` from Day 2. 
+
+```{r}
+sm_auc(x, subj_b_day2$Cbratio)
+```
+
+The AUC equals 80.38. In the case of subject `b`, the effect seems to have increased on Day 2 relative to Day 1. 
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+subj_b_day2 <- df %>% filter(Day == 2 & Subject == 'b')
+
+subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
+  geom_area(fill = sm_color('yelloworange'), alpha = 0.4) +
+  geom_point(size = 4.5, color = sm_color('yelloworange')) +
+  geom_line(size = 1, color = sm_color('yelloworange')) +
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = FALSE) +
+  ggtitle("Day 2, Subject b") +
+  xlab("Minutes after monocular deprivation") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  annotate('text', x = 14.5, y = 0.2, label = 'Area under curve = 80.4')
+```
+
+
+So far,we have 9 more subjects across five days and subject `b` from three other days. This will require us to compute 48 more AUCs total. This process is rater repetitive. Should we manually compute AUC for each one? Luckily, the answer is no. Let's use `sm_auc_all()`.
+
+```{r}
+sm_auc_all(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+```
+
+`sm_auc_all()` creates a new data frame with AUC for each subject and condition (in this case, Day). It has five arguments:
+
+- `data` = this argument requires the variable that stores the data frame. In our case, it is `df`.
+- `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.
+- `groups` = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be `Group` column that contains two groups: `Normal` and `Amblyopia` (see next chapter on Slope Analysis).
+- `conditions` = this argument requires name of the column of the data frame that contains each condition. In our example, the condition is the day. It must strings, ex. `'Day'`, not `Day`.
+- `x` = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are 0, 3, 6, 12, 24 minutes. It must be strings, ex. `'Time'`, not `Time`. Also, it must be **numeric**/**double**, NOT **factor**. Make sure you check that the column is numeric. If its not, convert the column of the dataframe into **double** beforehand. ex. `df$Time <- as.numeric(df$Time)` or `df$SpatialFreq <- as.numeric(df$Time)`.
+- `values` = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. `'Cbratio'`, not `Cbratio`.
+
+Before using `sm_auc_all()`, you will need to check for a few things. First, check if the x column is numeric, not factor, by using `is.numeric()` function. If it is numeric, proceed with using `sm_auc_all()`. Second, see if the x levels (ex. 0, 3, 6, 12, 24 and 48 etc) are identical for each subject and condition (ex. no 7, 16, 29 minutes for subject 10). 
+
+```{r}
+# check if the x column is numeric
+is.numeric(df$Time) 
+
+# check if the x column is factor
+is.factor(df$Time)
+
+# if it is factor and not numeric:
+df$Time <- as.numeric(df$Time)
+```
+
+
+After checking, we can store the results from `sm_auc_all()` into a new variable. I will call the new variable `auc_df`.
+
+```{r}
+auc_df <- sm_auc_all(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+```
+
+Now we can plot the AUCs using `sm_bar()`, `sm_boxplot` etc. Let's have a try.
+
+Here is a bar graph showing `auc_df`'s data. This figure is similar to Figure 3E in the original paper (Min, Baldwin and Hess, 2019).
+
+- re: means relative to X. The data are the differences compared to the baseline (re: Baseline).
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+auc_df %>% ggplot(aes(x = Day, y = AUC_Cbratio, fill = Day)) +
+   sm_bar(shape = 21, color = 'white', 
+          bar_fill_color = 'gray80',
+          point_alpha = 1) +
+  scale_fill_manual(values = sm_palette(5)) +
+  ggtitle('\u0394 AUC re: Each day\'s baseline')
+```
+
+Here is a box plot showing `auc_df`'s data. 
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
+auc_df %>% ggplot(mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
+  sm_boxplot(alpha = 0.6,
+             point.params = list(size = 2.2)) + 
+  scale_color_manual(values = sm_palette(5)) +
+  ggtitle('\u0394 AUC re: Each day\'s baseline')
+```
+
+## Reproducing figures in the paper (Min et al., 2019)
+
+Let's redraw some of the figures in the paper. In 2019, when the paper was published, there was no smplot. However, the themes I developed during then have become part of smplot. So, I have incorporated functions from smplot to reproduce the figures here. 
+
+### Figure 3B (a best-fit line with points and error bars)
+
+```{r, fig.width = 3.65, fig.height = 3.65, warning = F, message = F}
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+# filter data from Days 2-4. | means OR.
+df1 <- df %>% filter(Day == 2 | Day == 3 | Day == 4) %>% group_by(Day, Time) %>% 
+  summarise(avg = mean(Cbratio), se = sm_stdErr(Cbratio)) 
+# mean and standard error computed for each day and time, both of which have been grouped.
+
+df1$Time <- as.numeric(df1$Time)
+df1$Day <- as.factor(df1$Day) # Day has to be factored here because they will be labelled as different colors. Factor means categorical variables. 
+
+colors <- c("#55A868", "#C44E52", "#8172B2")
+
+df1 %>% ggplot(aes(x = Time, y = avg, color = Day)) +
+  geom_point(size = 4.5) +
+  geom_errorbar(aes(ymin = avg - se, ymax = avg + se), size = .5, width = 1) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                   labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid(legends = TRUE) +
+  scale_color_manual(values = colors,
+                     labels = c("Day 2", "Day 3", "Day 4")) +
+  ggtitle("Recovery of the patching effect") +
+  xlab("Time after monocular deprivation (min)") +
+  ylab("\u0394 Contrast balance ratio (dB)") +
+  theme(legend.justification = c(1,0), 
+        legend.position = c(0.96, 0.67), 
+        legend.title = element_blank()) 
+
+```
+
+### Figure 3D (a bar graph)
+
+This a bar graph that has been plotted with `sm_bar()`. The y-axis has been set with the function `coord_cartesian()`. 
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F, message = F}
+
+baseline <- read_csv('https://www.smin95.com/baseline.csv') 
+
+colors <- c("#4C72B0", "#55A868", "#C44E52",
+       "#8172B2", "#D55E00")
+
+baseline$Day <- as.factor(baseline$Day)
+
+baseline %>%  ggplot(aes(x = Day, y= Baseline, fill = Day)) +
+  sm_bar(points = FALSE,
+         err.params = list(size = 0.9),
+         bar.params = list()) + # remove defaults of bar.params
+  scale_fill_manual(values = colors) + 
+  ggtitle("Baseline across days") +
+  coord_cartesian(ylim = c(-2, 2))  +
+  ylab("Contrast balance ratio (dB)") +
+  xlab('Patching day')
+
+```
+
+### Figure 3E (modeling in Matlab and plotting in R)
+
+The grey shades have actually been approximated using Matlab. The results have been saved in the .csv file `fit_error_shade.csv`. They are then imported into R, where the final figure is plotted.
+
+Notice that two data frames are used to create this plot, `df_shade1` and `auc_df1`. The former contains the values from the modeling in Matlab, the latter contains AUC values.
+
+So do not worry if your field does not use R for data analysis. One can still perform data visualization using R. 
+
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F, message = F}
+
+df_shade <- read_csv('https://www.smin95.com/fit_error_shade.csv')
+df_shade1 <- df_shade %>% mutate(yUpp = y_mean + y_se, yLow = y_mean - y_se)
+
+df <- read_csv('https://www.smin95.com/min2019b.csv') 
+auc_df <- sm_auc_all(subjects = 'Subject', conditions = 'Day', 
+            x = 'Time', values = 'Cbratio',
+            data = df)
+
+auc_df1 <- auc_df %>% group_by(Day) %>% 
+  summarise(y_mean = mean(AUC_Cbratio), std_err = sm_stdErr(AUC_Cbratio))
+
+auc_df1$Day <- as.numeric(auc_df1$Day)
+
+colors <- c("#4C72B0", "#55A868", "#C44E52",
+       "#8172B2", "#D55E00")
+
+df_shade1 %>% ggplot(aes(x=x, y=y_mean)) + 
+  geom_ribbon(aes(ymin = yLow, ymax = yUpp), alpha = .08) +
+  geom_linerange(data = auc_df1, aes(Day, ymin = y_mean - std_err, ymax = y_mean + std_err), size = .5) +
+  geom_point(data = auc_df1, aes(Day, y_mean, color = as.factor(Day), size = 5)) +
+  sm_hgrid(legends = FALSE) +
+  scale_x_continuous(limits = c(1, 5)) +
+  scale_y_continuous(limits = c(0, 90)) +
+  scale_color_manual(values = colors) +
+  ylab("Area Under Curve (dB min)") +
+  xlab("Patching Day") +  
+  ggtitle("\u0394 AUC re: Each Day's Baseline") +
+  annotate("text", label = "y = -5.8(Day) + 67.8", x = 2.0, y=  5) +
+  annotate("text", label = "***", x = 1, y = 82, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 2, y = 75, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 3, y = 68, size = 3.5, fontface="bold") +
+  annotate("text", label = "*", x = 4, y = 65, size = 3.5, fontface="bold") +
+  annotate("text", label = "**", x = 5, y = 60, size = 3.5, fontface="bold")
+```
+
+

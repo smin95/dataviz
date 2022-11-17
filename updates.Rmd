@@ -1,0 +1,21 @@
+---
+output: html_document
+chapter: Opening Remarks
+editor_options:
+  chunk_output_type: console
+---
+# Opening Remarks
+
+**smplot2** has been created to enable both novice and intermediate R users to perform elegant data visualization that is appropriate for scientific publications. Also, it provides tools that are important for performing data analysis techinques that are common in medicine and psychology.
+
+## How to read this book
+
+If you are a proficient R user, I suggest that you read Chapters 10 and 11 because all the preceding sections incorporate contents about basics of R.
+
+If you are a **smplot** user, you can either use its tutorial website (https://www.smin95.com/dataviz0) and continue to use **smplot** or modify your codes so that it works with **smplot2**. If you decide to use **smplot2**, I suggest you that you delete **smplot**. Also, I suggest that you read Chapters 10 and 11 to understand the changes that have been made to the new package.
+
+```{r, eval = FALSE}
+remove.packages("smplot")
+```
+
+If you are a newcomer, then you can just start reading from the next chapter.

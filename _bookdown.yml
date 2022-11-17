@@ -7,19 +7,21 @@ language:
   ui:
     chapter_name: "Chapter "
 
-
 rmd_files: [
+  'updates.Rmd',
   'index.Rmd',
-  '01-basics.Rmd',
-  '02-corr.Rmd',
-  '03-violinBox.Rmd',
-  '04-smplot.Rmd',
-  '05-Data.Rmd',
-  '06-Data2.Rmd',
-  '07-Data3.Rmd',
-  '08-statistics.Rmd',
-  '09-Csf1.Rmd',
-  '10-Csf2.Rmd',
-  '11-Csf3.Rmd',
-  '12-manuscriptFig.Rmd'
+  'basics.Rmd',
+  'corr.Rmd',
+  'violinBox.Rmd',
+  'barSlopePoint.Rmd',
+  'forestRaincloud.Rmd',
+  'CommonAxis.Rmd',
+  'AreaUC.Rmd',
+  'Slope.Rmd',
+  'statistics.Rmd',
+  'smplot2a.Rmd',
+  'smplot2b.Rmd',
+  'Csf1.Rmd',
+  'Csf2.Rmd',
+  'Csf3.Rmd'
 ]
