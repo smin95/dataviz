@@ -6,7 +6,7 @@ editor_options:
 ---
 # Opening Remarks
 
-**smplot2** has been created to enable both novice and intermediate R users to perform elegant data visualization that is appropriate for scientific publications. Also, it provides tools that are important for performing data analysis techinques that are common in medicine and psychology.
+**smplot2** has been created to enable both novice and intermediate R users to perform elegant data visualization that is appropriate for scientific publications. Also, it provides tools that are important for performing data analysis that is common in medicine and psychology.
 
 ## How to read this book
 
