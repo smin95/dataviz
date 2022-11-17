@@ -10,7 +10,7 @@ editor_options:
 
 ## How to read this book
 
-If you are a proficient R user, I suggest that you read Chapters 10 and 11 because all the preceding sections incorporate contents about basics of R.
+If you are a proficient R user, I suggest that you read Chapters 11 and 12 because all the preceding sections incorporate contents about basics of R.
 
 If you are a **smplot** user, you can either use its tutorial website (https://www.smin95.com/dataviz0) and continue to use **smplot** or modify your codes so that it works with **smplot2**. If you decide to use **smplot2**, I suggest you that you delete **smplot**. Also, I suggest that you read Chapters 10 and 11 to understand the changes that have been made to the new package rather than to read the book from the beginning.
 

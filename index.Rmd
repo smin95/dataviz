@@ -197,7 +197,7 @@ install.packages("devtools")
 devtools::install_github('smin95/smplot2', force = TRUE)
 ```
 
-Also, if you are capable of adapting to some changes made to **smplot2**, **please delete smplot** and then use **smplot2**. More information is on Chapters 10 and 11.
+Also, if you are capable of adapting to some changes made to **smplot2**, **please delete smplot** and then use **smplot2**. More information is on Chapters 11 and 12.
 
 ```{r, eval = FALSE}
 remove.packages("smplot")
