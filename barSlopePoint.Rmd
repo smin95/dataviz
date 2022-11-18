@@ -338,7 +338,7 @@ ggplot(data = df2a, aes(x = SF, y = absBP, color = SF, group = Group)) +
 
 ```
 
-In fact, it turns out that our observation is true. We need to separate their position (i.e., `dodge`) using `position_dodge()` across all visual components of the bar graph: `err.params`, `bar.params` and `point.params`. This could be done easily by setting it as a generic parameter `...`.
+In fact, it turns out that our observation is true. We need to separate their position (i.e., `dodge`) using `position_dodge()` across all visual components of the bar graph: `err.params`, `bar.params` and `point.params`. This can be done easily by setting it as a generic parameter `...`.
 
 ```{r,fig.width = 4.5, fig.height=3.5,warning = F}
 
@@ -444,7 +444,7 @@ When a mean plot is included in slope chart, I personally prefer to visually emp
 
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
   sm_slope(labels = c('Before','After'), group = Subject,
            point.params = list(alpha = 0.4, size = 2.5, color = 'white',
                                shape = 21, fill = sm_color('skyblue')),
@@ -474,7 +474,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
 You can also change the `stroke` of the points and lines (thickness of the borders) as a stylistic preference. To make the `stroke` of the average points more stand out in the midst of the colors, `alpha` of the `points` can be raised.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
   sm_slope(labels = c('Before','After'), group = Subject,
            point.params = list(alpha = 0.5, size = 2.5, color = 'white',
                                shape = 21, fill = sm_color('skyblue'),
@@ -491,7 +491,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
 As before, let's remove the defaults by providing arguments in this format `xxx.param = list()`.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
   sm_slope(labels = c('Before','After'), group = Subject,
            point.params = list(),
            line.params = list(),
@@ -503,7 +503,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
 Now we see that the mean and the individual plots are indistinguishable.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
   sm_slope(color = sm_color('purple'), labels = c('Before','After'), group = Subject,
            point.params = list(),
            line.params = list(),
@@ -517,7 +517,7 @@ By specifying `color` as a generic parameter (`...`) to `purple`, we have change
 Now we can choose specific `alpha`s for individual plots in `xxx.params` to distinguish from the mean and the individual plots.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
   sm_slope(color = sm_color('purple'), labels = c('Before','After'), group = Subject,
            point.params = list(alpha = 0.2),
            line.params = list(alpha = 0.2),
@@ -529,7 +529,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
 Now we see the average plot in the midst of the purple sea. Let's enlarge it slightly by specifying the parameters within `avgPoint.params` and `avgLine.params`. We can also change the `shape` to triangle by setting the generic parameter (`...`) as `shape = 17`. 
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
   sm_slope(color = sm_color('purple'), 
            shape = 17,
            labels = c('Before','After'), 
@@ -547,7 +547,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
 Error bar can also be added to show either standard error (`errorbar_type = 'se'`), standard deviation (`errorbar_type = 'sd'`, default) or 95% confidence interval (`errorbar_type = 'ci'`) by setting `sm_slope(..., show_err = TRUE)`.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
   sm_slope(color = sm_color('purple'), 
            shape = 17,
            labels = c('Before','After'), 
@@ -567,7 +567,7 @@ As in `sm_bar()`, you can control the specific aesthetics of the error bar using
 You can control the width of the error bar by changing the `size` within `err.params`.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
   sm_slope(color = sm_color('purple'), 
            shape = 17,
            labels = c('Before','After'), 
@@ -601,7 +601,7 @@ df <- cbind(Subject, Data, Day)
 Since there are 3 discrete x-levels, `labels` must be modified accordingly.
 
 ```{r,fig.width = 3.8, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = Day, y = Value, fill = Day)) +
+ggplot(data = df, aes(x = Day, y = Value)) +
   sm_slope(color = sm_color('purple'), 
            shape = 17,
            labels = c('Day 1','Day 2', 'Day 3'), 
