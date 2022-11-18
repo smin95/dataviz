@@ -898,6 +898,21 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
   scale_fill_manual(values = sm_color('blue','orange'))
 ```
 
+You can also change the label of the x-axis tick using `scale_x_discrete()` rather than `scale_x_continuous()` from the original **smplot**.
+
+```{r, fig.width = 3.5, fig.height=3.5}
+ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
+  sm_raincloud(boxplot.params = list(color = 'white'),
+               violin.params = list(alpha = 0.2,
+                                    color = 'transparent'),
+               point.params = list(stroke = 0.8,
+                                   shape = 21,
+                                   color = 'white',
+                                   size = 2.6)) +
+  scale_fill_manual(values = sm_color('blue','orange')) +
+  scale_x_discrete(labels = c('One', 'Two'))
+```
+
 ## Histogram - `sm_hist()`
 
 Histogram is used to show the distribution of data.

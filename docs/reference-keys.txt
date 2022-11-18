@@ -8,6 +8,7 @@ fig:unnamed-chunk-272
 fig:unnamed-chunk-274
 fig:unnamed-chunk-275
 fig:unnamed-chunk-370
+fig:unnamed-chunk-371
 opening-remarks
 how-to-read-this-book
 download-rstudio-basics-of-r
@@ -90,6 +91,7 @@ post-hoc-test
 extra-resources
 themes-colors-correlations-boxplots-violins-and-bars-part-1
 installation-of-the-package
+how-...-parameter-and-xxx.params-work
 color-palette
 graph-themes
 correlation-plot
