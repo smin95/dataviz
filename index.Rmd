@@ -207,6 +207,22 @@ Also, if you are capable of adapting to some changes made to **smplot2**, **plea
 remove.packages("smplot")
 ```
 
+## ggplot2 3.3.6
+
+It turns out that the most recent version of ggplot2 (3.4.0) has some issues with `sm_raincloud()`. 
+
+```{r}
+packageVersion('ggplot2')
+```
+
+If your package version is `3.4.0`, please download the version `3.3.6` of ggplot2.
+
+```{r, eval = FALSE}
+g <- 'http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_3.3.6.tar.gz'
+install.packages(g, repos=NULL, type="source")
+
+```
+
 ## Issues and contact {-}
 If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the 'smplot' package, please pull-request on [Github](https://github.com/smin95/smplot).
 
