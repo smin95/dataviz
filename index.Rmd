@@ -103,6 +103,7 @@ df2norm <-  filter(df2a, Group == 'Normal')
 ggplot(mapping = aes(x = SF, y = absBP, fill = Group)) +
   sm_raincloud(data = df2amb, position = position_nudge(x = +0.15),
                show.legend = FALSE,
+               boxplot.params = list(color = 'white'),
                point.params = list(size = 2, shape = 21,
                                    color = 'transparent', 
                                    show.legend = TRUE,
@@ -113,6 +114,7 @@ ggplot(mapping = aes(x = SF, y = absBP, fill = Group)) +
   sm_raincloud(data = df2norm, which_side = 'left',
                show.legend = FALSE,
                position = position_nudge(x = -0.15),
+               boxplot.params = list(color = 'white'),
                point.params = list(size = 2, shape = 21,
                                    show.legend = TRUE,
                                    color = 'transparent', alpha = 0.3,
