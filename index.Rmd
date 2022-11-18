@@ -207,7 +207,7 @@ Also, if you are capable of adapting to some changes made to **smplot2**, **plea
 remove.packages("smplot")
 ```
 
-## ggplot2 3.3.6
+## ggplot2 version {-}
 
 It turns out that the most recent version of ggplot2 (3.4.0) has some issues with `sm_raincloud()`. 
 
