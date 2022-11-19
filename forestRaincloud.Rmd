@@ -497,7 +497,7 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 
 Plotting the forest plot using data of multiple groups is also possible with `sm_forest()`. To explore this feature, lets upload data from online.
 
-```{r}
+```{r, warning = FALSE, message = FALSE}
 df <- read_csv('https://www.smin95.com/amblyopia_random.csv')
 df$SF <- as.factor(df$SF)
 df1 <- filter(df, Condition == 'One') 
@@ -527,7 +527,7 @@ The issue with this plot is that the individual points are overlapped, as well a
 ```{r, fig.width = 3.1, fig.height= 4.8}
 ggplot(df1, aes(x = absBP, y = SF, color = Group, alpha = SF, group =Group)) +
   sm_forest(sep_level = 3,
-            position = position_dodge(width = 1)) +
+            position = position_dodge(width = .8)) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) +
   scale_alpha_manual(values = c(0.3,0.5,0.7,0.85, 1)) +
   ggtitle('Forest plot of two groups')
@@ -564,10 +564,10 @@ We see that `sep_level = 2` no longer works when we apply `position_nudge()` her
 ```{r, fig.width = 3.1, fig.height= 4.8}
 
 ggplot(mapping = aes(x = absBP, y = SF, color = Group, fill = Group)) +
-  sm_forest(data = df1amb, position = position_nudge(y = +0.25),
+  sm_forest(data = df1amb, position = position_nudge(y = +0.4),
             point.params = list(size = 2,
                                    show.legend = FALSE, alpha = 0.3,
-                                   position = position_nudge(y = 0.45))) +
+                                   position = position_nudge(y = 0.2))) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) 
 ```
 
@@ -576,9 +576,9 @@ Then, we can plot the data of `Normal` on top of the `Amblyopia` plot.
 ```{r, fig.width = 3.1, fig.height= 4.8}
 
 ggplot(mapping = aes(x = absBP, y = SF, color = Group, fill = Group)) +
-  sm_forest(data = df1amb, position = position_nudge(y = +0.25),
+  sm_forest(data = df1amb, position = position_nudge(y = +0.3),
                point.params = list(size = 2, alpha = 0.3,
-                                   position = position_nudge(y = 0.45))) +
+                                   position = position_nudge(y = 0.1))) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) +
   sm_forest(data = df1norm,
                position = position_nudge(y = -0.3),
@@ -593,7 +593,7 @@ This looks acceptable. Another solution is to just remove the individual points 
 ```{r, fig.width = 3.1, fig.height= 4.8}
 ggplot(df1, aes(x = absBP, y = SF, color = Group, alpha = SF, group = Group)) +
   sm_forest(sep_level = 3,
-            position = position_dodge(width = 1), points = FALSE) +
+            position = position_dodge(width = .8), points = FALSE) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) +
   scale_alpha_manual(values = c(0.3,0.5,0.7,0.85, 1)) +
   ggtitle('Forest plot of two groups')
@@ -611,23 +611,23 @@ Next, we will have to `position_nudge` for each annotation and group. There are 
 ```{r, fig.width = 3.1, fig.height= 4.8}
 
 ggplot(mapping = aes(x = absBP, y = SF, color = Group)) +
-  sm_forest(data = df1amb, position = position_nudge(y = +0.15),
+  sm_forest(data = df1amb, position = position_nudge(y = +0.2),
               points = FALSE) +
   sm_forest_annot(data = df1amb, x = absBP, y = SF,
-                  position = position_nudge(y = c(0.15,0.2,-0.2,-0.2,-0.2), 
-                                            x = c(0.4,0.4,0.1,0,0)),
+                    position = position_nudge(y = c(0.2,-0.2,-0.2,-0.2,-0.2), 
+                                            x = c(0.4,0,0,0,0)),
                   text.params = list(color = sm_color('darkred'), 
-                                     size = 3.5)) +
+                                     size = 3)) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) +
   sm_forest(data = df1norm,
-               position = position_nudge(y = -0.3),
+               position = position_nudge(y = -0.2),
                points = FALSE)  +
   sm_forest_annot(data = df1norm, x = absBP, y = SF,
-                  position = position_nudge(y = c(-0.25,0.1,0,0,0), 
-                                            x = c(0.4, 0, 0.05, 0,0)), 
+                  position = position_nudge(y = c(-0.18,0.2,0.2,0.2,0.2), 
+                                            x = c(0.4, 0, 0, 0,0)), 
                   text.params = list(color = sm_color('viridian'),
-                                     size = 3.5)) +
+                                     size = 3)) +
   ggtitle('Forest plot of two groups')
 ```
 
-Here is the forest plot with data from multiple groups with text annotations but without individual points.
+Here is the forest plot with data from multiple groups with text annotations but without individual points. As you may realize, text annotations can be extremely tedious so much so that I personally think using Adobe Illustrator might be better in this case. 

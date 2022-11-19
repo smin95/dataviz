@@ -417,7 +417,7 @@ In a two-way ANOVA, the effects of two factors are examined. In our example, we 
 
 Since we will be investigating whether the effects of `Day` and `Time` as variables significantly affect the values of `Cbratio`, we need to convert the columns `Day` and `Time` of `df` as factor using `as.factor()`. 
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 df <- read_csv('https://www.smin95.com/min2019b.csv') 
 
 df$Day <- as.factor(df$Day)

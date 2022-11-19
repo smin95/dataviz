@@ -17,7 +17,7 @@ Let's begin by loading the `tidyverse` and other libraries, and uploading the cs
 
 `head()` returns the first 6 rows of the data frame. `tail()` returns the last 6 rows of the data frame. 
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(smplot2)
 library(cowplot)
