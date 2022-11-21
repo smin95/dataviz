@@ -606,9 +606,9 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
 
 ## Bar plot - `sm_bar()` 
 
-`sm_bar()` automatically uses `sm_bar_theme()` / `sm_hgrid()`.
+`sm_bar()` automatically uses `sm_hgrid()`.
 
-- It also has arguments `borders` and `legends`, both of which have been set to `FALSE` as defaults. 
+- It also has arguments `borders` and `legends`, the latter of which has been set to `FALSE` as default. 
 
 Let's use data (`df`) we generated before to explore this function.
 

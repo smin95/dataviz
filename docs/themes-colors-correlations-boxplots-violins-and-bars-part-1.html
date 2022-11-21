@@ -872,9 +872,9 @@ Figure 11.2: smplot2’s color palette
 </div>
 <div id="bar-plot---sm_bar" class="section level2" number="11.8">
 <h2><span class="header-section-number">11.8</span> Bar plot - <code>sm_bar()</code></h2>
-<p><code>sm_bar()</code> automatically uses <code>sm_bar_theme()</code> / <code>sm_hgrid()</code>.</p>
+<p><code>sm_bar()</code> automatically uses <code>sm_hgrid()</code>.</p>
 <ul>
-<li>It also has arguments <code>borders</code> and <code>legends</code>, both of which have been set to <code>FALSE</code> as defaults.</li>
+<li>It also has arguments <code>borders</code> and <code>legends</code>, the latter of which has been set to <code>FALSE</code> as default.</li>
 </ul>
 <p>Let’s use data (<code>df</code>) we generated before to explore this function.</p>
 <div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
