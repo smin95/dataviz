@@ -91,7 +91,7 @@ post-hoc-test
 extra-resources
 themes-colors-correlations-boxplots-violins-and-bars-part-1
 installation-of-the-package
-how-...-parameter-and-xxx.params-work
+how-...-and-xxx.params-arguments-work
 color-palette
 graph-themes
 correlation-plot

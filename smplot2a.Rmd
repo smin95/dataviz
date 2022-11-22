@@ -35,24 +35,24 @@ library(smplot2)
 ```
 
 
-## How `...` parameter and `xxx.params` work
+## How `...` and `xxx.params` arguments work
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="smplot2's parameters", out.width = '90%'}
 knitr::include_graphics("img/parameters.png")
 ```
 
+These are both additional arguments in the visualizing functions of *smplot2*. `xxx.params` comes in various forms, such as:
 
-`xxx.params` comes in various forms across different visualizing functions in **smplot2**, such as:
+- `err.params`: controls the error bar's appearance.
+- `point.params`: controls the points' appearance.
+- `line.params`: controls the lines' appearance.
+- `avgLine.params`: controls the mean line's appearance.
+- `avgPoint.params`: controls the average point's appearance.
+- `bar.params`: controls the bar's appearance.
+- `boxplot.params`: controls the boxplot's appearance.
+- `violin.params`: controls the violin's appearance.
 
-- `err.params`: controls the error bar's aesthetics.
-- `point.params`: controls the points' aesthetics.
-- `line.params`: controls the lines' aesthetics.
-- `avgLine.params`: controls the mean line's aesthetics.
-- `avgPoint.params`: controls the average point's aesthetics.
-- `boxplot.params`: controls the boxplot's aesthetics.
-- `violin.params`: controls the violin's aesthetics.
-
-`...` Generic parameter can affect different components of a graph all at once if there is no default.
+`...` is another additional argument that I refer to as the *generic parameter*. It can affect different components of a graph all at once if there is no default.
 
 - However, these `xxx.params` can have defaults on their own depending on the function. To remove the defaults, arguments have to be written in this format `xxx.params = list()` within the functions. 
 

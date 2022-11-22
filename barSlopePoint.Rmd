@@ -345,7 +345,10 @@ In fact, it turns out that our observation is true. We need to separate their po
 ggplot(data = df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
   sm_bar(alpha = 0.5, 
          position = position_dodge(width = 1),
-         legends = T) +
+         legends = T,
+         bar.params = list(width = 0.8, alpha = 1,
+                           color = 'transparent',
+                           fill = 'gray80')) +
   scale_color_manual(values=  sm_color('blue','orange'))
 
 ```
@@ -356,6 +359,9 @@ Let's add some jitter to the points. This part is quite complicated. In this exa
 
 ggplot(data = df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
   sm_bar(position = position_dodge(width = 1),
+         bar.params = list(width = 0.8, alpha = 1,
+                           color = 'transparent',
+                           fill = 'gray80'),
          point.params = list(alpha=0.5,
                              position = position_jitterdodge(jitter.width = 0.12,
                                                   dodge.width = 1)),

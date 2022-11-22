@@ -217,7 +217,7 @@ sm_auc_all(subjects = 'Subject', conditions = 'Day',
             data = df)
 ```
 
-`sm_auc_all()` creates a new data frame with AUC for each subject and condition (in this case, Day). It has five arguments:
+`sm_auc_all()` creates a new data frame with AUC for each subject and condition (in this case, Day). It has six arguments:
 
 - `data` = this argument requires the variable that stores the data frame. In our case, it is `df`.
 - `subjects` = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. `'Subject'`, not `Subject`.
