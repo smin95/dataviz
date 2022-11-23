@@ -19,7 +19,7 @@ library(smplot2)
 
 ## Uploading data 
 
-### Sample data: mpg {-}
+### Sample data: mpg 
 
 I will be using an example from the book *R for Data Science* (https://r4ds.had.co.nz/data-visualisation.html).
 
@@ -47,7 +47,7 @@ View(mpg)
 
 ## Basics of ggplot2
 
-### Let's make some graphs {-}
+### Let's make some graphs 
 
 Question: Do cars with large engines use up more fuel than the those with small ones?
 
@@ -60,7 +60,7 @@ ggplot(data = mpg) +
 
 We find that a smaller car has a higher efficiency and that a larger car has a lower efficiency. In other words, we see a negative relationship. 
 
-### How ggplot works {-}
+### How ggplot works 
 
 When you are making a graph with **ggplot2**, always begin by typing the function `ggplot()`. 
 
@@ -80,7 +80,7 @@ ggplot(data = <DATA>) +
 ```
   
   
-### Different color of points for each unique group {-}
+### Different color of points for each unique group 
 
 You can apply different colors by the **class** of each car (each car = each row of the **mpg** data frame).
 
@@ -116,7 +116,7 @@ ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, size = class))
 ```
 
-### Different color & shape for each group {-}
+### Different color & shape for each group 
 
 You can also apply different color & shape for each group of the data.
 
@@ -128,7 +128,7 @@ ggplot(data = mpg) +
                            shape = class))
 ```
 
-### Same shape across all groups {-}
+### Same shape across all groups 
 
 So far, you have put variables such as `shape` and `color` inside the function `aes()`. This can enable you to apply different shape and color for each group.
 
@@ -173,7 +173,7 @@ ggplot(data = mpg) +
 ```
 
 
-### How do we draw the best-fit line of the graph? {-}
+### How do we draw the best-fit line of the graph? 
 
 Here is our graph. 
 
@@ -189,7 +189,7 @@ ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
 ```
 
-### geom_point() + geom_smooth() {-}
+### geom_point() + geom_smooth() 
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ```
@@ -210,7 +210,7 @@ ggplot(data = mpg) +
 ggplot(data = mpg)
 ```
 
-### Writing shorter codes {-}
+### Writing shorter codes 
 
 ```{r, eval = FALSE, fig.width = 3.5, fig.height=3.5}
 ggplot(data = mpg) + 
@@ -313,7 +313,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 However, in this case, I think we need a legend because there are many **classes**.
 
-### Positive relationship between x- and y-axes {-}
+### Positive relationship between x- and y-axes 
 
 Let's plot another scatterplot using **mtcars** data. 
 
@@ -348,7 +348,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 ```
 
 
-### Reporting statistics from a paired correlation {-}
+### Reporting statistics from a paired correlation 
 
 **smplot2** also offers a function that plots the best-fit line of a scatterplot (i.e., correlation plot) and prints statistical values, such as p- and R-values.
 
@@ -428,7 +428,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 
 Which one do you prefer? With or without the border?
 
-### Changing the text
+### Changing the text 
 
 If you do not like the fact that the correlation stats are displayed as `R = 0.65, p < 0.001` and that you rather show it as `R = 0.65` and `p < 0.001` in separate lines, you can do it too.
 
@@ -569,7 +569,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 
 Notice that the transparency of the individual point allows us see that there are some points with some serious overlap. 
 
-### `fill = '#0f993d'` vs `fill = 'green'` {-}
+### `fill = '#0f993d'` vs `fill = 'green'` 
 
 I personally like `#0f993d` more. However, **R** does not recognize this color as `green`. So how are you supposed to remember the color code?
 
@@ -602,7 +602,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   sm_statCorr(color = sm_color('blue'))
 ```
 
-### Different color for each group but with other colors {-}
+### Different color for each group but with other colors 
 
 Let's go back to the **mpg** data. Set the x-axis with **displ** and y-axis with **hwy**. Then make a scatterplot using `geom_point()`.
   - Set the size of the points to 2 across all groups. So type `size = 2` outside of `aes()` in `geom_point()`.
@@ -660,7 +660,7 @@ figure1 # it will appear again by calling this variable
 ```
 
 
-### Let's save the plot as an image in your folder **LearnR** by using the variable **figure1**. {-}
+### Let's save the plot as an image in your folder **LearnR** by using the variable **figure1**. 
  
 To save the figure as an image, we will use the function `save_plot()` from the **cowplot** package. 
 

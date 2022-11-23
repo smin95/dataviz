@@ -17,14 +17,14 @@ library(smplot2)
 
 ## Upload sample data (csv file) in RStudio
 
-### Download requirements {-}
+### Download requirements 
 
 Download **data.csv** from
 https://www.smin95.com/data.csv
 
 Put the file **data.csv** in your **LearnR** folder, where you will create a new script using RStudio.
 
-### Before we get started {-}
+### Before we get started 
 
 First, within RStudio, set **LearnR** folder as your working directory by clicking: **Session -> Set Working Directory -> Choose Directory**. 
 
@@ -40,7 +40,7 @@ Remember from the last chapter that:
 
 - The **cowplot** package has a function called `save_plot`, which is very useful for saving a graph as an image.
   
-### data.csv {-}
+### data.csv 
 
 To start off, let's load **data.csv** in R from your **LearnR** folder. Then store the loaded data into a variable called `df`. 
 
@@ -81,7 +81,7 @@ There are **three columns** in **df**.
 
 As some of you may have noticed, the data are all made from statistical simulations (i.e., fake data).
 
-### `read_csv('data.csv')` {-}
+### `read_csv('data.csv')` 
 
 Let's use the variable **df** to store the output from **data.csv**. 
 
@@ -101,13 +101,13 @@ In future, I suggest you save data that has a similar structure to that of **df*
 
 It indicates there are 30 individuals for each group. Also, there are 3 groups, so there are 90 individuals total. So, it might be better to change the subject number so each person has a unique label, such as **S1** to **S90**. 
   
-### Best way to plot data {-}
+### Best way to plot data 
 
 A popular way to visualize data is plotting a bar graph. However, a bar graph does not show the distribution of the data well.For this reason, boxplot and violin plots have become more popular in scientific writing. 
 
 ## Boxplot
 
-### What is a boxplot? {-}
+### What is a boxplot? 
 
 This is the basic structure of the boxplot.
 
@@ -144,7 +144,7 @@ plot_grid(points, bp, rel_widths = c(.65, 1), nrow = 1)
 - The point that lies outside the whisker is the **outlier**.
 
 
-### Boxplot vs bar graph {-}
+### Boxplot vs bar graph 
 
 Here is the basic structure of the bar graph.
 
@@ -183,7 +183,7 @@ plot_grid(points, bar, rel_widths = c(.65, 1), nrow = 1)
 - For this reason, let's focus on drawing a boxplot.
 
 
-### Boxplot using ggplot2 {-}
+### Boxplot using ggplot2 
 
 We want to plot **Value** (y-axis) from each **Day** (x-axis). As always in **ggplot**, let's start by writing `ggplot()`.
 
@@ -206,7 +206,7 @@ Here's the boxplot! But I think there is a problem here. Day **Three** precedes 
 
 - **Exercise**: Why do you think **Three** appeared first?
 
-### Problem: Alphabetical order {-}
+### Problem: Alphabetical order 
 
 The issue with the boxplot is that the x-axis follows an alphabetical order.
 
@@ -232,7 +232,7 @@ c <- 'Clarinet is the best.'
 
 In these examples, you have stored the **characters/strings** in the variables **a**, **b** and **c**.
 
-### Displaying characters in a non-alphabetical order {-}
+### Displaying characters in a non-alphabetical order 
 
 **Factors** are important when you want to display characters in non-alphabetical order. **Factors** are variables that have a limited number of different values. 
 
@@ -264,7 +264,7 @@ For more information about **factors**, please check Chapter 15 of *R for Data S
 
 - **Note:** you do not have to understand this part 100%. However, if you do encounter similar issues, I suggest you resolve it with the solution above.
 
-### Double-check if the 'Day' column is factor {-}
+### Double-check if the 'Day' column is factor 
 
 - Let's open the data frame **df** again.
 
@@ -274,7 +274,7 @@ df
 
 Now we see `<fct>` in the **Day** column. This means that the column is now **factor**, not **character**.
 
-### Back to boxplot using ggplot2 {-}
+### Back to boxplot using ggplot2 
 
 Now let's draw the boxplot again.
 
@@ -284,7 +284,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot()
 
 Since we have converted the **Day** column of **df** into factor, the boxplot successfully plots each day in the correct order.
 
-### A boxplot with individual data {-}
+### A boxplot with individual data 
 
 Sometimes, it is preferable to plot individual data on top of the boxplot. There are many ways to do this. Here is a simple solution by using `geom_jitter()`. For more information, type `?geom_jitter`.
 
@@ -338,7 +338,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   scale_color_manual(values = sm_palette(3))
 ```
 
-### `geom_boxplot()` vs `sm_boxplot()` {-}
+### `geom_boxplot()` vs `sm_boxplot()` 
 
 `geom_boxplot()` does not show individual data. You need to add `geom_jitter()`.
 
@@ -496,7 +496,7 @@ my_boxplot <- ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   scale_fill_manual(values = sm_palette(3))
 ```
 
-### Save boxplot {-}
+### Save boxplot 
 
 We can save the boxplot by using `save_plot()` from the **cowplot** package.
 
@@ -513,7 +513,7 @@ This image file should now be in your **LearnR** folder.
 
 The boxplot represents the distribution quite well but it can still be misleading.Also, it can be visually overwhelming (i.e., too crowded) to some readers. For this reason, researchers have begun favoring the violin plot more.
 
-### Structure of the violin plot {-}
+### Structure of the violin plot 
 
 ```{r, fig.width = 5*6/4.2, echo = F, warning=F}
 set.seed(7)
@@ -539,7 +539,7 @@ plot_grid(p_points, p_violin, rel_widths = c(.65, 1), nrow = 1)
 - The lower and upper ends of the violin plot are thinner because there are less points.
 - Let's draw a violin plot in R.
 
-### Violin plot with ggplot2 {-}
+### Violin plot with ggplot2 
 
 Let's draw the violin plot. Specify the x-axis to **Day** and the y-axis to **Value** using data frame **df**.
 
@@ -549,7 +549,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_violin()
 
 Notice that since we have already converted the **Day** column of df into **factor**, the violin plot's x-axis is in the correct order. Also, notice that we can just replace `geom_boxplot()` with `geom_violin()`.
 
-### Violin plot with individual points {-}
+### Violin plot with individual points 
 
 Let's add individual points to the violin plot by using `geom_jitter()`. 
 - Set `width` of the spread to `0.15`.
@@ -582,7 +582,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   ggtitle('Visual improvement after treatment')
 ```
 
-### geom_violin() vs sm_violin() {-}
+### geom_violin() vs sm_violin() 
 
 - `geom_violin()` does not show individual data. You need to add geom_jitter().
 - `sm_violin()` shows both a violin plot and individual data.
@@ -660,7 +660,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 ```
 
 
-### Save your violin plot {-}
+### Save your violin plot 
 
 Pick your favorite violin plot and store it in a variable called `my_violin` using `<-`.
 
