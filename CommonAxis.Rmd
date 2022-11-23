@@ -219,7 +219,7 @@ install.packages('grid')
 
 - Then load all these packages below. 
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 library(tidyverse)
 library(cowplot)
 library(smplot2)
