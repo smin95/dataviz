@@ -194,14 +194,14 @@ The old website (on **smplot**) can be accessed using this link (https://smin95.
 
 ## Major updates {-}
 
-**smplot2** has been developed from **smplot**. The updates are too big and drastic to keep everything in the original **smplot**.
+2022-11-26: **smplot2** has been debugged, notably `sm_violin()`, `sm_statCorr()` and `sm_corr_theme()`. Please update *smplot2* if you are a user.
 
 ```{r, eval = FALSE}
 install.packages("devtools")
 devtools::install_github('smin95/smplot2', force = TRUE)
 ```
 
-Also, if you are capable of adapting to some changes made to **smplot2**, **please delete smplot** and then use **smplot2**. More information is on Chapters 11 and 12.
+Also, for those who have been a *smplot* user, if you are capable of adapting to some changes made to **smplot2**, **please delete smplot** and then use **smplot2**. More information about updates is on Chapters 11 and 12.
 
 ```{r, eval = FALSE}
 remove.packages("smplot")
