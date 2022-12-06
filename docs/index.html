@@ -140,7 +140,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="index.html#index">Welcome!<span></span></a>
 <ul>
 <li><a href="index.html#major-updates">Major updates<span></span></a></li>
-<li><a href="index.html#ggplot2-version">ggplot2 version<span></span></a></li>
 <li><a href="index.html#issues-and-contact">Issues and contact<span></span></a></li>
 <li><a href="index.html#license">License<span></span></a></li>
 <li><a href="index.html#about-the-author">About the author<span></span></a></li>
@@ -416,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Data Analysis and Visualization in R Using smplot2</h1>
 <p class="author"><em>Seung Hyun Min</em></p>
-<p class="date"><em>Last Updated: 2022-11-26</em></p>
+<p class="date"><em>Last Updated: 2022-12-06</em></p>
 </div>
 <div id="index" class="section level1 unnumbered hasAnchor">
 <h1>Welcome!<a href="index.html#index" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -426,19 +425,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="major-updates" class="section level2 unnumbered hasAnchor">
 <h2>Major updates<a href="index.html#major-updates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>2022-11-26: <strong>smplot2</strong> has been debugged, notably <code>sm_violin()</code>, <code>sm_statCorr()</code> and <code>sm_corr_theme()</code>. Please update <em>smplot2</em> if you are a user.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot2&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&#39;tidyverse&#39;</span>,<span class="st">&#39;devtools&#39;</span>,<span class="st">&#39;gghalves&#39;</span>))</span>
+<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;smin95/smplot2&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Also, for those who have been a <em>smplot</em> user, if you are capable of adapting to some changes made to <strong>smplot2</strong>, <strong>please delete smplot</strong> and then use <strong>smplot2</strong>. More information about updates is on Chapters 11 and 12.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="st">&quot;smplot&quot;</span>)</span></code></pre></div>
-</div>
-<div id="ggplot2-version" class="section level2 unnumbered hasAnchor">
-<h2>ggplot2 version<a href="index.html#ggplot2-version" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>It turns out that the most recent version of ggplot2 (3.4.0) has some issues with <code>sm_raincloud()</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">packageVersion</span>(<span class="st">&#39;ggplot2&#39;</span>)</span></code></pre></div>
-<pre><code>## [1] &#39;3.4.0&#39;</code></pre>
-<p>If your package version is <code>3.4.0</code>, please download the version <code>3.3.6</code> of ggplot2.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="st">&#39;http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_3.3.6.tar.gz&#39;</span></span>
-<span id="cb5-2"><a href="index.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(g, <span class="at">repos=</span><span class="cn">NULL</span>, <span class="at">type=</span><span class="st">&quot;source&quot;</span>)</span></code></pre></div>
 </div>
 <div id="issues-and-contact" class="section level2 unnumbered hasAnchor">
 <h2>Issues and contact<a href="index.html#issues-and-contact" class="anchor-section" aria-label="Anchor link to header"></a></h2>

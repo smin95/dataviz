@@ -932,14 +932,18 @@ ggplot(df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
   scale_color_manual(values = sm_color('viridian'))
 ```
 
-It is a mangled mess because they all have the same color `viridian`. We can make the shadow more transparent.
+It is a mangled mess because they all have the same color `viridian`. We can make the shadow more transparent (`alpha = 0.2`).
 
 ```{r, fig.width = 3.5, fig.height = 3.5,warning = F}
 ggplot(df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
   sm_pointplot(group = Subject,
-               avgPoint.params = list(size=2.5),
-               line.params = list(alpha = 0.3),
-               point.params = list(alpha = 0.3),
+               avgPoint.params = list(size=3,fill = sm_color('viridian'),
+                                      shape = 21,
+                                      color = 'white'),
+               avgLine.params = list(size = 1.3, alpha = 0.65),
+               err.params = list(size = 1.3, alpha = 0.65),
+               line.params = list(alpha = 0.2),
+               point.params = list(alpha = 0.2),
                show_shadow = T)  +
   scale_color_manual(values = sm_color('viridian'))
 ```

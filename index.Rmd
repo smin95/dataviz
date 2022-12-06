@@ -197,7 +197,8 @@ The old website (on **smplot**) can be accessed using this link (https://smin95.
 2022-11-26: **smplot2** has been debugged, notably `sm_violin()`, `sm_statCorr()` and `sm_corr_theme()`. Please update *smplot2* if you are a user.
 
 ```{r, eval = FALSE}
-install.packages("devtools")
+install.packages(c('tidyverse','devtools','gghalves'))
+
 devtools::install_github('smin95/smplot2', force = TRUE)
 ```
 
@@ -205,22 +206,6 @@ Also, for those who have been a *smplot* user, if you are capable of adapting to
 
 ```{r, eval = FALSE}
 remove.packages("smplot")
-```
-
-## ggplot2 version {-}
-
-It turns out that the most recent version of ggplot2 (3.4.0) has some issues with `sm_raincloud()`. 
-
-```{r}
-packageVersion('ggplot2')
-```
-
-If your package version is `3.4.0`, please download the version `3.3.6` of ggplot2.
-
-```{r, eval = FALSE}
-g <- 'http://cran.r-project.org/src/contrib/Archive/ggplot2/ggplot2_3.3.6.tar.gz'
-install.packages(g, repos=NULL, type="source")
-
 ```
 
 ## Issues and contact {-}
