@@ -10,17 +10,21 @@ language:
 rmd_files: [
   'updates.Rmd',
   'index.Rmd',
+  # part 1
   'basics.Rmd',
   'corr.Rmd',
   'violinBox.Rmd',
   'barSlopePoint.Rmd',
   'forestRaincloud.Rmd',
+  # part 2
   'CommonAxis.Rmd',
   'AreaUC.Rmd',
   'Slope.Rmd',
   'statistics.Rmd',
+  # part 3
   'smplot2a.Rmd',
   'smplot2b.Rmd',
+  # part 4
   'Csf1.Rmd',
   'Csf2.Rmd',
   'Csf3.Rmd'
