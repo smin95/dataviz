@@ -5,7 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Calculating Area under a Curve 
+# Calculating Area under a Curve  
 
 In this chapter, we will continue to use data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
 
