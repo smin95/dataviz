@@ -486,23 +486,23 @@ It appears that there is a statistically significant effect of `Time`, F(5, 270)
 An interaction effect between A and B exists when the effect of factor A (ex. `Day`) is different at different levels of factor B (ex. `Time`). Let's understand how the effect of interaction could affect the data.
 
 ```{r, fig.width = 3.5, fig.height = 3.5, message = F, warning = F, echo = F}
-df <- read_csv('https://www.smin95.com/min2019b.csv') 
+dff <- read_csv('https://www.smin95.com/min2019b.csv') 
 # filter data from Days 2-4. | means OR.
-df1 <- df %>% filter(Day == 2 | Day == 3 | Day == 4) %>% group_by(Day, Time) %>% 
+dff1 <- dff %>% dplyr::filter(Day == 2 | Day == 3 | Day == 4) %>% group_by(Day, Time) %>% 
   summarise(avg = mean(Cbratio), se = sm_stdErr(Cbratio)) 
 # mean and standard error computed for each day and time, both of which have been grouped.
 
-df1$Time <- as.numeric(df1$Time)
-df1$Day <- as.factor(df1$Day) # Day has to be factored here because they will be labelled as different colors. Factor means categorical variables. 
+dff1$Time <- as.numeric(dff1$Time)
+dff1$Day <- as.factor(dff1$Day) # Day has to be factored here because they will be labelled as different colors. Factor means categorical variables. 
 
 colors <- c("#55A868", "#C44E52", "#8172B2")
 
-df1 %>% ggplot(aes(x = Time, y = avg, color = Day)) +
+dff1 %>% ggplot(aes(x = Time, y = avg, color = Day)) +
   geom_point(size = 4.5) +
   geom_errorbar(aes(ymin = avg - se, ymax = avg + se), size = .5, width = 1) +
   geom_smooth(method = 'lm', se = F, size = 0.9) + 
   # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
+  scale_x_continuous(breaks = unique(dff1$Time), 
                    labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid(legends = TRUE) +
   scale_color_manual(values = colors,
