@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-rank Test</a></li>
 <li class="chapter" data-level="10.4" data-path="basic-statistics.html"><a href="basic-statistics.html#effect-size"><i class="fa fa-check"></i><b>10.4</b> Effect Size</a></li>
-<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#power-analysis"><i class="fa fa-check"></i><b>10.5</b> Power Analysis</a></li>
+<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.5</b> Post-hoc Power Analysis</a></li>
 <li class="chapter" data-level="10.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>10.6</b> One-way ANOVA</a>
 <ul>
 <li class="chapter" data-level="10.6.1" data-path="basic-statistics.html"><a href="basic-statistics.html#check-for-outliers"><i class="fa fa-check"></i><b>10.6.1</b> Check for Outliers</a></li>
@@ -320,7 +320,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.7.3" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-two-way-anova"><i class="fa fa-check"></i><b>10.7.3</b> Computing Two-way ANOVA</a></li>
 <li class="chapter" data-level="10.7.4" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-test"><i class="fa fa-check"></i><b>10.7.4</b> Post-hoc Test</a></li>
 </ul></li>
-<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.8</b> Extra Resources</a></li>
+<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#friedman-test"><i class="fa fa-check"></i><b>10.8</b> Friedman Test</a>
+<ul>
+<li class="chapter" data-level="10.8.1" data-path="basic-statistics.html"><a href="basic-statistics.html#performing-friedman-test"><i class="fa fa-check"></i><b>10.8.1</b> Performing Friedman Test</a></li>
+<li class="chapter" data-level="10.8.2" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-analysis"><i class="fa fa-check"></i><b>10.8.2</b> Post-hoc Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.9</b> Extra Resources</a></li>
 </ul></li>
 <li class="part"><span><b>III Manual for smplot2</b></span></li>
 <li class="chapter" data-level="11" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><i class="fa fa-check"></i><b>11</b> Themes, Colors, Correlations, Boxplots, Violins and Bars (Part 1)</a>
@@ -523,7 +528,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="calculating-linear-slopes.html#cb373-1" aria-hidden="true" tabindex="-1"></a>A3_second <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> logSF, <span class="at">y =</span> absBP)) <span class="sc">+</span></span>
 <span id="cb373-2"><a href="calculating-linear-slopes.html#cb373-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb373-3"><a href="calculating-linear-slopes.html#cb373-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.4582</span>, <span class="at">intercept =</span> <span class="fl">0.3046</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-312-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-311-1.png" width="336" /></p>
 <p>Instead of writing the slope and intercept manually, we can subset these values using <code>$</code>.</p>
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="calculating-linear-slopes.html#cb374-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>coefficients</span></code></pre></div>
 <pre><code>##     (Intercept) A3_second$logSF 
@@ -548,7 +553,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 <span id="cb380-10"><a href="calculating-linear-slopes.html#cb380-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&#39;Slope =&#39;</span>,<span class="fu">round</span>(res<span class="sc">$</span>coefficients[[<span class="dv">2</span>]],<span class="dv">2</span>))) <span class="sc">+</span></span>
 <span id="cb380-11"><a href="calculating-linear-slopes.html#cb380-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="fl">0.9</span>, <span class="at">size =</span> <span class="fl">3.5</span>,</span>
 <span id="cb380-12"><a href="calculating-linear-slopes.html#cb380-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&#39;Intercept =&#39;</span>, <span class="fu">round</span>(res<span class="sc">$</span>coefficients[[<span class="dv">1</span>]],<span class="dv">2</span>)))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-316-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-315-1.png" width="336" /></p>
 <p>In summary, you can compute the slope of a linear function between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> and using <code>lm()</code>, where you use <code>~</code> to describe the relationship. You also need to use <code>$</code> to subset the slopes directly.</p>
 </div>
 <div id="calculating-slopes-of-all-subjects-groups-and-conditions" class="section level2 hasAnchor" number="9.2">
@@ -656,13 +661,13 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 <span id="cb397-4"><a href="calculating-linear-slopes.html#cb397-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">alpha =</span> <span class="fl">0.6</span>)) <span class="sc">+</span> </span>
 <span id="cb397-5"><a href="calculating-linear-slopes.html#cb397-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb397-6"><a href="calculating-linear-slopes.html#cb397-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Binocular imbalance&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-323-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-322-1.png" width="336" /></p>
 <p>Here is a bar graph showing <code>slope_df</code>’s data for <code>One</code> condition only. This figure is similar to Figure 3B in the paper (Mao et al., 2020).</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="calculating-linear-slopes.html#cb398-1" aria-hidden="true" tabindex="-1"></a>slope_df_one <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Slope, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
 <span id="cb398-2"><a href="calculating-linear-slopes.html#cb398-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
 <span id="cb398-3"><a href="calculating-linear-slopes.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
 <span id="cb398-4"><a href="calculating-linear-slopes.html#cb398-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Binocular imbalance&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-324-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-323-1.png" width="336" /></p>
 
 </div>
 </div>

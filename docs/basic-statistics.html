@@ -303,7 +303,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-rank Test</a></li>
 <li class="chapter" data-level="10.4" data-path="basic-statistics.html"><a href="basic-statistics.html#effect-size"><i class="fa fa-check"></i><b>10.4</b> Effect Size</a></li>
-<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#power-analysis"><i class="fa fa-check"></i><b>10.5</b> Power Analysis</a></li>
+<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.5</b> Post-hoc Power Analysis</a></li>
 <li class="chapter" data-level="10.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>10.6</b> One-way ANOVA</a>
 <ul>
 <li class="chapter" data-level="10.6.1" data-path="basic-statistics.html"><a href="basic-statistics.html#check-for-outliers"><i class="fa fa-check"></i><b>10.6.1</b> Check for Outliers</a></li>
@@ -320,7 +320,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.7.3" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-two-way-anova"><i class="fa fa-check"></i><b>10.7.3</b> Computing Two-way ANOVA</a></li>
 <li class="chapter" data-level="10.7.4" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-test"><i class="fa fa-check"></i><b>10.7.4</b> Post-hoc Test</a></li>
 </ul></li>
-<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.8</b> Extra Resources</a></li>
+<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#friedman-test"><i class="fa fa-check"></i><b>10.8</b> Friedman Test</a>
+<ul>
+<li class="chapter" data-level="10.8.1" data-path="basic-statistics.html"><a href="basic-statistics.html#performing-friedman-test"><i class="fa fa-check"></i><b>10.8.1</b> Performing Friedman Test</a></li>
+<li class="chapter" data-level="10.8.2" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-analysis"><i class="fa fa-check"></i><b>10.8.2</b> Post-hoc Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.9</b> Extra Resources</a></li>
 </ul></li>
 <li class="part"><span><b>III Manual for smplot2</b></span></li>
 <li class="chapter" data-level="11" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><i class="fa fa-check"></i><b>11</b> Themes, Colors, Correlations, Boxplots, Violins and Bars (Part 1)</a>
@@ -434,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One sample t-test compares the mean of a sample to a hypothesized mean (often 0).</p>
 <p>For example, here is Figure 3E from the paper. What do the *** mean? How about ** and *? Let’s take a look.</p>
 <pre><code>## [1] &quot;AUC = Cbratio * Time&quot;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-326-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-325-1.png" width="336" /></p>
 <p>For instance, to determine if the area under curve (changes in contrast balance ratio over time) after patching is significant, so much so that one can confidently say that it is different from 0, we can perform a one-sample t-test using <code>t.test()</code>.</p>
 <p>Let’s use data from the sampe paper. We import the data from online using <code>read_csv()</code> and store them into a variable (in this case, <code>df</code>). Then, we compute the area under a curve using <code>sm_auc_list()</code> and store the values in the variable <code>auc_df</code>.</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="basic-statistics.html#cb402-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
@@ -524,10 +529,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb414-4"><a href="basic-statistics.html#cb414-4" aria-hidden="true" tabindex="-1"></a>auc_df_day15 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> Day <span class="sc">==</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>Now, let’s plot a bar graph to display the AUC from Days 1 and 5 using <code>sm_bar()</code>.</p>
 <div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="basic-statistics.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> auc_df_day15, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
-<span id="cb415-2"><a href="basic-statistics.html#cb415-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb415-2"><a href="basic-statistics.html#cb415-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
 <span id="cb415-3"><a href="basic-statistics.html#cb415-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb415-4"><a href="basic-statistics.html#cb415-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;AUC in Days 1 and 5&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-333-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-332-1.png" width="355.2" /></p>
 <p>There seems to be a difference in the AUC <code>AUC_Cbratio</code> between Days 1 and 5. The error bars (in this case, standard error) are barely overlapping. If the error bars are clearly overlapping, there is often no significant difference (p &lt; 0.05) between the two data sets. If there is no overlap, it is highly likely that a statistical test will show a significant difference (p &lt; 0.05). Let’s take a look using <strong>t-test</strong> using the function <code>t.test()</code>.</p>
 <p><code>t.test()</code> allows us to compare whether data between two different groups are significantly different. Here, <code>$</code> is used to <strong>extract</strong> data from a specific column within a data frame. You could type <code>df_0min$</code>, press the <strong>Tab</strong> button from the keyboard, and see what happens. Since we will only compare values in the <code>AUC_Cbratio</code> column, let’s select for the <code>AUC_Cbratio</code> column and use these values in our <code>t.test()</code>.</p>
 <div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="basic-statistics.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day5<span class="sc">$</span>AUC_Cbratio, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
@@ -547,7 +552,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="shapiro-wilk-test-to-test-for-normality-of-data" class="section level3 hasAnchor" number="10.2.1">
 <h3><span class="header-section-number">10.2.1</span> Shapiro-Wilk Test to test for Normality of Data<a href="basic-statistics.html#shapiro-wilk-test-to-test-for-normality-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>T-test can only be used when the data assume normality. In other word, the data that are to be analyzed using <code>t.test()</code> must have a normal distribution (shown below).</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-335-1.png" width="355.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-334-1.png" width="355.2" /></p>
 <p>Whether the data have a normal distribution can be checked using a Shaprio-Wilk test (<code>shapiro.test()</code>). If p &gt; 0.05, then the data have a normal distribution, and therefore, t-test can be used to analyze the data. If p &lt; 0.05, the data are not normally distributed, and t-test cannot be used.</p>
 <p>For example, let’s check whether the AUC data from Day 1 have a normal distribution.</p>
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="basic-statistics.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
@@ -712,8 +717,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                 9.38523</code></pre>
 <p>Now, the p-value is <strong>much less than 0.001</strong>, rather than staying at 0.65. Therefore, we can now observe that p-value is heavily affected by the sample size, whereas the effect size (Cohen’s d) does not. In short, as the sample size increases, the p-value decreases even if the effect size stays the same.</p>
 </div>
-<div id="power-analysis" class="section level2 hasAnchor" number="10.5">
-<h2><span class="header-section-number">10.5</span> Power Analysis<a href="basic-statistics.html#power-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="post-hoc-power-analysis" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Post-hoc Power Analysis<a href="basic-statistics.html#post-hoc-power-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We got p &gt; 0.05 with our small sample size (n = 10). As we previously mentioned, we know that p-value gets smaller with an increasing sample size. <strong>Therefore, given the mean difference between two sample groups (i.e., same effect size), the p-value can change depending on the sample size</strong>. So, it is important to report both the p-value and the effect size.</p>
 <p>So, one might be concerned with what would be the minimal sample size to detect a statistically significant difference between the two groups (Days 1 and 5). This can be achieved using <strong>power analysis</strong>. Note that p can always be less than 0.05 as long as the sample size meets the requirement (i.e., very large).</p>
 <p>If the effect size was large but the data yielded p &gt; 0.05, then we could predict that the minimal sample size from power analysis would be not large. If the effect size was small and the data yielded p &gt; 0.05, as it was for my data, the minimal sample size to yield p &lt; 0.05 would need to be very large.</p>
@@ -732,6 +737,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## NOTE: n is number of *pairs*</code></pre>
 <p>According to our power analysis (significant level = 0.05, power = 80%), we would need about <strong>143 subjects</strong> per group (<code>n = 143.0411</code>) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in AUCs between Days 1 and 2. In other words, the difference between Days 1 and 2 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.</p>
+<p>Although using post-hoc power analysis has been under dispute, since the technique is straightforward, it has been discussed here. Power analysis is often used <em>prior</em> to a study, not <em>after</em>. A more preferred method is to compute the <em>Bayes factor</em> but this is not discussed here (yet).</p>
 </div>
 <div id="one-way-anova" class="section level2 hasAnchor" number="10.6">
 <h2><span class="header-section-number">10.6</span> One-way ANOVA<a href="basic-statistics.html#one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -768,7 +774,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb444-3"><a href="basic-statistics.html#cb444-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">2.2</span>)) <span class="sc">+</span> </span>
 <span id="cb444-4"><a href="basic-statistics.html#cb444-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
 <span id="cb444-5"><a href="basic-statistics.html#cb444-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-350-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-349-1.png" width="336" /></p>
 <p>We see that there are two orange points that reside outside the whiskers of the boxplot. Points that are outside the whiskers represent outliers. Therefore, we confirm visually that there are two outliers on Day 4, and no outliers on any other days.</p>
 </div>
 <div id="checking-for-normality-of-data" class="section level3 hasAnchor" number="10.6.2">
@@ -929,7 +935,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>It appears that there is a statistically significant effect of <code>Time</code>, F(5, 270) = 7.83, p &lt; 0.001. But the effect of <code>Day</code> seems to be not significant, F(4,270) = 0.49, p = 0.44. Also the effect of interaction between <code>Day</code> and <code>Time</code> is not significant, F(20,270) = 0.97, p &gt; 0.05.</p>
 <p>An interaction effect between A and B exists when the effect of factor A (ex. <code>Day</code>) is different at different levels of factor B (ex. <code>Time</code>). Let’s understand how the effect of interaction could affect the data.</p>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-364-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-363-1.png" width="336" /></p>
 <p>We see that best-fit regression slopes of the green, red and purple lines are almost identical. This is because the factor <code>Time</code> affects <code>Cbratio</code> at different levels of the factor <code>Day</code> (i.e., different days). This suggests that the slope of decay (decrease in changes in Contrast balance ratio) over time is similar across days. In other words, the interaction effect between <code>Time</code> and <code>Day</code> is not significant (p &lt; 0.05).</p>
 <p>Conversely, if <code>Time</code> affects <code>Cbratio</code> differently across different days, we would see that the best-fit regression slopes would be different among days.</p>
 </div>
@@ -1017,9 +1023,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 48-24 -0.381112 -1.1714689  0.40924492 0.7366165</code></pre>
 </div>
 </div>
-<div id="extra-resources" class="section level2 hasAnchor" number="10.8">
-<h2><span class="header-section-number">10.8</span> Extra Resources<a href="basic-statistics.html#extra-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>For detailed information about ANOVA in R, please check out this link: <a href="https://www.datanovia.com/en/lessons/anova-in-r/" class="uri">https://www.datanovia.com/en/lessons/anova-in-r/</a>.</p>
+<div id="friedman-test" class="section level2 hasAnchor" number="10.8">
+<h2><span class="header-section-number">10.8</span> Friedman Test<a href="basic-statistics.html#friedman-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="performing-friedman-test" class="section level3 hasAnchor" number="10.8.1">
+<h3><span class="header-section-number">10.8.1</span> Performing Friedman Test<a href="basic-statistics.html#performing-friedman-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Friedman test is essentially a non-parametric version of one-way repeated measures ANOVA. This means that if a data set/sample has p &lt; 0.05 from a Shapiro-Wilk test, then you should run this test rather than the ANOVA.</p>
+<p>Let’s assume that the <code>df</code> has a non-normal distribution and requires the use of a non-parametric test. Since <code>df</code> has two within-subject factors (<code>Time</code> and <code>Day</code>), <code>df</code> cannot be used in the Friedman test. So, let’s create a new data frame <code>day3</code> that contains data from <code>Day 3</code>, which only contains one factor <code>Time</code>.</p>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="basic-statistics.html#cb476-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="st">&#39;3&#39;</span>)</span>
+<span id="cb476-2"><a href="basic-statistics.html#cb476-2" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> <span class="fu">friedman_test</span>(Cbratio <span class="sc">~</span> Time <span class="sc">|</span> Subject)</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 6
+##   .y.         n statistic    df      p method       
+## * &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;        
+## 1 Cbratio    10      14.7     5 0.0115 Friedman test</code></pre>
+<p>It seems that the effect of <code>Time</code> is significant (p = 0.012). So, we should run a multiple pairwise comparisons as post-hoc analysis with p-value correction.</p>
+</div>
+<div id="post-hoc-analysis" class="section level3 hasAnchor" number="10.8.2">
+<h3><span class="header-section-number">10.8.2</span> Post-hoc Analysis<a href="basic-statistics.html#post-hoc-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In ANOVA, we used pairwise t-tests as post-hoc analysis with p-value correction. In Friedman test, we will use the wilcoxon test with the function <code>wilcox_test()</code>.</p>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="basic-statistics.html#cb478-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> </span>
+<span id="cb478-2"><a href="basic-statistics.html#cb478-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox_test</span>(Cbratio <span class="sc">~</span> Time, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 15 x 9
+##    .y.     group1 group2    n1    n2 statistic     p p.adj p.adj.signif
+##  * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+##  1 Cbratio 0      3         10    10        33 0.625 1     ns          
+##  2 Cbratio 0      6         10    10        41 0.193 1     ns          
+##  3 Cbratio 0      12        10    10        46 0.064 0.968 ns          
+##  4 Cbratio 0      24        10    10        53 0.006 0.088 ns          
+##  5 Cbratio 0      48        10    10        53 0.006 0.088 ns          
+##  6 Cbratio 3      6         10    10        42 0.16  1     ns          
+##  7 Cbratio 3      12        10    10        43 0.131 1     ns          
+##  8 Cbratio 3      24        10    10        45 0.084 1     ns          
+##  9 Cbratio 3      48        10    10        52 0.01  0.147 ns          
+## 10 Cbratio 6      12        10    10        34 0.557 1     ns          
+## 11 Cbratio 6      24        10    10        38 0.322 1     ns          
+## 12 Cbratio 6      48        10    10        46 0.064 0.968 ns          
+## 13 Cbratio 12     24        10    10        26 0.922 1     ns          
+## 14 Cbratio 12     48        10    10        46 0.064 0.968 ns          
+## 15 Cbratio 24     48        10    10        45 0.084 1     ns</code></pre>
+<p>The argument <code>p.adjust.method</code> specifies the method that is used to correct for the p-value to avoid false positives.</p>
+<p>We see that the post-hoc analysis does not yield any pair that has a statistical significance. If this is the case, reporting the results of the Friedman test can be sufficient.</p>
+</div>
+</div>
+<div id="extra-resources" class="section level2 hasAnchor" number="10.9">
+<h2><span class="header-section-number">10.9</span> Extra Resources<a href="basic-statistics.html#extra-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter, mixed two-way and three-way ANOVAs are not discussed.</p>
+<p>For detailed information about ANOVAs in R, please check out this link: <a href="https://www.datanovia.com/en/lessons/anova-in-r/" class="uri">https://www.datanovia.com/en/lessons/anova-in-r/</a>.</p>
 <p>To learn more about performing statistical tests in R, please check out the book entitled <strong>YaRrr! The Pirate’s Guide to R</strong> by Nathaniel Phillips (<a href="https://bookdown.org/ndphillips/YaRrr/" class="uri">https://bookdown.org/ndphillips/YaRrr/</a>).</p>
 
 </div>

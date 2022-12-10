@@ -135,7 +135,7 @@ Now, let's plot a bar graph to display the AUC from Days 1 and 5 using `sm_bar()
 
 ```{r, fig.width = 3.7, fig.height=3.7, warning = F}
 ggplot(data = auc_df_day15, mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
-  sm_bar(shape = 21) +
+  sm_bar() +
   scale_color_manual(values = sm_color('blue','orange')) +
   ggtitle('AUC in Days 1 and 5')
 ```
@@ -274,7 +274,7 @@ t.test(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
 
 Now, the p-value is **much less than 0.001**, rather than staying at 0.65. Therefore, we can now observe that p-value is heavily affected by the sample size, whereas the effect size (Cohen's d) does not. In short, as the sample size increases, the p-value decreases even if the effect size stays the same.
 
-## Power Analysis
+## Post-hoc Power Analysis
 
 We got p > 0.05 with our small sample size (n = 10). As we previously mentioned, we know that p-value gets smaller with an increasing sample size. **Therefore, given the mean difference between two sample groups (i.e., same effect size), the p-value can change depending on the sample size**. So, it is important to report both the p-value and the effect size.
 
@@ -293,6 +293,7 @@ sm_power(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
 
 According to our power analysis (significant level = 0.05, power = 80%), we would need about **143 subjects** per group (`n = 143.0411`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in AUCs between Days 1 and 2. In other words, the difference between Days 1 and 2 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
 
+Although using post-hoc power analysis has been under dispute, since the technique is straightforward, it has been discussed here. Power analysis is often used *prior* to a study, not *after*. A more preferred method is to compute the *Bayes factor* but this is not discussed here (yet).
 
 ## One-way ANOVA
 
@@ -535,7 +536,7 @@ TukeyHSD(res, which = 'Time')
 If there is a significant interaction effect between `Day` and `Time`, we can examine how the effect of `Time` varies across different days.
 
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 df %>% group_by(Day) %>%
   anova_test(Cbratio ~ Time, wid = Subject, within = Day) %>%
   get_anova_table() %>%
@@ -563,8 +564,38 @@ You may realize that this result from the above is strange. Indeed, it is inappr
 TukeyHSD(res, which = 'Time')
 ```
 
+## Friedman Test 
+
+### Performing Friedman Test
+
+Friedman test is essentially a non-parametric version of one-way repeated measures ANOVA. This means that if a data set/sample has p < 0.05 from a Shapiro-Wilk test, then you should run this test rather than the ANOVA.
+
+Let's assume that the `df` has a non-normal distribution and requires the use of a non-parametric test. Since `df` has two within-subject factors (`Time` and `Day`), `df` cannot be used in the Friedman test. So, let's create a new data frame `day3` that contains data from `Day 3`, which only contains one factor `Time`.
+
+```{r}
+day3 <- df %>% filter(Day == '3')
+day3 %>% friedman_test(Cbratio ~ Time | Subject)
+```
+
+It seems that the effect of `Time` is significant (p = 0.012). So, we should run a multiple pairwise comparisons as post-hoc analysis with p-value correction.
+
+### Post-hoc Analysis
+
+In ANOVA, we used pairwise t-tests as post-hoc analysis with p-value correction. In Friedman test, we will use the wilcoxon test with the function `wilcox_test()`.
+
+```{r}
+day3 %>% 
+  wilcox_test(Cbratio ~ Time, paired = TRUE, p.adjust.method = 'bonferroni')
+```
+
+The argument `p.adjust.method` specifies the method that is used to correct for the p-value to avoid false positives.
+
+We see that the post-hoc analysis does not yield any pair that has a statistical significance. If this is the case, reporting the results of the Friedman test can be sufficient.
+
 ## Extra Resources
 
-For detailed information about ANOVA in R, please check out this link: https://www.datanovia.com/en/lessons/anova-in-r/. 
+In this chapter, mixed two-way and three-way ANOVAs are not discussed. 
+
+For detailed information about ANOVAs in R, please check out this link: https://www.datanovia.com/en/lessons/anova-in-r/. 
 
 To learn more about performing statistical tests in R, please check out the book entitled **YaRrr! The Pirate's Guide to R** by Nathaniel Phillips (https://bookdown.org/ndphillips/YaRrr/).
