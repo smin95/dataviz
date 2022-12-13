@@ -66,7 +66,7 @@ df_shade1 %>% ggplot(aes(x=x, y=y_mean)) +
 
 For instance, to determine if the area under curve (changes in contrast balance ratio over time) after patching is significant, so much so that one can confidently say that it is different from 0, we can perform a one-sample t-test using `t.test()`.
 
-Let's use data from the sampe paper. We import the data from online using `read_csv()` and store them into a variable (in this case, `df`). Then, we compute the area under a curve using `sm_auc_list()` and store the values in the variable `auc_df`.
+Let's use data from the same paper. We import the data from online using `read_csv()` and store them into a variable (in this case, `df`). Then, we compute the area under a curve using `sm_auc_list()` and store the values in the variable `auc_df`.
 
 
 ```{r, warning = FALSE, message = FALSE}
@@ -107,7 +107,7 @@ auc_df_day2 <- auc_df %>% filter(Day == 2)
 t.test(auc_df_day2$AUC_Cbratio, mu = 0)
 ```
 
-The p value is 0.0065, which is less than 0.01 but larger than 0.001. In this case, the statistical significane is denoted as \*\*. Likewise, Figure 3E shows the AUC of Day 2 with \*\*.
+The p value is 0.0065, which is less than 0.01 but larger than 0.001. In this case, the statistical significance is denoted as \*\*. Likewise, Figure 3E shows the AUC of Day 2 with \*\*.
 
 ```{r}
 auc_df_day4 <- auc_df %>% filter(Day == 4)
@@ -167,7 +167,7 @@ ggplot(data = data.frame(x = c(-40,40)), aes(x)) +
   ggtitle('Normal distribution') 
 ```
 
-Whether the data have a normal distribution can be checked using a Shaprio-Wilk test (`shapiro.test()`). If p > 0.05, then the data have a normal distribution, and therefore, t-test can be used to analyze the data. If p < 0.05, the data are not normally distributed, and t-test cannot be used.
+Whether the data have a normal distribution can be checked using a Shapiro-Wilk test (`shapiro.test()`). If p > 0.05, then the data have a normal distribution, and therefore, t-test can be used to analyze the data. If p < 0.05, the data are not normally distributed, and t-test cannot be used.
 
 For example, let's check whether the AUC data from Day 1 have a normal distribution. 
 
@@ -189,7 +189,7 @@ T-test is a type of **parametric** statistical test, which is used to analyze da
 
 Wilcoxon Signed-rank Test is a **non-parametric** statistical test that is used instead of a t-test when the data are **not normally distributed**.
 
-If Shaprio-Wilk test yields p < 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.
+If Shapiro-Wilk test yields p < 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.
 
 ```{r}
 # one-sample Wilcoxon Signed-rank Test

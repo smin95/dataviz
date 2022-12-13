@@ -7,7 +7,7 @@ editor_options:
 
 # Raincloud and Forest Plots
 
-These packages are required to be loaded in this chapter, where we will focus on drawing and understanding the forest plot and the raincloud plot. The usage of the raincloud plot is somewhat controversial, and we will discuss it here.
+Please load these three packages to go through the chapter.
 
 ```{r, warning = FALSE, message = FALSE}
 library(tidyverse) 
@@ -19,9 +19,9 @@ library(smplot2)
 
 A raincloud plot shows the raw data, probability density and summary statistics such as the median, quantiles etc by presenting individual data, a violin plot and a boxplot together.
 
-On the surface, these might be an appealing idea to present all these at once to provide maximal amount of information. However, whether this is truly necessary in the field of psychological/neuroscience research has not been entirely resolved. 
+It might be appealing to present all these components simultaneously to ensure that the data are shown transparently. However, whether this is truly necessary in the field of psychological/neuroscience research has not been entirely resolved because showing all at the same time can be visually overwhelming.
 
-Nevertheless, since many people have been captivated by it, I have decided to create a function `sm_raincloud()` with updates from **smplot2** for vast flexibility.
+Nevertheless, I have decided to create a function `sm_raincloud()`. It is flexible and enables users to fine-control the aesthetics of the raincloud plot. I will leave it up to users to decide whether using raincloud is appropriate. Most importantly, this can depend on the type and nature of data set that is used.
 
 Let's generate random data to explore this function.
 
@@ -35,7 +35,7 @@ Group <- rep(c('Group 1', 'Group 2'), each = length(group1))
 df <- cbind(Subject, Data, Group)
 ```
 
-In this dataset, there are two distinct groups.
+In this data set, there are two distinct groups.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 
@@ -45,9 +45,9 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 
 ```
 
-The default of the individual points' `shape` is 21, which is circle with borders, due to **smplot2**. Therefore `fill` parameter has to be specified to change the colors. As for the boxplot and violin, they both have parameters `fill` and `color` because these are shapes with borders. 
+The default of the individual points' `shape` is 21, which is circle with borders. Therefore `fill` parameter has to be specified to change the filling colors. 
 
-After removing the defaults from **smplot2** by writing `xxx.param = list()`, you can paint them as all in the same color by setting `color = 'black'` as generic parameter to control for the aesthetics. In this case, `shape` of the point becomes 16. Therefore `color` affects the filling color. 
+After removing the defaults from **smplot2** by including `xxx.param = list()`, you can set the color of all visual components by setting `color = 'black'` as a generic parameter. Note that the boxplot and violin have both `fill` and `color` parameters. When `color = 'black'` is included as a generic parameter, `shape` of the point becomes 16 because the default of *smplot2* is overridden. Therefore, now that the point has no border, `color` affects the filling color rather than `fill`.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, color = Group)) +
@@ -56,7 +56,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, color = Group)) +
                violin.params = list()) 
 ```
 
-The limitation of this function is that you cannot assign unique to the boxplot for each group. We can test this using the script below.
+The limitation of this function is that you cannot assign unique to the boxplot for each group using `scale_color_manual()`. We can test this using the script below.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 
@@ -68,7 +68,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, color = Group)) +
 
 ```
 
-In this example, the `color` affects the border color of the violin. Boxplot's line color is set as `black` here because it is set so that the box plots always have the same color across groups. 
+In this example, the `color` affects the border color of the violin. However, the boxplot's line color is still black even with `scale_color_manual()`.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 
@@ -82,7 +82,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 
 In this example, the `fill` affects the filling color of the violin but not points. 
 
-In the case of `sm_raincloud()`, there might be no need to change the defaults of **smplot2** as I have realized from users that it is already the most popular choice for aesthetics except for changing colors.
+In most cases, users might not need to manually tweak the defaults of *smplot2*. This is the default appearance with two custom colors `darkred` and `viridian`.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 
@@ -150,7 +150,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 
 ### Separating the components and configuration
 
-`sm_raincloud()` has an interesting parameter that enables users to separate components of the raincloud plot using the argument `sep_level`, which is a short for seperation level and has a range between 0 and 4. 
+`sm_raincloud()` has an interesting parameter `sep_level`. It enables users to separate components of the raincloud plot. It is a reduced word of separation level and has a range between 0 and 4. 
 
 When `sep_level = 0`, all components are overlapped. If `sep_level = 4`, all components are separated. The default of `sm_raincloud()` is set to `sep_level = 2`.
 
@@ -244,7 +244,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 
 ### Raincloud plot with data from multiple groups
 
-`sm_raincloud()` can also raincloud plots for data from multiple groups. Let's load this fake dataset.
+`sm_raincloud()` can also raincloud plots for data from multiple groups. Let's load this fake data set.
 
 ```{r, message = F, warning = F}
 df2 <- read_csv('https://www.smin95.com/amblyopia_random.csv')
