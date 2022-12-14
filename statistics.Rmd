@@ -278,13 +278,13 @@ Now, the p-value is **much less than 0.001**, rather than staying at 0.65. There
 
 We got p > 0.05 with our small sample size (n = 10). As we previously mentioned, we know that p-value gets smaller with an increasing sample size. **Therefore, given the mean difference between two sample groups (i.e., same effect size), the p-value can change depending on the sample size**. So, it is important to report both the p-value and the effect size.
 
-So, one might be concerned with what would be the minimal sample size to detect a statistically significant difference between the two groups (Days 1 and 5). This can be achieved using **power analysis**. Note that p can always be less than 0.05 as long as the sample size meets the requirement (i.e., very large). 
+So, one might be concerned with what would be the minimal sample size to detect a statistically significant difference between the two groups (Days 1 and 5). This can be achieved using **post-hoc power analysis** (post-hoc means *after* the study has been completed). A *prior* power analysis is used to estimate the sample size before one performs the study and collects data. Note that p can always be less than 0.05 as long as the sample size meets the requirement (i.e., very large). 
 
 If the effect size was large but the data yielded p > 0.05, then we could predict that the minimal sample size from power analysis would be not large. If the effect size was small and the data yielded p > 0.05, as it was for my data, the minimal sample size to yield p < 0.05 would need to be very large.
 
 If the minimal sample size from power analysis was not large (hence, large effect size), then one could conclude that I did not collect enough data and incorrectly concluded that there was no significant difference between the two groups. This would be so because if the sample size was larger, I would have gotten p < 0.05. 
 
- **Power analysis**  can be performed using `sm_power()`. The inputs for `sm_power()` are data of two sample groups, just as they were in `t.test()`.
+ **Post-hoc power analysis**  can be performed using `sm_power()`. The inputs for `sm_power()` are data of two sample groups, just as they were in `t.test()`.
 
 ```{r}
 sm_power(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
@@ -293,7 +293,9 @@ sm_power(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
 
 According to our power analysis (significant level = 0.05, power = 80%), we would need about **143 subjects** per group (`n = 143.0411`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in AUCs between Days 1 and 2. In other words, the difference between Days 1 and 2 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
 
-Although using post-hoc power analysis has been under dispute, since the technique is straightforward, it has been discussed here. Power analysis is often used *prior* to a study, not *after*. A more preferred method is to compute the *Bayes factor* but this is not discussed here (yet).
+Although using post-hoc power analysis has been under dispute, since the technique is straightforward, it has been discussed here. Power analysis is often used *prior* to a study, not *after*. A better alternative to post-hoc power analysis that has gained in popularity is to compute *Bayes factor* but this is not discussed here (yet).
+
+*Prior power analysis* can be computed using the *pwr* package's functions, such as `pwr.t.test`. 
 
 ## One-way ANOVA
 

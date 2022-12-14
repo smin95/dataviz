@@ -786,7 +786,7 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 
 ## Raincloud plot - `sm_raincloud()`
 
-To generate a raincloud plot, `sm_raincloud()` can be used.
+`sm_raincloud()` generates the raincloud plot.
 
 - It also has arguments `borders` and `legends` as it uses `sm_hgrid()` automatically.
 
