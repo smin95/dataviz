@@ -266,19 +266,17 @@ Now let's plot a bar graph using `sm_bar()` that compares both the trapezoidal A
 
 ```{r,fig.width = 3.7, fig.height=3.7,warning = F}
 trapz_df %>% ggplot(aes(x = BeforeAfter, y = AUC_Sensitivity,
-                        fill = BeforeAfter)) +
-  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80',
-         point_alpha = .3, bar_width = 0.5) +
-  scale_fill_manual(values = sm_palette(2)) +
+                        color = BeforeAfter)) +
+  sm_bar(point.params = list(alpha=0.3, size=2)) +
+  scale_color_manual(values = sm_palette(2)) +
   scale_y_continuous(limits = c(0,4.5))
 ```
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 aulcsf_df %>% ggplot(aes(x = BeforeAfter, y = AULCSF,
-                        fill = BeforeAfter)) +
-  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80',
-         point_alpha = .3, bar_width = 0.5) +
-  scale_fill_manual(values = sm_palette(2)) +
+                        color = BeforeAfter)) +
+  sm_bar(point.params = list(alpha=0.3, size=2)) +
+  scale_color_manual(values = sm_palette(2)) +
   scale_y_continuous(limits = c(0,4.5)) 
 ```
 

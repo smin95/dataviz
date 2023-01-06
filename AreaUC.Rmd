@@ -228,6 +228,8 @@ sm_auc_all(subjects = 'Subject', conditions = 'Day',
 
 Before using `sm_auc_all()`, you will need to check for a few things. First, check if the x column is numeric, not factor, by using `is.numeric()` function. If it is numeric, proceed with using `sm_auc_all()`. Second, see if the x levels (ex. 0, 3, 6, 12, 24 and 48 etc) are identical for each subject and condition (ex. no 7, 16, 29 minutes for subject 10). 
 
+**Note**: If you have a column for `condition` (as an example) but you only have one identifier for condition (and hence one condition total), you will still need to include it as `sm_auc_all(..., conditions='condition')`. If you do not want to include the `condition` column in `sm_auc_all()`, then you should remove the column from the data frame altogether. This also applies to `sm_slope_all()`.
+
 ```{r}
 # check if the x column is numeric
 is.numeric(df$Time) 
@@ -323,7 +325,7 @@ baseline$Day <- as.factor(baseline$Day)
 
 baseline %>%  ggplot(aes(x = Day, y= Baseline, fill = Day)) +
   sm_bar(points = FALSE,
-         err.params = list(size = 0.9),
+         err.params = list(size = 0.4),
          bar.params = list()) + # remove defaults of bar.params
   scale_fill_manual(values = colors) + 
   ggtitle("Baseline across days") +

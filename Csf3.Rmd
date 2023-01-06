@@ -386,10 +386,9 @@ Notice that we have created a new column entitled `linCutOff`. We will now plot 
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 cut_sf %>% ggplot(aes(x = BeforeAfter, y = linCutOff,
-                        fill = BeforeAfter)) +
-  sm_bar(shape = 21, color = 'white', bar_fill_color = 'gray80',
-         point_alpha = .3, bar_width = 0.5) +
-  scale_fill_manual(values = sm_palette(2)) +
+                        color = BeforeAfter)) +
+  sm_bar(point.params = list(alpha=0.3, size=2)) +
+  scale_color_manual(values = sm_palette(2)) +
   scale_y_continuous(trans = 'log10') +
   ggtitle('Cut-off spatial frequency') +
   ylab('Cut-off SF (c/deg)') +
