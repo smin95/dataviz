@@ -27,7 +27,7 @@ One sample t-test compares the mean of a sample to a hypothesized mean (often 0)
 
 For example, here is Figure 3E from the paper. What do the \*\*\* mean? How about \*\* and \*? Let's take a look. 
 
-```{r, fig.width = 3.5, fig.height = 3.5, warning = F, echo = FALSE}
+```{r, fig.width = 3.5, fig.height = 3.5, warning = F, message = FALSE,echo = FALSE}
 
 df_shade <- read_csv('https://www.smin95.com/fit_error_shade.csv')
 df_shade1 <- df_shade %>% mutate(yUpp = y_mean + y_se, yLow = y_mean - y_se)
@@ -293,9 +293,101 @@ sm_power(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
 
 According to our power analysis (significant level = 0.05, power = 80%), we would need about **143 subjects** per group (`n = 143.0411`) for the p-value to reach below 0.05 and, therefore, for us to detect a statistically significant difference in AUCs between Days 1 and 2. In other words, the difference between Days 1 and 2 is very small. Also, the conclusion that there was no difference between the days seems to be valid even though the sample size is small.
 
-Although using post-hoc power analysis has been under dispute, since the technique is straightforward, it has been discussed here. Power analysis is often used *prior* to a study, not *after*. A better alternative to post-hoc power analysis that has gained in popularity is to compute *Bayes factor* but this is not discussed here (yet).
+Although using post-hoc power analysis has been under dispute, since the technique is straightforward, it has been discussed here. Power analysis is often used *prior* to a study, not *after*. A better alternative to post-hoc power analysis that has gained in popularity is to compute *Bayes factor*.
 
 *Prior power analysis* can be computed using the *pwr* package's functions, such as `pwr.t.test`. 
+
+## Bayes Factor
+
+### Issues with post-hoc power analysis
+
+If p-value is smaller than 0.05, we can say that there is a statistical significance between two samples. However, if p = 0.99, we cannot say that there are 99% similar. They are just **not** significantly different.
+
+For this reason, computing the effect size and performing post-hoc power analysis can help. However, the issue with post-hoc power analysis is that it is directly related with the p-value from your data. As the p-value gets larger, the sample size that is needed to detect a statistical significance directly increases. Therefore, post-hoc power analysis might not provide any additional information because it merely depends on your data's p-value.
+
+Here is a simulation using random numbers.
+
+
+```{r}
+set.seed(10)
+
+day1 <- rnorm(15, mean=0, sd=1)
+day2 <- rnorm(15, mean=0.2, sd=1)
+
+t.test(day1, day2, paired = T)
+```
+
+The p-value is 0.24, which is large. Let's compute the needed sample size (power = 0.8, alpha = 0.05) to reach a statistical significant difference between `day1` and `day5`.
+
+```{r}
+sm_power(day1,day2,paired = T)
+```
+
+In this case, we will need at least 73 individuals per group to detect a statistical significant difference at a 80% rate.
+
+Now, by decreasing the p-value, we can decrease the needed sample size.
+
+```{r}
+set.seed(5123)
+
+day1 <- rnorm(15, mean=0, sd=1)
+day2 <- rnorm(15, mean=0.2, sd=1)
+
+t.test(day1, day2, paired = T)
+sm_power(day1, day2, paired = T)
+```
+
+Now that the p-value has decreased, the needed sample size has also decreased *despite* the fact that the difference between `day1` and `day2` has remained at 0.2. Therefore, we can see that the result of post-hoc power analysis is directly related to your sample data and does not provide much additional information.
+
+Here is a series of 1000 simulations. A following iteration has a larger difference between `day1` and `day2` samples than the previous iteration.
+
+```{r}
+set.seed(10)
+nSim <- 1000 # number of simulations
+res <- as.data.frame(matrix(NA, nrow=nSim, ncol=2))
+names(res) <- c('pval','power_sample') 
+
+for (i in 1:nSim) {
+  day1 <- rnorm(15, mean=0, sd=1)
+  day2 <- rnorm(15, mean=0.2, sd=1) + i*0.001
+  res[i,1] <- t.test(day1, day2, paired=T)$p.value
+  res[i,2] <- sm_power(day1, day2, paired=T)$n
+}
+
+res1 <- res[which(res[,2] < 200),]
+```
+
+After running the simulations, I have excluded rows that included sample size from power analysis larger than 200.
+
+Here is the plot showing the relationship between p-value and sample size obtained from post-hoc power analysis.
+
+```{r, fig.width=3.65, fig.height=3.65}
+res1 %>% 
+  ggplot(aes(x = pval, y = power_sample)) +
+  geom_point() 
+```
+
+
+We see that these two are directly related. Therefore, it is enough just to report the p-value on its own without providing the sample size obtained from post-hoc power analysis. 
+
+Unlike p-value, Bayes factor can be used to *support* the null hypothesis. In other words, it can be used to support the finding that there is no difference between Day 1 and Day 2, rather than just saying that there is no significant difference between these two days.
+
+### Computing the Bayes factor in R
+
+```{r, message = F, warning = F}
+library(BayesFactor) # install.packages('BayesFactor')
+```
+
+```{r}
+ttestBF(auc_df_day1b$AUC_Cbratio, auc_df_day2b$AUC_Cbratio,
+         paired = TRUE)
+```
+
+We have run a Bayesian t-test using the `BayesFactor` package and obtained a Bayes factor of `0.71`. Note that `sm_power()` performs a power analysis that is related to a t-test. So these two are quite similar. As a general rule, a Bayes factor less than 1 supports that there is no difference between the two samples and therefore *supports* the null hypothesis.
+
+A Bayes Factor above 10 is a strong evidence that there is a statistical difference between two samples (as in p < 0.05). It is related to both sample size per group and effect size (Cohen's *d*).
+
+When you are reporting results, I suggest you that report results such as p-value, effect size, and Bayes Factor. Post-hoc power analysis can be additionally provided but its usage has gained less traction. 
 
 ## One-way ANOVA
 
@@ -405,7 +497,7 @@ If one-way ANOVA yielded p < 0.05, then we could expect to see a p-value lower t
 
 If the subjects are identical across the factor (ex. `Day`), then `anova_test()` (from the `rstatix` package) can be used to perform repeated measures ANOVA.
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 auc_df %>% anova_test(AUC_Cbratio ~ Day, wid = Subject,
                       within = Day)
 ```
@@ -551,7 +643,7 @@ It seems that the effect of `Time` is not statistically significant at different
 
 Let's pretend that the interaction effect is still significant. If so, we can examine whether the second independent variable (`Day` in our case) differs across different levels of the first independent variable (`Time` in our example).
 
-```{r}
+```{r, message = FALSE, warning = FALSE}
 df %>% group_by(Time) %>%
   anova_test(Cbratio ~ Day, wid = Subject, within = Time) %>%
   get_anova_table() %>%

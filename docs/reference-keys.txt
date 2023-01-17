@@ -7,8 +7,8 @@ fig:unnamed-chunk-270
 fig:unnamed-chunk-272
 fig:unnamed-chunk-274
 fig:unnamed-chunk-275
-fig:unnamed-chunk-372
-fig:unnamed-chunk-373
+fig:unnamed-chunk-379
+fig:unnamed-chunk-380
 opening-remarks
 how-to-read-this-book
 download-rstudio-basics-of-r
@@ -110,6 +110,9 @@ shapiro-wilk-test-to-test-for-normality-of-data
 wilcoxon-signed-rank-test
 effect-size
 post-hoc-power-analysis
+bayes-factor
+issues-with-post-hoc-power-analysis
+computing-the-bayes-factor-in-r
 one-way-anova
 check-for-outliers
 checking-for-normality-of-data
