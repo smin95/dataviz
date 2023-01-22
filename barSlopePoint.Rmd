@@ -421,17 +421,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
   scale_fill_manual(values=  sm_color('blue','orange'))
 ```
 
-If you would like to do statistical test that is paired, such as a paired t-test, then the apt means to visualize the data would be to use slope chart, rather than a bar graph. This is because the p-value gets smaller as the increasing proportion of the sample experiences a change in the same direction (i.e., all increase). It is the direction of change that is important, rather than the magnitude of change. 
-
-Hence, it is possible that the p-value is extremely small even if the standard error is quite broad.
-
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value, color = beforeAfter)) +
-  sm_bar() +
-  scale_color_manual(values=  sm_color('blue','orange'))
-```
-
-Notice that bar graph can be used when the observations are not paired between two instances, whereas a slope chart requires it. Hence, if you are interested in seeing the general trend of changes, then a slope chart is a better option.
+If you would like to do statistical test that is paired, such as a paired t-test, then the apt means to visualize the data would be to use slope chart, rather than a bar graph. This is because the p-value gets smaller as a larger proportion of the sample experiences a change in the same direction (i.e., all increase). It is the direction of the overall change that is important, rather than the difference of the means from unique groups/conditions/instances. 
 
 ### Slope chart with mean plot
 
@@ -1008,7 +998,7 @@ ggplot(df2b, aes(x = SF, y = absBP,
         legend.title = element_blank())
 ```
 
-Note that the legend includes horizontal and vertical lines around the plot. The vertical line represents the error bar, and the horizontal line represents the line that connects between the points at various x levels. This symbol can be manually modified, such as removing the vertical line (which represents the error bar), by writing `err.params = list(show.legend = FALSE)`.
+Note that the legend includes horizontal and vertical lines around the plot. The vertical line represents the error bar, and the horizontal line represents the line that connects between the points at various x levels. The symbols in legend can be manually modified. In this case, I will remove the vertical error bar from the legend by writing `err.params = list(show.legend = FALSE)`.
 
 
 ```{r, fig.width = 3.5, fig.height = 3.5,warning = F}
@@ -1026,9 +1016,9 @@ ggplot(df2b, aes(x = SF, y = absBP,
         legend.title = element_blank()) 
 ```
 
-You can also think about controlling the ratio of the figure when saving the figure. In this example, `base_height` and `base_width` are specifically controlled for. 
+You can also think about controlling the ratio of the figure when saving the figure. In this example, `base_height` and `base_width` are specifically controlled. 
 
-```{r, fig.width = 3.7, fig.height = 2.6, warning = F}
+```{r, fig.width = 4, fig.height = 2.8, warning = F}
 ggplot(df2b, aes(x = SF, y = absBP, 
            color = Group, group = Group)) +
   sm_pointplot(group = Subject, show_shadow = T,

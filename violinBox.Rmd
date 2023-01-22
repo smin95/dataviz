@@ -485,7 +485,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   scale_color_manual(values = sm_palette(3))
 ```
 
-If you are confused about this, do not worry because you can directly set the `size` and `shape` of the points as generic parameter without affecting other aesthetic components. You could probably get by with the defaults of **smplot2** without specifying much. Essentially, this was up **smplot** was able to offer most.
+If you are confused about this, do not worry because you can directly set the `size` and `shape` of the points as generic parameter without affecting other aesthetic components. You could probably get by with the defaults of **smplot2** without specifying much. 
 
 Now, pick your favorite boxplot and store it in a variable called **my_boxplot** using `<-`.
 
@@ -560,8 +560,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   geom_jitter(width = 0.15)
 ```
 
-Now let's apply different color to each **Day** like we did in boxplot by using `scale_color_manual()`.
-- Let's use `sm_palette(3)`.
+Now let's apply different color to each **Day** like we did in boxplot by using `scale_color_manual()`. Let's use `sm_palette(3)`.
   
 ```{r,fig.width = 4.54, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
