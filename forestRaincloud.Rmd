@@ -417,8 +417,7 @@ A common practice is to annotate the error range (95% confidence interval) in te
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(point_jitter_width = 0.12, sep_level = 3,
-            errorbar_type = 'sd') +
+  sm_forest(point_jitter_width = 0.12, sep_level = 3) +
   scale_color_manual(values = sm_palette(4)) +
   sm_forest_annot(data = df2, x = Value, y = Day, sep_level = 3)
 
@@ -444,8 +443,7 @@ We can try `sep_level = -3` across `sm_forest()` and `sm_forest_annot()` to see 
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(point_jitter_width = 0.12, sep_level = -3,
-            errorbar_type = 'sd') +
+  sm_forest(point_jitter_width = 0.12, sep_level = -3) +
   scale_color_manual(values = sm_palette(4)) +
   sm_forest_annot(data = df2, x = Value, y = Day, sep_level = -3)
 
@@ -458,7 +456,6 @@ You can also draw a vertical reference line by setting `refLine = TRUE`.
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
   sm_forest(point_jitter_width = 0.12, sep_level = -3,
-            errorbar_type = 'sd',
             refLine = TRUE) +
   scale_color_manual(values = sm_palette(4)) +
   sm_forest_annot(data = df2, x = Value, y = Day, sep_level = -3)
@@ -470,7 +467,6 @@ We could change the reference line's location using the argument `xintercept`.
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
   sm_forest(point_jitter_width = 0.12, sep_level = -3,
-            errorbar_type = 'sd',
             refLine = TRUE,
             xintercept = 4) +
   scale_color_manual(values = sm_palette(4)) +
@@ -483,7 +479,6 @@ We could change the aesthetics of the reference line using `refLine.params`.
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
   sm_forest(point_jitter_width = 0.12, sep_level = -3,
-            errorbar_type = 'sd',
             refLine = TRUE,
             xintercept = 4,
             ref.params = list(size = 1, alpha = 0.3, 
@@ -552,7 +547,6 @@ ggplot(mapping = aes(x = absBP, y = SF, color = Group, fill = Group)) +
 Next, apply `position_nudge()` to move all the components.
 
 ```{r, fig.width = 3.1, fig.height= 4.8}
-
 ggplot(mapping = aes(x = absBP, y = SF, color = Group, fill = Group)) +
   sm_forest(data = df1amb, position = position_nudge(y = +0.25)) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) 
@@ -562,7 +556,6 @@ We see that `sep_level = 2` no longer works when we apply `position_nudge()` her
 
 
 ```{r, fig.width = 3.1, fig.height= 4.8}
-
 ggplot(mapping = aes(x = absBP, y = SF, color = Group, fill = Group)) +
   sm_forest(data = df1amb, position = position_nudge(y = +0.4),
             point.params = list(size = 2,
