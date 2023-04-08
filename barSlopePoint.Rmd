@@ -774,6 +774,24 @@ ggplot(data = df1, aes(x = SF, y = absBP,
   scale_color_manual(values = sm_color('darkred', 'viridian'))
 ```
 
+### Change the range of y-axis
+
+There are two functions that can be used to change the range of the y-axis: `scale_y_continuous()` and `coord_cartesian()`.
+
+**In most cases, `scale_y_continuous()` is sufficient. But for `sm_pointplot()`, use `coord_cartesian()`.** 
+
+The difference is that, when `sm_pointplot()` computes the average point from individual observations that are supplied by the data frame, if the y-axis range does not include an individual observation, then the average is computed without the observation when the y-axis range is set with `scale_y_continuous()`. On the other hand, when `coord_cartesian()` is used, the average is still computed from all individual observations.
+
+
+```{r,fig.width = 3.5, fig.height = 3.5,warning = F}
+ggplot(data = df1, aes(x = SF, y = absBP, 
+             color = Group, group = Group)) +
+  sm_pointplot(position = position_dodge(width = 0.05)) +
+  scale_color_manual(values = sm_color('darkred', 'viridian')) +
+  coord_cartesian(ylim = c(0,1.35))
+```
+
+
 ### Data with more than two groups
 
 What happens if we have data more than 3 groups? Let's make a fake dataset using `df1`.
