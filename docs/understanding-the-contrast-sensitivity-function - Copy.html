@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 15 Understanding the Contrast Sensitivity Function | Data Analysis and Visualization in R Using smplot2</title>
+  <meta name="description" content="Chapter 15 Understanding the Contrast Sensitivity Function | Data Analysis and Visualization in R Using smplot2" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 15 Understanding the Contrast Sensitivity Function | Data Analysis and Visualization in R Using smplot2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 15 Understanding the Contrast Sensitivity Function | Data Analysis and Visualization in R Using smplot2" />
+  
+  
+  
+
+<meta name="author" content="Seung Hyun Min" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="area-under-curve-aulcsf-and-r2-of-the-csf.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dataviz with smplot2</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i>Major updates</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="opening-remarks.html"><a href="opening-remarks.html"><i class="fa fa-check"></i><b>1</b> Opening Remarks</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="opening-remarks.html"><a href="opening-remarks.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.1</b> How to read this book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>2</b> Download RStudio &amp; Basics of R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#setting-up-rstudio"><i class="fa fa-check"></i><b>2.1</b> Setting up RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#why-use-r-for-data-visualization"><i class="fa fa-check"></i>Why use R for data visualization?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#other-available-resources-for-r"><i class="fa fa-check"></i>Other available resources for R</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#download-requirements-for-rstudio"><i class="fa fa-check"></i>Download requirements for RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#open-rstudio"><i class="fa fa-check"></i>Open RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-make-a-folder-and-set-it-as-working-directory"><i class="fa fa-check"></i>Let’s make a folder and set it as working directory</a></li>
+<li class="chapter" data-level="2.1.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-to-run-your-code"><i class="fa fa-check"></i><b>2.1.1</b> How to run your code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#basics-of-r"><i class="fa fa-check"></i><b>2.2</b> Basics of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-type-some-codes"><i class="fa fa-check"></i>Let’s type some codes</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-can-i-learn-most-effectively-with-the-notes"><i class="fa fa-check"></i>How can I learn most effectively with the notes?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#more-installation"><i class="fa fa-check"></i>More installation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Data Visualization with smplot2</b></span></li>
+<li class="chapter" data-level="3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html"><i class="fa fa-check"></i><b>3</b> Basics of ggplot2 and Correlation Plot</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#uploading-data"><i class="fa fa-check"></i><b>3.1</b> Uploading data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#sample-data-mpg"><i class="fa fa-check"></i><b>3.1.1</b> Sample data: mpg</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Basics of ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-make-some-graphs"><i class="fa fa-check"></i><b>3.2.1</b> Let’s make some graphs</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-ggplot-works"><i class="fa fa-check"></i><b>3.2.2</b> How ggplot works</a></li>
+<li class="chapter" data-level="3.2.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-of-points-for-each-unique-group"><i class="fa fa-check"></i><b>3.2.3</b> Different color of points for each unique group</a></li>
+<li class="chapter" data-level="3.2.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-shape-for-each-group"><i class="fa fa-check"></i><b>3.2.4</b> Different color &amp; shape for each group</a></li>
+<li class="chapter" data-level="3.2.5" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#same-shape-across-all-groups"><i class="fa fa-check"></i><b>3.2.5</b> Same shape across all groups</a></li>
+<li class="chapter" data-level="3.2.6" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-do-we-draw-the-best-fit-line-of-the-graph"><i class="fa fa-check"></i><b>3.2.6</b> How do we draw the best-fit line of the graph?</a></li>
+<li class="chapter" data-level="3.2.7" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#geom_point-geom_smooth"><i class="fa fa-check"></i><b>3.2.7</b> geom_point() + geom_smooth()</a></li>
+<li class="chapter" data-level="3.2.8" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#writing-shorter-codes"><i class="fa fa-check"></i><b>3.2.8</b> Writing shorter codes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#improve-data-visualization-using-smplot2"><i class="fa fa-check"></i><b>3.3</b> Improve data visualization using smplot2</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#positive-relationship-between-x--and-y-axes"><i class="fa fa-check"></i><b>3.3.1</b> Positive relationship between x- and y-axes</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#reporting-statistics-from-a-paired-correlation"><i class="fa fa-check"></i><b>3.3.2</b> Reporting statistics from a paired correlation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#changing-the-text"><i class="fa fa-check"></i><b>3.3.3</b> Changing the text</a></li>
+<li class="chapter" data-level="3.3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#plotting-the-average-with-standard-errors"><i class="fa fa-check"></i><b>3.3.4</b> Plotting the average with standard errors</a></li>
+<li class="chapter" data-level="3.3.5" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#fill-0f993d-vs-fill-green"><i class="fa fa-check"></i><b>3.3.5</b> <code>fill = '#0f993d'</code> vs <code>fill = 'green'</code></a></li>
+<li class="chapter" data-level="3.3.6" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-for-each-group-but-with-other-colors"><i class="fa fa-check"></i><b>3.3.6</b> Different color for each group but with other colors</a></li>
+<li class="chapter" data-level="3.3.7" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1."><i class="fa fa-check"></i><b>3.3.7</b> Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html"><i class="fa fa-check"></i><b>4</b> Boxplot and Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#upload-sample-data-csv-file-in-rstudio"><i class="fa fa-check"></i><b>4.1</b> Upload sample data (csv file) in RStudio</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#download-requirements"><i class="fa fa-check"></i><b>4.1.1</b> Download requirements</a></li>
+<li class="chapter" data-level="4.1.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#before-we-get-started"><i class="fa fa-check"></i><b>4.1.2</b> Before we get started</a></li>
+<li class="chapter" data-level="4.1.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#data.csv"><i class="fa fa-check"></i><b>4.1.3</b> data.csv</a></li>
+<li class="chapter" data-level="4.1.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#read_csvdata.csv"><i class="fa fa-check"></i><b>4.1.4</b> <code>read_csv('data.csv')</code></a></li>
+<li class="chapter" data-level="4.1.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#best-way-to-plot-data"><i class="fa fa-check"></i><b>4.1.5</b> Best way to plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot"><i class="fa fa-check"></i><b>4.2</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#what-is-a-boxplot"><i class="fa fa-check"></i><b>4.2.1</b> What is a boxplot?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-vs-bar-graph"><i class="fa fa-check"></i><b>4.2.2</b> Boxplot vs bar graph</a></li>
+<li class="chapter" data-level="4.2.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-using-ggplot2"><i class="fa fa-check"></i><b>4.2.3</b> Boxplot using ggplot2</a></li>
+<li class="chapter" data-level="4.2.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#problem-alphabetical-order"><i class="fa fa-check"></i><b>4.2.4</b> Problem: Alphabetical order</a></li>
+<li class="chapter" data-level="4.2.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#displaying-characters-in-a-non-alphabetical-order"><i class="fa fa-check"></i><b>4.2.5</b> Displaying characters in a non-alphabetical order</a></li>
+<li class="chapter" data-level="4.2.6" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#double-check-if-the-day-column-is-factor"><i class="fa fa-check"></i><b>4.2.6</b> Double-check if the ‘Day’ column is factor</a></li>
+<li class="chapter" data-level="4.2.7" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#back-to-boxplot-using-ggplot2"><i class="fa fa-check"></i><b>4.2.7</b> Back to boxplot using ggplot2</a></li>
+<li class="chapter" data-level="4.2.8" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#a-boxplot-with-individual-data"><i class="fa fa-check"></i><b>4.2.8</b> A boxplot with individual data</a></li>
+<li class="chapter" data-level="4.2.9" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_boxplot-vs-sm_boxplot"><i class="fa fa-check"></i><b>4.2.9</b> <code>geom_boxplot()</code> vs <code>sm_boxplot()</code></a></li>
+<li class="chapter" data-level="4.2.10" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-boxplot"><i class="fa fa-check"></i><b>4.2.10</b> Save boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot"><i class="fa fa-check"></i><b>4.3</b> Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#structure-of-the-violin-plot"><i class="fa fa-check"></i><b>4.3.1</b> Structure of the violin plot</a></li>
+<li class="chapter" data-level="4.3.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-ggplot2"><i class="fa fa-check"></i><b>4.3.2</b> Violin plot with ggplot2</a></li>
+<li class="chapter" data-level="4.3.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-individual-points"><i class="fa fa-check"></i><b>4.3.3</b> Violin plot with individual points</a></li>
+<li class="chapter" data-level="4.3.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_violin-vs-sm_violin"><i class="fa fa-check"></i><b>4.3.4</b> geom_violin() vs sm_violin()</a></li>
+<li class="chapter" data-level="4.3.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-your-violin-plot"><i class="fa fa-check"></i><b>4.3.5</b> Save your violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#summary-1"><i class="fa fa-check"></i><b>4.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html"><i class="fa fa-check"></i><b>5</b> Bar Graph, Slope Chart and Point plot</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph"><i class="fa fa-check"></i><b>5.1</b> Bar graph</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#scaling-the-y-axis"><i class="fa fa-check"></i><b>5.1.1</b> Scaling the y-axis</a></li>
+<li class="chapter" data-level="5.1.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>5.1.2</b> Plotting individual points with unique colors</a></li>
+<li class="chapter" data-level="5.1.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#other-parameters"><i class="fa fa-check"></i><b>5.1.3</b> Other parameters</a></li>
+<li class="chapter" data-level="5.1.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph-with-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.1.4</b> Bar graph with data of multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart"><i class="fa fa-check"></i><b>5.2</b> Slope chart</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot"><i class="fa fa-check"></i><b>5.2.1</b> Slope chart with mean plot</a></li>
+<li class="chapter" data-level="5.2.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot-and-error-bar"><i class="fa fa-check"></i><b>5.2.2</b> Slope chart with mean plot and error bar</a></li>
+<li class="chapter" data-level="5.2.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-x-levels"><i class="fa fa-check"></i><b>5.2.3</b> Slope chart with multiple x levels</a></li>
+<li class="chapter" data-level="5.2.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-groups-and-x-levels"><i class="fa fa-check"></i><b>5.2.4</b> Slope chart with multiple groups and x levels</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot"><i class="fa fa-check"></i><b>5.3</b> Point plot</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#change-the-range-of-y-axis"><i class="fa fa-check"></i><b>5.3.1</b> Change the range of y-axis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#data-with-more-than-two-groups"><i class="fa fa-check"></i><b>5.3.2</b> Data with more than two groups</a></li>
+<li class="chapter" data-level="5.3.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-one-group"><i class="fa fa-check"></i><b>5.3.3</b> Point plot with a shadow using data of one group</a></li>
+<li class="chapter" data-level="5.3.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.3.4</b> Point plot with a shadow using data of multiple groups</a></li>
+<li class="chapter" data-level="5.3.5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#adding-and-modifying-legends"><i class="fa fa-check"></i><b>5.3.5</b> Adding and modifying legends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html"><i class="fa fa-check"></i><b>6</b> Raincloud and Forest Plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot"><i class="fa fa-check"></i><b>6.1</b> Raincloud plot</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changing-the-x-axis-labels"><i class="fa fa-check"></i><b>6.1.1</b> Changing the x-axis labels</a></li>
+<li class="chapter" data-level="6.1.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#separating-the-components-and-configuration"><i class="fa fa-check"></i><b>6.1.2</b> Separating the components and configuration</a></li>
+<li class="chapter" data-level="6.1.3" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changng-the-theme-and-orientation"><i class="fa fa-check"></i><b>6.1.3</b> Changng the theme and orientation</a></li>
+<li class="chapter" data-level="6.1.4" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot-with-data-from-multiple-groups"><i class="fa fa-check"></i><b>6.1.4</b> Raincloud plot with data from multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#forest-plot"><i class="fa fa-check"></i><b>6.2</b> Forest plot</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#plotting-the-forest-plot-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>6.2.1</b> Plotting the forest plot using data of multiple groups</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
+<li class="chapter" data-level="7" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>7</b> Combining Plots with Common Axes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-for-rows"><i class="fa fa-check"></i><b>7.1.1</b> <code>filter()</code> for rows</a></li>
+<li class="chapter" data-level="7.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>7.1.2</b> <code>select()</code> for columns</a></li>
+<li class="chapter" data-level="7.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>7.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>7.2</b> Plotting the averaged data with error bars</a></li>
+<li class="chapter" data-level="7.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>7.3</b> Plotting individual data</a></li>
+<li class="chapter" data-level="7.4" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#putting-multiple-plots-together"><i class="fa fa-check"></i><b>7.4</b> Putting multiple plots together</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>8</b> Calculating Area under a Curve</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#pipe"><i class="fa fa-check"></i><b>8.1</b> Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="8.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#area-under-a-curve"><i class="fa fa-check"></i><b>8.2</b> Area under a curve</a></li>
+<li class="chapter" data-level="8.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#reproducing-figures-in-the-paper-min-et-al.-2019"><i class="fa fa-check"></i><b>8.3</b> Reproducing figures in the paper (Min et al., 2019)</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3b-a-best-fit-line-with-points-and-error-bars"><i class="fa fa-check"></i><b>8.3.1</b> Figure 3B (a best-fit line with points and error bars)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3d-a-bar-graph"><i class="fa fa-check"></i><b>8.3.2</b> Figure 3D (a bar graph)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3e-modeling-in-matlab-and-plotting-in-r"><i class="fa fa-check"></i><b>8.3.3</b> Figure 3E (modeling in Matlab and plotting in R)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html"><i class="fa fa-check"></i><b>9</b> Calculating Linear Slopes</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#linear-relationship-using-lm"><i class="fa fa-check"></i><b>9.1</b> Linear relationship using <code>lm()</code></a></li>
+<li class="chapter" data-level="9.2" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#calculating-slopes-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>9.2</b> Calculating slopes of all subjects, groups and conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>10.1</b> One-sample t-test</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#two-sample-t-test"><i class="fa fa-check"></i><b>10.2</b> Two-sample t-test</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#shapiro-wilk-test-to-test-for-normality-of-data"><i class="fa fa-check"></i><b>10.2.1</b> Shapiro-Wilk Test to test for Normality of Data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-rank Test</a></li>
+<li class="chapter" data-level="10.4" data-path="basic-statistics.html"><a href="basic-statistics.html#effect-size"><i class="fa fa-check"></i><b>10.4</b> Effect Size</a></li>
+<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.5</b> Post-hoc Power Analysis</a></li>
+<li class="chapter" data-level="10.6" data-path="basic-statistics.html"><a href="basic-statistics.html#bayes-factor"><i class="fa fa-check"></i><b>10.6</b> Bayes Factor</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="basic-statistics.html"><a href="basic-statistics.html#issues-with-post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.6.1</b> Issues with post-hoc power analysis</a></li>
+<li class="chapter" data-level="10.6.2" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-the-bayes-factor-in-r"><i class="fa fa-check"></i><b>10.6.2</b> Computing the Bayes factor in R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>10.7</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="basic-statistics.html"><a href="basic-statistics.html#check-for-outliers"><i class="fa fa-check"></i><b>10.7.1</b> Check for Outliers</a></li>
+<li class="chapter" data-level="10.7.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data"><i class="fa fa-check"></i><b>10.7.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.7.3" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-the-assumption-for-homogeneity-of-variance"><i class="fa fa-check"></i><b>10.7.3</b> Checking the Assumption for Homogeneity of Variance</a></li>
+<li class="chapter" data-level="10.7.4" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-one-way-anova"><i class="fa fa-check"></i><b>10.7.4</b> Computing One-way ANOVA</a></li>
+<li class="chapter" data-level="10.7.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>10.7.5</b> Post-hoc Tests</a></li>
+<li class="chapter" data-level="10.7.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>10.7.6</b> One-way Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>10.8</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.8.1" data-path="basic-statistics.html"><a href="basic-statistics.html#identifying-outliers"><i class="fa fa-check"></i><b>10.8.1</b> Identifying Outliers</a></li>
+<li class="chapter" data-level="10.8.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data-1"><i class="fa fa-check"></i><b>10.8.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.8.3" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-two-way-anova"><i class="fa fa-check"></i><b>10.8.3</b> Computing Two-way ANOVA</a></li>
+<li class="chapter" data-level="10.8.4" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-test"><i class="fa fa-check"></i><b>10.8.4</b> Post-hoc Test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="basic-statistics.html"><a href="basic-statistics.html#friedman-test"><i class="fa fa-check"></i><b>10.9</b> Friedman Test</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="basic-statistics.html"><a href="basic-statistics.html#performing-friedman-test"><i class="fa fa-check"></i><b>10.9.1</b> Performing Friedman Test</a></li>
+<li class="chapter" data-level="10.9.2" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-analysis"><i class="fa fa-check"></i><b>10.9.2</b> Post-hoc Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.10</b> Extra Resources</a></li>
+</ul></li>
+<li class="part"><span><b>III Manual for smplot2</b></span></li>
+<li class="chapter" data-level="11" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><i class="fa fa-check"></i><b>11</b> Themes, Colors, Correlations, Boxplots, Violins and Bars (Part 1)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#installation-of-the-package"><i class="fa fa-check"></i><b>11.1</b> Installation of the Package</a></li>
+<li class="chapter" data-level="11.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#how-...-and-xxx.params-arguments-work"><i class="fa fa-check"></i><b>11.2</b> How <code>...</code> and <code>xxx.params</code> arguments work</a></li>
+<li class="chapter" data-level="11.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#color-palette"><i class="fa fa-check"></i><b>11.3</b> Color palette</a></li>
+<li class="chapter" data-level="11.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#graph-themes"><i class="fa fa-check"></i><b>11.4</b> Graph themes</a></li>
+<li class="chapter" data-level="11.5" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot"><i class="fa fa-check"></i><b>11.5</b> Correlation plot</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_statcorr"><i class="fa fa-check"></i><b>11.5.1</b> <code>sm_statCorr()</code></a></li>
+<li class="chapter" data-level="11.5.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_corr_avgerr"><i class="fa fa-check"></i><b>11.5.2</b> <code>sm_corr_avgErr()</code></a></li>
+<li class="chapter" data-level="11.5.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#structure-of-data-frame"><i class="fa fa-check"></i><b>11.5.3</b> Structure of data frame</a></li>
+<li class="chapter" data-level="11.5.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot-with-both-regression-and-reference-lines"><i class="fa fa-check"></i><b>11.5.4</b> Correlation plot with both regression and reference lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>11.6</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>11.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>11.7</b> Violin Plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>11.7.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>11.8</b> Bar plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-3"><i class="fa fa-check"></i><b>11.8.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><i class="fa fa-check"></i><b>12</b> Slope Charts, Point plots, Bland-Altman, Forests, Rainclouds, Histograms (Part 2)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.1</b> Drawing the mean plot</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#point-plot---sm_pointplot"><i class="fa fa-check"></i><b>12.2</b> Point plot - <code>sm_pointplot()</code></a></li>
+<li class="chapter" data-level="12.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>12.3</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
+<li class="chapter" data-level="12.4" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#forest-plot---sm_forest"><i class="fa fa-check"></i><b>12.4</b> Forest plot - <code>sm_forest()</code></a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#annotation-using-sm_forest_annot"><i class="fa fa-check"></i><b>12.4.1</b> Annotation using <code>sm_forest_annot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>12.5</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
+<li class="chapter" data-level="12.6" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#histogram---sm_hist"><i class="fa fa-check"></i><b>12.6</b> Histogram - <code>sm_hist()</code></a></li>
+</ul></li>
+<li class="part"><span><b>IV Contrast Sensitivity Function</b></span></li>
+<li class="chapter" data-level="13" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>13</b> Plotting the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>13.1</b> Brief Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>13.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="13.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>13.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>14</b> Area under Curve, AULCSF and R2 of the CSF</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>14.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="14.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>14.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="14.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>14.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="14.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>14.4</b> Case Study</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>15</b> Understanding the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#contrast-sensitivity-function-model"><i class="fa fa-check"></i><b>15.1</b> Contrast Sensitivity Function Model</a></li>
+<li class="chapter" data-level="15.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_csf"><i class="fa fa-check"></i><b>15.2</b> Understanding <code>sm_CSF()</code></a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_params"><i class="fa fa-check"></i><b>15.2.1</b> <code>sm_params()</code></a></li>
+<li class="chapter" data-level="15.2.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_cutoff"><i class="fa fa-check"></i><b>15.2.2</b> <code>sm_cutOff()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_ribboncsf"><i class="fa fa-check"></i><b>15.3</b> Understanding <code>sm_ribbonCSF()</code></a></li>
+<li class="chapter" data-level="15.4" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#calculating-the-five-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>15.4</b> Calculating the five parameters of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="15.5" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#visualization-of-the-parameters"><i class="fa fa-check"></i><b>15.5</b> Visualization of the parameters</a></li>
+<li class="chapter" data-level="15.6" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#case-study-1"><i class="fa fa-check"></i><b>15.6</b> Case Study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis and Visualization in R Using smplot2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="understanding-the-contrast-sensitivity-function" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> Understanding the Contrast Sensitivity Function<a href="understanding-the-contrast-sensitivity-function.html#understanding-the-contrast-sensitivity-function" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this section, the model that is used to fit the contrast sensitivity function (CSF) in <code>sm_CSF()</code> is discussed in detail. If readers decide to use <strong>smCSF</strong>, it is necessary to understand and report these details on their manuscripts.</p>
+<div id="contrast-sensitivity-function-model" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Contrast Sensitivity Function Model<a href="understanding-the-contrast-sensitivity-function.html#contrast-sensitivity-function-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The model that is used to fit CSF in <code>sm_CSF()</code> employs this formula below. It also referred to as the <strong>truncated log-parabola model</strong> of the contrast sensitivity function (Kim et al., 2017)</p>
+<p><span class="math inline">\(S&#39;(f) = log_{10}(\gamma_{max}) - \kappa\left(\frac{log_{10}(f) - log_{10}(f_{max})}{\beta&#39;/2}\right)^{2}\)</span>, where <span class="math inline">\(\kappa = log_{10}(2)\)</span> and <span class="math inline">\(\beta&#39; = log_{10}(2\beta)\)</span></p>
+<p><span class="math inline">\(S(f) = log_{10}(\gamma_{max}) - \delta\)</span>, if <span class="math inline">\(f &lt; f_{max}\)</span> and <span class="math inline">\(S&#39;(f) &lt; log_{10}(\gamma_{max}) - \delta\)</span></p>
+<p><span class="math inline">\(S(f) = S&#39;(f)\)</span> when <span class="math inline">\(f &gt; f_{max}\)</span></p>
+<p>There are <strong>four parameters</strong> in the model. First, the <strong>peak gain</strong> <span class="math inline">\(\gamma_{max}\)</span> denotes the peak sensitivity of the contrast sensitivity function. Second, the <strong>peak spatial frequency</strong> <span class="math inline">\(f &gt; f_{max}\)</span> essentially refers to the region of the x-axis of the CSF where the peak sensitivity <span class="math inline">\(\gamma_{max}\)</span> is located. It can also be thought of as the center of the (log) contrast sensitivity function. Third, the <strong>bandwidth</strong> <span class="math inline">\(\beta\)</span> describes the width of the contrast sensitivity function. This width is measured at the half of the maximum sensitivity <span class="math inline">\(\gamma_{max}\)</span>. Moreover, the <strong>truncation value</strong> <span class="math inline">\(\delta\)</span> is a factor that makes sure that the contrast sensitivity function is asymmetric. This factor does not have a huge importance.</p>
+<p>Finally, there is another parameter, known as the cutoff spatial frequency <span class="math inline">\(f_{c}\)</span>. It is the spatial frequency where the log-sensitivity is 0 (linear sensitivity = 1) Here is the equation to calculate <span class="math inline">\(f_{c}\)</span>:</p>
+<p><span class="math inline">\(f_{c} = f_{max}*10^{\frac{\beta&#39;}{2}\sqrt\frac{log_{10}(\gamma_{max})}{\kappa}}\)</span></p>
+<p><code>sm_params</code> calculates all of these parameters automatically.</p>
+<p>As I have already stated, if the reader decides to use <strong>smCSF</strong>, it is important to mention in their reports about the parameters and the equations, as well as to understand them.</p>
+</div>
+<div id="understanding-sm_csf" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Understanding <code>sm_CSF()</code><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_csf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If the user provides linear data of spatial frequency and contrast sensitivity, <code>sm_CSF()</code> can appear to magically plot the contrast sensitivity function with a very good fit as demonstrated below.</p>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="understanding-the-contrast-sensitivity-function.html#cb725-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb725-2"><a href="understanding-the-contrast-sensitivity-function.html#cb725-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span>
+<span id="cb725-3"><a href="understanding-the-contrast-sensitivity-function.html#cb725-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smCSF)</span>
+<span id="cb725-4"><a href="understanding-the-contrast-sensitivity-function.html#cb725-4" aria-hidden="true" tabindex="-1"></a>ACh <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/data_ACh.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="understanding-the-contrast-sensitivity-function.html#cb726-1" aria-hidden="true" tabindex="-1"></a>ACh1 <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> </span>
+<span id="cb726-2"><a href="understanding-the-contrast-sensitivity-function.html#cb726-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(SpatialFreq) <span class="sc">%&gt;%</span></span>
+<span id="cb726-3"><a href="understanding-the-contrast-sensitivity-function.html#cb726-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avgSens =</span> <span class="fu">mean</span>(Sensitivity),</span>
+<span id="cb726-4"><a href="understanding-the-contrast-sensitivity-function.html#cb726-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdErrSens =</span> <span class="fu">sm_stdErr</span>(Sensitivity),</span>
+<span id="cb726-5"><a href="understanding-the-contrast-sensitivity-function.html#cb726-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">stdDevSens =</span> <span class="fu">sd</span>(Sensitivity))</span>
+<span id="cb726-6"><a href="understanding-the-contrast-sensitivity-function.html#cb726-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb726-7"><a href="understanding-the-contrast-sensitivity-function.html#cb726-7" aria-hidden="true" tabindex="-1"></a>ACh1</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    SpatialFreq avgSens stdErrSens stdDevSens
+##          &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+##  1        0.25   13.2       0.536       5.41
+##  2        0.35   15.2       0.568       5.74
+##  3        0.49   19.1       0.698       7.05
+##  4        0.68   24.3       0.836       8.44
+##  5        0.94   29.4       0.938       9.48
+##  6        1.31   33.0       0.977       9.87
+##  7        1.83   33.6       0.996      10.1 
+##  8        2.54   30.8       0.970       9.80
+##  9        3.54   25.4       0.856       8.64
+## 10        4.93   18.9       0.681       6.88
+## 11        6.87   12.7       0.513       5.19
+## 12        9.57    7.81      0.381       3.85</code></pre>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="understanding-the-contrast-sensitivity-function.html#cb728-1" aria-hidden="true" tabindex="-1"></a>ACh1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb728-2"><a href="understanding-the-contrast-sensitivity-function.html#cb728-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-584-1.png" width="336" /></p>
+<p>Notice that <code>ACh1</code> does not contain any predicted values from the <strong>truncated log-parabola model</strong> of the CSF. And yet, somehow, <code>sm_CSF()</code> manages to plot the <strong>predicted values</strong> from the model with the given data, rather than the points of the actual data themselves. Let’s walk through these steps to understand what is happening behind the scenes.</p>
+<div id="sm_params" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> <code>sm_params()</code><a href="understanding-the-contrast-sensitivity-function.html#sm_params" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>sm_params()</code> returns the four main parameters of the model that result in the lowest difference (i.e., residual sum of squares = RSS) between the fitted values <span class="math inline">\(\hat{y_{i}}\)</span> and the actual data (<span class="math inline">\(y_{i}\)</span>, linear data). The fitted values <span class="math inline">\(\hat{y_{i}}\)</span> are the ones that result from plugging in four parameters into the formulas of the model, which is specified in <code>sm_findQCSF()</code> and described in the earlier section of the chapter. The RSS is computed as:</p>
+<p><span class="math inline">\(\sum_{i=1}^{n}(\hat{y_{i}} - y_{i})^{2}\)</span></p>
+<p>In short, the smaller the RSS, the better the model is because it means that the model describes the actual data more faithfully.</p>
+<p><code>sm_params()</code> repeatedly plugs in different combinations and permutations of the four parameters. This process is repeated many times until the four parameters yield the smallest RSS. This process is known as <strong>optimization</strong>. During the first iteration of optimization, it uses initial guess parameters, which are provided by the argument <code>param0</code>, to calculate the RSS. Then, it tries another four parameters. The ranges of the parameters are limited, however. When the parameters of the CSF model are estimated, it is standard to set the upper and lower bound of the parameters. These are set by the arguments <code>param_upLimit</code> and <code>param_lowLimit</code>, respectively. <code>sm_params()</code> specifically uses the <code>L-BFGS-B</code> algorithm to perform the optimization so that upper and lower bounds can be set to estimate the parameters that yield the minimum RSS. <strong>smCSF</strong> provides default values for <code>param0</code>, <code>param_upLimit</code> and <code>param_lowLimit</code> (see the values below) so that the user does not have to be stressed about these initial parameters, and can easily visualize and analyze the contrast sensitivity function.</p>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="understanding-the-contrast-sensitivity-function.html#cb729-1" aria-hidden="true" tabindex="-1"></a>param0 <span class="ot">=</span> <span class="fu">log10</span>(<span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="fl">0.5</span>))</span>
+<span id="cb729-2"><a href="understanding-the-contrast-sensitivity-function.html#cb729-2" aria-hidden="true" tabindex="-1"></a>param_upLimit <span class="ot">=</span> <span class="fu">log10</span>(<span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">20</span>, <span class="dv">9</span>, <span class="dv">2</span>)) </span>
+<span id="cb729-3"><a href="understanding-the-contrast-sensitivity-function.html#cb729-3" aria-hidden="true" tabindex="-1"></a>param_lowLimit<span class="ot">=</span> <span class="fu">log10</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="fl">0.2</span>, <span class="dv">1</span>, <span class="fl">0.02</span>)) </span></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="understanding-the-contrast-sensitivity-function.html#cb730-1" aria-hidden="true" tabindex="-1"></a>params <span class="ot">&lt;-</span> <span class="fu">sm_params</span>(ACh1<span class="sc">$</span>SpatialFreq, ACh1<span class="sc">$</span>avgSens, param0,</span>
+<span id="cb730-2"><a href="understanding-the-contrast-sensitivity-function.html#cb730-2" aria-hidden="true" tabindex="-1"></a>          param_upLimit, param_lowLimit)</span>
+<span id="cb730-3"><a href="understanding-the-contrast-sensitivity-function.html#cb730-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb730-4"><a href="understanding-the-contrast-sensitivity-function.html#cb730-4" aria-hidden="true" tabindex="-1"></a>params</span></code></pre></div>
+<pre><code>##        logGain      logPeakSF logOctaveWidth       logTrunc    logCutOffSF 
+##      1.5114544      0.1450387      0.6006582     -0.3010300      1.4909611</code></pre>
+<p>The first four parameters (<code>logGain</code>, <code>logPeakSF</code>, <code>logOctaveWidth</code> and <code>logTrunc</code>) yield the lowest RSS possible between the actual data and the fitted values.</p>
+</div>
+<div id="sm_cutoff" class="section level3 hasAnchor" number="15.2.2">
+<h3><span class="header-section-number">15.2.2</span> <code>sm_cutOff()</code><a href="understanding-the-contrast-sensitivity-function.html#sm_cutoff" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using the first three parameters (<code>logGain</code>, <code>logPeakSF</code> and <code>logOctaveWidth</code>), <code>sm_cutOff()</code> computes the cutoff spatial frequency, which is also printed as the 5th parameter from <code>sm_params()</code>. In other words, <code>sm_params()</code> also runs the function <code>sm_cutOff()</code> to obtain the cutoff spatial frequency.</p>
+<p>The a fourth argument of <code>sm_cutOff()</code> is <code>sensCutOff</code>. The default is set to 1. This refers to the sensitivity level that the user wishes to measure the cut-off spatial frequency. This means that the cut-off SF is measured when the linear sensitivity equals to 1 for the default,.</p>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="understanding-the-contrast-sensitivity-function.html#cb732-1" aria-hidden="true" tabindex="-1"></a>params[[<span class="dv">5</span>]]</span></code></pre></div>
+<pre><code>## [1] 1.490961</code></pre>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="understanding-the-contrast-sensitivity-function.html#cb734-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_cutOff</span>(params[[<span class="dv">1</span>]], params[[<span class="dv">2</span>]], params[[<span class="dv">3</span>]])</span></code></pre></div>
+<pre><code>## [1] 1.490961</code></pre>
+<p><code>sm_cutOff()</code> computes the cutoff spatial frequency and returns it in a log10 unit. In a linear spatial frequency, this can be about 30.97 c/deg.</p>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="understanding-the-contrast-sensitivity-function.html#cb736-1" aria-hidden="true" tabindex="-1"></a><span class="co"># linear conversion of the log units</span></span>
+<span id="cb736-2"><a href="understanding-the-contrast-sensitivity-function.html#cb736-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">^</span>params</span></code></pre></div>
+<pre><code>##        logGain      logPeakSF logOctaveWidth       logTrunc    logCutOffSF 
+##      32.467917       1.396493       3.987110       0.500000      30.971422</code></pre>
+<p>Let’s visually confirm whether the cut-off spatial frequency yields sensitivity that is equal to 0. First, we will need to create a sequence of x values (about 200) to plot a continuous function of the CSF model from the minimum tested SF (<code>min(ACh1$SpatialFreq)</code>) to 31 c/deg. This can be done using <code>seq()</code> function.</p>
+<p>Then using the sequence of the x values, we plug them into the CSF formulas with the parameters that we have obtained using <code>sm_params()</code> to obtain the fitted values.</p>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="understanding-the-contrast-sensitivity-function.html#cb738-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">seq</span>(<span class="fu">min</span>(ACh1<span class="sc">$</span>SpatialFreq),<span class="dv">31</span>, <span class="at">length =</span> <span class="dv">200</span>))</span>
+<span id="cb738-2"><a href="understanding-the-contrast-sensitivity-function.html#cb738-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb738-3"><a href="understanding-the-contrast-sensitivity-function.html#cb738-3" aria-hidden="true" tabindex="-1"></a>grid<span class="sc">$</span>y <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">sm_findQCSF</span>(<span class="fu">log10</span>(grid<span class="sc">$</span>x), </span>
+<span id="cb738-4"><a href="understanding-the-contrast-sensitivity-function.html#cb738-4" aria-hidden="true" tabindex="-1"></a>                         params[[<span class="dv">1</span>]], params[[<span class="dv">2</span>]],</span>
+<span id="cb738-5"><a href="understanding-the-contrast-sensitivity-function.html#cb738-5" aria-hidden="true" tabindex="-1"></a>                         params[[<span class="dv">3</span>]], params[[<span class="dv">4</span>]])</span>
+<span id="cb738-6"><a href="understanding-the-contrast-sensitivity-function.html#cb738-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb738-7"><a href="understanding-the-contrast-sensitivity-function.html#cb738-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(grid,<span class="dv">10</span>) <span class="co"># first 10 rows</span></span></code></pre></div>
+<pre><code>##            x        y
+## 1  0.2500000 11.08954
+## 2  0.4045226 18.59659
+## 3  0.5590452 23.95092
+## 4  0.7135678 27.56634
+## 5  0.8680905 29.91028
+## 6  1.0226131 31.34346
+## 7  1.1771357 32.12558
+## 8  1.3316583 32.44129
+## 9  1.4861809 32.42228
+## 10 1.6407035 32.16323</code></pre>
+<p><code>grid</code> variable contains all the fitted values as a function of the <code>x</code> values.</p>
+<p>Now let’s plot the fitted values.</p>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="understanding-the-contrast-sensitivity-function.html#cb740-1" aria-hidden="true" tabindex="-1"></a>grid <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb740-2"><a href="understanding-the-contrast-sensitivity-function.html#cb740-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb740-3"><a href="understanding-the-contrast-sensitivity-function.html#cb740-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
+<span id="cb740-4"><a href="understanding-the-contrast-sensitivity-function.html#cb740-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
+<span id="cb740-5"><a href="understanding-the-contrast-sensitivity-function.html#cb740-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb740-6"><a href="understanding-the-contrast-sensitivity-function.html#cb740-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">max</span>(ACh1<span class="sc">$</span>SpatialFreq),</span>
+<span id="cb740-7"><a href="understanding-the-contrast-sensitivity-function.html#cb740-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;red&#39;</span>), <span class="at">size =</span> <span class="dv">1</span>,</span>
+<span id="cb740-8"><a href="understanding-the-contrast-sensitivity-function.html#cb740-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb740-9"><a href="understanding-the-contrast-sensitivity-function.html#cb740-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="fl">1.5</span>, </span>
+<span id="cb740-10"><a href="understanding-the-contrast-sensitivity-function.html#cb740-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="st">&#39;maximum tested</span><span class="sc">\n</span><span class="st">SF&#39;</span>, <span class="at">color =</span> </span>
+<span id="cb740-11"><a href="understanding-the-contrast-sensitivity-function.html#cb740-11" aria-hidden="true" tabindex="-1"></a>           <span class="fu">sm_color</span>(<span class="st">&#39;red&#39;</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-591-1.png" width="336" /></p>
+<p>If you use <code>sm_CSF()</code>, you will get the same plot, but this plot only has a x-range from the minimum and maximum values of the spatial frequency within the <code>SpatialFreq</code> column of <code>ACh1</code>. You might get some warning messages after the running the example code below but you can ignore them altogether.</p>
+<div class="sourceCode" id="cb741"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb741-1"><a href="understanding-the-contrast-sensitivity-function.html#cb741-1" aria-hidden="true" tabindex="-1"></a>ACh1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb741-2"><a href="understanding-the-contrast-sensitivity-function.html#cb741-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>() <span class="sc">+</span></span>
+<span id="cb741-3"><a href="understanding-the-contrast-sensitivity-function.html#cb741-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb741-4"><a href="understanding-the-contrast-sensitivity-function.html#cb741-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">min</span>(grid<span class="sc">$</span>x),<span class="fu">max</span>(grid<span class="sc">$</span>x))) <span class="sc">+</span></span>
+<span id="cb741-5"><a href="understanding-the-contrast-sensitivity-function.html#cb741-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="fu">min</span>(grid<span class="sc">$</span>y), <span class="fu">max</span>(grid<span class="sc">$</span>y)), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">10</span>,<span class="dv">30</span>)) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-592-1.png" width="336" /></p>
+<p>From the first plot, it is visually clear that at about 31 c/deg, the linear sensitivity approaches 1 (i.e., log-sensitivity = 0). We can also directly see the fitted values in the <code>grid</code> data frame and confirm our qualitative observation.</p>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="understanding-the-contrast-sensitivity-function.html#cb742-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(grid)</span></code></pre></div>
+<pre><code>##            x        y
+## 195 30.22739 1.049434
+## 196 30.38191 1.037546
+## 197 30.53643 1.025833
+## 198 30.69095 1.014292
+## 199 30.84548 1.002919
+## 200 31.00000 1.000000</code></pre>
+</div>
+</div>
+<div id="understanding-sm_ribboncsf" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Understanding <code>sm_ribbonCSF()</code><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_ribboncsf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Another highlight of the <strong>smCSF</strong> package is the function <code>sm_ribbonCSF()</code>, which magically plots the ribbon shades around the fitted CSF from <code>sm_CSF()</code>.</p>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="understanding-the-contrast-sensitivity-function.html#cb744-1" aria-hidden="true" tabindex="-1"></a>ACh1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb744-2"><a href="understanding-the-contrast-sensitivity-function.html#cb744-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_ribbonCSF</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> avgSens <span class="sc">-</span> stdDevSens,</span>
+<span id="cb744-3"><a href="understanding-the-contrast-sensitivity-function.html#cb744-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ymax =</span> avgSens <span class="sc">+</span> stdDevSens)) <span class="sc">+</span></span>
+<span id="cb744-4"><a href="understanding-the-contrast-sensitivity-function.html#cb744-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>() <span class="sc">+</span> </span>
+<span id="cb744-5"><a href="understanding-the-contrast-sensitivity-function.html#cb744-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>()</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-594-1.png" width="336" /></p>
+<p>How is that the plot above shows the standard deviation across the sequence of x-values even if the contrast sensitivity has been tested at across only 12 unique spatial frequencies?</p>
+<p>This is because the plot shown above shows <strong>3 fits</strong> of the CSF rather than 1. The one that the reader can obviously recognize is the CSF fit using the raw data, shown as the black line. The other 2 fits are less apparent. These are basically the upper and lower bounds of the CSF ribbon.</p>
+<p>The upper fit of the CSF is created using values from <code>ymax = avgSens + stdDevSens</code>. The lower fit of the CSF is done so using values from <code>ymin = avgSens - stdDevSens</code>. <code>ymax</code> and <code>ymin</code> values are used to estimate the 4 parameters of the CSF fit each. These are then used to fit the CSF curves.</p>
+<p>Let’s recreate the plot above using only <code>sm_CSF()</code> and without <code>sm_ribbonCSF()</code>. To do so, we will need to create two more columns <code>ymin</code> and <code>ymax</code>.</p>
+<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="understanding-the-contrast-sensitivity-function.html#cb745-1" aria-hidden="true" tabindex="-1"></a>ACh2 <span class="ot">&lt;-</span> ACh1 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ymin =</span> avgSens <span class="sc">-</span> stdDevSens,</span>
+<span id="cb745-2"><a href="understanding-the-contrast-sensitivity-function.html#cb745-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ymax =</span> avgSens <span class="sc">+</span> stdDevSens)</span>
+<span id="cb745-3"><a href="understanding-the-contrast-sensitivity-function.html#cb745-3" aria-hidden="true" tabindex="-1"></a>ACh2</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 6
+##    SpatialFreq avgSens stdErrSens stdDevSens  ymin  ymax
+##          &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1        0.25   13.2       0.536       5.41  7.78  18.6
+##  2        0.35   15.2       0.568       5.74  9.50  21.0
+##  3        0.49   19.1       0.698       7.05 12.1   26.2
+##  4        0.68   24.3       0.836       8.44 15.9   32.8
+##  5        0.94   29.4       0.938       9.48 20.0   38.9
+##  6        1.31   33.0       0.977       9.87 23.1   42.9
+##  7        1.83   33.6       0.996      10.1  23.5   43.6
+##  8        2.54   30.8       0.970       9.80 21.0   40.6
+##  9        3.54   25.4       0.856       8.64 16.8   34.1
+## 10        4.93   18.9       0.681       6.88 12.0   25.8
+## 11        6.87   12.7       0.513       5.19  7.51  17.9
+## 12        9.57    7.81      0.381       3.85  3.96  11.7</code></pre>
+<p>The code below will generate warning messages but these are trivial, so you can ignore them.</p>
+<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="understanding-the-contrast-sensitivity-function.html#cb747-1" aria-hidden="true" tabindex="-1"></a>ACh2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> avgSens)) <span class="sc">+</span></span>
+<span id="cb747-2"><a href="understanding-the-contrast-sensitivity-function.html#cb747-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>() <span class="sc">+</span></span>
+<span id="cb747-3"><a href="understanding-the-contrast-sensitivity-function.html#cb747-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> ymin), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb747-4"><a href="understanding-the-contrast-sensitivity-function.html#cb747-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_CSF</span>(<span class="fu">aes</span>(<span class="at">x =</span> SpatialFreq, <span class="at">y =</span> ymax), <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>) <span class="sc">+</span></span>
+<span id="cb747-5"><a href="understanding-the-contrast-sensitivity-function.html#cb747-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-596-1.png" width="336" /></p>
+<p>We now have recreated the same plot without using <code>sm_ribbonCSF()</code>.</p>
+</div>
+<div id="calculating-the-five-parameters-of-all-subjects-groups-and-conditions" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> Calculating the five parameters of all subjects, groups and conditions<a href="understanding-the-contrast-sensitivity-function.html#calculating-the-five-parameters-of-all-subjects-groups-and-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we have discussed in detail what the parameters mean and how <code>sm_CSF()</code> and <code>sm_ribbonCSF()</code> plot the CSF curves. We have also discussed how to use <code>sm_params()</code> with the given data. Now, lets use <code>sm_params_list()</code> to compute the five parameters of all subjects across groups and conditions. To do so, we will need a data frame that contains the data of each observer that has been assigned to a group and condition. <code>ACh1</code> is an example of such a data frame.</p>
+<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="understanding-the-contrast-sensitivity-function.html#cb748-1" aria-hidden="true" tabindex="-1"></a>ACh</span></code></pre></div>
+<pre><code>## # A tibble: 1,224 x 4
+##    Subject Repetition SpatialFreq Sensitivity
+##    &lt;chr&gt;        &lt;dbl&gt;       &lt;dbl&gt;       &lt;dbl&gt;
+##  1 S1               1        0.25       23.8 
+##  2 S2               1        0.25       18.0 
+##  3 S3               1        0.25       14.2 
+##  4 S4               1        0.25        5.14
+##  5 S5               1        0.25       16.0 
+##  6 S6               1        0.25       10.9 
+##  7 S7               1        0.25        8.41
+##  8 S8               1        0.25       10.5 
+##  9 S9               1        0.25        9.06
+## 10 S10              1        0.25        3.57
+## # ... with 1,214 more rows</code></pre>
+<p><code>sm_params_list()</code> work very similarly to <code>sm_trapz_list()</code>, <code>sm_AULCSF_list()</code> and <code>sm_r2_list()</code>. Here are the arguments:</p>
+<ul>
+<li><code>data</code> = this argument requires the variable that stores the data frame. In our case, it is <code>ACh</code>. Data <strong>should be </strong> in linear units.</li>
+<li><code>subjects</code> = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. <code>'Subject'</code>, not <code>Subject</code>.</li>
+<li><code>groups</code> = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be <code>Group</code> column that contains two groups: <code>Normal</code> and <code>Amblyopia</code>.</li>
+<li><code>conditions</code> = this argument requires name of the column of the data frame that contains each condition. In our example, the two conditions are <code>1</code> and <code>2</code> from the <code>Repetition</code> column.</li>
+<li><code>x</code> = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the <code>SpatialFreq</code> column of <code>ACh</code>. It must be strings, ex. <code>'SpatialFreq'</code>, not <code>SpatialFreq</code>. Also, it must be <strong>numeric</strong>/<strong>double</strong>, NOT <strong>factor</strong>. Make sure you check that the column is numeric. If its not, convert the column of the dataframe into <strong>double</strong> beforehand. ex. <code>df$SpatialFreq &lt;- as.numeric(df$SpatialFreq)</code></li>
+<li><code>values</code> = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. <code>'Sensitivity'</code>, not <code>Sensitivity</code>.</li>
+<li><code>param0</code> = This argument should a vector that contains the initial guess values for the four parameters (peak gain, peak spatial frequency, bandwidth and truncation value) of the log-truncated CSF model. This argument is not required because the default has been set to <code>log10(c(100, 1, 2, 0.5))</code>.</li>
+<li><code>param_upLimit</code> = This argument should be a vector that contains the upper bounds of the four parameters (peak gain, peak spatial frequency, bandwidth and truncation value) of the log-truncated CSF model. This argument is not required because the default has been set to <code>log10(c(2000, 20, 9, 2))</code>.</li>
+<li><code>param_lowLimit</code> = This argument should be a vector that contains the lower bounds of the four parameters (peak gain, peak spatial frequency, bandwidth and truncation value) of the log-truncated CSF model. This argument is not required because the default has been set to <code>log10(c(2, 0.2, 1, 0.02))</code>.</li>
+</ul>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="understanding-the-contrast-sensitivity-function.html#cb750-1" aria-hidden="true" tabindex="-1"></a>params_df <span class="ot">&lt;-</span> <span class="fu">sm_params_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb750-2"><a href="understanding-the-contrast-sensitivity-function.html#cb750-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb750-3"><a href="understanding-the-contrast-sensitivity-function.html#cb750-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb750-4"><a href="understanding-the-contrast-sensitivity-function.html#cb750-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb750-5"><a href="understanding-the-contrast-sensitivity-function.html#cb750-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh)</span></code></pre></div>
+<pre><code>## [1] &quot;CSF parameters = Sensitivity ~ SpatialFreq&quot;</code></pre>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="understanding-the-contrast-sensitivity-function.html#cb752-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(params_df[[<span class="dv">1</span>]])</span></code></pre></div>
+<pre><code>##   Subject Repetition  logGain  logPeakSF logOctaveWidth logTrunc logCutOffSF
+## 1      S1          1 1.629834 0.09807101      0.6119619 -0.30103    1.522009
+## 2      S1          2 1.569498 0.01320197      0.5270044 -0.30103    1.216546
+## 3      S2          1 1.562791 0.18084246      0.6510530 -0.30103    1.664255
+## 4      S2          2 1.521231 0.22933453      0.6888543 -0.30103    1.777866
+## 5      S3          1 1.394250 0.14405204      0.6446500 -0.30103    1.531413
+## 6      S3          2 1.668939 0.17290997      0.5060525 -0.30103    1.364456</code></pre>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="understanding-the-contrast-sensitivity-function.html#cb754-1" aria-hidden="true" tabindex="-1"></a>params_df[[<span class="dv">2</span>]]</span></code></pre></div>
+<pre><code>##  [1] 0.25 0.35 0.49 0.68 0.94 1.31 1.83 2.54 3.54 4.93 6.87 9.57</code></pre>
+<p><code>sm_params_list()</code> returns a <code>list</code>, which as two elements. The first element has a data frame of all the parameters as well as the identifiers for <code>conditions</code> and <code>subjects</code>. The second element contains a vector that has <code>x</code>, which in this case is the linear units of spatial frequency.</p>
+</div>
+<div id="visualization-of-the-parameters" class="section level2 hasAnchor" number="15.5">
+<h2><span class="header-section-number">15.5</span> Visualization of the parameters<a href="understanding-the-contrast-sensitivity-function.html#visualization-of-the-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here is a visual representation of the parameters. The contrast sensitivity function has been drawn with the four parameters that have been obtained from the <code>ACh</code> data set. The four parameters have been used to draw the contrast sensitivity function all the way to 30 c/deg. As an exercise, the reader can produce the example below. This plot has been entirely drawn with R, including the arrow and text annotations.</p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-600-1.png" width="336" /></p>
+</div>
+<div id="case-study-1" class="section level2 hasAnchor" number="15.6">
+<h2><span class="header-section-number">15.6</span> Case Study<a href="understanding-the-contrast-sensitivity-function.html#case-study-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the previous chapter, I foreshadow that there is a parameter that can inform us about whether the high-spatial frequency range has improved or not. There are two parameters: 1) bandwidth, and 2) cut-off spatial frequency. Kim et al does not use the bandwidth to analyze their results because the authors believe that analyzing both bandwidth and cut-off spatial frequency is redundant. Likewise, this case study only shows the analysis of cut-off spatial frequency but this can be applied to all other parameters as well.</p>
+<p>As in the previous chapter, let’s make some fake data with <code>ACh</code>. This new data frame is stored in the variable named <code>ACh3</code>. We assume that the 51 subjects are visually impaired patients who received clinical treatment for visual improvement.</p>
+<div class="sourceCode" id="cb756"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb756-1"><a href="understanding-the-contrast-sensitivity-function.html#cb756-1" aria-hidden="true" tabindex="-1"></a>ACh<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh<span class="sc">$</span>Repetition)</span>
+<span id="cb756-2"><a href="understanding-the-contrast-sensitivity-function.html#cb756-2" aria-hidden="true" tabindex="-1"></a>ACh3 <span class="ot">&lt;-</span> ACh <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">BeforeAfter =</span> <span class="fu">fct_recode</span>(Repetition,</span>
+<span id="cb756-3"><a href="understanding-the-contrast-sensitivity-function.html#cb756-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&#39;Before&#39;</span> <span class="ot">=</span> <span class="st">&#39;1&#39;</span>,</span>
+<span id="cb756-4"><a href="understanding-the-contrast-sensitivity-function.html#cb756-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&#39;After&#39;</span> <span class="ot">=</span> <span class="st">&#39;2&#39;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb756-5"><a href="understanding-the-contrast-sensitivity-function.html#cb756-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Repetition)</span>
+<span id="cb756-6"><a href="understanding-the-contrast-sensitivity-function.html#cb756-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb756-7"><a href="understanding-the-contrast-sensitivity-function.html#cb756-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">33</span>)</span>
+<span id="cb756-8"><a href="understanding-the-contrast-sensitivity-function.html#cb756-8" aria-hidden="true" tabindex="-1"></a>ind <span class="ot">&lt;-</span> <span class="fu">which</span>(ACh3<span class="sc">$</span>BeforeAfter <span class="sc">==</span> <span class="st">&#39;After&#39;</span>)</span>
+<span id="cb756-9"><a href="understanding-the-contrast-sensitivity-function.html#cb756-9" aria-hidden="true" tabindex="-1"></a>ACh3[ind,]<span class="sc">$</span>Sensitivity <span class="ot">&lt;-</span> ACh3[ind,]<span class="sc">$</span>Sensitivity <span class="sc">+</span> <span class="fu">abs</span>(<span class="fu">rnorm</span>(<span class="fu">length</span>(ind), <span class="dv">31</span>, <span class="dv">35</span>))</span></code></pre></div>
+<p>Now let’s calculate five parameters using <code>sm_params_list()</code>.</p>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="understanding-the-contrast-sensitivity-function.html#cb757-1" aria-hidden="true" tabindex="-1"></a>params_df <span class="ot">&lt;-</span> <span class="fu">sm_params_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb757-2"><a href="understanding-the-contrast-sensitivity-function.html#cb757-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;BeforeAfter&#39;</span>,</span>
+<span id="cb757-3"><a href="understanding-the-contrast-sensitivity-function.html#cb757-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb757-4"><a href="understanding-the-contrast-sensitivity-function.html#cb757-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb757-5"><a href="understanding-the-contrast-sensitivity-function.html#cb757-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> ACh3)</span></code></pre></div>
+<pre><code>## [1] &quot;CSF parameters = Sensitivity ~ SpatialFreq&quot;</code></pre>
+<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb759-1"><a href="understanding-the-contrast-sensitivity-function.html#cb759-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(params_df[[<span class="dv">1</span>]])</span></code></pre></div>
+<pre><code>##   Subject BeforeAfter  logGain   logPeakSF logOctaveWidth logTrunc logCutOffSF
+## 1      S1      Before 1.629834  0.09807101      0.6119619 -0.30103    1.522009
+## 2      S1       After 1.902661  0.48036071      0.8259008 -0.30103    2.556726
+## 3      S2      Before 1.562791  0.18084246      0.6510530 -0.30103    1.664255
+## 4      S2       After 1.892264  0.20854797      0.7047611 -0.30103    1.975513
+## 5      S3      Before 1.394250  0.14405204      0.6446500 -0.30103    1.531413
+## 6      S3       After 2.005334 -0.02095422      0.6068997 -0.30103    1.545456</code></pre>
+<p>Let’s store the results of cut-off spatial frequency in a new variable <code>cut_sf</code> along with <code>Subject</code> and <code>BeforeAfter</code> columns.</p>
+<div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="understanding-the-contrast-sensitivity-function.html#cb761-1" aria-hidden="true" tabindex="-1"></a>cut_sf <span class="ot">&lt;-</span> params_df[[<span class="dv">1</span>]][<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">7</span>)]</span>
+<span id="cb761-2"><a href="understanding-the-contrast-sensitivity-function.html#cb761-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cut_sf)</span></code></pre></div>
+<pre><code>##   Subject BeforeAfter logCutOffSF
+## 1      S1      Before    1.522009
+## 2      S1       After    2.556726
+## 3      S2      Before    1.664255
+## 4      S2       After    1.975513
+## 5      S3      Before    1.531413
+## 6      S3       After    1.545456</code></pre>
+<p>After we convert the cut-off SF into linear units, let’s plot a bar graph to show the results and see whether cut-off SF has increased. If it increases, it shows that the high spatial frequncy range’s overall sensitivity has improved. This also applies to the bandwidth.</p>
+<div class="sourceCode" id="cb763"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb763-1"><a href="understanding-the-contrast-sensitivity-function.html#cb763-1" aria-hidden="true" tabindex="-1"></a>cut_sf<span class="sc">$</span>linCutOff <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span>cut_sf<span class="sc">$</span>logCutOffSF</span>
+<span id="cb763-2"><a href="understanding-the-contrast-sensitivity-function.html#cb763-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cut_sf)</span></code></pre></div>
+<pre><code>##   Subject BeforeAfter logCutOffSF linCutOff
+## 1      S1      Before    1.522009  33.26667
+## 2      S1       After    2.556726 360.35096
+## 3      S2      Before    1.664255  46.15881
+## 4      S2       After    1.975513  94.51766
+## 5      S3      Before    1.531413  33.99482
+## 6      S3       After    1.545456  35.11200</code></pre>
+<p>Notice that we have created a new column entitled <code>linCutOff</code>. We will now plot the values from the column, as shown below.</p>
+<div class="sourceCode" id="cb765"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb765-1"><a href="understanding-the-contrast-sensitivity-function.html#cb765-1" aria-hidden="true" tabindex="-1"></a>cut_sf <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> BeforeAfter, <span class="at">y =</span> linCutOff,</span>
+<span id="cb765-2"><a href="understanding-the-contrast-sensitivity-function.html#cb765-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">color =</span> BeforeAfter)) <span class="sc">+</span></span>
+<span id="cb765-3"><a href="understanding-the-contrast-sensitivity-function.html#cb765-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha=</span><span class="fl">0.3</span>, <span class="at">size=</span><span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb765-4"><a href="understanding-the-contrast-sensitivity-function.html#cb765-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb765-5"><a href="understanding-the-contrast-sensitivity-function.html#cb765-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log10&#39;</span>) <span class="sc">+</span></span>
+<span id="cb765-6"><a href="understanding-the-contrast-sensitivity-function.html#cb765-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Cut-off spatial frequency&#39;</span>) <span class="sc">+</span></span>
+<span id="cb765-7"><a href="understanding-the-contrast-sensitivity-function.html#cb765-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Cut-off SF (c/deg)&#39;</span>) <span class="sc">+</span></span>
+<span id="cb765-8"><a href="understanding-the-contrast-sensitivity-function.html#cb765-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Before/after treatment&#39;</span>) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-606-1.png" width="336" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="area-under-curve-aulcsf-and-r2-of-the-csf.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/smin95/dataviz/edit/master/Csf3.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/smin95/dataviz/blob/master/Csf3.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
