@@ -216,3 +216,11 @@ If you spot any mistakes in this online book, please pull-request on [Github](ht
 
 ## About the author {-}
 I am Assistant Professor in Dept. Ophthalmology and Optometry at Wenzhou Medical University. On June 2021, I received my PhD at McGill University under the supervision of Dr. Robert F. Hess. My research is focused on amblyopia, neural plasticity and binocular vision. During spare time, I play the clarinet and develop R packages. More details, such as my publications, are on my website: https://www.smin95.com. 
+
+## Reference {-}
+
+Here is the only (and slightly outdated) reference about the package.
+
+Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). *Frontiers in Genetics*, 12:802894. [**pdf**](https://www.smin95.com/pubs/smplot2021.pdf)
+
+The codes of the figures in the report are [**here**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html) but these depend on *smplot*, not *smplot2*. In near future, I plan to submit *smplot2* to CRAN and post its vignette here.
