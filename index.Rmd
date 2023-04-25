@@ -196,7 +196,7 @@ The old website (on **smplot**) can be accessed using this link (https://smin95.
 
 Here is the only (and slightly outdated) reference about the package.
 
-**Seung Hyun Min**, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). *Frontiers in Genetics*, 12:802894. [**pdf**](https://www.smin95.com/pubs/smplot2021.pdf)
+**Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). *Frontiers in Genetics*, 12:802894.** [**pdf**](https://www.smin95.com/pubs/smplot2021.pdf)
 
 The codes of the figures in the report are [**here**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html) but these depend on *smplot*, not *smplot2*. In near future, I **plan to submit *smplot2* to CRAN** and post its vignette here.
 

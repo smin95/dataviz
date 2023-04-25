@@ -871,11 +871,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="basic-statistics.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rstatix&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="basic-statistics.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb499-2"><a href="basic-statistics.html#cb499-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;rstatix&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter</code></pre>
 <p><strong>Note:</strong> We will use <code>rstatix</code> to perform some statistical tests. However, both <code>tidyverse</code> and <code>rstatix</code> packages have the function called <code>filter()</code>. To use <code>filter()</code> from the <code>tidyverse</code> (or <code>dplyr</code>) package, as we have done so before, you will need to type <code>dplyr::filter</code> rather than <code>filter</code> instead to specify <code>filter()</code> from the <code>dplyr</code> package.</p>
 <p>To perform ANOVA, we have to make some assumptions about the data:</p>
 <ul>
@@ -888,8 +883,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="check-for-outliers" class="section level3 hasAnchor" number="10.7.1">
 <h3><span class="header-section-number">10.7.1</span> Check for Outliers<a href="basic-statistics.html#check-for-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We will check for outliers in the <code>auc_df</code> data frame, which stores the results of AUCs. Since we will compare the AUCs across different days (factor: <code>Day</code>), we will group each observation (each row) of the data frame by <code>Day</code>. Next, we will use the function <code>identify_outliers()</code> from the <code>rstatix</code> package to see if there are any outliers in the data set.</p>
-<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="basic-statistics.html#cb502-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span></span>
-<span id="cb502-2"><a href="basic-statistics.html#cb502-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(AUC_Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="basic-statistics.html#cb500-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span></span>
+<span id="cb500-2"><a href="basic-statistics.html#cb500-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(AUC_Cbratio)</span></code></pre></div>
 <pre><code>## # A tibble: 2 x 5
 ##   Day   Subject AUC_Cbratio is.outlier is.extreme
 ##   &lt;fct&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
@@ -898,19 +893,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this case, we have <strong>2 outliers</strong> of AUC data on Day 4. Since Figure 3E indicates that Day 4 is not outrageously different than the averaged AUCs of other days, I will infer that these 2 outliers do not significantly affect the data. Therefore, I will include these 2 outliers in my data analysis.</p>
 <p>However, if your data set has too many outliers, then it might be inappropriate to proceed to one-way ANOVA.</p>
 <p>Let’s visually confirm whether there are 2 outliers in the AUC data from Day 4 by plotting a boxplot using <code>sm_boxplot()</code>.</p>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="basic-statistics.html#cb504-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
-<span id="cb504-2"><a href="basic-statistics.html#cb504-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>,</span>
-<span id="cb504-3"><a href="basic-statistics.html#cb504-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">2.2</span>)) <span class="sc">+</span> </span>
-<span id="cb504-4"><a href="basic-statistics.html#cb504-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
-<span id="cb504-5"><a href="basic-statistics.html#cb504-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="basic-statistics.html#cb502-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb502-2"><a href="basic-statistics.html#cb502-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>,</span>
+<span id="cb502-3"><a href="basic-statistics.html#cb502-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">2.2</span>)) <span class="sc">+</span> </span>
+<span id="cb502-4"><a href="basic-statistics.html#cb502-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb502-5"><a href="basic-statistics.html#cb502-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-355-1.png" width="336" /></p>
 <p>We see that there are two orange points that reside outside the whiskers of the boxplot. Points that are outside the whiskers represent outliers. Therefore, we confirm visually that there are two outliers on Day 4, and no outliers on any other days.</p>
 </div>
 <div id="checking-for-normality-of-data" class="section level3 hasAnchor" number="10.7.2">
 <h3><span class="header-section-number">10.7.2</span> Checking for Normality of Data<a href="basic-statistics.html#checking-for-normality-of-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Rather than using <code>shapiro.test()</code>, we will be using <code>shapiro_test()</code> from the <code>rstatix</code> package because we will be sorting data (<code>group_by()</code> by <code>Day</code>) using the pipe <code>%&gt;%</code>.</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="basic-statistics.html#cb505-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span></span>
-<span id="cb505-2"><a href="basic-statistics.html#cb505-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(AUC_Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="basic-statistics.html#cb503-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span></span>
+<span id="cb503-2"><a href="basic-statistics.html#cb503-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(AUC_Cbratio)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 4
 ##   Day   variable    statistic       p
 ##   &lt;fct&gt; &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;
@@ -924,7 +919,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="checking-the-assumption-for-homogeneity-of-variance" class="section level3 hasAnchor" number="10.7.3">
 <h3><span class="header-section-number">10.7.3</span> Checking the Assumption for Homogeneity of Variance<a href="basic-statistics.html#checking-the-assumption-for-homogeneity-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can examine whether the variance of the response values (y values) is homogeneous using <code>levene_test()</code>.</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="basic-statistics.html#cb507-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">levene_test</span>(AUC_Cbratio <span class="sc">~</span> Day)</span></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="basic-statistics.html#cb505-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">levene_test</span>(AUC_Cbratio <span class="sc">~</span> Day)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 4
 ##     df1   df2 statistic     p
 ##   &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;
@@ -934,8 +929,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="computing-one-way-anova" class="section level3 hasAnchor" number="10.7.4">
 <h3><span class="header-section-number">10.7.4</span> Computing One-way ANOVA<a href="basic-statistics.html#computing-one-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We perform one-way ANOVA by comparing whether <code>AUC_Cbratio</code> values significantly differ across <code>Day</code>. <code>~</code> (tilde) defines the relationship between dependent and independent variables. <code>y = m*x + b</code> can be described with <code>~</code> as <code>y~x</code>, where the value of x can affect the value of y. In the example below, it is written as <code>AUC_Cbratio ~ Day</code> because <code>AUC_Cbratio</code> (dependent variable) is affected by <code>Day</code> (independent variable).</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="basic-statistics.html#cb509-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> AUC_Cbratio <span class="sc">~</span> Day, <span class="at">data =</span> auc_df)</span>
-<span id="cb509-2"><a href="basic-statistics.html#cb509-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="basic-statistics.html#cb507-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> AUC_Cbratio <span class="sc">~</span> Day, <span class="at">data =</span> auc_df)</span>
+<span id="cb507-2"><a href="basic-statistics.html#cb507-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
 <pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
 ## Day          4   3513   878.3   0.588  0.673
 ## Residuals   45  67191  1493.1</code></pre>
@@ -946,7 +941,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="post-hoc-tests" class="section level3 hasAnchor" number="10.7.5">
 <h3><span class="header-section-number">10.7.5</span> Post-hoc Tests<a href="basic-statistics.html#post-hoc-tests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If one-way ANOVA shows a significant difference (p &lt; 0.05), then the reader should perform <strong>Tukey HSD</strong> post-hoc pairwise comparison (<strong>H</strong>onestly <strong>S</strong>ignificant <strong>D</strong>ifference) tests to see which two specific groups vary significantly. In the example, I have saved the results in the variable <code>res</code> (short for results).</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="basic-statistics.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="basic-statistics.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -970,8 +965,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="one-way-repeated-measures-anova" class="section level3 hasAnchor" number="10.7.6">
 <h3><span class="header-section-number">10.7.6</span> One-way Repeated Measures ANOVA<a href="basic-statistics.html#one-way-repeated-measures-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If the subjects are identical across the factor (ex. <code>Day</code>), then <code>anova_test()</code> (from the <code>rstatix</code> package) can be used to perform repeated measures ANOVA.</p>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="basic-statistics.html#cb513-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">anova_test</span>(AUC_Cbratio <span class="sc">~</span> Day, <span class="at">wid =</span> Subject,</span>
-<span id="cb513-2"><a href="basic-statistics.html#cb513-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">within =</span> Day)</span></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="basic-statistics.html#cb511-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">anova_test</span>(AUC_Cbratio <span class="sc">~</span> Day, <span class="at">wid =</span> Subject,</span>
+<span id="cb511-2"><a href="basic-statistics.html#cb511-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">within =</span> Day)</span></code></pre></div>
 <pre><code>## ANOVA Table (type II tests)
 ## 
 ##   Effect DFn DFd     F     p p&lt;.05  ges
@@ -984,15 +979,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.8</span> Two-way ANOVA<a href="basic-statistics.html#two-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In a two-way ANOVA, the effects of two factors are examined. In our example, we will use the data set from the paper, and examine the effects of <code>Day</code> and <code>Time</code>, which is the time point after short-term monocular deprivation (minutes).</p>
 <p>Since we will be investigating whether the effects of <code>Day</code> and <code>Time</code> as variables significantly affect the values of <code>Cbratio</code>, we need to convert the columns <code>Day</code> and <code>Time</code> of <code>df</code> as factor using <code>as.factor()</code>.</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="basic-statistics.html#cb515-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
-<span id="cb515-2"><a href="basic-statistics.html#cb515-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb515-3"><a href="basic-statistics.html#cb515-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>Day)</span>
-<span id="cb515-4"><a href="basic-statistics.html#cb515-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>Time)</span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="basic-statistics.html#cb513-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
+<span id="cb513-2"><a href="basic-statistics.html#cb513-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb513-3"><a href="basic-statistics.html#cb513-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>Day)</span>
+<span id="cb513-4"><a href="basic-statistics.html#cb513-4" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>Time)</span></code></pre></div>
 <p>As before, let’s check for some of the assumptions that are required to perform ANOVA.</p>
 <div id="identifying-outliers" class="section level3 hasAnchor" number="10.8.1">
 <h3><span class="header-section-number">10.8.1</span> Identifying Outliers<a href="basic-statistics.html#identifying-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="basic-statistics.html#cb516-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
-<span id="cb516-2"><a href="basic-statistics.html#cb516-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="basic-statistics.html#cb514-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
+<span id="cb514-2"><a href="basic-statistics.html#cb514-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">identify_outliers</span>(Cbratio)</span></code></pre></div>
 <pre><code>## # A tibble: 13 x 6
 ##    Day   Time  Subject Cbratio is.outlier is.extreme
 ##    &lt;fct&gt; &lt;fct&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;lgl&gt;      &lt;lgl&gt;     
@@ -1014,8 +1009,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="checking-for-normality-of-data-1" class="section level3 hasAnchor" number="10.8.2">
 <h3><span class="header-section-number">10.8.2</span> Checking for Normality of Data<a href="basic-statistics.html#checking-for-normality-of-data-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s check for the normality of the data using <code>shapiro_test()</code> from the <code>rstatix</code> package for each <code>Day</code> and <code>Time</code>. To do so, we will have to group our data using <code>group_by()</code> for <code>Day</code> and <code>Time</code>.</p>
-<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="basic-statistics.html#cb518-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
-<span id="cb518-2"><a href="basic-statistics.html#cb518-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="basic-statistics.html#cb516-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
+<span id="cb516-2"><a href="basic-statistics.html#cb516-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(Cbratio)</span></code></pre></div>
 <pre><code>## # A tibble: 30 x 5
 ##    Day   Time  variable statistic     p
 ##    &lt;fct&gt; &lt;fct&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
@@ -1031,19 +1026,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 2     12    Cbratio      0.934 0.493
 ## # ... with 20 more rows</code></pre>
 <p>Only the first 10 rows are shown. To view the entire results, store the results into a variable and use <code>View()</code>.</p>
-<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="basic-statistics.html#cb520-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
-<span id="cb520-2"><a href="basic-statistics.html#cb520-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(Cbratio)</span></code></pre></div>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="basic-statistics.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(res)</span></code></pre></div>
-<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="basic-statistics.html#cb522-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(res<span class="sc">$</span>p <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="basic-statistics.html#cb518-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span></span>
+<span id="cb518-2"><a href="basic-statistics.html#cb518-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">shapiro_test</span>(Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="basic-statistics.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="basic-statistics.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(res<span class="sc">$</span>p <span class="sc">&lt;</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
 <p>We see that there are 3 p-values (out of 30 combinations of <code>Day</code> and <code>Time</code>) that are smaller than 0.05. Ideally, we would want all of them to have a p-value higher than 0.05 for the data to be considered as normally distributed. However, since most data seem to be normally distributed in our example, it is okay to proceed to use a two-way ANOVA, which is a parametric procedure.</p>
 </div>
 <div id="computing-two-way-anova" class="section level3 hasAnchor" number="10.8.3">
 <h3><span class="header-section-number">10.8.3</span> Computing Two-way ANOVA<a href="basic-statistics.html#computing-two-way-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As before, let’s use <code>aov()</code> function to compute ANOVA.</p>
-<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="basic-statistics.html#cb524-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Cbratio <span class="sc">~</span> Day <span class="sc">+</span> Time <span class="sc">+</span> Day<span class="sc">:</span>Time,</span>
-<span id="cb524-2"><a href="basic-statistics.html#cb524-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> df)</span>
-<span id="cb524-3"><a href="basic-statistics.html#cb524-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="basic-statistics.html#cb522-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Cbratio <span class="sc">~</span> Day <span class="sc">+</span> Time <span class="sc">+</span> Day<span class="sc">:</span>Time,</span>
+<span id="cb522-2"><a href="basic-statistics.html#cb522-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> df)</span>
+<span id="cb522-3"><a href="basic-statistics.html#cb522-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
 <pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## Day           4    7.2   1.796   0.948    0.437    
 ## Time          5   74.2  14.832   7.825 6.77e-07 ***
@@ -1053,8 +1048,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>As before, we specify the <code>formula</code> using tilde (<code>~</code>); its left side is the dependent variable (<code>Cbratio</code>), and the right side includes the independent variables (or predictors, ex. <code>Day</code> and <code>Time</code>). <code>+</code> is used to add more independent variables in the model formula. Interaction between the effects of <code>Day</code> and <code>Time</code> should also be included by <code>:</code>.</p>
 <p>Another way of writing the model formula is shown below. It uses <code>*</code> as a shortcut to include the effects of <code>Day</code>, <code>Time</code> and their interactions. Notice that the results of both ANOVAs are identical because the model formulas are the same.</p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="basic-statistics.html#cb526-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Cbratio <span class="sc">~</span> Day<span class="sc">*</span>Time, <span class="at">data =</span> df)</span>
-<span id="cb526-2"><a href="basic-statistics.html#cb526-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res2)</span></code></pre></div>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="basic-statistics.html#cb524-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Cbratio <span class="sc">~</span> Day<span class="sc">*</span>Time, <span class="at">data =</span> df)</span>
+<span id="cb524-2"><a href="basic-statistics.html#cb524-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res2)</span></code></pre></div>
 <pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## Day           4    7.2   1.796   0.948    0.437    
 ## Time          5   74.2  14.832   7.825 6.77e-07 ***
@@ -1073,7 +1068,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The procedure for post-hoc analysis differs depending on whether the interaction effect is statistically significant (p &lt; 0.05) or not (p &gt; 0.05).</p>
 <p>Post-hoc test should be performed when there is a significant main effect from one of the factors (ex. <code>Time</code> or <code>Day</code>) in the two-way ANOVA. If not, it should not be performed.</p>
 <p>If there is a significant main effect but the interaction effect is not significant, only interpret the results of post-hoc analysis that are related to the main effects. For example, if <code>Time</code> was a significant main effect, we could analyze the data as following.</p>
-<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="basic-statistics.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res, <span class="at">which =</span> <span class="st">&#39;Time&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb526"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb526-1"><a href="basic-statistics.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res, <span class="at">which =</span> <span class="st">&#39;Time&#39;</span>)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -1097,10 +1092,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 48-12 -0.369566 -1.1599229  0.42079092 0.7611911
 ## 48-24 -0.381112 -1.1714689  0.40924492 0.7366165</code></pre>
 <p>If there is a significant interaction effect between <code>Day</code> and <code>Time</code>, we can examine how the effect of <code>Time</code> varies across different days.</p>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="basic-statistics.html#cb530-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span></span>
-<span id="cb530-2"><a href="basic-statistics.html#cb530-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anova_test</span>(Cbratio <span class="sc">~</span> Time, <span class="at">wid =</span> Subject, <span class="at">within =</span> Day) <span class="sc">%&gt;%</span></span>
-<span id="cb530-3"><a href="basic-statistics.html#cb530-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_anova_table</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb530-4"><a href="basic-statistics.html#cb530-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adjust_pvalue</span>(<span class="at">method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="basic-statistics.html#cb528-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span></span>
+<span id="cb528-2"><a href="basic-statistics.html#cb528-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anova_test</span>(Cbratio <span class="sc">~</span> Time, <span class="at">wid =</span> Subject, <span class="at">within =</span> Day) <span class="sc">%&gt;%</span></span>
+<span id="cb528-3"><a href="basic-statistics.html#cb528-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_anova_table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb528-4"><a href="basic-statistics.html#cb528-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adjust_pvalue</span>(<span class="at">method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 9
 ##   Day   Effect   DFn   DFd     F     p `p&lt;.05`   ges p.adj
 ##   &lt;fct&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -1112,10 +1107,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>within</code> refers to the within-subject factor, which in this case <code>Day</code>. If there are different subjects associated with each <code>Day</code>, then <code>between</code> argument can be filled instead of <code>within</code> in the <code>anova_test()</code> function.</p>
 <p>It seems that the effect of <code>Time</code> is not statistically significant at different levels of the factor <code>Day</code>, except for Day 3. This means that the decrease of <code>Cbratio</code> over time does not differ significantly across most days. This (sort of) agrees with our results that the interaction effect is not statistically significant.</p>
 <p>Let’s pretend that the interaction effect is still significant. If so, we can examine whether the second independent variable (<code>Day</code> in our case) differs across different levels of the first independent variable (<code>Time</code> in our example).</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="basic-statistics.html#cb532-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Time) <span class="sc">%&gt;%</span></span>
-<span id="cb532-2"><a href="basic-statistics.html#cb532-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anova_test</span>(Cbratio <span class="sc">~</span> Day, <span class="at">wid =</span> Subject, <span class="at">within =</span> Time) <span class="sc">%&gt;%</span></span>
-<span id="cb532-3"><a href="basic-statistics.html#cb532-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_anova_table</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb532-4"><a href="basic-statistics.html#cb532-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adjust_pvalue</span>(<span class="at">method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="basic-statistics.html#cb530-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Time) <span class="sc">%&gt;%</span></span>
+<span id="cb530-2"><a href="basic-statistics.html#cb530-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anova_test</span>(Cbratio <span class="sc">~</span> Day, <span class="at">wid =</span> Subject, <span class="at">within =</span> Time) <span class="sc">%&gt;%</span></span>
+<span id="cb530-3"><a href="basic-statistics.html#cb530-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_anova_table</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb530-4"><a href="basic-statistics.html#cb530-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adjust_pvalue</span>(<span class="at">method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 9
 ##   Time  Effect   DFn   DFd     F     p `p&lt;.05`   ges p.adj
 ##   &lt;fct&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -1127,7 +1122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 48    Day        4    45 0.734 0.574 &quot;&quot;      0.061 1</code></pre>
 <p>It seems that the effect of <code>Day</code> remains insignificant across all time points.</p>
 <p>You may realize that this result from the above is strange. Indeed, it is inappropriate to report these two results because the interaction effect is not statistically significant. Therefore, it is more appropriate to just report the post-hoc analysis that is only concerned with the effect of <code>Time</code>.</p>
-<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="basic-statistics.html#cb534-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res, <span class="at">which =</span> <span class="st">&#39;Time&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="basic-statistics.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res, <span class="at">which =</span> <span class="st">&#39;Time&#39;</span>)</span></code></pre></div>
 <pre><code>##   Tukey multiple comparisons of means
 ##     95% family-wise confidence level
 ## 
@@ -1158,8 +1153,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">10.9.1</span> Performing Friedman Test<a href="basic-statistics.html#performing-friedman-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Friedman test is essentially a non-parametric version of one-way repeated measures ANOVA. This means that if a data set/sample has p &lt; 0.05 from a Shapiro-Wilk test, then you should run this test rather than the ANOVA.</p>
 <p>Let’s assume that the <code>df</code> has a non-normal distribution and requires the use of a non-parametric test. Since <code>df</code> has two within-subject factors (<code>Time</code> and <code>Day</code>), <code>df</code> cannot be used in the Friedman test. So, let’s create a new data frame <code>day3</code> that contains data from <code>Day 3</code>, which only contains one factor <code>Time</code>.</p>
-<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="basic-statistics.html#cb536-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="st">&#39;3&#39;</span>)</span>
-<span id="cb536-2"><a href="basic-statistics.html#cb536-2" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> <span class="fu">friedman_test</span>(Cbratio <span class="sc">~</span> Time <span class="sc">|</span> Subject)</span></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="basic-statistics.html#cb534-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="st">&#39;3&#39;</span>)</span>
+<span id="cb534-2"><a href="basic-statistics.html#cb534-2" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> <span class="fu">friedman_test</span>(Cbratio <span class="sc">~</span> Time <span class="sc">|</span> Subject)</span></code></pre></div>
 <pre><code>## # A tibble: 1 x 6
 ##   .y.         n statistic    df      p method       
 ## * &lt;chr&gt;   &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;        
@@ -1169,8 +1164,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="post-hoc-analysis" class="section level3 hasAnchor" number="10.9.2">
 <h3><span class="header-section-number">10.9.2</span> Post-hoc Analysis<a href="basic-statistics.html#post-hoc-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In ANOVA, we used pairwise t-tests as post-hoc analysis with p-value correction. In Friedman test, we will use the wilcoxon test with the function <code>wilcox_test()</code>.</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="basic-statistics.html#cb538-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> </span>
-<span id="cb538-2"><a href="basic-statistics.html#cb538-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox_test</span>(Cbratio <span class="sc">~</span> Time, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="basic-statistics.html#cb536-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> </span>
+<span id="cb536-2"><a href="basic-statistics.html#cb536-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox_test</span>(Cbratio <span class="sc">~</span> Time, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 9
 ##    .y.     group1 group2    n1    n2 statistic     p p.adj p.adj.signif
 ##  * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
