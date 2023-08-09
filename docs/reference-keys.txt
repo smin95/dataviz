@@ -176,3 +176,5 @@ case-study-1
 factor-analysis-and-csf-in-development
 factor-analysis
 eigenvalues
+parallel-analysis
+non-parametric-bootstrapping
