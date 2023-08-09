@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Combining Plots with Common Axes | Data Analysis and Visualization in R Using smplot2</title>
+  <meta name="description" content="Chapter 7 Combining Plots with Common Axes | Data Analysis and Visualization in R Using smplot2" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Combining Plots with Common Axes | Data Analysis and Visualization in R Using smplot2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Combining Plots with Common Axes | Data Analysis and Visualization in R Using smplot2" />
+  
+  
+  
+
+<meta name="author" content="Seung Hyun Min" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="raincloud-and-forest-plots.html"/>
+<link rel="next" href="calculating-area-under-a-curve.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dataviz with smplot2</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i>Major updates</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="opening-remarks.html"><a href="opening-remarks.html"><i class="fa fa-check"></i><b>1</b> Opening Remarks</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="opening-remarks.html"><a href="opening-remarks.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.1</b> How to read this book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>2</b> Download RStudio &amp; Basics of R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#setting-up-rstudio"><i class="fa fa-check"></i><b>2.1</b> Setting up RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#why-use-r-for-data-visualization"><i class="fa fa-check"></i>Why use R for data visualization?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#other-available-resources-for-r"><i class="fa fa-check"></i>Other available resources for R</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#download-requirements-for-rstudio"><i class="fa fa-check"></i>Download requirements for RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#open-rstudio"><i class="fa fa-check"></i>Open RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-make-a-folder-and-set-it-as-working-directory"><i class="fa fa-check"></i>Let’s make a folder and set it as working directory</a></li>
+<li class="chapter" data-level="2.1.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-to-run-your-code"><i class="fa fa-check"></i><b>2.1.1</b> How to run your code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#basics-of-r"><i class="fa fa-check"></i><b>2.2</b> Basics of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-type-some-codes"><i class="fa fa-check"></i>Let’s type some codes</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-can-i-learn-most-effectively-with-the-notes"><i class="fa fa-check"></i>How can I learn most effectively with the notes?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#more-installation"><i class="fa fa-check"></i>More installation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Data Visualization with smplot2</b></span></li>
+<li class="chapter" data-level="3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html"><i class="fa fa-check"></i><b>3</b> Basics of ggplot2 and Correlation Plot</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#uploading-data"><i class="fa fa-check"></i><b>3.1</b> Uploading data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#sample-data-mpg"><i class="fa fa-check"></i><b>3.1.1</b> Sample data: mpg</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Basics of ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-make-some-graphs"><i class="fa fa-check"></i><b>3.2.1</b> Let’s make some graphs</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-ggplot-works"><i class="fa fa-check"></i><b>3.2.2</b> How ggplot works</a></li>
+<li class="chapter" data-level="3.2.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-of-points-for-each-unique-group"><i class="fa fa-check"></i><b>3.2.3</b> Different color of points for each unique group</a></li>
+<li class="chapter" data-level="3.2.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-shape-for-each-group"><i class="fa fa-check"></i><b>3.2.4</b> Different color &amp; shape for each group</a></li>
+<li class="chapter" data-level="3.2.5" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#same-shape-across-all-groups"><i class="fa fa-check"></i><b>3.2.5</b> Same shape across all groups</a></li>
+<li class="chapter" data-level="3.2.6" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-do-we-draw-the-best-fit-line-of-the-graph"><i class="fa fa-check"></i><b>3.2.6</b> How do we draw the best-fit line of the graph?</a></li>
+<li class="chapter" data-level="3.2.7" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#geom_point-geom_smooth"><i class="fa fa-check"></i><b>3.2.7</b> geom_point() + geom_smooth()</a></li>
+<li class="chapter" data-level="3.2.8" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#writing-shorter-codes"><i class="fa fa-check"></i><b>3.2.8</b> Writing shorter codes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#improve-data-visualization-using-smplot2"><i class="fa fa-check"></i><b>3.3</b> Improve data visualization using smplot2</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#positive-relationship-between-x--and-y-axes"><i class="fa fa-check"></i><b>3.3.1</b> Positive relationship between x- and y-axes</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#reporting-statistics-from-a-paired-correlation"><i class="fa fa-check"></i><b>3.3.2</b> Reporting statistics from a paired correlation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#changing-the-text"><i class="fa fa-check"></i><b>3.3.3</b> Changing the text</a></li>
+<li class="chapter" data-level="3.3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#plotting-the-average-with-standard-errors"><i class="fa fa-check"></i><b>3.3.4</b> Plotting the average with standard errors</a></li>
+<li class="chapter" data-level="3.3.5" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#fill-0f993d-vs-fill-green"><i class="fa fa-check"></i><b>3.3.5</b> <code>fill = '#0f993d'</code> vs <code>fill = 'green'</code></a></li>
+<li class="chapter" data-level="3.3.6" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-for-each-group-but-with-other-colors"><i class="fa fa-check"></i><b>3.3.6</b> Different color for each group but with other colors</a></li>
+<li class="chapter" data-level="3.3.7" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1."><i class="fa fa-check"></i><b>3.3.7</b> Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html"><i class="fa fa-check"></i><b>4</b> Boxplot and Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#upload-sample-data-csv-file-in-rstudio"><i class="fa fa-check"></i><b>4.1</b> Upload sample data (csv file) in RStudio</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#download-requirements"><i class="fa fa-check"></i><b>4.1.1</b> Download requirements</a></li>
+<li class="chapter" data-level="4.1.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#before-we-get-started"><i class="fa fa-check"></i><b>4.1.2</b> Before we get started</a></li>
+<li class="chapter" data-level="4.1.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#data.csv"><i class="fa fa-check"></i><b>4.1.3</b> data.csv</a></li>
+<li class="chapter" data-level="4.1.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#read_csvdata.csv"><i class="fa fa-check"></i><b>4.1.4</b> <code>read_csv('data.csv')</code></a></li>
+<li class="chapter" data-level="4.1.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#best-way-to-plot-data"><i class="fa fa-check"></i><b>4.1.5</b> Best way to plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot"><i class="fa fa-check"></i><b>4.2</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#what-is-a-boxplot"><i class="fa fa-check"></i><b>4.2.1</b> What is a boxplot?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-vs-bar-graph"><i class="fa fa-check"></i><b>4.2.2</b> Boxplot vs bar graph</a></li>
+<li class="chapter" data-level="4.2.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-using-ggplot2"><i class="fa fa-check"></i><b>4.2.3</b> Boxplot using ggplot2</a></li>
+<li class="chapter" data-level="4.2.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#problem-alphabetical-order"><i class="fa fa-check"></i><b>4.2.4</b> Problem: Alphabetical order</a></li>
+<li class="chapter" data-level="4.2.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#displaying-characters-in-a-non-alphabetical-order"><i class="fa fa-check"></i><b>4.2.5</b> Displaying characters in a non-alphabetical order</a></li>
+<li class="chapter" data-level="4.2.6" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#double-check-if-the-day-column-is-factor"><i class="fa fa-check"></i><b>4.2.6</b> Double-check if the ‘Day’ column is factor</a></li>
+<li class="chapter" data-level="4.2.7" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#back-to-boxplot-using-ggplot2"><i class="fa fa-check"></i><b>4.2.7</b> Back to boxplot using ggplot2</a></li>
+<li class="chapter" data-level="4.2.8" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#a-boxplot-with-individual-data"><i class="fa fa-check"></i><b>4.2.8</b> A boxplot with individual data</a></li>
+<li class="chapter" data-level="4.2.9" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_boxplot-vs-sm_boxplot"><i class="fa fa-check"></i><b>4.2.9</b> <code>geom_boxplot()</code> vs <code>sm_boxplot()</code></a></li>
+<li class="chapter" data-level="4.2.10" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-boxplot"><i class="fa fa-check"></i><b>4.2.10</b> Save boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot"><i class="fa fa-check"></i><b>4.3</b> Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#structure-of-the-violin-plot"><i class="fa fa-check"></i><b>4.3.1</b> Structure of the violin plot</a></li>
+<li class="chapter" data-level="4.3.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-ggplot2"><i class="fa fa-check"></i><b>4.3.2</b> Violin plot with ggplot2</a></li>
+<li class="chapter" data-level="4.3.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-individual-points"><i class="fa fa-check"></i><b>4.3.3</b> Violin plot with individual points</a></li>
+<li class="chapter" data-level="4.3.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_violin-vs-sm_violin"><i class="fa fa-check"></i><b>4.3.4</b> geom_violin() vs sm_violin()</a></li>
+<li class="chapter" data-level="4.3.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-your-violin-plot"><i class="fa fa-check"></i><b>4.3.5</b> Save your violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#summary-1"><i class="fa fa-check"></i><b>4.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html"><i class="fa fa-check"></i><b>5</b> Bar Graph, Slope Chart and Point plot</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph"><i class="fa fa-check"></i><b>5.1</b> Bar graph</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#scaling-the-y-axis"><i class="fa fa-check"></i><b>5.1.1</b> Scaling the y-axis</a></li>
+<li class="chapter" data-level="5.1.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>5.1.2</b> Plotting individual points with unique colors</a></li>
+<li class="chapter" data-level="5.1.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#other-parameters"><i class="fa fa-check"></i><b>5.1.3</b> Other parameters</a></li>
+<li class="chapter" data-level="5.1.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph-with-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.1.4</b> Bar graph with data of multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart"><i class="fa fa-check"></i><b>5.2</b> Slope chart</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot"><i class="fa fa-check"></i><b>5.2.1</b> Slope chart with mean plot</a></li>
+<li class="chapter" data-level="5.2.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot-and-error-bar"><i class="fa fa-check"></i><b>5.2.2</b> Slope chart with mean plot and error bar</a></li>
+<li class="chapter" data-level="5.2.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-x-levels"><i class="fa fa-check"></i><b>5.2.3</b> Slope chart with multiple x levels</a></li>
+<li class="chapter" data-level="5.2.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-groups-and-x-levels"><i class="fa fa-check"></i><b>5.2.4</b> Slope chart with multiple groups and x levels</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot"><i class="fa fa-check"></i><b>5.3</b> Point plot</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#change-the-range-of-y-axis"><i class="fa fa-check"></i><b>5.3.1</b> Change the range of y-axis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#data-with-more-than-two-groups"><i class="fa fa-check"></i><b>5.3.2</b> Data with more than two groups</a></li>
+<li class="chapter" data-level="5.3.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-one-group"><i class="fa fa-check"></i><b>5.3.3</b> Point plot with a shadow using data of one group</a></li>
+<li class="chapter" data-level="5.3.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.3.4</b> Point plot with a shadow using data of multiple groups</a></li>
+<li class="chapter" data-level="5.3.5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#adding-and-modifying-legends"><i class="fa fa-check"></i><b>5.3.5</b> Adding and modifying legends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html"><i class="fa fa-check"></i><b>6</b> Raincloud and Forest Plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot"><i class="fa fa-check"></i><b>6.1</b> Raincloud plot</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changing-the-x-axis-labels"><i class="fa fa-check"></i><b>6.1.1</b> Changing the x-axis labels</a></li>
+<li class="chapter" data-level="6.1.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#separating-the-components-and-configuration"><i class="fa fa-check"></i><b>6.1.2</b> Separating the components and configuration</a></li>
+<li class="chapter" data-level="6.1.3" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changng-the-theme-and-orientation"><i class="fa fa-check"></i><b>6.1.3</b> Changng the theme and orientation</a></li>
+<li class="chapter" data-level="6.1.4" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot-with-data-from-multiple-groups"><i class="fa fa-check"></i><b>6.1.4</b> Raincloud plot with data from multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#forest-plot"><i class="fa fa-check"></i><b>6.2</b> Forest plot</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#plotting-the-forest-plot-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>6.2.1</b> Plotting the forest plot using data of multiple groups</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
+<li class="chapter" data-level="7" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>7</b> Combining Plots with Common Axes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-for-rows"><i class="fa fa-check"></i><b>7.1.1</b> <code>filter()</code> for rows</a></li>
+<li class="chapter" data-level="7.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>7.1.2</b> <code>select()</code> for columns</a></li>
+<li class="chapter" data-level="7.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>7.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>7.2</b> Plotting the averaged data with error bars</a></li>
+<li class="chapter" data-level="7.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>7.3</b> Plotting individual data</a></li>
+<li class="chapter" data-level="7.4" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#putting-multiple-plots-together"><i class="fa fa-check"></i><b>7.4</b> Putting multiple plots together</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>8</b> Calculating Area under a Curve</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#pipe"><i class="fa fa-check"></i><b>8.1</b> Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="8.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#area-under-a-curve"><i class="fa fa-check"></i><b>8.2</b> Area under a curve</a></li>
+<li class="chapter" data-level="8.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#reproducing-figures-in-the-paper-min-et-al.-2019"><i class="fa fa-check"></i><b>8.3</b> Reproducing figures in the paper (Min et al., 2019)</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3b-a-best-fit-line-with-points-and-error-bars"><i class="fa fa-check"></i><b>8.3.1</b> Figure 3B (a best-fit line with points and error bars)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3d-a-bar-graph"><i class="fa fa-check"></i><b>8.3.2</b> Figure 3D (a bar graph)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3e-modeling-in-matlab-and-plotting-in-r"><i class="fa fa-check"></i><b>8.3.3</b> Figure 3E (modeling in Matlab and plotting in R)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html"><i class="fa fa-check"></i><b>9</b> Calculating Linear Slopes</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#linear-relationship-using-lm"><i class="fa fa-check"></i><b>9.1</b> Linear relationship using <code>lm()</code></a></li>
+<li class="chapter" data-level="9.2" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#calculating-slopes-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>9.2</b> Calculating slopes of all subjects, groups and conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>10.1</b> One-sample t-test</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#two-sample-t-test"><i class="fa fa-check"></i><b>10.2</b> Two-sample t-test</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#shapiro-wilk-test-to-test-for-normality-of-data"><i class="fa fa-check"></i><b>10.2.1</b> Shapiro-Wilk Test to test for Normality of Data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-rank Test</a></li>
+<li class="chapter" data-level="10.4" data-path="basic-statistics.html"><a href="basic-statistics.html#effect-size"><i class="fa fa-check"></i><b>10.4</b> Effect Size</a></li>
+<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.5</b> Post-hoc Power Analysis</a></li>
+<li class="chapter" data-level="10.6" data-path="basic-statistics.html"><a href="basic-statistics.html#bayes-factor"><i class="fa fa-check"></i><b>10.6</b> Bayes Factor</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="basic-statistics.html"><a href="basic-statistics.html#issues-with-post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.6.1</b> Issues with post-hoc power analysis</a></li>
+<li class="chapter" data-level="10.6.2" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-the-bayes-factor-in-r"><i class="fa fa-check"></i><b>10.6.2</b> Computing the Bayes factor in R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>10.7</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="basic-statistics.html"><a href="basic-statistics.html#check-for-outliers"><i class="fa fa-check"></i><b>10.7.1</b> Check for Outliers</a></li>
+<li class="chapter" data-level="10.7.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data"><i class="fa fa-check"></i><b>10.7.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.7.3" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-the-assumption-for-homogeneity-of-variance"><i class="fa fa-check"></i><b>10.7.3</b> Checking the Assumption for Homogeneity of Variance</a></li>
+<li class="chapter" data-level="10.7.4" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-one-way-anova"><i class="fa fa-check"></i><b>10.7.4</b> Computing One-way ANOVA</a></li>
+<li class="chapter" data-level="10.7.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>10.7.5</b> Post-hoc Tests</a></li>
+<li class="chapter" data-level="10.7.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>10.7.6</b> One-way Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>10.8</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.8.1" data-path="basic-statistics.html"><a href="basic-statistics.html#identifying-outliers"><i class="fa fa-check"></i><b>10.8.1</b> Identifying Outliers</a></li>
+<li class="chapter" data-level="10.8.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data-1"><i class="fa fa-check"></i><b>10.8.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.8.3" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-two-way-anova"><i class="fa fa-check"></i><b>10.8.3</b> Computing Two-way ANOVA</a></li>
+<li class="chapter" data-level="10.8.4" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-test"><i class="fa fa-check"></i><b>10.8.4</b> Post-hoc Test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="basic-statistics.html"><a href="basic-statistics.html#friedman-test"><i class="fa fa-check"></i><b>10.9</b> Friedman Test</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="basic-statistics.html"><a href="basic-statistics.html#performing-friedman-test"><i class="fa fa-check"></i><b>10.9.1</b> Performing Friedman Test</a></li>
+<li class="chapter" data-level="10.9.2" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-analysis"><i class="fa fa-check"></i><b>10.9.2</b> Post-hoc Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.10</b> Extra Resources</a></li>
+</ul></li>
+<li class="part"><span><b>III Manual for smplot2</b></span></li>
+<li class="chapter" data-level="11" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><i class="fa fa-check"></i><b>11</b> Themes, Colors, Correlations, Boxplots, Violins and Bars (Part 1)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#installation-of-the-package"><i class="fa fa-check"></i><b>11.1</b> Installation of the Package</a></li>
+<li class="chapter" data-level="11.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#how-...-and-xxx.params-arguments-work"><i class="fa fa-check"></i><b>11.2</b> How <code>...</code> and <code>xxx.params</code> arguments work</a></li>
+<li class="chapter" data-level="11.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#color-palette"><i class="fa fa-check"></i><b>11.3</b> Color palette</a></li>
+<li class="chapter" data-level="11.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#graph-themes"><i class="fa fa-check"></i><b>11.4</b> Graph themes</a></li>
+<li class="chapter" data-level="11.5" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot"><i class="fa fa-check"></i><b>11.5</b> Correlation plot</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_statcorr"><i class="fa fa-check"></i><b>11.5.1</b> <code>sm_statCorr()</code></a></li>
+<li class="chapter" data-level="11.5.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_corr_avgerr"><i class="fa fa-check"></i><b>11.5.2</b> <code>sm_corr_avgErr()</code></a></li>
+<li class="chapter" data-level="11.5.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#structure-of-data-frame"><i class="fa fa-check"></i><b>11.5.3</b> Structure of data frame</a></li>
+<li class="chapter" data-level="11.5.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot-with-both-regression-and-reference-lines"><i class="fa fa-check"></i><b>11.5.4</b> Correlation plot with both regression and reference lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>11.6</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>11.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>11.7</b> Violin Plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>11.7.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>11.8</b> Bar plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-3"><i class="fa fa-check"></i><b>11.8.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><i class="fa fa-check"></i><b>12</b> Slope Charts, Point plots, Bland-Altman, Forests, Rainclouds, Histograms (Part 2)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.1</b> Drawing the mean plot</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#point-plot---sm_pointplot"><i class="fa fa-check"></i><b>12.2</b> Point plot - <code>sm_pointplot()</code></a></li>
+<li class="chapter" data-level="12.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>12.3</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
+<li class="chapter" data-level="12.4" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#forest-plot---sm_forest"><i class="fa fa-check"></i><b>12.4</b> Forest plot - <code>sm_forest()</code></a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#annotation-using-sm_forest_annot"><i class="fa fa-check"></i><b>12.4.1</b> Annotation using <code>sm_forest_annot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>12.5</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
+<li class="chapter" data-level="12.6" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#histogram---sm_hist"><i class="fa fa-check"></i><b>12.6</b> Histogram - <code>sm_hist()</code></a></li>
+</ul></li>
+<li class="part"><span><b>IV Contrast Sensitivity Function</b></span></li>
+<li class="chapter" data-level="13" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>13</b> Plotting the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>13.1</b> Brief Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>13.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="13.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>13.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>14</b> Area under Curve, AULCSF and R2 of the CSF</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>14.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="14.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>14.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="14.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>14.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="14.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>14.4</b> Case Study</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>15</b> Understanding the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#contrast-sensitivity-function-model"><i class="fa fa-check"></i><b>15.1</b> Contrast Sensitivity Function Model</a></li>
+<li class="chapter" data-level="15.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_csf"><i class="fa fa-check"></i><b>15.2</b> Understanding <code>sm_CSF()</code></a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_params"><i class="fa fa-check"></i><b>15.2.1</b> <code>sm_params()</code></a></li>
+<li class="chapter" data-level="15.2.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_cutoff"><i class="fa fa-check"></i><b>15.2.2</b> <code>sm_cutOff()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_ribboncsf"><i class="fa fa-check"></i><b>15.3</b> Understanding <code>sm_ribbonCSF()</code></a></li>
+<li class="chapter" data-level="15.4" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#calculating-the-five-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>15.4</b> Calculating the five parameters of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="15.5" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#visualization-of-the-parameters"><i class="fa fa-check"></i><b>15.5</b> Visualization of the parameters</a></li>
+<li class="chapter" data-level="15.6" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#case-study-1"><i class="fa fa-check"></i><b>15.6</b> Case Study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis and Visualization in R Using smplot2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="combining-plots-with-common-axes" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Combining Plots with Common Axes<a href="combining-plots-with-common-axes.html#combining-plots-with-common-axes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>First, you need to load data (.csv file). When you are loading your own .csv file for your data analysis, make sure you place the .csv file of your interest in the folder that has been set to the <strong>working directory</strong>.</p>
+<p>In this example, we will be using data from this paper:</p>
+<p><strong>Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.</strong></p>
+<p>We will be creating similar figures to those in the paper (ex. <strong>Figure 3A</strong> and <strong>Figure A2</strong>) using <strong>smplot</strong>. For the PDF copy, please visit <a href="https://www.smin95.com/pubs/min2019.pdf">this link</a>.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="combining-plots-with-common-axes.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="combining-plots-with-common-axes.html#cb268-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="combining-plots-with-common-axes.html#cb269-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Day)</span>
+<span id="cb269-2"><a href="combining-plots-with-common-axes.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject Day    Time Cbratio
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 S1      1         0  -0.421
+## 2 S2      1         0   2.82 
+## 3 S3      1         0   1.69 
+## 4 S4      1         0   2.55 
+## 5 S5      1         0  -0.217
+## 6 S6      1         0   0.626</code></pre>
+<p>There are four columns in this data frame:</p>
+<ul>
+<li><p>First, <code>Subject</code> refers to each participant. There are 10 participants total.</p></li>
+<li><p>Next, <code>Day</code> refers to the day of testing. The participants were tested on Day 1, 2, 3, 4 and 5. We will only use Day from 1 and 5.</p></li>
+<li><p><code>Time</code> refers to the number of minutes after an experimental manipulation (ex. monocular deprivation). These are 0, 3, 6, 12, 24 and 48 minutes, but in the data frame, it says 0, 1, 2, 3, 4 and 5; we will change the labels manually.</p></li>
+<li><p>The <code>Cbratio</code> column refers to the actual data that will be plotted here.</p></li>
+</ul>
+<p>In the example below, the plots will have different colors based on Day (1 or 5). Therefore, the values in <code>Day</code> column have to be discrete, not continuous. To make them discrete, one needs to convert the <code>Day</code> column from <strong>double</strong> (continuous variable) to <strong>factor</strong> (discrete variable).</p>
+<div id="filter-select-and-summarise" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> <code>filter()</code>, <code>select()</code> and <code>summarise()</code><a href="combining-plots-with-common-axes.html#filter-select-and-summarise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="filter-for-rows" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> <code>filter()</code> for rows<a href="combining-plots-with-common-axes.html#filter-for-rows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To plot data of each subject separately, we need the data frame to show data only from one subject. This can be achieved as using <code>filter()</code>:</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="combining-plots-with-common-axes.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 S1      1         0  -0.421
+##  2 S1      1         1   0.802
+##  3 S1      1         2   1.01 
+##  4 S1      1         3   0.634
+##  5 S1      1         4  -0.245
+##  6 S1      1         5  -0.834
+##  7 S1      5         0   2.42 
+##  8 S1      5         1   1.76 
+##  9 S1      5         2   1.91 
+## 10 S1      5         3   0.609
+## 11 S1      5         4   0.811
+## 12 S1      5         5   0.363</code></pre>
+<ul>
+<li>The first argument of <code>filter()</code>, <code>select()</code>, <code>summarise()</code> and <code>mutate()</code> is a data frame.</li>
+<li>The subsequent argument specifies how the data frame should be treated.</li>
+<li>The new printed result is a new data frame.</li>
+</ul>
+<p><code>filter()</code> is used to filter for rows that meet the requirement of your interest.</p>
+<p>Here is another example.</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="combining-plots-with-common-axes.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 60 x 4
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 S1      1         0  -0.421
+##  2 S2      1         0   2.82 
+##  3 S3      1         0   1.69 
+##  4 S4      1         0   2.55 
+##  5 S5      1         0  -0.217
+##  6 S6      1         0   0.626
+##  7 S7      1         0   2.62 
+##  8 S8      1         0   1.42 
+##  9 S9      1         0   1.54 
+## 10 S10     1         0   3.05 
+## # ... with 50 more rows</code></pre>
+<p>The above code can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column.</p>
+<p>Notice that S1 is a <strong>character</strong> because it has an alphabet. Therefore, it needs to be written as <code>'S1'</code>. However, <code>1</code> of <code>Day</code> is <strong>double</strong>, which is essentially just a number digit. Therefore, it can be written as <code>1</code> with no quotation mark.</p>
+<p>Let’s try another example.</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="combining-plots-with-common-axes.html#cb275-1" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># save the new data frame into a new variable</span></span>
+<span id="cb275-2"><a href="combining-plots-with-common-axes.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(day1, Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) <span class="co"># this new data frame contains Day 1 and Subject 1 data only.</span></span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject Day    Time Cbratio
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 S1      1         0  -0.421
+## 2 S1      1         1   0.802
+## 3 S1      1         2   1.01 
+## 4 S1      1         3   0.634
+## 5 S1      1         4  -0.245
+## 6 S1      1         5  -0.834</code></pre>
+<p>The above code can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column. Save this new data frame as <code>day1</code>. Then, <strong>filter</strong> for all rows of the data frame <code>day1</code> that have <code>S1</code> in the <code>Subject</code> column.</p>
+<p>The above can also be written like the one below:</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="combining-plots-with-common-axes.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject Day    Time Cbratio
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 S1      1         0  -0.421
+## 2 S1      1         1   0.802
+## 3 S1      1         2   1.01 
+## 4 S1      1         3   0.634
+## 5 S1      1         4  -0.245
+## 6 S1      1         5  -0.834</code></pre>
+<p>The above can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>AND</strong> have <code>S1</code> in the <code>Subject</code> column.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="combining-plots-with-common-axes.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 66 x 4
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 S1      1         0  -0.421
+##  2 S2      1         0   2.82 
+##  3 S3      1         0   1.69 
+##  4 S4      1         0   2.55 
+##  5 S5      1         0  -0.217
+##  6 S6      1         0   0.626
+##  7 S7      1         0   2.62 
+##  8 S8      1         0   1.42 
+##  9 S9      1         0   1.54 
+## 10 S10     1         0   3.05 
+## # ... with 56 more rows</code></pre>
+<p>The above can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>OR</strong> have <code>S1</code> in the <code>Subject</code> column. <code>|</code> represents <strong>OR</strong>, <code>&amp;</code> represents <strong>AND</strong>.</p>
+</div>
+<div id="select-for-columns" class="section level3 hasAnchor" number="7.1.2">
+<h3><span class="header-section-number">7.1.2</span> <code>select()</code> for columns<a href="combining-plots-with-common-axes.html#select-for-columns" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you wish to see the <code>Cbratio</code> column only (i.e., data only) for rows of <strong>df</strong> that have <code>Day ==  1</code> and <code>Time == 0</code>, you can write it like this:</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="combining-plots-with-common-axes.html#cb281-1" aria-hidden="true" tabindex="-1"></a>day1_time0 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Time <span class="sc">==</span> <span class="dv">0</span>) <span class="co"># save the new data frame in the day1_time0 variable </span></span>
+<span id="cb281-2"><a href="combining-plots-with-common-axes.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(day1_time0, Cbratio)</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 1
+##    Cbratio
+##      &lt;dbl&gt;
+##  1  -0.421
+##  2   2.82 
+##  3   1.69 
+##  4   2.55 
+##  5  -0.217
+##  6   0.626
+##  7   2.62 
+##  8   1.42 
+##  9   1.54 
+## 10   3.05</code></pre>
+<p>There are 10 rows (i.e., 10 subjects) in this filtered data frame and 1 column, which is <code>Cbratio</code>. The above can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>AND</strong> have <code>0</code> in the <code>Time</code> column. Then, store the new data frame in <code>day1_time0</code>. Then, select for <code>Cbratio</code> column from <code>day1_time0</code>.</p>
+<p><code>select()</code> is used to filter for columns that meet the requirement of your interest.</p>
+</div>
+<div id="summarise-for-grouped-summaries" class="section level3 hasAnchor" number="7.1.3">
+<h3><span class="header-section-number">7.1.3</span> <code>summarise()</code> for grouped summaries<a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>df</strong> contains individual data for all subjects on Days 1 and 5 across all time points. However, it does not contain average data either for each <strong>Day</strong> or <strong>Time</strong>.</p>
+<p><code>summarise()</code> can collapse multiple rows of observations into values such as the mean.</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="combining-plots-with-common-axes.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df, <span class="at">average =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   average
+##     &lt;dbl&gt;
+## 1    1.35</code></pre>
+<p>However, in this case, we get an example of <code>Cbratio</code> across <code>Subject</code>, <code>Day</code> and <code>Time</code>. This average value itself is not so meaningful. If we wish to obtain the average for each <code>Day</code> and <code>Time</code>, we can use the function <code>group_by()</code> to group data for each day and time.</p>
+<ul>
+<li><p>As it was the case before, the first argument of <code>group_by()</code> is a data frame.</p></li>
+<li><p>The second argument of <code>group_by()</code> is the name of the column through which you would like to group the data.</p></li>
+</ul>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="combining-plots-with-common-axes.html#cb285-1" aria-hidden="true" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
+<span id="cb285-2"><a href="combining-plots-with-common-axes.html#cb285-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(by_day_time)</span></code></pre></div>
+<pre><code>## # A tibble: 120 x 4
+## # Groups:   Day, Time [12]
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 S1      1         0  -0.421
+##  2 S2      1         0   2.82 
+##  3 S3      1         0   1.69 
+##  4 S4      1         0   2.55 
+##  5 S5      1         0  -0.217
+##  6 S6      1         0   0.626
+##  7 S7      1         0   2.62 
+##  8 S8      1         0   1.42 
+##  9 S9      1         0   1.54 
+## 10 S10     1         0   3.05 
+## # ... with 110 more rows</code></pre>
+<p>The output of <code>group_by()</code> is a new data frame (it might appear exactly the same as before, ex. <strong>df</strong>). However, it will respond differently to <code>summarise()</code> because the rows of the data frame are now grouped based on day and time, as we have specified.</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="combining-plots-with-common-axes.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">Average_Cbratio =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 3
+## # Groups:   Day [2]
+##    Day    Time Average_Cbratio
+##    &lt;fct&gt; &lt;dbl&gt;           &lt;dbl&gt;
+##  1 1         0           1.57 
+##  2 1         1           2.21 
+##  3 1         2           2.32 
+##  4 1         3           0.979
+##  5 1         4           1.25 
+##  6 1         5           1.14 
+##  7 5         0           1.85 
+##  8 5         1           1.49 
+##  9 5         2           1.02 
+## 10 5         3           1.15 
+## 11 5         4           0.759
+## 12 5         5           0.452</code></pre>
+<p>This new data frame yields average for each Day and Time. We have now created a new column <code>Average_Cbratio</code> which stores all the average data of <code>Cbratio</code>.</p>
+<p>Therefore, <code>group_by()</code> and <code>summarise()</code> are very useful together. They provide grouped summaries, such as the average. However, <code>summarise()</code> alone may not be so useful. <code>group_by()</code> alone is also rarely used.</p>
+<p>Besides the <strong>average</strong>, one might also be interested in obtaining either <strong>standard deviation</strong> or <strong>standard error</strong>.</p>
+<p>However, our <strong>df</strong> does not contain any data about the <strong>standard deviation</strong> or <strong>standard error</strong> per Day or Time, etc. Standard deviation can be calculated via <code>sd()</code> and standard error can be computed with <code>sm_stdErr()</code>.</p>
+<p>Below, we obtain standard error with the help of the <code>summarise()</code> function for each <code>Day</code> and <code>Time</code>.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="combining-plots-with-common-axes.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
+<pre><code>## # A tibble: 1 x 1
+##   standard_error
+##            &lt;dbl&gt;
+## 1          0.115</code></pre>
+<p>As we have seen before, we see that <code>standard_error</code> has been calculated across all subjects, day and time. This is not so useful. We should use <code>summarise()</code> with <code>group_by()</code> so that each standard error could be for each <code>Day</code> and <code>Time</code>.</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="combining-plots-with-common-axes.html#cb291-1" aria-hidden="true" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
+<span id="cb291-2"><a href="combining-plots-with-common-axes.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 3
+## # Groups:   Day [2]
+##    Day    Time standard_error
+##    &lt;fct&gt; &lt;dbl&gt;          &lt;dbl&gt;
+##  1 1         0          0.393
+##  2 1         1          0.363
+##  3 1         2          0.400
+##  4 1         3          0.352
+##  5 1         4          0.266
+##  6 1         5          0.438
+##  7 5         0          0.563
+##  8 5         1          0.422
+##  9 5         2          0.462
+## 10 5         3          0.224
+## 11 5         4          0.292
+## 12 5         5          0.193</code></pre>
+<p>This standard error is for each <code>Day</code> and <code>Time</code> across all subjects.</p>
+<p>Now let’s obtain the <strong>mean</strong> and <strong>standard error</strong> of <code>Cbratio</code> for each <code>Day</code> and <code>Time</code> across all subjects using the data frame that has been grouped by <code>Day</code> and <code>Time</code> via <code>group_by()</code>.</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="combining-plots-with-common-axes.html#cb293-1" aria-hidden="true" tabindex="-1"></a>by_day_time1 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_day_time, <span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
+<span id="cb293-2"><a href="combining-plots-with-common-axes.html#cb293-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span>
+<span id="cb293-3"><a href="combining-plots-with-common-axes.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(by_day_time1)</span></code></pre></div>
+<pre><code>## # A tibble: 12 x 4
+## # Groups:   Day [2]
+##    Day    Time Average StdError
+##    &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;
+##  1 1         0   1.57     0.393
+##  2 1         1   2.21     0.363
+##  3 1         2   2.32     0.400
+##  4 1         3   0.979    0.352
+##  5 1         4   1.25     0.266
+##  6 1         5   1.14     0.438
+##  7 5         0   1.85     0.563
+##  8 5         1   1.49     0.422
+##  9 5         2   1.02     0.462
+## 10 5         3   1.15     0.224
+## 11 5         4   0.759    0.292
+## 12 5         5   0.452    0.193</code></pre>
+<p>The original <strong>df</strong>, which contains data for each subject, has now been transformed to a new data frame that contains grouped summaries, such as group averages and standard errors.</p>
+<p>If you are interested in learning more about this topic (data transformation), please check out Chapter 5 of R for Data Science by Hadley Wickham (<a href="https://r4ds.had.co.nz/transform.html" class="uri">https://r4ds.had.co.nz/transform.html</a>).</p>
+</div>
+</div>
+<div id="plotting-the-averaged-data-with-error-bars" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Plotting the averaged data with error bars<a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Plotting the averaged data can be done with a data frame that contains individual observation (ex. each subject, condition, etc). This data frame can be modified to only contain summary values, such as mean and standard error, using <code>group_by()</code> and <code>summarise()</code> together as shown above.</p>
+<p>We will plot a similar graph to <strong>Figure 3A</strong> in the Vision Research paper (Min et al., 2019) in this section.</p>
+<ul>
+<li>A data frame that has grouped summary information (<code>group_by()</code> and <code>summarise()</code>), such as average and standard error across subject, is needed to plot a graph that shows the average data with error bars.</li>
+<li><code>geom_errorbar()</code> is required to plot the error bar of the sample.</li>
+<li>Legend title has been removed with the <code>theme()</code> function.</li>
+<li>Greek letter <strong>Delta</strong> is printed with <code>\u0394</code>.</li>
+<li>X-tick labels are originally 0, 1, 2, 3, 4, 5 (as specified in the <strong>df</strong> data frame). However, they can be manually changed using <code>labels =</code> argument in the <code>scale_x_continuous()</code> function.</li>
+<li>Legend label can also be changed in <code>labels =</code> from the <code>scale_color_manual()</code> function because each <code>Day</code> has been defined by each <code>color</code>; this is the case because <code>color = Day</code> in <code>aes(..., ..., color = Day)</code>.</li>
+</ul>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="combining-plots-with-common-axes.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> by_day_time1, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Average, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb295-2"><a href="combining-plots-with-common-axes.html#cb295-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb295-3"><a href="combining-plots-with-common-axes.html#cb295-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Average <span class="sc">-</span> StdError, <span class="at">ymax =</span> Average <span class="sc">+</span> StdError), <span class="at">size =</span> .<span class="dv">5</span>, <span class="at">width =</span> .<span class="dv">05</span>) <span class="sc">+</span></span>
+<span id="cb295-4"><a href="combining-plots-with-common-axes.html#cb295-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb295-5"><a href="combining-plots-with-common-axes.html#cb295-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb295-6"><a href="combining-plots-with-common-axes.html#cb295-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb295-7"><a href="combining-plots-with-common-axes.html#cb295-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb295-8"><a href="combining-plots-with-common-axes.html#cb295-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb295-9"><a href="combining-plots-with-common-axes.html#cb295-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>),</span>
+<span id="cb295-10"><a href="combining-plots-with-common-axes.html#cb295-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Day 1&quot;</span>, <span class="st">&quot;Day 5&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb295-11"><a href="combining-plots-with-common-axes.html#cb295-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Recovery of the patching effect&quot;</span>) <span class="sc">+</span></span>
+<span id="cb295-12"><a href="combining-plots-with-common-axes.html#cb295-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time after monocular deprivation (min)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb295-13"><a href="combining-plots-with-common-axes.html#cb295-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb295-14"><a href="combining-plots-with-common-axes.html#cb295-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb295-15"><a href="combining-plots-with-common-axes.html#cb295-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.96</span>, <span class="fl">0.67</span>), </span>
+<span id="cb295-16"><a href="combining-plots-with-common-axes.html#cb295-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-263-1.png" width="336" /></p>
+</div>
+<div id="plotting-individual-data" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Plotting individual data<a href="combining-plots-with-common-axes.html#plotting-individual-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this section, we will plot a similar graph to <strong>Figure A2</strong> in the Vision Research paper (Min et al., 2019).</p>
+<p>First, you will need several packages for this section.</p>
+<ul>
+<li>If you do not have the <strong>gridExtra</strong> and <strong>grid</strong> packages in your RStudio, please install them using the codes below. It might take less than a minute.</li>
+</ul>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="combining-plots-with-common-axes.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;gridExtra&#39;</span>)</span>
+<span id="cb296-2"><a href="combining-plots-with-common-axes.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;grid&#39;</span>)</span></code></pre></div>
+<ul>
+<li>Then load all these packages below.</li>
+</ul>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="combining-plots-with-common-axes.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb297-2"><a href="combining-plots-with-common-axes.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb297-3"><a href="combining-plots-with-common-axes.html#cb297-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span>
+<span id="cb297-4"><a href="combining-plots-with-common-axes.html#cb297-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb297-5"><a href="combining-plots-with-common-axes.html#cb297-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(grid)</span></code></pre></div>
+<p>Now let’s plot data for each subject (S1-S9) except S10. Each panel shows the data of each subject for both Days 1 and 5.</p>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="combining-plots-with-common-axes.html#cb298-1" aria-hidden="true" tabindex="-1"></a>df_s1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) </span>
+<span id="cb298-2"><a href="combining-plots-with-common-axes.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S1 in the Subject column</span></span>
+<span id="cb298-3"><a href="combining-plots-with-common-axes.html#cb298-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-4"><a href="combining-plots-with-common-axes.html#cb298-4" aria-hidden="true" tabindex="-1"></a><span class="co"># use df_s1 to plot the data of S1</span></span>
+<span id="cb298-5"><a href="combining-plots-with-common-axes.html#cb298-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-6"><a href="combining-plots-with-common-axes.html#cb298-6" aria-hidden="true" tabindex="-1"></a>plot_s1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s1, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb298-7"><a href="combining-plots-with-common-axes.html#cb298-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb298-8"><a href="combining-plots-with-common-axes.html#cb298-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb298-9"><a href="combining-plots-with-common-axes.html#cb298-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb298-10"><a href="combining-plots-with-common-axes.html#cb298-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb298-11"><a href="combining-plots-with-common-axes.html#cb298-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb298-12"><a href="combining-plots-with-common-axes.html#cb298-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb298-13"><a href="combining-plots-with-common-axes.html#cb298-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb298-14"><a href="combining-plots-with-common-axes.html#cb298-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb298-15"><a href="combining-plots-with-common-axes.html#cb298-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb298-16"><a href="combining-plots-with-common-axes.html#cb298-16" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb298-17"><a href="combining-plots-with-common-axes.html#cb298-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb298-18"><a href="combining-plots-with-common-axes.html#cb298-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s1)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-266-1.png" width="336" /></p>
+<p>Then make each one for the other subjects (S2-S9).</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="combining-plots-with-common-axes.html#cb299-1" aria-hidden="true" tabindex="-1"></a>df_s2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S2&#39;</span>) </span>
+<span id="cb299-2"><a href="combining-plots-with-common-axes.html#cb299-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-3"><a href="combining-plots-with-common-axes.html#cb299-3" aria-hidden="true" tabindex="-1"></a>plot_s2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s2, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb299-4"><a href="combining-plots-with-common-axes.html#cb299-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb299-5"><a href="combining-plots-with-common-axes.html#cb299-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb299-6"><a href="combining-plots-with-common-axes.html#cb299-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb299-7"><a href="combining-plots-with-common-axes.html#cb299-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb299-8"><a href="combining-plots-with-common-axes.html#cb299-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb299-9"><a href="combining-plots-with-common-axes.html#cb299-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb299-10"><a href="combining-plots-with-common-axes.html#cb299-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb299-11"><a href="combining-plots-with-common-axes.html#cb299-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb299-12"><a href="combining-plots-with-common-axes.html#cb299-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb299-13"><a href="combining-plots-with-common-axes.html#cb299-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb299-14"><a href="combining-plots-with-common-axes.html#cb299-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-15"><a href="combining-plots-with-common-axes.html#cb299-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s2)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-267-1.png" width="336" /></p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="combining-plots-with-common-axes.html#cb300-1" aria-hidden="true" tabindex="-1"></a>df_s3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S3&#39;</span>)</span>
+<span id="cb300-2"><a href="combining-plots-with-common-axes.html#cb300-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-3"><a href="combining-plots-with-common-axes.html#cb300-3" aria-hidden="true" tabindex="-1"></a>plot_s3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s3, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb300-4"><a href="combining-plots-with-common-axes.html#cb300-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb300-5"><a href="combining-plots-with-common-axes.html#cb300-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb300-6"><a href="combining-plots-with-common-axes.html#cb300-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb300-7"><a href="combining-plots-with-common-axes.html#cb300-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb300-8"><a href="combining-plots-with-common-axes.html#cb300-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb300-9"><a href="combining-plots-with-common-axes.html#cb300-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb300-10"><a href="combining-plots-with-common-axes.html#cb300-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb300-11"><a href="combining-plots-with-common-axes.html#cb300-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb300-12"><a href="combining-plots-with-common-axes.html#cb300-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb300-13"><a href="combining-plots-with-common-axes.html#cb300-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb300-14"><a href="combining-plots-with-common-axes.html#cb300-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb300-15"><a href="combining-plots-with-common-axes.html#cb300-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s3)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-268-1.png" width="336" /></p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="combining-plots-with-common-axes.html#cb301-1" aria-hidden="true" tabindex="-1"></a>df_s4 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S4&#39;</span>)</span>
+<span id="cb301-2"><a href="combining-plots-with-common-axes.html#cb301-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb301-3"><a href="combining-plots-with-common-axes.html#cb301-3" aria-hidden="true" tabindex="-1"></a>plot_s4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s4, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb301-4"><a href="combining-plots-with-common-axes.html#cb301-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb301-5"><a href="combining-plots-with-common-axes.html#cb301-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb301-6"><a href="combining-plots-with-common-axes.html#cb301-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb301-7"><a href="combining-plots-with-common-axes.html#cb301-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb301-8"><a href="combining-plots-with-common-axes.html#cb301-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb301-9"><a href="combining-plots-with-common-axes.html#cb301-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb301-10"><a href="combining-plots-with-common-axes.html#cb301-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb301-11"><a href="combining-plots-with-common-axes.html#cb301-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb301-12"><a href="combining-plots-with-common-axes.html#cb301-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb301-13"><a href="combining-plots-with-common-axes.html#cb301-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb301-14"><a href="combining-plots-with-common-axes.html#cb301-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb301-15"><a href="combining-plots-with-common-axes.html#cb301-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s4)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-269-1.png" width="336" /></p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="combining-plots-with-common-axes.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 5</span></span>
+<span id="cb302-2"><a href="combining-plots-with-common-axes.html#cb302-2" aria-hidden="true" tabindex="-1"></a>df_s5 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S5&#39;</span>) </span>
+<span id="cb302-3"><a href="combining-plots-with-common-axes.html#cb302-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S5 in the Subject column</span></span>
+<span id="cb302-4"><a href="combining-plots-with-common-axes.html#cb302-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb302-5"><a href="combining-plots-with-common-axes.html#cb302-5" aria-hidden="true" tabindex="-1"></a>plot_s5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s5, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb302-6"><a href="combining-plots-with-common-axes.html#cb302-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb302-7"><a href="combining-plots-with-common-axes.html#cb302-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb302-8"><a href="combining-plots-with-common-axes.html#cb302-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb302-9"><a href="combining-plots-with-common-axes.html#cb302-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb302-10"><a href="combining-plots-with-common-axes.html#cb302-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb302-11"><a href="combining-plots-with-common-axes.html#cb302-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="co"># show legends for the color</span></span>
+<span id="cb302-12"><a href="combining-plots-with-common-axes.html#cb302-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb302-13"><a href="combining-plots-with-common-axes.html#cb302-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb302-14"><a href="combining-plots-with-common-axes.html#cb302-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span> <span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb302-15"><a href="combining-plots-with-common-axes.html#cb302-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb302-16"><a href="combining-plots-with-common-axes.html#cb302-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.96</span>, <span class="fl">0.65</span>)) </span>
+<span id="cb302-17"><a href="combining-plots-with-common-axes.html#cb302-17" aria-hidden="true" tabindex="-1"></a><span class="co"># location of legend (color label)</span></span>
+<span id="cb302-18"><a href="combining-plots-with-common-axes.html#cb302-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb302-19"><a href="combining-plots-with-common-axes.html#cb302-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s5)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-270-1.png" width="336" /></p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="combining-plots-with-common-axes.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 6</span></span>
+<span id="cb303-2"><a href="combining-plots-with-common-axes.html#cb303-2" aria-hidden="true" tabindex="-1"></a>df_s6 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S6&#39;</span>) </span>
+<span id="cb303-3"><a href="combining-plots-with-common-axes.html#cb303-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S6 in the Subject column</span></span>
+<span id="cb303-4"><a href="combining-plots-with-common-axes.html#cb303-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-5"><a href="combining-plots-with-common-axes.html#cb303-5" aria-hidden="true" tabindex="-1"></a>plot_s6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s5, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb303-6"><a href="combining-plots-with-common-axes.html#cb303-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb303-7"><a href="combining-plots-with-common-axes.html#cb303-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb303-8"><a href="combining-plots-with-common-axes.html#cb303-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb303-9"><a href="combining-plots-with-common-axes.html#cb303-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb303-10"><a href="combining-plots-with-common-axes.html#cb303-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb303-11"><a href="combining-plots-with-common-axes.html#cb303-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb303-12"><a href="combining-plots-with-common-axes.html#cb303-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb303-13"><a href="combining-plots-with-common-axes.html#cb303-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>))  <span class="sc">+</span></span>
+<span id="cb303-14"><a href="combining-plots-with-common-axes.html#cb303-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb303-15"><a href="combining-plots-with-common-axes.html#cb303-15" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb303-16"><a href="combining-plots-with-common-axes.html#cb303-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-17"><a href="combining-plots-with-common-axes.html#cb303-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s6)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-271-1.png" width="336" /></p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="combining-plots-with-common-axes.html#cb304-1" aria-hidden="true" tabindex="-1"></a>df_s7 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S7&#39;</span>)</span>
+<span id="cb304-2"><a href="combining-plots-with-common-axes.html#cb304-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-3"><a href="combining-plots-with-common-axes.html#cb304-3" aria-hidden="true" tabindex="-1"></a>plot_s7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s7, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb304-4"><a href="combining-plots-with-common-axes.html#cb304-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb304-5"><a href="combining-plots-with-common-axes.html#cb304-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb304-6"><a href="combining-plots-with-common-axes.html#cb304-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb304-7"><a href="combining-plots-with-common-axes.html#cb304-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb304-8"><a href="combining-plots-with-common-axes.html#cb304-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb304-9"><a href="combining-plots-with-common-axes.html#cb304-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb304-10"><a href="combining-plots-with-common-axes.html#cb304-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb304-11"><a href="combining-plots-with-common-axes.html#cb304-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb304-12"><a href="combining-plots-with-common-axes.html#cb304-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb304-13"><a href="combining-plots-with-common-axes.html#cb304-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb304-14"><a href="combining-plots-with-common-axes.html#cb304-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb304-15"><a href="combining-plots-with-common-axes.html#cb304-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s7)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-272-1.png" width="336" /></p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="combining-plots-with-common-axes.html#cb305-1" aria-hidden="true" tabindex="-1"></a>df_s8 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S8&#39;</span>)</span>
+<span id="cb305-2"><a href="combining-plots-with-common-axes.html#cb305-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb305-3"><a href="combining-plots-with-common-axes.html#cb305-3" aria-hidden="true" tabindex="-1"></a>plot_s8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s8, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb305-4"><a href="combining-plots-with-common-axes.html#cb305-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb305-5"><a href="combining-plots-with-common-axes.html#cb305-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb305-6"><a href="combining-plots-with-common-axes.html#cb305-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb305-7"><a href="combining-plots-with-common-axes.html#cb305-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb305-8"><a href="combining-plots-with-common-axes.html#cb305-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb305-9"><a href="combining-plots-with-common-axes.html#cb305-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb305-10"><a href="combining-plots-with-common-axes.html#cb305-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb305-11"><a href="combining-plots-with-common-axes.html#cb305-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb305-12"><a href="combining-plots-with-common-axes.html#cb305-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) </span>
+<span id="cb305-13"><a href="combining-plots-with-common-axes.html#cb305-13" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb305-14"><a href="combining-plots-with-common-axes.html#cb305-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb305-15"><a href="combining-plots-with-common-axes.html#cb305-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s8)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-273-1.png" width="336" /></p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="combining-plots-with-common-axes.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 9</span></span>
+<span id="cb306-2"><a href="combining-plots-with-common-axes.html#cb306-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-3"><a href="combining-plots-with-common-axes.html#cb306-3" aria-hidden="true" tabindex="-1"></a>df_s9 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S9&#39;</span>) </span>
+<span id="cb306-4"><a href="combining-plots-with-common-axes.html#cb306-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-5"><a href="combining-plots-with-common-axes.html#cb306-5" aria-hidden="true" tabindex="-1"></a>plot_s9 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s9, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
+<span id="cb306-6"><a href="combining-plots-with-common-axes.html#cb306-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb306-7"><a href="combining-plots-with-common-axes.html#cb306-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb306-8"><a href="combining-plots-with-common-axes.html#cb306-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb306-9"><a href="combining-plots-with-common-axes.html#cb306-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb306-10"><a href="combining-plots-with-common-axes.html#cb306-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb306-11"><a href="combining-plots-with-common-axes.html#cb306-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>() <span class="sc">+</span></span>
+<span id="cb306-12"><a href="combining-plots-with-common-axes.html#cb306-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb306-13"><a href="combining-plots-with-common-axes.html#cb306-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="fl">5.5</span>)) <span class="sc">+</span></span>
+<span id="cb306-14"><a href="combining-plots-with-common-axes.html#cb306-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">1.5</span>), <span class="at">color =</span> <span class="st">&quot;black&quot;</span>))</span>
+<span id="cb306-15"><a href="combining-plots-with-common-axes.html#cb306-15" aria-hidden="true" tabindex="-1"></a><span class="co"># axis text size is 1.5x the original font size. </span></span>
+<span id="cb306-16"><a href="combining-plots-with-common-axes.html#cb306-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb306-17"><a href="combining-plots-with-common-axes.html#cb306-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s9)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-274-1.png" width="336" /></p>
+</div>
+<div id="putting-multiple-plots-together" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Putting multiple plots together<a href="combining-plots-with-common-axes.html#putting-multiple-plots-together" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now let’s put them together in a 3x3 figure (3 rows, 3 columns) using the function <code>plot_grid</code> from the <strong>cowplot</strong> package. Here is the illustration of what we are going to do.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-275"></span>
+<img src="img/rc33.png" alt="3x3 figure. It has 3 columns and 3 rows" width="75%" />
+<p class="caption">
+Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
+</p>
+</div>
+<p>When you are saving the graph as an image file, <code>nrow</code> and <code>ncol</code> in <code>save_plot()</code> have to match the values in <code>plot_grid()</code> as shown below.</p>
+<p><code>plot_grid()</code> is a function that puts different graphs together (ex. 3x3 structure). For more information about the function <code>plot_grid</code>, please type <code>?plot_grid</code> in the console.</p>
+<p><code>save_plot()</code> is a function that saves a selected graph into an image or PDF file (or eps, etc).</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="combining-plots-with-common-axes.html#cb307-1" aria-hidden="true" tabindex="-1"></a>together1 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(plot_s1, plot_s2, plot_s3,</span>
+<span id="cb307-2"><a href="combining-plots-with-common-axes.html#cb307-2" aria-hidden="true" tabindex="-1"></a>                       plot_s4, plot_s5, plot_s6, </span>
+<span id="cb307-3"><a href="combining-plots-with-common-axes.html#cb307-3" aria-hidden="true" tabindex="-1"></a>                       plot_s7, plot_s8, plot_s9, </span>
+<span id="cb307-4"><a href="combining-plots-with-common-axes.html#cb307-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">3</span>, <span class="co"># 3 columns in the final figure</span></span>
+<span id="cb307-5"><a href="combining-plots-with-common-axes.html#cb307-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow =</span> <span class="dv">3</span>, <span class="co"># 3 rows in the final figure </span></span>
+<span id="cb307-6"><a href="combining-plots-with-common-axes.html#cb307-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">align =</span> <span class="st">&#39;hv&#39;</span>,<span class="co"># set to the same horizontal and vertical                             # lengths of each panel. </span></span>
+<span id="cb307-7"><a href="combining-plots-with-common-axes.html#cb307-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;S1&#39;</span>,<span class="st">&#39;S2&#39;</span>, <span class="st">&#39;S3&#39;</span>, <span class="st">&#39;S4&#39;</span>,<span class="st">&#39;S5&#39;</span>,<span class="st">&#39;S6&#39;</span>,</span>
+<span id="cb307-8"><a href="combining-plots-with-common-axes.html#cb307-8" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;S7&#39;</span>,<span class="st">&#39;S8&#39;</span>,<span class="st">&#39;S9&#39;</span>), <span class="co"># each panel label</span></span>
+<span id="cb307-9"><a href="combining-plots-with-common-axes.html#cb307-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_x =</span> <span class="fl">0.14</span>,<span class="co"># horizontal position of the panel&#39;s </span></span>
+<span id="cb307-10"><a href="combining-plots-with-common-axes.html#cb307-10" aria-hidden="true" tabindex="-1"></a>          <span class="co"># label relative to each panel. 0 is the very </span></span>
+<span id="cb307-11"><a href="combining-plots-with-common-axes.html#cb307-11" aria-hidden="true" tabindex="-1"></a>          <span class="co"># left of the plot.</span></span>
+<span id="cb307-12"><a href="combining-plots-with-common-axes.html#cb307-12" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_y =</span> <span class="fl">0.97</span>)  <span class="co"># vertical position of the panel&#39;s </span></span>
+<span id="cb307-13"><a href="combining-plots-with-common-axes.html#cb307-13" aria-hidden="true" tabindex="-1"></a>          <span class="co"># label relative to each panel. 1 is the very </span></span>
+<span id="cb307-14"><a href="combining-plots-with-common-axes.html#cb307-14" aria-hidden="true" tabindex="-1"></a>          <span class="co"># top of the plot. </span></span>
+<span id="cb307-15"><a href="combining-plots-with-common-axes.html#cb307-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb307-16"><a href="combining-plots-with-common-axes.html#cb307-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(together1)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-276-1.png" width="1094.4" /></p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="combining-plots-with-common-axes.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;together1.png&#39;</span>,together1,<span class="at">nrow=</span><span class="dv">3</span>,<span class="at">ncol=</span><span class="dv">3</span>,<span class="at">base_asp=</span><span class="fl">0.95</span>) </span>
+<span id="cb308-2"><a href="combining-plots-with-common-axes.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="co"># save as an image. ncol and nrow in save_plot() </span></span>
+<span id="cb308-3"><a href="combining-plots-with-common-axes.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nrow and ncol in save_plot() have to match the values in plot_grid() as shown above. </span></span></code></pre></div>
+<p>Open <code>together1.png</code> in your directory folder. Notice that the <strong>png</strong> file may look different from the one printed in your RStudio screen or on the browser as shown in this guide. As long as your <strong>png</strong> file looks good, it should be okay.</p>
+<p>Note that there are some repeating x and y-axes labels. <strong>We can remove them in this example because the y-axis and x-axis scales are set to the same limit</strong> using <code>scale_x_continuous()</code> and <code>scale_y_continuous()</code>. In other words, the maximum and minimum values of the axes are the same across the panels. For example, the top left panel’s x-axis labels can be removed because the bottom left panel also has the same x-axis labels. In addition, the horizontal grids are located at the same places. Each grid line represents the same x-axis value. The range of the x-axis of the panels is also the same. Moreover, the y-axis labels of the top right panel can be removed because the top left panel has the same label.</p>
+<p>In short, to combine multiple plots together, you must ensure that:</p>
+<ul>
+<li><p>The scales of the x and y are equal between plots.</p></li>
+<li><p>The grids are identical. Otherwise, you won’t be able to decipher what the points mean in panels without x- or y-tick labels.</p></li>
+</ul>
+<p>After confirming these and combining the plots by removing the common x-axis and y-axis labels, you will realize that there will be a lot of empty space between the panels. This has to be reduced.</p>
+<ul>
+<li><p>We will use the function <code>sm_common_axis()</code> to resolve these issues.</p></li>
+<li><p><code>sm_common_axis()</code> has an argument called <code>location</code>. This refers to the location of each panel in the combined figure that you will make.</p></li>
+<li><p>The picture here illustrates what you will need to write for <code>location</code> in the function <code>sm_common_axis()</code>.</p></li>
+<li><p>Example: <code>sm_common_axis(location = 'topleft')</code> for the very top left panel of the 3x3 combined figure.</p></li>
+</ul>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-277"></span>
+<img src="img/rc_arg.png" alt="Arguments for location in sm_common_axis for 3x3 figure." width="75%" />
+<p class="caption">
+Figure 7.2: Arguments for location in sm_common_axis for 3x3 figure.
+</p>
+</div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="combining-plots-with-common-axes.html#cb309-1" aria-hidden="true" tabindex="-1"></a>plot_s1_b <span class="ot">&lt;-</span> plot_s1 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;topleft&#39;</span>)</span>
+<span id="cb309-2"><a href="combining-plots-with-common-axes.html#cb309-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-3"><a href="combining-plots-with-common-axes.html#cb309-3" aria-hidden="true" tabindex="-1"></a>plot_s2_b <span class="ot">&lt;-</span> plot_s2 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;topcenter&#39;</span>)</span>
+<span id="cb309-4"><a href="combining-plots-with-common-axes.html#cb309-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-5"><a href="combining-plots-with-common-axes.html#cb309-5" aria-hidden="true" tabindex="-1"></a>plot_s3_b <span class="ot">&lt;-</span> plot_s3 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;topright&#39;</span>)</span>
+<span id="cb309-6"><a href="combining-plots-with-common-axes.html#cb309-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-7"><a href="combining-plots-with-common-axes.html#cb309-7" aria-hidden="true" tabindex="-1"></a>plot_s4_b <span class="ot">&lt;-</span> plot_s4 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;topleft&#39;</span>)</span>
+<span id="cb309-8"><a href="combining-plots-with-common-axes.html#cb309-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-9"><a href="combining-plots-with-common-axes.html#cb309-9" aria-hidden="true" tabindex="-1"></a>plot_s5_b <span class="ot">&lt;-</span> plot_s5 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;topcenter&#39;</span>)</span>
+<span id="cb309-10"><a href="combining-plots-with-common-axes.html#cb309-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-11"><a href="combining-plots-with-common-axes.html#cb309-11" aria-hidden="true" tabindex="-1"></a>plot_s6_b <span class="ot">&lt;-</span> plot_s6 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;topright&#39;</span>)</span>
+<span id="cb309-12"><a href="combining-plots-with-common-axes.html#cb309-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-13"><a href="combining-plots-with-common-axes.html#cb309-13" aria-hidden="true" tabindex="-1"></a>plot_s7_b <span class="ot">&lt;-</span> plot_s7 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;bottomleft&#39;</span>)</span>
+<span id="cb309-14"><a href="combining-plots-with-common-axes.html#cb309-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-15"><a href="combining-plots-with-common-axes.html#cb309-15" aria-hidden="true" tabindex="-1"></a>plot_s8_b <span class="ot">&lt;-</span> plot_s8 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;bottomcenter&#39;</span>)</span>
+<span id="cb309-16"><a href="combining-plots-with-common-axes.html#cb309-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-17"><a href="combining-plots-with-common-axes.html#cb309-17" aria-hidden="true" tabindex="-1"></a>plot_s9_b <span class="ot">&lt;-</span> plot_s9 <span class="sc">+</span> <span class="fu">sm_common_axis</span>(<span class="at">location =</span> <span class="st">&#39;bottomright&#39;</span>)</span>
+<span id="cb309-18"><a href="combining-plots-with-common-axes.html#cb309-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-19"><a href="combining-plots-with-common-axes.html#cb309-19" aria-hidden="true" tabindex="-1"></a>together2 <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(plot_s1_b, plot_s2_b, plot_s3_b,</span>
+<span id="cb309-20"><a href="combining-plots-with-common-axes.html#cb309-20" aria-hidden="true" tabindex="-1"></a>                       plot_s4_b, plot_s5_b, plot_s6_b, </span>
+<span id="cb309-21"><a href="combining-plots-with-common-axes.html#cb309-21" aria-hidden="true" tabindex="-1"></a>                       plot_s7_b, plot_s8_b, plot_s9_b, </span>
+<span id="cb309-22"><a href="combining-plots-with-common-axes.html#cb309-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">ncol =</span> <span class="dv">3</span>, <span class="co"># 3 columns in the final figure</span></span>
+<span id="cb309-23"><a href="combining-plots-with-common-axes.html#cb309-23" aria-hidden="true" tabindex="-1"></a>          <span class="at">nrow =</span> <span class="dv">3</span>, <span class="co"># 3 rows in the final figure </span></span>
+<span id="cb309-24"><a href="combining-plots-with-common-axes.html#cb309-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">align =</span> <span class="st">&#39;hv&#39;</span>,<span class="co"># set to the same horizontal and vertical </span></span>
+<span id="cb309-25"><a href="combining-plots-with-common-axes.html#cb309-25" aria-hidden="true" tabindex="-1"></a>          <span class="co"># lengths of each panel. </span></span>
+<span id="cb309-26"><a href="combining-plots-with-common-axes.html#cb309-26" aria-hidden="true" tabindex="-1"></a>          <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;S1&#39;</span>,<span class="st">&#39;S2&#39;</span>, <span class="st">&#39;S3&#39;</span>, <span class="st">&#39;S4&#39;</span>,<span class="st">&#39;S5&#39;</span>,<span class="st">&#39;S6&#39;</span>,</span>
+<span id="cb309-27"><a href="combining-plots-with-common-axes.html#cb309-27" aria-hidden="true" tabindex="-1"></a>                     <span class="st">&#39;S7&#39;</span>,<span class="st">&#39;S8&#39;</span>,<span class="st">&#39;S9&#39;</span>), <span class="co"># each panel label</span></span>
+<span id="cb309-28"><a href="combining-plots-with-common-axes.html#cb309-28" aria-hidden="true" tabindex="-1"></a>          <span class="at">label_x =</span> <span class="fl">0.07</span>) <span class="co"># horizontal position of the panel&#39;s </span></span>
+<span id="cb309-29"><a href="combining-plots-with-common-axes.html#cb309-29" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># label relative to each panel. </span></span>
+<span id="cb309-30"><a href="combining-plots-with-common-axes.html#cb309-30" aria-hidden="true" tabindex="-1"></a>                          <span class="co"># 0 is the very left of the plot. </span></span>
+<span id="cb309-31"><a href="combining-plots-with-common-axes.html#cb309-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb309-32"><a href="combining-plots-with-common-axes.html#cb309-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(together2)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-278-1.png" width="1065.6" /></p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="combining-plots-with-common-axes.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;together2.png&#39;</span>,together2,<span class="at">nrow=</span><span class="dv">3</span>,<span class="at">ncol=</span><span class="dv">3</span>,<span class="at">base_asp=</span><span class="fl">0.95</span>)</span>
+<span id="cb310-2"><a href="combining-plots-with-common-axes.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="co"># save as an image. ncol and nrow in save_plot() </span></span>
+<span id="cb310-3"><a href="combining-plots-with-common-axes.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="co"># nrow and ncol in save_plot() have to match the </span></span>
+<span id="cb310-4"><a href="combining-plots-with-common-axes.html#cb310-4" aria-hidden="true" tabindex="-1"></a><span class="co"># values in plot_grid() as shown above. </span></span></code></pre></div>
+<p>Open <code>together2.png</code> in your directory folder. I think it looks a lot cleaner!</p>
+<p>The figure shows how to make a 1x3 figure (1 row, 3 columns).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-279"></span>
+<img src="img/rc13.png" alt="Arguments for location in sm_common_axis for 1x3 figure." width="75%" />
+<p class="caption">
+Figure 7.3: Arguments for location in sm_common_axis for 1x3 figure.
+</p>
+</div>
+<p>If you are planning to make a 2x2 figure (2 rows, 2 columns), please understand the diagram below.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-280"></span>
+<img src="img/rc22.png" alt="Arguments for location in sm_common_axis for 2x2 figure." width="55%" />
+<p class="caption">
+Figure 7.4: Arguments for location in sm_common_axis for 2x2 figure.
+</p>
+</div>
+<p>We are almost done now. Now, you will need to add the y-axis label (<code>'Contrast balance ratio\n '</code>), x-axis label (<code>'Minutes after monocular deprivation\n '</code>) and the title (<code>'Recovery of the patching effect'</code>) as shown in the original paper (Vision Research 2019).</p>
+<p><code>\n</code> is added to have more space in the x and y axes title.</p>
+<p>You can do this in <strong>Adobe Illustrator</strong> or directly in <strong>R</strong>. Here, I present a solution with <strong>R</strong>.</p>
+<p>You don’t have to understand the codes below to use the codes.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="combining-plots-with-common-axes.html#cb311-1" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="fu">ggdraw</span>() <span class="sc">+</span> </span>
+<span id="cb311-2"><a href="combining-plots-with-common-axes.html#cb311-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">draw_label</span>(<span class="st">&#39;Recovery of the patching effect&#39;</span>,</span>
+<span id="cb311-3"><a href="combining-plots-with-common-axes.html#cb311-3" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="dv">17</span>, <span class="at">hjust =</span> <span class="fl">0.45</span>, <span class="at">vjust =</span> <span class="fl">1.2</span>,</span>
+<span id="cb311-4"><a href="combining-plots-with-common-axes.html#cb311-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">fontface =</span> <span class="st">&#39;bold&#39;</span>) <span class="co"># title of the 3x3 figure. </span></span>
+<span id="cb311-5"><a href="combining-plots-with-common-axes.html#cb311-5" aria-hidden="true" tabindex="-1"></a><span class="co"># vjust controls the vertical position of the title. </span></span>
+<span id="cb311-6"><a href="combining-plots-with-common-axes.html#cb311-6" aria-hidden="true" tabindex="-1"></a><span class="co"># hjust controls the horizontal position of the title.</span></span>
+<span id="cb311-7"><a href="combining-plots-with-common-axes.html#cb311-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-8"><a href="combining-plots-with-common-axes.html#cb311-8" aria-hidden="true" tabindex="-1"></a>plot_with_title <span class="ot">&lt;-</span> <span class="fu">plot_grid</span>(title, together2, <span class="at">ncol =</span> <span class="dv">1</span>, </span>
+<span id="cb311-9"><a href="combining-plots-with-common-axes.html#cb311-9" aria-hidden="true" tabindex="-1"></a>                             <span class="at">rel_heights =</span> <span class="fu">c</span>(<span class="fl">0.1</span> ,<span class="dv">1</span>)) </span>
+<span id="cb311-10"><a href="combining-plots-with-common-axes.html#cb311-10" aria-hidden="true" tabindex="-1"></a><span class="co"># add the title and the 3x3 figure together </span></span>
+<span id="cb311-11"><a href="combining-plots-with-common-axes.html#cb311-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-12"><a href="combining-plots-with-common-axes.html#cb311-12" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">add_sub</span>(plot_with_title, </span>
+<span id="cb311-13"><a href="combining-plots-with-common-axes.html#cb311-13" aria-hidden="true" tabindex="-1"></a>                         <span class="st">&quot; </span><span class="sc">\n</span><span class="st">Minutes after monocular deprivation</span><span class="sc">\n</span><span class="st"> &quot;</span>, </span>
+<span id="cb311-14"><a href="combining-plots-with-common-axes.html#cb311-14" aria-hidden="true" tabindex="-1"></a>                         <span class="at">y =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="sc">-</span>.<span class="dv">4</span>, <span class="at">size =</span> <span class="dv">17</span>) </span>
+<span id="cb311-15"><a href="combining-plots-with-common-axes.html#cb311-15" aria-hidden="true" tabindex="-1"></a><span class="co"># add x-axis title to the 3x3 figure</span></span>
+<span id="cb311-16"><a href="combining-plots-with-common-axes.html#cb311-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb311-17"><a href="combining-plots-with-common-axes.html#cb311-17" aria-hidden="true" tabindex="-1"></a><span class="co"># add y-axis title to the 3x3 figure</span></span>
+<span id="cb311-18"><a href="combining-plots-with-common-axes.html#cb311-18" aria-hidden="true" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">grid.arrange</span>(combined_plot, </span>
+<span id="cb311-19"><a href="combining-plots-with-common-axes.html#cb311-19" aria-hidden="true" tabindex="-1"></a>                              <span class="at">left =</span> <span class="fu">textGrob</span>(<span class="st">&quot;\u0394 Contrast Balance Ratio (dB)</span><span class="sc">\n</span><span class="st"> &quot;</span>,</span>
+<span id="cb311-20"><a href="combining-plots-with-common-axes.html#cb311-20" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">gp =</span> <span class="fu">gpar</span>(<span class="at">fontsize =</span> <span class="dv">17</span>), </span>
+<span id="cb311-21"><a href="combining-plots-with-common-axes.html#cb311-21" aria-hidden="true" tabindex="-1"></a>                                              <span class="at">rot =</span> <span class="dv">90</span>))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-281-1.png" width="1104" /></p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="combining-plots-with-common-axes.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;combined_plot.png&quot;</span>, combined_plot, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>,</span>
+<span id="cb312-2"><a href="combining-plots-with-common-axes.html#cb312-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">base_aspect_ratio =</span> .<span class="dv">9</span>, <span class="at">limitsize =</span> F)</span></code></pre></div>
+<p>To be honest, for adding the titles of the axes and the graph, using <strong>Adobe Illustrator</strong> might be much easier. I have just included the codes here to demonstrate that everything, however, could be done in R.</p>
+<p>If you do not understand some of these functions, you can type in your console <code>?add_sub</code>, <code>?grid.arrange</code> to learn about these functions.</p>
+<p>An astute reader will realize that the codes are quite repetitive. Could the codes be shortened? The answer is yes! However, this method is quite complex and beyond the scope of this book.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="raincloud-and-forest-plots.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="calculating-area-under-a-curve.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/smin95/dataviz/edit/master/CommonAxis.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/smin95/dataviz/blob/master/CommonAxis.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

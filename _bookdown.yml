@@ -27,5 +27,6 @@ rmd_files: [
   # part 4
   'Csf1.Rmd',
   'Csf2.Rmd',
-  'Csf3.Rmd'
+  'Csf3.Rmd',
+  'Csf4_FA.Rmd'
 ]

@@ -1,14 +1,3 @@
-fig:pressure
-fig:unnamed-chunk-5
-fig:unnamed-chunk-6
-fig:unnamed-chunk-7
-fig:unnamed-chunk-25
-fig:unnamed-chunk-269
-fig:unnamed-chunk-271
-fig:unnamed-chunk-273
-fig:unnamed-chunk-274
-fig:unnamed-chunk-378
-fig:unnamed-chunk-379
 opening-remarks
 how-to-read-this-book
 download-rstudio-basics-of-r
@@ -173,3 +162,7 @@ understanding-sm_ribboncsf
 calculating-the-five-parameters-of-all-subjects-groups-and-conditions
 visualization-of-the-parameters
 case-study-1
+factor-analysis-and-csf-in-development
+factor-analysis
+eigenvalues
+exploratory-factor-analysis-and-csf-in-development
