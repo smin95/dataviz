@@ -403,6 +403,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.5" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#visualization-of-the-parameters"><i class="fa fa-check"></i><b>15.5</b> Visualization of the parameters</a></li>
 <li class="chapter" data-level="15.6" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#case-study-1"><i class="fa fa-check"></i><b>15.6</b> Case Study</a></li>
 </ul></li>
+<li class="chapter" data-level="16" data-path="factor-analysis-and-csf-in-development.html"><a href="factor-analysis-and-csf-in-development.html"><i class="fa fa-check"></i><b>16</b> Factor Analysis and CSF (in development)</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="factor-analysis-and-csf-in-development.html"><a href="factor-analysis-and-csf-in-development.html#factor-analysis"><i class="fa fa-check"></i><b>16.1</b> Factor Analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="factor-analysis-and-csf-in-development.html"><a href="factor-analysis-and-csf-in-development.html#eigenvalues"><i class="fa fa-check"></i><b>16.2</b> Eigenvalues</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 </ul>
@@ -446,18 +451,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="basics-of-ggplot2-and-correlation-plot.html#cb22-1" aria-hidden="true" tabindex="-1"></a>mpg</span></code></pre></div>
 <pre><code>## # A tibble: 234 x 11
-##    manufacturer model      displ  year   cyl trans      drv     cty   hwy fl    class  
-##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;      &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  
-##  1 audi         a4           1.8  1999     4 auto(l5)   f        18    29 p     compact
-##  2 audi         a4           1.8  1999     4 manual(m5) f        21    29 p     compact
-##  3 audi         a4           2    2008     4 manual(m6) f        20    31 p     compact
-##  4 audi         a4           2    2008     4 auto(av)   f        21    30 p     compact
-##  5 audi         a4           2.8  1999     6 auto(l5)   f        16    26 p     compact
-##  6 audi         a4           2.8  1999     6 manual(m5) f        18    26 p     compact
-##  7 audi         a4           3.1  2008     6 auto(av)   f        18    27 p     compact
-##  8 audi         a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compact
-##  9 audi         a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compact
-## 10 audi         a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compact
+##    manufacturer model      displ  year   cyl trans   drv     cty   hwy fl    class
+##    &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;
+##  1 audi         a4           1.8  1999     4 auto(l~ f        18    29 p     comp~
+##  2 audi         a4           1.8  1999     4 manual~ f        21    29 p     comp~
+##  3 audi         a4           2    2008     4 manual~ f        20    31 p     comp~
+##  4 audi         a4           2    2008     4 auto(a~ f        21    30 p     comp~
+##  5 audi         a4           2.8  1999     6 auto(l~ f        16    26 p     comp~
+##  6 audi         a4           2.8  1999     6 manual~ f        18    26 p     comp~
+##  7 audi         a4           3.1  2008     6 auto(a~ f        18    27 p     comp~
+##  8 audi         a4 quattro   1.8  1999     4 manual~ 4        18    26 p     comp~
+##  9 audi         a4 quattro   1.8  1999     4 auto(l~ 4        16    25 p     comp~
+## 10 audi         a4 quattro   2    2008     4 manual~ 4        20    28 p     comp~
 ## # ... with 224 more rows</code></pre>
 <p>Notice that some columns and rows are not shown. You can type <code>View(mpg)</code> to see the entire <strong>data frame</strong>.</p>
 <ul>
