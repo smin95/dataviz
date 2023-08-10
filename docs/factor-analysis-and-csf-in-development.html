@@ -431,16 +431,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="factor-analysis-and-csf-in-development" class="section level1 hasAnchor" number="16">
 <h1><span class="header-section-number">Chapter 16</span> Factor Analysis and CSF (in development)<a href="factor-analysis-and-csf-in-development.html#factor-analysis-and-csf-in-development" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb814"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb814-1"><a href="factor-analysis-and-csf-in-development.html#cb814-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb814-2"><a href="factor-analysis-and-csf-in-development.html#cb814-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb814-3"><a href="factor-analysis-and-csf-in-development.html#cb814-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span>
-<span id="cb814-4"><a href="factor-analysis-and-csf-in-development.html#cb814-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smCSF)</span>
-<span id="cb814-5"><a href="factor-analysis-and-csf-in-development.html#cb814-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="factor-analysis-and-csf-in-development.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-2"><a href="factor-analysis-and-csf-in-development.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb2-3"><a href="factor-analysis-and-csf-in-development.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span>
+<span id="cb2-4"><a href="factor-analysis-and-csf-in-development.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smCSF)</span>
+<span id="cb2-5"><a href="factor-analysis-and-csf-in-development.html#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span></code></pre></div>
 <p>In this chapter, we will use a public dataset of achromatic contrast sensitivity from 51 normally sighted observers.</p>
-<div class="sourceCode" id="cb815"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb815-1"><a href="factor-analysis-and-csf-in-development.html#cb815-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/data_ACh.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb815-2"><a href="factor-analysis-and-csf-in-development.html#cb815-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Subject, SpatialFreq) <span class="sc">%&gt;%</span> </span>
-<span id="cb815-3"><a href="factor-analysis-and-csf-in-development.html#cb815-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Sensitivity =</span> <span class="fu">mean</span>(Sensitivity),</span>
-<span id="cb815-4"><a href="factor-analysis-and-csf-in-development.html#cb815-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Repetition =</span> <span class="st">&#39;avg&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="factor-analysis-and-csf-in-development.html#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/data_ACh.csv&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-2"><a href="factor-analysis-and-csf-in-development.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Subject, SpatialFreq) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="factor-analysis-and-csf-in-development.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Sensitivity =</span> <span class="fu">mean</span>(Sensitivity),</span>
+<span id="cb3-4"><a href="factor-analysis-and-csf-in-development.html#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">Repetition =</span> <span class="st">&#39;avg&#39;</span>)</span></code></pre></div>
 <div id="factor-analysis" class="section level2 hasAnchor" number="16.1">
 <h2><span class="header-section-number">16.1</span> Factor Analysis<a href="factor-analysis-and-csf-in-development.html#factor-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Factor analysis is a technique to identify latent factors that produce local patterns/correlations in a high-dimensional dataset. In other words, it aims to reduce the number of dimensions in the data.</p>
@@ -452,25 +452,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">16.2</span> Eigenvalues<a href="factor-analysis-and-csf-in-development.html#eigenvalues" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The scree plot has a y-axis of the <strong>eigenvalue</strong>, which refers the amount of variance of the data from the factor of interest. Essentially, the higher the eigenvalue, the more important the factor is in the dataset.</p>
 <p>Some methods for factor analysis determine the number of factors in a potential factor model based on eigenvalues. The Guttman Rule (i.e. K1) extracts all factors with eigenvalues larger than 1.</p>
-<p>However, this is problematic because in one dataset, factor A can have an eigenvalue larger than 1 but in another dataset from another population factor B can have an eigenvalue lower than 1. Therefore the number of factors that is extracted can vary depending on the local sample. This creates variability in results. Therefore, it might be better to include a range of uncertainty of eigenvalues so that one can better be informed about the possible range of eigenvalues in a population. This can be done by plotting 95% confidence interval of eigenvalues.</p>
+<p>Another method that relies on eigenvalues to determine the number of factors is parallel analysis.</p>
 </div>
 <div id="parallel-analysis" class="section level2 hasAnchor" number="16.3">
 <h2><span class="header-section-number">16.3</span> Parallel analysis<a href="factor-analysis-and-csf-in-development.html#parallel-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Parallel analysis by Horn is a statistical method to determine the number of factors in an exploratory factor model. It uses Monte Carlo simulation to generate a dataset of random numbers. This random dataset has the same size of the real dataset. Eigenvalues are obtained from the random dataset.</p>
 <p>We will use <code>psych</code> package’s function <code>fa.parallel</code> to perform parallel analysis.</p>
-<div class="sourceCode" id="cb816"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb816-1"><a href="factor-analysis-and-csf-in-development.html#cb816-1" aria-hidden="true" tabindex="-1"></a>df_mat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data_ACh_mat.csv&#39;</span>) <span class="co"># ACh data in matrix form</span></span>
-<span id="cb816-2"><a href="factor-analysis-and-csf-in-development.html#cb816-2" aria-hidden="true" tabindex="-1"></a>df_mat1 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(df_mat[,<span class="sc">-</span><span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="factor-analysis-and-csf-in-development.html#cb4-1" aria-hidden="true" tabindex="-1"></a>df_mat <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data_ACh_mat.csv&#39;</span>) <span class="co"># ACh data in matrix form</span></span>
+<span id="cb4-2"><a href="factor-analysis-and-csf-in-development.html#cb4-2" aria-hidden="true" tabindex="-1"></a>df_mat1 <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(df_mat[,<span class="sc">-</span><span class="dv">1</span>])</span></code></pre></div>
 <p>After we have extracted the data that are in matrix form (not data frame), which is required to properly use functions of the <code>psych</code> package, we can then perform parallel analysis.</p>
-<div class="sourceCode" id="cb817"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb817-1"><a href="factor-analysis-and-csf-in-development.html#cb817-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(df_mat1, <span class="at">fa =</span><span class="st">&#39;fa&#39;</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-604-1.png" width="403.2" /></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="factor-analysis-and-csf-in-development.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(df_mat1, <span class="at">fa =</span><span class="st">&#39;fa&#39;</span>) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="403.2" /></p>
 <pre><code>## Parallel analysis suggests that the number of factors =  2  and the number of components =  NA</code></pre>
 <p>Based on the parallel analysis, we see that there are two factors with eigenvalues larger than those from the random data. Therefore, it supports a two-factor model.</p>
 </div>
 <div id="non-parametric-bootstrapping" class="section level2 hasAnchor" number="16.4">
 <h2><span class="header-section-number">16.4</span> Non-parametric bootstrapping<a href="factor-analysis-and-csf-in-development.html#non-parametric-bootstrapping" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Guttman rule can suggest different numbers of factors depending on the sample. For example, in one dataset, factor A can have an eigenvalue larger than 1 but in another dataset from another population factor B can have an eigenvalue lower than 1. Therefore the number of factors that is extracted can vary depending on the local sample. This creates variability in results. This issue can also be observed in parallel analysis.</p>
+<p>Therefore, it might be better to include a range of uncertainty of eigenvalues so that one can better be informed about the possible range of eigenvalues in a population. This can be done by plotting 95% confidence interval of eigenvalues.</p>
 <p>In this section, we will perform non-parametric bootstrapping to compute the confidence intervals of the eigenvalues. However, it turns out, if we resample the contrast sensitivity data directly, it removes the local correlation and therefore the influence of latent factors on the dataset, thereby erasing covariance from its existence.</p>
-<p>Here is the original dataset’s covariance of achromatic sensitivity.</p>
-<div class="sourceCode" id="cb819"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb819-1"><a href="factor-analysis-and-csf-in-development.html#cb819-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(df_mat1)</span></code></pre></div>
+<p>Here is the original data set’s covariance of achromatic sensitivity.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="factor-analysis-and-csf-in-development.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(df_mat1)</span></code></pre></div>
 <pre><code>##           0.25ACh   0.35ACh   0.48ACh   0.68ACh   0.94ACh   1.31ACh  1.83ACh
 ## 0.25ACh 22.553853 23.429188 24.498759 26.144819 27.119722 25.625359 21.60603
 ## 0.35ACh 23.429188 28.352093 33.069624 35.968829 36.247616 32.082207 24.74990
@@ -498,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6.87ACh 27.85229 28.02328 24.895661 19.676502 13.963902
 ## 9.57ACh 15.60555 16.97127 16.353468 13.963902 10.614072</code></pre>
 <p>Covariance is high. If the dataset’s covariance is high, then it is suitable for factor analysis, as demonstrated by Kaiser, Meyer and Olkin test.</p>
-<div class="sourceCode" id="cb821"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb821-1"><a href="factor-analysis-and-csf-in-development.html#cb821-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(df_mat1)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="factor-analysis-and-csf-in-development.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(df_mat1)</span></code></pre></div>
 <pre><code>## Kaiser-Meyer-Olkin factor adequacy
 ## Call: KMO(r = df_mat1)
 ## Overall MSA =  0.58
@@ -509,123 +511,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    0.47    0.43</code></pre>
 <p>The test reveals that covariance is adequately high (test score &gt; 0.5) at most spatial frequencies, suggesting that factor analysis is suitable.</p>
 <p>Now I demonstrate what happens to covariance after resampling with replacement.</p>
-<div class="sourceCode" id="cb823"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb823-1"><a href="factor-analysis-and-csf-in-development.html#cb823-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
-<span id="cb823-2"><a href="factor-analysis-and-csf-in-development.html#cb823-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb823-3"><a href="factor-analysis-and-csf-in-development.html#cb823-3" aria-hidden="true" tabindex="-1"></a>nObs <span class="ot">&lt;-</span> <span class="dv">51</span></span>
-<span id="cb823-4"><a href="factor-analysis-and-csf-in-development.html#cb823-4" aria-hidden="true" tabindex="-1"></a>nSF <span class="ot">&lt;-</span> <span class="fu">ncol</span>(df_mat1) <span class="co"># 12 SFs total</span></span>
-<span id="cb823-5"><a href="factor-analysis-and-csf-in-development.html#cb823-5" aria-hidden="true" tabindex="-1"></a>resampled_ACh <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>,<span class="at">nrow=</span>nObs,<span class="at">ncol=</span>nSF)</span>
-<span id="cb823-6"><a href="factor-analysis-and-csf-in-development.html#cb823-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb823-7"><a href="factor-analysis-and-csf-in-development.html#cb823-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (iSF <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nSF) {</span>
-<span id="cb823-8"><a href="factor-analysis-and-csf-in-development.html#cb823-8" aria-hidden="true" tabindex="-1"></a>  resampled_ACh[,iSF] <span class="ot">&lt;-</span> <span class="fu">sample</span>(df_mat1[,iSF],nObs, <span class="at">replace =</span> T)</span>
-<span id="cb823-9"><a href="factor-analysis-and-csf-in-development.html#cb823-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb823-10"><a href="factor-analysis-and-csf-in-development.html#cb823-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb823-11"><a href="factor-analysis-and-csf-in-development.html#cb823-11" aria-hidden="true" tabindex="-1"></a>resampled_ACh</span></code></pre></div>
-<pre><code>##            [,1]      [,2]      [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
-##  [1,] 13.319110  6.383115 14.145865 27.28925 28.40900 43.18171 29.09230 26.50620
-##  [2,] 14.960260 14.008405 18.093565 29.35241 31.38439 23.72186 30.05570 44.12320
-##  [3,] 11.546455 14.612755 17.306990 17.86631 40.05105 14.67488 22.61003 20.33847
-##  [4,]  5.570805  6.383115  9.006945 22.24087 33.03327 28.70706 46.38054 31.89097
-##  [5,] 12.382175 13.817595 18.093565 36.73213 35.33733 31.58734 44.84213 11.97710
-##  [6,]  8.654810 19.850565 11.362190 17.50550 20.26929 28.55503 35.32632 20.33847
-##  [7,] 13.479105 11.194895 18.087150 12.73404 24.27470 14.67488 33.72783 26.79781
-##  [8,]  6.138720 16.163485 14.032060 21.30329 57.89111 26.50558 23.19298 28.26595
-##  [9,]  8.237330 16.894530 18.105735 28.16837 19.99218 31.93280 38.78746 31.20477
-## [10,] 18.583485 21.839920 18.006425 30.28412 26.27325 26.50654 16.28586 30.64420
-## [11,]  8.957185 13.817595  9.082740 14.57726 28.40900 31.50004 42.97814 22.34262
-## [12,]  8.237330 12.974635 14.735080 29.35241 36.02284 38.64120 24.46819 26.50620
-## [13,] 13.885880 16.894530 18.006425 22.51378 27.71268 48.13952 30.29717 29.51562
-## [14,] 21.105890 11.053955 18.087150 24.49688 28.21244 42.90993 27.13235 26.50620
-## [15,]  5.570805 24.995335 18.105735 16.56442 36.02284 26.50654 42.08331 26.50620
-## [16,]  6.138720  9.611345 18.105735 19.93105 25.55126 28.70706 28.55669 27.55346
-## [17,]  8.541435 12.042220  9.006945 29.35241 25.55126 36.30558 28.01910 34.02532
-## [18,] 12.042220 18.312115 19.598940 47.02052 29.23394 40.27880 42.74914 29.51562
-## [19,] 14.612755 15.748700 14.544100 22.24087 33.03327 23.72186 31.33525 27.62368
-## [20,] 16.252825 17.507725 23.124625 17.50550 44.13448 25.69012 24.46819 27.55346
-## [21,] 13.625410 17.507725 18.487345 22.57057 21.07684 28.16615 31.69440 13.86208
-## [22,] 21.105890 29.334790 19.598940 17.86631 21.07684 33.20097 36.50362 33.99135
-## [23,] 10.120005 24.995335 18.487345 16.56442 34.73947 28.61697 31.92918 31.20477
-## [24,] 13.851930 20.381825 19.213970 27.67022 24.77374 34.73721 30.29717 26.15085
-## [25,]  6.383115 13.991895 15.687955 30.28412 24.27470 15.28744 40.33185 29.51562
-## [26,]  6.138720 20.381825 18.093565 17.33413 30.90585 38.44526 31.33525 21.85240
-## [27,]  9.006945 16.820805 17.306990 18.49571 35.33733 43.28569 38.78746 30.64420
-## [28,]  8.431250 18.087150 22.507755 29.35241 34.43616 31.93280 26.38808 37.31979
-## [29,] 14.413630 14.305055 18.006425 31.72215 20.82979 31.50004 22.67574 30.64420
-## [30,] 11.546455 13.817595 18.458975 21.89543 24.77374 28.70706 31.92918 20.33847
-## [31,] 13.251215 16.501360 17.306990 17.50550 33.14356 64.61584 30.05570 39.57483
-## [32,] 10.169995 16.894530 22.918745 41.19227 19.94320 18.00557 40.60336 28.21656
-## [33,] 14.051235 10.970960 11.362190 22.41743 33.14356 37.40147 48.28621 29.51562
-## [34,] 10.169995 14.612755 14.145865 22.41743 30.90585 28.16615 42.97814 31.89097
-## [35,] 22.212160 29.334790 13.748875 18.68883 11.88046 38.44526 37.42793 27.14108
-## [36,]  8.237330 16.501360 18.487345 25.13666 37.49590 39.65301 38.78746 38.65928
-## [37,] 13.479105 16.501360 23.124625 24.46266 43.78605 31.11031 35.32632 16.21729
-## [38,]  9.006945 16.163485 19.598940 17.50550 22.22606 34.73721 37.15122 39.25795
-## [39,] 14.051235 15.748700 14.145865 31.72215 11.88046 31.58734 40.33185 26.79781
-## [40,] 14.008405 10.006840 17.710365 15.17886 31.38439 31.11031 31.62939 20.33847
-## [41,] 16.684950 13.536320 36.042485 34.30483 31.38439 36.30558 39.22022 31.89097
-## [42,] 16.252825 20.381825 15.954905 16.56442 20.32590 43.76403 24.46819 31.89097
-## [43,] 16.684950 12.382175 18.006425 30.28412 24.27470 28.70706 27.13235 11.97710
-## [44,] 16.684950 13.991895 19.335805 24.49688 28.21244 31.50004 29.09230 41.96258
-## [45,] 15.787410 16.684950 18.087150 47.02052 26.27325 28.55503 31.92918 33.32687
-## [46,]  6.138720 10.006840 15.018820 15.17886 14.06114 31.93280 33.72783 37.21837
-## [47,] 26.193790 16.894530 34.624905 19.93105 26.22993 40.27880 48.28621 22.98445
-## [48,]  7.418120 12.122255  9.082740 27.60629 21.07684 36.30558 30.29642 36.08350
-## [49,] 10.120005 16.163485 14.032060 30.99729 34.73947 33.20097 42.97814 39.57483
-## [50,] 11.161360 16.894530 21.839920 17.33413 25.08057 23.72186 30.60055 35.65233
-## [51,] 13.625410 11.194895 13.748875 36.73213 19.99218 23.72186 40.33185 11.97710
-##            [,9]     [,10]     [,11]     [,12]
-##  [1,] 31.100880 15.070500 17.877330  5.751380
-##  [2,] 16.220210 10.895270 17.741370 11.289790
-##  [3,] 31.579465 27.060140 16.573420  4.804720
-##  [4,] 31.848920 21.979190 11.222270  2.760570
-##  [5,] 22.389225 13.925250  8.734470 10.975380
-##  [6,] 19.711395 17.482250 11.916725  4.332130
-##  [7,] 34.521265 22.867790 16.293460  1.000000
-##  [8,] 19.711395 21.269865 14.395520 10.523965
-##  [9,] 24.727855 16.644060 14.344145  4.804720
-## [10,] 16.220210 21.979190  8.734470 11.289790
-## [11,] 16.595130 16.644060  7.195060  7.040570
-## [12,] 32.037335 20.014140 16.293460 10.122120
-## [13,]  8.285375 10.745545 18.850165  6.610415
-## [14,] 31.579465 27.437490 11.844655  9.727420
-## [15,] 22.626950 27.060140 13.877105  5.444925
-## [16,] 23.171470 17.959780 15.270695  7.666465
-## [17,] 31.100880 13.925250 10.635570  2.760570
-## [18,] 10.636200  7.447045 20.159525  6.949355
-## [19,] 16.220210 11.027160 11.710650  6.610415
-## [20,] 25.579815 11.027160 13.129380 12.531155
-## [21,] 21.835105 17.959780 11.710650  9.695965
-## [22,] 26.038165 19.764585 11.497755 11.226170
-## [23,] 36.381875 16.097270  9.670485  9.543990
-## [24,] 23.171470 19.532470 15.270695  5.794100
-## [25,] 31.139870  7.447045 11.093690  8.818835
-## [26,] 21.710345  7.447045 11.844655  9.543990
-## [27,] 21.835105 21.979190 17.877330  4.497425
-## [28,] 27.863970 27.060140 10.635570  5.470690
-## [29,]  8.285375 17.959780 11.756265  7.666465
-## [30,] 30.717655 14.359275 14.964875  8.981155
-## [31,] 22.389225 21.920510 11.844655  4.945470
-## [32,] 27.863970 14.359275 13.772580 12.531155
-## [33,] 19.711395 21.269865  8.734470  9.543990
-## [34,] 22.935770 24.658025 11.844655  3.605530
-## [35,] 27.198815 17.116520 11.756265  9.183820
-## [36,] 25.579815 22.014620 11.093690 10.122120
-## [37,] 26.803280  7.447045 10.150630 10.252655
-## [38,] 31.139870 21.979190 11.222270 12.023600
-## [39,] 27.343065 27.060140 14.964875  6.134200
-## [40,] 19.711395 19.451265 13.129380  5.006785
-## [41,] 33.451800 22.867790 10.262260  8.818835
-## [42,] 24.044515 13.925250  3.769445  5.006785
-## [43,] 12.258905 26.148110 11.710650  6.048680
-## [44,] 36.381875 17.959780 10.150630  9.183820
-## [45,] 23.171470 15.070500 10.150630  8.825415
-## [46,] 25.579815 10.895270 13.772580  7.911365
-## [47,] 23.724360 16.709060 11.093690  1.710870
-## [48,] 24.446775 13.925250 12.060635  6.801395
-## [49,] 20.754290 21.920510 17.541465 12.531155
-## [50,] 16.595130 10.895270 11.710650 13.262635
-## [51,] 27.343065 17.479745 10.635570 10.122120</code></pre>
-<p>Here is the resampled dataset, and covariance is shown below.</p>
-<div class="sourceCode" id="cb825"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb825-1"><a href="factor-analysis-and-csf-in-development.html#cb825-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(resampled_ACh)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="factor-analysis-and-csf-in-development.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2023</span>)</span>
+<span id="cb11-2"><a href="factor-analysis-and-csf-in-development.html#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="factor-analysis-and-csf-in-development.html#cb11-3" aria-hidden="true" tabindex="-1"></a>nObs <span class="ot">&lt;-</span> <span class="dv">51</span></span>
+<span id="cb11-4"><a href="factor-analysis-and-csf-in-development.html#cb11-4" aria-hidden="true" tabindex="-1"></a>nSF <span class="ot">&lt;-</span> <span class="fu">ncol</span>(df_mat1) <span class="co"># 12 SFs total</span></span>
+<span id="cb11-5"><a href="factor-analysis-and-csf-in-development.html#cb11-5" aria-hidden="true" tabindex="-1"></a>resampled_ACh <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="at">data=</span><span class="cn">NA</span>,<span class="at">nrow=</span>nObs,<span class="at">ncol=</span>nSF)</span>
+<span id="cb11-6"><a href="factor-analysis-and-csf-in-development.html#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="factor-analysis-and-csf-in-development.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (iSF <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nSF) {</span>
+<span id="cb11-8"><a href="factor-analysis-and-csf-in-development.html#cb11-8" aria-hidden="true" tabindex="-1"></a>  resampled_ACh[,iSF] <span class="ot">&lt;-</span> <span class="fu">sample</span>(df_mat1[,iSF],nObs, <span class="at">replace =</span> T)</span>
+<span id="cb11-9"><a href="factor-analysis-and-csf-in-development.html#cb11-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Here is the resampled dataset. We can also plot the resampled data against the experimental using base R (not ggplot2) since we are using matrices to store data.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="factor-analysis-and-csf-in-development.html#cb12-1" aria-hidden="true" tabindex="-1"></a>avgs_expt <span class="ot">&lt;-</span> avgs_resampled <span class="ot">&lt;-</span> <span class="fu">vector</span>(<span class="st">&#39;double&#39;</span>,nSF)</span>
+<span id="cb12-2"><a href="factor-analysis-and-csf-in-development.html#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="factor-analysis-and-csf-in-development.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (iSF <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nSF) {</span>
+<span id="cb12-4"><a href="factor-analysis-and-csf-in-development.html#cb12-4" aria-hidden="true" tabindex="-1"></a>  avgs_resampled[[iSF]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(resampled_ACh[,iSF])</span>
+<span id="cb12-5"><a href="factor-analysis-and-csf-in-development.html#cb12-5" aria-hidden="true" tabindex="-1"></a>  avgs_expt[[iSF]] <span class="ot">&lt;-</span> <span class="fu">mean</span>(df_mat1[,iSF])</span>
+<span id="cb12-6"><a href="factor-analysis-and-csf-in-development.html#cb12-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb12-7"><a href="factor-analysis-and-csf-in-development.html#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="factor-analysis-and-csf-in-development.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">4</span>,<span class="fl">4.1</span>,<span class="fl">1.2</span>,<span class="fl">1.2</span>))</span>
+<span id="cb12-9"><a href="factor-analysis-and-csf-in-development.html#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="factor-analysis-and-csf-in-development.html#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">unique</span>(df<span class="sc">$</span>SpatialFreq),<span class="fu">log</span>(avgs_resampled), <span class="at">log=</span><span class="st">&#39;x&#39;</span>,</span>
+<span id="cb12-11"><a href="factor-analysis-and-csf-in-development.html#cb12-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">0.1</span>,<span class="fu">max</span>(<span class="fu">log</span>(<span class="fu">c</span>(avgs_resampled,avgs_expt)))<span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb12-12"><a href="factor-analysis-and-csf-in-development.html#cb12-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&#39;Contrast sensitivity&#39;</span>, <span class="at">col=</span><span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>),</span>
+<span id="cb12-13"><a href="factor-analysis-and-csf-in-development.html#cb12-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">15</span>, <span class="at">cex=</span><span class="fl">1.4</span>)</span>
+<span id="cb12-14"><a href="factor-analysis-and-csf-in-development.html#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="factor-analysis-and-csf-in-development.html#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">unique</span>(df<span class="sc">$</span>SpatialFreq),<span class="fu">log</span>(avgs_resampled), </span>
+<span id="cb12-16"><a href="factor-analysis-and-csf-in-development.html#cb12-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">col=</span><span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>), <span class="at">cex=</span><span class="fl">1.4</span>)</span>
+<span id="cb12-17"><a href="factor-analysis-and-csf-in-development.html#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-18"><a href="factor-analysis-and-csf-in-development.html#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">unique</span>(df<span class="sc">$</span>SpatialFreq)<span class="sc">+</span><span class="fu">unique</span>(df<span class="sc">$</span>SpatialFreq)<span class="sc">*</span><span class="fl">0.1</span>, </span>
+<span id="cb12-19"><a href="factor-analysis-and-csf-in-development.html#cb12-19" aria-hidden="true" tabindex="-1"></a>       <span class="fu">log</span>(avgs_expt), <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="fu">sm_color</span>(<span class="st">&#39;red&#39;</span>), <span class="at">cex=</span><span class="fl">1.4</span>)</span>
+<span id="cb12-20"><a href="factor-analysis-and-csf-in-development.html#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="factor-analysis-and-csf-in-development.html#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">unique</span>(df<span class="sc">$</span>SpatialFreq)<span class="sc">+</span><span class="fu">unique</span>(df<span class="sc">$</span>SpatialFreq)<span class="sc">*</span><span class="fl">0.1</span>,</span>
+<span id="cb12-22"><a href="factor-analysis-and-csf-in-development.html#cb12-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">log</span>(avgs_expt), <span class="at">col=</span><span class="fu">sm_color</span>(<span class="st">&#39;red&#39;</span>), <span class="at">cex=</span><span class="fl">1.4</span>)</span>
+<span id="cb12-23"><a href="factor-analysis-and-csf-in-development.html#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-24"><a href="factor-analysis-and-csf-in-development.html#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="fl">0.3</span>,<span class="fl">1.5</span>,<span class="at">legend=</span><span class="fu">c</span>(<span class="st">&#39;Resampled data&#39;</span>,<span class="st">&#39;Real data&#39;</span>),</span>
+<span id="cb12-25"><a href="factor-analysis-and-csf-in-development.html#cb12-25" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;red&#39;</span>), <span class="at">pch=</span><span class="dv">15</span><span class="sc">:</span><span class="dv">16</span>,<span class="at">pt.cex=</span><span class="fl">1.8</span>,</span>
+<span id="cb12-26"><a href="factor-analysis-and-csf-in-development.html#cb12-26" aria-hidden="true" tabindex="-1"></a>       <span class="at">bty=</span><span class="st">&#39;n&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-9-1.png" width="345.6" /></p>
+<p>The two data sets look very similar but only one of them (expt data) can be used for factor analysis. Therefore, we can notice that factor analysis captures the <em>invisible</em> pattern of the data.</p>
+<p>The covariance of the resampled data is shown below.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="factor-analysis-and-csf-in-development.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(resampled_ACh)</span></code></pre></div>
 <pre><code>##             [,1]      [,2]         [,3]      [,4]       [,5]       [,6]
 ##  [1,] 21.4627680  5.494515 10.221965102  2.729971 -8.5757210  7.4823660
 ##  [2,]  5.4945145 22.568920  4.826946260 -5.207635 -3.0187011  2.6928204
@@ -653,7 +578,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [11,] -0.7481558  1.8305357 -2.8477130 -0.1718810  9.950180547 -0.8796060
 ## [12,] -2.4362892  2.3200300 -0.8958255 -4.3512357 -0.879605958  9.2390137</code></pre>
 <p>We now see that the resampled dataset has a much lower covariance in general. Since covariance is too low, it is not suitable to perform factor analysis.</p>
-<div class="sourceCode" id="cb827"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb827-1"><a href="factor-analysis-and-csf-in-development.html#cb827-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(resampled_ACh)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="factor-analysis-and-csf-in-development.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">KMO</span>(resampled_ACh)</span></code></pre></div>
 <pre><code>## Kaiser-Meyer-Olkin factor adequacy
 ## Call: KMO(r = resampled_ACh)
 ## Overall MSA =  0.41
@@ -661,25 +586,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [1] 0.43 0.51 0.42 0.41 0.28 0.37 0.34 0.32 0.39 0.43 0.48 0.44</code></pre>
 <p>The values from the KMO test are lower than 0.5 at most spatial frequencies, suggesting the data set is not suitable for factor analysis.</p>
 <p>We can still try parallel analysis and see what happens.</p>
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="factor-analysis-and-csf-in-development.html#cb829-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(resampled_ACh, <span class="at">fa =</span><span class="st">&#39;fa&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-610-1.png" width="403.2" /></p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="factor-analysis-and-csf-in-development.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(resampled_ACh, <span class="at">fa =</span><span class="st">&#39;fa&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-12-1.png" width="403.2" /></p>
 <pre><code>## Parallel analysis suggests that the number of factors =  0  and the number of components =  NA</code></pre>
 <p>There is no identified factor because there is no covariance.</p>
 <p>However, re-sampling is required to perform 95% confidence interval.</p>
 <p>Therefore, a solution is to use a model that captures the contrast sensitivity function, compute parameters that retain the overall characteristic of the curve for each subject, and then re-sample the parameters with replacement. In this example, we will re-sample for 100 times (<code>nSim &lt;- 100</code>).</p>
 <p>Calculation of the parameters from a data frame that contains contrast sensitivity data can be perfomed with <code>sm_params_list()</code>.</p>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="factor-analysis-and-csf-in-development.html#cb831-1" aria-hidden="true" tabindex="-1"></a>param_res <span class="ot">&lt;-</span> <span class="fu">sm_params_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
-<span id="cb831-2"><a href="factor-analysis-and-csf-in-development.html#cb831-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
-<span id="cb831-3"><a href="factor-analysis-and-csf-in-development.html#cb831-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
-<span id="cb831-4"><a href="factor-analysis-and-csf-in-development.html#cb831-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
-<span id="cb831-5"><a href="factor-analysis-and-csf-in-development.html#cb831-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="factor-analysis-and-csf-in-development.html#cb19-1" aria-hidden="true" tabindex="-1"></a>param_res <span class="ot">&lt;-</span> <span class="fu">sm_params_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb19-2"><a href="factor-analysis-and-csf-in-development.html#cb19-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb19-3"><a href="factor-analysis-and-csf-in-development.html#cb19-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb19-4"><a href="factor-analysis-and-csf-in-development.html#cb19-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb19-5"><a href="factor-analysis-and-csf-in-development.html#cb19-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">data =</span> df)</span></code></pre></div>
 <pre><code>## [1] &quot;CSF parameters = Sensitivity ~ SpatialFreq&quot;</code></pre>
 <p>After we compute the four parameters of the parabola model of CSF for each subject, we resample them with replacement. Note that the sample size with resampled data should be identical to the original sample size (<code>nObs &lt;- 51</code>).</p>
-<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="factor-analysis-and-csf-in-development.html#cb833-1" aria-hidden="true" tabindex="-1"></a>nObs <span class="ot">&lt;-</span> <span class="dv">51</span></span>
-<span id="cb833-2"><a href="factor-analysis-and-csf-in-development.html#cb833-2" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># 100 simulations</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="factor-analysis-and-csf-in-development.html#cb21-1" aria-hidden="true" tabindex="-1"></a>nObs <span class="ot">&lt;-</span> <span class="dv">51</span></span>
+<span id="cb21-2"><a href="factor-analysis-and-csf-in-development.html#cb21-2" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># 100 simulations</span></span></code></pre></div>
 <p>Then, we can perform non-parametric bootstrapping and obtain 95% confidence interval of the eigenvalues using <code>sm_np_boot()</code>. It produces a data frame with the confidence intervals from resampling and observed eigenvalue from the original parameters. This is stored on <code>boot_res</code>.</p>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="factor-analysis-and-csf-in-development.html#cb834-1" aria-hidden="true" tabindex="-1"></a>boot_res <span class="ot">&lt;-</span> <span class="fu">sm_np_boot</span>(param_res, <span class="at">n=</span>nObs, <span class="at">nSim =</span> nSim)</span>
-<span id="cb834-2"><a href="factor-analysis-and-csf-in-development.html#cb834-2" aria-hidden="true" tabindex="-1"></a>boot_res</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="factor-analysis-and-csf-in-development.html#cb22-1" aria-hidden="true" tabindex="-1"></a>boot_res <span class="ot">&lt;-</span> <span class="fu">sm_np_boot</span>(param_res, <span class="at">n=</span>nObs, <span class="at">nSim =</span> nSim)</span>
+<span id="cb22-2"><a href="factor-analysis-and-csf-in-development.html#cb22-2" aria-hidden="true" tabindex="-1"></a>boot_res</span></code></pre></div>
 <pre><code>## # A tibble: 24 x 5
 ##       mean downCI    upCI group  nFac
 ##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -695,11 +620,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 -0.380  -0.539 -0.231  data     10
 ## # ... with 14 more rows</code></pre>
 <p>By using <code>sm_plot_boot()</code>, we can then draw the scree plot with the eigenvalues and their 95% confidence intervals. It draws it by using <code>ggplot2</code>, so you can customise the aesthetics by adding (<code>+</code>) ggplot2 functions as I have done here with <code>ylab()</code>.</p>
-<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="factor-analysis-and-csf-in-development.html#cb836-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_plot_boot</span>(boot_res, <span class="at">shapes =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
-<span id="cb836-2"><a href="factor-analysis-and-csf-in-development.html#cb836-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Eigenvalue&#39;</span>) <span class="ot">-&gt;</span> eigen1</span>
-<span id="cb836-3"><a href="factor-analysis-and-csf-in-development.html#cb836-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb836-4"><a href="factor-analysis-and-csf-in-development.html#cb836-4" aria-hidden="true" tabindex="-1"></a>eigen1</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-615-1.png" width="364.8" /></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="factor-analysis-and-csf-in-development.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_plot_boot</span>(boot_res, <span class="at">shapes =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
+<span id="cb24-2"><a href="factor-analysis-and-csf-in-development.html#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Eigenvalue&#39;</span>) <span class="ot">-&gt;</span> eigen1</span>
+<span id="cb24-3"><a href="factor-analysis-and-csf-in-development.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="factor-analysis-and-csf-in-development.html#cb24-4" aria-hidden="true" tabindex="-1"></a>eigen1</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-17-1.png" width="364.8" /></p>
 <p>We can then extract the number of factors where the 95% confidence intervals of the eigenvalues from the observed data do not overlap with those from randomly generated data from parallel analysis. In this example, we can develop an exploratory model with two factors.</p>
 
 </div>
@@ -764,20 +689,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

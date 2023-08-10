@@ -5,7 +5,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Factor Analysis and CSF (in development)
+# Factor Analysis and CSF 
 
 ```{r, message=F, warning=F}
 library(tidyverse)
@@ -41,7 +41,7 @@ The scree plot has a y-axis of the **eigenvalue**, which refers the amount of va
 
 Some methods for factor analysis determine the number of factors in a potential factor model based on eigenvalues. The Guttman Rule (i.e. K1) extracts all factors with eigenvalues larger than 1.
 
-However, this is problematic because in one dataset, factor A can have an eigenvalue larger than 1 but in another dataset from another population factor B can have an eigenvalue lower than 1. Therefore the number of factors that is extracted can vary depending on the local sample. This creates variability in results. Therefore, it might be better to include a range of uncertainty of eigenvalues so that one can better be informed about the possible range of eigenvalues in a population. This can be done by plotting 95% confidence interval of eigenvalues. 
+Another method that relies on eigenvalues to determine the number of factors is parallel analysis.
 
 ## Parallel analysis
 
@@ -50,7 +50,7 @@ Parallel analysis by Horn is a statistical method to determine the number of fac
 We will use `psych` package's function `fa.parallel` to perform parallel analysis.
 
 ```{r, warning = F, message = F}
-df_mat <- read_csv('data_ACh_mat.csv') # ACh data in matrix form
+df_mat <- read_csv('https://www.smin95.com/data_ACh_mat.csv') # ACh data in matrix form
 df_mat1 <- as.matrix(df_mat[,-1])
 ```
 
@@ -64,9 +64,13 @@ Based on the parallel analysis, we see that there are two factors with eigenvalu
 
 ## Non-parametric bootstrapping 
 
+The Guttman rule can suggest different numbers of factors depending on the sample. For example, in one dataset, factor A can have an eigenvalue larger than 1 but in another dataset from another population factor B can have an eigenvalue lower than 1. Therefore the number of factors that is extracted can vary depending on the local sample. This creates variability in results. This issue can also be observed in parallel analysis.
+
+Therefore, it might be better to include a range of uncertainty of eigenvalues so that one can better be informed about the possible range of eigenvalues in a population. This can be done by plotting 95% confidence interval of eigenvalues. 
+
 In this section, we will perform non-parametric bootstrapping to compute the confidence intervals of the eigenvalues. However, it turns out, if we resample the contrast sensitivity data directly, it removes the local correlation and therefore the influence of latent factors on the dataset, thereby erasing covariance from its existence. 
 
-Here is the original dataset's covariance of achromatic sensitivity.
+Here is the original data set's covariance of achromatic sensitivity.
 
 ```{r}
 cov(df_mat1)
@@ -92,11 +96,43 @@ resampled_ACh <- matrix(data=NA,nrow=nObs,ncol=nSF)
 for (iSF in 1:nSF) {
   resampled_ACh[,iSF] <- sample(df_mat1[,iSF],nObs, replace = T)
 }
-
-resampled_ACh
 ```
 
-Here is the resampled dataset, and covariance is shown below.
+Here is the re-sampled data set. We can also plot the re-sampled data against the experimental data using base `R` (not `ggplot2`) since we are using matrices to store data. Plotting in base `R` can be more tedious but it can be quite fun as you can control every aspect of the plot.
+
+```{r, fig.width=3.6, fig.height=3.6}
+avgs_expt <- avgs_resampled <- vector('double',nSF)
+
+for (iSF in 1:nSF) {
+  avgs_resampled[[iSF]] <- mean(resampled_ACh[,iSF])
+  avgs_expt[[iSF]] <- mean(df_mat1[,iSF])
+}
+
+par(mfrow=c(1,1), mar=c(4,4.1,1.2,1.2))
+
+plot(unique(df$SpatialFreq),log(avgs_resampled), log='x',
+     ylim = c(0.1,max(log(c(avgs_resampled,avgs_expt)))+1),
+     xlab='Spatial frequency',
+     ylab='Contrast sensitivity', col=sm_color('blue'),
+     pch=15, cex=1.4)
+
+lines(unique(df$SpatialFreq),log(avgs_resampled), 
+      col=sm_color('blue'), cex=2)
+
+points(unique(df$SpatialFreq)+unique(df$SpatialFreq)*0.1, 
+       log(avgs_expt), pch=16, col=sm_color('red'), cex=1.4)
+
+lines(unique(df$SpatialFreq)+unique(df$SpatialFreq)*0.1,
+      log(avgs_expt), col=sm_color('red'), cex=2)
+
+legend(0.3,1.5,legend=c('Resampled data','Real data'),
+       col = sm_color('blue','red'), pch=15:16,pt.cex=1.8,
+       bty='n')
+```
+
+The two data sets look very similar but only one of them (expt data) can be used for factor analysis. Therefore, we can notice that factor analysis captures the *invisible* pattern of the data.
+
+The covariance of the resampled data is shown below.
 
 ```{r}
 cov(resampled_ACh)
