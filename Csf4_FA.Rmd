@@ -128,15 +128,15 @@ legend(0.3,1.5,legend=c('Resampled data','Real data'),
        bty='n')
 ```
 
-The two data sets look very similar but only one of them (expt data) can be used for factor analysis. Therefore, we can notice that factor analysis captures the *invisible* pattern of the data.
+The two data sets look very similar, however, we will see that \only one of them (real data) can be used for factor analysis because it properly retains covariance. Therefore, it seems that factor analysis captures the *invisible* pattern of the data.
 
-The covariance of the resampled data is shown below.
+The covariance of the re-sampled data is shown below.
 
 ```{r}
 cov(resampled_ACh)
 ```
 
-We now see that the resampled dataset has a much lower covariance in general. Since covariance is too low, it is not suitable to perform factor analysis.
+We now see that the re-sampled data set has a much lower covariance in general. Since covariance is too low, it is not suitable to perform factor analysis.
 
 ```{r}
 KMO(resampled_ACh)
@@ -150,11 +150,9 @@ We can still try parallel analysis and see what happens.
 fa.parallel(resampled_ACh, fa ='fa')
 ```
 
-There is no identified factor because there is no covariance.
+There is no identified factor because there is no covariance. However, re-sampling is required to compute 95% confidence interval.
 
-However, re-sampling is required to perform 95% confidence interval.
-
-Therefore, a solution is to use a model that captures the contrast sensitivity function, compute parameters that retain the overall characteristic of the curve for each subject, and then re-sample the parameters with replacement. In this example, we will re-sample for 100 times (`nSim <- 100`).
+A solution is to use a model that captures the contrast sensitivity function, compute parameters that retain the overall characteristic of the curve for each subject, and then re-sample the parameters with replacement. Then using the re-sampled parameters, one can refit the sensitivity data. In this example, we will re-sample for 100 times (`nSim <- 100`).
 
 Calculation of the parameters from a data frame that contains contrast sensitivity data can be perfomed with `sm_params_list()`.
 
