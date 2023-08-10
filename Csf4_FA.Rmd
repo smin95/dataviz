@@ -25,8 +25,6 @@ df <- read_csv('https://www.smin95.com/data_ACh.csv') %>%
 
 ```
 
-## Factor Analysis
-
 Factor analysis is a technique to identify latent factors that produce local patterns/correlations in a high-dimensional dataset. In other words, it aims to reduce the number of dimensions in the data.
 
 In this dataset, there are 12 unique spatial frequencies. The sensitivity data were collected at these spatial frequencies to produce the contrast sensitivity function, which has a peak and has an asymmetrical shape. There are 12 dimensions total.
@@ -177,7 +175,7 @@ nObs <- 51
 nSim <- 100 # 100 simulations
 ```
 
-Then, we can perform non-parametric bootstrapping and obtain 95% confidence interval of the eigenvalues using `sm_np_boot()`. It produces a data frame with the confidence intervals from resampling and observed eigenvalue from the original parameters. This is stored on `boot_res`.
+Then, we can perform non-parametric bootstrapping and obtain 95% confidence interval of the eigenvalues using `sm_np_boot()`. It produces a data frame with the confidence intervals from re-sampling and mean eigenvalue from the multiple rounds of re-sampling. This is stored on `boot_res`.
 
 ```{r,  eval = F}
 boot_res <- sm_np_boot(param_res, n=nObs, nSim = nSim)
@@ -199,3 +197,16 @@ eigen1
 ```
 
 We can then extract the number of factors where the 95% confidence intervals of the eigenvalues from the observed data do not overlap with those from randomly generated data from parallel analysis. In this example, we can develop an exploratory model with two factors.
+
+## Factor Analysis
+
+Now, we perform factor analysis with two factors. In this example, we perform varimax rotation to increase the interpretability of the results from factor analysis.
+
+```{r}
+nFac <- 2
+fa_res <- fa(df_mat1, nFac, fm='minres', rotate='varimax')
+print(fa_res$loadings, cutoff = 0.5)
+```
+
+It seems that two factors can describe enough of the achromatic data. The proportion of variance from these two factors are 87.7%. However, the loading scores per factor vary quite significantly, especially for the second factor (`MR2`). Therefore, there needs some more work to do to confirm whether a two-factor model is indeed adequate to capture the covariance of the achromatic data.
+

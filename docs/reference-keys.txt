@@ -174,7 +174,7 @@ calculating-the-five-parameters-of-all-subjects-groups-and-conditions
 visualization-of-the-parameters
 case-study-1
 factor-analysis-and-csf
-factor-analysis
 eigenvalues
 parallel-analysis
 non-parametric-bootstrapping
+factor-analysis
