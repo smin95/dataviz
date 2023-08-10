@@ -202,11 +202,11 @@ We can then extract the number of factors where the 95% confidence intervals of 
 
 Now, we perform factor analysis with two factors. In this example, we perform varimax rotation to increase the interpretability of the results from factor analysis.
 
-```{r}
+```{r, warning=F, message=F}
 nFac <- 2
 fa_res <- fa(df_mat1, nFac, fm='minres', rotate='varimax')
 print(fa_res$loadings, cutoff = 0.5)
 ```
 
-It seems that two factors can describe enough of the achromatic data. The proportion of variance from these two factors are 87.7%. However, the loading scores per factor vary quite significantly, especially for the second factor (`MR2`). Therefore, there needs some more work to do to confirm whether a two-factor model is indeed adequate to capture the covariance of the achromatic data.
+It seems that two factors can describe enough of the achromatic data. The proportion of variance from these two factors are 87.7%. However, the loading scores per factor vary quite significantly, especially for the second factor (`MR2`). Therefore, there needs some more work to do to confirm whether a two-factor model adequately captures the covariance of the achromatic data.
 
