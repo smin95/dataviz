@@ -660,21 +660,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## MSA for each item = 
 ##  [1] 0.43 0.51 0.42 0.41 0.28 0.37 0.34 0.32 0.39 0.43 0.48 0.44</code></pre>
 <p>The values from the KMO test are lower than 0.5 at most spatial frequencies, suggesting the data set is not suitable for factor analysis.</p>
-<p>However, resampling is required to perform 95% confidence interval.</p>
-<p>Therefore, a solution is to use a model that captures the contrast sensitivity function, compute parameters that retain the overall characteristic of the curve for each subject, and then resample the parameters with replacement. In this example, we will resample for 100 times (<code>nSim &lt;- 100</code>).</p>
+<p>We can still try parallel analysis and see what happens.</p>
+<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="factor-analysis-and-csf-in-development.html#cb829-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fa.parallel</span>(resampled_ACh, <span class="at">fa =</span><span class="st">&#39;fa&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-610-1.png" width="403.2" /></p>
+<pre><code>## Parallel analysis suggests that the number of factors =  0  and the number of components =  NA</code></pre>
+<p>There is no identified factor because there is no covariance.</p>
+<p>However, re-sampling is required to perform 95% confidence interval.</p>
+<p>Therefore, a solution is to use a model that captures the contrast sensitivity function, compute parameters that retain the overall characteristic of the curve for each subject, and then re-sample the parameters with replacement. In this example, we will re-sample for 100 times (<code>nSim &lt;- 100</code>).</p>
 <p>Calculation of the parameters from a data frame that contains contrast sensitivity data can be perfomed with <code>sm_params_list()</code>.</p>
-<div class="sourceCode" id="cb829"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb829-1"><a href="factor-analysis-and-csf-in-development.html#cb829-1" aria-hidden="true" tabindex="-1"></a>param_res <span class="ot">&lt;-</span> <span class="fu">sm_params_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
-<span id="cb829-2"><a href="factor-analysis-and-csf-in-development.html#cb829-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
-<span id="cb829-3"><a href="factor-analysis-and-csf-in-development.html#cb829-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
-<span id="cb829-4"><a href="factor-analysis-and-csf-in-development.html#cb829-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
-<span id="cb829-5"><a href="factor-analysis-and-csf-in-development.html#cb829-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">data =</span> df)</span></code></pre></div>
+<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="factor-analysis-and-csf-in-development.html#cb831-1" aria-hidden="true" tabindex="-1"></a>param_res <span class="ot">&lt;-</span> <span class="fu">sm_params_list</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb831-2"><a href="factor-analysis-and-csf-in-development.html#cb831-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">conditions =</span> <span class="st">&#39;Repetition&#39;</span>,</span>
+<span id="cb831-3"><a href="factor-analysis-and-csf-in-development.html#cb831-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">x =</span> <span class="st">&#39;SpatialFreq&#39;</span>, </span>
+<span id="cb831-4"><a href="factor-analysis-and-csf-in-development.html#cb831-4" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">values =</span> <span class="st">&#39;Sensitivity&#39;</span>, </span>
+<span id="cb831-5"><a href="factor-analysis-and-csf-in-development.html#cb831-5" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">data =</span> df)</span></code></pre></div>
 <pre><code>## [1] &quot;CSF parameters = Sensitivity ~ SpatialFreq&quot;</code></pre>
 <p>After we compute the four parameters of the parabola model of CSF for each subject, we resample them with replacement. Note that the sample size with resampled data should be identical to the original sample size (<code>nObs &lt;- 51</code>).</p>
-<div class="sourceCode" id="cb831"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb831-1"><a href="factor-analysis-and-csf-in-development.html#cb831-1" aria-hidden="true" tabindex="-1"></a>nObs <span class="ot">&lt;-</span> <span class="dv">51</span></span>
-<span id="cb831-2"><a href="factor-analysis-and-csf-in-development.html#cb831-2" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># 100 simulations</span></span></code></pre></div>
+<div class="sourceCode" id="cb833"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb833-1"><a href="factor-analysis-and-csf-in-development.html#cb833-1" aria-hidden="true" tabindex="-1"></a>nObs <span class="ot">&lt;-</span> <span class="dv">51</span></span>
+<span id="cb833-2"><a href="factor-analysis-and-csf-in-development.html#cb833-2" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># 100 simulations</span></span></code></pre></div>
 <p>Then, we can perform non-parametric bootstrapping and obtain 95% confidence interval of the eigenvalues using <code>sm_np_boot()</code>. It produces a data frame with the confidence intervals from resampling and observed eigenvalue from the original parameters. This is stored on <code>boot_res</code>.</p>
-<div class="sourceCode" id="cb832"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb832-1"><a href="factor-analysis-and-csf-in-development.html#cb832-1" aria-hidden="true" tabindex="-1"></a>boot_res <span class="ot">&lt;-</span> <span class="fu">sm_np_boot</span>(param_res, <span class="at">n=</span>nObs, <span class="at">nSim =</span> nSim)</span>
-<span id="cb832-2"><a href="factor-analysis-and-csf-in-development.html#cb832-2" aria-hidden="true" tabindex="-1"></a>boot_res</span></code></pre></div>
+<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="factor-analysis-and-csf-in-development.html#cb834-1" aria-hidden="true" tabindex="-1"></a>boot_res <span class="ot">&lt;-</span> <span class="fu">sm_np_boot</span>(param_res, <span class="at">n=</span>nObs, <span class="at">nSim =</span> nSim)</span>
+<span id="cb834-2"><a href="factor-analysis-and-csf-in-development.html#cb834-2" aria-hidden="true" tabindex="-1"></a>boot_res</span></code></pre></div>
 <pre><code>## # A tibble: 24 x 5
 ##       mean downCI    upCI group  nFac
 ##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;
@@ -690,11 +695,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 -0.380  -0.539 -0.231  data     10
 ## # ... with 14 more rows</code></pre>
 <p>By using <code>sm_plot_boot()</code>, we can then draw the scree plot with the eigenvalues and their 95% confidence intervals. It draws it by using <code>ggplot2</code>, so you can customise the aesthetics by adding (<code>+</code>) ggplot2 functions as I have done here with <code>ylab()</code>.</p>
-<div class="sourceCode" id="cb834"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb834-1"><a href="factor-analysis-and-csf-in-development.html#cb834-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_plot_boot</span>(boot_res, <span class="at">shapes =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
-<span id="cb834-2"><a href="factor-analysis-and-csf-in-development.html#cb834-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Eigenvalue&#39;</span>) <span class="ot">-&gt;</span> eigen1</span>
-<span id="cb834-3"><a href="factor-analysis-and-csf-in-development.html#cb834-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb834-4"><a href="factor-analysis-and-csf-in-development.html#cb834-4" aria-hidden="true" tabindex="-1"></a>eigen1</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-614-1.png" width="364.8" /></p>
+<div class="sourceCode" id="cb836"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb836-1"><a href="factor-analysis-and-csf-in-development.html#cb836-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_plot_boot</span>(boot_res, <span class="at">shapes =</span> <span class="dv">16</span>) <span class="sc">+</span> </span>
+<span id="cb836-2"><a href="factor-analysis-and-csf-in-development.html#cb836-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Eigenvalue&#39;</span>) <span class="ot">-&gt;</span> eigen1</span>
+<span id="cb836-3"><a href="factor-analysis-and-csf-in-development.html#cb836-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb836-4"><a href="factor-analysis-and-csf-in-development.html#cb836-4" aria-hidden="true" tabindex="-1"></a>eigen1</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-615-1.png" width="364.8" /></p>
 <p>We can then extract the number of factors where the 95% confidence intervals of the eigenvalues from the observed data do not overlap with those from randomly generated data from parallel analysis. In this example, we can develop an exploratory model with two factors.</p>
 
 </div>

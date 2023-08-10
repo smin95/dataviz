@@ -110,9 +110,17 @@ KMO(resampled_ACh)
 
 The values from the KMO test are lower than 0.5 at most spatial frequencies, suggesting the data set is not suitable for factor analysis. 
 
-However, resampling is required to perform 95% confidence interval.
+We can still try parallel analysis and see what happens.
 
-Therefore, a solution is to use a model that captures the contrast sensitivity function, compute parameters that retain the overall characteristic of the curve for each subject, and then resample the parameters with replacement. In this example, we will resample for 100 times (`nSim <- 100`).
+```{r, fig.width=4.2, fig.height=4.2, warning = F, message = F}
+fa.parallel(resampled_ACh, fa ='fa')
+```
+
+There is no identified factor because there is no covariance.
+
+However, re-sampling is required to perform 95% confidence interval.
+
+Therefore, a solution is to use a model that captures the contrast sensitivity function, compute parameters that retain the overall characteristic of the curve for each subject, and then re-sample the parameters with replacement. In this example, we will re-sample for 100 times (`nSim <- 100`).
 
 Calculation of the parameters from a data frame that contains contrast sensitivity data can be perfomed with `sm_params_list()`.
 
