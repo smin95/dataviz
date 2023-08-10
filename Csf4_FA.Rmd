@@ -208,5 +208,5 @@ fa_res <- fa(df_mat1, nFac, fm='minres', rotate='varimax')
 print(fa_res$loadings, cutoff = 0.5)
 ```
 
-It seems that two factors can describe enough of the achromatic data. The proportion of variance from these two factors are 87.7%. However, the loading scores per factor vary quite significantly, especially for the second factor (`MR2`). Therefore, there needs some more work to do to confirm whether a two-factor model adequately captures the covariance of the achromatic data.
+It seems that two factors can describe enough of the achromatic data. The proportion of variance from these two factors are 87.7%. However, there needs some more work to do to confirm whether a two-factor model adequately captures the covariance of the achromatic data.
 
