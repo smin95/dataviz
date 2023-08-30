@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 9 Calculating Linear Slopes | Data Analysis and Visualization in R Using smplot2</title>
+  <meta name="description" content="Chapter 9 Calculating Linear Slopes | Data Analysis and Visualization in R Using smplot2" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 9 Calculating Linear Slopes | Data Analysis and Visualization in R Using smplot2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 9 Calculating Linear Slopes | Data Analysis and Visualization in R Using smplot2" />
+  
+  
+  
+
+<meta name="author" content="Seung Hyun Min" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="calculating-area-under-a-curve.html"/>
+<link rel="next" href="basic-statistics.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dataviz with smplot2</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i>Major updates</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="opening-remarks.html"><a href="opening-remarks.html"><i class="fa fa-check"></i><b>1</b> Opening Remarks</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="opening-remarks.html"><a href="opening-remarks.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.1</b> How to read this book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>2</b> Download RStudio &amp; Basics of R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#setting-up-rstudio"><i class="fa fa-check"></i><b>2.1</b> Setting up RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#why-use-r-for-data-visualization"><i class="fa fa-check"></i>Why use R for data visualization?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#other-available-resources-for-r"><i class="fa fa-check"></i>Other available resources for R</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#download-requirements-for-rstudio"><i class="fa fa-check"></i>Download requirements for RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#open-rstudio"><i class="fa fa-check"></i>Open RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-make-a-folder-and-set-it-as-working-directory"><i class="fa fa-check"></i>Let’s make a folder and set it as working directory</a></li>
+<li class="chapter" data-level="2.1.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-to-run-your-code"><i class="fa fa-check"></i><b>2.1.1</b> How to run your code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#basics-of-r"><i class="fa fa-check"></i><b>2.2</b> Basics of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-type-some-codes"><i class="fa fa-check"></i>Let’s type some codes</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-can-i-learn-most-effectively-with-the-notes"><i class="fa fa-check"></i>How can I learn most effectively with the notes?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#more-installation"><i class="fa fa-check"></i>More installation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Data Visualization with smplot2</b></span></li>
+<li class="chapter" data-level="3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html"><i class="fa fa-check"></i><b>3</b> Basics of ggplot2 and Correlation Plot</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#uploading-data"><i class="fa fa-check"></i><b>3.1</b> Uploading data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#sample-data-mpg"><i class="fa fa-check"></i><b>3.1.1</b> Sample data: mpg</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Basics of ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-make-some-graphs"><i class="fa fa-check"></i><b>3.2.1</b> Let’s make some graphs</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-ggplot-works"><i class="fa fa-check"></i><b>3.2.2</b> How ggplot works</a></li>
+<li class="chapter" data-level="3.2.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-of-points-for-each-unique-group"><i class="fa fa-check"></i><b>3.2.3</b> Different color of points for each unique group</a></li>
+<li class="chapter" data-level="3.2.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-shape-for-each-group"><i class="fa fa-check"></i><b>3.2.4</b> Different color &amp; shape for each group</a></li>
+<li class="chapter" data-level="3.2.5" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#same-shape-across-all-groups"><i class="fa fa-check"></i><b>3.2.5</b> Same shape across all groups</a></li>
+<li class="chapter" data-level="3.2.6" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-do-we-draw-the-best-fit-line-of-the-graph"><i class="fa fa-check"></i><b>3.2.6</b> How do we draw the best-fit line of the graph?</a></li>
+<li class="chapter" data-level="3.2.7" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#geom_point-geom_smooth"><i class="fa fa-check"></i><b>3.2.7</b> geom_point() + geom_smooth()</a></li>
+<li class="chapter" data-level="3.2.8" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#writing-shorter-codes"><i class="fa fa-check"></i><b>3.2.8</b> Writing shorter codes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#improve-data-visualization-using-smplot2"><i class="fa fa-check"></i><b>3.3</b> Improve data visualization using smplot2</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#positive-relationship-between-x--and-y-axes"><i class="fa fa-check"></i><b>3.3.1</b> Positive relationship between x- and y-axes</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#reporting-statistics-from-a-paired-correlation"><i class="fa fa-check"></i><b>3.3.2</b> Reporting statistics from a paired correlation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#changing-the-text"><i class="fa fa-check"></i><b>3.3.3</b> Changing the text</a></li>
+<li class="chapter" data-level="3.3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#plotting-the-average-with-standard-errors"><i class="fa fa-check"></i><b>3.3.4</b> Plotting the average with standard errors</a></li>
+<li class="chapter" data-level="3.3.5" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#fill-0f993d-vs-fill-green"><i class="fa fa-check"></i><b>3.3.5</b> <code>fill = '#0f993d'</code> vs <code>fill = 'green'</code></a></li>
+<li class="chapter" data-level="3.3.6" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-for-each-group-but-with-other-colors"><i class="fa fa-check"></i><b>3.3.6</b> Different color for each group but with other colors</a></li>
+<li class="chapter" data-level="3.3.7" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1."><i class="fa fa-check"></i><b>3.3.7</b> Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html"><i class="fa fa-check"></i><b>4</b> Boxplot and Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#upload-sample-data-csv-file-in-rstudio"><i class="fa fa-check"></i><b>4.1</b> Upload sample data (csv file) in RStudio</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#download-requirements"><i class="fa fa-check"></i><b>4.1.1</b> Download requirements</a></li>
+<li class="chapter" data-level="4.1.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#before-we-get-started"><i class="fa fa-check"></i><b>4.1.2</b> Before we get started</a></li>
+<li class="chapter" data-level="4.1.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#data.csv"><i class="fa fa-check"></i><b>4.1.3</b> data.csv</a></li>
+<li class="chapter" data-level="4.1.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#read_csvdata.csv"><i class="fa fa-check"></i><b>4.1.4</b> <code>read_csv('data.csv')</code></a></li>
+<li class="chapter" data-level="4.1.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#best-way-to-plot-data"><i class="fa fa-check"></i><b>4.1.5</b> Best way to plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot"><i class="fa fa-check"></i><b>4.2</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#what-is-a-boxplot"><i class="fa fa-check"></i><b>4.2.1</b> What is a boxplot?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-vs-bar-graph"><i class="fa fa-check"></i><b>4.2.2</b> Boxplot vs bar graph</a></li>
+<li class="chapter" data-level="4.2.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-using-ggplot2"><i class="fa fa-check"></i><b>4.2.3</b> Boxplot using ggplot2</a></li>
+<li class="chapter" data-level="4.2.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#problem-alphabetical-order"><i class="fa fa-check"></i><b>4.2.4</b> Problem: Alphabetical order</a></li>
+<li class="chapter" data-level="4.2.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#displaying-characters-in-a-non-alphabetical-order"><i class="fa fa-check"></i><b>4.2.5</b> Displaying characters in a non-alphabetical order</a></li>
+<li class="chapter" data-level="4.2.6" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#double-check-if-the-day-column-is-factor"><i class="fa fa-check"></i><b>4.2.6</b> Double-check if the ‘Day’ column is factor</a></li>
+<li class="chapter" data-level="4.2.7" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#back-to-boxplot-using-ggplot2"><i class="fa fa-check"></i><b>4.2.7</b> Back to boxplot using ggplot2</a></li>
+<li class="chapter" data-level="4.2.8" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#a-boxplot-with-individual-data"><i class="fa fa-check"></i><b>4.2.8</b> A boxplot with individual data</a></li>
+<li class="chapter" data-level="4.2.9" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_boxplot-vs-sm_boxplot"><i class="fa fa-check"></i><b>4.2.9</b> <code>geom_boxplot()</code> vs <code>sm_boxplot()</code></a></li>
+<li class="chapter" data-level="4.2.10" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-boxplot"><i class="fa fa-check"></i><b>4.2.10</b> Save boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot"><i class="fa fa-check"></i><b>4.3</b> Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#structure-of-the-violin-plot"><i class="fa fa-check"></i><b>4.3.1</b> Structure of the violin plot</a></li>
+<li class="chapter" data-level="4.3.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-ggplot2"><i class="fa fa-check"></i><b>4.3.2</b> Violin plot with ggplot2</a></li>
+<li class="chapter" data-level="4.3.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-individual-points"><i class="fa fa-check"></i><b>4.3.3</b> Violin plot with individual points</a></li>
+<li class="chapter" data-level="4.3.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_violin-vs-sm_violin"><i class="fa fa-check"></i><b>4.3.4</b> geom_violin() vs sm_violin()</a></li>
+<li class="chapter" data-level="4.3.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-your-violin-plot"><i class="fa fa-check"></i><b>4.3.5</b> Save your violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#summary-1"><i class="fa fa-check"></i><b>4.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html"><i class="fa fa-check"></i><b>5</b> Bar Graph, Slope Chart and Point plot</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph"><i class="fa fa-check"></i><b>5.1</b> Bar graph</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#scaling-the-y-axis"><i class="fa fa-check"></i><b>5.1.1</b> Scaling the y-axis</a></li>
+<li class="chapter" data-level="5.1.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>5.1.2</b> Plotting individual points with unique colors</a></li>
+<li class="chapter" data-level="5.1.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#other-parameters"><i class="fa fa-check"></i><b>5.1.3</b> Other parameters</a></li>
+<li class="chapter" data-level="5.1.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph-with-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.1.4</b> Bar graph with data of multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart"><i class="fa fa-check"></i><b>5.2</b> Slope chart</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot"><i class="fa fa-check"></i><b>5.2.1</b> Slope chart with mean plot</a></li>
+<li class="chapter" data-level="5.2.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot-and-error-bar"><i class="fa fa-check"></i><b>5.2.2</b> Slope chart with mean plot and error bar</a></li>
+<li class="chapter" data-level="5.2.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-x-levels"><i class="fa fa-check"></i><b>5.2.3</b> Slope chart with multiple x levels</a></li>
+<li class="chapter" data-level="5.2.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-groups-and-x-levels"><i class="fa fa-check"></i><b>5.2.4</b> Slope chart with multiple groups and x levels</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot"><i class="fa fa-check"></i><b>5.3</b> Point plot</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#change-the-range-of-y-axis"><i class="fa fa-check"></i><b>5.3.1</b> Change the range of y-axis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#data-with-more-than-two-groups"><i class="fa fa-check"></i><b>5.3.2</b> Data with more than two groups</a></li>
+<li class="chapter" data-level="5.3.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-one-group"><i class="fa fa-check"></i><b>5.3.3</b> Point plot with a shadow using data of one group</a></li>
+<li class="chapter" data-level="5.3.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.3.4</b> Point plot with a shadow using data of multiple groups</a></li>
+<li class="chapter" data-level="5.3.5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#adding-and-modifying-legends"><i class="fa fa-check"></i><b>5.3.5</b> Adding and modifying legends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html"><i class="fa fa-check"></i><b>6</b> Raincloud and Forest Plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot"><i class="fa fa-check"></i><b>6.1</b> Raincloud plot</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changing-the-x-axis-labels"><i class="fa fa-check"></i><b>6.1.1</b> Changing the x-axis labels</a></li>
+<li class="chapter" data-level="6.1.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#separating-the-components-and-configuration"><i class="fa fa-check"></i><b>6.1.2</b> Separating the components and configuration</a></li>
+<li class="chapter" data-level="6.1.3" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changng-the-theme-and-orientation"><i class="fa fa-check"></i><b>6.1.3</b> Changng the theme and orientation</a></li>
+<li class="chapter" data-level="6.1.4" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot-with-data-from-multiple-groups"><i class="fa fa-check"></i><b>6.1.4</b> Raincloud plot with data from multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#forest-plot"><i class="fa fa-check"></i><b>6.2</b> Forest plot</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#plotting-the-forest-plot-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>6.2.1</b> Plotting the forest plot using data of multiple groups</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
+<li class="chapter" data-level="7" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>7</b> Combining Plots with Common Axes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-for-rows"><i class="fa fa-check"></i><b>7.1.1</b> <code>filter()</code> for rows</a></li>
+<li class="chapter" data-level="7.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>7.1.2</b> <code>select()</code> for columns</a></li>
+<li class="chapter" data-level="7.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>7.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>7.2</b> Plotting the averaged data with error bars</a></li>
+<li class="chapter" data-level="7.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>7.3</b> Plotting individual data</a></li>
+<li class="chapter" data-level="7.4" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#putting-multiple-plots-together"><i class="fa fa-check"></i><b>7.4</b> Putting multiple plots together</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>8</b> Calculating Area under a Curve</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#pipe"><i class="fa fa-check"></i><b>8.1</b> Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="8.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#area-under-a-curve"><i class="fa fa-check"></i><b>8.2</b> Area under a curve</a></li>
+<li class="chapter" data-level="8.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#reproducing-figures-in-the-paper-min-et-al.-2019"><i class="fa fa-check"></i><b>8.3</b> Reproducing figures in the paper (Min et al., 2019)</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3b-a-best-fit-line-with-points-and-error-bars"><i class="fa fa-check"></i><b>8.3.1</b> Figure 3B (a best-fit line with points and error bars)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3d-a-bar-graph"><i class="fa fa-check"></i><b>8.3.2</b> Figure 3D (a bar graph)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3e-modeling-in-matlab-and-plotting-in-r"><i class="fa fa-check"></i><b>8.3.3</b> Figure 3E (modeling in Matlab and plotting in R)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html"><i class="fa fa-check"></i><b>9</b> Calculating Linear Slopes</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#linear-relationship-using-lm"><i class="fa fa-check"></i><b>9.1</b> Linear relationship using <code>lm()</code></a></li>
+<li class="chapter" data-level="9.2" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#calculating-slopes-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>9.2</b> Calculating slopes of all subjects, groups and conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>10.1</b> One-sample t-test</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#two-sample-t-test"><i class="fa fa-check"></i><b>10.2</b> Two-sample t-test</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#shapiro-wilk-test-to-test-for-normality-of-data"><i class="fa fa-check"></i><b>10.2.1</b> Shapiro-Wilk Test to test for Normality of Data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-rank Test</a></li>
+<li class="chapter" data-level="10.4" data-path="basic-statistics.html"><a href="basic-statistics.html#effect-size"><i class="fa fa-check"></i><b>10.4</b> Effect Size</a></li>
+<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.5</b> Post-hoc Power Analysis</a></li>
+<li class="chapter" data-level="10.6" data-path="basic-statistics.html"><a href="basic-statistics.html#bayes-factor"><i class="fa fa-check"></i><b>10.6</b> Bayes Factor</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="basic-statistics.html"><a href="basic-statistics.html#issues-with-post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.6.1</b> Issues with post-hoc power analysis</a></li>
+<li class="chapter" data-level="10.6.2" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-the-bayes-factor-in-r"><i class="fa fa-check"></i><b>10.6.2</b> Computing the Bayes factor in R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>10.7</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="basic-statistics.html"><a href="basic-statistics.html#check-for-outliers"><i class="fa fa-check"></i><b>10.7.1</b> Check for Outliers</a></li>
+<li class="chapter" data-level="10.7.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data"><i class="fa fa-check"></i><b>10.7.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.7.3" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-the-assumption-for-homogeneity-of-variance"><i class="fa fa-check"></i><b>10.7.3</b> Checking the Assumption for Homogeneity of Variance</a></li>
+<li class="chapter" data-level="10.7.4" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-one-way-anova"><i class="fa fa-check"></i><b>10.7.4</b> Computing One-way ANOVA</a></li>
+<li class="chapter" data-level="10.7.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>10.7.5</b> Post-hoc Tests</a></li>
+<li class="chapter" data-level="10.7.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>10.7.6</b> One-way Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>10.8</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.8.1" data-path="basic-statistics.html"><a href="basic-statistics.html#identifying-outliers"><i class="fa fa-check"></i><b>10.8.1</b> Identifying Outliers</a></li>
+<li class="chapter" data-level="10.8.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data-1"><i class="fa fa-check"></i><b>10.8.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.8.3" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-two-way-anova"><i class="fa fa-check"></i><b>10.8.3</b> Computing Two-way ANOVA</a></li>
+<li class="chapter" data-level="10.8.4" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-test"><i class="fa fa-check"></i><b>10.8.4</b> Post-hoc Test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="basic-statistics.html"><a href="basic-statistics.html#friedman-test"><i class="fa fa-check"></i><b>10.9</b> Friedman Test</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="basic-statistics.html"><a href="basic-statistics.html#performing-friedman-test"><i class="fa fa-check"></i><b>10.9.1</b> Performing Friedman Test</a></li>
+<li class="chapter" data-level="10.9.2" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-analysis"><i class="fa fa-check"></i><b>10.9.2</b> Post-hoc Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.10</b> Extra Resources</a></li>
+</ul></li>
+<li class="part"><span><b>III Manual for smplot2</b></span></li>
+<li class="chapter" data-level="11" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><i class="fa fa-check"></i><b>11</b> Themes, Colors, Correlations, Boxplots, Violins and Bars (Part 1)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#installation-of-the-package"><i class="fa fa-check"></i><b>11.1</b> Installation of the Package</a></li>
+<li class="chapter" data-level="11.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#how-...-and-xxx.params-arguments-work"><i class="fa fa-check"></i><b>11.2</b> How <code>...</code> and <code>xxx.params</code> arguments work</a></li>
+<li class="chapter" data-level="11.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#color-palette"><i class="fa fa-check"></i><b>11.3</b> Color palette</a></li>
+<li class="chapter" data-level="11.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#graph-themes"><i class="fa fa-check"></i><b>11.4</b> Graph themes</a></li>
+<li class="chapter" data-level="11.5" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot"><i class="fa fa-check"></i><b>11.5</b> Correlation plot</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_statcorr"><i class="fa fa-check"></i><b>11.5.1</b> <code>sm_statCorr()</code></a></li>
+<li class="chapter" data-level="11.5.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_corr_avgerr"><i class="fa fa-check"></i><b>11.5.2</b> <code>sm_corr_avgErr()</code></a></li>
+<li class="chapter" data-level="11.5.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#structure-of-data-frame"><i class="fa fa-check"></i><b>11.5.3</b> Structure of data frame</a></li>
+<li class="chapter" data-level="11.5.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot-with-both-regression-and-reference-lines"><i class="fa fa-check"></i><b>11.5.4</b> Correlation plot with both regression and reference lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>11.6</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>11.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>11.7</b> Violin Plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>11.7.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>11.8</b> Bar plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-3"><i class="fa fa-check"></i><b>11.8.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><i class="fa fa-check"></i><b>12</b> Slope Charts, Point plots, Bland-Altman, Forests, Rainclouds, Histograms (Part 2)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.1</b> Drawing the mean plot</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#point-plot---sm_pointplot"><i class="fa fa-check"></i><b>12.2</b> Point plot - <code>sm_pointplot()</code></a></li>
+<li class="chapter" data-level="12.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>12.3</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
+<li class="chapter" data-level="12.4" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#forest-plot---sm_forest"><i class="fa fa-check"></i><b>12.4</b> Forest plot - <code>sm_forest()</code></a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#annotation-using-sm_forest_annot"><i class="fa fa-check"></i><b>12.4.1</b> Annotation using <code>sm_forest_annot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>12.5</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
+<li class="chapter" data-level="12.6" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#histogram---sm_hist"><i class="fa fa-check"></i><b>12.6</b> Histogram - <code>sm_hist()</code></a></li>
+</ul></li>
+<li class="part"><span><b>IV Contrast Sensitivity Function</b></span></li>
+<li class="chapter" data-level="13" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>13</b> Plotting the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>13.1</b> Brief Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>13.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="13.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>13.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>14</b> Area under Curve, AULCSF and R2 of the CSF</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>14.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="14.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>14.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="14.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>14.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="14.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>14.4</b> Case Study</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>15</b> Understanding the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#contrast-sensitivity-function-model"><i class="fa fa-check"></i><b>15.1</b> Contrast Sensitivity Function Model</a></li>
+<li class="chapter" data-level="15.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_csf"><i class="fa fa-check"></i><b>15.2</b> Understanding <code>sm_CSF()</code></a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_params"><i class="fa fa-check"></i><b>15.2.1</b> <code>sm_params()</code></a></li>
+<li class="chapter" data-level="15.2.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_cutoff"><i class="fa fa-check"></i><b>15.2.2</b> <code>sm_cutOff()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_ribboncsf"><i class="fa fa-check"></i><b>15.3</b> Understanding <code>sm_ribbonCSF()</code></a></li>
+<li class="chapter" data-level="15.4" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#calculating-the-five-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>15.4</b> Calculating the five parameters of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="15.5" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#visualization-of-the-parameters"><i class="fa fa-check"></i><b>15.5</b> Visualization of the parameters</a></li>
+<li class="chapter" data-level="15.6" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#case-study-1"><i class="fa fa-check"></i><b>15.6</b> Case Study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis and Visualization in R Using smplot2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="calculating-linear-slopes" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Calculating Linear Slopes<a href="calculating-linear-slopes.html#calculating-linear-slopes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we will use a fake data set that I have generated by eyeballing Figure 3 from this paper (<a href="https://www.smin95.com/pubs/mao2020.pdf">PDF</a>):</p>
+<p><strong>Yu Mao, Seung Hyun Min, Shijia Chen, Ling Gong, Hao Chen, Robert F. Hess, Jiawei Zhou. Binocular imbalance in amblyopia depends on spatial frequency in binocular combination. IOVS. 2020;61(8):7.</strong></p>
+<p>This data set contains both subject groups (<code>Normal</code> and <code>Amblyopia</code>) and conditions (<code>Condition</code>).</p>
+<p>Let’s begin by loading the <code>tidyverse</code> and other libraries, and uploading the csv file <code>amblyopia_random.csv</code> using <code>read_csv()</code> from the <code>tidyverse</code> package.</p>
+<p>It is always a good habit to make sure that the data set you intended to load uploads properly by using <code>head()</code>, which returns the first 6 rows of the data frame.</p>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="calculating-linear-slopes.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb353-2"><a href="calculating-linear-slopes.html#cb353-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span>
+<span id="cb353-3"><a href="calculating-linear-slopes.html#cb353-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb353-4"><a href="calculating-linear-slopes.html#cb353-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/amblyopia_random.csv&#39;</span>) </span>
+<span id="cb353-5"><a href="calculating-linear-slopes.html#cb353-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 5
+##   Subject  absBP    SF Group     Condition
+##   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    
+## 1 A1      0.0747   0.5 Amblyopia One      
+## 2 A1      0.678    1   Amblyopia One      
+## 3 A1      0.868    2   Amblyopia One      
+## 4 A1      1.45     4   Amblyopia One      
+## 5 A1      0.868    8   Amblyopia One      
+## 6 A10     0.139    0.5 Amblyopia One</code></pre>
+<p>In this dataset, there are five columns.</p>
+<ul>
+<li>First, <code>Subject</code> column has all the subjects. People with amblyopia (a visual disorder) are labelled with <code>A</code>. First subject with amblyopia is written as <code>A1</code>. Normal subject is written with <code>N</code>; first normal subject is <code>N1</code>. We see that there are 10 subjects per group, so there are 20 subjects total.</li>
+</ul>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="calculating-linear-slopes.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Subject)</span></code></pre></div>
+<pre><code>##  [1] &quot;A1&quot;  &quot;A10&quot; &quot;A2&quot;  &quot;A3&quot;  &quot;A4&quot;  &quot;A5&quot;  &quot;A6&quot;  &quot;A7&quot;  &quot;A8&quot;  &quot;A9&quot;  &quot;N1&quot;  &quot;N10&quot; &quot;N2&quot;  &quot;N3&quot; 
+## [15] &quot;N4&quot;  &quot;N5&quot;  &quot;N6&quot;  &quot;N7&quot;  &quot;N8&quot;  &quot;N9&quot;</code></pre>
+<ul>
+<li><p>Second, <code>absBP</code> is the data of our interest.</p></li>
+<li><p>Third, <code>SF</code> refers to spatial frequency. We will be calculating slopes of <code>absBP</code> as a function of <code>SF</code>. So these are our x-coordinates for slope calculations (see sections below). Each unit increases by a factor of 2, so it is also helpful to convert the values into log2 units.</p></li>
+</ul>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="calculating-linear-slopes.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(df<span class="sc">$</span>SF))</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="calculating-linear-slopes.html#cb359-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">logSF =</span> <span class="fu">log2</span>(SF))</span>
+<span id="cb359-2"><a href="calculating-linear-slopes.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   Subject  absBP    SF Group     Condition logSF
+##   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;
+## 1 A1      0.0747   0.5 Amblyopia One          -1
+## 2 A1      0.678    1   Amblyopia One           0
+## 3 A1      0.868    2   Amblyopia One           1
+## 4 A1      1.45     4   Amblyopia One           2
+## 5 A1      0.868    8   Amblyopia One           3
+## 6 A10     0.139    0.5 Amblyopia One          -1</code></pre>
+<ul>
+<li>Fourth, <code>Group</code> refers to as the subject gruop. There are two groups: <code>Amblyopia</code> and <code>Normal</code>.</li>
+</ul>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="calculating-linear-slopes.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Group)</span></code></pre></div>
+<pre><code>## [1] &quot;Amblyopia&quot; &quot;Normal&quot;</code></pre>
+<ul>
+<li>Lastly, <code>Condition</code> refers to the testing condition. In this dataset, there are two conditions.</li>
+</ul>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="calculating-linear-slopes.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Condition)</span></code></pre></div>
+<pre><code>## [1] &quot;One&quot; &quot;Two&quot;</code></pre>
+<p>The columns <code>Group</code> and <code>Condition</code> are categorical variable and must therefore be factors. <code>head(df)</code> shows that <code>Group</code> and <code>Condition</code> are <code>&lt;chr&gt;</code>, which mean characters. Lets change them to factors <code>&lt;fct&gt;</code>.</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="calculating-linear-slopes.html#cb365-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Group)</span>
+<span id="cb365-2"><a href="calculating-linear-slopes.html#cb365-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Condition <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Condition)</span>
+<span id="cb365-3"><a href="calculating-linear-slopes.html#cb365-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   Subject  absBP    SF Group     Condition logSF
+##   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;     &lt;dbl&gt;
+## 1 A1      0.0747   0.5 Amblyopia One          -1
+## 2 A1      0.678    1   Amblyopia One           0
+## 3 A1      0.868    2   Amblyopia One           1
+## 4 A1      1.45     4   Amblyopia One           2
+## 5 A1      0.868    8   Amblyopia One           3
+## 6 A10     0.139    0.5 Amblyopia One          -1</code></pre>
+<p>We see that <code>Group</code> and <code>Condition</code> columns are now factor <code>&lt;fct&gt;</code>.</p>
+<div id="linear-relationship-using-lm" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Linear relationship using <code>lm()</code><a href="calculating-linear-slopes.html#linear-relationship-using-lm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> can be described as <span class="math inline">\(y = mx + b\)</span>, where y is the dependent variable, x is the independent variable, m is the slope, and b is the y-intercept.</p>
+<p>Let’s try calculate <span class="math inline">\(m\)</span> and <span class="math inline">\(b\)</span> using the data of <code>A3</code>, which is the 3rd amblyopic observer.</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="calculating-linear-slopes.html#cb367-1" aria-hidden="true" tabindex="-1"></a>A3 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;A3&#39;</span>)</span></code></pre></div>
+<p>There are two conditions here. Let’s filter for data from the second condition only (<code>Condition == Two</code>).</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="calculating-linear-slopes.html#cb368-1" aria-hidden="true" tabindex="-1"></a>A3_second <span class="ot">&lt;-</span> A3 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Condition <span class="sc">==</span> <span class="st">&#39;Two&#39;</span>)</span></code></pre></div>
+<p>Now, we will use the function <code>lm()</code> to compute <span class="math inline">\(m\)</span> (slope) and <span class="math inline">\(b\)</span> (y-intercept).</p>
+<p>In R, the relationship between <span class="math inline">\(y\)</span> (dependent variable) and <span class="math inline">\(x\)</span> (independent variable) is written as <code>y~x</code> using tilde (<code>~</code>). In other words, instead of directly writing <span class="math inline">\(y = mx + b\)</span> in R, we use <code>~</code> to describe the relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>. Let’s write the relationship between <code>absBP</code> (dependent variable) and <code>logSF</code> (independent variable) within the function <code>lm()</code>.</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="calculating-linear-slopes.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lm</span>(df<span class="sc">$</span>absBP <span class="sc">~</span> df<span class="sc">$</span>logSF)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = df$absBP ~ df$logSF)
+## 
+## Coefficients:
+## (Intercept)     df$logSF  
+##      0.3205       0.1249</code></pre>
+<p>This yields two main outputs. Let’s store this result using a new variable <code>res</code>, which is short for <strong>results</strong>.</p>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="calculating-linear-slopes.html#cb371-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">lm</span>(A3_second<span class="sc">$</span>absBP <span class="sc">~</span> A3_second<span class="sc">$</span>logSF)</span>
+<span id="cb371-2"><a href="calculating-linear-slopes.html#cb371-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(res)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = A3_second$absBP ~ A3_second$logSF)
+## 
+## Residuals:
+##       1       2       3       4       5 
+##  0.1930 -0.1310 -0.1270 -0.1251  0.1900 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)   
+## (Intercept)      0.30461    0.11058   2.755  0.07046 . 
+## A3_second$logSF  0.45815    0.06384   7.176  0.00557 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.2019 on 3 degrees of freedom
+## Multiple R-squared:  0.945,  Adjusted R-squared:  0.9266 
+## F-statistic:  51.5 on 1 and 3 DF,  p-value: 0.005574</code></pre>
+<p><code>summary()</code> is a function that prints all the outputs from a given model object. Here, the model object is <code>res</code>, which has been created using the <code>lm()</code> function. When using <code>lm()</code>, it is advisable to always store the results and print the results using <code>summary()</code>. For more information about <code>summary()</code>, please check out <code>?summary</code>.</p>
+<p>We see that the y-intercept <span class="math inline">\(b\)</span> is 0.3046 under the column <code>Estimate</code>. We also see that the slope <span class="math inline">\(m\)</span> is 0.4582 under the column <code>Estimate</code>. You can ignore all the other values for now.</p>
+<p>Let’s visualize the data of A3 and fit a linear slope.</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="calculating-linear-slopes.html#cb373-1" aria-hidden="true" tabindex="-1"></a>A3_second <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> logSF, <span class="at">y =</span> absBP)) <span class="sc">+</span></span>
+<span id="cb373-2"><a href="calculating-linear-slopes.html#cb373-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb373-3"><a href="calculating-linear-slopes.html#cb373-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="fl">0.4582</span>, <span class="at">intercept =</span> <span class="fl">0.3046</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-316-1.png" width="336" /></p>
+<p>Instead of writing the slope and intercept manually, we can subset these values using <code>$</code>.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="calculating-linear-slopes.html#cb374-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##     (Intercept) A3_second$logSF 
+##       0.3046126       0.4581507</code></pre>
+<p>The first value is the intercept. Therefore use <code>[[1]]</code> to subset the intercept.</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="calculating-linear-slopes.html#cb376-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>coefficients[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## [1] 0.3046126</code></pre>
+<p>You can also subset the slope using <code>[[2]]</code>.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="calculating-linear-slopes.html#cb378-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>coefficients[[<span class="dv">2</span>]]</span></code></pre></div>
+<pre><code>## [1] 0.4581507</code></pre>
+<p>Now let’s plot the graph again and label the y-intercept as well.
+A separate data frame <code>y_int</code> containing the y-intercept is created below. The code below is a bit challenging, so please use <code>?</code> to figure out each function if you are not sure.</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="calculating-linear-slopes.html#cb380-1" aria-hidden="true" tabindex="-1"></a>y_int <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">logSF =</span> <span class="dv">0</span>, <span class="at">absBP =</span> res<span class="sc">$</span>coefficients[[<span class="dv">1</span>]])</span>
+<span id="cb380-2"><a href="calculating-linear-slopes.html#cb380-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-3"><a href="calculating-linear-slopes.html#cb380-3" aria-hidden="true" tabindex="-1"></a>A3_second <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> logSF, <span class="at">y =</span> absBP)) <span class="sc">+</span></span>
+<span id="cb380-4"><a href="calculating-linear-slopes.html#cb380-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb380-5"><a href="calculating-linear-slopes.html#cb380-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> res<span class="sc">$</span>coefficients[[<span class="dv">2</span>]], </span>
+<span id="cb380-6"><a href="calculating-linear-slopes.html#cb380-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">intercept =</span> res<span class="sc">$</span>coefficients[[<span class="dv">1</span>]]) <span class="sc">+</span></span>
+<span id="cb380-7"><a href="calculating-linear-slopes.html#cb380-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> y_int, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;red&#39;</span>), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb380-8"><a href="calculating-linear-slopes.html#cb380-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_corr_theme</span>() <span class="sc">+</span></span>
+<span id="cb380-9"><a href="calculating-linear-slopes.html#cb380-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="fl">1.2</span>, <span class="at">size =</span> <span class="fl">3.5</span>,</span>
+<span id="cb380-10"><a href="calculating-linear-slopes.html#cb380-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&#39;Slope =&#39;</span>,<span class="fu">round</span>(res<span class="sc">$</span>coefficients[[<span class="dv">2</span>]],<span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb380-11"><a href="calculating-linear-slopes.html#cb380-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">0</span>, <span class="at">y =</span> <span class="fl">0.9</span>, <span class="at">size =</span> <span class="fl">3.5</span>,</span>
+<span id="cb380-12"><a href="calculating-linear-slopes.html#cb380-12" aria-hidden="true" tabindex="-1"></a>           <span class="at">label =</span> <span class="fu">paste</span>(<span class="st">&#39;Intercept =&#39;</span>, <span class="fu">round</span>(res<span class="sc">$</span>coefficients[[<span class="dv">1</span>]],<span class="dv">2</span>)))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-320-1.png" width="336" /></p>
+<p>In summary, you can compute the slope of a linear function between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> and using <code>lm()</code>, where you use <code>~</code> to describe the relationship. You also need to use <code>$</code> to subset the slopes directly.</p>
+</div>
+<div id="calculating-slopes-of-all-subjects-groups-and-conditions" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Calculating slopes of all subjects, groups and conditions<a href="calculating-linear-slopes.html#calculating-slopes-of-all-subjects-groups-and-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Now that we know how to compute slope for each subject, let’s calculate slopes of our entire dataset.</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="calculating-linear-slopes.html#cb381-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 200 x 6
+##    Subject  absBP    SF Group     Condition logSF
+##    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;     &lt;dbl&gt;
+##  1 A1      0.0747   0.5 Amblyopia One          -1
+##  2 A1      0.678    1   Amblyopia One           0
+##  3 A1      0.868    2   Amblyopia One           1
+##  4 A1      1.45     4   Amblyopia One           2
+##  5 A1      0.868    8   Amblyopia One           3
+##  6 A10     0.139    0.5 Amblyopia One          -1
+##  7 A10     0.448    1   Amblyopia One           0
+##  8 A10     0.667    2   Amblyopia One           1
+##  9 A10     1.12     4   Amblyopia One           2
+## 10 A10     1.70     8   Amblyopia One           3
+## # ... with 190 more rows</code></pre>
+<p>We see that there are 20 subjects total, each of which has completed two conditions. So there are 40 slopes to calculate! Does that mean we need to use <code>lm()</code> 40 times?</p>
+<p>The answer is <strong>no</strong>. <strong>smplot</strong> has a function <code>sm_slope_all()</code> that returns a dataframe of slopes from <strong>linear regression</strong>. It works similarly to <code>sm_auc_all()</code>.</p>
+<ul>
+<li><code>data</code> = this argument requires the variable that stores the data frame. In our case, it is <code>df</code>.</li>
+<li><code>subjects</code> = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. <code>'Subject'</code>, not <code>Subject</code>.</li>
+<li><code>groups</code> = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be <code>Group</code> column that contains two groups: <code>Normal</code> and <code>Amblyopia</code>.</li>
+<li><code>conditions</code> = this argument requires name of the column of the data frame that contains each condition. In our example, the two conditions are <code>One</code> and <code>Two</code>.</li>
+<li><code>x</code> = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are values from the <code>logSF</code> column of <code>df</code>. It must be strings, ex. <code>'logSF'</code>, not <code>logSF</code>. Also, it must be <strong>numeric</strong>/<strong>double</strong>, NOT <strong>factor</strong>. Make sure you check that the column is numeric. If its not, convert the column of the dataframe into <strong>double</strong> beforehand. ex. <code>df$logSF &lt;- as.numeric(df$logSF)</code> or <code>df$SpatialFreq &lt;- as.numeric(df$SpatialFreq)</code>.</li>
+<li><code>values</code> = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. <code>'absBP'</code>, not <code>absBP</code>.</li>
+</ul>
+<p>Before using <code>sm_slope_all()</code>, you will need to check for a few things. First, check if the x column is numeric, not factor, by using <code>is.numeric()</code> function. If it is numeric, proceed with using <code>sm_slope_all()</code>. Second, see if the x levels (ex. 0, 3, 6, 12, 24 and 48 etc) are identical for each subject and condition (ex. no 7, 16, 29 minutes for subject 10).</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="calculating-linear-slopes.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the x column is numeric</span></span>
+<span id="cb383-2"><a href="calculating-linear-slopes.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(df<span class="sc">$</span>logSF) </span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="calculating-linear-slopes.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the x column is factor</span></span>
+<span id="cb385-2"><a href="calculating-linear-slopes.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.factor</span>(df<span class="sc">$</span>logSF)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="calculating-linear-slopes.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if it is factor and not numeric:</span></span>
+<span id="cb387-2"><a href="calculating-linear-slopes.html#cb387-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>logSF <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>logSF)</span></code></pre></div>
+<p>After checking, we can store the results from <code>sm_slope_all()</code> into a new variable. I will call the new variable <code>slope_df</code>.</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="calculating-linear-slopes.html#cb388-1" aria-hidden="true" tabindex="-1"></a>slope_df <span class="ot">&lt;-</span> <span class="fu">sm_slope_all</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, </span>
+<span id="cb388-2"><a href="calculating-linear-slopes.html#cb388-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">conditions =</span> <span class="st">&#39;Condition&#39;</span>,</span>
+<span id="cb388-3"><a href="calculating-linear-slopes.html#cb388-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">groups =</span> <span class="st">&#39;Group&#39;</span>,</span>
+<span id="cb388-4"><a href="calculating-linear-slopes.html#cb388-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">x =</span> <span class="st">&#39;logSF&#39;</span>, <span class="at">values =</span> <span class="st">&#39;absBP&#39;</span>, </span>
+<span id="cb388-5"><a href="calculating-linear-slopes.html#cb388-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">data =</span> df)</span></code></pre></div>
+<pre><code>## [1] &quot;Slope =  absBP  ~  logSF&quot;</code></pre>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="calculating-linear-slopes.html#cb390-1" aria-hidden="true" tabindex="-1"></a>slope_df</span></code></pre></div>
+<pre><code>##    Subject Condition     Group        Slope
+## 2       A1       One Amblyopia  0.235667223
+## 3       A1       Two Amblyopia  0.282800668
+## 6      A10       One Amblyopia  0.380319905
+## 7      A10       Two Amblyopia  0.456383886
+## 10      A2       One Amblyopia  0.136716992
+## 11      A2       Two Amblyopia  0.164060391
+## 14      A3       One Amblyopia  0.381792237
+## 15      A3       Two Amblyopia  0.458150685
+## 18      A4       One Amblyopia  0.226928105
+## 19      A4       Two Amblyopia  0.272313727
+## 22      A5       One Amblyopia -0.015766219
+## 23      A5       Two Amblyopia -0.018919463
+## 26      A6       One Amblyopia  0.097918149
+## 27      A6       Two Amblyopia  0.117501779
+## 30      A7       One Amblyopia  0.217554761
+## 31      A7       Two Amblyopia  0.261065713
+## 34      A8       One Amblyopia  0.266574138
+## 35      A8       Two Amblyopia  0.319888965
+## 38      A9       One Amblyopia  0.198964218
+## 39      A9       Two Amblyopia  0.238757061
+## 43      N1       One    Normal  0.080372285
+## 44      N1       Two    Normal  0.096446741
+## 47     N10       One    Normal -0.038881222
+## 48     N10       Two    Normal -0.046657466
+## 51      N2       One    Normal  0.071885539
+## 52      N2       Two    Normal  0.086262647
+## 55      N3       One    Normal  0.018219466
+## 56      N3       Two    Normal  0.021863359
+## 59      N4       One    Normal  0.004361030
+## 60      N4       Two    Normal  0.005233235
+## 63      N5       One    Normal  0.043098286
+## 64      N5       Two    Normal  0.051717943
+## 67      N6       One    Normal -0.066678839
+## 68      N6       Two    Normal -0.080014607
+## 71      N7       One    Normal  0.082798046
+## 72      N7       Two    Normal  0.099357656
+## 75      N8       One    Normal -0.049344920
+## 76      N8       Two    Normal -0.059213905
+## 79      N9       One    Normal -0.001135896
+## 80      N9       Two    Normal -0.001363075</code></pre>
+<p>We see that the slope of A3 in <code>Two</code> condition is identical to the one we have obtained from the <code>lm()</code> function.</p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="calculating-linear-slopes.html#cb392-1" aria-hidden="true" tabindex="-1"></a>res<span class="sc">$</span>coefficients[[<span class="dv">2</span>]] </span></code></pre></div>
+<pre><code>## [1] 0.4581507</code></pre>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="calculating-linear-slopes.html#cb394-1" aria-hidden="true" tabindex="-1"></a>slope_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Subject <span class="sc">==</span> <span class="st">&#39;A3&#39;</span> <span class="sc">&amp;</span> Condition <span class="sc">==</span> <span class="st">&#39;Two&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb394-2"><a href="calculating-linear-slopes.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Slope)</span></code></pre></div>
+<pre><code>##       Slope
+## 1 0.4581507</code></pre>
+<p>Now we can plot all the slopes from <code>One</code> condition using <code>sm_bar()</code>, <code>sm_boxplot</code> etc. Let’s have a try.</p>
+<p>The factor level of <code>slope_df_one$Group</code> is changed below so that bar plot of normal observer is plotted first, then amblyopia (rather than amblyopia -&gt; normals as per alphabetical order).</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="calculating-linear-slopes.html#cb396-1" aria-hidden="true" tabindex="-1"></a>slope_df_one <span class="ot">&lt;-</span> slope_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Condition <span class="sc">==</span> <span class="st">&#39;One&#39;</span>)</span>
+<span id="cb396-2"><a href="calculating-linear-slopes.html#cb396-2" aria-hidden="true" tabindex="-1"></a>slope_df_one<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(slope_df_one<span class="sc">$</span>Group, </span>
+<span id="cb396-3"><a href="calculating-linear-slopes.html#cb396-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Normal&#39;</span>,<span class="st">&#39;Amblyopia&#39;</span>))</span></code></pre></div>
+<p>Here is a boxplot showing <code>slope_df_one</code>’s data.</p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="calculating-linear-slopes.html#cb397-1" aria-hidden="true" tabindex="-1"></a>slope_df_one <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Slope, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb397-2"><a href="calculating-linear-slopes.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>,</span>
+<span id="cb397-3"><a href="calculating-linear-slopes.html#cb397-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">2.2</span>, </span>
+<span id="cb397-4"><a href="calculating-linear-slopes.html#cb397-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">alpha =</span> <span class="fl">0.6</span>)) <span class="sc">+</span> </span>
+<span id="cb397-5"><a href="calculating-linear-slopes.html#cb397-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb397-6"><a href="calculating-linear-slopes.html#cb397-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Binocular imbalance&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-327-1.png" width="336" /></p>
+<p>Here is a bar graph showing <code>slope_df</code>’s data for <code>One</code> condition only. This figure is similar to Figure 3B in the paper (Mao et al., 2020).</p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="calculating-linear-slopes.html#cb398-1" aria-hidden="true" tabindex="-1"></a>slope_df_one <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Slope, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
+<span id="cb398-2"><a href="calculating-linear-slopes.html#cb398-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_bar</span>(<span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
+<span id="cb398-3"><a href="calculating-linear-slopes.html#cb398-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">2</span>)) <span class="sc">+</span></span>
+<span id="cb398-4"><a href="calculating-linear-slopes.html#cb398-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Binocular imbalance&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-328-1.png" width="336" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="calculating-area-under-a-curve.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="basic-statistics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/smin95/dataviz/edit/master/Slope.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/smin95/dataviz/blob/master/Slope.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Calculating Area under a Curve | Data Analysis and Visualization in R Using smplot2</title>
+  <meta name="description" content="Chapter 8 Calculating Area under a Curve | Data Analysis and Visualization in R Using smplot2" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Calculating Area under a Curve | Data Analysis and Visualization in R Using smplot2" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Calculating Area under a Curve | Data Analysis and Visualization in R Using smplot2" />
+  
+  
+  
+
+<meta name="author" content="Seung Hyun Min" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="combining-plots-with-common-axes.html"/>
+<link rel="next" href="calculating-linear-slopes.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Dataviz with smplot2</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#major-updates"><i class="fa fa-check"></i>Major updates</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#about-the-author"><i class="fa fa-check"></i>About the author</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="opening-remarks.html"><a href="opening-remarks.html"><i class="fa fa-check"></i><b>1</b> Opening Remarks</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="opening-remarks.html"><a href="opening-remarks.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.1</b> How to read this book</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>2</b> Download RStudio &amp; Basics of R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#setting-up-rstudio"><i class="fa fa-check"></i><b>2.1</b> Setting up RStudio</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#why-use-r-for-data-visualization"><i class="fa fa-check"></i>Why use R for data visualization?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#other-available-resources-for-r"><i class="fa fa-check"></i>Other available resources for R</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#download-requirements-for-rstudio"><i class="fa fa-check"></i>Download requirements for RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#open-rstudio"><i class="fa fa-check"></i>Open RStudio</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-make-a-folder-and-set-it-as-working-directory"><i class="fa fa-check"></i>Let’s make a folder and set it as working directory</a></li>
+<li class="chapter" data-level="2.1.1" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-to-run-your-code"><i class="fa fa-check"></i><b>2.1.1</b> How to run your code</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#basics-of-r"><i class="fa fa-check"></i><b>2.2</b> Basics of R</a>
+<ul>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#lets-type-some-codes"><i class="fa fa-check"></i>Let’s type some codes</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#how-can-i-learn-most-effectively-with-the-notes"><i class="fa fa-check"></i>How can I learn most effectively with the notes?</a></li>
+<li class="chapter" data-level="" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html#more-installation"><i class="fa fa-check"></i>More installation</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>I Data Visualization with smplot2</b></span></li>
+<li class="chapter" data-level="3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html"><i class="fa fa-check"></i><b>3</b> Basics of ggplot2 and Correlation Plot</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#uploading-data"><i class="fa fa-check"></i><b>3.1</b> Uploading data</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#sample-data-mpg"><i class="fa fa-check"></i><b>3.1.1</b> Sample data: mpg</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#basics-of-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Basics of ggplot2</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-make-some-graphs"><i class="fa fa-check"></i><b>3.2.1</b> Let’s make some graphs</a></li>
+<li class="chapter" data-level="3.2.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-ggplot-works"><i class="fa fa-check"></i><b>3.2.2</b> How ggplot works</a></li>
+<li class="chapter" data-level="3.2.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-of-points-for-each-unique-group"><i class="fa fa-check"></i><b>3.2.3</b> Different color of points for each unique group</a></li>
+<li class="chapter" data-level="3.2.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-shape-for-each-group"><i class="fa fa-check"></i><b>3.2.4</b> Different color &amp; shape for each group</a></li>
+<li class="chapter" data-level="3.2.5" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#same-shape-across-all-groups"><i class="fa fa-check"></i><b>3.2.5</b> Same shape across all groups</a></li>
+<li class="chapter" data-level="3.2.6" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#how-do-we-draw-the-best-fit-line-of-the-graph"><i class="fa fa-check"></i><b>3.2.6</b> How do we draw the best-fit line of the graph?</a></li>
+<li class="chapter" data-level="3.2.7" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#geom_point-geom_smooth"><i class="fa fa-check"></i><b>3.2.7</b> geom_point() + geom_smooth()</a></li>
+<li class="chapter" data-level="3.2.8" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#writing-shorter-codes"><i class="fa fa-check"></i><b>3.2.8</b> Writing shorter codes</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#improve-data-visualization-using-smplot2"><i class="fa fa-check"></i><b>3.3</b> Improve data visualization using smplot2</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#positive-relationship-between-x--and-y-axes"><i class="fa fa-check"></i><b>3.3.1</b> Positive relationship between x- and y-axes</a></li>
+<li class="chapter" data-level="3.3.2" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#reporting-statistics-from-a-paired-correlation"><i class="fa fa-check"></i><b>3.3.2</b> Reporting statistics from a paired correlation</a></li>
+<li class="chapter" data-level="3.3.3" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#changing-the-text"><i class="fa fa-check"></i><b>3.3.3</b> Changing the text</a></li>
+<li class="chapter" data-level="3.3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#plotting-the-average-with-standard-errors"><i class="fa fa-check"></i><b>3.3.4</b> Plotting the average with standard errors</a></li>
+<li class="chapter" data-level="3.3.5" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#fill-0f993d-vs-fill-green"><i class="fa fa-check"></i><b>3.3.5</b> <code>fill = '#0f993d'</code> vs <code>fill = 'green'</code></a></li>
+<li class="chapter" data-level="3.3.6" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#different-color-for-each-group-but-with-other-colors"><i class="fa fa-check"></i><b>3.3.6</b> Different color for each group but with other colors</a></li>
+<li class="chapter" data-level="3.3.7" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#lets-save-the-plot-as-an-image-in-your-folder-learnr-by-using-the-variable-figure1."><i class="fa fa-check"></i><b>3.3.7</b> Let’s save the plot as an image in your folder <strong>LearnR</strong> by using the variable <strong>figure1</strong>.</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="basics-of-ggplot2-and-correlation-plot.html"><a href="basics-of-ggplot2-and-correlation-plot.html#summary"><i class="fa fa-check"></i><b>3.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html"><i class="fa fa-check"></i><b>4</b> Boxplot and Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#upload-sample-data-csv-file-in-rstudio"><i class="fa fa-check"></i><b>4.1</b> Upload sample data (csv file) in RStudio</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#download-requirements"><i class="fa fa-check"></i><b>4.1.1</b> Download requirements</a></li>
+<li class="chapter" data-level="4.1.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#before-we-get-started"><i class="fa fa-check"></i><b>4.1.2</b> Before we get started</a></li>
+<li class="chapter" data-level="4.1.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#data.csv"><i class="fa fa-check"></i><b>4.1.3</b> data.csv</a></li>
+<li class="chapter" data-level="4.1.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#read_csvdata.csv"><i class="fa fa-check"></i><b>4.1.4</b> <code>read_csv('data.csv')</code></a></li>
+<li class="chapter" data-level="4.1.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#best-way-to-plot-data"><i class="fa fa-check"></i><b>4.1.5</b> Best way to plot data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot"><i class="fa fa-check"></i><b>4.2</b> Boxplot</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#what-is-a-boxplot"><i class="fa fa-check"></i><b>4.2.1</b> What is a boxplot?</a></li>
+<li class="chapter" data-level="4.2.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-vs-bar-graph"><i class="fa fa-check"></i><b>4.2.2</b> Boxplot vs bar graph</a></li>
+<li class="chapter" data-level="4.2.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#boxplot-using-ggplot2"><i class="fa fa-check"></i><b>4.2.3</b> Boxplot using ggplot2</a></li>
+<li class="chapter" data-level="4.2.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#problem-alphabetical-order"><i class="fa fa-check"></i><b>4.2.4</b> Problem: Alphabetical order</a></li>
+<li class="chapter" data-level="4.2.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#displaying-characters-in-a-non-alphabetical-order"><i class="fa fa-check"></i><b>4.2.5</b> Displaying characters in a non-alphabetical order</a></li>
+<li class="chapter" data-level="4.2.6" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#double-check-if-the-day-column-is-factor"><i class="fa fa-check"></i><b>4.2.6</b> Double-check if the ‘Day’ column is factor</a></li>
+<li class="chapter" data-level="4.2.7" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#back-to-boxplot-using-ggplot2"><i class="fa fa-check"></i><b>4.2.7</b> Back to boxplot using ggplot2</a></li>
+<li class="chapter" data-level="4.2.8" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#a-boxplot-with-individual-data"><i class="fa fa-check"></i><b>4.2.8</b> A boxplot with individual data</a></li>
+<li class="chapter" data-level="4.2.9" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_boxplot-vs-sm_boxplot"><i class="fa fa-check"></i><b>4.2.9</b> <code>geom_boxplot()</code> vs <code>sm_boxplot()</code></a></li>
+<li class="chapter" data-level="4.2.10" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-boxplot"><i class="fa fa-check"></i><b>4.2.10</b> Save boxplot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot"><i class="fa fa-check"></i><b>4.3</b> Violin Plot</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#structure-of-the-violin-plot"><i class="fa fa-check"></i><b>4.3.1</b> Structure of the violin plot</a></li>
+<li class="chapter" data-level="4.3.2" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-ggplot2"><i class="fa fa-check"></i><b>4.3.2</b> Violin plot with ggplot2</a></li>
+<li class="chapter" data-level="4.3.3" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#violin-plot-with-individual-points"><i class="fa fa-check"></i><b>4.3.3</b> Violin plot with individual points</a></li>
+<li class="chapter" data-level="4.3.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#geom_violin-vs-sm_violin"><i class="fa fa-check"></i><b>4.3.4</b> geom_violin() vs sm_violin()</a></li>
+<li class="chapter" data-level="4.3.5" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#save-your-violin-plot"><i class="fa fa-check"></i><b>4.3.5</b> Save your violin plot</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="boxplot-and-violin-plot.html"><a href="boxplot-and-violin-plot.html#summary-1"><i class="fa fa-check"></i><b>4.4</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html"><i class="fa fa-check"></i><b>5</b> Bar Graph, Slope Chart and Point plot</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph"><i class="fa fa-check"></i><b>5.1</b> Bar graph</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#scaling-the-y-axis"><i class="fa fa-check"></i><b>5.1.1</b> Scaling the y-axis</a></li>
+<li class="chapter" data-level="5.1.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#plotting-individual-points-with-unique-colors"><i class="fa fa-check"></i><b>5.1.2</b> Plotting individual points with unique colors</a></li>
+<li class="chapter" data-level="5.1.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#other-parameters"><i class="fa fa-check"></i><b>5.1.3</b> Other parameters</a></li>
+<li class="chapter" data-level="5.1.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#bar-graph-with-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.1.4</b> Bar graph with data of multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart"><i class="fa fa-check"></i><b>5.2</b> Slope chart</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot"><i class="fa fa-check"></i><b>5.2.1</b> Slope chart with mean plot</a></li>
+<li class="chapter" data-level="5.2.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot-and-error-bar"><i class="fa fa-check"></i><b>5.2.2</b> Slope chart with mean plot and error bar</a></li>
+<li class="chapter" data-level="5.2.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-x-levels"><i class="fa fa-check"></i><b>5.2.3</b> Slope chart with multiple x levels</a></li>
+<li class="chapter" data-level="5.2.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-groups-and-x-levels"><i class="fa fa-check"></i><b>5.2.4</b> Slope chart with multiple groups and x levels</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot"><i class="fa fa-check"></i><b>5.3</b> Point plot</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#change-the-range-of-y-axis"><i class="fa fa-check"></i><b>5.3.1</b> Change the range of y-axis</a></li>
+<li class="chapter" data-level="5.3.2" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#data-with-more-than-two-groups"><i class="fa fa-check"></i><b>5.3.2</b> Data with more than two groups</a></li>
+<li class="chapter" data-level="5.3.3" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-one-group"><i class="fa fa-check"></i><b>5.3.3</b> Point plot with a shadow using data of one group</a></li>
+<li class="chapter" data-level="5.3.4" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>5.3.4</b> Point plot with a shadow using data of multiple groups</a></li>
+<li class="chapter" data-level="5.3.5" data-path="bar-graph-slope-chart-and-point-plot.html"><a href="bar-graph-slope-chart-and-point-plot.html#adding-and-modifying-legends"><i class="fa fa-check"></i><b>5.3.5</b> Adding and modifying legends</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html"><i class="fa fa-check"></i><b>6</b> Raincloud and Forest Plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot"><i class="fa fa-check"></i><b>6.1</b> Raincloud plot</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changing-the-x-axis-labels"><i class="fa fa-check"></i><b>6.1.1</b> Changing the x-axis labels</a></li>
+<li class="chapter" data-level="6.1.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#separating-the-components-and-configuration"><i class="fa fa-check"></i><b>6.1.2</b> Separating the components and configuration</a></li>
+<li class="chapter" data-level="6.1.3" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#changng-the-theme-and-orientation"><i class="fa fa-check"></i><b>6.1.3</b> Changng the theme and orientation</a></li>
+<li class="chapter" data-level="6.1.4" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#raincloud-plot-with-data-from-multiple-groups"><i class="fa fa-check"></i><b>6.1.4</b> Raincloud plot with data from multiple groups</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#forest-plot"><i class="fa fa-check"></i><b>6.2</b> Forest plot</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#plotting-the-forest-plot-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>6.2.1</b> Plotting the forest plot using data of multiple groups</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
+<li class="chapter" data-level="7" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html"><i class="fa fa-check"></i><b>7</b> Combining Plots with Common Axes</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#filter-for-rows"><i class="fa fa-check"></i><b>7.1.1</b> <code>filter()</code> for rows</a></li>
+<li class="chapter" data-level="7.1.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#select-for-columns"><i class="fa fa-check"></i><b>7.1.2</b> <code>select()</code> for columns</a></li>
+<li class="chapter" data-level="7.1.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#summarise-for-grouped-summaries"><i class="fa fa-check"></i><b>7.1.3</b> <code>summarise()</code> for grouped summaries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-the-averaged-data-with-error-bars"><i class="fa fa-check"></i><b>7.2</b> Plotting the averaged data with error bars</a></li>
+<li class="chapter" data-level="7.3" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#plotting-individual-data"><i class="fa fa-check"></i><b>7.3</b> Plotting individual data</a></li>
+<li class="chapter" data-level="7.4" data-path="combining-plots-with-common-axes.html"><a href="combining-plots-with-common-axes.html#putting-multiple-plots-together"><i class="fa fa-check"></i><b>7.4</b> Putting multiple plots together</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>8</b> Calculating Area under a Curve</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#pipe"><i class="fa fa-check"></i><b>8.1</b> Pipe <code>%&gt;%</code></a></li>
+<li class="chapter" data-level="8.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#area-under-a-curve"><i class="fa fa-check"></i><b>8.2</b> Area under a curve</a></li>
+<li class="chapter" data-level="8.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#reproducing-figures-in-the-paper-min-et-al.-2019"><i class="fa fa-check"></i><b>8.3</b> Reproducing figures in the paper (Min et al., 2019)</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3b-a-best-fit-line-with-points-and-error-bars"><i class="fa fa-check"></i><b>8.3.1</b> Figure 3B (a best-fit line with points and error bars)</a></li>
+<li class="chapter" data-level="8.3.2" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3d-a-bar-graph"><i class="fa fa-check"></i><b>8.3.2</b> Figure 3D (a bar graph)</a></li>
+<li class="chapter" data-level="8.3.3" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#figure-3e-modeling-in-matlab-and-plotting-in-r"><i class="fa fa-check"></i><b>8.3.3</b> Figure 3E (modeling in Matlab and plotting in R)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html"><i class="fa fa-check"></i><b>9</b> Calculating Linear Slopes</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#linear-relationship-using-lm"><i class="fa fa-check"></i><b>9.1</b> Linear relationship using <code>lm()</code></a></li>
+<li class="chapter" data-level="9.2" data-path="calculating-linear-slopes.html"><a href="calculating-linear-slopes.html#calculating-slopes-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>9.2</b> Calculating slopes of all subjects, groups and conditions</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="basic-statistics.html"><a href="basic-statistics.html"><i class="fa fa-check"></i><b>10</b> Basic Statistics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="basic-statistics.html"><a href="basic-statistics.html#one-sample-t-test"><i class="fa fa-check"></i><b>10.1</b> One-sample t-test</a></li>
+<li class="chapter" data-level="10.2" data-path="basic-statistics.html"><a href="basic-statistics.html#two-sample-t-test"><i class="fa fa-check"></i><b>10.2</b> Two-sample t-test</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="basic-statistics.html"><a href="basic-statistics.html#shapiro-wilk-test-to-test-for-normality-of-data"><i class="fa fa-check"></i><b>10.2.1</b> Shapiro-Wilk Test to test for Normality of Data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="basic-statistics.html"><a href="basic-statistics.html#wilcoxon-signed-rank-test"><i class="fa fa-check"></i><b>10.3</b> Wilcoxon Signed-rank Test</a></li>
+<li class="chapter" data-level="10.4" data-path="basic-statistics.html"><a href="basic-statistics.html#effect-size"><i class="fa fa-check"></i><b>10.4</b> Effect Size</a></li>
+<li class="chapter" data-level="10.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.5</b> Post-hoc Power Analysis</a></li>
+<li class="chapter" data-level="10.6" data-path="basic-statistics.html"><a href="basic-statistics.html#bayes-factor"><i class="fa fa-check"></i><b>10.6</b> Bayes Factor</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="basic-statistics.html"><a href="basic-statistics.html#issues-with-post-hoc-power-analysis"><i class="fa fa-check"></i><b>10.6.1</b> Issues with post-hoc power analysis</a></li>
+<li class="chapter" data-level="10.6.2" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-the-bayes-factor-in-r"><i class="fa fa-check"></i><b>10.6.2</b> Computing the Bayes factor in R</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-anova"><i class="fa fa-check"></i><b>10.7</b> One-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.7.1" data-path="basic-statistics.html"><a href="basic-statistics.html#check-for-outliers"><i class="fa fa-check"></i><b>10.7.1</b> Check for Outliers</a></li>
+<li class="chapter" data-level="10.7.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data"><i class="fa fa-check"></i><b>10.7.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.7.3" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-the-assumption-for-homogeneity-of-variance"><i class="fa fa-check"></i><b>10.7.3</b> Checking the Assumption for Homogeneity of Variance</a></li>
+<li class="chapter" data-level="10.7.4" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-one-way-anova"><i class="fa fa-check"></i><b>10.7.4</b> Computing One-way ANOVA</a></li>
+<li class="chapter" data-level="10.7.5" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-tests"><i class="fa fa-check"></i><b>10.7.5</b> Post-hoc Tests</a></li>
+<li class="chapter" data-level="10.7.6" data-path="basic-statistics.html"><a href="basic-statistics.html#one-way-repeated-measures-anova"><i class="fa fa-check"></i><b>10.7.6</b> One-way Repeated Measures ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="10.8" data-path="basic-statistics.html"><a href="basic-statistics.html#two-way-anova"><i class="fa fa-check"></i><b>10.8</b> Two-way ANOVA</a>
+<ul>
+<li class="chapter" data-level="10.8.1" data-path="basic-statistics.html"><a href="basic-statistics.html#identifying-outliers"><i class="fa fa-check"></i><b>10.8.1</b> Identifying Outliers</a></li>
+<li class="chapter" data-level="10.8.2" data-path="basic-statistics.html"><a href="basic-statistics.html#checking-for-normality-of-data-1"><i class="fa fa-check"></i><b>10.8.2</b> Checking for Normality of Data</a></li>
+<li class="chapter" data-level="10.8.3" data-path="basic-statistics.html"><a href="basic-statistics.html#computing-two-way-anova"><i class="fa fa-check"></i><b>10.8.3</b> Computing Two-way ANOVA</a></li>
+<li class="chapter" data-level="10.8.4" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-test"><i class="fa fa-check"></i><b>10.8.4</b> Post-hoc Test</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="basic-statistics.html"><a href="basic-statistics.html#friedman-test"><i class="fa fa-check"></i><b>10.9</b> Friedman Test</a>
+<ul>
+<li class="chapter" data-level="10.9.1" data-path="basic-statistics.html"><a href="basic-statistics.html#performing-friedman-test"><i class="fa fa-check"></i><b>10.9.1</b> Performing Friedman Test</a></li>
+<li class="chapter" data-level="10.9.2" data-path="basic-statistics.html"><a href="basic-statistics.html#post-hoc-analysis"><i class="fa fa-check"></i><b>10.9.2</b> Post-hoc Analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="10.10" data-path="basic-statistics.html"><a href="basic-statistics.html#extra-resources"><i class="fa fa-check"></i><b>10.10</b> Extra Resources</a></li>
+</ul></li>
+<li class="part"><span><b>III Manual for smplot2</b></span></li>
+<li class="chapter" data-level="11" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><i class="fa fa-check"></i><b>11</b> Themes, Colors, Correlations, Boxplots, Violins and Bars (Part 1)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#installation-of-the-package"><i class="fa fa-check"></i><b>11.1</b> Installation of the Package</a></li>
+<li class="chapter" data-level="11.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#how-...-and-xxx.params-arguments-work"><i class="fa fa-check"></i><b>11.2</b> How <code>...</code> and <code>xxx.params</code> arguments work</a></li>
+<li class="chapter" data-level="11.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#color-palette"><i class="fa fa-check"></i><b>11.3</b> Color palette</a></li>
+<li class="chapter" data-level="11.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#graph-themes"><i class="fa fa-check"></i><b>11.4</b> Graph themes</a></li>
+<li class="chapter" data-level="11.5" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot"><i class="fa fa-check"></i><b>11.5</b> Correlation plot</a>
+<ul>
+<li class="chapter" data-level="11.5.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_statcorr"><i class="fa fa-check"></i><b>11.5.1</b> <code>sm_statCorr()</code></a></li>
+<li class="chapter" data-level="11.5.2" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_corr_avgerr"><i class="fa fa-check"></i><b>11.5.2</b> <code>sm_corr_avgErr()</code></a></li>
+<li class="chapter" data-level="11.5.3" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#structure-of-data-frame"><i class="fa fa-check"></i><b>11.5.3</b> Structure of data frame</a></li>
+<li class="chapter" data-level="11.5.4" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot-with-both-regression-and-reference-lines"><i class="fa fa-check"></i><b>11.5.4</b> Correlation plot with both regression and reference lines</a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#boxplot---sm_boxplot"><i class="fa fa-check"></i><b>11.6</b> Boxplot - <code>sm_boxplot()</code></a>
+<ul>
+<li class="chapter" data-level="11.6.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-1"><i class="fa fa-check"></i><b>11.6.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.7" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#violin-plot---sm_violin"><i class="fa fa-check"></i><b>11.7</b> Violin Plot - <code>sm_violin()</code></a>
+<ul>
+<li class="chapter" data-level="11.7.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-2"><i class="fa fa-check"></i><b>11.7.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#bar-plot---sm_bar"><i class="fa fa-check"></i><b>11.8</b> Bar plot - <code>sm_bar()</code></a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="themes-colors-correlations-boxplots-violins-and-bars-part-1.html"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-3"><i class="fa fa-check"></i><b>11.8.1</b> Plotting individual points with unique colors</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><i class="fa fa-check"></i><b>12</b> Slope Charts, Point plots, Bland-Altman, Forests, Rainclouds, Histograms (Part 2)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code></a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.1</b> Drawing the mean plot</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#point-plot---sm_pointplot"><i class="fa fa-check"></i><b>12.2</b> Point plot - <code>sm_pointplot()</code></a></li>
+<li class="chapter" data-level="12.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>12.3</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
+<li class="chapter" data-level="12.4" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#forest-plot---sm_forest"><i class="fa fa-check"></i><b>12.4</b> Forest plot - <code>sm_forest()</code></a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#annotation-using-sm_forest_annot"><i class="fa fa-check"></i><b>12.4.1</b> Annotation using <code>sm_forest_annot()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#raincloud-plot---sm_raincloud"><i class="fa fa-check"></i><b>12.5</b> Raincloud plot - <code>sm_raincloud()</code></a></li>
+<li class="chapter" data-level="12.6" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#histogram---sm_hist"><i class="fa fa-check"></i><b>12.6</b> Histogram - <code>sm_hist()</code></a></li>
+</ul></li>
+<li class="part"><span><b>IV Contrast Sensitivity Function</b></span></li>
+<li class="chapter" data-level="13" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>13</b> Plotting the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#brief-introduction"><i class="fa fa-check"></i><b>13.1</b> Brief Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>13.2</b> Data Visualization</a></li>
+<li class="chapter" data-level="13.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>13.3</b> Facetting the Contrast Sensitivity Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>14</b> Area under Curve, AULCSF and R2 of the CSF</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>14.1</b> Area under a Curve</a></li>
+<li class="chapter" data-level="14.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>14.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
+<li class="chapter" data-level="14.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>14.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="14.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>14.4</b> Case Study</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>15</b> Understanding the Contrast Sensitivity Function</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#contrast-sensitivity-function-model"><i class="fa fa-check"></i><b>15.1</b> Contrast Sensitivity Function Model</a></li>
+<li class="chapter" data-level="15.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_csf"><i class="fa fa-check"></i><b>15.2</b> Understanding <code>sm_CSF()</code></a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_params"><i class="fa fa-check"></i><b>15.2.1</b> <code>sm_params()</code></a></li>
+<li class="chapter" data-level="15.2.2" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#sm_cutoff"><i class="fa fa-check"></i><b>15.2.2</b> <code>sm_cutOff()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#understanding-sm_ribboncsf"><i class="fa fa-check"></i><b>15.3</b> Understanding <code>sm_ribbonCSF()</code></a></li>
+<li class="chapter" data-level="15.4" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#calculating-the-five-parameters-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>15.4</b> Calculating the five parameters of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="15.5" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#visualization-of-the-parameters"><i class="fa fa-check"></i><b>15.5</b> Visualization of the parameters</a></li>
+<li class="chapter" data-level="15.6" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html#case-study-1"><i class="fa fa-check"></i><b>15.6</b> Case Study</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Analysis and Visualization in R Using smplot2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="calculating-area-under-a-curve" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Calculating Area under a Curve<a href="calculating-area-under-a-curve.html#calculating-area-under-a-curve" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we will continue to use data from this paper (<a href="https://www.smin95.com/pubs/min2019.pdf">PDF</a>):</p>
+<p><strong>Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.</strong></p>
+<p>In Chapter 5, we only dealt with data from Days 1 and 5. In this chapter, we will use data from Days 1, 2, 3, 4 and 5.</p>
+<p>Let’s begin by loading the <code>tidyverse</code> and other libraries, and uploading the csv file <code>min2019b.csv</code> using <code>read_csv()</code> from the <code>tidyverse</code> package.</p>
+<p><code>head()</code> returns the first 6 rows of the data frame. <code>tail()</code> returns the last 6 rows of the data frame.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="calculating-area-under-a-curve.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb313-2"><a href="calculating-area-under-a-curve.html#cb313-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span>
+<span id="cb313-3"><a href="calculating-area-under-a-curve.html#cb313-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb313-4"><a href="calculating-area-under-a-curve.html#cb313-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
+<span id="cb313-5"><a href="calculating-area-under-a-curve.html#cb313-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject   Day  Time Cbratio
+##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 a           1     0  -0.421
+## 2 b           1     0   2.82 
+## 3 c           1     0   1.69 
+## 4 d           1     0   2.55 
+## 5 e           1     0  -0.217
+## 6 f           1     0   0.626</code></pre>
+<p><code>unique()</code> returns unique values in the data set. Let’s see how many unique values there are in the <code>Day</code> column of the data set. A column can be extracted by using <code>$</code>.</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="calculating-area-under-a-curve.html#cb315-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Day)</span>
+<span id="cb315-2"><a href="calculating-area-under-a-curve.html#cb315-2" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Day)</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5
+## Levels: 1 2 3 4 5</code></pre>
+<p>Notice that there are now five different days in the data set.</p>
+<p>As previously mentioned, there are four columns in this data frame:</p>
+<ul>
+<li><p>First, <code>Subject</code> refers to each participant. There are 10 participants total.</p></li>
+<li><p>Next, <code>Day</code> refers to the day of testing. The participants were tested on Days 1, 2, 3, 4 and 5, ad we will using all data.</p></li>
+<li><p><code>Time</code> refers to the number of minutes after an experimental manipulation (ex. monocular deprivation). These are 0, 3, 6, 12, 24 and 48 minutes, but in the data frame, it says 0, 1, 2, 3, 4 and 5; we will change the labels manually.</p></li>
+<li><p>The <code>Cbratio</code> column refers to the actual data that will be used for
+data analysis.</p></li>
+</ul>
+<div id="pipe" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Pipe <code>%&gt;%</code><a href="calculating-area-under-a-curve.html#pipe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s plot data from Day 1 only.</p>
+<p>To do so, we will need to first filter for data from Day 1 using <code>filter()</code>, compute the average and standard error across subjects using <code>summarise()</code> and <code>sm_stdErr()</code>, and save the changed
+format of the dataframe into a new variable using <code>&lt;-</code> or <code>-&gt;</code>.</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="calculating-area-under-a-curve.html#cb317-1" aria-hidden="true" tabindex="-1"></a>df_day1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb317-2"><a href="calculating-area-under-a-curve.html#cb317-2" aria-hidden="true" tabindex="-1"></a>by_time_day1 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df_day1, Time)</span>
+<span id="cb317-3"><a href="calculating-area-under-a-curve.html#cb317-3" aria-hidden="true" tabindex="-1"></a>avg_day1 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_time_day1, <span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
+<span id="cb317-4"><a href="calculating-area-under-a-curve.html#cb317-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
+<p>The steps above (<code>filter()</code>, <code>group_by()</code> and <code>summarise()</code>) are coded separately. Each line has one of these steps. However, these can be combined in one line by using pipe <code>%&gt;%</code> as shown below.</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="calculating-area-under-a-curve.html#cb318-1" aria-hidden="true" tabindex="-1"></a>avg_day1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Time) <span class="sc">%&gt;%</span></span>
+<span id="cb318-2"><a href="calculating-area-under-a-curve.html#cb318-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
+<span id="cb318-3"><a href="calculating-area-under-a-curve.html#cb318-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
+<p>Now the steps (<code>filter()</code>, <code>group_by()</code> and <code>summarise()</code>) are written from left-to-right in a continuous fashion, rather than a separate step.</p>
+<p>Pipe <code>%&gt;%</code> is part of the <code>tidyverse</code> package, and it is deemed a necessary tool for data analysis using R. It is extremely useful because it allows you to write codes that are easier to understand. Notice that if you use <code>%&gt;%</code>, the input does not have to written because the input is actually the code that is written just before. For example:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="calculating-area-under-a-curve.html#cb319-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 60 x 4
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 a       1         0  -0.421
+##  2 b       1         0   2.82 
+##  3 c       1         0   1.69 
+##  4 d       1         0   2.55 
+##  5 e       1         0  -0.217
+##  6 f       1         0   0.626
+##  7 g       1         0   2.62 
+##  8 h       1         0   1.42 
+##  9 u       1         0   1.54 
+## 10 j       1         0   3.05 
+## # ... with 50 more rows</code></pre>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="calculating-area-under-a-curve.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 60 x 4
+##    Subject Day    Time Cbratio
+##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+##  1 a       1         0  -0.421
+##  2 b       1         0   2.82 
+##  3 c       1         0   1.69 
+##  4 d       1         0   2.55 
+##  5 e       1         0  -0.217
+##  6 f       1         0   0.626
+##  7 g       1         0   2.62 
+##  8 h       1         0   1.42 
+##  9 u       1         0   1.54 
+## 10 j       1         0   3.05 
+## # ... with 50 more rows</code></pre>
+<p>These two are identical. But notice that if you do not use pipe,
+you might have to save the intermediate variables (such as <code>df_day1</code> and <code>by_time_day1</code>) multiple times, which can be tedious. Notice that when pipe <code>%&gt;%</code> is used, the need to save these variables disappears.</p>
+<p>I will use <code>%&gt;%</code> from now on due to my personal preference.</p>
+</div>
+<div id="area-under-a-curve" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Area under a curve<a href="calculating-area-under-a-curve.html#area-under-a-curve" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s use the data set <code>avg_day1</code> to plot data only from Day 1.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="calculating-area-under-a-curve.html#cb323-1" aria-hidden="true" tabindex="-1"></a>avg_day1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Average)) <span class="sc">+</span></span>
+<span id="cb323-2"><a href="calculating-area-under-a-curve.html#cb323-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb323-3"><a href="calculating-area-under-a-curve.html#cb323-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb323-4"><a href="calculating-area-under-a-curve.html#cb323-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb323-5"><a href="calculating-area-under-a-curve.html#cb323-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> Average <span class="sc">-</span> StdError, <span class="at">ymax =</span> Average <span class="sc">+</span> StdError), <span class="at">size =</span> .<span class="dv">75</span>, <span class="at">width =</span> .<span class="dv">05</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb323-6"><a href="calculating-area-under-a-curve.html#cb323-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb323-7"><a href="calculating-area-under-a-curve.html#cb323-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb323-8"><a href="calculating-area-under-a-curve.html#cb323-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb323-9"><a href="calculating-area-under-a-curve.html#cb323-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Day 1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb323-10"><a href="calculating-area-under-a-curve.html#cb323-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb323-11"><a href="calculating-area-under-a-curve.html#cb323-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb323-12"><a href="calculating-area-under-a-curve.html#cb323-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">13</span>, <span class="at">y =</span> <span class="fl">0.3</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-288-1.png" width="336" /></p>
+<p>One way to show data is to calculate the area under a curve (as shown by the colored area) in the figure above. Area under a curve is useful because it reduces a number of data points (6 in this case due to 6 time points) into one. In our context, a large area under a curve represents a large change in contrast balance ratio over time. In short, it captures both the magnitude and longevity of the effect.</p>
+<p>Let’s calculate area under a curve for each subject and day across 0 to 48 minutes in the x-axis (minutes after monocular deprivation) using <code>sm_auc()</code>.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="calculating-area-under-a-curve.html#cb324-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">12</span>,<span class="dv">24</span>,<span class="dv">48</span>)</span></code></pre></div>
+<p>On the x-axis of the graph, there are six time points. You will need to store these values in a new variable, which I will call <code>x</code> here because it represents the x-axis. Instead of manually writing them down, you could extract the unique number of <code>Time</code> from the data frame.</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="calculating-area-under-a-curve.html#cb325-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time) <span class="co"># this is my preferred way</span></span></code></pre></div>
+<p>Now let’s filter for one subject’s data (subject <code>b</code>) on Day 1 using <code>filter()</code> and pipe <code>%&gt;%</code>.</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="calculating-area-under-a-curve.html#cb326-1" aria-hidden="true" tabindex="-1"></a>subj_b_day1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;b&#39;</span>)</span>
+<span id="cb326-2"><a href="calculating-area-under-a-curve.html#cb326-2" aria-hidden="true" tabindex="-1"></a>subj_b_day1</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 4
+##   Subject Day    Time Cbratio
+##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
+## 1 b       1         0   2.82 
+## 2 b       1         3   0.881
+## 3 b       1         6   1.83 
+## 4 b       1        12   0.877
+## 5 b       1        24   0.693
+## 6 b       1        48   2.09</code></pre>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="calculating-area-under-a-curve.html#cb328-1" aria-hidden="true" tabindex="-1"></a>subj_b_day1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio)) <span class="sc">+</span></span>
+<span id="cb328-2"><a href="calculating-area-under-a-curve.html#cb328-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb328-3"><a href="calculating-area-under-a-curve.html#cb328-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb328-4"><a href="calculating-area-under-a-curve.html#cb328-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb328-5"><a href="calculating-area-under-a-curve.html#cb328-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb328-6"><a href="calculating-area-under-a-curve.html#cb328-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb328-7"><a href="calculating-area-under-a-curve.html#cb328-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb328-8"><a href="calculating-area-under-a-curve.html#cb328-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Day 1, Subject b&quot;</span>) <span class="sc">+</span></span>
+<span id="cb328-9"><a href="calculating-area-under-a-curve.html#cb328-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb328-10"><a href="calculating-area-under-a-curve.html#cb328-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb328-11"><a href="calculating-area-under-a-curve.html#cb328-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">13</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve = ?&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-292-1.png" width="336" /></p>
+<p>The variable <code>subj_b_day1</code> now stores the data of subject <code>b</code> on Day 1. Now let’s calculate the area under a curve (AUC) from <code>subj_b_day1</code> using <code>sm_auc()</code>.</p>
+<p><code>sm_auc()</code> calculates the AUC using the method of trapezoid integration; this is equivalent to <code>trapz</code> function in Matlab and <code>numpy.trapz</code> in Python. It has two arguments:
+- The first argument is the x point. In this case, it is the minutes after monocular deprivation (0, 3, 6, 12, 24 and 48). If this argument is left empty, it will use 0, 1, 2, 3 etc as default. For more information, please type <code>?sm_auc</code> in the command console.
+- The second argument is the data, which is shown by the y-axis in the blue graph. In this case, it is the change of contrast balance ratio (dB). These values can be extracted from <code>subj_b_day1</code> using <code>$</code>.</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="calculating-area-under-a-curve.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_auc</span>(x, subj_b_day1<span class="sc">$</span>Cbratio)</span></code></pre></div>
+<pre><code>## [1] 60.5286</code></pre>
+<p>The AUC equals 60.53. This shows that for subject <code>b</code>, the effect is large and long-lasting.</p>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="calculating-area-under-a-curve.html#cb331-1" aria-hidden="true" tabindex="-1"></a>subj_b_day1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio)) <span class="sc">+</span></span>
+<span id="cb331-2"><a href="calculating-area-under-a-curve.html#cb331-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb331-3"><a href="calculating-area-under-a-curve.html#cb331-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb331-4"><a href="calculating-area-under-a-curve.html#cb331-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb331-5"><a href="calculating-area-under-a-curve.html#cb331-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb331-6"><a href="calculating-area-under-a-curve.html#cb331-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb331-7"><a href="calculating-area-under-a-curve.html#cb331-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb331-8"><a href="calculating-area-under-a-curve.html#cb331-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Day 1, Subject b&quot;</span>) <span class="sc">+</span></span>
+<span id="cb331-9"><a href="calculating-area-under-a-curve.html#cb331-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb331-10"><a href="calculating-area-under-a-curve.html#cb331-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb331-11"><a href="calculating-area-under-a-curve.html#cb331-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">14.5</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve = 60.5&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-294-1.png" width="336" /></p>
+<p>Now let’s visualize the data of subject <code>b</code> from Day 2.</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="calculating-area-under-a-curve.html#cb332-1" aria-hidden="true" tabindex="-1"></a>subj_b_day2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">2</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;b&#39;</span>)</span>
+<span id="cb332-2"><a href="calculating-area-under-a-curve.html#cb332-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb332-3"><a href="calculating-area-under-a-curve.html#cb332-3" aria-hidden="true" tabindex="-1"></a>subj_b_day2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio)) <span class="sc">+</span></span>
+<span id="cb332-4"><a href="calculating-area-under-a-curve.html#cb332-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;yelloworange&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb332-5"><a href="calculating-area-under-a-curve.html#cb332-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;yelloworange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb332-6"><a href="calculating-area-under-a-curve.html#cb332-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;yelloworange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb332-7"><a href="calculating-area-under-a-curve.html#cb332-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb332-8"><a href="calculating-area-under-a-curve.html#cb332-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb332-9"><a href="calculating-area-under-a-curve.html#cb332-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb332-10"><a href="calculating-area-under-a-curve.html#cb332-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Day 2, Subject b&quot;</span>) <span class="sc">+</span></span>
+<span id="cb332-11"><a href="calculating-area-under-a-curve.html#cb332-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb332-12"><a href="calculating-area-under-a-curve.html#cb332-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb332-13"><a href="calculating-area-under-a-curve.html#cb332-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">13</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve = ?&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-295-1.png" width="336" /></p>
+<p>Now, let’s calculate the AUC for subject <code>b</code> from Day 2.</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="calculating-area-under-a-curve.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_auc</span>(x, subj_b_day2<span class="sc">$</span>Cbratio)</span></code></pre></div>
+<pre><code>## [1] 80.38215</code></pre>
+<p>The AUC equals 80.38. In the case of subject <code>b</code>, the effect seems to have increased on Day 2 relative to Day 1.</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="calculating-area-under-a-curve.html#cb335-1" aria-hidden="true" tabindex="-1"></a>subj_b_day2 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">2</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;b&#39;</span>)</span>
+<span id="cb335-2"><a href="calculating-area-under-a-curve.html#cb335-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb335-3"><a href="calculating-area-under-a-curve.html#cb335-3" aria-hidden="true" tabindex="-1"></a>subj_b_day2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio)) <span class="sc">+</span></span>
+<span id="cb335-4"><a href="calculating-area-under-a-curve.html#cb335-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;yelloworange&#39;</span>), <span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb335-5"><a href="calculating-area-under-a-curve.html#cb335-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;yelloworange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb335-6"><a href="calculating-area-under-a-curve.html#cb335-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;yelloworange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb335-7"><a href="calculating-area-under-a-curve.html#cb335-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb335-8"><a href="calculating-area-under-a-curve.html#cb335-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb335-9"><a href="calculating-area-under-a-curve.html#cb335-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb335-10"><a href="calculating-area-under-a-curve.html#cb335-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Day 2, Subject b&quot;</span>) <span class="sc">+</span></span>
+<span id="cb335-11"><a href="calculating-area-under-a-curve.html#cb335-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Minutes after monocular deprivation&quot;</span>) <span class="sc">+</span></span>
+<span id="cb335-12"><a href="calculating-area-under-a-curve.html#cb335-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb335-13"><a href="calculating-area-under-a-curve.html#cb335-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="fl">14.5</span>, <span class="at">y =</span> <span class="fl">0.2</span>, <span class="at">label =</span> <span class="st">&#39;Area under curve = 80.4&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-297-1.png" width="336" /></p>
+<p>So far,we have 9 more subjects across five days and subject <code>b</code> from three other days. This will require us to compute 48 more AUCs total. This process is rater repetitive. Should we manually compute AUC for each one? Luckily, the answer is no. Let’s use <code>sm_auc_all()</code>.</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="calculating-area-under-a-curve.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_auc_all</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, <span class="at">conditions =</span> <span class="st">&#39;Day&#39;</span>, </span>
+<span id="cb336-2"><a href="calculating-area-under-a-curve.html#cb336-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="at">values =</span> <span class="st">&#39;Cbratio&#39;</span>,</span>
+<span id="cb336-3"><a href="calculating-area-under-a-curve.html#cb336-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> df)</span></code></pre></div>
+<pre><code>## [1] &quot;AUC = Cbratio * Time&quot;</code></pre>
+<pre><code>##    Subject Day AUC_Cbratio
+## 1        a   1    -2.36910
+## 2        a   2     0.68265
+## 3        a   3    -9.54795
+## 4        a   4    27.12165
+## 5        a   5    41.95680
+## 6        b   1    60.52860
+## 7        b   2    80.38215
+## 8        b   3    94.68870
+## 9        b   4    34.05225
+## 10       b   5    86.51805
+## 11       c   1    94.84035
+## 12       c   2     1.78695
+## 13       c   3    44.94750
+## 14       c   4    24.83535
+## 15       c   5    67.99770
+## 16       d   1   100.62510
+## 17       d   2   -19.60125
+## 18       d   3    85.39140
+## 19       d   4     9.37800
+## 20       d   5   -16.12920
+## 21       e   1    55.32240
+## 22       e   2   132.99825
+## 23       e   3    67.24410
+## 24       e   4    -0.93135
+## 25       e   5    27.36150
+## 26       f   1   108.13770
+## 27       f   2    31.14285
+## 28       f   3    21.66375
+## 29       f   4   116.81430
+## 30       f   5    48.95040
+## 31       g   1    63.27840
+## 32       g   2    80.24685
+## 33       g   3    33.71850
+## 34       g   4   131.84340
+## 35       g   5    32.61525
+## 36       h   1    48.71625
+## 37       h   2    75.98130
+## 38       h   3    73.61250
+## 39       h   4    21.84735
+## 40       h   5    71.04780
+## 41       u   1    39.11865
+## 42       u   2    64.56690
+## 43       u   3    15.80355
+## 44       u   4    28.84035
+## 45       u   5    15.56220
+## 46       j   1    74.90610
+## 47       j   2   101.06550
+## 48       j   3    52.90590
+## 49       j   4    40.73910
+## 50       j   5    36.71595</code></pre>
+<p><code>sm_auc_all()</code> creates a new data frame with AUC for each subject and condition (in this case, Day). It has six arguments:</p>
+<ul>
+<li><code>data</code> = this argument requires the variable that stores the data frame. In our case, it is <code>df</code>.</li>
+<li><code>subjects</code> = this argument requires the name of the column of the data frame that contains subjects. It must strings, ex. <code>'Subject'</code>, not <code>Subject</code>.</li>
+<li><code>groups</code> = this argument requires the name of the column of the data frame that contains each group. In this example, there is no group. An example would be <code>Group</code> column that contains two groups: <code>Normal</code> and <code>Amblyopia</code> (see next chapter on Slope Analysis).</li>
+<li><code>conditions</code> = this argument requires name of the column of the data frame that contains each condition. In our example, the condition is the day. It must strings, ex. <code>'Day'</code>, not <code>Day</code>.</li>
+<li><code>x</code> = this argument requires the name of the column of the data frame that contains the x-axis points from which the AUC can be calculated. In our case, these are 0, 3, 6, 12, 24 minutes. It must be strings, ex. <code>'Time'</code>, not <code>Time</code>. Also, it must be <strong>numeric</strong>/<strong>double</strong>, NOT <strong>factor</strong>. Make sure you check that the column is numeric. If its not, convert the column of the dataframe into <strong>double</strong> beforehand. ex. <code>df$Time &lt;- as.numeric(df$Time)</code> or <code>df$SpatialFreq &lt;- as.numeric(df$Time)</code>.</li>
+<li><code>values</code> = this argument requires the name of the column of the data frame that contains the actual data, which are the y-axis points from which the AUC can be calculated. In our case, it is the change in contrast balance ratio. It must strings, ex. <code>'Cbratio'</code>, not <code>Cbratio</code>.</li>
+</ul>
+<p>Before using <code>sm_auc_all()</code>, you will need to check for a few things. First, check if the x column is numeric, not factor, by using <code>is.numeric()</code> function. If it is numeric, proceed with using <code>sm_auc_all()</code>. Second, see if the x levels (ex. 0, 3, 6, 12, 24 and 48 etc) are identical for each subject and condition (ex. no 7, 16, 29 minutes for subject 10).</p>
+<p><strong>Note</strong>: If you have a column for <code>condition</code> (as an example) but you only have one identifier for condition (and hence one condition total), you will still need to include it as <code>sm_auc_all(..., conditions='condition')</code>. If you do not want to include the <code>condition</code> column in <code>sm_auc_all()</code>, then you should remove the column from the data frame altogether. This also applies to <code>sm_slope_all()</code>.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="calculating-area-under-a-curve.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the x column is numeric</span></span>
+<span id="cb339-2"><a href="calculating-area-under-a-curve.html#cb339-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(df<span class="sc">$</span>Time) </span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="calculating-area-under-a-curve.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check if the x column is factor</span></span>
+<span id="cb341-2"><a href="calculating-area-under-a-curve.html#cb341-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.factor</span>(df<span class="sc">$</span>Time)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="calculating-area-under-a-curve.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if it is factor and not numeric:</span></span>
+<span id="cb343-2"><a href="calculating-area-under-a-curve.html#cb343-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df<span class="sc">$</span>Time)</span></code></pre></div>
+<p>After checking, we can store the results from <code>sm_auc_all()</code> into a new variable. I will call the new variable <code>auc_df</code>.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="calculating-area-under-a-curve.html#cb344-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="ot">&lt;-</span> <span class="fu">sm_auc_all</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, <span class="at">conditions =</span> <span class="st">&#39;Day&#39;</span>, </span>
+<span id="cb344-2"><a href="calculating-area-under-a-curve.html#cb344-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="at">values =</span> <span class="st">&#39;Cbratio&#39;</span>,</span>
+<span id="cb344-3"><a href="calculating-area-under-a-curve.html#cb344-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> df)</span></code></pre></div>
+<pre><code>## [1] &quot;AUC = Cbratio * Time&quot;</code></pre>
+<p>Now we can plot the AUCs using <code>sm_bar()</code>, <code>sm_boxplot</code> etc. Let’s have a try.</p>
+<p>Here is a bar graph showing <code>auc_df</code>’s data. This figure is similar to Figure 3E in the original paper (Min, Baldwin and Hess, 2019).</p>
+<ul>
+<li>re: means relative to X. The data are the differences compared to the baseline (re: Baseline).</li>
+</ul>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="calculating-area-under-a-curve.html#cb346-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb346-2"><a href="calculating-area-under-a-curve.html#cb346-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
+<span id="cb346-3"><a href="calculating-area-under-a-curve.html#cb346-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb346-4"><a href="calculating-area-under-a-curve.html#cb346-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-301-1.png" width="336" /></p>
+<p>Here is a box plot showing <code>auc_df</code>’s data.</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="calculating-area-under-a-curve.html#cb347-1" aria-hidden="true" tabindex="-1"></a>auc_df <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb347-2"><a href="calculating-area-under-a-curve.html#cb347-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>,</span>
+<span id="cb347-3"><a href="calculating-area-under-a-curve.html#cb347-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">2.2</span>)) <span class="sc">+</span> </span>
+<span id="cb347-4"><a href="calculating-area-under-a-curve.html#cb347-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb347-5"><a href="calculating-area-under-a-curve.html#cb347-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;\u0394 AUC re: Each day</span><span class="sc">\&#39;</span><span class="st">s baseline&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-302-1.png" width="336" /></p>
+</div>
+<div id="reproducing-figures-in-the-paper-min-et-al.-2019" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Reproducing figures in the paper (Min et al., 2019)<a href="calculating-area-under-a-curve.html#reproducing-figures-in-the-paper-min-et-al.-2019" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s redraw some of the figures in the paper. In 2019, when the paper was published, there was no smplot. However, the themes I developed during then have become part of smplot. So, I have incorporated functions from smplot to reproduce the figures here.</p>
+<div id="figure-3b-a-best-fit-line-with-points-and-error-bars" class="section level3 hasAnchor" number="8.3.1">
+<h3><span class="header-section-number">8.3.1</span> Figure 3B (a best-fit line with points and error bars)<a href="calculating-area-under-a-curve.html#figure-3b-a-best-fit-line-with-points-and-error-bars" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="calculating-area-under-a-curve.html#cb348-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
+<span id="cb348-2"><a href="calculating-area-under-a-curve.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="co"># filter data from Days 2-4. | means OR.</span></span>
+<span id="cb348-3"><a href="calculating-area-under-a-curve.html#cb348-3" aria-hidden="true" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">2</span> <span class="sc">|</span> Day <span class="sc">==</span> <span class="dv">3</span> <span class="sc">|</span> Day <span class="sc">==</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day, Time) <span class="sc">%&gt;%</span> </span>
+<span id="cb348-4"><a href="calculating-area-under-a-curve.html#cb348-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">avg =</span> <span class="fu">mean</span>(Cbratio), <span class="at">se =</span> <span class="fu">sm_stdErr</span>(Cbratio)) </span>
+<span id="cb348-5"><a href="calculating-area-under-a-curve.html#cb348-5" aria-hidden="true" tabindex="-1"></a><span class="co"># mean and standard error computed for each day and time, both of which have been grouped.</span></span>
+<span id="cb348-6"><a href="calculating-area-under-a-curve.html#cb348-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb348-7"><a href="calculating-area-under-a-curve.html#cb348-7" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>Time <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(df1<span class="sc">$</span>Time)</span>
+<span id="cb348-8"><a href="calculating-area-under-a-curve.html#cb348-8" aria-hidden="true" tabindex="-1"></a>df1<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df1<span class="sc">$</span>Day) <span class="co"># Day has to be factored here because they will be labelled as different colors. Factor means categorical variables. </span></span>
+<span id="cb348-9"><a href="calculating-area-under-a-curve.html#cb348-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb348-10"><a href="calculating-area-under-a-curve.html#cb348-10" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#55A868&quot;</span>, <span class="st">&quot;#C44E52&quot;</span>, <span class="st">&quot;#8172B2&quot;</span>)</span>
+<span id="cb348-11"><a href="calculating-area-under-a-curve.html#cb348-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb348-12"><a href="calculating-area-under-a-curve.html#cb348-12" aria-hidden="true" tabindex="-1"></a>df1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> avg, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb348-13"><a href="calculating-area-under-a-curve.html#cb348-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">4.5</span>) <span class="sc">+</span></span>
+<span id="cb348-14"><a href="calculating-area-under-a-curve.html#cb348-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_errorbar</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> avg <span class="sc">-</span> se, <span class="at">ymax =</span> avg <span class="sc">+</span> se), <span class="at">size =</span> .<span class="dv">5</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb348-15"><a href="calculating-area-under-a-curve.html#cb348-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="at">se =</span> F, <span class="at">size =</span> <span class="fl">0.9</span>) <span class="sc">+</span> </span>
+<span id="cb348-16"><a href="calculating-area-under-a-curve.html#cb348-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># lm = linear regression method </span></span>
+<span id="cb348-17"><a href="calculating-area-under-a-curve.html#cb348-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(df<span class="sc">$</span>Time), </span>
+<span id="cb348-18"><a href="calculating-area-under-a-curve.html#cb348-18" aria-hidden="true" tabindex="-1"></a>                   <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span>, <span class="st">&quot;3&quot;</span>, <span class="st">&quot;6&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;24&quot;</span>, <span class="st">&quot;48&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb348-19"><a href="calculating-area-under-a-curve.html#cb348-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb348-20"><a href="calculating-area-under-a-curve.html#cb348-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors,</span>
+<span id="cb348-21"><a href="calculating-area-under-a-curve.html#cb348-21" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Day 2&quot;</span>, <span class="st">&quot;Day 3&quot;</span>, <span class="st">&quot;Day 4&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb348-22"><a href="calculating-area-under-a-curve.html#cb348-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Recovery of the patching effect&quot;</span>) <span class="sc">+</span></span>
+<span id="cb348-23"><a href="calculating-area-under-a-curve.html#cb348-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Time after monocular deprivation (min)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb348-24"><a href="calculating-area-under-a-curve.html#cb348-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;\u0394 Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb348-25"><a href="calculating-area-under-a-curve.html#cb348-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">0</span>), </span>
+<span id="cb348-26"><a href="calculating-area-under-a-curve.html#cb348-26" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.96</span>, <span class="fl">0.67</span>), </span>
+<span id="cb348-27"><a href="calculating-area-under-a-curve.html#cb348-27" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-303-1.png" width="350.4" /></p>
+</div>
+<div id="figure-3d-a-bar-graph" class="section level3 hasAnchor" number="8.3.2">
+<h3><span class="header-section-number">8.3.2</span> Figure 3D (a bar graph)<a href="calculating-area-under-a-curve.html#figure-3d-a-bar-graph" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>This a bar graph that has been plotted with <code>sm_bar()</code>. The y-axis has been set with the function <code>coord_cartesian()</code>.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="calculating-area-under-a-curve.html#cb349-1" aria-hidden="true" tabindex="-1"></a>baseline <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/baseline.csv&#39;</span>) </span>
+<span id="cb349-2"><a href="calculating-area-under-a-curve.html#cb349-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb349-3"><a href="calculating-area-under-a-curve.html#cb349-3" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#4C72B0&quot;</span>, <span class="st">&quot;#55A868&quot;</span>, <span class="st">&quot;#C44E52&quot;</span>,</span>
+<span id="cb349-4"><a href="calculating-area-under-a-curve.html#cb349-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;#8172B2&quot;</span>, <span class="st">&quot;#D55E00&quot;</span>)</span>
+<span id="cb349-5"><a href="calculating-area-under-a-curve.html#cb349-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb349-6"><a href="calculating-area-under-a-curve.html#cb349-6" aria-hidden="true" tabindex="-1"></a>baseline<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(baseline<span class="sc">$</span>Day)</span>
+<span id="cb349-7"><a href="calculating-area-under-a-curve.html#cb349-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb349-8"><a href="calculating-area-under-a-curve.html#cb349-8" aria-hidden="true" tabindex="-1"></a>baseline <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y=</span> Baseline, <span class="at">fill =</span> Day)) <span class="sc">+</span></span>
+<span id="cb349-9"><a href="calculating-area-under-a-curve.html#cb349-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">points =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb349-10"><a href="calculating-area-under-a-curve.html#cb349-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">0.4</span>),</span>
+<span id="cb349-11"><a href="calculating-area-under-a-curve.html#cb349-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">bar.params =</span> <span class="fu">list</span>()) <span class="sc">+</span> <span class="co"># remove defaults of bar.params</span></span>
+<span id="cb349-12"><a href="calculating-area-under-a-curve.html#cb349-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span> </span>
+<span id="cb349-13"><a href="calculating-area-under-a-curve.html#cb349-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Baseline across days&quot;</span>) <span class="sc">+</span></span>
+<span id="cb349-14"><a href="calculating-area-under-a-curve.html#cb349-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>))  <span class="sc">+</span></span>
+<span id="cb349-15"><a href="calculating-area-under-a-curve.html#cb349-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Contrast balance ratio (dB)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb349-16"><a href="calculating-area-under-a-curve.html#cb349-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&#39;Patching day&#39;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-304-1.png" width="336" /></p>
+</div>
+<div id="figure-3e-modeling-in-matlab-and-plotting-in-r" class="section level3 hasAnchor" number="8.3.3">
+<h3><span class="header-section-number">8.3.3</span> Figure 3E (modeling in Matlab and plotting in R)<a href="calculating-area-under-a-curve.html#figure-3e-modeling-in-matlab-and-plotting-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The grey shades have actually been approximated using Matlab. The results have been saved in the .csv file <code>fit_error_shade.csv</code>. They are then imported into R, where the final figure is plotted.</p>
+<p>Notice that two data frames are used to create this plot, <code>df_shade1</code> and <code>auc_df1</code>. The former contains the values from the modeling in Matlab, the latter contains AUC values.</p>
+<p>So do not worry if your field does not use R for data analysis. One can still perform data visualization using R.</p>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="calculating-area-under-a-curve.html#cb350-1" aria-hidden="true" tabindex="-1"></a>df_shade <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/fit_error_shade.csv&#39;</span>)</span>
+<span id="cb350-2"><a href="calculating-area-under-a-curve.html#cb350-2" aria-hidden="true" tabindex="-1"></a>df_shade1 <span class="ot">&lt;-</span> df_shade <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">yUpp =</span> y_mean <span class="sc">+</span> y_se, <span class="at">yLow =</span> y_mean <span class="sc">-</span> y_se)</span>
+<span id="cb350-3"><a href="calculating-area-under-a-curve.html#cb350-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb350-4"><a href="calculating-area-under-a-curve.html#cb350-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
+<span id="cb350-5"><a href="calculating-area-under-a-curve.html#cb350-5" aria-hidden="true" tabindex="-1"></a>auc_df <span class="ot">&lt;-</span> <span class="fu">sm_auc_all</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, <span class="at">conditions =</span> <span class="st">&#39;Day&#39;</span>, </span>
+<span id="cb350-6"><a href="calculating-area-under-a-curve.html#cb350-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="at">values =</span> <span class="st">&#39;Cbratio&#39;</span>,</span>
+<span id="cb350-7"><a href="calculating-area-under-a-curve.html#cb350-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> df)</span></code></pre></div>
+<pre><code>## [1] &quot;AUC = Cbratio * Time&quot;</code></pre>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="calculating-area-under-a-curve.html#cb352-1" aria-hidden="true" tabindex="-1"></a>auc_df1 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(Day) <span class="sc">%&gt;%</span> </span>
+<span id="cb352-2"><a href="calculating-area-under-a-curve.html#cb352-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">y_mean =</span> <span class="fu">mean</span>(AUC_Cbratio), <span class="at">std_err =</span> <span class="fu">sm_stdErr</span>(AUC_Cbratio))</span>
+<span id="cb352-3"><a href="calculating-area-under-a-curve.html#cb352-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb352-4"><a href="calculating-area-under-a-curve.html#cb352-4" aria-hidden="true" tabindex="-1"></a>auc_df1<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(auc_df1<span class="sc">$</span>Day)</span>
+<span id="cb352-5"><a href="calculating-area-under-a-curve.html#cb352-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb352-6"><a href="calculating-area-under-a-curve.html#cb352-6" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#4C72B0&quot;</span>, <span class="st">&quot;#55A868&quot;</span>, <span class="st">&quot;#C44E52&quot;</span>,</span>
+<span id="cb352-7"><a href="calculating-area-under-a-curve.html#cb352-7" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;#8172B2&quot;</span>, <span class="st">&quot;#D55E00&quot;</span>)</span>
+<span id="cb352-8"><a href="calculating-area-under-a-curve.html#cb352-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb352-9"><a href="calculating-area-under-a-curve.html#cb352-9" aria-hidden="true" tabindex="-1"></a>df_shade1 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>x, <span class="at">y=</span>y_mean)) <span class="sc">+</span> </span>
+<span id="cb352-10"><a href="calculating-area-under-a-curve.html#cb352-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">ymin =</span> yLow, <span class="at">ymax =</span> yUpp), <span class="at">alpha =</span> .<span class="dv">08</span>) <span class="sc">+</span></span>
+<span id="cb352-11"><a href="calculating-area-under-a-curve.html#cb352-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_linerange</span>(<span class="at">data =</span> auc_df1, <span class="fu">aes</span>(Day, <span class="at">ymin =</span> y_mean <span class="sc">-</span> std_err, <span class="at">ymax =</span> y_mean <span class="sc">+</span> std_err), <span class="at">size =</span> .<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb352-12"><a href="calculating-area-under-a-curve.html#cb352-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> auc_df1, <span class="fu">aes</span>(Day, y_mean, <span class="at">color =</span> <span class="fu">as.factor</span>(Day), <span class="at">size =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb352-13"><a href="calculating-area-under-a-curve.html#cb352-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb352-14"><a href="calculating-area-under-a-curve.html#cb352-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb352-15"><a href="calculating-area-under-a-curve.html#cb352-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">90</span>)) <span class="sc">+</span></span>
+<span id="cb352-16"><a href="calculating-area-under-a-curve.html#cb352-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
+<span id="cb352-17"><a href="calculating-area-under-a-curve.html#cb352-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Area Under Curve (dB min)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-18"><a href="calculating-area-under-a-curve.html#cb352-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Patching Day&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb352-19"><a href="calculating-area-under-a-curve.html#cb352-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;\u0394 AUC re: Each Day&#39;s Baseline&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-20"><a href="calculating-area-under-a-curve.html#cb352-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;y = -5.8(Day) + 67.8&quot;</span>, <span class="at">x =</span> <span class="fl">2.0</span>, <span class="at">y=</span>  <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb352-21"><a href="calculating-area-under-a-curve.html#cb352-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;***&quot;</span>, <span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> <span class="dv">82</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-22"><a href="calculating-area-under-a-curve.html#cb352-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;**&quot;</span>, <span class="at">x =</span> <span class="dv">2</span>, <span class="at">y =</span> <span class="dv">75</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-23"><a href="calculating-area-under-a-curve.html#cb352-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;**&quot;</span>, <span class="at">x =</span> <span class="dv">3</span>, <span class="at">y =</span> <span class="dv">68</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-24"><a href="calculating-area-under-a-curve.html#cb352-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;*&quot;</span>, <span class="at">x =</span> <span class="dv">4</span>, <span class="at">y =</span> <span class="dv">65</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>) <span class="sc">+</span></span>
+<span id="cb352-25"><a href="calculating-area-under-a-curve.html#cb352-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">label =</span> <span class="st">&quot;**&quot;</span>, <span class="at">x =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="dv">60</span>, <span class="at">size =</span> <span class="fl">3.5</span>, <span class="at">fontface=</span><span class="st">&quot;bold&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-305-1.png" width="336" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="combining-plots-with-common-axes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="calculating-linear-slopes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/smin95/dataviz/edit/master/AreaUC.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/smin95/dataviz/blob/master/AreaUC.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

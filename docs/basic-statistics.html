@@ -1057,7 +1057,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Day:Time     20   18.4   0.921   0.486    0.971    
 ## Residuals   270  511.8   1.896                     
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>As before, we specify the <code>formula</code> using tilde (<code>~</code>); its left side is the dependent variable (<code>Cbratio</code>), and the right side includes the independent variables (or predictors, ex. <code>Day</code> and <code>Time</code>). <code>+</code> is used to add more independent variables in the model formula. Interaction between the effects of <code>Day</code> and <code>Time</code> should also be included by <code>:</code>.</p>
 <p>Another way of writing the model formula is shown below. It uses <code>*</code> as a shortcut to include the effects of <code>Day</code>, <code>Time</code> and their interactions. Notice that the results of both ANOVAs are identical because the model formulas are the same.</p>
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="basic-statistics.html#cb527-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="at">formula =</span> Cbratio <span class="sc">~</span> Day<span class="sc">*</span>Time, <span class="at">data =</span> df)</span>
@@ -1068,7 +1069,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Day:Time     20   18.4   0.921   0.486    0.971    
 ## Residuals   270  511.8   1.896                     
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p>It appears that there is a statistically significant effect of <code>Time</code>, F(5, 270) = 7.83, p &lt; 0.001. But the effect of <code>Day</code> seems to be not significant, F(4,270) = 0.49, p = 0.44. Also the effect of interaction between <code>Day</code> and <code>Time</code> is not significant, F(20,270) = 0.97, p &gt; 0.05.</p>
 <p>An interaction effect between A and B exists when the effect of factor A (ex. <code>Day</code>) is different at different levels of factor B (ex. <code>Time</code>). Let’s understand how the effect of interaction could affect the data.</p>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-369-1.png" width="336" /></p>
@@ -1109,13 +1111,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb531-3"><a href="basic-statistics.html#cb531-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_anova_table</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb531-4"><a href="basic-statistics.html#cb531-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adjust_pvalue</span>(<span class="at">method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 5 x 9
-##   Day   Effect   DFn   DFd     F     p `p&lt;.05`   ges p.adj
-##   &lt;fct&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1 1     Time       5    54  2.33 0.054 &quot;&quot;      0.178  0.27
-## 2 2     Time       5    54  1.52 0.2   &quot;&quot;      0.123  1   
-## 3 3     Time       5    54  4.01 0.004 &quot;*&quot;     0.271  0.02
-## 4 4     Time       5    54  1.45 0.221 &quot;&quot;      0.118  1   
-## 5 5     Time       5    54  1.72 0.146 &quot;&quot;      0.137  0.73</code></pre>
+##   Day   Effect   DFn   DFd     F     p `p&lt;.05`   ges
+##   &lt;fct&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 1     Time       5    54  2.33 0.054 &quot;&quot;      0.178
+## 2 2     Time       5    54  1.52 0.2   &quot;&quot;      0.123
+## 3 3     Time       5    54  4.01 0.004 &quot;*&quot;     0.271
+## 4 4     Time       5    54  1.45 0.221 &quot;&quot;      0.118
+## 5 5     Time       5    54  1.72 0.146 &quot;&quot;      0.137
+## # ... with 1 more variable: p.adj &lt;dbl&gt;</code></pre>
 <p><code>within</code> refers to the within-subject factor, which in this case <code>Day</code>. If there are different subjects associated with each <code>Day</code>, then <code>between</code> argument can be filled instead of <code>within</code> in the <code>anova_test()</code> function.</p>
 <p>It seems that the effect of <code>Time</code> is not statistically significant at different levels of the factor <code>Day</code>, except for Day 3. This means that the decrease of <code>Cbratio</code> over time does not differ significantly across most days. This (sort of) agrees with our results that the interaction effect is not statistically significant.</p>
 <p>Let’s pretend that the interaction effect is still significant. If so, we can examine whether the second independent variable (<code>Day</code> in our case) differs across different levels of the first independent variable (<code>Time</code> in our example).</p>
@@ -1124,14 +1127,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb533-3"><a href="basic-statistics.html#cb533-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_anova_table</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb533-4"><a href="basic-statistics.html#cb533-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adjust_pvalue</span>(<span class="at">method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 9
-##   Time  Effect   DFn   DFd     F     p `p&lt;.05`   ges p.adj
-##   &lt;fct&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
-## 1 0     Day        4    45 0.228 0.921 &quot;&quot;      0.02  1    
-## 2 3     Day        4    45 0.339 0.85  &quot;&quot;      0.029 1    
-## 3 6     Day        4    45 2.02  0.107 &quot;&quot;      0.152 0.642
-## 4 12    Day        4    45 0.116 0.976 &quot;&quot;      0.01  1    
-## 5 24    Day        4    45 0.416 0.796 &quot;&quot;      0.036 1    
-## 6 48    Day        4    45 0.734 0.574 &quot;&quot;      0.061 1</code></pre>
+##   Time  Effect   DFn   DFd     F     p `p&lt;.05`   ges
+##   &lt;fct&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;
+## 1 0     Day        4    45 0.228 0.921 &quot;&quot;      0.02 
+## 2 3     Day        4    45 0.339 0.85  &quot;&quot;      0.029
+## 3 6     Day        4    45 2.02  0.107 &quot;&quot;      0.152
+## 4 12    Day        4    45 0.116 0.976 &quot;&quot;      0.01 
+## 5 24    Day        4    45 0.416 0.796 &quot;&quot;      0.036
+## 6 48    Day        4    45 0.734 0.574 &quot;&quot;      0.061
+## # ... with 1 more variable: p.adj &lt;dbl&gt;</code></pre>
 <p>It seems that the effect of <code>Day</code> remains insignificant across all time points.</p>
 <p>You may realize that this result from the above is strange. Indeed, it is inappropriate to report these two results because the interaction effect is not statistically significant. Therefore, it is more appropriate to just report the post-hoc analysis that is only concerned with the effect of <code>Time</code>.</p>
 <div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="basic-statistics.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(res, <span class="at">which =</span> <span class="st">&#39;Time&#39;</span>)</span></code></pre></div>
@@ -1179,23 +1183,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="basic-statistics.html#cb539-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> </span>
 <span id="cb539-2"><a href="basic-statistics.html#cb539-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox_test</span>(Cbratio <span class="sc">~</span> Time, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 9
-##    .y.     group1 group2    n1    n2 statistic     p p.adj p.adj.signif
-##  * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
-##  1 Cbratio 0      3         10    10        33 0.625 1     ns          
-##  2 Cbratio 0      6         10    10        41 0.193 1     ns          
-##  3 Cbratio 0      12        10    10        46 0.064 0.968 ns          
-##  4 Cbratio 0      24        10    10        53 0.006 0.088 ns          
-##  5 Cbratio 0      48        10    10        53 0.006 0.088 ns          
-##  6 Cbratio 3      6         10    10        42 0.16  1     ns          
-##  7 Cbratio 3      12        10    10        43 0.131 1     ns          
-##  8 Cbratio 3      24        10    10        45 0.084 1     ns          
-##  9 Cbratio 3      48        10    10        52 0.01  0.147 ns          
-## 10 Cbratio 6      12        10    10        34 0.557 1     ns          
-## 11 Cbratio 6      24        10    10        38 0.322 1     ns          
-## 12 Cbratio 6      48        10    10        46 0.064 0.968 ns          
-## 13 Cbratio 12     24        10    10        26 0.922 1     ns          
-## 14 Cbratio 12     48        10    10        46 0.064 0.968 ns          
-## 15 Cbratio 24     48        10    10        45 0.084 1     ns</code></pre>
+##    .y.    group1 group2    n1    n2 statistic     p p.adj
+##  * &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Cbrat~ 0      3         10    10        33 0.625 1    
+##  2 Cbrat~ 0      6         10    10        41 0.193 1    
+##  3 Cbrat~ 0      12        10    10        46 0.064 0.968
+##  4 Cbrat~ 0      24        10    10        53 0.006 0.088
+##  5 Cbrat~ 0      48        10    10        53 0.006 0.088
+##  6 Cbrat~ 3      6         10    10        42 0.16  1    
+##  7 Cbrat~ 3      12        10    10        43 0.131 1    
+##  8 Cbrat~ 3      24        10    10        45 0.084 1    
+##  9 Cbrat~ 3      48        10    10        52 0.01  0.147
+## 10 Cbrat~ 6      12        10    10        34 0.557 1    
+## 11 Cbrat~ 6      24        10    10        38 0.322 1    
+## 12 Cbrat~ 6      48        10    10        46 0.064 0.968
+## 13 Cbrat~ 12     24        10    10        26 0.922 1    
+## 14 Cbrat~ 12     48        10    10        46 0.064 0.968
+## 15 Cbrat~ 24     48        10    10        45 0.084 1    
+## # ... with 1 more variable: p.adj.signif &lt;chr&gt;</code></pre>
 <p>The argument <code>p.adjust.method</code> specifies the method that is used to correct for the p-value to avoid false positives.</p>
 <p>We see that the post-hoc analysis does not yield any pair that has a statistical significance. If this is the case, reporting the results of the Friedman test can be sufficient.</p>
 </div>
