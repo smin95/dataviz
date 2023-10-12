@@ -436,7 +436,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
   scale_fill_manual(values=  sm_color('blue','orange'))
 ```
 
-When a mean plot is included in slope chart, I personally prefer to visually emphasize the mean plot while treating the individual plots as **shadow**. Hence, I would use similar colors across all levels. Here is an example below using blue colors. The maen plot should be slightly larger than the individual points from the shadow.
+When a mean plot is included in slope chart, I personally prefer to visually emphasize the mean plot while treating the individual plots as **shadow**. Hence, I would use similar colors across all levels. Here is an example below using blue colors. The mean plot should be slightly larger than the individual points from the shadow.
 
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
