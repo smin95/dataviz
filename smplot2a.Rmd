@@ -358,7 +358,7 @@ head(df_corr)
 
 Notice that `df_corr` has two columns, each of which represents a measurement group. 
 
-```{r, fig.width = 3.5, fig.height=3.5}
+```{r, fig.width = 3.35, fig.height=3.5}
 
 # correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
@@ -374,7 +374,7 @@ ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
 
 ```
 
-```{r, fig.width = 3.5, fig.height=3.5}
+```{r, fig.width = 3.4, fig.height=3.5}
 # bar graph using data frame 'df_general'
 ggplot(data = df_general, mapping = aes(x = Method, y = Value, 
                                         color = Method)) +
@@ -389,7 +389,7 @@ You can also add a reference line (slope = 1) in a correlation plot.
 
 This can be done with `geom_abline()`. In this example, the reference line's slope is set to 1 and it has a dashed line style.
 
-```{r, fig.width = 3.5, fig.height=3.5}
+```{r, fig.width = 3.35, fig.height=3.5}
 
 # correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
@@ -428,7 +428,7 @@ df <- cbind(Subject, Data, Day)
 
 Here is the default boxplot.
 
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
+```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot()
 ```
@@ -439,21 +439,21 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) +
 
 In this example, `...` is fed into `point.params` to control the `color` of the points, but not of the boxplot because `boxplot.params` already has a `color` default (type `?sm_boxplot` to see the defaults).
 
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
+```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot(color = sm_color('darkred'))
 ```
 
 Notice that in the example below, the points are no longer transparent as the default `alpha` has been reset by explicitly writing `point.params = list(color = ...)`. 
 
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
+```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot(point.params = list(color = sm_color('darkred')))
 ```
 
 You can be quite flexible with the aesthetics.
 
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
+```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot(point.params = list(fill = sm_color('darkred'),
                                  size = 2.2,
@@ -463,7 +463,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) +
 
 You can also change the border `color` of the boxplot using `boxplot.params`.
 
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
+```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot(boxplot.params = list(color = sm_color('skyblue')),
              point.params = list(alpha = 0.65,
@@ -474,7 +474,7 @@ Notice that the default `width = 0.5` boxplot is gone in the example below becau
 
 Now let's apply different color for each Day.
 
-```{r, fig.width = 3.5, fig.height=3.5, warning = F}
+```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_boxplot() +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -482,7 +482,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 You can change the shape of the boxplot by setting `notch = TRUE` within `boxplot.params`.
 
-```{r, fig.width = 3.5, fig.height=3.5, warning = F}
+```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_boxplot(boxplot.params = list(notch = TRUE, color = 'black',
                                    width = 0.5)) +
@@ -496,7 +496,7 @@ A notched boxplot shows the confidence interval around the median (+/- 1.58 * in
 
 - `point_jitter_width` lets you control the width of the jitter of the individual points.
 
-```{r, fig.width = 3.5, fig.height=3.5, warning = F}
+```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_boxplot(point_jitter_width = 0.2) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -504,7 +504,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 - `points = FALSE` removes all the individual points.
 
-```{r, fig.width = 3.5, fig.height=3.5, warning = F}
+```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_boxplot(points = FALSE) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -512,7 +512,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 This is obviously not acceptable partly because each x-level has the same color and the plot is too empty. So we can add the points back with unique colors.
 
-```{r, fig.width = 3.5, fig.height=3.5, warning = F}
+```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   sm_boxplot(point.params = list(size = 2.2,
                                  shape = 21,
@@ -524,7 +524,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 
 `sm_boxplot()` can draw individual points with unique colors if you set `color = Subject` within `ggplot()`.  
 
-```{r, fig.width = 3.5, fig.height=3.5, warning = F}
+```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
   sm_boxplot() +
   scale_color_manual(values = sm_palette(16))
@@ -547,12 +547,12 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
   -  It also has arguments `borders` and `legends`.
 
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_violin() 
 ```
 
-```{r, fig.width = 3.5, fig.height=3.5,warning = F}
+```{r, fig.width = 3.4, fig.height=3.5,warning = F}
 # a violin plot with different colored points and lines
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_violin() + 
@@ -566,7 +566,7 @@ You can specify the aesthetics of `sm_violin()` using `point.params`, `err.param
 - `err.params` feeds the arguments to `geom_linerange()`, such as `color`, `size` etc, to plot the error bar in either standard error (`errorbar_type = se`), standard deviation (`errorbar_type = sd`) or 95% confidence interval (`errorbar_type = ci`).
   - `err.params` can be used to control the average point as well because it is connected to the error bar.
   
-```{r, fig.width = 3.5, fig.height=3.5,warning = F}
+```{r, fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day,
                                 group = Day)) +
   sm_violin(err.params = list(color = 'black',
@@ -578,7 +578,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day,
 
 - `point_jitter_width` lets you control the width of the jitter of the individual points.
 
-```{r, fig.width = 3.5, fig.height=3.5, warning = F}
+```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_violin(point_jitter_width = 0.2) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -586,7 +586,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 - `points = FALSE` removes all the individual points.
 
-```{r, fig.width = 3.5, fig.height=3.5, warning = F}
+```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_violin(points = FALSE) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -597,7 +597,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 Set `color = Subject` to plot individual points with unique colors.
 
-```{r, fig.width = 3.5, fig.height=3.5,warning = F}
+```{r, fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
                                 group = Day)) +
   sm_violin(point.params = list(alpha = 0.5)) + 
@@ -612,7 +612,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
 
 Let's use data (`df`) we generated before to explore this function.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar() +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -620,7 +620,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 In this case, the error bar represents **standard error**. If you prefer to show **standard deviation**, then you should set `errorbar_type  = 'sd'` in `sm_bar()`.
   
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(errorbar_type = 'sd') +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -628,7 +628,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 95% confidence interval can also be displayed with `errorbar_type  = 'ci'`. 
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(errorbar_type = 'ci') +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -636,7 +636,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 Jitter's width can be controlled using `point_jitter_width`.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(errorbar_type = 'ci',
          point_jitter_width = 0.2) +
@@ -647,7 +647,7 @@ You can also adjust different parameters of the bar graph using `bar.params`, `e
 
 - `bar.params = list()` sends arguments, such as `color`, `fill`, `width` and `alpha` to `geom_bar()` so that a bar is plotted.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(bar.params = list(alpha = 0.3,
                            color = 'transparent',
@@ -658,7 +658,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 - `err.params = list()` sends arguments, such as `color`, to `geom_linerange()` so that an error bar is plotted.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(errorbar_type = 'sd',
          bar.params = list(alpha = 0.3,
@@ -673,7 +673,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 - `point.params = list()` feeds arguments, such as `color`, `fill`, and `alpha` to `geom_point()` to so that individual points are plotted.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(errorbar_type = 'sd',
          bar.params = list(alpha = 0.3,
@@ -690,7 +690,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 - `...` is generic parameter that can affect different components of the bar graph, error bar and points if these do not have defaults set within `bar.params = list()`, `err.params = list()` and `point.params = list()`.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(color = 'black', fill = 'black',
          alpha = 0.5) +
@@ -700,7 +700,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 Notice that `fill` of the bar is still `gray80`, as well as `color` (border color) not being `black`, because `bar.params` has defaults, You can remove it by writing `bar.params = list()`.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(color = 'black', fill = 'black',
          alpha = 0.5,
@@ -715,7 +715,7 @@ Note that `width` as a generic parameters get applied to `geom_bar()` only becau
 
 As before with `sm_boxplot()` and `sm_violin()`, to plot individual points with unique colors, set `color = Subject`.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
   sm_bar() +
   scale_color_manual(values = sm_palette(16)) 
@@ -723,7 +723,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
 
 `sm_bar()` can also print distinct box colors across distinct x levels. This requires the defaults of `bar.params` to be reset. Therefore, it needs to be written as `bar.params = list()`.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
                                 fill = Day)) +
   sm_bar(bar.params = list(alpha = 0.7, color = 'transparent')) +
@@ -734,7 +734,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
 
 To set one color across all points, you need to remove `color = Subject`. `point.params` can be specified to control the aesthetics of the points.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, 
                                 fill = Day)) +
   sm_bar(bar.params = list(alpha = 0.7, color = 'transparent'),
@@ -745,7 +745,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value,
 
 This is an example where the bar and points have unique colors per group.
 
-```{r,fig.width = 3.5, fig.height=3.5,warning = F}
+```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, 
                                 fill = Day)) +
   sm_bar(bar.params = list(alpha = 0.5, color = 'transparent'),

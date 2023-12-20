@@ -1022,9 +1022,9 @@ You can also plot the histogram across multiple conditions/groups by setting `gg
 ```{r, fig.width = 6, fig.height=3.5, warning = F}
 
 df %>% ggplot(aes(x=value, fill=day, color = day)) +
-  sm_hist(hist.params = list(binwidth = 1/4, alpha = 0.3),
+    sm_hist(hist.params = list(binwidth = 1/4, alpha = 0.5,color='white'),
           density.params = list(fill='transparent', size = 0.8),
-          rug.params = list(alpha = 0.8), legends = TRUE) +
+          rug.params = list(alpha = 0.8), legends = T) +
   scale_color_manual(values = sm_color('blue', 'orange')) +
   scale_fill_manual(values = sm_color('blue', 'orange')) +
   ggtitle('Histograms + rugs + kernel estimations of two groups') +

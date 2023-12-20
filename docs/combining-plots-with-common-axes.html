@@ -137,7 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#reference"><i class="fa fa-check"></i>Reference</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#references"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#installation-of-smplot2"><i class="fa fa-check"></i>Installation of smplot2</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
@@ -597,8 +597,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ... with 110 more rows</code></pre>
 <p>The output of <code>group_by()</code> is a new data frame (it might appear exactly the same as before, ex. <strong>df</strong>). However, it will respond differently to <code>summarise()</code> because the rows of the data frame are now grouped based on day and time, as we have specified.</p>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="combining-plots-with-common-axes.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">Average_Cbratio =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 x 3
 ## # Groups:   Day [2]
 ##    Day    Time Average_Cbratio
@@ -628,8 +628,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we have seen before, we see that <code>standard_error</code> has been calculated across all subjects, day and time. This is not so useful. We should use <code>summarise()</code> with <code>group_by()</code> so that each standard error could be for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="combining-plots-with-common-axes.html#cb319-1" aria-hidden="true" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
 <span id="cb319-2"><a href="combining-plots-with-common-axes.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 x 3
 ## # Groups:   Day [2]
 ##    Day    Time standard_error
@@ -650,8 +650,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now let’s obtain the <strong>mean</strong> and <strong>standard error</strong> of <code>Cbratio</code> for each <code>Day</code> and <code>Time</code> across all subjects using the data frame that has been grouped by <code>Day</code> and <code>Time</code> via <code>group_by()</code>.</p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="combining-plots-with-common-axes.html#cb322-1" aria-hidden="true" tabindex="-1"></a>by_day_time1 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_day_time, <span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
 <span id="cb322-2"><a href="combining-plots-with-common-axes.html#cb322-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="combining-plots-with-common-axes.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(by_day_time1)</span></code></pre></div>
 <pre><code>## # A tibble: 12 x 4
 ## # Groups:   Day [2]
