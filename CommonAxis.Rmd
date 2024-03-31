@@ -415,7 +415,6 @@ xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52,
 ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)')
 title <- sm_common_title('Individual data', y = 0.2)
 
-
 plots_tgd <- sm_put_together(all_plots, title, xlabel,ylabel, 
                              ncol=3,nrow=3, margin=0)
 
@@ -444,11 +443,7 @@ When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot(
 Open `together1.png` in your directory folder. The figure is clean but it lacks a common legend. We can add a legend in a similar figure with 2x5 structure (`nrow=2` and `ncol=5`). The legend can be on the 10th panel.
 
 ```{r}
-
-xlabel2 <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52,
-                           y = 0.6)
-ylabel2 <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)', x = 0.6)
-title2 <- sm_common_title('Individual data', y = 0.2)
+ylabel2 <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)', x = 0.7)
 
 legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 2.5) +
@@ -456,8 +451,8 @@ legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
   sm_common_legend(x = 0.5, y = 0.5 , title=FALSE, legend_spacing = 1) 
 
-plots_tgd_legend <- sm_put_together(all_plots, title, xlabel2, ylabel2,
-                                    legend=legend, ncol=5,
+plots_tgd_legend <- sm_put_together(all_plots, title, xlabel, 
+                                    ylabel= ylabel2, legend=legend, ncol=5,
                                     nrow=2, margin=0)
 ```
 
@@ -469,8 +464,8 @@ If the `legend` is included in `sm_put_together`, the function will automaticall
 
 
 ```{r}
-save_plot('together2.png',plots_tgd_legend,ncol=5,nrow=2,
-          base_height=3.4,base_width=3)
+save_plot('together2.png', plots_tgd_legend, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
 ```
 
 ```{r, echo=FALSE, fig.align = 'center'}
