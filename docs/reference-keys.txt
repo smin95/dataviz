@@ -3,10 +3,7 @@ fig:unnamed-chunk-5
 fig:unnamed-chunk-6
 fig:unnamed-chunk-7
 fig:unnamed-chunk-25
-fig:unnamed-chunk-269
-fig:unnamed-chunk-271
-fig:unnamed-chunk-273
-fig:unnamed-chunk-274
+fig:unnamed-chunk-270
 fig:unnamed-chunk-378
 fig:unnamed-chunk-379
 opening-remarks

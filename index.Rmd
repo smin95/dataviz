@@ -183,7 +183,6 @@ all <- plot_grid(top_four, histogram2, bottom_four, ncol =1,
                  nrow=3, rel_widths = c(1,1,1),
                  rel_heights = c(2,0.8,2)) 
 
-#save_plot('all.png', all, ncol = 2, nrow = 5, base_asp = 1)
 
 print(all)
 ```
@@ -205,6 +204,8 @@ Here is the reference for the **smCSF** package (Chapters 13-16):
 **Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). *Investigative Ophthalmology and Visual Science*.**
 
 ## Installation of smplot2 {-}
+
+Recent updates made on **2024-03-31**:
 
 ```{r, eval = FALSE}
 install.packages(c('tidyverse','devtools','gghalves'))

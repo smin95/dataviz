@@ -317,13 +317,10 @@ plot_s5 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) +
   # lm = linear regression method 
   scale_x_continuous(breaks = unique(df$Time), 
                      labels = c("0", "3", "6", "12", "24", "48")) +
-  sm_hgrid(legends = TRUE) + # show legends for the color
+  sm_hgrid(legends = FALSE) + 
   scale_color_manual(values = sm_color('blue','orange')) +
   scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) + # axis text size is 1.5x the original font size. 
-  theme(legend.justification = c(1,0), 
-        legend.position = c(0.96, 0.65)) 
-# location of legend (color label)
+  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
 
 print(plot_s5)
 ```
@@ -406,162 +403,79 @@ print(plot_s9)
 
 ## Putting multiple plots together 
 
-Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `plot_grid` from the **cowplot** package. Here is the illustration of what we are going to do. 
+Each panel variable has to be included in a `list`. X-axis label can be specified using `sm_common_xlabel()`, which has `x` and `y` arguments for setting the location of the label. Y-axis label is specified using `sm_common_ylabel()` with the same `x` and `y` arguments. The title can be set using `sm_common_title()`. 
+
+```{r}
+all_plots <- list(plot_s1, plot_s2, plot_s3, 
+                  plot_s4, plot_s5, plot_s6,
+                  plot_s7, plot_s8, plot_s9)
+
+xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52,
+                           y = 0.6)
+ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)')
+title <- sm_common_title('Individual data', y = 0.2)
+
+
+plots_tgd <- sm_put_together(all_plots, title, xlabel,ylabel, 
+                             ncol=3,nrow=3, margin=0)
+
+```
+
+Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `sm_put_together()`. So, `ncol` and `nrow` are set to 3 in `sm_put_together()`. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the `margin` argument can be set to adjust the blank space between sub-panels.
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="3x3 figure. It has 3 columns and 3 rows", out.width = '75%'}
 knitr::include_graphics("img/rc33.png")
 ```
 
-When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot()` have to match the values in `plot_grid()` as shown below. 
+```{r}
+save_plot('together1.png',plots_tgd,ncol=3,nrow=3,
+          base_height=3.4,base_width=3)
+```
 
-`plot_grid()` is a function that puts different graphs together (ex. 3x3 structure).  For more information about the function `plot_grid`, please type `?plot_grid` in the console.
+```{r, echo=FALSE, fig.align = 'center', out.width = '75%'}
+knitr::include_graphics("together1.png")
+```
+
+When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot()` have to match the values in `sm_put_together()` as shown above.
 
 `save_plot()` is a function that saves a selected graph into an image or PDF file (or eps, etc).  
 
-```{r, fig.width = 11.4, fig.height = 11.6}
 
-together1 <- plot_grid(plot_s1, plot_s2, plot_s3,
-                       plot_s4, plot_s5, plot_s6, 
-                       plot_s7, plot_s8, plot_s9, 
-          ncol = 3, # 3 columns in the final figure
-          nrow = 3, # 3 rows in the final figure 
-          align = 'hv',# set to the same horizontal and vertical                             # lengths of each panel. 
-          labels = c('S1','S2', 'S3', 'S4','S5','S6',
-                     'S7','S8','S9'), # each panel label
-          label_x = 0.14,# horizontal position of the panel's 
-          # label relative to each panel. 0 is the very 
-          # left of the plot.
-          label_y = 0.97)  # vertical position of the panel's 
-          # label relative to each panel. 1 is the very 
-          # top of the plot. 
+Open `together1.png` in your directory folder. The figure is clean but it lacks a common legend. We can add a legend in a similar figure with 2x5 structure (`nrow=2` and `ncol=5`). The legend can be on the 10th panel.
 
-print(together1)
+```{r}
 
-save_plot('together1.png',together1,nrow=3,ncol=3,base_asp=0.95) 
-# save as an image. ncol and nrow in save_plot() 
-# nrow and ncol in save_plot() have to match the values in plot_grid() as shown above. 
+xlabel2 <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52,
+                           y = 0.6)
+ylabel2 <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)', x = 0.6)
+title2 <- sm_common_title('Individual data', y = 0.2)
+
+legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
+  geom_point(size = 2.5) +
+  scale_color_manual(values = sm_color('blue','orange'),
+                     labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
+  sm_common_legend(x = 0.5, y = 0.5 , title=FALSE, legend_spacing = 1) 
+
+plots_tgd_legend <- sm_put_together(all_plots, title, xlabel2, ylabel2,
+                                    legend=legend, ncol=5,
+                                    nrow=2, margin=0)
 ```
 
-Open `together1.png` in your directory folder. Notice that the **png** file may look different from the one printed in your RStudio screen or on the browser as shown in this guide. As long as your **png** file looks good, it should be okay.
+The legend is set using the function `sm_common_legend()`, whose `x` and `y` control the location of the legend. Basically, `legend` is a new plot with no points; however, you still need to draw the same points and include other features from other sub-panels to make sure that they are included in the legend. THe output `legend` then gets handled by `sm_put_together()`.
 
-Note that there are some repeating x and y-axes labels. **We can remove them in this example because the y-axis and x-axis scales are set to the same limit** using `scale_x_continuous()` and `scale_y_continuous()`. In other words, the maximum and minimum values of the axes are the same across the panels. For example, the top left panel's x-axis labels can be removed because the bottom left panel also has the same x-axis labels. In addition, the horizontal grids are located at the same places. Each grid line represents the same x-axis value. The range of the x-axis of the panels is also the same. Moreover, the y-axis labels of the top right panel can be removed because the top left panel has the same label. 
+The arguments of `sm_put_together()` have to be written in this order unless they are specified (ex. `sm_put_together(all_plots=all_plots, xlabel=xlabel, title=title)`).
 
-In short, to combine multiple plots together, you must ensure that:
+If the `legend` is included in `sm_put_together`, the function will automatically add legend onto the last panel of the combined plot, so make sure that the last empty panel is empty.
 
-- The scales of the x and y are equal between plots.
 
-- The grids are identical. Otherwise, you won't be able to decipher what the points mean in panels without x- or y-tick labels.
-
-After confirming these and combining the plots by removing the common x-axis and y-axis labels, you will realize that there will be a lot of empty space between the panels. This has to be reduced.
-
-- We will use the function `sm_common_axis()` to resolve these issues.
-
-- `sm_common_axis()` has an argument called `location`. This refers to the location of each panel in the combined figure that you will make. 
-
-- The picture here illustrates what you will need to write for `location` in the function `sm_common_axis()`. 
-
-- Example: `sm_common_axis(location = 'topleft')` for the very top left panel of the 3x3 combined figure.
-
-```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 3x3 figure.", out.width = '75%'}
-knitr::include_graphics("img/rc_arg.png")
+```{r}
+save_plot('together2.png',plots_tgd_legend,ncol=5,nrow=2,
+          base_height=3.4,base_width=3)
 ```
 
-
-```{r, fig.width = 11.1, fig.height = 11.3}
-
-plot_s1_b <- plot_s1 + sm_common_axis(location = 'topleft')
-
-plot_s2_b <- plot_s2 + sm_common_axis(location = 'topcenter')
-
-plot_s3_b <- plot_s3 + sm_common_axis(location = 'topright')
-
-plot_s4_b <- plot_s4 + sm_common_axis(location = 'topleft')
-
-plot_s5_b <- plot_s5 + sm_common_axis(location = 'topcenter')
-
-plot_s6_b <- plot_s6 + sm_common_axis(location = 'topright')
-
-plot_s7_b <- plot_s7 + sm_common_axis(location = 'bottomleft')
-
-plot_s8_b <- plot_s8 + sm_common_axis(location = 'bottomcenter')
-
-plot_s9_b <- plot_s9 + sm_common_axis(location = 'bottomright')
-
-together2 <- plot_grid(plot_s1_b, plot_s2_b, plot_s3_b,
-                       plot_s4_b, plot_s5_b, plot_s6_b, 
-                       plot_s7_b, plot_s8_b, plot_s9_b, 
-          ncol = 3, # 3 columns in the final figure
-          nrow = 3, # 3 rows in the final figure 
-          align = 'hv',# set to the same horizontal and vertical 
-          # lengths of each panel. 
-          labels = c('S1','S2', 'S3', 'S4','S5','S6',
-                     'S7','S8','S9'), # each panel label
-          label_x = 0.07) # horizontal position of the panel's 
-                          # label relative to each panel. 
-                          # 0 is the very left of the plot. 
-
-print(together2)
-
-save_plot('together2.png',together2,nrow=3,ncol=3,base_asp=0.95)
-# save as an image. ncol and nrow in save_plot() 
-# nrow and ncol in save_plot() have to match the 
-# values in plot_grid() as shown above. 
+```{r, echo=FALSE, fig.align = 'center'}
+knitr::include_graphics("together2.png")
 ```
 
-Open `together2.png` in your directory folder. I think it looks a lot cleaner!
-
-The figure shows how to make a 1x3 figure (1 row, 3 columns).
-
-```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 1x3 figure.", out.width = '75%'}
-knitr::include_graphics("img/rc13.png")
-```
-
-If you are planning to make a 2x2 figure (2 rows, 2 columns), please understand the diagram below.
-
-```{r, echo=FALSE, fig.align = 'center',fig.cap="Arguments for location in sm_common_axis for 2x2 figure.", out.width = '55%'}
-knitr::include_graphics("img/rc22.png")
-```
-
-We are almost done now. Now, you will need to add the y-axis label (`'Contrast balance ratio\n '`), x-axis label (`'Minutes after monocular deprivation\n '`) and the title (`'Recovery of the patching effect'`) as shown in the original paper (Vision Research 2019).
-
-`\n` is added to have more space in the x and y axes title.
-
-You can do this in **Adobe Illustrator** or directly in **R**. Here, I present a solution with **R**.
-
-You don't have to understand the codes below to use the codes.
-
-```{r, fig.width = 11.5, fig.height = 12.5}
-
-title <- ggdraw() + 
-  draw_label('Recovery of the patching effect',
-                               size = 17, hjust = 0.45, vjust = 1.2,
-             fontface = 'bold') # title of the 3x3 figure. 
-# vjust controls the vertical position of the title. 
-# hjust controls the horizontal position of the title.
-
-plot_with_title <- plot_grid(title, together2, ncol = 1, 
-                             rel_heights = c(0.1 ,1)) 
-# add the title and the 3x3 figure together 
-
-combined_plot <- add_sub(plot_with_title, 
-                         " \nMinutes after monocular deprivation\n ", 
-                         y = 0, vjust = -.4, size = 17) 
-# add x-axis title to the 3x3 figure
-
-# add y-axis title to the 3x3 figure
-combined_plot <- grid.arrange(combined_plot, 
-                              left = textGrob("\u0394 Contrast Balance Ratio (dB)\n ",
-                                              gp = gpar(fontsize = 17), 
-                                              rot = 90))
-
-save_plot("combined_plot.png", combined_plot, ncol = 3, nrow = 3,
-          base_aspect_ratio = .9, limitsize = F)
-```
-
-
-To be honest, for adding the titles of the axes and the graph, using **Adobe Illustrator** might be much easier. I have just included the codes here to demonstrate that everything, however, could be done in R.
-
-If you do not understand some of these functions, you can type in your console `?add_sub`, `?grid.arrange` to learn about these functions.
-
-An astute reader will realize that the codes are quite repetitive. Could the codes be shortened? The answer is yes! However, this method is quite complex and beyond the scope of this book.
+An astute reader will realize that the codes are quite repetitive. Could the codes be shortened? The answer is yes! However, this method is quite complex and beyond the scope of the guide.
 
