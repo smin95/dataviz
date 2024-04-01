@@ -412,16 +412,29 @@ all_plots <- list(plot_s1, plot_s2, plot_s3,
                   plot_s4, plot_s5, plot_s6,
                   plot_s7, plot_s8, plot_s9)
 
+<<<<<<< HEAD
 xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52, y = 0.6)
+=======
+xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52,
+                           y = 0.6)
+>>>>>>> eb1105960070a57adb98513ebcc1857b97e85ab3
 ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)')
 title <- sm_common_title('Individual data', y = 0.2)
 
 plots_tgd <- sm_put_together(all_plots, title, xlabel,ylabel, 
+<<<<<<< HEAD
                              ncol=3,nrow=3, hmargin=-5, wmargin=-5)
 
 ```
 
 Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `sm_put_together()`. So, `ncol` and `nrow` are set to 3 in `sm_put_together()`. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the `hmargin` argument can be set to adjust the blank space of height between panels; the `wmargin` argument can be set to adjust the blank space of width between panels. Their values can be both negative (less blank space) and positive (more blank space). I suggest you use values from *-5 to 5* for `hmargin` and `wmargin`.
+=======
+                             ncol=3,nrow=3, margin=0)
+
+```
+
+Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `sm_put_together()`. So, `ncol` and `nrow` are set to 3 in `sm_put_together()`. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the `margin` argument can be set to adjust the blank space between sub-panels.
+>>>>>>> eb1105960070a57adb98513ebcc1857b97e85ab3
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="3x3 figure. It has 3 columns and 3 rows", out.width = '75%'}
 knitr::include_graphics("img/rc33.png")
@@ -441,6 +454,7 @@ When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot(
 `save_plot()` is a function that saves a selected graph into an image or PDF file (or eps, etc).  
 
 
+<<<<<<< HEAD
 Open `together1.png` in your directory folder. The figure is clean but it lacks a few things: 1) label for each panel, 2) legend. With examples below, we will add them.
 
 ```{r}
@@ -496,10 +510,18 @@ You can even make a separate legend on your own with full customization using `s
 
 
 ```{r}
+=======
+Open `together1.png` in your directory folder. The figure is clean but it lacks a common legend. We can add a legend in a similar figure with 2x5 structure (`nrow=2` and `ncol=5`). The legend can be on the 10th panel.
+
+```{r}
+ylabel2 <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)', x = 0.7)
+
+>>>>>>> eb1105960070a57adb98513ebcc1857b97e85ab3
 legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 2.5) +
   scale_color_manual(values = sm_color('blue','orange'),
                      labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
+<<<<<<< HEAD
   scale_shape_manual(values = c(21,22),
                      labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
   sm_common_legend(x = 0.5, y = 0.1 , title=FALSE, legend_spacing = 1)
@@ -562,9 +584,35 @@ plots_tgd4 <- sm_put_together(all_plots, title, xlabel,ylabel, legend,
 
 ```{r}
 save_plot('together3.png', plots_tgd4, ncol=5, nrow=2,
+=======
+  sm_common_legend(x = 0.5, y = 0.5 , title=FALSE, legend_spacing = 1) 
+
+plots_tgd_legend <- sm_put_together(all_plots, title, xlabel, 
+                                    ylabel= ylabel2, legend=legend, ncol=5,
+                                    nrow=2, margin=0)
+```
+
+The legend is set using the function `sm_common_legend()`, whose `x` and `y` control the location of the legend. Basically, `legend` is a new plot with no points; however, you still need to draw the same points and include other features from other sub-panels to make sure that they are included in the legend. THe output `legend` then gets handled by `sm_put_together()`.
+
+The arguments of `sm_put_together()` have to be written in this order unless they are specified (ex. `sm_put_together(all_plots=all_plots, xlabel=xlabel, title=title)`).
+
+If the `legend` is included in `sm_put_together`, the function will automatically add legend onto the last panel of the combined plot, so make sure that the last empty panel is empty.
+
+
+```{r}
+save_plot('together2.png', plots_tgd_legend, ncol=5, nrow=2,
+>>>>>>> eb1105960070a57adb98513ebcc1857b97e85ab3
           base_height=3.4, base_width=3)
 ```
 
 ```{r, echo=FALSE, fig.align = 'center'}
+<<<<<<< HEAD
 knitr::include_graphics("together3.png")
 ```
+=======
+knitr::include_graphics("together2.png")
+```
+
+An astute reader will realize that the codes are quite repetitive. Could the codes be shortened? The answer is yes! However, this method is quite complex and beyond the scope of the guide.
+
+>>>>>>> eb1105960070a57adb98513ebcc1857b97e85ab3

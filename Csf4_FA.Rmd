@@ -1,0 +1,210 @@
+---
+output: html_document
+chapter: Factor Analysis and CSF 
+editor_options:
+  chunk_output_type: console
+---
+
+# Factor Analysis and CSF 
+
+```{r, message=F, warning=F}
+library(tidyverse)
+library(cowplot)
+library(smplot2)
+library(smCSF)
+library(psych)
+```
+
+In this chapter, we will use a public dataset of achromatic contrast sensitivity from 51 normally sighted observers.
+
+```{r, message=F, warning=F}
+df <- read_csv('https://www.smin95.com/data_ACh.csv') %>%
+  group_by(Subject, SpatialFreq) %>% 
+  summarise(Sensitivity = mean(Sensitivity),
+            Repetition = 'avg')
+
+```
+
+Factor analysis is a technique to identify latent factors that produce local patterns/correlations in a high-dimensional dataset. In other words, it aims to reduce the number of dimensions in the data.
+
+In this dataset, there are 12 unique spatial frequencies. The sensitivity data were collected at these spatial frequencies to produce the contrast sensitivity function, which has a peak and has an asymmetrical shape. There are 12 dimensions total.
+
+Can the curve be summarised using less than 12 dimensions? This is the purpose of factor analysis.
+
+One way to extract an adequate number of factors/dimensions is to draw a scree plot. 
+
+## Eigenvalues
+
+The scree plot has a y-axis of the **eigenvalue**, which refers the amount of variance of the data from the factor of interest. Essentially, the higher the eigenvalue, the more important the factor is in the dataset.
+
+Some methods for factor analysis determine the number of factors in a potential factor model based on eigenvalues. The Guttman Rule (i.e. K1) extracts all factors with eigenvalues larger than 1.
+
+Another method that relies on eigenvalues to determine the number of factors is parallel analysis.
+
+## Parallel analysis
+
+Parallel analysis by Horn is a statistical method to determine the number of factors in an exploratory factor model. It uses Monte Carlo simulation to generate a dataset of random numbers. This random dataset has the same size of the real dataset. Eigenvalues are obtained from the random dataset.
+
+We will use `psych` package's function `fa.parallel` to perform parallel analysis.
+
+```{r, warning = F, message = F}
+df_mat <- read_csv('https://www.smin95.com/data_ACh_mat.csv') # ACh data in matrix form
+df_mat1 <- as.matrix(df_mat[,-1])
+```
+
+After we have extracted the data that are in matrix form (not data frame), which is required to properly use functions of the `psych` package, we can then perform parallel analysis.
+
+```{r, fig.width=4.2, fig.height=4.2, warning = F, message = F}
+fa.parallel(df_mat1, fa ='fa') 
+```
+
+Based on the parallel analysis, we see that there are two factors with eigenvalues larger than those from the random data. Therefore, it supports a two-factor model.
+
+## Non-parametric bootstrapping 
+
+The Guttman rule can suggest different numbers of factors depending on the sample. For example, in one dataset, factor A can have an eigenvalue larger than 1 but in another dataset from another population factor B can have an eigenvalue lower than 1. Therefore the number of factors that is extracted can vary depending on the local sample. This creates variability in results. This issue can also be observed in parallel analysis.
+
+Therefore, it might be better to include a range of uncertainty of eigenvalues so that one can better be informed about the possible range of eigenvalues in a population. This can be done by plotting 95% confidence interval of eigenvalues. 
+
+In this section, we will perform non-parametric bootstrapping to compute the confidence intervals of the eigenvalues. However, it turns out, if we resample the contrast sensitivity data directly, it removes the local correlation and therefore the influence of latent factors on the dataset, thereby erasing covariance from its existence. 
+
+Here is the original data set's covariance of achromatic sensitivity.
+
+```{r}
+cov(df_mat1)
+```
+
+Covariance is high. If the dataset's covariance is high, then it is suitable for factor analysis, as demonstrated by Kaiser, Meyer and Olkin test.
+
+```{r}
+KMO(df_mat1)
+```
+
+The test reveals that covariance is adequately high (test score > 0.5) at most spatial frequencies, suggesting that factor analysis is suitable.
+
+Now I demonstrate what happens to covariance after resampling with replacement.
+
+```{r}
+set.seed(2023)
+
+nObs <- 51
+nSF <- ncol(df_mat1) # 12 SFs total
+resampled_ACh <- matrix(data=NA,nrow=nObs,ncol=nSF)
+
+for (iSF in 1:nSF) {
+  resampled_ACh[,iSF] <- sample(df_mat1[,iSF],nObs, replace = T)
+}
+```
+
+Here is the re-sampled data set. We can also plot the re-sampled data against the experimental data using base `R` (not `ggplot2`) since we are using matrices to store data. Plotting in base `R` can be more tedious but it can be quite fun as you can control every aspect of the plot.
+
+```{r, fig.width=3.6, fig.height=3.6}
+avgs_expt <- avgs_resampled <- vector('double',nSF)
+
+for (iSF in 1:nSF) {
+  avgs_resampled[[iSF]] <- mean(resampled_ACh[,iSF])
+  avgs_expt[[iSF]] <- mean(df_mat1[,iSF])
+}
+
+par(mfrow=c(1,1), mar=c(4,4.1,1.2,1.2))
+
+plot(unique(df$SpatialFreq),log(avgs_resampled), log='x',
+     ylim = c(0.1,max(log(c(avgs_resampled,avgs_expt)))+1),
+     xlab='Spatial frequency',
+     ylab='Contrast sensitivity', col=sm_color('blue'),
+     pch=15, cex=1.4)
+
+lines(unique(df$SpatialFreq),log(avgs_resampled), 
+      col=sm_color('blue'), cex=2)
+
+points(unique(df$SpatialFreq)+unique(df$SpatialFreq)*0.1, 
+       log(avgs_expt), pch=16, col=sm_color('red'), cex=1.4)
+
+lines(unique(df$SpatialFreq)+unique(df$SpatialFreq)*0.1,
+      log(avgs_expt), col=sm_color('red'), cex=2)
+
+legend(0.3,1.5,legend=c('Resampled data','Real data'),
+       col = sm_color('blue','red'), pch=15:16,pt.cex=1.8,
+       bty='n')
+```
+
+The two data sets look very similar, however, we will see that \only one of them (real data) can be used for factor analysis because it properly retains covariance. Therefore, it seems that factor analysis captures the *invisible* pattern of the data.
+
+The covariance of the re-sampled data is shown below.
+
+```{r}
+cov(resampled_ACh)
+```
+
+We now see that the re-sampled data set has a much lower covariance in general. Since covariance is too low, it is not suitable to perform factor analysis.
+
+```{r}
+KMO(resampled_ACh)
+```
+
+The values from the KMO test are lower than 0.5 at most spatial frequencies, suggesting the data set is not suitable for factor analysis. 
+
+We can still try parallel analysis and see what happens.
+
+```{r, fig.width=4.2, fig.height=4.2, warning = F, message = F}
+fa.parallel(resampled_ACh, fa ='fa')
+```
+
+There is no identified factor because there is no covariance. However, re-sampling is required to compute 95% confidence interval.
+
+A solution is to use a model that captures the contrast sensitivity function, compute parameters that retain the overall characteristic of the curve for each subject, and then re-sample the parameters with replacement. Then using the re-sampled parameters, one can refit the sensitivity data. In this example, we will re-sample for 100 times (`nSim <- 100`).
+
+Calculation of the parameters from a data frame that contains contrast sensitivity data can be perfomed with `sm_params_list()`.
+
+```{r}
+param_res <- sm_params_list(subjects = 'Subject', 
+                                   conditions = 'Repetition',
+                                   x = 'SpatialFreq', 
+                                   values = 'Sensitivity', 
+                                   data = df)
+
+```
+
+After we compute the four parameters of the parabola model of CSF for each subject, we resample them with replacement. Note that the sample size with resampled data should be identical to the original sample size (`nObs <- 51`).
+
+
+```{r}
+nObs <- 51
+nSim <- 100 # 100 simulations
+```
+
+Then, we can perform non-parametric bootstrapping and obtain 95% confidence interval of the eigenvalues using `sm_np_boot()`. It produces a data frame with the confidence intervals from re-sampling and mean eigenvalue from the multiple rounds of re-sampling. This is stored on `boot_res`.
+
+```{r,  eval = F}
+boot_res <- sm_np_boot(param_res, n=nObs, nSim = nSim)
+boot_res
+```
+
+```{r, echo = F, message=F, warning=F}
+boot_res <- read_csv('boot_res.csv')
+boot_res
+```
+
+By using `sm_plot_boot()`, we can then draw the scree plot with the eigenvalues and their 95% confidence intervals. It draws it by using `ggplot2`, so you can customise the aesthetics by adding (`+`) ggplot2 functions as I have done here with `ylab()`.
+
+```{r, fig.width = 3.8, fig.height=3.2}
+sm_plot_boot(boot_res, shapes = 16) + 
+  ylab('Eigenvalue') -> eigen1
+
+eigen1
+```
+
+We can then extract the number of factors where the 95% confidence intervals of the eigenvalues from the observed data do not overlap with those from randomly generated data from parallel analysis. In this example, we can develop an exploratory model with two factors.
+
+## Factor Analysis
+
+Now, we perform factor analysis with two factors. In this example, we perform varimax rotation to increase the interpretability of the results from factor analysis.
+
+```{r, warning=F, message=F}
+nFac <- 2
+fa_res <- fa(df_mat1, nFac, fm='minres', rotate='varimax')
+print(fa_res$loadings, cutoff = 0.5)
+```
+
+It seems that two factors can describe enough of the achromatic data. The proportion of variance from these two factors are 87.7%. However, there needs some more work to do to confirm whether a two-factor model adequately captures the covariance of the achromatic data.
+
