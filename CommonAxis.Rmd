@@ -530,7 +530,7 @@ legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
 legend
 ```
 
-Notice that the relative orientation of the legend has shifted. The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()`. 
+Notice that the relative orientation of the legend has shifted. The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()` because these arguments are to derive legend based on `sampleplot`. 
 
 ```{r}
 plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend)
