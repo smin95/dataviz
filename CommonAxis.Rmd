@@ -530,7 +530,7 @@ legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
 legend
 ```
 
-Notice that the relative orientation of the legend has shifted. The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()` because these arguments are to derive legend based on `sampleplot`. 
+Notice that the relative orientation of the legend has shifted. The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()` because these arguments are used to derive a legend based on `sampleplot`. 
 
 ```{r}
 plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend)
@@ -571,7 +571,7 @@ The legend is set using the function `sm_common_legend()`, whose `x` and `y` con
 
 The arguments of `sm_put_together()` have to be written in this order unless they are specified (ex. `sm_put_together(all_plots=all_plots, xlabel=xlabel, title=title)`).
 
-If the `legend` is included in `sm_put_together`, the function will automatically add legend onto the last panel of the combined plot, so make sure that the last empty panel is empty.
+If the `legend` is included in `sm_put_together`, the function will automatically add legend onto the last panel of the combined plot, so make sure that the last empty panel is empty. To move the legend's location, you need to adjust `x` and `y` of `sm_common_legend()`, which you have used to make a separate, customisable legend. 
 
 
 ```{r, echo=FALSE, fig.align = 'center'}
