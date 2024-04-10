@@ -83,7 +83,7 @@ changng-the-theme-and-orientation
 raincloud-plot-with-data-from-multiple-groups
 forest-plot
 plotting-the-forest-plot-using-data-of-multiple-groups
-combining-plots-with-common-axes
+creating-a-composite-plot-by-subplotting
 filter-select-and-summarise
 filter-for-rows
 select-for-columns
