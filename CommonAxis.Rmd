@@ -419,8 +419,6 @@ plots_tgd <- sm_put_together(all_plots, title, xlabel,ylabel,
 Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `sm_put_together()`. So, `ncol` and `nrow` are set to 3 in `sm_put_together()`. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the `hmargin` argument can be set to adjust the blank space of height between panels; the `wmargin` argument can be set to adjust the blank space of width between panels. Their values can be both negative (less blank space) and positive (more blank space). I suggest you use values from *-5 to 5* for `hmargin` and `wmargin`.
                   
 
-Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `sm_put_together()`. So, `ncol` and `nrow` are set to 3 in `sm_put_together()`. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the `margin` argument can be set to adjust the blank space between sub-panels.
-
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="3x3 figure. It has 3 columns and 3 rows", out.width = '75%'}
 knitr::include_graphics("img/rc33.png")
 ```
@@ -434,7 +432,7 @@ save_plot('together1.png',plots_tgd,ncol=3,nrow=3,
 knitr::include_graphics("together1.png")
 ```
 
-When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot()` have to match the values in `sm_put_together()` as shown above. `save_plot()` is a function that saves a selected graph into an image or PDF file (or eps, etc).  
+When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot()` have to match the values in `sm_put_together()` as shown above. `save_plot()`, which is a function from the *cowplot* package, is a function that saves a selected graph into an image or PDF file (or eps, etc).
 
 Open `together1.png` in your directory folder. The figure is clean but it lacks a few things: 1) label for each panel, 2) legend. With examples below, we will add them.
 
