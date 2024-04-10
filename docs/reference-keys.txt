@@ -1,3 +1,4 @@
+fig:unnamed-chunk-3
 fig:pressure
 fig:unnamed-chunk-6
 fig:unnamed-chunk-7
@@ -83,7 +84,7 @@ changng-the-theme-and-orientation
 raincloud-plot-with-data-from-multiple-groups
 forest-plot
 plotting-the-forest-plot-using-data-of-multiple-groups
-creating-a-composite-plot-by-subplotting
+creating-a-composite-figure-by-subplotting
 filter-select-and-summarise
 filter-for-rows
 select-for-columns

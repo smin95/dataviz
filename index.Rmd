@@ -187,7 +187,7 @@ all <- plot_grid(top_four, histogram2, bottom_four, ncol =1,
 print(all)
 
 ```
-```{r,fig.align = 'center', echo=F}
+```{r,fig.align = 'center', echo=F,  fig.cap="For more information about creating and annotating a composite figure, please visit Chapter 7."}
 knitr::include_graphics("together4j.png")
 ```
 
