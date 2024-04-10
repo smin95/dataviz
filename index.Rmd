@@ -185,6 +185,10 @@ all <- plot_grid(top_four, histogram2, bottom_four, ncol =1,
 
 
 print(all)
+
+```
+```{r,fig.align = 'center', echo=F}
+knitr::include_graphics("together4j.png")
 ```
 
 This book (https://smin95.github.io/dataviz) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot2**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. The secondary link of the e-book is: https://smin95.com/dataviz. 

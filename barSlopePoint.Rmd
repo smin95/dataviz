@@ -799,15 +799,15 @@ What happens if we have data more than 3 groups? Let's make a fake dataset using
 ```{r}
 set.seed(1412)
 df1a <- df1 %>% filter(Group == 'Amblyopia')
-df1a$absBP <- df1a$absBP + abs(rnorm(50,0,0.1)) 
+df1a$absBP <- df1a$absBP + abs(rnorm(45,0,0.1)) 
 df1a$Group <- 'Myopia'
-df1a$Subject <- rep(paste0('M',1:10),5)
+df1a$Subject <- rep(paste0('M',1:9),5)
 
 df2 <- rbind(df1, df1a)
 set.seed(111)
-df1a$absBP <- df1a$absBP + abs(rnorm(50,0.2,0.2)) 
+df1a$absBP <- df1a$absBP + abs(rnorm(45,0.2,0.2)) 
 df1a$Group <- 'Aniso'
-df1a$Subject <- rep(paste0('AN', 1:10),5)
+df1a$Subject <- rep(paste0('AN', 1:9),5)
 
 df2 <- rbind(df2, df1a)
 ```

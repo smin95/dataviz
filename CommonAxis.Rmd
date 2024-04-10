@@ -245,8 +245,7 @@ plot_s1 <- ggplot(data = df_s1, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+  scale_y_continuous(limits = c(-3, 5.5)) 
 # axis text size is 1.5x the original font size. 
 
 print(plot_s1)
@@ -265,8 +264,7 @@ plot_s2 <- ggplot(data = df_s2, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+  scale_y_continuous(limits = c(-3, 5.5)) 
 # axis text size is 1.5x the original font size. 
 
 print(plot_s2)
@@ -283,8 +281,7 @@ plot_s3 <- ggplot(data = df_s3, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+  scale_y_continuous(limits = c(-3, 5.5)) 
 # axis text size is 1.5x the original font size. 
 
 print(plot_s3)
@@ -301,8 +298,7 @@ plot_s4 <- ggplot(data = df_s4, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+  scale_y_continuous(limits = c(-3, 5.5)) 
 # axis text size is 1.5x the original font size. 
 
 print(plot_s4)
@@ -321,8 +317,7 @@ plot_s5 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid(legends = FALSE) + 
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+  scale_y_continuous(limits = c(-3, 5.5)) 
 
 print(plot_s5)
 ```
@@ -340,8 +335,7 @@ plot_s6 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5))  +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+  scale_y_continuous(limits = c(-3, 5.5))  
 # axis text size is 1.5x the original font size. 
 
 print(plot_s6)
@@ -358,8 +352,7 @@ plot_s7 <- ggplot(data = df_s7, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+  scale_y_continuous(limits = c(-3, 5.5)) 
 # axis text size is 1.5x the original font size. 
 
 print(plot_s7)
@@ -376,8 +369,7 @@ plot_s8 <- ggplot(data = df_s8, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black")) 
+  scale_y_continuous(limits = c(-3, 5.5)) 
 # axis text size is 1.5x the original font size. 
 
 print(plot_s8)
@@ -396,16 +388,15 @@ plot_s9 <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c("0", "3", "6", "12", "24", "48")) +
   sm_hgrid() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) +
-  theme(axis.text = element_text(size = rel(1.5), color = "black"))
+  scale_y_continuous(limits = c(-3, 5.5)) 
 # axis text size is 1.5x the original font size. 
 
 print(plot_s9)
 ```
 
-## Putting multiple plots together 
+## Putting multiple plots together (a composite figure)
 
-Each panel variable has to be included in a `list`. X-axis label can be specified using `sm_common_xlabel()`, which has `x` and `y` arguments for setting the location of the label. Y-axis label is specified using `sm_common_ylabel()` with the same `x` and `y` arguments. The title can be set using `sm_common_title()`. 
+Each panel output has to be stored in a `list` using the function `list()`. X-axis label can be specified using `sm_common_xlabel()`, which has `x` and `y` arguments for setting the location of the label. Y-axis label is specified using `sm_common_ylabel()` with the same `x` and `y` arguments. The title can be set using `sm_common_title()`. 
 
 ```{r}
 all_plots <- list(plot_s1, plot_s2, plot_s3, 
@@ -517,7 +508,7 @@ Here, in `sm_common_legend()`, `x` and `y` control the location of the legend. B
 Let's see what happens if you change the location (`x` and `y`) of the legend.
 
 ```{r}
-legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
+legend_a <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
   geom_point(size = 2.5) +
   scale_color_manual(values = sm_color('blue','orange'),
                      labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
@@ -533,7 +524,7 @@ legend
 Notice that the relative orientation of the legend has shifted. The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()` because these arguments are used to derive a legend based on `sampleplot`. 
 
 ```{r}
-plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend)
+plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend_a)
 ```
 
 
@@ -556,13 +547,15 @@ xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x=0.51, y = 0.
 ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)', x=0.7)
 title <- sm_common_title('Individual data', y = 0.3, x = 0.51, size=18)
 
-plots_tgd4 <- sm_put_together(all_plots, title, xlabel,ylabel, legend,
+plots_tgd4 <- sm_put_together(all_plots, title=title, xlabel=xlabel,
+                              ylabel=ylabel, legend=legend_a,
                              ncol=5,nrow=2, hmargin=-5, wmargin=-5)
 
 ```
 
+
 ```{r}
-save_plot('together3.png', plots_tgd4, ncol=5, nrow=2,
+save_plot('together4.png', plots_tgd4, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 
 ```
@@ -575,5 +568,135 @@ If the `legend` is included in `sm_put_together`, the function will automaticall
 
 
 ```{r, echo=FALSE, fig.align = 'center'}
-knitr::include_graphics("together3.png")
+knitr::include_graphics("together4.png")
+```
+
+## Adding annotations to the composite figure
+
+*smplot2* offers multiple options for users to add annotations on the final, combined figure with a full flexibility. Here are some examples. These functions all have the form of `sm_add_*()`.
+
+
+### Text annotations
+
+Text annotations can be added to the composite figure using `sm_add_text()`. The `label` argument can be used to specify the text label. `x` and `y` are the coordinate values of the text in the composite figure, and they have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `size` determines the text size and the `fontface` can be either `bold`, `plain`, `italic` or `italic.bold`.
+
+```{r}
+plots_tgd4b <- sm_add_text(plots_tgd4, label = 'My composite figure',
+                           x = 0.185, y = 0.19, size = 14, fontface='bold')
+```
+
+
+```{r, echo=FALSE, fig.align = 'center'}
+save_plot('together4b.png', plots_tgd4b, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+
+knitr::include_graphics("together4b.png")
+```
+
+### Point annotations
+
+Point annotations can be added to the composite figure using `sm_add_point()`. `x` and `y` are the coordinate values of the point in the composite figure, and they have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `size` determines the point size and the `shape` number input should be the same as the ones in *ggplot2* (ex. 21 is circle with border). `fill` should be provided for shapes with border. If the shape has no border, then `color` is sufficient to set the color that fills the point.
+
+```{r}
+plots_tgd4c <- sm_add_point(plots_tgd4b,x = 0.50, y = 0.50, size = 35, 
+                            shape = 21, fill = 'gray80', color = 'black')
+```
+
+```{r, echo=FALSE, fig.align = 'center'}
+save_plot('together4c.png', plots_tgd4c, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+
+knitr::include_graphics("together4c.png")
+```
+
+### Line annotations
+
+Line annotations can be added to the composite figure using `sm_add_line()`. `x` and `y` are the starting coordinate values of the line in the composite figure. `xend` and `yend` are the ending coordinate values of the line. These coordinate values have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `linewidth` determines the width of the line and the `color` should adjust the color of the line. There is no `fill` argument. These have same arguments as `annotate()`, which is a *ggplot2* function.
+
+We will draw a crosshair on the gray circle point to demonstrate that the relative coordinate system is uniform across different `sm_add_*()` functions. The center of the points and lines is at (0.5, 0.5).
+
+```{r}
+plots_tgd4d <- sm_add_line(plots_tgd4c,x = 0.5, y = 0.475, xend = 0.5, 
+                           yend = 0.525, color = 'black')
+
+plots_tgd4e <- sm_add_line(plots_tgd4d,x = 0.49, y = 0.5, xend = 0.51, 
+                           yend = 0.5, color = 'black')
+```
+
+```{r, echo=FALSE, fig.align = 'center'}
+save_plot('together4e.png', plots_tgd4e, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+
+knitr::include_graphics("together4e.png")
+```
+
+The cross hair is perfectly aligned.
+
+### Arrow annotations
+
+Next, we will add arrow annotations using `sm_add_arrow()`. The arguments are identical to those in `sm_add_line()` except there is additional argument of `arrowlength`, which determines the size of the arrow's tip. 
+
+Since the unit of `arrowlength` is relative to the size of the composite figure, and because there are two rows and five columns, the horizontal arrow has a smaller `arrowlength` by a factor of 2/5 than that of the vertical arrow. So `arrowlength` is set to `5/2` in the horizontal arrow to match the size of the arrow's head of the vertical arrow. Otherwise, the coordinate system seems to be more or less uniform because 0.5 instructs them to be at the center of the composite figure.
+
+```{r}
+plots_tgd4f <- sm_add_arrow(plots_tgd4e, x  = 0.5, y = 0.37, xend = 0.5, 
+                           yend = 0.46, color = 'black')
+plots_tgd4g <- sm_add_arrow(plots_tgd4f, x = 0.44, y = 0.5, xend = 0.46, 
+                           yend = 0.5, color = 'black', arrowlength = 5/2)
+```
+
+```{r, echo=FALSE, fig.align = 'center'}
+save_plot('together4g.png', plots_tgd4g, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+
+knitr::include_graphics("together4g.png")
+```
+
+### Rectangle annotations
+
+Here, we will add rectangle annotations using `sm_add_rect()`. The four coordinate arguments are `xmin`, `xmax`, `ymin` and `yend`. These arguments are exactly the same as `annotate('rect', ...)`. `fill` determines the filling color, and `color` determines the border color. The border's width is set with the argument `linewidth`, which is set to 0.5 as default.
+
+We draw a transparent rectangle over the crosshair to see if the coordinate system is uniform to those of the previously used annotation functions.
+
+```{r}
+plots_tgd4h <- sm_add_rect(plots_tgd4g, xmin= 0.44, ymin = 0.37, xmax = 0.56, 
+                           ymax = 0.63, alpha = 0.25, fill = sm_color('red'), color='white')
+```
+
+We see that the center of the coordinate is uniform but not at the end. Currently, there is no way to match both the ends and center (as far as I know) due to how the `grid` package works. So, for now, users will have to just understand that the center of the annotations are aligned if same coordinates are used but not at necessarily at the ends. In brief, had to make some sacrifice to make this work.
+
+```{r, echo=FALSE, fig.align = 'center'}
+save_plot('together4h.png', plots_tgd4h, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+
+knitr::include_graphics("together4h.png")
+```
+
+### Polygon annotations
+
+We will annotate a polygon onto the combined figure using `sm_add_polygon()`. Here, we will create a triangle. All coordinates should provided in `x` and `y` arguments. Triangles have three points, so `x` and `y` have three elements. The values should be from 0 to 1.
+
+```{r}
+plots_tgd4i <- sm_add_polygon(plots_tgd4h, x = c(.2,.8,.8), y = c(.2,.8,.2), 
+                              alpha = 0.25, fill = sm_color('blue'), color='white')
+```
+
+```{r, echo=FALSE, fig.align = 'center'}
+save_plot('together4i.png', plots_tgd4i, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+
+knitr::include_graphics("together4i.png")
+```
+
+We will finish the annotations with this one.
+
+```{r}
+plots_tgd4j <- sm_add_text(plots_tgd4i, x=.5, y=.5,  label = 'Annotations!!', angle=42, size = 25, fontface='bold')
+```
+
+```{r, echo=FALSE, fig.align = 'center'}
+save_plot('together4j.png', plots_tgd4j, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+
+knitr::include_graphics("together4j.png")
 ```
