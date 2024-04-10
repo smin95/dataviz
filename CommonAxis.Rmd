@@ -406,8 +406,6 @@ all_plots <- list(plot_s1, plot_s2, plot_s3,
                   plot_s7, plot_s8, plot_s9)
 
 xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52, y = 0.6)
-xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52,
-                           y = 0.6)
 ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)')
 title <- sm_common_title('Individual data', y = 0.2)
 
@@ -663,7 +661,7 @@ plots_tgd4h <- sm_add_rect(plots_tgd4g, xmin= 0.44, ymin = 0.37, xmax = 0.56,
                            ymax = 0.63, alpha = 0.25, fill = sm_color('red'), color='white')
 ```
 
-We see that the center of the coordinate is uniform but not at the end. Currently, there is no way to match both the ends and center (as far as I know) due to how the `grid` package works. So, for now, users will have to just understand that the center of the annotations are aligned if same coordinates are used but not at necessarily at the ends. In brief, had to make some sacrifice to make this work.
+We see that the center of the coordinate is uniform but not at the end. Currently, there is no way to match both the ends and center because as far as I know there is no way to get common coordinates for different visual components at the level of composite figure. So, for now, users will have to just understand that the center of the annotations are aligned if same coordinates are used but not at necessarily at the ends. 
 
 ```{r, echo=FALSE, fig.align = 'center'}
 save_plot('together4h.png', plots_tgd4h, ncol=5, nrow=2,
