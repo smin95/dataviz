@@ -264,7 +264,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 ```
 
 Let's make this graph prettier by using functions from **smplot2**.
-- In this example, let's use `sm_corr_theme()`. I've made this function as a theme suitable for correlation plots.
+- In this example, let's use `sm_hvgrid()`. I've made this function as a theme suitable for correlation plots.
   - Disclaimer: **smplot2** package has been built based on my preference.
   - **smplot2** is not necessary to make a **ggplot** graph or change its style. 
 
@@ -273,15 +273,15 @@ It is possible to change every aspect of the graph with **ggplot2** but this req
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point() + 
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
-Now let's remove the border within `sm_corr_theme()` by setting `borders = FALSE`.
+Now let's remove the border within `sm_hvgrid()` by setting `borders = FALSE`.
 
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point() + 
-  sm_corr_theme(borders = FALSE)
+  sm_hvgrid(borders = FALSE)
 ```
 
 **Exercise:** You can also set `borders = TRUE` and see what happens. 
@@ -289,26 +289,26 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 ```{r, eval = F}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point() + 
-  sm_corr_theme(borders = TRUE)
+  sm_hvgrid(borders = TRUE)
 ```
 
-You might notice that borders come back. This is exactly what happens when you do not include `borders` argument in `sm_corr_theme()`. This is because `sm_corr_theme()` is set to `borders = TRUE` as default. 
+You might notice that borders come back. This is exactly what happens when you do not include `borders` argument in `sm_hvgrid()`. This is because `sm_hvgrid()` is set to `borders = TRUE` as default. 
 
 - I think the one with the border looks better. 
-- You can also remove the legend by setting `legends = FALSE` in `sm_corr_theme()`. 
+- You can also remove the legend by setting `legends = FALSE` in `sm_hvgrid()`. 
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point() + 
-  sm_corr_theme(legends = FALSE)
+  sm_hvgrid(legends = FALSE)
 ```
 
-**Exercise** Set `legends = TRUE` and see what happens. Type `?sm_corr_theme` to see why legends appear without directly writing `legends = TRUE`. 
+**Exercise** Set `legends = TRUE` and see what happens. Type `?sm_hvgrid` to see why legends appear without directly writing `legends = TRUE`. 
 
 ```{r, eval = F}
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point() + 
-  sm_corr_theme(legends = TRUE)
+  sm_hvgrid(legends = TRUE)
 ```
 
 However, in this case, I think we need a legend because there are many **classes**.
@@ -331,20 +331,20 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
              size = 3) 
 ```
 
-**drat** and **mpg** have a positive relationship. Now let's make it pretty by adding `sm_corr_theme()`. 
+**drat** and **mpg** have a positive relationship. Now let's make it pretty by adding `sm_hvgrid()`, which has major horizontal and vertical grids on a white background.
 
 ```{r,fig.width = 3.5,fig.height=3.5}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
-You can remove borders too by setting `borders = FALSE` in `sm_corr_theme()`.
+You can remove borders too by setting `borders = FALSE` in `sm_hvgrid()`.
 
 ```{r,fig.width = 3.5,fig.height=3.5}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_theme(borders = FALSE)
+  sm_hvgrid(borders = FALSE)
 ```
 
 
@@ -356,7 +356,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 - R-value (correlation coefficient) measures the strength and the direction of the correlation. It ranges from -1 to 1. It does not depend on the sample size. 
 - Let's add a function `sm_statCorr()`. The statistical results are from Pearson's correlation test.
 
-`sm_statCorr()` is combined with `sm_corr_theme()` (updated in smplot2). Therefore, when you print the statstical values using `sm_statCorr()`, the correlation theme is automatically used.
+`sm_statCorr()` is combined with `sm_hvgrid()` (updated in smplot2). Therefore, when you print the statstical values using `sm_statCorr()`, the correlation theme is automatically used.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
@@ -512,7 +512,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
                  errh.params = list(),
                  errv.params = list()) +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 After removing the defaults, we see that `width` of `errv.params` and `height` of `errh.params` are no longer 0. We can control both `width` and `height` separately.
@@ -523,7 +523,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
                  errh.params = list(height = 1),
                  errv.params = list(width = 0.12)) +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 In this case, `height` is much longer because the scale of y-axis is much longer than that of x-axis. We can also set unique colors to horizontal and vertical error bars.
@@ -534,7 +534,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
                  errh.params = list(height = 1, color = "#1262b3"),
                  errv.params = list(width = 0.12, color = "#cc3d3d")) +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 The error bar might appear too thin and the average point too small. We can control the `size` to make it more noticeable in the plot.
@@ -548,7 +548,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
                                     size = 0.8),
                  errv.params = list(width = 0.12, color = "#cc3d3d",
                                     size = 0.8)) +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 We can control the transparency of the individual points and fine tune the aesthetics of the average point to make it more noticeable in the sea of individual points.
@@ -564,7 +564,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
                                     size = 0.8),
                  errv.params = list(width = 0.12, color = "#cc3d3d",
                                     size = 0.8)) +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 Notice that the transparency of the individual point allows us see that there are some points with some serious overlap. 
@@ -589,7 +589,7 @@ There are many more color themes that are available in R. For more information, 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F, message = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = sm_color('green'), color = 'white',size = 3) + 
-  sm_corr_theme() + 
+  sm_hvgrid() + 
   sm_statCorr(color = sm_color('green'))
 ```
 
@@ -598,7 +598,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 ```{r, eval = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = sm_color('blue'), color = 'white',size = 3) + 
-  sm_corr_theme() + 
+  sm_hvgrid() + 
   sm_statCorr(color = sm_color('blue'))
 ```
 
@@ -641,7 +641,7 @@ number_of_classes
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point(size = 2) + 
   scale_color_manual(values = sm_palette(number_of_classes)) + 
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 Let's store this graph using a **variable** called `figure1`. 
@@ -650,7 +650,7 @@ Let's store this graph using a **variable** called `figure1`.
 figure1 <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point() + 
   scale_color_manual(values = sm_palette(number_of_classes)) + 
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 **Notice that when you store a figure into a variable, the figure is not displayed** when you run the code that makes the figure, ex.  `figure1 <- ggplot(data = mpg, mapping = ...`. To display the figure, please type the variable name in the console.
@@ -700,8 +700,8 @@ Congratulations! You can now make **correlation plots** with R.
   - You have learned to plot `geom_point()` and `geom_smooth()` in the same graph.
 
 - **smplot2** functions can be used to improve **ggplot2** visually.
-  - For correlation plots, add `sm_corr_theme()`.
-  - You can report statistical results and plot linear regression from correlation by `sm_statCorr()`, which also provides `sm_corr_theme()`. So there is no need to write `sm_corr_theme()` when using `sm_statCorr()`.
+  - For correlation plots, add `sm_hvgrid()`.
+  - You can report statistical results and plot linear regression from correlation by `sm_statCorr()`, which also provides `sm_hvgrid()`. So there is no need to write `sm_hvgrid()` when using `sm_statCorr()`.
   - You can also select colors using `sm_color()`.
   
 - Save the graph as an image file in your working directory.

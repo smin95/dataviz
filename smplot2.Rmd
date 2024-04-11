@@ -121,7 +121,7 @@ my_colors
 
 - `sm_vgrid()` has major vertical grids and is not used as default for the visualizing functions.
 
-- `sm_hvgrid()` has both major horizontal and vertical grids. This is identical to `sm_corr_theme()`. 
+- `sm_hvgrid()` has both major horizontal and vertical grids. 
  - This theme is most appropriate when the x- and y-axes have the same range.
  
 - `sm_hvgrid_minor()` has vertical and horizontal major and minor grids.
@@ -142,16 +142,16 @@ p1 <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 p1
 ```
 
-We can incorporate `sm_corr_theme()`.
+We can incorporate `sm_hvgrid()`.
 
 ```{r,fig.width = 5, fig.height=3.5}
-p1 + sm_corr_theme()
+p1 + sm_hvgrid()
 ```
 
 We can also remove `borders` and `legends` by setting them as `FALSE`.
 
 ```{r,fig.width = 3.5, fig.height=3.5}
-p2 <- p1 + sm_corr_theme(borders = FALSE, legends = FALSE)
+p2 <- p1 + sm_hvgrid(borders = FALSE, legends = FALSE)
 p2
 ```
 
@@ -217,7 +217,7 @@ In the data frame `mtcars`, one column is for the x-axis (`drat`), another colum
 
 There are two associated functions in **smplot2** with correlation.
 
-- `sm_statCorr()` draws the fitted linear regression line, prints the `R` and `p` values from the specified `method` of correlation test. It also calls `sm_corr_theme()`.
+- `sm_statCorr()` draws the fitted linear regression line, prints the `R` and `p` values from the specified `method` of correlation test. It also calls `sm_hvgrid()`.
   - **Important:** `sm_statCorr()` recognizes the data for the y- and x-axes from the `mapping = aes()` in `ggplot()` function. Therefore there is no need to provide `data`, `x` and `y` arguments in this function.
 
 - `sm_corr_avgErr()` draws the average point with vertical and horizontal error bars. The arguments `sm_corr_avgErr(data = ..., x = ..., y = ...)` have to be included; these are identical to what are provided in `ggplot()`.
@@ -284,7 +284,7 @@ p1 + sm_statCorr(fit.params = list(color = 'black',
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
   sm_corr_avgErr(data = mtcars, x = drat, y = mpg) +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 - `point.params()` feeds arguments to `geom_point()` to set `color`, `alpha`, `size` etc for the average point.
@@ -302,7 +302,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
                                     size = 0.8),
                  errv.params = list(width = 0.12, color = "#cc3d3d",
                                     size = 0.8)) +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 - `errorbar_type` sets the type of the error bar, such as standard error (`errorbar_type = 'se'` as default), standard deviation (`errorbar_type = 'sd'`) or 95% confidence interval (`errorbar_type = 'ci'`).
@@ -312,7 +312,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
   sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
                  errorbar_type = 'se') +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
@@ -320,7 +320,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
   sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
                  errorbar_type = 'ci') +
-  sm_corr_theme()
+  sm_hvgrid()
 ```
 
 ### Structure of data frame
@@ -363,7 +363,7 @@ Notice that `df_corr` has two columns, each of which represents a measurement gr
 # correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
   geom_point(shape = 21, fill = sm_color('crimson'), color = 'white',
-             size = 3) + sm_corr_theme(borders = FALSE) +
+             size = 3) + sm_hvgrid(borders = FALSE) +
   scale_y_continuous(limits = c(-2.5,2.5)) +
   scale_x_continuous(limits = c(-2.5,2.5)) +
   sm_statCorr(color = sm_color('crimson'), fullrange = TRUE,
@@ -394,7 +394,7 @@ This can be done with `geom_abline()`. In this example, the reference line's slo
 # correlation plot using data frame 'df_corr' 
 ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
   geom_point(shape = 21, fill = sm_color('crimson'), color = 'white',
-             size = 3) + sm_corr_theme(borders = FALSE) +
+             size = 3) + sm_hvgrid(borders = FALSE) +
   geom_abline(slope = 1, linetype = 'dashed') +
   scale_y_continuous(limits = c(-2.8,2.8),  expand = c(0,0)) +
   scale_x_continuous(limits = c(-2.8,2.8), expand = c(0,0)) +

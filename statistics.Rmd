@@ -33,7 +33,7 @@ df_shade <- read_csv('https://www.smin95.com/fit_error_shade.csv')
 df_shade1 <- df_shade %>% mutate(yUpp = y_mean + y_se, yLow = y_mean - y_se)
 
 df <- read_csv('https://www.smin95.com/min2019b.csv') 
-auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+auc_df <- sm_auc_all(subjects = 'Subject', conditions = 'Day', 
             x = 'Time', values = 'Cbratio',
             data = df)
 
@@ -66,7 +66,7 @@ df_shade1 %>% ggplot(aes(x=x, y=y_mean)) +
 
 For instance, to determine if the area under curve (changes in contrast balance ratio over time) after patching is significant, so much so that one can confidently say that it is different from 0, we can perform a one-sample t-test using `t.test()`.
 
-Let's use data from the same paper. We import the data from online using `read_csv()` and store them into a variable (in this case, `df`). Then, we compute the area under a curve using `sm_auc_list()` and store the values in the variable `auc_df`.
+Let's use data from the same paper. We import the data from online using `read_csv()` and store them into a variable (in this case, `df`). Then, we compute the area under a curve using `sm_auc_all()` and store the values in the variable `auc_df`.
 
 
 ```{r, warning = FALSE, message = FALSE}
@@ -74,7 +74,7 @@ df <- read_csv('https://www.smin95.com/min2019b.csv')
 
 df$Day <- as.factor(df$Day)
 
-auc_df <- sm_auc_list(subjects = 'Subject', conditions = 'Day', 
+auc_df <- sm_auc_all(subjects = 'Subject', conditions = 'Day', 
             x = 'Time', values = 'Cbratio',
             data = df)
 

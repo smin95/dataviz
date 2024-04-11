@@ -201,7 +201,7 @@ Here is the only (and slightly outdated) reference for **smplot2**:
 
 **Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). *Frontiers in Genetics*, 12:802894.** [**pdf**](https://www.smin95.com/pubs/smplot2021.pdf)
 
-The codes of the figures in the report are [**here**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html) but these depend on *smplot*, not *smplot2*. In near future, I **plan to submit *smplot2* to CRAN** and post its vignette here.
+The codes of the figures in the report are [**here**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html) but these depend on *smplot*, not *smplot2*. 
 
 Here is the reference for the **smCSF** package (Chapters 13-16):
 
@@ -209,7 +209,7 @@ Here is the reference for the **smCSF** package (Chapters 13-16):
 
 ## Installation of smplot2 {-}
 
-Recent updates made on **2024-03-31**:
+In near future, I **plan to submit *smplot2* to CRAN** to make the installation process easier for all interested users.
 
 ```{r, eval = FALSE}
 install.packages(c('tidyverse','devtools','gghalves'))
@@ -221,7 +221,7 @@ devtools::install_github('smin95/smplot2', force = TRUE)
 If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the *smplot2* package, please pull-request on [Github](https://github.com/smin95/smplot2).
 
 ## License {-}
-**smplot2** is under the MIT license. This tutorial is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). I am the sole creator of **smplot2**.
+This tutorial is under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). I am the sole creator of **smplot2**.
 
 ## About the author {-}
 I am Assistant Professor in Dept. Ophthalmology and Optometry at Wenzhou Medical University. On June 2021, I received my PhD at McGill University under the supervision of Dr. Robert F. Hess. My research is focused on amblyopia, neural plasticity and binocular vision. During spare time, I play the clarinet and develop R packages. More details, such as my publications, are on my website: https://www.smin95.com. 
