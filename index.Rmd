@@ -11,6 +11,7 @@ documentclass: book
 knitr::opts_chunk$set(cache = FALSE)
 ```
 
+
 # Welcome! {-#index}
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 7.4, fig.height= 18}
@@ -210,12 +211,13 @@ Here is the reference for the **smCSF** package (Chapters 13-16):
 
 ## Installation of smplot2 {-}
 
-In near future, I **plan to submit *smplot2* to CRAN** to make the installation process easier for all interested users.
+As of April 2024, *smplot2* is now part of the **CRAN** repository. Please install using `install.packages()` for the most stable version, and `install_github()` for the most updated version.
 
 ```{r, eval = FALSE}
-install.packages(c('tidyverse','devtools','gghalves'))
+#install.packages('devtools)
+#devtools::install_github('smin95/smplot2',force = T)
 
-devtools::install_github('smin95/smplot2', force = TRUE)
+install.packages('smplot2')
 ```
 
 ## Issues and contact {-}
