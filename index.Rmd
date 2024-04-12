@@ -70,13 +70,14 @@ df %>% ggplot(aes(x = Day, y = Value, fill = Day)) +
 
 #### raincloud
 df2 %>% ggplot(aes(x = Day, y = Value, color = Day, fill = Day)) +
-  sm_bar(point.params = list(shape=21,size=2.5,color='white')) +
+  sm_bar(point.params = list(shape=21,size=2.5,color='white'),
+         seed=10) +
   xlab('Day') +
   scale_fill_manual(values = sm_color('blue','orange')) +
   ggtitle('Bar graph') -> bar
 
 df2 %>% ggplot(aes(x = Day, y = Value, color = Day, fill = Day)) +
-  sm_raincloud() +
+  sm_raincloud(seed=10) +
   xlab('Day')  +
   scale_fill_manual(values = sm_color('blue','orange')) +
   ggtitle('Raincloud plot') -> raincloud
