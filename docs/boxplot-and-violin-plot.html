@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
-<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a composite figure by subplotting</a>
+<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a Composite Figure by Subplotting</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
 <ul>
@@ -537,7 +537,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.2.2</span> Boxplot vs bar graph<a href="boxplot-and-violin-plot.html#boxplot-vs-bar-graph" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Here is the basic structure of the bar graph.</p>
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-## i Please use `linewidth` instead.</code></pre>
+## i Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning
+## was generated.</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-81-1.png" width="685.714285714286" /></p>
 <ul>
 <li>The boxplot is more informative than bar graph.</li>
@@ -585,7 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8       0.886 One  
 ##  9 S9       0.691 One  
 ## 10 S10     -0.366 One  
-## # ... with 80 more rows</code></pre>
+## # i 80 more rows</code></pre>
 <ul>
 <li>Note that the <strong>Subject</strong> column is also considered as <code>&lt;chr&gt;</code> (<strong>characters</strong>) because it contains texts/alphabets.</li>
 <li>The <strong>Value</strong> column is categorized as <code>&lt;dbl&gt;</code>, which means <strong>double</strong>.
@@ -640,7 +643,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8       0.886 One  
 ##  9 S9       0.691 One  
 ## 10 S10     -0.366 One  
-## # ... with 80 more rows</code></pre>
+## # i 80 more rows</code></pre>
 <p>Now we see <code>&lt;fct&gt;</code> in the <strong>Day</strong> column. This means that the column is now <strong>factor</strong>, not <strong>character</strong>.</p>
 </div>
 <div id="back-to-boxplot-using-ggplot2" class="section level3 hasAnchor" number="4.2.7">

@@ -9,7 +9,7 @@ editor_options:
 knitr::include_graphics("smplot2_hex.png")
 ```
 
-**smplot2**'s key contributions are shortcut functions that generate elegant plots, which are aesthetically appropriate for the format of scientific journals and key functions that can create and annotate a composite figure (subplotting), the latter of which is described in Chapter 7 in detail. 
+**smplot2**'s key contributions are shortcut functions that generate elegant plots, which are aesthetically appropriate for the format of scientific journals, and key functions that can create and annotate a composite figure (subplotting), the latter of which is described in Chapter 7 in detail. 
 
 ## How to read this book
 

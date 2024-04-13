@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
-<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a composite figure by subplotting</a>
+<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a Composite Figure by Subplotting</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
 <ul>
@@ -502,7 +502,7 @@ format of the dataframe into a new variable using <code>&lt;-</code> or <code>-&
 ##  8 h       1         0   1.42 
 ##  9 u       1         0   1.54 
 ## 10 j       1         0   3.05 
-## # ... with 50 more rows</code></pre>
+## # i 50 more rows</code></pre>
 <div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="calculating-area-under-a-curve.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 60 x 4
 ##    Subject Day    Time Cbratio
@@ -517,7 +517,7 @@ format of the dataframe into a new variable using <code>&lt;-</code> or <code>-&
 ##  8 h       1         0   1.42 
 ##  9 u       1         0   1.54 
 ## 10 j       1         0   3.05 
-## # ... with 50 more rows</code></pre>
+## # i 50 more rows</code></pre>
 <p>These two are identical. But notice that if you do not use pipe,
 you might have to save the intermediate variables (such as <code>df_day1</code> and <code>by_time_day1</code>) multiple times, which can be tedious. Notice that when pipe <code>%&gt;%</code> is used, the need to save these variables disappears.</p>
 <p>I will use <code>%&gt;%</code> from now on due to my personal preference.</p>

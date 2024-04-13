@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Creating a composite figure by subplotting | Data Analysis and Visualization in R Using smplot2</title>
-  <meta name="description" content="Chapter 7 Creating a composite figure by subplotting | Data Analysis and Visualization in R Using smplot2" />
+  <title>Chapter 7 Creating a Composite Figure by Subplotting | Data Analysis and Visualization in R Using smplot2</title>
+  <meta name="description" content="Chapter 7 Creating a Composite Figure by Subplotting | Data Analysis and Visualization in R Using smplot2" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Creating a composite figure by subplotting | Data Analysis and Visualization in R Using smplot2" />
+  <meta property="og:title" content="Chapter 7 Creating a Composite Figure by Subplotting | Data Analysis and Visualization in R Using smplot2" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Creating a composite figure by subplotting | Data Analysis and Visualization in R Using smplot2" />
+  <meta name="twitter:title" content="Chapter 7 Creating a Composite Figure by Subplotting | Data Analysis and Visualization in R Using smplot2" />
   
   
   
@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
-<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a composite figure by subplotting</a>
+<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a Composite Figure by Subplotting</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
 <ul>
@@ -439,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="creating-a-composite-figure-by-subplotting" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Creating a composite figure by subplotting<a href="creating-a-composite-figure-by-subplotting.html#creating-a-composite-figure-by-subplotting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Chapter 7</span> Creating a Composite Figure by Subplotting<a href="creating-a-composite-figure-by-subplotting.html#creating-a-composite-figure-by-subplotting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In this section, we will plot a composite figure. This refers to a type of plot that has many panels with common information, such as the same x- and y-axes. Subplotting is referred to when we allocate subsets of data to particular panels but not others in the composite figure. We will make each panel (i.e., subplot) one-by-one, combine them into a composite figure, add a common legend, and then annotate it with texts and shapes using the functions from <em>smplot2</em> package.</p>
 <p>First, you need to load data (.csv file). When you are loading your own .csv file for your data analysis, make sure you place the .csv file of your interest in the folder that has been set to the <strong>working directory</strong>.</p>
 <p>In this example, we will be using data from this paper:</p>
@@ -510,7 +510,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8      1         0   1.42 
 ##  9 S9      1         0   1.54 
 ## 10 S10     1         0   3.05 
-## # ... with 50 more rows</code></pre>
+## # i 50 more rows</code></pre>
 <p>The above code can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column.</p>
 <p>Notice that S1 is a <strong>character</strong> because it has an alphabet. Therefore, it needs to be written as <code>'S1'</code>. However, <code>1</code> of <code>Day</code> is <strong>double</strong>, which is essentially just a number digit. Therefore, it can be written as <code>1</code> with no quotation mark.</p>
 <p>Let’s try another example.</p>
@@ -552,7 +552,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8      1         0   1.42 
 ##  9 S9      1         0   1.54 
 ## 10 S10     1         0   3.05 
-## # ... with 56 more rows</code></pre>
+## # i 56 more rows</code></pre>
 <p>The above can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>OR</strong> have <code>S1</code> in the <code>Subject</code> column. <code>|</code> represents <strong>OR</strong>, <code>&amp;</code> represents <strong>AND</strong>.</p>
 </div>
 <div id="select-for-columns" class="section level3 hasAnchor" number="7.1.2">
@@ -606,7 +606,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8      1         0   1.42 
 ##  9 S9      1         0   1.54 
 ## 10 S10     1         0   3.05 
-## # ... with 110 more rows</code></pre>
+## # i 110 more rows</code></pre>
 <p>The output of <code>group_by()</code> is a new data frame (it might appear exactly the same as before, ex. <strong>df</strong>). However, it will respond differently to <code>summarise()</code> because the rows of the data frame are now grouped based on day and time, as we have specified.</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="creating-a-composite-figure-by-subplotting.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">Average_Cbratio =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
 <pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the

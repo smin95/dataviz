@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
-<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a composite figure by subplotting</a>
+<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a Composite Figure by Subplotting</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
 <ul>
@@ -497,7 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8          1        2.54    29.6      1.39        9.93
 ##  9          1        3.54    24.3      1.22        8.70
 ## 10          1        4.93    18.1      0.960       6.85
-## # ... with 14 more rows</code></pre>
+## # i 14 more rows</code></pre>
 <p>Let’s create a variable that stores the data for each <code>Repetition</code>. Before we do that, however, it is important that we convert the data type of the <code>Repetition</code> column from <code>&lt;dbl&gt;</code> to <code>&lt;fct&gt;</code>, which refers from <strong>double</strong> to <strong>factor</strong>. <strong>Double</strong> refers to continuous data, whereas <strong>factor</strong> refers to categorical data.</p>
 <div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="plotting-the-contrast-sensitivity-function.html#cb691-1" aria-hidden="true" tabindex="-1"></a>ACh_avg<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh_avg<span class="sc">$</span>Repetition) <span class="co"># factor</span></span>
 <span id="cb691-2"><a href="plotting-the-contrast-sensitivity-function.html#cb691-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -667,7 +667,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 1                 2.54    29.6      1.39        9.93
 ##  9 1                 3.54    24.3      1.22        8.70
 ## 10 1                 4.93    18.1      0.960       6.85
-## # ... with 14 more rows</code></pre>
+## # i 14 more rows</code></pre>
 <p>We see that the first column of <code>Ach_avg</code> has a column named <code>Repetition</code> which stores whether the given data are from the first or second repetition. To see all the unique levels of <code>Repetition</code>, we can use the function <code>unique()</code>.</p>
 <div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="plotting-the-contrast-sensitivity-function.html#cb711-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(ACh_avg<span class="sc">$</span>Repetition)</span></code></pre></div>
 <pre><code>## [1] 1 2

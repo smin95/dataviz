@@ -268,7 +268,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
-<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a composite figure by subplotting</a>
+<li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a Composite Figure by Subplotting</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
 <ul>
@@ -489,7 +489,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8          1        2.54    29.6      1.39        9.93
 ##  9          1        3.54    24.3      1.22        8.70
 ## 10          1        4.93    18.1      0.960       6.85
-## # ... with 14 more rows</code></pre>
+## # i 14 more rows</code></pre>
 <p>As in the previous chapter, lets store the data into proper data frames for each repetition.</p>
 <div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb727-1" aria-hidden="true" tabindex="-1"></a>ACh_avg<span class="sc">$</span>Repetition <span class="ot">&lt;-</span> <span class="fu">factor</span>(ACh_avg<span class="sc">$</span>Repetition) <span class="co"># factor</span></span>
 <span id="cb727-2"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb727-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -543,7 +543,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 1                 2.54    29.6      1.39        9.93
 ##  9 1                 3.54    24.3      1.22        8.70
 ## 10 1                 4.93    18.1      0.960       6.85
-## # ... with 14 more rows</code></pre>
+## # i 14 more rows</code></pre>
 <p>To compute the trapezoidal AUC, we can use the function <code>sm_trapz()</code>.</p>
 <div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#cb732-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_trapz</span>(ACh_avg1<span class="sc">$</span>SpatialFreq, ACh_avg1<span class="sc">$</span>avgSens)</span></code></pre></div>
 <pre><code>## [1] 2.081833</code></pre>
@@ -583,7 +583,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8               1        0.25       10.5 
 ##  9 S9               1        0.25        9.06
 ## 10 S10              1        0.25        3.57
-## # ... with 1,214 more rows</code></pre>
+## # i 1,214 more rows</code></pre>
 <p>We see that there are 51 subjects total, each of which has completed two repetitions (i.e., conditions). So there are 102 slopes to calculate! Does that mean we need to use <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code> 102 times?</p>
 <p>As the reader might expect from the previous chapters, the answer is <strong>no</strong>. <strong>smCSF</strong> has a functions <code>sm_trapz_list()</code>, <code>sm_AULCSF_list()</code> and <code>sm_r2_list()</code> that return a data frame of AUCs, AULCSFs and R2s, respectively. They works similarly to <code>sm_auc_list()</code> and <code>sm_slope_list()</code> from <strong>smplot</strong>.</p>
 <ul>
