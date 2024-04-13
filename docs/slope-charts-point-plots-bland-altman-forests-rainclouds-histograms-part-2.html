@@ -479,19 +479,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value, <span class="at">fill =</span> beforeAfter)) <span class="sc">+</span></span>
 <span id="cb617-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb617-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">group =</span> Subject) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-478-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-479-1.png" width="307.2" /></p>
 <p><code>labels</code> argument decides the x-axis tick <code>sm_slope()</code>. If it is empty, it will choose alphabetical <code>letters</code>.</p>
 <div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value, <span class="at">fill =</span> beforeAfter)) <span class="sc">+</span></span>
 <span id="cb618-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb618-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">group =</span> Subject,</span>
 <span id="cb618-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb618-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Before&#39;</span>, <span class="st">&#39;After&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb618-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb618-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>  <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-479-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-480-1.png" width="307.2" /></p>
 <p>Same color can also be set across the factors (x-level).</p>
 <div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value, <span class="at">fill =</span> beforeAfter)) <span class="sc">+</span></span>
 <span id="cb619-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb619-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">group =</span> Subject,</span>
 <span id="cb619-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb619-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Before&#39;</span>, <span class="st">&#39;After&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb619-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb619-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>  <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;blue&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-480-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-481-1.png" width="307.2" /></p>
 <div id="drawing-the-mean-plot" class="section level3 hasAnchor" number="12.1.1">
 <h3><span class="header-section-number">12.1.1</span> Drawing the mean plot<a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When <code>show_mean = TRUE</code>, then the average plot will be shown.</p>
@@ -500,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb620-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb620-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Before&#39;</span>, <span class="st">&#39;After&#39;</span>),</span>
 <span id="cb620-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb620-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_mean =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb620-5"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb620-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>  <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-481-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-482-1.png" width="307.2" /></p>
 <p>If <code>show_err = TRUE</code>, then the error bar will be displayed.</p>
 <div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value, <span class="at">fill =</span> beforeAfter)) <span class="sc">+</span></span>
 <span id="cb621-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb621-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">group =</span> Subject,</span>
@@ -508,7 +508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb621-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb621-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_mean =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb621-5"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb621-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_err =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
 <span id="cb621-6"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb621-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values=</span>  <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-482-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-483-1.png" width="307.2" /></p>
 <p><code>sm_slope()</code> has many several arguments:</p>
 <ul>
 <li><code>point.params</code> feeds arguments to <code>geom_point()</code> to plot the individual points with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</li>
@@ -521,7 +521,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb622-6"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb622-6" aria-hidden="true" tabindex="-1"></a>                               <span class="at">size =</span> <span class="fl">2.2</span>,</span>
 <span id="cb622-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb622-7" aria-hidden="true" tabindex="-1"></a>                               <span class="at">stroke =</span> <span class="fl">0.65</span>,</span>
 <span id="cb622-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb622-8" aria-hidden="true" tabindex="-1"></a>                               <span class="at">shape =</span> <span class="dv">21</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-483-1.png" width="288" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-484-1.png" width="288" /></p>
 <ul>
 <li><code>line.params</code> feeds arguments to <code>geom_line()</code> to plot the points with specified <code>color</code>, <code>size</code> and <code>alpha</code>.</li>
 </ul>
@@ -536,7 +536,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb623-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb623-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">alpha =</span> <span class="fl">0.3</span>),</span>
 <span id="cb623-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb623-10" aria-hidden="true" tabindex="-1"></a>           <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>),</span>
 <span id="cb623-11"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb623-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">alpha =</span> <span class="fl">0.3</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-484-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-485-1.png" width="307.2" /></p>
 <ul>
 <li><code>avgPoint.params</code> feeds arguments to <code>geom_point()</code> to plot the average point with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</li>
 </ul>
@@ -554,7 +554,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb624-12"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb624-12" aria-hidden="true" tabindex="-1"></a>                              <span class="at">alpha =</span> <span class="fl">0.3</span>),</span>
 <span id="cb624-13"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb624-13" aria-hidden="true" tabindex="-1"></a>           <span class="at">avgPoint.params =</span> <span class="fu">list</span>(<span class="at">color=</span><span class="st">&#39;transparent&#39;</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
 <span id="cb624-14"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb624-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-485-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-486-1.png" width="307.2" /></p>
 <ul>
 <li><code>avgLine.params</code> feeds arguments to <code>geom_line()</code> to plot the average plot (line) with specified <code>color</code>, <code>size</code> and <code>alpha</code>.</li>
 </ul>
@@ -573,7 +573,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb625-13"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb625-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">avgPoint.params =</span> <span class="fu">list</span>(<span class="at">color=</span><span class="st">&#39;transparent&#39;</span>, <span class="at">shape =</span> <span class="dv">21</span>,</span>
 <span id="cb625-14"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb625-14" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)),</span>
 <span id="cb625-15"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb625-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">avgLine.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-486-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-487-1.png" width="307.2" /></p>
 <ul>
 <li><code>err.params</code> feeds arguments to <code>geom_linerange()</code> to plot the error bar with specified <code>color</code>, <code>size</code> etc.</li>
 </ul>
@@ -594,7 +594,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb626-15"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb626-15" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">size =</span> <span class="dv">4</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)),</span>
 <span id="cb626-16"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb626-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">avgLine.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)),</span>
 <span id="cb626-17"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb626-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-487-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-488-1.png" width="307.2" /></p>
 <ul>
 <li><p><code>xtick.params</code> feeds arguments to <code>scale_x_discrete()</code> so that the user can have control over specific aesthetics of the x-tick. Type <code>?scale_x_discrete()</code> for more information.</p></li>
 <li><p><code>errorbar_type</code> can be used to set the error bar type in the mean plot. The default is <code>errorbar_type = 'sd'</code>. Two other types are <code>ci</code> (95% confidence interval) and <code>se</code> (standard error).</p></li>
@@ -617,7 +617,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb627-16"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb627-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">avgLine.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)),</span>
 <span id="cb627-17"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb627-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)),</span>
 <span id="cb627-18"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb627-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">errorbar_type =</span> <span class="st">&#39;ci&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-488-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-489-1.png" width="307.2" /></p>
 <div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb628-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb628-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">group =</span> Subject,</span>
 <span id="cb628-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb628-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_mean =</span> <span class="cn">TRUE</span>, </span>
@@ -636,7 +636,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb628-16"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb628-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">avgLine.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)),</span>
 <span id="cb628-17"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb628-17" aria-hidden="true" tabindex="-1"></a>           <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>)),</span>
 <span id="cb628-18"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb628-18" aria-hidden="true" tabindex="-1"></a>           <span class="at">errorbar_type =</span> <span class="st">&#39;se&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-489-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-490-1.png" width="307.2" /></p>
 <ul>
 <li><code>many_groups</code> decides whether the average plot is based on all individual data across groups or per group.</li>
 </ul>
@@ -679,7 +679,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb630-14"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb630-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.85</span>),</span>
 <span id="cb630-15"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb630-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb630-16"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb630-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-491-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-492-1.png" width="364.8" /></p>
 <p>To prevent this from happening, set <code>many_groups = TRUE</code>.</p>
 <div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df3, <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> group, </span>
 <span id="cb631-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb631-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">shape =</span> group, <span class="at">group =</span> group)) <span class="sc">+</span></span>
@@ -698,7 +698,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb631-15"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb631-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.2</span>,<span class="fl">0.85</span>),</span>
 <span id="cb631-16"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb631-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb631-17"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb631-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-492-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-493-1.png" width="364.8" /></p>
 </div>
 </div>
 <div id="point-plot---sm_pointplot" class="section level2 hasAnchor" number="12.2">
@@ -740,7 +740,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb633-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df1, <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, </span>
 <span id="cb633-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb633-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> group, <span class="at">group =</span> group)) <span class="sc">+</span></span>
 <span id="cb633-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb633-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-494-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-495-1.png" width="336" /></p>
 <p>We can customise the colors using <code>sm_color_manual()</code>.</p>
 <div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">11</span>)</span>
 <span id="cb634-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb634-2" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">sm_palette</span>(<span class="dv">20</span>),<span class="dv">3</span>) <span class="co"># pick random 3 colors</span></span>
@@ -751,7 +751,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb634-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb634-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors) <span class="sc">+</span></span>
 <span id="cb634-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb634-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.22</span>,<span class="fl">0.83</span>), <span class="co"># add legend</span></span>
 <span id="cb634-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb634-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-495-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-496-1.png" width="336" /></p>
 <p>The problem with this plot is that we do not clearly see the error bars, especially the ones of the <code>Amblyopia</code> plot.</p>
 <p>To resolve this, we will need to explore the parameters of <code>sm_pointplot()</code>.</p>
 <ul>
@@ -767,7 +767,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb635-5"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb635-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors) <span class="sc">+</span></span>
 <span id="cb635-6"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb635-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.22</span>,<span class="fl">0.83</span>), <span class="co"># add legend</span></span>
 <span id="cb635-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb635-7" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-496-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-497-1.png" width="336" /></p>
 <ul>
 <li><code>avgPoint.params</code> feeds arguments to <code>geom_point()</code> to plot the average point with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</li>
 </ul>
@@ -781,7 +781,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb636-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb636-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors) <span class="sc">+</span></span>
 <span id="cb636-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb636-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.22</span>,<span class="fl">0.83</span>), <span class="co"># add legend</span></span>
 <span id="cb636-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb636-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-497-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-498-1.png" width="336" /></p>
 <ul>
 <li><code>avgLine.params</code> feeds arguments to <code>geom_line()</code> to plot the average line with specified <code>color</code>, <code>size</code> and <code>alpha</code>.</li>
 </ul>
@@ -795,7 +795,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb637-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb637-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors) <span class="sc">+</span></span>
 <span id="cb637-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb637-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.22</span>,<span class="fl">0.83</span>), <span class="co"># add legend</span></span>
 <span id="cb637-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb637-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-498-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-499-1.png" width="336" /></p>
 <ul>
 <li><p><code>point.params</code> feeds arguments to <code>geom_point()</code> to plot the points in the shadow with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</p></li>
 <li><p><code>line.params</code> feeds arguments to <code>geom_line()</code> to plot the lines in the shadow with specified <code>color</code>, <code>size</code> and <code>alpha</code>.</p></li>
@@ -805,7 +805,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">group =</span> group)) <span class="sc">+</span></span>
 <span id="cb638-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb638-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(<span class="at">show_shadow =</span> T,</span>
 <span id="cb638-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb638-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">group =</span> Subject)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-499-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-500-1.png" width="336" /></p>
 <p>By using <code>point.params</code> and <code>line.params</code>, you can control the aesthetics of the shadow.</p>
 <div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">group =</span> group)) <span class="sc">+</span></span>
 <span id="cb639-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb639-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(<span class="at">show_shadow =</span> T,</span>
@@ -816,7 +816,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb639-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb639-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>,</span>
 <span id="cb639-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb639-8" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;wine&#39;</span>),</span>
 <span id="cb639-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb639-9" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">alpha =</span> <span class="fl">0.2</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-500-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-501-1.png" width="336" /></p>
 <p>Now let’s control the aesthetics of the average plot using <code>avgPoint.params</code>, <code>avgLine.params</code> and <code>err.params</code>.</p>
 <div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">group =</span> group)) <span class="sc">+</span></span>
 <span id="cb640-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb640-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(<span class="at">show_shadow =</span> T,</span>
@@ -838,7 +838,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb640-18"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb640-18" aria-hidden="true" tabindex="-1"></a>               <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">1.2</span>,</span>
 <span id="cb640-19"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb640-19" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">alpha =</span> <span class="fl">0.7</span>,</span>
 <span id="cb640-20"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb640-20" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;purple&#39;</span>)))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-501-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-502-1.png" width="336" /></p>
 <ul>
 <li><code>errorbar_type</code> can control the type of the error that is shown on the point plot. The three choices are standard error (<code>se</code>), standard deviation (<code>sd</code>) and 95% confidence interval (<code>ci</code>).</li>
 </ul>
@@ -863,7 +863,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb641-19"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb641-19" aria-hidden="true" tabindex="-1"></a>               <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">1.2</span>,</span>
 <span id="cb641-20"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb641-20" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">alpha =</span> <span class="fl">0.7</span>,</span>
 <span id="cb641-21"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb641-21" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;purple&#39;</span>)))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-502-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-503-1.png" width="336" /></p>
 </div>
 <div id="a-bland-altman-plot---sm_bland_altman" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> A Bland Altman plot - <code>sm_bland_altman()</code><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#a-bland-altman-plot---sm_bland_altman" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -881,7 +881,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - This function automatically uses <code>sm_classic()</code> theme.</p>
 <div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_bland_altman</span>(df3<span class="sc">$</span>first, df3<span class="sc">$</span>second, <span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;green&#39;</span>)) <span class="sc">+</span> </span>
 <span id="cb643-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb643-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">4</span>,<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-504-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-505-1.png" width="336" /></p>
 <ul>
 <li><p>The upper dashed line represents the upper limit of the difference between two measurements (mean difference + 1.96 * standard deviation of the difference).</p></li>
 <li><p>The lower dashed line represents the lower limit of the difference between two measurements (mean difference - 1.96 * standard deviation of the difference).</p></li>
@@ -908,7 +908,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb644-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb644-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>upper_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>upper_limit <span class="sc">-</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb644-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb644-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Lower limit&#39;</span>, <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit <span class="sc">+</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb644-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb644-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>lower_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit<span class="fl">-0.4</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-505-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-506-1.png" width="336" /></p>
 <ul>
 <li>Let’s change the border color of the circles to white. To do so, we will have to change their shape to 21.</li>
 </ul>
@@ -920,7 +920,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb645-6"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb645-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>upper_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>upper_limit <span class="sc">-</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb645-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb645-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="st">&#39;Lower limit&#39;</span>, <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit <span class="sc">+</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
 <span id="cb645-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb645-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">label =</span> <span class="fu">signif</span>(res<span class="sc">$</span>lower_limit,<span class="dv">3</span>), <span class="at">x =</span> <span class="fl">1.2</span>, <span class="at">y =</span> res<span class="sc">$</span>lower_limit<span class="fl">-0.4</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-506-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-507-1.png" width="336" /></p>
 </div>
 <div id="forest-plot---sm_forest" class="section level2 hasAnchor" number="12.4">
 <h2><span class="header-section-number">12.4</span> Forest plot - <code>sm_forest()</code><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#forest-plot---sm_forest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -937,7 +937,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <p>When using <code>sm_forest()</code>, <code>x</code> is required to be a continuous variable. <code>y</code> should be a categorical variable (i.e., <code>factor</code>).</p>
 <div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb647-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb647-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>() </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-508-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-509-1.png" width="297.6" /></p>
 <p><code>sm_forest()</code> has many parameters.</p>
 <ul>
 <li><p><code>point_jitter_width</code> controls the width of the jitter in individual points.</p></li>
@@ -949,12 +949,12 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb648-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb648-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.2</span>, <span class="at">sep_level =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb648-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb648-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-509-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-510-1.png" width="297.6" /></p>
 <p><code>sep_level</code> can also be negative. The position of the points relative to the average points will be opposite (individual points above average points).</p>
 <div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb649-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb649-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb649-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.2</span>, <span class="at">sep_level =</span> <span class="sc">-</span><span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb649-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb649-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-510-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-511-1.png" width="297.6" /></p>
 <ul>
 <li><code>errorbar_type</code> controls the type of the error bar.
 <ul>
@@ -965,7 +965,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb650-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb650-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.2</span>, <span class="at">sep_level =</span> <span class="dv">3</span>,</span>
 <span id="cb650-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb650-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">errorbar_type =</span> <span class="st">&#39;sd&#39;</span>) <span class="sc">+</span></span>
 <span id="cb650-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb650-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-511-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-512-1.png" width="297.6" /></p>
 <ul>
 <li>If <code>points = FALSE</code>, the points will not be shown.</li>
 </ul>
@@ -973,7 +973,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb651-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb651-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.2</span>, <span class="at">sep_level =</span> <span class="dv">3</span>,</span>
 <span id="cb651-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb651-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">points =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb651-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb651-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-512-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-513-1.png" width="297.6" /></p>
 <ul>
 <li>If <code>refLine = TRUE</code>, the reference line will be shown. Its location along the x-axis can be controlled by <code>xintercept</code> (default: <code>xintercept = 0</code>).</li>
 </ul>
@@ -981,7 +981,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb652-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.2</span>, <span class="at">sep_level =</span> <span class="dv">3</span>,</span>
 <span id="cb652-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb652-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">refLine =</span> <span class="cn">TRUE</span>, <span class="at">xintercept =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
 <span id="cb652-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb652-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-513-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-514-1.png" width="297.6" /></p>
 <p><code>sm_forest()</code> has <code>xxx.params</code> arguments as well as <code>...</code> generic parameter:</p>
 <ul>
 <li><code>avgPoint.params</code> feeds arguments to <code>geom_point()</code> to plot the average point with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</li>
@@ -990,7 +990,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb653-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb653-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">avgPoint.params =</span> <span class="fu">list</span>(<span class="at">shape =</span> <span class="dv">17</span>,</span>
 <span id="cb653-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb653-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">size =</span> <span class="dv">4</span>)) <span class="sc">+</span></span>
 <span id="cb653-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb653-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-514-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-515-1.png" width="297.6" /></p>
 <ul>
 <li><code>err.params = list()</code> feeds arguments, such as <code>color</code> and <code>size</code>, to <code>geom_linerange()</code> to plot the error bar.</li>
 </ul>
@@ -999,7 +999,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb654-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb654-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">size =</span> <span class="dv">4</span>),</span>
 <span id="cb654-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb654-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb654-5"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb654-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-515-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-516-1.png" width="297.6" /></p>
 <p>Notice that the default color of <code>err.params = list(color = 'black')</code> has disappeared. You could manually include it to restore the default.</p>
 <div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb655-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(<span class="at">x =</span> Value, <span class="at">y =</span> Day, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb655-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb655-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>(<span class="at">avgPoint.params =</span> <span class="fu">list</span>(<span class="at">shape =</span> <span class="dv">17</span>,</span>
@@ -1007,7 +1007,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb655-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb655-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">1</span>,</span>
 <span id="cb655-5"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb655-5" aria-hidden="true" tabindex="-1"></a>                              <span class="at">color =</span> <span class="st">&#39;black&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb655-6"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb655-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-516-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-517-1.png" width="297.6" /></p>
 <ul>
 <li><code>point.params = list()</code> feeds arguments, such as <code>color</code>, <code>fill</code>, and <code>alpha</code> to <code>geom_point()</code> to plot the individual points.</li>
 </ul>
@@ -1020,7 +1020,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb656-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb656-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">alpha =</span> <span class="fl">0.5</span>,</span>
 <span id="cb656-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb656-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> <span class="fl">2.2</span>)) <span class="sc">+</span></span>
 <span id="cb656-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb656-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-517-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-518-1.png" width="297.6" /></p>
 <ul>
 <li><code>refLine.params = list()</code> feeds arguments, such as <code>color</code> and <code>size</code> to <code>geom_vline()</code> to plot the reference line.</li>
 </ul>
@@ -1036,7 +1036,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb657-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb657-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">ref.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb657-11"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb657-11" aria-hidden="true" tabindex="-1"></a>                              <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb657-12"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb657-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-518-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-519-1.png" width="297.6" /></p>
 <div id="annotation-using-sm_forest_annot" class="section level3 hasAnchor" number="12.4.1">
 <h3><span class="header-section-number">12.4.1</span> Annotation using <code>sm_forest_annot()</code><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#annotation-using-sm_forest_annot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Annotations about the error range (ex. 95% confidence interval) in texts can be done using <code>sm_forest_annot()</code>.</p>
@@ -1050,7 +1050,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb658-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb658-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest</span>() <span class="sc">+</span></span>
 <span id="cb658-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb658-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
 <span id="cb658-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb658-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Value, <span class="at">y =</span> Day)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-519-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-520-1.png" width="297.6" /></p>
 <ul>
 <li><code>sep_level</code> refers to the separation level between the text annotation and the average point. If it is positive, the text will be above the mean point. <strong>In practice, put the same value of</strong> <code>sep_level</code> <strong>in both</strong> <code>sm_forest()</code> <strong>and </strong><code>sm_forest_annot()</code>. The default is <code>sep_level = 2</code>, which is also found in <code>sm_forest()</code>.</li>
 </ul>
@@ -1060,7 +1060,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb659-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb659-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">4</span>)) <span class="sc">+</span></span>
 <span id="cb659-5"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb659-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Value, <span class="at">y =</span> Day,</span>
 <span id="cb659-6"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb659-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep_level =</span> sep_distance)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-520-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-521-1.png" width="297.6" /></p>
 <ul>
 <li><code>errorbar_type</code> refers to the type of error by which the text annotation should be written. <strong>In practice, put the same argument of</strong> <code>sep_level</code> <strong>in both</strong> <code>sm_forest()</code> <strong>and </strong><code>sm_forest_annot()</code>. The default is set to confidence interval (<code>errorbar_type = 'ci'</code>).</li>
 </ul>
@@ -1074,7 +1074,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb660-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb660-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_forest_annot</span>(<span class="at">data =</span> df2, <span class="at">x =</span> Value, <span class="at">y =</span> Day,</span>
 <span id="cb660-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb660-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep_level =</span> sep_distance,</span>
 <span id="cb660-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb660-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">errorbar_type =</span> errType)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-521-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-522-1.png" width="297.6" /></p>
 <ul>
 <li><code>text.params</code> feeds arguments to <code>geom_text()</code> to set the aesthetics of the texts such as <code>color</code> and <code>size</code>.</li>
 </ul>
@@ -1089,7 +1089,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb661-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb661-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep_level =</span> sep_distance,</span>
 <span id="cb661-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb661-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">errorbar_type =</span> errType,</span>
 <span id="cb661-11"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb661-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">3.5</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-522-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-523-1.png" width="297.6" /></p>
 <p>Notice that <code>text.params = list(color = 'black'</code>) has been removed because we have specifically wirtten <code>text.params = list()</code>. Therefore, there is now unique color to each <code>Day</code> as set within <code>ggplot(...,aes(color = Day))</code>.</p>
 <p><code>sep_level</code> that is negative will shift the positions of the annotations and points.</p>
 <div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb662-1" aria-hidden="true" tabindex="-1"></a>sep_distance <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
@@ -1103,7 +1103,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb662-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb662-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep_level =</span> sep_distance,</span>
 <span id="cb662-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb662-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">errorbar_type =</span> errType,</span>
 <span id="cb662-11"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb662-11" aria-hidden="true" tabindex="-1"></a>                  <span class="at">text.params =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="fl">3.5</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-523-1.png" width="297.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-524-1.png" width="297.6" /></p>
 </div>
 </div>
 <div id="raincloud-plot---sm_raincloud" class="section level2 hasAnchor" number="12.5">
@@ -1122,12 +1122,12 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb663-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb663-7" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(Subject, Data, Group)</span></code></pre></div>
 <div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb664-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb664-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb664-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>() </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-525-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-526-1.png" width="336" /></p>
 <p><code>fill</code> can be customised using <code>scale_fill_manual()</code>.</p>
 <div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb665-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb665-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>() <span class="sc">+</span></span>
 <span id="cb665-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb665-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-526-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-527-1.png" width="336" /></p>
 <p>Here, <code>x</code> has to be a categorical variable. <code>y</code> should be a continuous variable.</p>
 <p><code>sm_raincloud()</code> has various parameters.</p>
 <ul>
@@ -1141,7 +1141,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb666-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb666-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">sep_level =</span> <span class="dv">4</span>,</span>
 <span id="cb666-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb666-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">point_jitter_width =</span> .<span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb666-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb666-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-527-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-528-1.png" width="336" /></p>
 <ul>
 <li><code>which_side</code> refers to the side where the distribution plot faces.
 <ul>
@@ -1152,14 +1152,14 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb667-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb667-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">which_side =</span> <span class="st">&#39;left&#39;</span>) <span class="sc">+</span></span>
 <span id="cb667-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb667-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-528-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-529-1.png" width="336" /></p>
 <ul>
 <li><code>vertical</code> controls the orientation of the raincloud plot. The default is set to <code>vertical = TRUE</code>. It refers to the fact that the distribution is vertically oriented.</li>
 </ul>
 <div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb668-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb668-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">vertical =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb668-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb668-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-529-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-530-1.png" width="336" /></p>
 <p><code>vertical = FALSE</code> and <code>which_side = 'right'</code> gives the true raincloud shape, the distribution plot being the cloud and the individual points being the rain.</p>
 <ul>
 <li><code>points</code> is an argument that determines whether the jittered individual points are shown on the plot.
@@ -1170,7 +1170,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb669-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb669-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">points =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb669-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb669-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-530-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-531-1.png" width="336" /></p>
 <p>Lastly, it has <code>xxx.params</code> to control the aesthetics of boxplots, violins and the points:</p>
 <ul>
 <li><code>boxplot.params</code> sends arguments to <code>geom_half_boxplot()</code> (almost identical to <code>geom_boxplot()</code>) to plot the boxplot with specified <code>color</code>, <code>fill</code>, <code>outlier.shape</code> etc.</li>
@@ -1178,7 +1178,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb670-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb670-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb670-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb670-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-531-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-532-1.png" width="336" /></p>
 <p>By setting the <code>color</code> (border of the boxplot) as <code>white</code>, I think the raincloud plot looks more elegant and minimalistic.</p>
 <ul>
 <li><code>violin.params</code> sends arguments to <code>geom_half_violin()</code> (almost identical to <code>geom_violin()</code>) to plot the violin plot with specified <code>color</code>, <code>alpha</code> and <code>fill</code>, etc</li>
@@ -1188,7 +1188,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb671-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb671-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">violin.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>,</span>
 <span id="cb671-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb671-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">color =</span> <span class="st">&#39;transparent&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb671-5"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb671-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-532-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-533-1.png" width="336" /></p>
 <ul>
 <li><code>point.params</code> sends arguments to <code>geom_point()</code> to plot the points in the shadow with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</li>
 </ul>
@@ -1201,7 +1201,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb672-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb672-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">color =</span> <span class="st">&#39;white&#39;</span>,</span>
 <span id="cb672-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb672-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">size =</span> <span class="fl">2.6</span>)) <span class="sc">+</span></span>
 <span id="cb672-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb672-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-533-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-534-1.png" width="336" /></p>
 <p>You can also change the label of the x-axis tick using <code>scale_x_discrete()</code> rather than <code>scale_x_continuous()</code> from the original <strong>smplot</strong>.</p>
 <div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb673-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb673-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_raincloud</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&#39;white&#39;</span>),</span>
@@ -1213,7 +1213,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb673-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb673-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">size =</span> <span class="fl">2.6</span>)) <span class="sc">+</span></span>
 <span id="cb673-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb673-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb673-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb673-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;One&#39;</span>, <span class="st">&#39;Two&#39;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-534-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-535-1.png" width="336" /></p>
 </div>
 <div id="histogram---sm_hist" class="section level2 hasAnchor" number="12.6">
 <h2><span class="header-section-number">12.6</span> Histogram - <code>sm_hist()</code><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#histogram---sm_hist" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -1228,7 +1228,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <p>Let’s generate histogram just for <code>data</code>.</p>
 <div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x=</span>value, <span class="at">fill=</span>day)) <span class="sc">+</span></span>
 <span id="cb675-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb675-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hist</span>() </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-537-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-538-1.png" width="336" /></p>
 <p><code>sm_hist()</code> has many arguments.</p>
 <ul>
 <li><code>histogram</code> can be used to show or not show the histogram.
@@ -1238,7 +1238,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 </ul>
 <div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x=</span>value, <span class="at">fill=</span>day)) <span class="sc">+</span></span>
 <span id="cb676-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb676-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hist</span>(<span class="at">histogram =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-538-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-539-1.png" width="336" /></p>
 <ul>
 <li><code>density</code> can be used to show or not show the density estimation plot.
 <ul>
@@ -1247,7 +1247,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 </ul>
 <div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb677-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x=</span>value, <span class="at">fill=</span>day)) <span class="sc">+</span></span>
 <span id="cb677-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb677-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hist</span>(<span class="at">density =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-539-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-540-1.png" width="336" /></p>
 <ul>
 <li><code>rug</code> can be used to show or not show the rugs below the histogram.
 <ul>
@@ -1256,14 +1256,14 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 </ul>
 <div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb678-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x=</span>value, <span class="at">fill=</span>day)) <span class="sc">+</span></span>
 <span id="cb678-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb678-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hist</span>(<span class="at">rug =</span> <span class="cn">FALSE</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-540-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-541-1.png" width="336" /></p>
 <ul>
 <li><code>borders</code> can summon the borders when set to <code>borders = TRUE</code>.</li>
 <li>The default is <code>borders = FALSE</code>.</li>
 </ul>
 <div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb679-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> data, <span class="fu">aes</span>(<span class="at">x=</span>value, <span class="at">fill=</span>day)) <span class="sc">+</span></span>
 <span id="cb679-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb679-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_hist</span>(<span class="at">borders =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-541-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-542-1.png" width="336" /></p>
 <ul>
 <li><code>hist.params</code> feeds arguments to <code>geom_histogram()</code> that dictates the aesthetics of the histogram, such as <code>color</code>, <code>fill</code>, <code>alpha</code> and <code>binwidth</code>.
 <ul>
@@ -1275,7 +1275,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb680-3"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb680-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>),</span>
 <span id="cb680-4"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb680-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">alpha =</span> <span class="fl">0.7</span>,</span>
 <span id="cb680-5"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb680-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">binwidth =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-542-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-543-1.png" width="336" /></p>
 <ul>
 <li><code>density.params</code> feeds arguments to <code>geom_density()</code> that dictates the aesthetics of the histogram, such as <code>color</code>, <code>fill</code> and <code>alpha</code>.</li>
 </ul>
@@ -1288,7 +1288,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb681-7"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb681-7" aria-hidden="true" tabindex="-1"></a>                                <span class="at">size =</span> <span class="dv">1</span>,</span>
 <span id="cb681-8"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb681-8" aria-hidden="true" tabindex="-1"></a>                                <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>,</span>
 <span id="cb681-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb681-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fill =</span> <span class="st">&#39;transparent&#39;</span>)) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-543-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-544-1.png" width="336" /></p>
 <ul>
 <li><code>rug.params</code> feeds arguments to <code>geom_rug</code> to control the aesthetics of the rugs such as <code>color</code>, <code>alpha</code> and <code>size</code>.</li>
 </ul>
@@ -1303,7 +1303,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb682-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb682-9" aria-hidden="true" tabindex="-1"></a>                                <span class="at">fill =</span> <span class="st">&#39;transparent&#39;</span>),</span>
 <span id="cb682-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb682-10" aria-hidden="true" tabindex="-1"></a>          <span class="at">rug.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&#39;skyblue&#39;</span>),</span>
 <span id="cb682-11"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb682-11" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> <span class="fl">0.5</span>)) </span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-544-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-545-1.png" width="336" /></p>
 <p>You can also plot the histogram across multiple conditions/groups by setting <code>ggplot(aes(..., color = xx)</code>. We can demonstrate this using <code>df</code>, which has data across multiple groups.</p>
 <ul>
 <li><code>legends</code> argument can be used to show the legend if <code>legends = TRUE</code>.
@@ -1322,7 +1322,7 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
 <span id="cb683-9"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb683-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.84</span>,<span class="fl">0.82</span>),</span>
 <span id="cb683-10"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb683-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb683-11"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb683-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">11</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-545-1.png" width="576" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-546-1.png" width="576" /></p>
 
 </div>
 </div>

@@ -714,7 +714,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb314-15"><a href="creating-a-composite-figure-by-subplotting.html#cb314-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.96</span>, <span class="fl">0.67</span>), </span>
 <span id="cb314-16"><a href="creating-a-composite-figure-by-subplotting.html#cb314-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.title =</span> <span class="fu">element_blank</span>()) </span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-258-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-259-1.png" width="336" /></p>
 </div>
 <div id="plotting-individual-data" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Plotting individual data<a href="creating-a-composite-figure-by-subplotting.html#plotting-individual-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -752,7 +752,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb318-16"><a href="creating-a-composite-figure-by-subplotting.html#cb318-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb318-17"><a href="creating-a-composite-figure-by-subplotting.html#cb318-17" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s1)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-261-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-262-1.png" width="336" /></p>
 <p>Then make each one for the other subjects (S2-S9).</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="creating-a-composite-figure-by-subplotting.html#cb320-1" aria-hidden="true" tabindex="-1"></a>df_s2 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S2&#39;</span>) </span>
 <span id="cb320-2"><a href="creating-a-composite-figure-by-subplotting.html#cb320-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -769,7 +769,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb320-13"><a href="creating-a-composite-figure-by-subplotting.html#cb320-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb320-14"><a href="creating-a-composite-figure-by-subplotting.html#cb320-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s2)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-262-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-263-1.png" width="336" /></p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="creating-a-composite-figure-by-subplotting.html#cb322-1" aria-hidden="true" tabindex="-1"></a>df_s3 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S3&#39;</span>)</span>
 <span id="cb322-2"><a href="creating-a-composite-figure-by-subplotting.html#cb322-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb322-3"><a href="creating-a-composite-figure-by-subplotting.html#cb322-3" aria-hidden="true" tabindex="-1"></a>plot_s3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s3, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -785,7 +785,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb322-13"><a href="creating-a-composite-figure-by-subplotting.html#cb322-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb322-14"><a href="creating-a-composite-figure-by-subplotting.html#cb322-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s3)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-263-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-264-1.png" width="336" /></p>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="creating-a-composite-figure-by-subplotting.html#cb324-1" aria-hidden="true" tabindex="-1"></a>df_s4 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S4&#39;</span>)</span>
 <span id="cb324-2"><a href="creating-a-composite-figure-by-subplotting.html#cb324-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb324-3"><a href="creating-a-composite-figure-by-subplotting.html#cb324-3" aria-hidden="true" tabindex="-1"></a>plot_s4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s4, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -801,7 +801,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb324-13"><a href="creating-a-composite-figure-by-subplotting.html#cb324-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb324-14"><a href="creating-a-composite-figure-by-subplotting.html#cb324-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s4)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-264-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-265-1.png" width="336" /></p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="creating-a-composite-figure-by-subplotting.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 5</span></span>
 <span id="cb326-2"><a href="creating-a-composite-figure-by-subplotting.html#cb326-2" aria-hidden="true" tabindex="-1"></a>df_s5 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S5&#39;</span>) </span>
 <span id="cb326-3"><a href="creating-a-composite-figure-by-subplotting.html#cb326-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S5 in the Subject column</span></span>
@@ -818,7 +818,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb326-14"><a href="creating-a-composite-figure-by-subplotting.html#cb326-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb326-15"><a href="creating-a-composite-figure-by-subplotting.html#cb326-15" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s5)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-265-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-266-1.png" width="336" /></p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="creating-a-composite-figure-by-subplotting.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 6</span></span>
 <span id="cb328-2"><a href="creating-a-composite-figure-by-subplotting.html#cb328-2" aria-hidden="true" tabindex="-1"></a>df_s6 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S6&#39;</span>) </span>
 <span id="cb328-3"><a href="creating-a-composite-figure-by-subplotting.html#cb328-3" aria-hidden="true" tabindex="-1"></a><span class="co"># rows of df that only contain S6 in the Subject column</span></span>
@@ -836,7 +836,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb328-15"><a href="creating-a-composite-figure-by-subplotting.html#cb328-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb328-16"><a href="creating-a-composite-figure-by-subplotting.html#cb328-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s6)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-266-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-267-1.png" width="336" /></p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="creating-a-composite-figure-by-subplotting.html#cb330-1" aria-hidden="true" tabindex="-1"></a>df_s7 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S7&#39;</span>)</span>
 <span id="cb330-2"><a href="creating-a-composite-figure-by-subplotting.html#cb330-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb330-3"><a href="creating-a-composite-figure-by-subplotting.html#cb330-3" aria-hidden="true" tabindex="-1"></a>plot_s7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s7, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -852,7 +852,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb330-13"><a href="creating-a-composite-figure-by-subplotting.html#cb330-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb330-14"><a href="creating-a-composite-figure-by-subplotting.html#cb330-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s7)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-267-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-268-1.png" width="336" /></p>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="creating-a-composite-figure-by-subplotting.html#cb332-1" aria-hidden="true" tabindex="-1"></a>df_s8 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S8&#39;</span>)</span>
 <span id="cb332-2"><a href="creating-a-composite-figure-by-subplotting.html#cb332-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb332-3"><a href="creating-a-composite-figure-by-subplotting.html#cb332-3" aria-hidden="true" tabindex="-1"></a>plot_s8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s8, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -868,7 +868,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb332-13"><a href="creating-a-composite-figure-by-subplotting.html#cb332-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb332-14"><a href="creating-a-composite-figure-by-subplotting.html#cb332-14" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s8)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-268-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-269-1.png" width="336" /></p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="creating-a-composite-figure-by-subplotting.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subject 9</span></span>
 <span id="cb334-2"><a href="creating-a-composite-figure-by-subplotting.html#cb334-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb334-3"><a href="creating-a-composite-figure-by-subplotting.html#cb334-3" aria-hidden="true" tabindex="-1"></a>df_s9 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S9&#39;</span>) </span>
@@ -886,7 +886,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb334-15"><a href="creating-a-composite-figure-by-subplotting.html#cb334-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb334-16"><a href="creating-a-composite-figure-by-subplotting.html#cb334-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(plot_s9)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-269-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-270-1.png" width="336" /></p>
 </div>
 <div id="putting-multiple-plots-together-a-composite-figure" class="section level2 hasAnchor" number="7.4">
 <h2><span class="header-section-number">7.4</span> Putting multiple plots together (a composite figure)<a href="creating-a-composite-figure-by-subplotting.html#putting-multiple-plots-together-a-composite-figure" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -911,7 +911,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p>Now let’s put them together in a 3x3 figure (3 rows, 3 columns) using the function <code>sm_put_together()</code>. So, <code>ncol</code> and <code>nrow</code> are set to 3 in <code>sm_put_together()</code>. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the <code>hmargin</code> argument can be set to adjust the blank space of height between panels; the <code>wmargin</code> argument can be set to adjust the blank space of width between panels. Their values can be both negative (less blank space) and positive (more blank space). I suggest you use values from <em>-5 to 5</em> for <code>hmargin</code> and <code>wmargin</code>. <code>wRatio</code> is an argument for <code>sm_put_together()</code> that controls the relative width of the left-most column to that of other columns; the default value is set to 1.1 because left-most panels have y-axis ticks. Conversely, <code>hRatio</code> is an argument for <code>sm_put_together()</code> that controls the relative height of the bottom row to that of higher rows. It is set to 1.1 as default because bottom row panels have x-ticks. I encourage users to modify these values because different computer systems can show slightly different figure outputs.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-271"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-272"></span>
 <img src="img/rc33.png" alt="3x3 figure. It has 3 columns and 3 rows" width="75%" />
 <p class="caption">
 Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
@@ -974,7 +974,7 @@ Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
 <span id="cb347-5"><a href="creating-a-composite-figure-by-subplotting.html#cb347-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">21</span>,<span class="dv">22</span>),</span>
 <span id="cb347-6"><a href="creating-a-composite-figure-by-subplotting.html#cb347-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Data from Day 1 &#39;</span>, <span class="st">&#39;Data from Day 5 &#39;</span>)) <span class="sc">+</span></span>
 <span id="cb347-7"><a href="creating-a-composite-figure-by-subplotting.html#cb347-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_common_legend</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.1</span> , <span class="at">title=</span><span class="cn">FALSE</span>, <span class="at">legend_spacing =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-282-1.png" width="288" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-283-1.png" width="288" /></p>
 <p>Here, in <code>sm_common_legend()</code>, <code>x</code> and <code>y</code> control the location of the legend. Basically, <code>legend</code> is a new plot with no points; however, you still need to draw the same points and include other features from other sub-panels to make sure that they are included in the legend. Notice that legend labels have been customized as well by adjusting the <code>labels</code> within <code>scale_color_manual()</code> and <code>scale_shape_manual()</code>. The title has been removed by setting <code>title = FALSE</code>.</p>
 <p>Let’s see what happens if you change the location (<code>x</code> and <code>y</code>) of the legend.</p>
 <div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="creating-a-composite-figure-by-subplotting.html#cb348-1" aria-hidden="true" tabindex="-1"></a>legend_a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> df_s9, <span class="fu">aes</span>(<span class="at">x =</span> Time, <span class="at">y =</span> Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span> </span>
@@ -984,7 +984,7 @@ Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
 <span id="cb348-5"><a href="creating-a-composite-figure-by-subplotting.html#cb348-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">21</span>,<span class="dv">22</span>),</span>
 <span id="cb348-6"><a href="creating-a-composite-figure-by-subplotting.html#cb348-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Data from Day 1 &#39;</span>, <span class="st">&#39;Data from Day 5 &#39;</span>)) <span class="sc">+</span></span>
 <span id="cb348-7"><a href="creating-a-composite-figure-by-subplotting.html#cb348-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_common_legend</span>(<span class="at">x =</span> <span class="fl">0.5</span>, <span class="at">y =</span> <span class="fl">0.5</span> , <span class="at">title=</span><span class="cn">FALSE</span>, <span class="at">legend_spacing =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-284-1.png" width="288" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-285-1.png" width="288" /></p>
 <p>Notice that the relative orientation of the legend has shifted. The <code>legend</code> can then be added to the combined plot using <code>sm_add_legend()</code>. If you provide a separate legend, then other arguments of the function will be ignored, such as <code>direction</code> and <code>border</code> from <code>sm_add_legend()</code> because these arguments are used to derive a legend based on <code>sampleplot</code>.</p>
 <div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="creating-a-composite-figure-by-subplotting.html#cb349-1" aria-hidden="true" tabindex="-1"></a>plots_tgd3c <span class="ot">&lt;-</span> <span class="fu">sm_add_legend</span>(plots_tgd2, <span class="at">x =</span> .<span class="dv">91</span>, <span class="at">y=</span> <span class="fl">0.05</span>, <span class="at">legend=</span>legend_a)</span></code></pre></div>
 <p><img src="together2c.png" width="75%" style="display: block; margin: auto;" /></p>
