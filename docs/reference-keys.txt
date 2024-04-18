@@ -5,8 +5,8 @@ fig:unnamed-chunk-9
 fig:unnamed-chunk-10
 fig:unnamed-chunk-28
 fig:unnamed-chunk-273
-fig:unnamed-chunk-409
-fig:unnamed-chunk-410
+fig:unnamed-chunk-401
+fig:unnamed-chunk-402
 opening-remarks
 how-to-read-this-book
 download-rstudio-basics-of-r
@@ -96,9 +96,6 @@ adding-annotations-to-the-composite-figure
 text-annotations
 point-annotations
 line-annotations
-arrow-annotations
-rectangle-annotations
-polygon-annotations
 calculating-area-under-a-curve
 pipe
 area-under-a-curve

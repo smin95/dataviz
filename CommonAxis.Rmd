@@ -609,15 +609,14 @@ knitr::include_graphics("together4c.png")
 
 ### Line annotations
 
-Line annotations can be added to the composite figure using `sm_add_line()`. `x` and `y` are the starting coordinate values of the line in the composite figure. `xend` and `yend` are the ending coordinate values of the line. These coordinate values have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `linewidth` determines the width of the line and the `color` should adjust the color of the line. There is no `fill` argument. These have same arguments as `annotate()`, which is a *ggplot2* function.
+Line annotations can be added to the composite figure using `annotate()`. `x` and `y` are the starting coordinate values of the line in the composite figure. `xend` and `yend` are the ending coordinate values of the line. These coordinate values have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `linewidth` determines the width of the line and the `color` should adjust the color of the line. There is no `fill` argument. 
 
-We will draw a crosshair on the gray circle point to demonstrate that the relative coordinate system is uniform across different `sm_add_*()` functions. The center of the points and lines is at (0.5, 0.5).
 
 ```{r}
 plots_tgd4e <- plots_tgd4c +
-  sm_add_line(x = 0.5, y = 0.475, xend = 0.5, 
+  annotate('segment', x = 0.5, y = 0.475, xend = 0.5, 
                            yend = 0.525, color = 'black') +
-  sm_add_line(x = 0.49, y = 0.5, xend = 0.51, 
+  annotate('segment', x = 0.49, y = 0.5, xend = 0.51, 
                            yend = 0.5, color = 'black')
 
 ```
@@ -627,76 +626,4 @@ save_plot('together4e.png', plots_tgd4e, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 
 knitr::include_graphics("together4e.png")
-```
-
-The cross hair is perfectly aligned.
-
-### Arrow annotations
-
-Next, we will add arrow annotations using `sm_add_arrow()`. The arguments are identical to those in `sm_add_line()` except there is additional argument of `arrowlength`, which determines the size of the arrow's tip. 
-
-Since the unit of `arrowlength` is relative to the size of the composite figure, and because there are two rows and five columns, the horizontal arrow has a smaller `arrowlength` by a factor of 2/5 than that of the vertical arrow. So `arrowlength` is set to `5/2` in the horizontal arrow to match the size of the arrow's head of the vertical arrow. Otherwise, the coordinate system seems to be more or less uniform because 0.5 instructs them to be at the center of the composite figure.
-
-```{r}
-plots_tgd4g <- plots_tgd4e + 
-  sm_add_arrow(x  = 0.5, y = 0.37, xend = 0.5, 
-                           yend = 0.46, color = 'black') +
-  sm_add_arrow(x = 0.44, y = 0.5, xend = 0.46, 
-                           yend = 0.5, color = 'black', arrowlength = 5/2)
-```
-
-```{r, echo=FALSE, fig.align = 'center'}
-save_plot('together4g.png', plots_tgd4g, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
-
-knitr::include_graphics("together4g.png")
-```
-
-### Rectangle annotations
-
-Here, we will add rectangle annotations using `sm_add_rect()`. The four coordinate arguments are `xmin`, `xmax`, `ymin` and `yend`. These arguments are exactly the same as `annotate('rect', ...)`. `fill` determines the filling color, and `color` determines the border color. The border's width is set with the argument `linewidth`, which is set to 0.5 as default.
-
-We draw a transparent rectangle over the crosshair to see if the coordinate system is uniform to those of the previously used annotation functions.
-
-```{r}
-plots_tgd4h <- plots_tgd4g + sm_add_rect(xmin= 0.44, ymin = 0.37, xmax = 0.56, 
-                           ymax = 0.63, alpha = 0.25, fill = sm_color('red'), color='white')
-```
-
-We see that the center of the coordinate is uniform but not at the end. Currently, there is no way to match both the ends and center because as far as I know there is no way to get common coordinates for different visual components at the level of composite figure. So, for now, users will have to just understand that the center of the annotations are aligned if same coordinates are used but not at necessarily at the ends. 
-
-```{r, echo=FALSE, fig.align = 'center'}
-save_plot('together4h.png', plots_tgd4h, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
-
-knitr::include_graphics("together4h.png")
-```
-
-### Polygon annotations
-
-We will annotate a polygon onto the combined figure using `sm_add_polygon()`. Here, we will create a triangle. All coordinates should provided in `x` and `y` arguments. Triangles have three points, so `x` and `y` have three elements. The values should be from 0 to 1.
-
-```{r}
-plots_tgd4i <- plots_tgd4h + sm_add_polygon(x = c(.2,.8,.8), y = c(.2,.8,.2), 
-                              alpha = 0.25, fill = sm_color('blue'), color='white')
-```
-
-```{r, echo=FALSE, fig.align = 'center'}
-save_plot('together4i.png', plots_tgd4i, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
-
-knitr::include_graphics("together4i.png")
-```
-
-We will finish the annotations with this one.
-
-```{r}
-plots_tgd4j <- plots_tgd4i + sm_add_text(x=.5, y=.5,  label = 'Annotations!!', angle=42, size = 25, fontface='bold')
-```
-
-```{r, echo=FALSE, fig.align = 'center'}
-save_plot('together4j.png', plots_tgd4j, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
-
-knitr::include_graphics("together4j.png")
 ```
