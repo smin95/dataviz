@@ -571,7 +571,7 @@ knitr::include_graphics("together4.png")
 
 ## Adding annotations to the composite figure
 
-*smplot2* offers multiple options for users to add annotations on the final, combined figure with a full flexibility. Here are some examples. These functions all have the form of `sm_add_*()`.
+*smplot2* offers multiple options for users to add annotations on the final, combined figure with a full flexibility. Here are some examples. These functions all have the form of `sm_add_*()`. Except for `sm_add_legend()`, all of these functions are added modularly to the composite plot (output from `sm_put_together()`).
 
 
 ### Text annotations
@@ -579,7 +579,7 @@ knitr::include_graphics("together4.png")
 Text annotations can be added to the composite figure using `sm_add_text()`. The `label` argument can be used to specify the text label. `x` and `y` are the coordinate values of the text in the composite figure, and they have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `size` determines the text size and the `fontface` can be either `bold`, `plain`, `italic` or `italic.bold`.
 
 ```{r}
-plots_tgd4b <- sm_add_text(plots_tgd4, label = 'My composite figure',
+plots_tgd4b <- plots_tgd4 + sm_add_text(label = 'My composite figure',
                            x = 0.185, y = 0.19, size = 14, fontface='bold')
 ```
 
@@ -596,7 +596,7 @@ knitr::include_graphics("together4b.png")
 Point annotations can be added to the composite figure using `sm_add_point()`. `x` and `y` are the coordinate values of the point in the composite figure, and they have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `size` determines the point size and the `shape` number input should be the same as the ones in *ggplot2* (ex. 21 is circle with border). `fill` should be provided for shapes with border. If the shape has no border, then `color` is sufficient to set the color that fills the point.
 
 ```{r}
-plots_tgd4c <- sm_add_point(plots_tgd4b,x = 0.50, y = 0.50, size = 35, 
+plots_tgd4c <- plots_tgd4b + sm_add_point(x = 0.50, y = 0.50, size = 35, 
                             shape = 21, fill = 'gray80', color = 'black')
 ```
 
@@ -614,11 +614,12 @@ Line annotations can be added to the composite figure using `sm_add_line()`. `x`
 We will draw a crosshair on the gray circle point to demonstrate that the relative coordinate system is uniform across different `sm_add_*()` functions. The center of the points and lines is at (0.5, 0.5).
 
 ```{r}
-plots_tgd4d <- sm_add_line(plots_tgd4c,x = 0.5, y = 0.475, xend = 0.5, 
-                           yend = 0.525, color = 'black')
-
-plots_tgd4e <- sm_add_line(plots_tgd4d,x = 0.49, y = 0.5, xend = 0.51, 
+plots_tgd4e <- plots_tgd4c +
+  sm_add_line(x = 0.5, y = 0.475, xend = 0.5, 
+                           yend = 0.525, color = 'black') +
+  sm_add_line(x = 0.49, y = 0.5, xend = 0.51, 
                            yend = 0.5, color = 'black')
+
 ```
 
 ```{r, echo=FALSE, fig.align = 'center'}
@@ -637,9 +638,10 @@ Next, we will add arrow annotations using `sm_add_arrow()`. The arguments are id
 Since the unit of `arrowlength` is relative to the size of the composite figure, and because there are two rows and five columns, the horizontal arrow has a smaller `arrowlength` by a factor of 2/5 than that of the vertical arrow. So `arrowlength` is set to `5/2` in the horizontal arrow to match the size of the arrow's head of the vertical arrow. Otherwise, the coordinate system seems to be more or less uniform because 0.5 instructs them to be at the center of the composite figure.
 
 ```{r}
-plots_tgd4f <- sm_add_arrow(plots_tgd4e, x  = 0.5, y = 0.37, xend = 0.5, 
-                           yend = 0.46, color = 'black')
-plots_tgd4g <- sm_add_arrow(plots_tgd4f, x = 0.44, y = 0.5, xend = 0.46, 
+plots_tgd4g <- plots_tgd4e + 
+  sm_add_arrow(x  = 0.5, y = 0.37, xend = 0.5, 
+                           yend = 0.46, color = 'black') +
+  sm_add_arrow(x = 0.44, y = 0.5, xend = 0.46, 
                            yend = 0.5, color = 'black', arrowlength = 5/2)
 ```
 
@@ -657,7 +659,7 @@ Here, we will add rectangle annotations using `sm_add_rect()`. The four coordina
 We draw a transparent rectangle over the crosshair to see if the coordinate system is uniform to those of the previously used annotation functions.
 
 ```{r}
-plots_tgd4h <- sm_add_rect(plots_tgd4g, xmin= 0.44, ymin = 0.37, xmax = 0.56, 
+plots_tgd4h <- plots_tgd4g + sm_add_rect(xmin= 0.44, ymin = 0.37, xmax = 0.56, 
                            ymax = 0.63, alpha = 0.25, fill = sm_color('red'), color='white')
 ```
 
@@ -675,7 +677,7 @@ knitr::include_graphics("together4h.png")
 We will annotate a polygon onto the combined figure using `sm_add_polygon()`. Here, we will create a triangle. All coordinates should provided in `x` and `y` arguments. Triangles have three points, so `x` and `y` have three elements. The values should be from 0 to 1.
 
 ```{r}
-plots_tgd4i <- sm_add_polygon(plots_tgd4h, x = c(.2,.8,.8), y = c(.2,.8,.2), 
+plots_tgd4i <- plots_tgd4h + sm_add_polygon(x = c(.2,.8,.8), y = c(.2,.8,.2), 
                               alpha = 0.25, fill = sm_color('blue'), color='white')
 ```
 
@@ -689,7 +691,7 @@ knitr::include_graphics("together4i.png")
 We will finish the annotations with this one.
 
 ```{r}
-plots_tgd4j <- sm_add_text(plots_tgd4i, x=.5, y=.5,  label = 'Annotations!!', angle=42, size = 25, fontface='bold')
+plots_tgd4j <- plots_tgd4i + sm_add_text(x=.5, y=.5,  label = 'Annotations!!', angle=42, size = 25, fontface='bold')
 ```
 
 ```{r, echo=FALSE, fig.align = 'center'}

@@ -1,12 +1,12 @@
 fig:unnamed-chunk-3
 fig:pressure
-fig:unnamed-chunk-7
 fig:unnamed-chunk-8
 fig:unnamed-chunk-9
-fig:unnamed-chunk-27
-fig:unnamed-chunk-272
-fig:unnamed-chunk-408
+fig:unnamed-chunk-10
+fig:unnamed-chunk-28
+fig:unnamed-chunk-273
 fig:unnamed-chunk-409
+fig:unnamed-chunk-410
 opening-remarks
 how-to-read-this-book
 download-rstudio-basics-of-r

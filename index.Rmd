@@ -210,14 +210,19 @@ Here is the reference for the **smCSF** package (Chapters 13-16):
 
 ## Installation of smplot2 {-}
 
-As of April 2024, *smplot2* is now part of the **CRAN** repository. Please install using `install.packages()` for the most stable version, and `install_github()` for the most updated version.
+As of April 2024, *smplot2* is now part of the **CRAN** repository. Please install using `install.packages()` for the most stable version.
 
 ```{r, eval = FALSE}
-#install.packages('devtools)
-#devtools::install_github('smin95/smplot2',force = T)
-
 install.packages('smplot2')
 ```
+
+and `install_github()` for the most updated version. I suggest that you download the most updated version.
+
+```{r, eval = FALSE}
+install.packages('devtools)
+devtools::install_github('smin95/smplot2',force = T)
+```
+
 
 ## Issues and contact {-}
 If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the *smplot2* package, please pull-request on [Github](https://github.com/smin95/smplot2).
