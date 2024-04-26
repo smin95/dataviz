@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Boxplot and Violin Plot | Data Analysis and Visualization in R Using smplot2</title>
   <meta name="description" content="Chapter 4 Boxplot and Violin Plot | Data Analysis and Visualization in R Using smplot2" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Boxplot and Violin Plot | Data Analysis and Visualization in R Using smplot2" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -468,13 +472,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - For more information, type <code>?read_csv()</code>.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="boxplot-and-violin-plot.html#cb100-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;data.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 90 Columns: 3
-## -- Column specification ---------------------------------------------------------
+## ── Column specification ───────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (2): Subject, Day
 ## dbl (1): Value
 ## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <p>If you get an <strong>error</strong> such as <code>object 'data.csv' not found</code>, make sure you set your working directory in the <strong>LearnR</strong> folder. Also make sure you have downloaded your data and saved it in the <strong>LearnR</strong> folder.</p>
 <p>You can view the entire data frame by typing <code>View(df)</code>.</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="boxplot-and-violin-plot.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(df)</span></code></pre></div>
@@ -567,7 +571,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>R has decided to follow the alphabetical order is because the column <strong>Day</strong> is shown as <code>&lt;chr&gt;</code>, which means <strong>character</strong>.</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="boxplot-and-violin-plot.html#cb105-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
-<pre><code>## # A tibble: 90 x 3
+<pre><code>## # A tibble: 90 × 3
 ##    Subject  Value Day  
 ##    &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;
 ##  1 S1      -0.752 One  
@@ -580,7 +584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8       0.886 One  
 ##  9 S9       0.691 One  
 ## 10 S10     -0.366 One  
-## # i 80 more rows</code></pre>
+## # ℹ 80 more rows</code></pre>
 <ul>
 <li>Note that the <strong>Subject</strong> column is also considered as <code>&lt;chr&gt;</code> (<strong>characters</strong>) because it contains texts/alphabets.</li>
 <li>The <strong>Value</strong> column is categorized as <code>&lt;dbl&gt;</code>, which means <strong>double</strong>.
@@ -622,7 +626,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Let’s open the data frame <strong>df</strong> again.</li>
 </ul>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="boxplot-and-violin-plot.html#cb110-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
-<pre><code>## # A tibble: 90 x 3
+<pre><code>## # A tibble: 90 × 3
 ##    Subject  Value Day  
 ##    &lt;chr&gt;    &lt;dbl&gt; &lt;fct&gt;
 ##  1 S1      -0.752 One  
@@ -635,7 +639,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8       0.886 One  
 ##  9 S9       0.691 One  
 ## 10 S10     -0.366 One  
-## # i 80 more rows</code></pre>
+## # ℹ 80 more rows</code></pre>
 <p>Now we see <code>&lt;fct&gt;</code> in the <strong>Day</strong> column. This means that the column is now <strong>factor</strong>, not <strong>character</strong>.</p>
 </div>
 <div id="back-to-boxplot-using-ggplot2" class="section level3 hasAnchor" number="4.2.7">

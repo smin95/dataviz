@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Calculating Linear Slopes | Data Analysis and Visualization in R Using smplot2</title>
   <meta name="description" content="Chapter 9 Calculating Linear Slopes | Data Analysis and Visualization in R Using smplot2" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Calculating Linear Slopes | Data Analysis and Visualization in R Using smplot2" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -447,7 +451,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb394-3"><a href="calculating-linear-slopes.html#cb394-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
 <span id="cb394-4"><a href="calculating-linear-slopes.html#cb394-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/amblyopia_random.csv&#39;</span>) </span>
 <span id="cb394-5"><a href="calculating-linear-slopes.html#cb394-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 5
+<pre><code>## # A tibble: 6 × 5
 ##   Subject  absBP    SF Group     Condition
 ##   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;    
 ## 1 A1      0.0747   0.5 Amblyopia One      
@@ -461,8 +465,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>First, <code>Subject</code> column has all the subjects. People with amblyopia (a visual disorder) are labelled with <code>A</code>. First subject with amblyopia is written as <code>A1</code>. Normal subject is written with <code>N</code>; first normal subject is <code>N1</code>. We see that there are 10 subjects per group, so there are 20 subjects total.</li>
 </ul>
 <div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="calculating-linear-slopes.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Subject)</span></code></pre></div>
-<pre><code>##  [1] &quot;A1&quot; &quot;A2&quot; &quot;A3&quot; &quot;A4&quot; &quot;A5&quot; &quot;A6&quot; &quot;A7&quot; &quot;A8&quot; &quot;A9&quot; &quot;N1&quot; &quot;N2&quot; &quot;N3&quot; &quot;N4&quot; &quot;N5&quot; &quot;N6&quot;
-## [16] &quot;N7&quot; &quot;N8&quot; &quot;N9&quot;</code></pre>
+<pre><code>##  [1] &quot;A1&quot; &quot;A2&quot; &quot;A3&quot; &quot;A4&quot; &quot;A5&quot; &quot;A6&quot; &quot;A7&quot; &quot;A8&quot; &quot;A9&quot; &quot;N1&quot; &quot;N2&quot; &quot;N3&quot; &quot;N4&quot;
+## [14] &quot;N5&quot; &quot;N6&quot; &quot;N7&quot; &quot;N8&quot; &quot;N9&quot;</code></pre>
 <ul>
 <li><p>Second, <code>absBP</code> is the data of our interest.</p></li>
 <li><p>Third, <code>SF</code> refers to spatial frequency. We will be calculating slopes of <code>absBP</code> as a function of <code>SF</code>. So these are our x-coordinates for slope calculations (see sections below). Each unit increases by a factor of 2, so it is also helpful to convert the values into log2 units.</p></li>
@@ -471,7 +475,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 5</code></pre>
 <div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="calculating-linear-slopes.html#cb400-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">logSF =</span> <span class="fu">log2</span>(SF))</span>
 <span id="cb400-2"><a href="calculating-linear-slopes.html#cb400-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 6
+<pre><code>## # A tibble: 6 × 6
 ##   Subject  absBP    SF Group     Condition logSF
 ##   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;     &lt;dbl&gt;
 ## 1 A1      0.0747   0.5 Amblyopia One          -1
@@ -494,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="calculating-linear-slopes.html#cb406-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Group)</span>
 <span id="cb406-2"><a href="calculating-linear-slopes.html#cb406-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Condition <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Condition)</span>
 <span id="cb406-3"><a href="calculating-linear-slopes.html#cb406-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 6
+<pre><code>## # A tibble: 6 × 6
 ##   Subject  absBP    SF Group     Condition logSF
 ##   &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;     &lt;dbl&gt;
 ## 1 A1      0.0747   0.5 Amblyopia One          -1
@@ -580,7 +584,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 <h2><span class="header-section-number">9.2</span> Calculating slopes of all subjects, groups and conditions<a href="calculating-linear-slopes.html#calculating-slopes-of-all-subjects-groups-and-conditions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we know how to compute slope for each subject, let’s calculate slopes of our entire dataset.</p>
 <div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="calculating-linear-slopes.html#cb422-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
-<pre><code>## # A tibble: 180 x 6
+<pre><code>## # A tibble: 180 × 6
 ##    Subject  absBP    SF Group     Condition logSF
 ##    &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;fct&gt;     &lt;fct&gt;     &lt;dbl&gt;
 ##  1 A1      0.0747   0.5 Amblyopia One          -1
@@ -593,7 +597,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 ##  8 A2      0.813    2   Amblyopia One           1
 ##  9 A2      0.643    4   Amblyopia One           2
 ## 10 A2      0.797    8   Amblyopia One           3
-## # i 170 more rows</code></pre>
+## # ℹ 170 more rows</code></pre>
 <p>We see that there are 20 subjects total, each of which has completed two conditions. So there are 40 slopes to calculate! Does that mean we need to use <code>lm()</code> 40 times?</p>
 <p>The answer is <strong>no</strong>. <strong>smplot</strong> has a function <code>sm_slope_all()</code> that returns a dataframe of slopes from <strong>linear regression</strong>. It works similarly to <code>sm_auc_all()</code>.</p>
 <ul>
@@ -626,7 +630,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 ## 3       A1       Two Amblyopia  0.282800668
 ## 6       A2       One Amblyopia  0.136716992
 ## 7       A2       Two Amblyopia  0.164060391
-## 10      A3       One Amblyopia  0.381792237
+## 10      A3       One Amblyopia  0.381792238
 ## 11      A3       Two Amblyopia  0.458150685
 ## 14      A4       One Amblyopia  0.226928105
 ## 15      A4       Two Amblyopia  0.272313727
@@ -641,7 +645,7 @@ A separate data frame <code>y_int</code> containing the y-intercept is created b
 ## 34      A9       One Amblyopia  0.198964218
 ## 35      A9       Two Amblyopia  0.238757061
 ## 39      N1       One    Normal  0.080372285
-## 40      N1       Two    Normal  0.096446741
+## 40      N1       Two    Normal  0.096446742
 ## 43      N2       One    Normal  0.071885539
 ## 44      N2       Two    Normal  0.086262647
 ## 47      N3       One    Normal  0.018219466

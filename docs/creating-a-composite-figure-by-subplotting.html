@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Creating a Composite Figure by Subplotting | Data Analysis and Visualization in R Using smplot2</title>
   <meta name="description" content="Chapter 7 Creating a Composite Figure by Subplotting | Data Analysis and Visualization in R Using smplot2" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Creating a Composite Figure by Subplotting | Data Analysis and Visualization in R Using smplot2" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -448,7 +452,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="creating-a-composite-figure-by-subplotting.html#cb283-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019.csv&#39;</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="creating-a-composite-figure-by-subplotting.html#cb284-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>Day)</span>
 <span id="cb284-2"><a href="creating-a-composite-figure-by-subplotting.html#cb284-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## # A tibble: 6 × 4
 ##   Subject Day    Time Cbratio
 ##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 S1      1         0  -0.421
@@ -471,7 +475,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.1.1</span> <code>filter()</code> for rows<a href="creating-a-composite-figure-by-subplotting.html#filter-for-rows" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To plot data of each subject separately, we need the data frame to show data only from one subject. This can be achieved as using <code>filter()</code>:</p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="creating-a-composite-figure-by-subplotting.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 12 x 4
+<pre><code>## # A tibble: 12 × 4
 ##    Subject Day    Time Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ##  1 S1      1         0  -0.421
@@ -494,7 +498,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>filter()</code> is used to filter for rows that meet the requirement of your interest.</p>
 <p>Here is another example.</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="creating-a-composite-figure-by-subplotting.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 60 x 4
+<pre><code>## # A tibble: 60 × 4
 ##    Subject Day    Time Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ##  1 S1      1         0  -0.421
@@ -507,13 +511,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8      1         0   1.42 
 ##  9 S9      1         0   1.54 
 ## 10 S10     1         0   3.05 
-## # i 50 more rows</code></pre>
+## # ℹ 50 more rows</code></pre>
 <p>The above code can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column.</p>
 <p>Notice that S1 is a <strong>character</strong> because it has an alphabet. Therefore, it needs to be written as <code>'S1'</code>. However, <code>1</code> of <code>Day</code> is <strong>double</strong>, which is essentially just a number digit. Therefore, it can be written as <code>1</code> with no quotation mark.</p>
 <p>Let’s try another example.</p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="creating-a-composite-figure-by-subplotting.html#cb290-1" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>) <span class="co"># save the new data frame into a new variable</span></span>
 <span id="cb290-2"><a href="creating-a-composite-figure-by-subplotting.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(day1, Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>) <span class="co"># this new data frame contains Day 1 and Subject 1 data only.</span></span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## # A tibble: 6 × 4
 ##   Subject Day    Time Cbratio
 ##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 S1      1         0  -0.421
@@ -525,7 +529,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The above code can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column. Save this new data frame as <code>day1</code>. Then, <strong>filter</strong> for all rows of the data frame <code>day1</code> that have <code>S1</code> in the <code>Subject</code> column.</p>
 <p>The above can also be written like the one below:</p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="creating-a-composite-figure-by-subplotting.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## # A tibble: 6 × 4
 ##   Subject Day    Time Cbratio
 ##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 S1      1         0  -0.421
@@ -536,7 +540,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 S1      1         5  -0.834</code></pre>
 <p>The above can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>AND</strong> have <code>S1</code> in the <code>Subject</code> column.</p>
 <div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="creating-a-composite-figure-by-subplotting.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> Subject <span class="sc">==</span> <span class="st">&#39;S1&#39;</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 66 x 4
+<pre><code>## # A tibble: 66 × 4
 ##    Subject Day    Time Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ##  1 S1      1         0  -0.421
@@ -549,7 +553,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8      1         0   1.42 
 ##  9 S9      1         0   1.54 
 ## 10 S10     1         0   3.05 
-## # i 56 more rows</code></pre>
+## # ℹ 56 more rows</code></pre>
 <p>The above can be read as: <strong>filter</strong> for all rows of the data frame <strong>df</strong> that have <code>1</code> in the <code>Day</code> column <strong>OR</strong> have <code>S1</code> in the <code>Subject</code> column. <code>|</code> represents <strong>OR</strong>, <code>&amp;</code> represents <strong>AND</strong>.</p>
 </div>
 <div id="select-for-columns" class="section level3 hasAnchor" number="7.1.2">
@@ -557,7 +561,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you wish to see the <code>Cbratio</code> column only (i.e., data only) for rows of <strong>df</strong> that have <code>Day ==  1</code> and <code>Time == 0</code>, you can write it like this:</p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="creating-a-composite-figure-by-subplotting.html#cb296-1" aria-hidden="true" tabindex="-1"></a>day1_time0 <span class="ot">&lt;-</span> <span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Time <span class="sc">==</span> <span class="dv">0</span>) <span class="co"># save the new data frame in the day1_time0 variable </span></span>
 <span id="cb296-2"><a href="creating-a-composite-figure-by-subplotting.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(day1_time0, Cbratio)</span></code></pre></div>
-<pre><code>## # A tibble: 10 x 1
+<pre><code>## # A tibble: 10 × 1
 ##    Cbratio
 ##      &lt;dbl&gt;
 ##  1  -0.421
@@ -578,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>df</strong> contains individual data for all subjects on Days 1 and 5 across all time points. However, it does not contain average data either for each <strong>Day</strong> or <strong>Time</strong>.</p>
 <p><code>summarise()</code> can collapse multiple rows of observations into values such as the mean.</p>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="creating-a-composite-figure-by-subplotting.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df, <span class="at">average =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 1
+<pre><code>## # A tibble: 1 × 1
 ##   average
 ##     &lt;dbl&gt;
 ## 1    1.35</code></pre>
@@ -589,7 +593,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="creating-a-composite-figure-by-subplotting.html#cb300-1" aria-hidden="true" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
 <span id="cb300-2"><a href="creating-a-composite-figure-by-subplotting.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(by_day_time)</span></code></pre></div>
-<pre><code>## # A tibble: 120 x 4
+<pre><code>## # A tibble: 120 × 4
 ## # Groups:   Day, Time [12]
 ##    Subject Day    Time Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
@@ -603,12 +607,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  8 S8      1         0   1.42 
 ##  9 S9      1         0   1.54 
 ## 10 S10     1         0   3.05 
-## # i 110 more rows</code></pre>
+## # ℹ 110 more rows</code></pre>
 <p>The output of <code>group_by()</code> is a new data frame (it might appear exactly the same as before, ex. <strong>df</strong>). However, it will respond differently to <code>summarise()</code> because the rows of the data frame are now grouped based on day and time, as we have specified.</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="creating-a-composite-figure-by-subplotting.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">Average_Cbratio =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
-<pre><code>## # A tibble: 12 x 3
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time Average_Cbratio
 ##    &lt;fct&gt; &lt;dbl&gt;           &lt;dbl&gt;
@@ -630,16 +634,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>However, our <strong>df</strong> does not contain any data about the <strong>standard deviation</strong> or <strong>standard error</strong> per Day or Time, etc. Standard deviation can be calculated via <code>sd()</code> and standard error can be computed with <code>sm_stdErr()</code>.</p>
 <p>Below, we obtain standard error with the help of the <code>summarise()</code> function for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="creating-a-composite-figure-by-subplotting.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## # A tibble: 1 x 1
+<pre><code>## # A tibble: 1 × 1
 ##   standard_error
 ##            &lt;dbl&gt;
 ## 1          0.115</code></pre>
 <p>As we have seen before, we see that <code>standard_error</code> has been calculated across all subjects, day and time. This is not so useful. We should use <code>summarise()</code> with <code>group_by()</code> so that each standard error could be for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="creating-a-composite-figure-by-subplotting.html#cb307-1" aria-hidden="true" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
 <span id="cb307-2"><a href="creating-a-composite-figure-by-subplotting.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
-<pre><code>## # A tibble: 12 x 3
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time standard_error
 ##    &lt;fct&gt; &lt;dbl&gt;          &lt;dbl&gt;
@@ -659,10 +663,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now let’s obtain the <strong>mean</strong> and <strong>standard error</strong> of <code>Cbratio</code> for each <code>Day</code> and <code>Time</code> across all subjects using the data frame that has been grouped by <code>Day</code> and <code>Time</code> via <code>group_by()</code>.</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="creating-a-composite-figure-by-subplotting.html#cb310-1" aria-hidden="true" tabindex="-1"></a>by_day_time1 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_day_time, <span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
 <span id="cb310-2"><a href="creating-a-composite-figure-by-subplotting.html#cb310-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="creating-a-composite-figure-by-subplotting.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(by_day_time1)</span></code></pre></div>
-<pre><code>## # A tibble: 12 x 4
+<pre><code>## # A tibble: 12 × 4
 ## # Groups:   Day [2]
 ##    Day    Time Average StdError
 ##    &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;

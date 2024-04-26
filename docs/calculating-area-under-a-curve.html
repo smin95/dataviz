@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Calculating Area under a Curve | Data Analysis and Visualization in R Using smplot2</title>
   <meta name="description" content="Chapter 8 Calculating Area under a Curve | Data Analysis and Visualization in R Using smplot2" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Calculating Area under a Curve | Data Analysis and Visualization in R Using smplot2" />
   <meta property="og:type" content="book" />
@@ -118,6 +118,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -447,7 +451,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb356-3"><a href="calculating-area-under-a-curve.html#cb356-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
 <span id="cb356-4"><a href="calculating-area-under-a-curve.html#cb356-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
 <span id="cb356-5"><a href="calculating-area-under-a-curve.html#cb356-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## # A tibble: 6 × 4
 ##   Subject   Day  Time Cbratio
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 a           1     0  -0.421
@@ -486,7 +490,7 @@ format of the dataframe into a new variable using <code>&lt;-</code> or <code>-&
 <p>Now the steps (<code>filter()</code>, <code>group_by()</code> and <code>summarise()</code>) are written from left-to-right in a continuous fashion, rather than a separate step.</p>
 <p>Pipe <code>%&gt;%</code> is part of the <code>tidyverse</code> package, and it is deemed a necessary tool for data analysis using R. It is extremely useful because it allows you to write codes that are easier to understand. Notice that if you use <code>%&gt;%</code>, the input does not have to written because the input is actually the code that is written just before. For example:</p>
 <div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="calculating-area-under-a-curve.html#cb362-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 60 x 4
+<pre><code>## # A tibble: 60 × 4
 ##    Subject Day    Time Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ##  1 a       1         0  -0.421
@@ -499,9 +503,9 @@ format of the dataframe into a new variable using <code>&lt;-</code> or <code>-&
 ##  8 h       1         0   1.42 
 ##  9 u       1         0   1.54 
 ## 10 j       1         0   3.05 
-## # i 50 more rows</code></pre>
+## # ℹ 50 more rows</code></pre>
 <div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="calculating-area-under-a-curve.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(df, Day <span class="sc">==</span> <span class="dv">1</span>)</span></code></pre></div>
-<pre><code>## # A tibble: 60 x 4
+<pre><code>## # A tibble: 60 × 4
 ##    Subject Day    Time Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ##  1 a       1         0  -0.421
@@ -514,7 +518,7 @@ format of the dataframe into a new variable using <code>&lt;-</code> or <code>-&
 ##  8 h       1         0   1.42 
 ##  9 u       1         0   1.54 
 ## 10 j       1         0   3.05 
-## # i 50 more rows</code></pre>
+## # ℹ 50 more rows</code></pre>
 <p>These two are identical. But notice that if you do not use pipe,
 you might have to save the intermediate variables (such as <code>df_day1</code> and <code>by_time_day1</code>) multiple times, which can be tedious. Notice that when pipe <code>%&gt;%</code> is used, the need to save these variables disappears.</p>
 <p>I will use <code>%&gt;%</code> from now on due to my personal preference.</p>
@@ -543,7 +547,7 @@ you might have to save the intermediate variables (such as <code>df_day1</code> 
 <p>Now let’s filter for one subject’s data (subject <code>b</code>) on Day 1 using <code>filter()</code> and pipe <code>%&gt;%</code>.</p>
 <div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="calculating-area-under-a-curve.html#cb369-1" aria-hidden="true" tabindex="-1"></a>subj_b_day1 <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> Subject <span class="sc">==</span> <span class="st">&#39;b&#39;</span>)</span>
 <span id="cb369-2"><a href="calculating-area-under-a-curve.html#cb369-2" aria-hidden="true" tabindex="-1"></a>subj_b_day1</span></code></pre></div>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## # A tibble: 6 × 4
 ##   Subject Day    Time Cbratio
 ##   &lt;chr&gt;   &lt;fct&gt; &lt;dbl&gt;   &lt;dbl&gt;
 ## 1 b       1         0   2.82 
