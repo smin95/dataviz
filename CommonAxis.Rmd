@@ -409,8 +409,9 @@ xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52, y = 0
 ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)')
 title <- sm_common_title('Individual data', y = 0.2)
 
-plots_tgd <- sm_put_together(all_plots, title, xlabel,ylabel, 
-                             ncol=3,nrow=3, hmargin=-5, wmargin=-5)
+plots_tgd <- sm_put_together(all_plots, title=title, xlabel=xlabel,
+                             ylabel=ylabel, ncol=3,nrow=3,
+                             hmargin=-5, wmargin=-5)
 
 ```
 
@@ -445,8 +446,9 @@ Here, we include a label for each panel, which represents the data of each subje
 The function `sm_panel_label()` has a few arguments. `x` and `y` determine the location of the panel label; 0.5 represents its origin in the middle of the panel. `panel_tag` determines the character string that will be used for enumeration. In this example, `panel_tag = "1"` is chosen so there will be a sequence of numbers. Other options include: 1) `panel_tag = "A"` for uppercase letters, 2) `panel_tag = "a"` for small case letters, 3) `panel_tag = "I"` for upper roman numerals, and 4) `panel_tag = "i"` for lower roman numerals. There are also tag labels that can set to be *consistent* across panels: these are `panel_pretag` and `panel_posttag`. `panel_pretag` comes before `panel_tag` (as shown in this example, in the form of `S`, ex. `S1`), and `panel_posttag` comes after `panel_tag`. 
 
 ```{r}
-plots_tgd2 <- sm_put_together(all_plots2, title, xlabel,ylabel, 
-                             ncol=3,nrow=3, hmargin=-5, wmargin=-5)
+plots_tgd2 <- sm_put_together(all_plots2, title=title, xlabel=xlabel,
+                              ylabel=ylabel, ncol=3,nrow=3,
+                              hmargin=-5, wmargin=-5)
 
 plots_tgd3 <- sm_add_legend(plots_tgd2, x = .88, y= 0.05, sampleplot = all_plots2[[1]], 
                             direction = 'horizontal', border = FALSE)
