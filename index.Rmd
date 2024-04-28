@@ -216,7 +216,7 @@ As of April 2024, *smplot2* is now part of the **CRAN** repository. Please insta
 install.packages('smplot2')
 ```
 
-and `install_github()` for the most updated version. I suggest that you download the most updated version.
+If users wish to download the most updated version of *smplot2*, please use `install_github()`. This might be necessary if some codes from the documentation webpage do not work in RStudio as intended.
 
 ```{r, eval = FALSE}
 install.packages('devtools)
