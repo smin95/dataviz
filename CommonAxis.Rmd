@@ -609,7 +609,7 @@ save_plot('together4c.png', plots_tgd4c, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 ```
 
-```{r.fig.align = 'center', echo=F}
+```{r,fig.align = 'center', echo=F}
 knitr::include_graphics("together4c.png")
 ```
 
