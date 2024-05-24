@@ -581,8 +581,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb160-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb160-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">err.params =</span> <span class="fu">list</span>()) <span class="sc">+</span></span>
 <span id="cb160-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb160-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb160-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb160-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;orange&#39;</span>)) </span></code></pre></div>
-<pre><code>## Warning in geom_point(position = &lt;environment&gt;, width = 0.5): Ignoring
-## unknown parameters: `width`</code></pre>
+<pre><code>## Warning in geom_point(position = &lt;environment&gt;, width = 0.5): Ignoring unknown
+## parameters: `width`</code></pre>
 <pre><code>## Warning in stat_summary(fun.data = function (x, mult = 1) : Ignoring unknown
 ## parameters: `width`</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-138-1.png" width="336" /></p>
@@ -632,7 +632,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In this section, we will load data set from online. Details about the data set are described in the section below entitled <strong>Point Plot</strong>. You do not need to understand the data set to follow this section.</p>
 <div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb168-1" aria-hidden="true" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/amblyopia_random.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Rows: 180 Columns: 5
-## ── Column specification ─────────────────────────────────────────────────────
+## ── Column specification ─────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (3): Subject, Group, Condition
 ## dbl (2): absBP, SF
@@ -717,10 +717,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Since, in the context of time, <code>Before</code> is the first level followed by <code>After</code>, let’s set the level properly so that the alphabetical order is overturned.</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb184-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>beforeAfter <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>beforeAfter, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Before&#39;</span>,<span class="st">&#39;After&#39;</span>))</span>
 <span id="cb184-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb184-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>beforeAfter</span></code></pre></div>
-<pre><code>##  [1] Before Before Before Before Before Before Before Before Before Before
-## [11] Before Before Before Before Before Before Before Before Before Before
-## [21] After  After  After  After  After  After  After  After  After  After 
-## [31] After  After  After  After  After  After  After  After  After  After 
+<pre><code>##  [1] Before Before Before Before Before Before Before Before Before Before Before
+## [12] Before Before Before Before Before Before Before Before Before After  After 
+## [23] After  After  After  After  After  After  After  After  After  After  After 
+## [34] After  After  After  After  After  After  After 
 ## Levels: Before After</code></pre>
 <p>Based on the output, we have successfully ordered the factor levels. Now, we can start plotting a slope chart.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value, <span class="at">fill =</span> beforeAfter)) <span class="sc">+</span></span>
