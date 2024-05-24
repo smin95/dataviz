@@ -216,13 +216,12 @@ As of April 2024, *smplot2* is now part of the **CRAN** repository. Please insta
 install.packages('smplot2')
 ```
 
-If users wish to download the most updated version of *smplot2*, please use `install_github()`. This might be necessary if some codes from the documentation webpage do not work in RStudio as intended.
+If users wish to download the most updated version of *smplot2* (most recent version: 0.2.1.2 from **2024-05-24**), please use `install_github()`. This might be necessary if some codes from the documentation webpage do not work in RStudio as intended.
 
 ```{r, eval = FALSE}
 install.packages('devtools)
 devtools::install_github('smin95/smplot2',force = T)
 ```
-
 
 ## Issues and contact {-}
 If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the *smplot2* package, please pull-request on [Github](https://github.com/smin95/smplot2).
