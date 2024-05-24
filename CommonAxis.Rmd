@@ -422,7 +422,7 @@ Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the functi
 knitr::include_graphics("img/rc33.png")
 ```
 
-```{r, eval=F}
+```{r}
 save_plot('together1.png',plots_tgd,ncol=3,nrow=3,
           base_height=3.4,base_width=3)
 ```
@@ -508,7 +508,7 @@ Basically, `legend` that is created with `sm_common_legend()` is a new plot with
 The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()` because these arguments are used to derive a legend based on `sampleplot`. `x` and `y` describe the coordinates of the legend in the composite plot (output from `sm_put_together()`: `plots_tgd2`), and these are supplied in the `sm_add_legend()`.
 
 ```{r}
-plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend_a)
+plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend)
 ```
 
 
@@ -532,7 +532,7 @@ ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)', x=0.7)
 title <- sm_common_title('Individual data', y = 0.3, x = 0.51, size=18)
 
 plots_tgd4 <- sm_put_together(all_plots, title=title, xlabel=xlabel,
-                              ylabel=ylabel, legend=legend_a,
+                              ylabel=ylabel, legend=legend,
                              ncol=5,nrow=2, hmargin=-5, wmargin=-5)
 
 ```
@@ -550,11 +550,11 @@ The arguments of `sm_put_together()` have to be written in this order unless the
 
 1. `wRatio`: controls the relative width of the panels in the left-most column of the composite plot with ticks for the **primary y-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
 
-2. `wRatio2`: controls the relative width of the panels in the right-most column of the composite plot with ticks for the **secondary y-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+2. `wRatio2`: controls the relative width of the panels in the right-most column of the composite plot with ticks for the **secondary y-axis**. This gets activated if one of the plots in the input list has secondary y-axis. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
 
 3. `hRatio`: controls the relative height of the panels in the bottom row of the composite plot with ticks for the **primary x-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
 
-4. `hRatio2`: controls the relative height of the panels in the top row of the composite plot with ticks for the **secondary x-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+4. `hRatio2`: controls the relative height of the panels in the top row of the composite plot with ticks for the **secondary x-axis**. This gets activated if one of the plots in the input list has secondary x-axis. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
 
 5. `tickRatio`: controls the relative text size of the tick labels on both axes of the outer panels in the composite plot. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
 

@@ -611,8 +611,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ℹ 110 more rows</code></pre>
 <p>The output of <code>group_by()</code> is a new data frame (it might appear exactly the same as before, ex. <strong>df</strong>). However, it will respond differently to <code>summarise()</code> because the rows of the data frame are now grouped based on day and time, as we have specified.</p>
 <div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="creating-a-composite-figure-by-subplotting.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">Average_Cbratio =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time Average_Cbratio
@@ -642,8 +642,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we have seen before, we see that <code>standard_error</code> has been calculated across all subjects, day and time. This is not so useful. We should use <code>summarise()</code> with <code>group_by()</code> so that each standard error could be for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="creating-a-composite-figure-by-subplotting.html#cb307-1" aria-hidden="true" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
 <span id="cb307-2"><a href="creating-a-composite-figure-by-subplotting.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time standard_error
@@ -664,8 +664,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now let’s obtain the <strong>mean</strong> and <strong>standard error</strong> of <code>Cbratio</code> for each <code>Day</code> and <code>Time</code> across all subjects using the data frame that has been grouped by <code>Day</code> and <code>Time</code> via <code>group_by()</code>.</p>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="creating-a-composite-figure-by-subplotting.html#cb310-1" aria-hidden="true" tabindex="-1"></a>by_day_time1 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_day_time, <span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
 <span id="cb310-2"><a href="creating-a-composite-figure-by-subplotting.html#cb310-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="creating-a-composite-figure-by-subplotting.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(by_day_time1)</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 4
 ## # Groups:   Day [2]
@@ -992,7 +992,7 @@ Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-284-1.png" width="288" /></p>
 <p>Basically, <code>legend</code> that is created with <code>sm_common_legend()</code> is a new plot with no points; however, you still need to draw the same points and include other features from other sub-panels to make sure that they are included in the legend. Notice that legend labels have been customized as well by adjusting the <code>labels</code> within <code>scale_color_manual()</code> and <code>scale_shape_manual()</code>. The title has been removed by setting <code>title = FALSE</code>.</p>
 <p>The <code>legend</code> can then be added to the combined plot using <code>sm_add_legend()</code>. If you provide a separate legend, then other arguments of the function will be ignored, such as <code>direction</code> and <code>border</code> from <code>sm_add_legend()</code> because these arguments are used to derive a legend based on <code>sampleplot</code>. <code>x</code> and <code>y</code> describe the coordinates of the legend in the composite plot (output from <code>sm_put_together()</code>: <code>plots_tgd2</code>), and these are supplied in the <code>sm_add_legend()</code>.</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="creating-a-composite-figure-by-subplotting.html#cb344-1" aria-hidden="true" tabindex="-1"></a>plots_tgd3c <span class="ot">&lt;-</span> <span class="fu">sm_add_legend</span>(plots_tgd2, <span class="at">x =</span> .<span class="dv">91</span>, <span class="at">y=</span> <span class="fl">0.05</span>, <span class="at">legend=</span>legend_a)</span></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="creating-a-composite-figure-by-subplotting.html#cb344-1" aria-hidden="true" tabindex="-1"></a>plots_tgd3c <span class="ot">&lt;-</span> <span class="fu">sm_add_legend</span>(plots_tgd2, <span class="at">x =</span> .<span class="dv">91</span>, <span class="at">y=</span> <span class="fl">0.05</span>, <span class="at">legend=</span>legend)</span></code></pre></div>
 <p><img src="together2c.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Also, besides <code>sm_add_legend()</code>, <code>sm_put_together()</code> can also legend onto the combined plot if the user supplies a separate legend input: ex. <code>sm_put_together(legend = legend)</code>, where <code>legend</code> is a separate legend created as shown above. If the <code>legend</code> is provided in <code>sm_put_together()</code>, the function will automatically add legend onto the last panel of the combined plot, so make sure that the last empty panel is empty. The <code>x</code> and <code>y</code> coordinates howeevr are determined using <code>sm_common_legend()</code>, which we have opted for their defaults <code>x=0.5</code> and <code>y=0.5</code>, ex. <code>sm_common_legend(title=FALSE, legend_spacing=1, x=0.5, y=0.5)</code> in the above.</p>
 <p>To demonstrate this function, we will make a combined figure with 2 rows and 5 columns.</p>
@@ -1001,7 +1001,7 @@ Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
 <span id="cb345-3"><a href="creating-a-composite-figure-by-subplotting.html#cb345-3" aria-hidden="true" tabindex="-1"></a>title <span class="ot">&lt;-</span> <span class="fu">sm_common_title</span>(<span class="st">&#39;Individual data&#39;</span>, <span class="at">y =</span> <span class="fl">0.3</span>, <span class="at">x =</span> <span class="fl">0.51</span>, <span class="at">size=</span><span class="dv">18</span>)</span>
 <span id="cb345-4"><a href="creating-a-composite-figure-by-subplotting.html#cb345-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb345-5"><a href="creating-a-composite-figure-by-subplotting.html#cb345-5" aria-hidden="true" tabindex="-1"></a>plots_tgd4 <span class="ot">&lt;-</span> <span class="fu">sm_put_together</span>(all_plots, <span class="at">title=</span>title, <span class="at">xlabel=</span>xlabel,</span>
-<span id="cb345-6"><a href="creating-a-composite-figure-by-subplotting.html#cb345-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ylabel=</span>ylabel, <span class="at">legend=</span>legend_a,</span>
+<span id="cb345-6"><a href="creating-a-composite-figure-by-subplotting.html#cb345-6" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ylabel=</span>ylabel, <span class="at">legend=</span>legend,</span>
 <span id="cb345-7"><a href="creating-a-composite-figure-by-subplotting.html#cb345-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">ncol=</span><span class="dv">5</span>,<span class="at">nrow=</span><span class="dv">2</span>, <span class="at">hmargin=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">wmargin=</span><span class="sc">-</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;
@@ -1058,9 +1058,9 @@ Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
 <h2><span class="header-section-number">7.5</span> Other important inputs of <code>sm_put_together()</code><a href="creating-a-composite-figure-by-subplotting.html#other-important-inputs-of-sm_put_together" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ol style="list-style-type: decimal">
 <li><p><code>wRatio</code>: controls the relative width of the panels in the left-most column of the composite plot with ticks for the <strong>primary y-axis</strong>. This is automatically optimized as default if the user does not supply input (update made on <strong>2024-05-24</strong> available in the GitHub version).</p></li>
-<li><p><code>wRatio2</code>: controls the relative width of the panels in the right-most column of the composite plot with ticks for the <strong>secondary y-axis</strong>. This is automatically optimized as default if the user does not supply input (update made on <strong>2024-05-24</strong> available in the GitHub version).</p></li>
+<li><p><code>wRatio2</code>: controls the relative width of the panels in the right-most column of the composite plot with ticks for the <strong>secondary y-axis</strong>. This gets activated if one of the plots in the input list has secondary y-axis. This is automatically optimized as default if the user does not supply input (update made on <strong>2024-05-24</strong> available in the GitHub version).</p></li>
 <li><p><code>hRatio</code>: controls the relative height of the panels in the bottom row of the composite plot with ticks for the <strong>primary x-axis</strong>. This is automatically optimized as default if the user does not supply input (update made on <strong>2024-05-24</strong> available in the GitHub version).</p></li>
-<li><p><code>hRatio2</code>: controls the relative height of the panels in the top row of the composite plot with ticks for the <strong>secondary x-axis</strong>. This is automatically optimized as default if the user does not supply input (update made on <strong>2024-05-24</strong> available in the GitHub version).</p></li>
+<li><p><code>hRatio2</code>: controls the relative height of the panels in the top row of the composite plot with ticks for the <strong>secondary x-axis</strong>. This gets activated if one of the plots in the input list has secondary x-axis. This is automatically optimized as default if the user does not supply input (update made on <strong>2024-05-24</strong> available in the GitHub version).</p></li>
 <li><p><code>tickRatio</code>: controls the relative text size of the tick labels on both axes of the outer panels in the composite plot. This is automatically optimized as default if the user does not supply input (update made on <strong>2024-05-24</strong> available in the GitHub version).</p></li>
 </ol>
 <p>It is possible that the optimization is not perfect because the current algorithm is quite simple and does not encompass all possible plotting situations. <strong>So, users are encouraged to modify these arguments using values from 1.1 to 1.4</strong>.</p>
