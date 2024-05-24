@@ -494,7 +494,7 @@ legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
                      labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
   scale_shape_manual(values = c(21,22),
                      labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
-  sm_common_legend(x = 0.5, y = 0.1 , title=FALSE, legend_spacing = 1)
+  sm_common_legend(title=FALSE, legend_spacing = 1)
 ```
 
 
@@ -503,25 +503,9 @@ legend
 ```
 
 
-Here, in `sm_common_legend()`, `x` and `y` control the location of the legend. Basically, `legend` is a new plot with no points; however, you still need to draw the same points and include other features from other sub-panels to make sure that they are included in the legend. Notice that legend labels have been customized as well by adjusting the `labels` within `scale_color_manual()` and `scale_shape_manual()`. The title has been removed by setting `title = FALSE`.
+Basically, `legend` that is created with `sm_common_legend()` is a new plot with no points; however, you still need to draw the same points and include other features from other sub-panels to make sure that they are included in the legend. Notice that legend labels have been customized as well by adjusting the `labels` within `scale_color_manual()` and `scale_shape_manual()`. The title has been removed by setting `title = FALSE`.
 
-Let's see what happens if you change the location (`x` and `y`) of the legend.
-
-```{r}
-legend_a <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
-  geom_point(size = 2.5) +
-  scale_color_manual(values = sm_color('blue','orange'),
-                     labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
-  scale_shape_manual(values = c(21,22),
-                     labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
-  sm_common_legend(x = 0.5, y = 0.5 , title=FALSE, legend_spacing = 1)
-```
-
-```{r, echo=F, fig.width=3, fig.height=3}
-legend
-```
-
-Notice that the relative orientation of the legend has shifted. The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()` because these arguments are used to derive a legend based on `sampleplot`. 
+The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()` because these arguments are used to derive a legend based on `sampleplot`. `x` and `y` describe the coordinates of the legend in the composite plot (output from `sm_put_together()`: `plots_tgd2`), and these are supplied in the `sm_add_legend()`.
 
 ```{r}
 plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend_a)
@@ -538,7 +522,7 @@ knitr::include_graphics("together2c.png")
 ```
 
 
-Also, besides `sm_add_legend()`, `sm_put_together()` can also legend onto the combined plot. The `legend` however has to be separately made using `sm_common_legend()` first, ex. `sm_put_together(legend = legend)`, where `legend` is a separate legend created as shown above. If the `legend` is provided in `sm_put_together()`, the function will automatically add legend onto the last panel of the combined plot, so make sure that the last empty panel is empty.
+Also, besides `sm_add_legend()`, `sm_put_together()` can also legend onto the combined plot if the user supplies a separate legend input: ex. `sm_put_together(legend = legend)`, where `legend` is a separate legend created as shown above. If the `legend` is provided in `sm_put_together()`, the function will automatically add legend onto the last panel of the combined plot, so make sure that the last empty panel is empty. The `x` and `y` coordinates howeevr are determined using `sm_common_legend()`, which we have opted for their defaults `x=0.5` and `y=0.5`, ex. `sm_common_legend(title=FALSE, legend_spacing=1, x=0.5, y=0.5)` in the above.
 
 To demonstrate this function, we will make a combined figure with 2 rows and 5 columns.
 
@@ -560,12 +544,21 @@ save_plot('together4.png', plots_tgd4, ncol=5, nrow=2,
 
 ```
 
-The legend is set using the function `sm_common_legend()`, whose `x` and `y` control the location of the legend. Basically, `legend` is a new plot with no points; however, you still need to draw the same points and include other features from other sub-panels to make sure that they are included in the legend. THe output `legend` then gets handled by `sm_put_together()`.
-
 The arguments of `sm_put_together()` have to be written in this order unless they are specified (ex. `sm_put_together(all_plots=all_plots, xlabel=xlabel, title=title)`).
 
-If the `legend` is included in `sm_put_together`, the function will automatically add legend onto the last panel of the combined plot, so make sure that the last empty panel is empty. To move the legend's location, you need to adjust `x` and `y` of `sm_common_legend()`, which you have used to make a separate, customisable legend. 
+## Other important inputs of `sm_put_together()`
 
+1. `wRatio`: controls the relative width of the panels in the left-most column of the composite plot with ticks for the **primary y-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+
+2. `wRatio2`: controls the relative width of the panels in the right-most column of the composite plot with ticks for the **secondary y-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+
+3. `hRatio`: controls the relative height of the panels in the bottom row of the composite plot with ticks for the **primary x-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+
+4. `hRatio2`: controls the relative height of the panels in the top row of the composite plot with ticks for the **secondary x-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+
+5. `tickRatio`: controls the relative text size of the tick labels on both axes of the outer panels in the composite plot. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+
+It is possible that the optimization is not perfect because the current algorithm is quite simple and does not encompass all possible plotting situations. **So, users are encouraged to modify these arguments using values from 1.1 to 1.4**. 
 
 ```{r, echo=FALSE, fig.align = 'center'}
 knitr::include_graphics("together4.png")
