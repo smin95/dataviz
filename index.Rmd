@@ -189,7 +189,7 @@ print(all)
 
 ```
 ```{r,fig.align = 'center', echo=F,  fig.cap="For more information about creating and annotating a composite figure, please visit Chapter 7."}
-knitr::include_graphics("together3b.png")
+knitr::include_graphics("together4.png")
 ```
 
 This book (https://smin95.github.io/dataviz) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot2**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. The secondary link of the e-book is: https://smin95.com/dataviz. 
