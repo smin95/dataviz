@@ -396,7 +396,7 @@ plot_s9 <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
 print(plot_s9)
 ```
 
-## Putting multiple plots together (a composite figure)
+## Putting multiple plots together (a composite figure) - `sm_put_together()`
 
 Each panel output has to be stored in a `list` using the function `list()`. X-axis label can be specified using `sm_common_xlabel()`, which has `x` and `y` arguments for setting the location of the label. Y-axis label is specified using `sm_common_ylabel()` with the same `x` and `y` arguments. The title can be set using `sm_common_title()`. 
 
@@ -548,17 +548,19 @@ The arguments of `sm_put_together()` have to be written in this order unless the
 
 ## Other important inputs of `sm_put_together()`
 
-1. `wRatio`: controls the relative width of the panels in the left-most column of the composite plot with ticks for the **primary y-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+These inputs are automatically optimized as default if the user does not supply input (available in version 0.2.2.2 from GitHub as of **2024-05-24**).
 
-2. `wRatio2`: controls the relative width of the panels in the right-most column of the composite plot with ticks for the **secondary y-axis**. This gets activated if one of the plots in the input list has secondary y-axis. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+1. `wRatio`: controls the relative width of the panels in the left-most column of the composite plot with ticks for the **primary y-axis**. 
 
-3. `hRatio`: controls the relative height of the panels in the bottom row of the composite plot with ticks for the **primary x-axis**. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+2. `wRatio2`: controls the relative width of the panels in the right-most column of the composite plot with ticks for the **secondary y-axis**. This gets activated if one of the plots in the input list has secondary y-axis. 
 
-4. `hRatio2`: controls the relative height of the panels in the top row of the composite plot with ticks for the **secondary x-axis**. This gets activated if one of the plots in the input list has secondary x-axis. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+3. `hRatio`: controls the relative height of the panels in the bottom row of the composite plot with ticks for the **primary x-axis**. 
 
-5. `tickRatio`: controls the relative text size of the tick labels on both axes of the outer panels in the composite plot. This is automatically optimized as default if the user does not supply input (update made on **2024-05-24** available in the GitHub version).
+4. `hRatio2`: controls the relative height of the panels in the top row of the composite plot with ticks for the **secondary x-axis**. This gets activated if one of the plots in the input list has secondary x-axis.
 
-It is possible that the optimization is not perfect because the current algorithm is quite simple and does not encompass all possible plotting situations. **So, users are encouraged to modify these arguments using values from 1.1 to 1.4**. 
+5. `tickRatio`: controls the relative text size of the tick labels on both axes of the outer panels in the composite plot.
+
+However, is possible that the optimization is not perfect because the current algorithm is quite simple and does not encompass all possible plotting situations. **So, users are encouraged to modify these arguments using values from 1.1 to 1.4**. 
 
 ```{r, echo=FALSE, fig.align = 'center'}
 knitr::include_graphics("together4.png")

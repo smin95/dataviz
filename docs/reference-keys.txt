@@ -91,7 +91,7 @@ select-for-columns
 summarise-for-grouped-summaries
 plotting-the-averaged-data-with-error-bars
 plotting-individual-data
-putting-multiple-plots-together-a-composite-figure
+putting-multiple-plots-together-a-composite-figure---sm_put_together
 other-important-inputs-of-sm_put_together
 adding-annotations-to-the-composite-figure
 text-annotations
