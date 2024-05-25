@@ -189,7 +189,7 @@ print(all)
 
 ```
 ```{r,fig.align = 'center', echo=F,  fig.cap="For more information about creating and annotating a composite figure, please visit Chapter 7."}
-knitr::include_graphics("together4j.png")
+knitr::include_graphics("together3b.png")
 ```
 
 This book (https://smin95.github.io/dataviz) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot2**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. The secondary link of the e-book is: https://smin95.com/dataviz. 
@@ -209,6 +209,7 @@ Here is the reference for the **smCSF** package (Chapters 13-16):
 **Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). *Investigative Ophthalmology and Visual Science*.**
 
 ## Installation of smplot2 {-}
+[![](https://cranlogs.r-pkg.org/badges/smplot2)](https://cran.r-project.org/package=smplot2) [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/smplot2)](https://CRAN.R-project.org/package=smplot2)
 
 As of April 2024, *smplot2* is now part of the **CRAN** repository. Please install using `install.packages()` for the most stable version.
 
