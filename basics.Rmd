@@ -138,8 +138,7 @@ TRUE*FALSE # 1 * 0
 - So, you will need to install some packages, such as ggplot2 and smplot2. Please type the codes below.
 
 ```{r, eval = FALSE}
-install.packages('devtools')
-devtools::install_github('smin95/smplot2', force = TRUE) # requires VPN if you are in China
+install.packages('smplot2)
 ```
 
 - You only need to install them once, but you will need to reload them whenever you start a new session in RStudio using the function `library()`.
