@@ -364,7 +364,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   sm_statCorr()
 ```
 
-I don't really like how the line color is different from that of the points. 
+Personally, in this example, I prefer to have the colors of the lines and points to be consistent. 
 
 Let's change the color to green.
 
@@ -377,6 +377,15 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
   geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
   sm_statCorr(color = '#0f993d', corr_method = 'spearman',
               linetype = 'dashed')
+```
+
+You can also compute R2 instead of R2 by setting `R2 = TRUE`. If `R2 = FALSE`, R will be computed.
+
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
+ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
+  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
+  sm_statCorr(color = '#0f993d', corr_method = 'spearman',
+              linetype = 'dashed', R2 = TRUE)
 ```
 
 - **Exercise**: Set `corr_method = 'pearson'`and see what happens.
@@ -415,7 +424,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
                                 linetype = 'dashed'))
 ```
 
-You can also remove the `borders` of the plot using `sm_statCorr`.
+You can also remove the `borders` of the plot using `sm_statCorr`. This computes R.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
@@ -424,6 +433,17 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
               fit.params = list(color = '#0f993d', 
                                 linetype = 'dashed'),
               borders = FALSE)
+```
+
+This instead computes R2.
+
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
+ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
+  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
+  sm_statCorr(corr_method = 'spearman',
+              fit.params = list(color = '#0f993d', 
+                                linetype = 'dashed'),
+              borders = FALSE, R2 = TRUE)
 ```
 
 Which one do you prefer? With or without the border?

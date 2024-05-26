@@ -537,6 +537,19 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
            show_mean = TRUE)
 ```
 
+Alternatively, we can use `sm_slope_mean()`, a shortcut function of `sm_slope()` that only plots the slope chart with mean for one group (i.e., one color palette). Besides the arguments `labels` and `group`, this function has some different arguments than those of `sm_slope()`. It is easier to use but less flexible.
+
+```{r,fig.width = 3.2, fig.height=3.5,warning = F}
+
+ggplot(data = df, aes(x = beforeAfter, y = Value))  +
+  sm_slope_mean(labels = c('Before','After'), 
+                group = Subject, back_alpha = .3,
+                main_color = sm_color('purple'))
+
+```
+
+The main color of the slope chart is determined `main_color`, which is set to purple. The transparency of the back shadow is determined with `back_alpha`, which ranges from 0 (invisible) to 1 (opaque). 
+
 
 ### Slope chart with mean plot and error bar
 
@@ -578,6 +591,21 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
 ```
 
 This form of slope chart highly resembles a point plot with a shadow, which we will discuss below using the function `sm_pointplot()`.
+
+This can also be produced with `sm_slope_mean()`, which is easier.
+
+The error bar type can be selected using `errorbar_type`. The aesthetics of the error bars can be set using `err_width`. 
+
+```{r,fig.width = 3.2, fig.height=3.5,warning = F}
+
+ggplot(data = df, aes(x = beforeAfter, y = Value))  +
+  sm_slope_mean(labels = c('Before','After'), 
+                group = Subject, back_alpha = .3,
+                main_color = sm_color('purple'),
+                show_err = TRUE,
+                errorbar_type = "sd")
+
+```
 
 ### Slope chart with multiple x levels
 

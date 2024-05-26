@@ -546,6 +546,22 @@ save_plot('together4.png', plots_tgd4, ncol=5, nrow=2,
 
 The arguments of `sm_put_together()` have to be written in this order unless they are specified (ex. `sm_put_together(all_plots=all_plots, xlabel=xlabel, title=title)`).
 
+The `title`, `xlabel`, `xlabel2`, `ylabel` and `ylabel2` can be provided as string characters, as shown below. If characters are provided rather than the outputs of `sm_common_title()`, `sm_common_xlabel()` and `sm_common_ylabel()`, then their locations and font sizes cannot be modified. These are instead estimated by a simple algorithm that relies on the plot's layout and other information. 
+
+```{r}
+plots_tgd_quick <- sm_put_together(all_plots, 
+                              title='Individual data', xlabel='Minutes after monocular deprivation',
+                              ylabel='\u0394 Contrast balance ratio (dB)', legend=legend,
+                              ncol=5,nrow=2, hmargin=-5, wmargin=-5)
+```
+
+```{r}
+save_plot('together4_quick.png', plots_tgd_quick, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+
+```
+
+
 ## Other important inputs of `sm_put_together()`
 
 These inputs are automatically optimized as default if the user does not supply input (available in version 0.2.2.2 from GitHub as of **2024-05-24**).
@@ -630,3 +646,53 @@ save_plot('together4e.png', plots_tgd4e, ncol=5, nrow=2,
 ```{r, fig.align = 'center', echo=F}
 knitr::include_graphics("together4e.png")
 ```
+
+You can also use third-party annotation functions to annotate the composite figure generated from `sm_put_together()`.
+
+## Why use `sm_put_together()`? (Advanced)
+
+The primary reason for its existence is that the function has been designed to change the workflow of *ggplot2* for subplotting and creating a composite figure by integrating the programmatic approach, which is not commonly used among users of *ggplot2* because they otherwise risk losing flexibility for aesthetics and control.
+
+A programming approach refers to a means that involves creating programming constructs, such as a for loop, if conditionals or vertorization, to minimize the length of code and improve the speed for computing to perform a complex task. Creating a composite plot with many panels, such as the example here, is a type of complex data visualization whose procedure can appear to be repetitive and cumbersome. 
+
+In this short example, I recreate the composite plot generated above using the function `lapply()`, which creates an iterative loop, producing one ggplot2 object per loop. There will be nine loops total, and these will be stored in the output object `all_figs`. 
+
+```{r}
+subj_list <- paste0('S', 1:9)
+
+all_figs <- lapply(1:length(subj_list), function(i) {
+  
+  df_subj <- df %>% filter(Subject == subj_list[[i]])
+  
+  ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) + 
+  geom_point(size = 4.5) +
+  geom_smooth(method = 'lm', se = F, size = 0.9) + 
+  # lm = linear regression method 
+  scale_x_continuous(breaks = unique(df$Time), 
+                     labels = c("0", "3", "6", "12", "24", "48")) +
+  sm_hgrid() +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  scale_y_continuous(limits = c(-3, 5.5)) 
+})
+```
+
+We see that `all_figs` has nine plots and that it is a list structure, which can be handled by `sm_put_together()` to generate a composite plot.
+
+```{r, fig.align = 'center', echo=F}
+knitr::include_graphics("together5.png")
+```
+
+```{r}
+plots_tgd5 <- sm_put_together(all_figs, title='Individual data', 
+                              xlabel='Minutes after monocular deprivation',
+                              ylabel='\u0394 Contrast balance ratio (dB)', legend=legend,
+                             ncol=5,nrow=2, hmargin=-5, wmargin=-5)
+```
+
+`sm_put_together()` can also handle nested list objects (i.e., list of list), so users can fully integrate complex programming constructs into their visualization routines to perform sophisticated data visualizations without relying on external packages. 
+
+```{r, echo=FALSE}
+save_plot('together5.png', plots_tgd5, ncol=5, nrow=2,
+          base_height=3.4, base_width=3)
+```
+
