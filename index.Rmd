@@ -50,16 +50,8 @@ Day <- rep(c('Day 1', 'Day 2'), each = length(day1))
 df <- cbind(Subject, Data, Day)
 df2 <- df
 
-ggplot(data = df, aes(x = Day, y = Value, fill = Day)) +
-  sm_slope(labels = c('Day 1','Day 2'),group = Subject,
-           point.params = list(alpha = 0.3, size = 2.5, color = 'white',
-                               shape = 21, fill = sm_color('skyblue')),
-           line.params = list(color = sm_color('skyblue'),
-                              alpha = 0.3),
-           avgPoint.params = list(color='transparent', shape = 21,
-                                  size = 4, fill = sm_color('blue')),
-           avgLine.params = list(color = sm_color('blue'), size = 1),
-           show_mean = TRUE) +
+ggplot(data=df, aes(x = Day, y = Value)) +
+  sm_slope_mean(labels = c('Day 1', 'Day 2'), group = Subject, back_alpha = .3) +
   ggtitle('Slope chart with mean') -> slope_avg
 
 df %>% ggplot(aes(x = Day, y = Value, fill = Day)) +

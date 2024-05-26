@@ -4,9 +4,9 @@ fig:unnamed-chunk-8
 fig:unnamed-chunk-9
 fig:unnamed-chunk-10
 fig:unnamed-chunk-28
-fig:unnamed-chunk-277
-fig:unnamed-chunk-412
+fig:unnamed-chunk-278
 fig:unnamed-chunk-413
+fig:unnamed-chunk-414
 opening-remarks
 how-to-read-this-book
 download-rstudio-basics-of-r

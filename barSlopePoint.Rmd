@@ -592,9 +592,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
 
 This form of slope chart highly resembles a point plot with a shadow, which we will discuss below using the function `sm_pointplot()`.
 
-This can also be produced with `sm_slope_mean()`, which is easier.
-
-The error bar type can be selected using `errorbar_type`. The aesthetics of the error bars can be set using `err_width`. 
+This can also be produced with `sm_slope_mean()`, which is easier. The error bar type can be selected using `errorbar_type`. The aesthetics of the error bars can be set using `err_width`. 
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
 
@@ -602,6 +600,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value))  +
   sm_slope_mean(labels = c('Before','After'), 
                 group = Subject, back_alpha = .3,
                 main_color = sm_color('purple'),
+                main_shape = 17,
                 show_err = TRUE,
                 errorbar_type = "sd")
 
@@ -640,6 +639,19 @@ ggplot(data = df, aes(x = Day, y = Value)) +
 ```
 
 Now we have a mean plot with error bar representing standard deviation with a shadow of individual plots behind at 3 discrete x-levels.
+
+Here is the same plot created with `sm_slope_mean()`.
+
+```{r,fig.width = 3.8, fig.height=3.5,warning = F}
+ggplot(data = df, aes(x = Day, y = Value)) +
+  sm_slope_mean(labels = c('Day 1','Day 2', 'Day 3'), 
+                group = Subject, back_alpha = 0.2,
+                main_color = sm_color('purple'),
+                main_shape = 17,
+                show_err = TRUE,
+                errorbar_type = "sd")
+```
+
 
 ### Slope chart with multiple groups and x levels
 
