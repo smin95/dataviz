@@ -151,8 +151,10 @@ plotting-individual-points-with-unique-colors-2
 bar-plot---sm_bar
 plotting-individual-points-with-unique-colors-3
 slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2
-slope-chart---sm_slope
+slope-chart---sm_slope-and-sm_slope_mean
+sm_slope
 drawing-the-mean-plot
+sm_slope_mean
 point-plot---sm_pointplot
 a-bland-altman-plot---sm_bland_altman
 forest-plot---sm_forest

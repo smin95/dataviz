@@ -375,9 +375,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><i class="fa fa-check"></i><b>12</b> Slope Charts, Point plots, Bland-Altman, Forests, Rainclouds, Histograms (Part 2)</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code></a>
+<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope-and-sm_slope_mean"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code> and <code>sm_slope_mean()</code></a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.1</b> Drawing the mean plot</a></li>
+<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#sm_slope"><i class="fa fa-check"></i><b>12.1.1</b> <code>sm_slope()</code></a></li>
+<li class="chapter" data-level="12.1.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.2</b> Drawing the mean plot</a></li>
+<li class="chapter" data-level="12.1.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#sm_slope_mean"><i class="fa fa-check"></i><b>12.1.3</b> <code>sm_slope_mean()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#point-plot---sm_pointplot"><i class="fa fa-check"></i><b>12.2</b> Point plot - <code>sm_pointplot()</code></a></li>
 <li class="chapter" data-level="12.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>12.3</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
@@ -446,11 +448,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As in the previous two chapters, we will continue to use data from this paper (<a href="https://www.smin95.com/pubs/min2019.pdf">PDF</a>):</p>
 <p><strong>Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.</strong></p>
 <p>Load the <code>tidyverse</code> and other libraries, and the csv file <code>min2019b.csv</code> using <code>read_csv()</code> from the <code>tidyverse</code> package.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="basic-statistics.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb448-2"><a href="basic-statistics.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span>
-<span id="cb448-3"><a href="basic-statistics.html#cb448-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
-<span id="cb448-4"><a href="basic-statistics.html#cb448-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
-<span id="cb448-5"><a href="basic-statistics.html#cb448-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="basic-statistics.html#cb446-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb446-2"><a href="basic-statistics.html#cb446-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span>
+<span id="cb446-3"><a href="basic-statistics.html#cb446-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span>
+<span id="cb446-4"><a href="basic-statistics.html#cb446-4" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
+<span id="cb446-5"><a href="basic-statistics.html#cb446-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   Subject   Day  Time Cbratio
 ##   &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
@@ -467,15 +469,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-359-1.png" width="336" /></p>
 <p>For instance, to determine if the area under curve (changes in contrast balance ratio over time) after patching is significant, so much so that one can confidently say that it is different from 0, we can perform a one-sample t-test using <code>t.test()</code>.</p>
 <p>Let’s use data from the same paper. We import the data from online using <code>read_csv()</code> and store them into a variable (in this case, <code>df</code>). Then, we compute the area under a curve using <code>sm_auc_all()</code> and store the values in the variable <code>auc_df</code>.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="basic-statistics.html#cb450-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
-<span id="cb450-2"><a href="basic-statistics.html#cb450-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb450-3"><a href="basic-statistics.html#cb450-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>Day)</span>
-<span id="cb450-4"><a href="basic-statistics.html#cb450-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb450-5"><a href="basic-statistics.html#cb450-5" aria-hidden="true" tabindex="-1"></a>auc_df <span class="ot">&lt;-</span> <span class="fu">sm_auc_all</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, <span class="at">conditions =</span> <span class="st">&#39;Day&#39;</span>, </span>
-<span id="cb450-6"><a href="basic-statistics.html#cb450-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="at">values =</span> <span class="st">&#39;Cbratio&#39;</span>,</span>
-<span id="cb450-7"><a href="basic-statistics.html#cb450-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> df)</span>
-<span id="cb450-8"><a href="basic-statistics.html#cb450-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb450-9"><a href="basic-statistics.html#cb450-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auc_df)</span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="basic-statistics.html#cb448-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&#39;https://www.smin95.com/min2019b.csv&#39;</span>) </span>
+<span id="cb448-2"><a href="basic-statistics.html#cb448-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb448-3"><a href="basic-statistics.html#cb448-3" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>Day <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df<span class="sc">$</span>Day)</span>
+<span id="cb448-4"><a href="basic-statistics.html#cb448-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb448-5"><a href="basic-statistics.html#cb448-5" aria-hidden="true" tabindex="-1"></a>auc_df <span class="ot">&lt;-</span> <span class="fu">sm_auc_all</span>(<span class="at">subjects =</span> <span class="st">&#39;Subject&#39;</span>, <span class="at">conditions =</span> <span class="st">&#39;Day&#39;</span>, </span>
+<span id="cb448-6"><a href="basic-statistics.html#cb448-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">x =</span> <span class="st">&#39;Time&#39;</span>, <span class="at">values =</span> <span class="st">&#39;Cbratio&#39;</span>,</span>
+<span id="cb448-7"><a href="basic-statistics.html#cb448-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> df)</span>
+<span id="cb448-8"><a href="basic-statistics.html#cb448-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb448-9"><a href="basic-statistics.html#cb448-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auc_df)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   Subject Day   AUC_Cbratio
 ##   &lt;chr&gt;   &lt;fct&gt;       &lt;dbl&gt;
@@ -487,8 +489,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6 b       1          60.5</code></pre>
 <p>The <code>Day</code> column of <code>df</code> has to be factored using <code>as.factor()</code> because <code>Day</code> here is a categorical, rather than, continuous variable.</p>
 <p>To determine if the area under curve data on Day 1 were significantly different from 0, we could use one-sample t-test. First, let’s filter for data from only Day 1.</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="basic-statistics.html#cb452-1" aria-hidden="true" tabindex="-1"></a>auc_df_day1 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb452-2"><a href="basic-statistics.html#cb452-2" aria-hidden="true" tabindex="-1"></a>auc_df_day1</span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="basic-statistics.html#cb450-1" aria-hidden="true" tabindex="-1"></a>auc_df_day1 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb450-2"><a href="basic-statistics.html#cb450-2" aria-hidden="true" tabindex="-1"></a>auc_df_day1</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 3
 ##    Subject Day   AUC_Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt;       &lt;dbl&gt;
@@ -503,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  9 u       1           39.1 
 ## 10 j       1           74.9</code></pre>
 <p>Then, lets extract the values from the <code>AUC_Cbratio</code> column and perform one-sample t-test using <code>t.test()</code>.</p>
-<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="basic-statistics.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="basic-statistics.html#cb452-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -518,8 +520,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>mu = 0</code> is included as an argument when performing one-sample <code>t.test</code>; this means an average of 0. In this case, you are comparing the data from <code>auc_df_day1$AUC_Cbratio</code> to <code>mu = 0</code>.</p>
 <p>The p-value must be less than <strong>0.05</strong> to be considered statistically significant. It is labelled with one asterisk *. 0.001 &lt; p &lt; 0.01 is denoted with two asterisks **, and p &lt; 0.001 is denoted with three asterisks ***. Since the p-value reported here is less than 0.001, Figure 3E has *** for Day 1’s area under a curve.</p>
 <p>We can repeat this for Days 2-5. For brevity, we repeat the example with Days 2 and 4 only.</p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="basic-statistics.html#cb456-1" aria-hidden="true" tabindex="-1"></a>auc_df_day2 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">2</span>)</span>
-<span id="cb456-2"><a href="basic-statistics.html#cb456-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day2<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="basic-statistics.html#cb454-1" aria-hidden="true" tabindex="-1"></a>auc_df_day2 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">2</span>)</span>
+<span id="cb454-2"><a href="basic-statistics.html#cb454-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day2<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -532,8 +534,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean of x 
 ##  54.92521</code></pre>
 <p>The p value is 0.0065, which is less than 0.01 but larger than 0.001. In this case, the statistical significance is denoted as **. Likewise, Figure 3E shows the AUC of Day 2 with **.</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="basic-statistics.html#cb458-1" aria-hidden="true" tabindex="-1"></a>auc_df_day4 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">4</span>)</span>
-<span id="cb458-2"><a href="basic-statistics.html#cb458-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day4<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="basic-statistics.html#cb456-1" aria-hidden="true" tabindex="-1"></a>auc_df_day4 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">4</span>)</span>
+<span id="cb456-2"><a href="basic-statistics.html#cb456-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day4<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -552,19 +554,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A two-sample t-test is used to compare the mean of one sample to that of another sample.</p>
 <p>For example, let’s compare changes in sensory eye dominance after short-term monocular deprivation in Day 1 vs Day 5. These values are shown in the <code>Cbratio</code> column.</p>
 <p>Let’s filter only for AUC data from Days 1 and 5.</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="basic-statistics.html#cb460-1" aria-hidden="true" tabindex="-1"></a>auc_df_day1 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>)</span>
-<span id="cb460-2"><a href="basic-statistics.html#cb460-2" aria-hidden="true" tabindex="-1"></a>auc_df_day5 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">5</span>)</span>
-<span id="cb460-3"><a href="basic-statistics.html#cb460-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb460-4"><a href="basic-statistics.html#cb460-4" aria-hidden="true" tabindex="-1"></a>auc_df_day15 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> Day <span class="sc">==</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="basic-statistics.html#cb458-1" aria-hidden="true" tabindex="-1"></a>auc_df_day1 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb458-2"><a href="basic-statistics.html#cb458-2" aria-hidden="true" tabindex="-1"></a>auc_df_day5 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">5</span>)</span>
+<span id="cb458-3"><a href="basic-statistics.html#cb458-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb458-4"><a href="basic-statistics.html#cb458-4" aria-hidden="true" tabindex="-1"></a>auc_df_day15 <span class="ot">&lt;-</span> auc_df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Day <span class="sc">==</span> <span class="dv">1</span> <span class="sc">|</span> Day <span class="sc">==</span> <span class="dv">5</span>)</span></code></pre></div>
 <p>Now, let’s plot a bar graph to display the AUC from Days 1 and 5 using <code>sm_bar()</code>.</p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="basic-statistics.html#cb461-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> auc_df_day15, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
-<span id="cb461-2"><a href="basic-statistics.html#cb461-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
-<span id="cb461-3"><a href="basic-statistics.html#cb461-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
-<span id="cb461-4"><a href="basic-statistics.html#cb461-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;AUC in Days 1 and 5&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="basic-statistics.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> auc_df_day15, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> AUC_Cbratio, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
+<span id="cb459-2"><a href="basic-statistics.html#cb459-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
+<span id="cb459-3"><a href="basic-statistics.html#cb459-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb459-4"><a href="basic-statistics.html#cb459-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;AUC in Days 1 and 5&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-366-1.png" width="355.2" /></p>
 <p>There seems to be a difference in the AUC <code>AUC_Cbratio</code> between Days 1 and 5. The error bars (in this case, standard error) are barely overlapping. If the error bars are clearly overlapping, there is often no significant difference (p &lt; 0.05) between the two data sets. If there is no overlap, it is highly likely that a statistical test will show a significant difference (p &lt; 0.05). Let’s take a look using <strong>t-test</strong> using the function <code>t.test()</code>.</p>
 <p><code>t.test()</code> allows us to compare whether data between two different groups are significantly different. Here, <code>$</code> is used to <strong>extract</strong> data from a specific column within a data frame. You could type <code>df_0min$</code>, press the <strong>Tab</strong> button from the keyboard, and see what happens. Since we will only compare values in the <code>AUC_Cbratio</code> column, let’s select for the <code>AUC_Cbratio</code> column and use these values in our <code>t.test()</code>.</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="basic-statistics.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day5<span class="sc">$</span>AUC_Cbratio, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="basic-statistics.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day5<span class="sc">$</span>AUC_Cbratio, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -584,14 +586,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-368-1.png" width="355.2" /></p>
 <p>Whether the data have a normal distribution can be checked using a Shapiro-Wilk test (<code>shapiro.test()</code>). If p &gt; 0.05, then the data have a normal distribution, and therefore, t-test can be used to analyze the data. If p &lt; 0.05, the data are not normally distributed, and t-test cannot be used.</p>
 <p>For example, let’s check whether the AUC data from Day 1 have a normal distribution.</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="basic-statistics.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="basic-statistics.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
 ## data:  auc_df_day1$AUC_Cbratio
 ## W = 0.95039, p-value = 0.6732</code></pre>
 <p>P value is 0.67, which is larger than 0.05. Therefore, the AUCs from Day 1 have a normal distribution.</p>
-<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="basic-statistics.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(auc_df_day5<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="basic-statistics.html#cb464-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(auc_df_day5<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
 <pre><code>## 
 ##  Shapiro-Wilk normality test
 ## 
@@ -605,8 +607,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.3</span> Wilcoxon Signed-rank Test<a href="basic-statistics.html#wilcoxon-signed-rank-test" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Wilcoxon Signed-rank Test is a <strong>non-parametric</strong> statistical test that is used instead of a t-test when the data are <strong>not normally distributed</strong>.</p>
 <p>If Shapiro-Wilk test yields p &lt; 0.05 for the following datasets, a Wilcoxon Signed Rank Test must be used for both one-sample and two-sample tests.</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="basic-statistics.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one-sample Wilcoxon Signed-rank Test</span></span>
-<span id="cb468-2"><a href="basic-statistics.html#cb468-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="basic-statistics.html#cb466-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one-sample Wilcoxon Signed-rank Test</span></span>
+<span id="cb466-2"><a href="basic-statistics.html#cb466-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, <span class="at">mu =</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank exact test
 ## 
@@ -614,8 +616,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## V = 54, p-value = 0.003906
 ## alternative hypothesis: true location is not equal to 0</code></pre>
 <p>The p-value is 0.0039, which is less than 0.05. Therefore, according to the Wilcoxon test, the AUCs from Day 1 are significantly different from 0.</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="basic-statistics.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two-sample Wilcoxon test</span></span>
-<span id="cb470-2"><a href="basic-statistics.html#cb470-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day5<span class="sc">$</span>AUC_Cbratio, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="basic-statistics.html#cb468-1" aria-hidden="true" tabindex="-1"></a><span class="co"># two-sample Wilcoxon test</span></span>
+<span id="cb468-2"><a href="basic-statistics.html#cb468-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day5<span class="sc">$</span>AUC_Cbratio, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Wilcoxon signed rank exact test
 ## 
@@ -640,11 +642,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>The inputs for <code>sm_effsize()</code> are the data of two sample groups, just as they were in <code>t.test()</code>.</p>
 <p>Let’s compute the effect size (Cohen’s d) using AUC data from Days 1 and 2.</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="basic-statistics.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_effsize</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day2<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="basic-statistics.html#cb470-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_effsize</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day2<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
 <pre><code>## [1] 0.2238542</code></pre>
 <p>Cohen’s d equals <strong>0.224</strong>, which is a very small effect size. This indicates that there is a very small difference in AUC between Days 1 and 2.</p>
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="basic-statistics.html#cb474-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day2<span class="sc">$</span>AUC_Cbratio,</span>
-<span id="cb474-2"><a href="basic-statistics.html#cb474-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="basic-statistics.html#cb472-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1<span class="sc">$</span>AUC_Cbratio, auc_df_day2<span class="sc">$</span>AUC_Cbratio,</span>
+<span id="cb472-2"><a href="basic-statistics.html#cb472-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -658,9 +660,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         9.38523</code></pre>
 <p>Also, it is recommended that <strong>both p-value and effect size are reported</strong> at all times. In this example, I would report the results as: <strong>t(9) = 0.46, p = 0.65, Cohen’s d = 0.22</strong>.</p>
 <p>Let’s see what happens in the effect size and p-value from t-test if there are 1000 subjects.</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="basic-statistics.html#cb476-1" aria-hidden="true" tabindex="-1"></a>auc_df_day1b <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>, <span class="fu">replicate</span>(<span class="dv">100</span>, auc_df_day1, <span class="at">simplify =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb476-2"><a href="basic-statistics.html#cb476-2" aria-hidden="true" tabindex="-1"></a>auc_df_day1b<span class="sc">$</span>Subject <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
-<span id="cb476-3"><a href="basic-statistics.html#cb476-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auc_df_day1b, <span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="basic-statistics.html#cb474-1" aria-hidden="true" tabindex="-1"></a>auc_df_day1b <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>, <span class="fu">replicate</span>(<span class="dv">100</span>, auc_df_day1, <span class="at">simplify =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb474-2"><a href="basic-statistics.html#cb474-2" aria-hidden="true" tabindex="-1"></a>auc_df_day1b<span class="sc">$</span>Subject <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb474-3"><a href="basic-statistics.html#cb474-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auc_df_day1b, <span class="dv">30</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 30 × 3
 ##    Subject Day   AUC_Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt;       &lt;dbl&gt;
@@ -676,9 +678,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 S10     1           74.9 
 ## # ℹ 20 more rows</code></pre>
 <p>We have replicated all the rows of the data frame <code>auc_df_day1</code> by 100 times to create 1000 rows total (i.e., 1000 subjects).</p>
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="basic-statistics.html#cb478-1" aria-hidden="true" tabindex="-1"></a>auc_df_day2b <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>, <span class="fu">replicate</span>(<span class="dv">100</span>, auc_df_day2, <span class="at">simplify =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb478-2"><a href="basic-statistics.html#cb478-2" aria-hidden="true" tabindex="-1"></a>auc_df_day2b<span class="sc">$</span>Subject <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
-<span id="cb478-3"><a href="basic-statistics.html#cb478-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auc_df_day2b, <span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="basic-statistics.html#cb476-1" aria-hidden="true" tabindex="-1"></a>auc_df_day2b <span class="ot">&lt;-</span> <span class="fu">do.call</span>(<span class="st">&#39;rbind&#39;</span>, <span class="fu">replicate</span>(<span class="dv">100</span>, auc_df_day2, <span class="at">simplify =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb476-2"><a href="basic-statistics.html#cb476-2" aria-hidden="true" tabindex="-1"></a>auc_df_day2b<span class="sc">$</span>Subject <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&#39;S&#39;</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb476-3"><a href="basic-statistics.html#cb476-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(auc_df_day2b, <span class="dv">30</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 30 × 3
 ##    Subject Day   AUC_Cbratio
 ##    &lt;chr&gt;   &lt;fct&gt;       &lt;dbl&gt;
@@ -694,11 +696,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 S10     2         101.   
 ## # ℹ 20 more rows</code></pre>
 <p>We have replicated all the rows of the data frame <code>auc_df_day2</code> by 100 times to create 1000 rows total (i.e., 1000 subjects).</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="basic-statistics.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_effsize</span>(auc_df_day1b<span class="sc">$</span>AUC_Cbratio, auc_df_day2b<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="basic-statistics.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_effsize</span>(auc_df_day1b<span class="sc">$</span>AUC_Cbratio, auc_df_day2b<span class="sc">$</span>AUC_Cbratio)</span></code></pre></div>
 <pre><code>## [1] 0.2358451</code></pre>
 <p>The effect size is 0.24. It has barely changed despite the significantly larger sample size.</p>
-<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="basic-statistics.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1b<span class="sc">$</span>AUC_Cbratio, auc_df_day2b<span class="sc">$</span>AUC_Cbratio,</span>
-<span id="cb482-2"><a href="basic-statistics.html#cb482-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="basic-statistics.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(auc_df_day1b<span class="sc">$</span>AUC_Cbratio, auc_df_day2b<span class="sc">$</span>AUC_Cbratio,</span>
+<span id="cb480-2"><a href="basic-statistics.html#cb480-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -719,8 +721,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If the effect size was large but the data yielded p &gt; 0.05, then we could predict that the minimal sample size from power analysis would be not large. If the effect size was small and the data yielded p &gt; 0.05, as it was for my data, the minimal sample size to yield p &lt; 0.05 would need to be very large.</p>
 <p>If the minimal sample size from power analysis was not large (hence, large effect size), then one could conclude that I did not collect enough data and incorrectly concluded that there was no significant difference between the two groups. This would be so because if the sample size was larger, I would have gotten p &lt; 0.05.</p>
 <p><strong>Post-hoc power analysis</strong> can be performed using <code>sm_power()</code>. The inputs for <code>sm_power()</code> are data of two sample groups, just as they were in <code>t.test()</code>.</p>
-<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="basic-statistics.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_power</span>(auc_df_day1b<span class="sc">$</span>AUC_Cbratio, auc_df_day2b<span class="sc">$</span>AUC_Cbratio,</span>
-<span id="cb484-2"><a href="basic-statistics.html#cb484-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="basic-statistics.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_power</span>(auc_df_day1b<span class="sc">$</span>AUC_Cbratio, auc_df_day2b<span class="sc">$</span>AUC_Cbratio,</span>
+<span id="cb482-2"><a href="basic-statistics.html#cb482-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Paired t test power calculation 
 ## 
@@ -742,12 +744,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If p-value is smaller than 0.05, we can say that there is a statistical significance between two samples. However, if p = 0.99, we cannot say that there are 99% similar. They are just <strong>not</strong> significantly different.</p>
 <p>For this reason, computing the effect size and performing post-hoc power analysis can help. However, the issue with post-hoc power analysis is that it is directly related with the p-value from your data. As the p-value gets larger, the sample size that is needed to detect a statistical significance directly increases. Therefore, post-hoc power analysis might not provide any additional information because it merely depends on your data’s p-value.</p>
 <p>Here is a simulation using random numbers.</p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="basic-statistics.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
-<span id="cb486-2"><a href="basic-statistics.html#cb486-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb486-3"><a href="basic-statistics.html#cb486-3" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb486-4"><a href="basic-statistics.html#cb486-4" aria-hidden="true" tabindex="-1"></a>day2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="fl">0.2</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb486-5"><a href="basic-statistics.html#cb486-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb486-6"><a href="basic-statistics.html#cb486-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(day1, day2, <span class="at">paired =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="basic-statistics.html#cb484-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb484-2"><a href="basic-statistics.html#cb484-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb484-3"><a href="basic-statistics.html#cb484-3" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb484-4"><a href="basic-statistics.html#cb484-4" aria-hidden="true" tabindex="-1"></a>day2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="fl">0.2</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb484-5"><a href="basic-statistics.html#cb484-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb484-6"><a href="basic-statistics.html#cb484-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(day1, day2, <span class="at">paired =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -760,7 +762,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## mean difference 
 ##       0.2815654</code></pre>
 <p>The p-value is 0.24, which is large. Let’s compute the needed sample size (power = 0.8, alpha = 0.05) to reach a statistical significant difference between <code>day1</code> and <code>day5</code>.</p>
-<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="basic-statistics.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_power</span>(day1,day2,<span class="at">paired =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="basic-statistics.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_power</span>(day1,day2,<span class="at">paired =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##      Paired t test power calculation 
 ## 
@@ -773,12 +775,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## NOTE: n is number of *pairs*</code></pre>
 <p>In this case, we will need at least 73 individuals per group to detect a statistical significant difference at a 80% rate.</p>
 <p>Now, by decreasing the p-value, we can decrease the needed sample size.</p>
-<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="basic-statistics.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5123</span>)</span>
-<span id="cb490-2"><a href="basic-statistics.html#cb490-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb490-3"><a href="basic-statistics.html#cb490-3" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb490-4"><a href="basic-statistics.html#cb490-4" aria-hidden="true" tabindex="-1"></a>day2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="fl">0.2</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb490-5"><a href="basic-statistics.html#cb490-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb490-6"><a href="basic-statistics.html#cb490-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(day1, day2, <span class="at">paired =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="basic-statistics.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5123</span>)</span>
+<span id="cb488-2"><a href="basic-statistics.html#cb488-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-3"><a href="basic-statistics.html#cb488-3" aria-hidden="true" tabindex="-1"></a>day1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb488-4"><a href="basic-statistics.html#cb488-4" aria-hidden="true" tabindex="-1"></a>day2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="fl">0.2</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb488-5"><a href="basic-statistics.html#cb488-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb488-6"><a href="basic-statistics.html#cb488-6" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(day1, day2, <span class="at">paired =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 
@@ -790,7 +792,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## sample estimates:
 ## mean difference 
 ##       -0.424101</code></pre>
-<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="basic-statistics.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_power</span>(day1, day2, <span class="at">paired =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="basic-statistics.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_power</span>(day1, day2, <span class="at">paired =</span> T)</span></code></pre></div>
 <pre><code>## 
 ##      Paired t test power calculation 
 ## 
@@ -803,24 +805,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## NOTE: n is number of *pairs*</code></pre>
 <p>Now that the p-value has decreased, the needed sample size has also decreased <em>despite</em> the fact that the difference between <code>day1</code> and <code>day2</code> has remained at 0.2. Therefore, we can see that the result of post-hoc power analysis is directly related to your sample data and does not provide much additional information.</p>
 <p>Here is a series of 1000 simulations. A following iteration has a larger difference between <code>day1</code> and <code>day2</code> samples than the previous iteration.</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="basic-statistics.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
-<span id="cb494-2"><a href="basic-statistics.html#cb494-2" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># number of simulations</span></span>
-<span id="cb494-3"><a href="basic-statistics.html#cb494-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow=</span>nSim, <span class="at">ncol=</span><span class="dv">2</span>))</span>
-<span id="cb494-4"><a href="basic-statistics.html#cb494-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;pval&#39;</span>,<span class="st">&#39;power_sample&#39;</span>) </span>
-<span id="cb494-5"><a href="basic-statistics.html#cb494-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb494-6"><a href="basic-statistics.html#cb494-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nSim) {</span>
-<span id="cb494-7"><a href="basic-statistics.html#cb494-7" aria-hidden="true" tabindex="-1"></a>  day1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
-<span id="cb494-8"><a href="basic-statistics.html#cb494-8" aria-hidden="true" tabindex="-1"></a>  day2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="fl">0.2</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> i<span class="sc">*</span><span class="fl">0.001</span></span>
-<span id="cb494-9"><a href="basic-statistics.html#cb494-9" aria-hidden="true" tabindex="-1"></a>  res[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">t.test</span>(day1, day2, <span class="at">paired=</span>T)<span class="sc">$</span>p.value</span>
-<span id="cb494-10"><a href="basic-statistics.html#cb494-10" aria-hidden="true" tabindex="-1"></a>  res[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">sm_power</span>(day1, day2, <span class="at">paired=</span>T)<span class="sc">$</span>n</span>
-<span id="cb494-11"><a href="basic-statistics.html#cb494-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb494-12"><a href="basic-statistics.html#cb494-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb494-13"><a href="basic-statistics.html#cb494-13" aria-hidden="true" tabindex="-1"></a>res1 <span class="ot">&lt;-</span> res[<span class="fu">which</span>(res[,<span class="dv">2</span>] <span class="sc">&lt;</span> <span class="dv">200</span>),]</span></code></pre></div>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="basic-statistics.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">10</span>)</span>
+<span id="cb492-2"><a href="basic-statistics.html#cb492-2" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">&lt;-</span> <span class="dv">1000</span> <span class="co"># number of simulations</span></span>
+<span id="cb492-3"><a href="basic-statistics.html#cb492-3" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow=</span>nSim, <span class="at">ncol=</span><span class="dv">2</span>))</span>
+<span id="cb492-4"><a href="basic-statistics.html#cb492-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(res) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;pval&#39;</span>,<span class="st">&#39;power_sample&#39;</span>) </span>
+<span id="cb492-5"><a href="basic-statistics.html#cb492-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb492-6"><a href="basic-statistics.html#cb492-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>nSim) {</span>
+<span id="cb492-7"><a href="basic-statistics.html#cb492-7" aria-hidden="true" tabindex="-1"></a>  day1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span>)</span>
+<span id="cb492-8"><a href="basic-statistics.html#cb492-8" aria-hidden="true" tabindex="-1"></a>  day2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">15</span>, <span class="at">mean=</span><span class="fl">0.2</span>, <span class="at">sd=</span><span class="dv">1</span>) <span class="sc">+</span> i<span class="sc">*</span><span class="fl">0.001</span></span>
+<span id="cb492-9"><a href="basic-statistics.html#cb492-9" aria-hidden="true" tabindex="-1"></a>  res[i,<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">t.test</span>(day1, day2, <span class="at">paired=</span>T)<span class="sc">$</span>p.value</span>
+<span id="cb492-10"><a href="basic-statistics.html#cb492-10" aria-hidden="true" tabindex="-1"></a>  res[i,<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="fu">sm_power</span>(day1, day2, <span class="at">paired=</span>T)<span class="sc">$</span>n</span>
+<span id="cb492-11"><a href="basic-statistics.html#cb492-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb492-12"><a href="basic-statistics.html#cb492-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb492-13"><a href="basic-statistics.html#cb492-13" aria-hidden="true" tabindex="-1"></a>res1 <span class="ot">&lt;-</span> res[<span class="fu">which</span>(res[,<span class="dv">2</span>] <span class="sc">&lt;</span> <span class="dv">200</span>),]</span></code></pre></div>
 <p>After running the simulations, I have excluded rows that included sample size from power analysis larger than 200.</p>
 <p>Here is the plot showing the relationship between p-value and sample size obtained from post-hoc power analysis.</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="basic-statistics.html#cb495-1" aria-hidden="true" tabindex="-1"></a>res1 <span class="sc">%&gt;%</span> </span>
-<span id="cb495-2"><a href="basic-statistics.html#cb495-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pval, <span class="at">y =</span> power_sample)) <span class="sc">+</span></span>
-<span id="cb495-3"><a href="basic-statistics.html#cb495-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="basic-statistics.html#cb493-1" aria-hidden="true" tabindex="-1"></a>res1 <span class="sc">%&gt;%</span> </span>
+<span id="cb493-2"><a href="basic-statistics.html#cb493-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pval, <span class="at">y =</span> power_sample)) <span class="sc">+</span></span>
+<span id="cb493-3"><a href="basic-statistics.html#cb493-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() </span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-384-1.png" width="350.4" /></p>
 <p>We see that these two are directly related. Therefore, it is enough just to report the p-value on its own without providing the sample size obtained from post-hoc power analysis.</p>
 <p>Unlike p-value, Bayes factor can be used to <em>support</em> the null hypothesis. In other words, it can be used to support the finding that there is no difference between Day 1 and Day 2, rather than just saying that there is no significant difference between these two days.</p>
@@ -837,8 +839,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="computing-the-bayes-factor-in-r" class="section level3 hasAnchor" number="10.6.2">
 <h3><span class="header-section-number">10.6.2</span> Computing the Bayes factor in R<a href="basic-statistics.html#computing-the-bayes-factor-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="basic-statistics.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesFactor) <span class="co"># install.packages(&#39;BayesFactor&#39;)</span></span></code></pre></div>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="basic-statistics.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ttestBF</span>(day1, day2, <span class="at">paired =</span> <span class="cn">TRUE</span>) <span class="co"># simulated data</span></span></code></pre></div>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="basic-statistics.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(BayesFactor) <span class="co"># install.packages(&#39;BayesFactor&#39;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="basic-statistics.html#cb495-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ttestBF</span>(day1, day2, <span class="at">paired =</span> <span class="cn">TRUE</span>) <span class="co"># simulated data</span></span></code></pre></div>
 <pre><code>## Bayes factor analysis
 ## --------------
 ## [1] Alt., r=0.707 : 5.930368 ±0%
@@ -856,9 +858,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>One-way analysis of variance (ANOVA) is used to compare the mean of multiple groups (2 groups or more). It can also be referred to as one-factor ANOVA. The data are separated into multiple groups based on one categorical variable (such as patching days, conditions or subject groups).</p>
 <p>When one is comparing two groups, one-way ANOVA and two-sample t-test can yield the same results because both of these tests would compare two groups.</p>
 <p>To do ANOVA, we will use <code>rstatix</code> package. Install the package if you have not done so.</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="basic-statistics.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rstatix&#39;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="basic-statistics.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb500-2"><a href="basic-statistics.html#cb500-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="basic-statistics.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rstatix&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="basic-statistics.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb498-2"><a href="basic-statistics.html#cb498-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span></code></pre></div>
+<pre><code>## 
+## 载入程辑包：&#39;rstatix&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter</code></pre>
 <p><strong>Note:</strong> We will use <code>rstatix</code> to perform some statistical tests. However, both <code>tidyverse</code> and <code>rstatix</code> packages have the function called <code>filter()</code>. To use <code>filter()</code> from the <code>tidyverse</code> (or <code>dplyr</code>) package, as we have done so before, you will need to type <code>dplyr::filter</code> rather than <code>filter</code> instead to specify <code>filter()</code> from the <code>dplyr</code> package.</p>
 <p>To perform ANOVA, we have to make some assumptions about the data:</p>
 <ul>
@@ -1155,24 +1162,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="basic-statistics.html#cb537-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> </span>
 <span id="cb537-2"><a href="basic-statistics.html#cb537-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox_test</span>(Cbratio <span class="sc">~</span> Time, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 9
-##    .y.     group1 group2    n1    n2 statistic     p p.adj
-##  * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1 Cbratio 0      3         10    10        33 0.625 1    
-##  2 Cbratio 0      6         10    10        41 0.193 1    
-##  3 Cbratio 0      12        10    10        46 0.064 0.968
-##  4 Cbratio 0      24        10    10        53 0.006 0.088
-##  5 Cbratio 0      48        10    10        53 0.006 0.088
-##  6 Cbratio 3      6         10    10        42 0.16  1    
-##  7 Cbratio 3      12        10    10        43 0.131 1    
-##  8 Cbratio 3      24        10    10        45 0.084 1    
-##  9 Cbratio 3      48        10    10        52 0.01  0.147
-## 10 Cbratio 6      12        10    10        34 0.557 1    
-## 11 Cbratio 6      24        10    10        38 0.322 1    
-## 12 Cbratio 6      48        10    10        46 0.064 0.968
-## 13 Cbratio 12     24        10    10        26 0.922 1    
-## 14 Cbratio 12     48        10    10        46 0.064 0.968
-## 15 Cbratio 24     48        10    10        45 0.084 1    
-## # ℹ 1 more variable: p.adj.signif &lt;chr&gt;</code></pre>
+##    .y.     group1 group2    n1    n2 statistic     p p.adj p.adj.signif
+##  * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+##  1 Cbratio 0      3         10    10        33 0.625 1     ns          
+##  2 Cbratio 0      6         10    10        41 0.193 1     ns          
+##  3 Cbratio 0      12        10    10        46 0.064 0.968 ns          
+##  4 Cbratio 0      24        10    10        53 0.006 0.088 ns          
+##  5 Cbratio 0      48        10    10        53 0.006 0.088 ns          
+##  6 Cbratio 3      6         10    10        42 0.16  1     ns          
+##  7 Cbratio 3      12        10    10        43 0.131 1     ns          
+##  8 Cbratio 3      24        10    10        45 0.084 1     ns          
+##  9 Cbratio 3      48        10    10        52 0.01  0.147 ns          
+## 10 Cbratio 6      12        10    10        34 0.557 1     ns          
+## 11 Cbratio 6      24        10    10        38 0.322 1     ns          
+## 12 Cbratio 6      48        10    10        46 0.064 0.968 ns          
+## 13 Cbratio 12     24        10    10        26 0.922 1     ns          
+## 14 Cbratio 12     48        10    10        46 0.064 0.968 ns          
+## 15 Cbratio 24     48        10    10        45 0.084 1     ns</code></pre>
 <p>The argument <code>p.adjust.method</code> specifies the method that is used to correct for the p-value to avoid false positives.</p>
 <p>We see that the post-hoc analysis does not yield any pair that has a statistical significance. If this is the case, reporting the results of the Friedman test can be sufficient.</p>
 </div>

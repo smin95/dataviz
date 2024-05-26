@@ -375,9 +375,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="12" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><i class="fa fa-check"></i><b>12</b> Slope Charts, Point plots, Bland-Altman, Forests, Rainclouds, Histograms (Part 2)</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code></a>
+<li class="chapter" data-level="12.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#slope-chart---sm_slope-and-sm_slope_mean"><i class="fa fa-check"></i><b>12.1</b> Slope chart - <code>sm_slope()</code> and <code>sm_slope_mean()</code></a>
 <ul>
-<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.1</b> Drawing the mean plot</a></li>
+<li class="chapter" data-level="12.1.1" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#sm_slope"><i class="fa fa-check"></i><b>12.1.1</b> <code>sm_slope()</code></a></li>
+<li class="chapter" data-level="12.1.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#drawing-the-mean-plot"><i class="fa fa-check"></i><b>12.1.2</b> Drawing the mean plot</a></li>
+<li class="chapter" data-level="12.1.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#sm_slope_mean"><i class="fa fa-check"></i><b>12.1.3</b> <code>sm_slope_mean()</code></a></li>
 </ul></li>
 <li class="chapter" data-level="12.2" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#point-plot---sm_pointplot"><i class="fa fa-check"></i><b>12.2</b> Point plot - <code>sm_pointplot()</code></a></li>
 <li class="chapter" data-level="12.3" data-path="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#a-bland-altman-plot---sm_bland_altman"><i class="fa fa-check"></i><b>12.3</b> A Bland Altman plot - <code>sm_bland_altman()</code></a></li>
@@ -498,10 +500,9 @@ Figure 11.2: smplot2’s color palette
 </div>
 <p>These colors make up the entire palette of <strong>smplot2</strong>.</p>
 <div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb541-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_palette</span>(<span class="dv">20</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;#7f404a&quot; &quot;#5b4080&quot; &quot;#408073&quot; &quot;#8c994d&quot; &quot;#cc9666&quot; &quot;#cc1489&quot;
-##  [7] &quot;#1262b3&quot; &quot;#cc3d3d&quot; &quot;#da73e6&quot; &quot;#66b1cc&quot; &quot;#0f993d&quot; &quot;#7f5d0d&quot;
-## [13] &quot;#7b3dcc&quot; &quot;#45e0e6&quot; &quot;#63e617&quot; &quot;#e57717&quot; &quot;#c9b9c6&quot; &quot;#ffe764&quot;
-## [19] &quot;#ffb359&quot; &quot;#9ee1a8&quot;</code></pre>
+<pre><code>##  [1] &quot;#7f404a&quot; &quot;#5b4080&quot; &quot;#408073&quot; &quot;#8c994d&quot; &quot;#cc9666&quot; &quot;#cc1489&quot; &quot;#1262b3&quot;
+##  [8] &quot;#cc3d3d&quot; &quot;#da73e6&quot; &quot;#66b1cc&quot; &quot;#0f993d&quot; &quot;#7f5d0d&quot; &quot;#7b3dcc&quot; &quot;#45e0e6&quot;
+## [15] &quot;#63e617&quot; &quot;#e57717&quot; &quot;#c9b9c6&quot; &quot;#ffe764&quot; &quot;#ffb359&quot; &quot;#9ee1a8&quot;</code></pre>
 <p>If you only need <code>5</code> colors, then type this instead.</p>
 <div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb543-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_palette</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;#cc1489&quot; &quot;#1262b3&quot; &quot;#5b4080&quot; &quot;#e57717&quot; &quot;#0f993d&quot;</code></pre>
@@ -581,7 +582,7 @@ Figure 11.2: smplot2’s color palette
 <p>In the data frame <code>mtcars</code>, one column is for the x-axis (<code>drat</code>), another column is for y-axis (<code>mpg</code>). In short, the data frame structure is different to the one used to plot bar <code>sm_bar()</code>, <code>sm_boxplot()</code>, <code>sm_raincloud()</code> etc.</p>
 <p>There are two associated functions in <strong>smplot2</strong> with correlation.</p>
 <ul>
-<li><code>sm_statCorr()</code> draws the fitted linear regression line, prints the <code>R</code> and <code>p</code> values from the specified <code>method</code> of correlation test. It also calls <code>sm_hvgrid()</code>.
+<li><code>sm_statCorr()</code> draws the fitted linear regression line, prints the <code>R</code> (or R2) and <code>p</code> values from the specified <code>method</code> of correlation test. It also calls <code>sm_hvgrid()</code>.
 <ul>
 <li><strong>Important:</strong> <code>sm_statCorr()</code> recognizes the data for the y- and x-axes from the <code>mapping = aes()</code> in <code>ggplot()</code> function. Therefore there is no need to provide <code>data</code>, <code>x</code> and <code>y</code> arguments in this function.</li>
 </ul></li>
@@ -616,16 +617,16 @@ Figure 11.2: smplot2’s color palette
 <div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb569-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>(<span class="at">corr_method =</span> <span class="st">&#39;spearman&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-437-1.png" width="336" /></p>
 <ul>
-<li><code>separate_by</code> is the string that separates between the <code>R</code> print and <code>p</code> print.</li>
+<li><code>separate_by</code> is the string that separates between the <code>R</code> (or R2) print and the <code>p</code> print.</li>
 </ul>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb570-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>(<span class="at">separate_by =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb570-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>(<span class="at">separate_by =</span> <span class="st">&#39;</span><span class="sc">\n</span><span class="st">&#39;</span>, <span class="at">R2=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-438-1.png" width="336" /></p>
 <ul>
 <li><code>label_x</code> and <code>label_y</code> controls the location of the statistical annotations. <code>text_size</code> controls their size.</li>
 </ul>
 <div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb571-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>(<span class="at">fit.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&#39;black&#39;</span>,</span>
 <span id="cb571-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb571-2" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">linetype =</span> <span class="st">&#39;dashed&#39;</span>),</span>
-<span id="cb571-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb571-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label_x =</span> <span class="dv">2</span>, <span class="at">label_y =</span> <span class="dv">0</span>, <span class="at">text_size =</span> <span class="dv">5</span>)</span></code></pre></div>
+<span id="cb571-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb571-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">label_x =</span> <span class="dv">2</span>, <span class="at">label_y =</span> <span class="dv">0</span>, <span class="at">text_size =</span> <span class="dv">5</span>, <span class="at">R2 =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-439-1.png" width="336" /></p>
 </div>
 <div id="sm_corr_avgerr" class="section level3 hasAnchor" number="11.5.2">

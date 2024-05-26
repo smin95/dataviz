@@ -9,7 +9,9 @@ editor_options:
 
 As in the previous chapter, if you want to find certain bits of information about the package on this page, the best way to do so is to **CTRL + F** certain key words. 
 
-## Slope chart - `sm_slope()`
+## Slope chart - `sm_slope()` and `sm_slope_mean()`
+
+### `sm_slope()`
 
 A slope chart is popular when changes between two different time points for each measurement (ex. a participant) are described.
 
@@ -302,6 +304,29 @@ ggplot(data = df3, aes(x = Day, y = Value, color = group,
   theme(legend.position = c(0.2,0.85),
         legend.title = element_blank(),
         legend.text = element_text(size = 10))
+```
+
+### `sm_slope_mean()`
+
+`sm_slope~mean()` plots a slope chart with mean. It only visualizes data in one group and is less flexible than `sm_slope()`. However, it is much easier to draw the mean slope chart than `sm_slope()`. Here is a simple recreation of the slope chart from the previous section. 
+
+One plot color and shape can be chosen in this function, and this gets shared across individual (shadow) and average points and lines.
+
+```{r, fig.width = 3.2, fig.height=3.5, warning = F}
+# Recreate data from the previous section
+set.seed(201) # generate random data
+before = abs(rnorm(20,2.5,1))
+after = abs(rnorm(20,5,1))
+Subject <- rep(paste0('S',seq(1:20)), 2)
+Data <- data.frame(Value = matrix(c(before,after),ncol=1))
+beforeAfter <- rep(c('Before', 'After'), each = length(before))
+df <- cbind(Subject, Data, beforeAfter)
+df$beforeAfter <- factor(df$beforeAfter, levels = c('Before','After'))
+
+ggplot(data = df, aes(x = beforeAfter, y = Value)) +
+  sm_slope_mean(group = Subject,
+           labels = c('Before', 'After'),
+           main_color = sm_color('blue'))
 ```
 
 ## Point plot - `sm_pointplot()`
