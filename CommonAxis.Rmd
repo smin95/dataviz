@@ -546,7 +546,7 @@ save_plot('together4.png', plots_tgd4, ncol=5, nrow=2,
 
 The arguments of `sm_put_together()` have to be written in this order unless they are specified (ex. `sm_put_together(all_plots=all_plots, xlabel=xlabel, title=title)`).
 
-The `title`, `xlabel`, `xlabel2`, `ylabel` and `ylabel2` can be provided as string characters, as shown below. If characters are provided rather than the outputs of `sm_common_title()`, `sm_common_xlabel()` and `sm_common_ylabel()`, then their locations and font sizes cannot be modified. These are instead estimated by a simple algorithm that relies on the plot's layout and other information. 
+The `title`, `xlabel`, `xlabel2`, `ylabel` and `ylabel2` can be provided as string characters, as shown below. If characters are provided rather than the outputs of `sm_common_title()`, `sm_common_xlabel()` and `sm_common_ylabel()`, then their locations cannot be modified. Their sizes can be adjusted using `labelRatio` argument. A value of 1 refers to the optimized text size, and 1.1 will be 0.1x larger than the optimized size. The text size optimization and the text locations are set by a simple algorithm that relies on the plot's layout and other information to give optimal values. `labelRatio` only adjusts the text sizes when the label inputs are supplied as character strings, and they wont change text sizes when these have been created with `sm_common_title()`, `sm_common_xlabel()` and `sm_common_ylabel()`.
 
 ```{r}
 plots_tgd_quick <- sm_put_together(all_plots, 
@@ -685,8 +685,8 @@ knitr::include_graphics("together5.png")
 ```{r}
 plots_tgd5 <- sm_put_together(all_figs, title='Individual data', 
                               xlabel='Minutes after monocular deprivation',
-                              ylabel='\u0394 Contrast balance ratio (dB)', legend=legend,
-                             ncol=5,nrow=2, hmargin=-5, wmargin=-5)
+                              ylabel='\u0394 Contrast balance ratio (dB)', legend=legend, 
+                              labelRatio = 0.95, ncol=5,nrow=2, hmargin=-5, wmargin=-5)
 ```
 
 `sm_put_together()` can also handle nested list objects (i.e., list of list), so users can fully integrate complex programming constructs into their visualization routines to perform sophisticated data visualizations without relying on external packages. 

@@ -585,10 +585,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb164-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb164-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">err.params =</span> <span class="fu">list</span>()) <span class="sc">+</span></span>
 <span id="cb164-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb164-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb164-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;orange&#39;</span>)) </span></code></pre></div>
-<pre><code>## Warning in geom_point(position = &lt;environment&gt;, width = 0.5): Ignoring unknown
-## parameters: `width`</code></pre>
-<pre><code>## Warning in stat_summary(fun.data = function (x, mult = 1) : Ignoring unknown
-## parameters: `width`</code></pre>
+<pre><code>## Warning in geom_point(position = &lt;environment&gt;, width = 0.5):
+## Ignoring unknown parameters: `width`</code></pre>
+<pre><code>## Warning in stat_summary(fun.data = function (x, mult = 1) :
+## Ignoring unknown parameters: `width`</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-140-1.png" width="336" /></p>
 <p>We see that <code>width</code> only affects the bar’s <code>width</code> because it does not affect the points and error bars as shown by the warning above <code>Ignoring unknown parameters: width</code>.</p>
 <p>Let’s try <code>fill</code> and <code>color</code> next by setting them to black.</p>
@@ -598,8 +598,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb167-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb167-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">point.params =</span> <span class="fu">list</span>(),</span>
 <span id="cb167-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb167-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">err.params =</span> <span class="fu">list</span>()) <span class="sc">+</span></span>
 <span id="cb167-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb167-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.05</span>)) </span></code></pre></div>
-<pre><code>## Warning in stat_summary(fun.data = function (x, mult = 1) : Ignoring unknown
-## parameters: `fill`</code></pre>
+<pre><code>## Warning in stat_summary(fun.data = function (x, mult = 1) :
+## Ignoring unknown parameters: `fill`</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-141-1.png" width="336" /></p>
 <p>We see that everything is <code>'black'</code> now, affecting across the bar, error bar and the points. Now, as previously mentioned in the previous chapter, if we add parameters within <code>xxx.params</code>, we see that these parameters will ignore the generic ones.</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
@@ -713,10 +713,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Since, in the context of time, <code>Before</code> is the first level followed by <code>After</code>, let’s set the level properly so that the alphabetical order is overturned.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb186-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>beforeAfter <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>beforeAfter, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Before&#39;</span>,<span class="st">&#39;After&#39;</span>))</span>
 <span id="cb186-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb186-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>beforeAfter</span></code></pre></div>
-<pre><code>##  [1] Before Before Before Before Before Before Before Before Before Before Before
-## [12] Before Before Before Before Before Before Before Before Before After  After 
-## [23] After  After  After  After  After  After  After  After  After  After  After 
-## [34] After  After  After  After  After  After  After 
+<pre><code>##  [1] Before Before Before Before Before Before Before Before Before
+## [10] Before Before Before Before Before Before Before Before Before
+## [19] Before Before After  After  After  After  After  After  After 
+## [28] After  After  After  After  After  After  After  After  After 
+## [37] After  After  After  After 
 ## Levels: Before After</code></pre>
 <p>Based on the output, we have successfully ordered the factor levels. Now, we can start plotting a slope chart.</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value, <span class="at">fill =</span> beforeAfter)) <span class="sc">+</span></span>

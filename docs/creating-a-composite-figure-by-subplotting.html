@@ -614,8 +614,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ℹ 110 more rows</code></pre>
 <p>The output of <code>group_by()</code> is a new data frame (it might appear exactly the same as before, ex. <strong>df</strong>). However, it will respond differently to <code>summarise()</code> because the rows of the data frame are now grouped based on day and time, as we have specified.</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="creating-a-composite-figure-by-subplotting.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">Average_Cbratio =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using
+## the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time Average_Cbratio
@@ -645,8 +645,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we have seen before, we see that <code>standard_error</code> has been calculated across all subjects, day and time. This is not so useful. We should use <code>summarise()</code> with <code>group_by()</code> so that each standard error could be for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="creating-a-composite-figure-by-subplotting.html#cb312-1" aria-hidden="true" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
 <span id="cb312-2"><a href="creating-a-composite-figure-by-subplotting.html#cb312-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using
+## the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time standard_error
@@ -667,8 +667,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now let’s obtain the <strong>mean</strong> and <strong>standard error</strong> of <code>Cbratio</code> for each <code>Day</code> and <code>Time</code> across all subjects using the data frame that has been grouped by <code>Day</code> and <code>Time</code> via <code>group_by()</code>.</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="creating-a-composite-figure-by-subplotting.html#cb315-1" aria-hidden="true" tabindex="-1"></a>by_day_time1 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_day_time, <span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
 <span id="cb315-2"><a href="creating-a-composite-figure-by-subplotting.html#cb315-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using
+## the `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="creating-a-composite-figure-by-subplotting.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(by_day_time1)</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 4
 ## # Groups:   Day [2]
@@ -1056,7 +1056,7 @@ Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="creating-a-composite-figure-by-subplotting.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&#39;together4.png&#39;</span>, plots_tgd4, <span class="at">ncol=</span><span class="dv">5</span>, <span class="at">nrow=</span><span class="dv">2</span>,</span>
 <span id="cb352-2"><a href="creating-a-composite-figure-by-subplotting.html#cb352-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">base_height=</span><span class="fl">3.4</span>, <span class="at">base_width=</span><span class="dv">3</span>)</span></code></pre></div>
 <p>The arguments of <code>sm_put_together()</code> have to be written in this order unless they are specified (ex. <code>sm_put_together(all_plots=all_plots, xlabel=xlabel, title=title)</code>).</p>
-<p>The <code>title</code>, <code>xlabel</code>, <code>xlabel2</code>, <code>ylabel</code> and <code>ylabel2</code> can be provided as string characters, as shown below. If characters are provided rather than the outputs of <code>sm_common_title()</code>, <code>sm_common_xlabel()</code> and <code>sm_common_ylabel()</code>, then their locations and font sizes cannot be modified. These are instead estimated by a simple algorithm that relies on the plot’s layout and other information.</p>
+<p>The <code>title</code>, <code>xlabel</code>, <code>xlabel2</code>, <code>ylabel</code> and <code>ylabel2</code> can be provided as string characters, as shown below. If characters are provided rather than the outputs of <code>sm_common_title()</code>, <code>sm_common_xlabel()</code> and <code>sm_common_ylabel()</code>, then their locations cannot be modified. Their sizes can be adjusted using <code>labelRatio</code> argument. A value of 1 refers to the optimized text size, and 1.1 will be 0.1x larger than the optimized size. The text size optimization and the text locations are set by a simple algorithm that relies on the plot’s layout and other information to give optimal values. <code>labelRatio</code> only adjusts the text sizes when the label inputs are supplied as character strings, and they wont change text sizes when these have been created with <code>sm_common_title()</code>, <code>sm_common_xlabel()</code> and <code>sm_common_ylabel()</code>.</p>
 <div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="creating-a-composite-figure-by-subplotting.html#cb353-1" aria-hidden="true" tabindex="-1"></a>plots_tgd_quick <span class="ot">&lt;-</span> <span class="fu">sm_put_together</span>(all_plots, </span>
 <span id="cb353-2"><a href="creating-a-composite-figure-by-subplotting.html#cb353-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">title=</span><span class="st">&#39;Individual data&#39;</span>, <span class="at">xlabel=</span><span class="st">&#39;Minutes after monocular deprivation&#39;</span>,</span>
 <span id="cb353-3"><a href="creating-a-composite-figure-by-subplotting.html#cb353-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ylabel=</span><span class="st">&#39;\u0394 Contrast balance ratio (dB)&#39;</span>, <span class="at">legend=</span>legend,</span>
@@ -1178,8 +1178,8 @@ Figure 7.1: 3x3 figure. It has 3 columns and 3 rows
 <p><img src="together5.png" width="2250" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="creating-a-composite-figure-by-subplotting.html#cb360-1" aria-hidden="true" tabindex="-1"></a>plots_tgd5 <span class="ot">&lt;-</span> <span class="fu">sm_put_together</span>(all_figs, <span class="at">title=</span><span class="st">&#39;Individual data&#39;</span>, </span>
 <span id="cb360-2"><a href="creating-a-composite-figure-by-subplotting.html#cb360-2" aria-hidden="true" tabindex="-1"></a>                              <span class="at">xlabel=</span><span class="st">&#39;Minutes after monocular deprivation&#39;</span>,</span>
-<span id="cb360-3"><a href="creating-a-composite-figure-by-subplotting.html#cb360-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ylabel=</span><span class="st">&#39;\u0394 Contrast balance ratio (dB)&#39;</span>, <span class="at">legend=</span>legend,</span>
-<span id="cb360-4"><a href="creating-a-composite-figure-by-subplotting.html#cb360-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">ncol=</span><span class="dv">5</span>,<span class="at">nrow=</span><span class="dv">2</span>, <span class="at">hmargin=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">wmargin=</span><span class="sc">-</span><span class="dv">5</span>)</span></code></pre></div>
+<span id="cb360-3"><a href="creating-a-composite-figure-by-subplotting.html#cb360-3" aria-hidden="true" tabindex="-1"></a>                              <span class="at">ylabel=</span><span class="st">&#39;\u0394 Contrast balance ratio (dB)&#39;</span>, <span class="at">legend=</span>legend, </span>
+<span id="cb360-4"><a href="creating-a-composite-figure-by-subplotting.html#cb360-4" aria-hidden="true" tabindex="-1"></a>                              <span class="at">labelRatio =</span> <span class="fl">0.95</span>, <span class="at">ncol=</span><span class="dv">5</span>,<span class="at">nrow=</span><span class="dv">2</span>, <span class="at">hmargin=</span><span class="sc">-</span><span class="dv">5</span>, <span class="at">wmargin=</span><span class="sc">-</span><span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;
 ## `geom_smooth()` using formula = &#39;y ~ x&#39;
