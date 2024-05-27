@@ -1,5 +1,5 @@
 --- 
-title: "Data Analysis and Visualization in R Using smplot2"
+title: "Visualizing Data for Publications Using smplot2"
 author: "Seung Hyun Min"
 date: "Last Updated: `r Sys.Date()`"
 site: bookdown::bookdown_site
