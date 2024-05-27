@@ -972,10 +972,10 @@ First let's remove the defaults of the shadow.
 
 ```{r, fig.width = 3.5, fig.height = 3.5,warning = F}
 ggplot(df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
-  sm_pointplot(group = Subject,
-               avgPoint.params = list(size=2.5),
-               line.params = list(),
-               point.params = list(),
+  sm_pointplot(group = Subject, # grouping for shadow
+               avgPoint.params = list(size=2.5), # average point
+               line.params = list(), # shadow
+               point.params = list(), # shadow
                show_shadow = T)  +
   scale_color_manual(values = sm_color('viridian'))
 ```
