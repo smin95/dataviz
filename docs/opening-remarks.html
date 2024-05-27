@@ -149,7 +149,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1" data-path="opening-remarks.html"><a href="opening-remarks.html"><i class="fa fa-check"></i><b>1</b> Opening Remarks</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="opening-remarks.html"><a href="opening-remarks.html#how-to-read-this-book"><i class="fa fa-check"></i><b>1.1</b> How to read this book</a></li>
+<li class="chapter" data-level="1.1" data-path="opening-remarks.html"><a href="opening-remarks.html#which-sections-to-read"><i class="fa fa-check"></i><b>1.1</b> Which sections to read</a></li>
+<li class="chapter" data-level="1.2" data-path="opening-remarks.html"><a href="opening-remarks.html#how-to-use-this-guide"><i class="fa fa-check"></i><b>1.2</b> How to use this guide</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="download-rstudio-basics-of-r.html"><a href="download-rstudio-basics-of-r.html"><i class="fa fa-check"></i><b>2</b> Download RStudio &amp; Basics of R</a>
 <ul>
@@ -271,7 +272,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.1" data-path="raincloud-and-forest-plots.html"><a href="raincloud-and-forest-plots.html#plotting-the-forest-plot-using-data-of-multiple-groups"><i class="fa fa-check"></i><b>6.2.1</b> Plotting the forest plot using data of multiple groups</a></li>
 </ul></li>
 </ul></li>
-<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
 <li class="chapter" data-level="7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html"><i class="fa fa-check"></i><b>7</b> Creating a Composite Figure by Subplotting</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html#filter-select-and-summarise"><i class="fa fa-check"></i><b>7.1</b> <code>filter()</code>, <code>select()</code> and <code>summarise()</code></a>
@@ -292,6 +292,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.7" data-path="creating-a-composite-figure-by-subplotting.html"><a href="creating-a-composite-figure-by-subplotting.html#why-use-sm_put_together-advanced"><i class="fa fa-check"></i><b>7.7</b> Why use <code>sm_put_together()</code>? (Advanced)</a></li>
 </ul></li>
+<li class="part"><span><b>II Data Analysis with smplot2</b></span></li>
 <li class="chapter" data-level="8" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html"><i class="fa fa-check"></i><b>8</b> Calculating Area under a Curve</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="calculating-area-under-a-curve.html"><a href="calculating-area-under-a-curve.html#pipe"><i class="fa fa-check"></i><b>8.1</b> Pipe <code>%&gt;%</code></a></li>
@@ -447,12 +448,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 1</span> Opening Remarks<a href="opening-remarks.html#opening-remarks" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><img src="smplot2_hex.png" width="35%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><strong>smplot2</strong>’s key contributions are shortcut functions that generate elegant plots, which are aesthetically appropriate for the format of scientific journals, and key functions that can create and annotate a composite figure (subplotting), the latter of which is described in Chapter 7 in detail.</p>
-<div id="how-to-read-this-book" class="section level2 hasAnchor" number="1.1">
-<h2><span class="header-section-number">1.1</span> How to read this book<a href="opening-remarks.html#how-to-read-this-book" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you are a proficient R user, I suggest that you read Chapters 7, 11 and 12 because all the preceding sections incorporate contents about basics of R.</p>
+<div id="which-sections-to-read" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Which sections to read<a href="opening-remarks.html#which-sections-to-read" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you are a proficient R user, I suggest that you read Chapters 7 (sections 7.4-7.7), 11 and 12 because all other sections describe basics of R as well.</p>
+<p>Chapters 8-10 describe some introductory topics of data analysis that I often use in my research, and they have been written for the students that I supervise. Although the chapters might be useful for those in psychology and medicine, these do not discuss about data visualization.</p>
 <p>If you are a <strong>smplot</strong> user, you can either use its tutorial website (<a href="https://www.smin95.com/dataviz0" class="uri">https://www.smin95.com/dataviz0</a>) and continue to use <strong>smplot</strong> or modify your codes so that it works with <strong>smplot2</strong>. If you decide to use <strong>smplot2</strong>, I suggest you that you delete <strong>smplot</strong>. Also, I suggest that you read Chapters 11 (especially the sub-section: How <code>...</code> parameter and <code>xxx.params</code> work) and 12 to understand the changes that have been made to the new package rather than to read the book from the beginning.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="opening-remarks.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="st">&quot;smplot&quot;</span>)</span></code></pre></div>
 <p>If you are a newcomer, then you can just start reading from the next chapter.</p>
+</div>
+<div id="how-to-use-this-guide" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> How to use this guide<a href="opening-remarks.html#how-to-use-this-guide" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>With more than 300 examples, this documentation guide serves as a “gallery” of plots that can be generated with <strong>smplot2</strong>.</p>
+<p><strong>CTRL + F</strong> is your friend! No need to linearly read this guide from cover-to-cover. You can save your time by searching for the key word or function’s name of your interest, reading its description, finding some examples that you like, and then using them for your own data. This might be the best way to get familiarized with the functions of <strong>smplot2</strong>.</p>
 
 </div>
 </div>

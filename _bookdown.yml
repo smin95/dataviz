@@ -16,8 +16,8 @@ rmd_files: [
   'violinBox.Rmd',
   'barSlopePoint.Rmd',
   'forestRaincloud.Rmd',
-  # part 2
   'CommonAxis.Rmd',
+  # part 2
   'AreaUC.Rmd',
   'Slope.Rmd',
   'statistics.Rmd',

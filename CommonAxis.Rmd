@@ -5,8 +5,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# (PART) Data Analysis with smplot2 {-}
-
 #  Creating a Composite Figure by Subplotting
 
 In this section, we will plot a composite figure. This refers to a type of plot that has many panels with common information, such as the same x- and y-axes. Subplotting is referred to when we allocate subsets of data to particular panels but not others in the composite figure. We will make each panel (i.e., subplot) one-by-one, combine them into a composite figure, add a common legend, and then annotate it with texts and shapes using the functions from *smplot2* package.

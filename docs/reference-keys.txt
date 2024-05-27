@@ -8,7 +8,8 @@ fig:unnamed-chunk-278
 fig:unnamed-chunk-413
 fig:unnamed-chunk-414
 opening-remarks
-how-to-read-this-book
+which-sections-to-read
+how-to-use-this-guide
 download-rstudio-basics-of-r
 setting-up-rstudio
 how-to-run-your-code
