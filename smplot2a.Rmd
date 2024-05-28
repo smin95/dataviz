@@ -688,28 +688,16 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 ```
 
-- `...` is generic parameter that can affect different components of the bar graph, error bar and points if these do not have defaults set within `bar.params = list()`, `err.params = list()` and `point.params = list()`.
+Here is one more example that accentuates the points rather than the bars.
 
-```{r,fig.width = 3.4, fig.height=3.5,warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(color = 'black', fill = 'black',
-         alpha = 0.5) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
-
+```{r, fig.width = 3.8, fig.height=3.5,warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day))  +
+  sm_bar(bar.params = list(fill = 'gray80', width = 0.7, alpha = 0.5),
+         point.params = list(size = 2.5, shape = 21, color ='white', 
+                             stroke = 0.75)) +
+  scale_fill_manual(values = sm_color('blue','darkred','viridian')) 
 ```
 
-Notice that `fill` of the bar is still `gray80`, as well as `color` (border color) not being `black`, because `bar.params` has defaults, You can remove it by writing `bar.params = list()`.
-
-```{r,fig.width = 3.4, fig.height=3.5,warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(color = 'black', fill = 'black',
-         alpha = 0.5,
-         bar.params = list()) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
-
-```
-
-Note that `width` as a generic parameters get applied to `geom_bar()` only because none other visual components recognize `width` parameter.
 
 ### Plotting individual points with unique colors
 
