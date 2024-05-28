@@ -379,7 +379,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
               linetype = 'dashed')
 ```
 
-You can also compute R2 instead of R2 by setting `R2 = TRUE`. If `R2 = FALSE`, R will be computed.
+You can also compute $R^2$ instead of $R$ by setting `R2 = TRUE`. If `R2 = FALSE`, $R$ will be computed. The values of $R^2$ also depend on the statistical test that is used (`corr_method`). 
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
@@ -435,7 +435,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
               borders = FALSE)
 ```
 
-This instead computes R2.
+This instead computes $R^2$.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +

@@ -308,7 +308,7 @@ ggplot(data = df3, aes(x = Day, y = Value, color = group,
 
 ### `sm_slope_mean()`
 
-`sm_slope~mean()` plots a slope chart with mean. It only visualizes data in one group and is less flexible than `sm_slope()`. However, it is much easier to draw the mean slope chart than `sm_slope()`. Here is a simple recreation of the slope chart from the previous section. 
+`sm_slope_mean()` plots a slope chart with mean. It only visualizes data in one group and is less flexible than `sm_slope()`. However, it is much easier to draw the mean slope chart than `sm_slope()`. Here is a simple recreation of the slope chart from the previous section. 
 
 One plot color and shape can be chosen in this function, and this gets shared across individual (shadow) and average points and lines.
 

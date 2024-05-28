@@ -140,7 +140,7 @@ installation-of-the-package
 how-...-and-xxx.params-arguments-work
 color-palette
 graph-themes
-correlation-plot
+correlation-plot---sm_statcorr-and-sm_corr_avgerr
 sm_statcorr
 sm_corr_avgerr
 structure-of-data-frame

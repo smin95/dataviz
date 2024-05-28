@@ -203,7 +203,7 @@ You can choose to include the legend in `sm_minimal()`.
 p1 + sm_minimal(legends = TRUE)
 ```
 
-## Correlation plot 
+## Correlation plot - `sm_statCorr()` and `sm_corr_avgErr()`
 
 When using **ggplot2** to plot correlation, the data frame has to have at least two columns, each of which for x and y axes.
 
@@ -217,7 +217,7 @@ In the data frame `mtcars`, one column is for the x-axis (`drat`), another colum
 
 There are two associated functions in **smplot2** with correlation.
 
-- `sm_statCorr()` draws the fitted linear regression line, prints the `R`  (or R2) and `p` values from the specified `method` of correlation test. It also calls `sm_hvgrid()`.
+- `sm_statCorr()` draws the fitted linear regression line, prints the `R`  (or $R^2$) and `p` values from the specified `method` of correlation test. It also calls `sm_hvgrid()`.
   - **Important:** `sm_statCorr()` recognizes the data for the y- and x-axes from the `mapping = aes()` in `ggplot()` function. Therefore there is no need to provide `data`, `x` and `y` arguments in this function.
 
 - `sm_corr_avgErr()` draws the average point with vertical and horizontal error bars. The arguments `sm_corr_avgErr(data = ..., x = ..., y = ...)` have to be included; these are identical to what are provided in `ggplot()`.
@@ -258,7 +258,7 @@ p1 + sm_statCorr(fullrange = F) +
 p1 + sm_statCorr(corr_method = 'spearman')
 ```
 
-- `separate_by` is the string that separates between the `R` (or R2) print and the `p` print.
+- `separate_by` is the string that separates between the `R` (or $R^2$) print and the `p` print.
 
 ```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_statCorr(separate_by = '\n', R2=TRUE)
