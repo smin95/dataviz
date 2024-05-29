@@ -506,7 +506,7 @@ Figure 11.1: smplot2’s parameters
 <span id="cb521-11"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb521-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Default with new alpha&#39;</span>) <span class="ot">-&gt;</span> p2</span>
 <span id="cb521-12"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb521-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb521-13"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb521-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
-<span id="cb521-14"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb521-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">bar.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>), <span class="at">forget =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
+<span id="cb521-14"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb521-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">bar.params =</span> <span class="fu">list</span>(), <span class="at">forget =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> </span>
 <span id="cb521-15"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb521-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># As previously, forgets defaults of a plot component (ex. bar) when list() is called.</span></span>
 <span id="cb521-16"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb521-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&#39;blue&#39;</span>,<span class="st">&#39;orange&#39;</span>)) <span class="sc">+</span></span>
 <span id="cb521-17"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb521-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Bar</span><span class="sc">\&#39;</span><span class="st">s default forgotten&#39;</span>) <span class="ot">-&gt;</span> p3</span>
@@ -542,9 +542,10 @@ Figure 11.2: smplot2’s color palette
 </div>
 <p>These colors make up the entire palette of <strong>smplot2</strong>.</p>
 <div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb522-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_palette</span>(<span class="dv">20</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;#7f404a&quot; &quot;#5b4080&quot; &quot;#408073&quot; &quot;#8c994d&quot; &quot;#cc9666&quot; &quot;#cc1489&quot; &quot;#1262b3&quot;
-##  [8] &quot;#cc3d3d&quot; &quot;#da73e6&quot; &quot;#66b1cc&quot; &quot;#0f993d&quot; &quot;#7f5d0d&quot; &quot;#7b3dcc&quot; &quot;#45e0e6&quot;
-## [15] &quot;#63e617&quot; &quot;#e57717&quot; &quot;#c9b9c6&quot; &quot;#ffe764&quot; &quot;#ffb359&quot; &quot;#9ee1a8&quot;</code></pre>
+<pre><code>##  [1] &quot;#7f404a&quot; &quot;#5b4080&quot; &quot;#408073&quot; &quot;#8c994d&quot; &quot;#cc9666&quot; &quot;#cc1489&quot;
+##  [7] &quot;#1262b3&quot; &quot;#cc3d3d&quot; &quot;#da73e6&quot; &quot;#66b1cc&quot; &quot;#0f993d&quot; &quot;#7f5d0d&quot;
+## [13] &quot;#7b3dcc&quot; &quot;#45e0e6&quot; &quot;#63e617&quot; &quot;#e57717&quot; &quot;#c9b9c6&quot; &quot;#ffe764&quot;
+## [19] &quot;#ffb359&quot; &quot;#9ee1a8&quot;</code></pre>
 <p>If you only need <code>5</code> colors, then type this instead.</p>
 <div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb524-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sm_palette</span>(<span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;#cc1489&quot; &quot;#1262b3&quot; &quot;#5b4080&quot; &quot;#e57717&quot; &quot;#0f993d&quot;</code></pre>

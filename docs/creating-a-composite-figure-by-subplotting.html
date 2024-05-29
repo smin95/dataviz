@@ -620,8 +620,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ℹ 110 more rows</code></pre>
 <p>The output of <code>group_by()</code> is a new data frame (it might appear exactly the same as before, ex. <strong>df</strong>). However, it will respond differently to <code>summarise()</code> because the rows of the data frame are now grouped based on day and time, as we have specified.</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="creating-a-composite-figure-by-subplotting.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">Average_Cbratio =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
-## `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override
+## using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time Average_Cbratio
@@ -651,8 +651,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we have seen before, we see that <code>standard_error</code> has been calculated across all subjects, day and time. This is not so useful. We should use <code>summarise()</code> with <code>group_by()</code> so that each standard error could be for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="creating-a-composite-figure-by-subplotting.html#cb293-1" aria-hidden="true" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
 <span id="cb293-2"><a href="creating-a-composite-figure-by-subplotting.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
-## `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override
+## using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time standard_error
@@ -673,8 +673,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now let’s obtain the <strong>mean</strong> and <strong>standard error</strong> of <code>Cbratio</code> for each <code>Day</code> and <code>Time</code> across all subjects using the data frame that has been grouped by <code>Day</code> and <code>Time</code> via <code>group_by()</code>.</p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="creating-a-composite-figure-by-subplotting.html#cb296-1" aria-hidden="true" tabindex="-1"></a>by_day_time1 <span class="ot">&lt;-</span> <span class="fu">summarise</span>(by_day_time, <span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
 <span id="cb296-2"><a href="creating-a-composite-figure-by-subplotting.html#cb296-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the
-## `.groups` argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override
+## using the `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="creating-a-composite-figure-by-subplotting.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(by_day_time1)</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 4
 ## # Groups:   Day [2]

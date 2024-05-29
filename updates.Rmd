@@ -74,7 +74,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 # When forget = TRUE, forgets defaults of a plotting feature (ex. bar) when list() is called as in the previous versions.
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(bar.params = list(alpha = 0.3), forget = TRUE) + 
+  sm_bar(bar.params = list(), forget = TRUE) + 
   scale_color_manual(values = sm_color('blue','orange')) +
   ggtitle('Bar\'s default forgotten') -> p3
 

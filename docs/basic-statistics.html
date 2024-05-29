@@ -1168,23 +1168,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="basic-statistics.html#cb517-1" aria-hidden="true" tabindex="-1"></a>day3 <span class="sc">%&gt;%</span> </span>
 <span id="cb517-2"><a href="basic-statistics.html#cb517-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">wilcox_test</span>(Cbratio <span class="sc">~</span> Time, <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">p.adjust.method =</span> <span class="st">&#39;bonferroni&#39;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 15 × 9
-##    .y.     group1 group2    n1    n2 statistic     p p.adj p.adj.signif
-##  * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
-##  1 Cbratio 0      3         10    10        33 0.625 1     ns          
-##  2 Cbratio 0      6         10    10        41 0.193 1     ns          
-##  3 Cbratio 0      12        10    10        46 0.064 0.968 ns          
-##  4 Cbratio 0      24        10    10        53 0.006 0.088 ns          
-##  5 Cbratio 0      48        10    10        53 0.006 0.088 ns          
-##  6 Cbratio 3      6         10    10        42 0.16  1     ns          
-##  7 Cbratio 3      12        10    10        43 0.131 1     ns          
-##  8 Cbratio 3      24        10    10        45 0.084 1     ns          
-##  9 Cbratio 3      48        10    10        52 0.01  0.147 ns          
-## 10 Cbratio 6      12        10    10        34 0.557 1     ns          
-## 11 Cbratio 6      24        10    10        38 0.322 1     ns          
-## 12 Cbratio 6      48        10    10        46 0.064 0.968 ns          
-## 13 Cbratio 12     24        10    10        26 0.922 1     ns          
-## 14 Cbratio 12     48        10    10        46 0.064 0.968 ns          
-## 15 Cbratio 24     48        10    10        45 0.084 1     ns</code></pre>
+##    .y.     group1 group2    n1    n2 statistic     p p.adj
+##  * &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;int&gt; &lt;int&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Cbratio 0      3         10    10        33 0.625 1    
+##  2 Cbratio 0      6         10    10        41 0.193 1    
+##  3 Cbratio 0      12        10    10        46 0.064 0.968
+##  4 Cbratio 0      24        10    10        53 0.006 0.088
+##  5 Cbratio 0      48        10    10        53 0.006 0.088
+##  6 Cbratio 3      6         10    10        42 0.16  1    
+##  7 Cbratio 3      12        10    10        43 0.131 1    
+##  8 Cbratio 3      24        10    10        45 0.084 1    
+##  9 Cbratio 3      48        10    10        52 0.01  0.147
+## 10 Cbratio 6      12        10    10        34 0.557 1    
+## 11 Cbratio 6      24        10    10        38 0.322 1    
+## 12 Cbratio 6      48        10    10        46 0.064 0.968
+## 13 Cbratio 12     24        10    10        26 0.922 1    
+## 14 Cbratio 12     48        10    10        46 0.064 0.968
+## 15 Cbratio 24     48        10    10        45 0.084 1    
+## # ℹ 1 more variable: p.adj.signif &lt;chr&gt;</code></pre>
 <p>The argument <code>p.adjust.method</code> specifies the method that is used to correct for the p-value to avoid false positives.</p>
 <p>We see that the post-hoc analysis does not yield any pair that has a statistical significance. If this is the case, reporting the results of the Friedman test can be sufficient.</p>
 </div>

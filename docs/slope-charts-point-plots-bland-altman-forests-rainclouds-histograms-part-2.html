@@ -475,10 +475,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb593-1" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>beforeAfter <span class="ot">&lt;-</span> <span class="fu">factor</span>(df<span class="sc">$</span>beforeAfter, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&#39;Before&#39;</span>,<span class="st">&#39;After&#39;</span>))</span>
 <span id="cb593-2"><a href="slope-charts-point-plots-bland-altman-forests-rainclouds-histograms-part-2.html#cb593-2" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>beforeAfter</span></code></pre></div>
-<pre><code>##  [1] Before Before Before Before Before Before Before Before Before Before
-## [11] Before Before Before Before Before Before Before Before Before Before
-## [21] After  After  After  After  After  After  After  After  After  After 
-## [31] After  After  After  After  After  After  After  After  After  After 
+<pre><code>##  [1] Before Before Before Before Before Before Before Before
+##  [9] Before Before Before Before Before Before Before Before
+## [17] Before Before Before Before After  After  After  After 
+## [25] After  After  After  After  After  After  After  After 
+## [33] After  After  After  After  After  After  After  After 
 ## Levels: Before After</code></pre>
 <p><code>sm_slope()</code> draws a slope chart.</p>
 <ul>

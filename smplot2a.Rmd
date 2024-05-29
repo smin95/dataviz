@@ -91,7 +91,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   ggtitle('Default with new alpha') -> p2
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(bar.params = list(alpha = 0.3), forget = TRUE) + 
+  sm_bar(bar.params = list(), forget = TRUE) + 
   # As previously, forgets defaults of a plot component (ex. bar) when list() is called.
   scale_color_manual(values = sm_color('blue','orange')) +
   ggtitle('Bar\'s default forgotten') -> p3
