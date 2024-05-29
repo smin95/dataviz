@@ -413,7 +413,7 @@ plots_tgd <- sm_put_together(all_plots, title=title, xlabel=xlabel,
 
 ```
 
-Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `sm_put_together()`. So, `ncol` and `nrow` are set to 3 in `sm_put_together()`. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the `hmargin` argument can be set to adjust the blank space of height between panels; the `wmargin` argument can be set to adjust the blank space of width between panels. Their values can be both negative (less blank space) and positive (more blank space). I suggest you use values from *-5 to 5* for `hmargin` and `wmargin`. `wRatio` is an argument for `sm_put_together()` that controls the relative width of the left-most column to that of other columns; the default value is set to 1.1 because left-most panels have y-axis ticks. Conversely, `hRatio` is an argument for `sm_put_together()` that controls the relative height of the bottom row to that of higher rows. It is set to 1.1 as default because bottom row panels have x-ticks. I encourage users to modify these values because different computer systems can show slightly different figure outputs. 
+Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `sm_put_together()`. So, `ncol` and `nrow` are set to 3 in `sm_put_together()`. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the `hmargin` argument can be set to adjust the blank space of height between panels; the `wmargin` argument can be set to adjust the blank space of width between panels. Their values can be both negative (less blank space) and positive (more blank space). I suggest you use values from *-5 to 5* for `hmargin` and `wmargin`. 
                   
 
 ```{r, echo=FALSE, fig.align = 'center',fig.cap="3x3 figure. It has 3 columns and 3 rows", out.width = '75%'}
@@ -694,3 +694,50 @@ save_plot('together5.png', plots_tgd5, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 ```
 
+To create a mosaic, where there is an empty panel in the every other panel, simply create an empty plot `ggplot(NULL) + sm_common_legend()` inside the `lapply()` construct.
+
+```{r, warning=F, message=F}
+ncol <- 5; nrow <- 4
+numPanels <- ncol * nrow 
+subj_list <- paste0('S', 1:9)
+
+figs_mosaic <- lapply(1:numPanels, function(iPlot) {
+  if (iPlot %% 2 == 0) {
+    ggplot(NULL) + sm_common_legend() # empty panel
+  } else if (iPlot %% 2 == 1) {
+    i <- 1
+    df_subj <- df %>% filter(Subject == subj_list[[i]])
+    i <- i + 1
+    ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) + 
+      geom_point(size = 4.5) +
+      geom_smooth(method = 'lm', se = F, size = 0.9) + 
+      # lm = linear regression method 
+      scale_x_continuous(breaks = unique(df$Time), 
+                         labels = c("0", "3", "6", "12", "24", "48")) +
+      sm_hgrid() +
+      scale_color_manual(values = sm_color('blue','orange')) +
+      scale_y_continuous(limits = c(-3, 5.5))
+  }
+  
+})
+```
+
+`sm_put_together()` provides a limitless possibility of creating a composite plot with expressive layouts of subplots, as shown below.
+
+```{r, warning=F, message=F}
+mosaic_tgd <- sm_put_together(figs_mosaic, title='Mosaic of individual data', 
+                              xlabel='Minutes after monocular deprivation',
+                              ylabel='\u0394 Contrast balance ratio (dB)',
+                              labelRatio = 0.95, ncol=ncol,nrow=nrow, hmargin=-5, wmargin=-5)
+
+mosaic_tgd1 <- sm_add_legend(mosaic_tgd, x = 0.555, y = 0.2, legend=legend)
+```
+
+```{r, warning=F, message=F}
+save_plot('mosaic.png', mosaic_tgd1, ncol=ncol, nrow=nrow,
+          base_height=3.4, base_width=3)
+```
+
+```{r, fig.align = 'center', echo=F}
+knitr::include_graphics("mosaic.png")
+```

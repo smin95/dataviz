@@ -45,7 +45,7 @@ packageVersion("smplot2") # Current version to run the website
 
 -  Defaults of visualization functions are now kept even when users call upon `list()` for each argument unless users directly replace them with another input value. For example, to change the transparency of the bar and keep the defaults of `sm_bar()`, users can only re-specify the alpha value as shown below (`p2` plot).
 
-- To forget the defaults for a plot component (ex. bar), set `forget = TRUE` and call `list()` for the component, and the visualization functions **will work the same as before** the version update (`p3` plot).
+- To forget the defaults for a plot component (ex. bar) when `list()` is called, set `forget = TRUE`, and the visualization functions **will work the same as before** the version update (`p3` plot).
 
 ```{r, echo=FALSE}
 library(smplot2)
