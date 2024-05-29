@@ -699,15 +699,14 @@ To create a mosaic, where there is an empty panel in the every other panel, simp
 ```{r, warning=F, message=F}
 ncol <- 5; nrow <- 4
 numPanels <- ncol * nrow 
-subj_list <- paste0('S', 1:9)
+subj_list <- paste0('S', 1:10)
 
 figs_mosaic <- lapply(1:numPanels, function(iPlot) {
   if (iPlot %% 2 == 0) {
     ggplot(NULL) + sm_common_legend() # empty panel
   } else if (iPlot %% 2 == 1) {
-    i <- 1
+    i <-  iPlot %/% 2 + 1
     df_subj <- df %>% filter(Subject == subj_list[[i]])
-    i <- i + 1
     ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) + 
       geom_point(size = 4.5) +
       geom_smooth(method = 'lm', se = F, size = 0.9) + 
@@ -716,9 +715,8 @@ figs_mosaic <- lapply(1:numPanels, function(iPlot) {
                          labels = c("0", "3", "6", "12", "24", "48")) +
       sm_hgrid() +
       scale_color_manual(values = sm_color('blue','orange')) +
-      scale_y_continuous(limits = c(-3, 5.5))
+      scale_y_continuous(limits = c(-3, 5.5)) 
   }
-  
 })
 ```
 
