@@ -81,14 +81,14 @@ df <- cbind(Subject, Data, Day)
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar() +
   scale_color_manual(values = sm_color('blue','orange')) +
-  ggtitle('Default') -> p1
+  ggtitle('Bar\'s default in smplot2') -> p1
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(bar.params = list(alpha = 0.3)) + 
   # Previously, needed to write:
   # bar.params = list(alpha = 0.5, width = 0.7, color = 'transparent', fill = 'gray80')
   scale_color_manual(values = sm_color('blue','orange')) +
-  ggtitle('Default with new alpha') -> p2
+  ggtitle('Bar\'s default with new alpha') -> p2
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(bar.params = list(), forget = TRUE) + 
