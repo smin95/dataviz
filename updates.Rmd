@@ -41,7 +41,7 @@ packageVersion("smplot2") # Current version to run the website
 
 - Both $R$ and $R^2$ can be computed with `sm_statCorr()`.
 
-- `wRatio`, `wRatio`, `hRatio`, `hRatio2` and `tickRatio` of `sm_put_together()` are adjusted automatically unless users supply their own inputs.
+- `wRatio`, `wRatio2`, `hRatio`, `hRatio2` and `tickRatio` of `sm_put_together()` are adjusted automatically unless users supply their own inputs.
 
 -  Defaults of visualization functions are now kept even when users call upon `list()` for each argument unless users directly replace them with another input value. For example, to change the transparency of the bar and keep the defaults of `sm_bar()`, users can only re-specify the alpha value as shown below (`p2` plot).
 

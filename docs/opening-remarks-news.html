@@ -474,7 +474,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>2024-05-29: Version 0.2.3<a href="opening-remarks-news.html#version-0.2.3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><p>Both <span class="math inline">\(R\)</span> and <span class="math inline">\(R^2\)</span> can be computed with <code>sm_statCorr()</code>.</p></li>
-<li><p><code>wRatio</code>, <code>wRatio</code>, <code>hRatio</code>, <code>hRatio2</code> and <code>tickRatio</code> of <code>sm_put_together()</code> are adjusted automatically unless users supply their own inputs.</p></li>
+<li><p><code>wRatio</code>, <code>wRatio2</code>, <code>hRatio</code>, <code>hRatio2</code> and <code>tickRatio</code> of <code>sm_put_together()</code> are adjusted automatically unless users supply their own inputs.</p></li>
 <li><p>Defaults of visualization functions are now kept even when users call upon <code>list()</code> for each argument unless users directly replace them with another input value. For example, to change the transparency of the bar and keep the defaults of <code>sm_bar()</code>, users can only re-specify the alpha value as shown below (<code>p2</code> plot).</p></li>
 <li><p>To forget the defaults for a plot component (ex. bar) when <code>list()</code> is called, set <code>forget = TRUE</code>, and the visualization functions <strong>will work the same as before</strong> the version update (<code>p3</code> plot).</p></li>
 </ul>
