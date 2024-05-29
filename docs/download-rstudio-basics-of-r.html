@@ -55,7 +55,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -563,13 +563,13 @@ Figure 2.4: How to run your code - console
 <li>Try typing <code># g = 3</code> and see if the number gets stored in g by typing <strong>g</strong> in the console.</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="download-rstudio-basics-of-r.html#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">3</span> <span class="co"># x equals to 3</span></span>
-<span id="cb7-2"><a href="download-rstudio-basics-of-r.html#cb7-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="co"># a equals to 4 </span></span>
-<span id="cb7-3"><a href="download-rstudio-basics-of-r.html#cb7-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="st">&#39;Group&#39;</span> <span class="co"># gr is equal to a character &#39;Group&#39;, which is not a number.</span></span>
-<span id="cb7-4"><a href="download-rstudio-basics-of-r.html#cb7-4" aria-hidden="true" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="st">&quot;Group&quot;</span></span>
-<span id="cb7-5"><a href="download-rstudio-basics-of-r.html#cb7-5" aria-hidden="true" tabindex="-1"></a>d <span class="sc">==</span> e <span class="co"># &#39;Group&#39; and &quot;Group&quot; are equal</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="download-rstudio-basics-of-r.html#cb7-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">3</span> <span class="co"># x equals to 3</span></span>
+<span id="cb7-2"><a href="download-rstudio-basics-of-r.html#cb7-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="co"># a equals to 4 </span></span>
+<span id="cb7-3"><a href="download-rstudio-basics-of-r.html#cb7-3" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="st">&#39;Group&#39;</span> <span class="co"># gr is equal to a character &#39;Group&#39;, which is not a number.</span></span>
+<span id="cb7-4"><a href="download-rstudio-basics-of-r.html#cb7-4" tabindex="-1"></a>e <span class="ot">&lt;-</span> <span class="st">&quot;Group&quot;</span></span>
+<span id="cb7-5"><a href="download-rstudio-basics-of-r.html#cb7-5" tabindex="-1"></a>d <span class="sc">==</span> e <span class="co"># &#39;Group&#39; and &quot;Group&quot; are equal</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="download-rstudio-basics-of-r.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># g = 3 # its a comment</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="download-rstudio-basics-of-r.html#cb9-1" tabindex="-1"></a><span class="co"># g = 3 # its a comment</span></span></code></pre></div>
 <ul>
 <li>Notice that I used <code>==</code> to test if <strong>d</strong> and <strong>e</strong> are equal. Therefore, <code>==</code> and <code>=</code> mean different. <code>==</code> <strong>tests</strong> if two things are equal. <code>=</code> <strong>sets</strong> two things to be equal.
 <ul>
@@ -577,21 +577,21 @@ Figure 2.4: How to run your code - console
 </ul></li>
 <li>Now let’s check if <strong>x</strong> and <strong>a</strong> are equal.</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="download-rstudio-basics-of-r.html#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">==</span> a</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="download-rstudio-basics-of-r.html#cb10-1" tabindex="-1"></a>x <span class="sc">==</span> a</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <ul>
 <li><p>It returns <code>FALSE</code> because <strong>x</strong> and <strong>a</strong> are not equal. This is correct because 3 and 4 are not equal. <code>FALSE</code> equals to 0 numerically.</p></li>
 <li><p>Below are more examples showing that <code>TRUE</code> = 1 and <code>FALSE</code> = 0.</p></li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="download-rstudio-basics-of-r.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">FALSE</span> <span class="co"># 1 + 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="download-rstudio-basics-of-r.html#cb12-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">FALSE</span> <span class="co"># 1 + 0</span></span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="download-rstudio-basics-of-r.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">TRUE</span> <span class="co"># 1 + 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="download-rstudio-basics-of-r.html#cb14-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">+</span> <span class="cn">TRUE</span> <span class="co"># 1 + 1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="download-rstudio-basics-of-r.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">+</span> <span class="cn">FALSE</span> <span class="co"># 0 + 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="download-rstudio-basics-of-r.html#cb16-1" tabindex="-1"></a><span class="cn">FALSE</span> <span class="sc">+</span> <span class="cn">FALSE</span> <span class="co"># 0 + 0</span></span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="download-rstudio-basics-of-r.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span><span class="sc">*</span><span class="dv">2</span> <span class="co"># 1 * 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="download-rstudio-basics-of-r.html#cb18-1" tabindex="-1"></a><span class="cn">TRUE</span><span class="sc">*</span><span class="dv">2</span> <span class="co"># 1 * 2</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="download-rstudio-basics-of-r.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cn">TRUE</span><span class="sc">*</span><span class="cn">FALSE</span> <span class="co"># 1 * 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="download-rstudio-basics-of-r.html#cb20-1" tabindex="-1"></a><span class="cn">TRUE</span><span class="sc">*</span><span class="cn">FALSE</span> <span class="co"># 1 * 0</span></span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 </div>
 <div id="how-can-i-learn-most-effectively-with-the-notes" class="section level3 unnumbered hasAnchor">
@@ -616,17 +616,17 @@ Figure 2.4: How to run your code - console
 </ul></li>
 <li>So, you will need to install some packages, such as ggplot2 and smplot2. Please type the codes below.</li>
 </ul>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="download-rstudio-basics-of-r.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;smplot2)</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="download-rstudio-basics-of-r.html#cb22-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;smplot2)</span></span></code></pre></div>
 <ul>
 <li>You only need to install them once, but you will need to reload them whenever you start a new session in RStudio using the function <code>library()</code>.</li>
 </ul>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="download-rstudio-basics-of-r.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>) <span class="co"># only need to install once</span></span>
-<span id="cb23-2"><a href="download-rstudio-basics-of-r.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;cowplot&#39;</span>) </span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="download-rstudio-basics-of-r.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># packages must be loaded every time by using library() when you run your script</span></span>
-<span id="cb24-2"><a href="download-rstudio-basics-of-r.html#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="download-rstudio-basics-of-r.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># it has ggplot2 package</span></span>
-<span id="cb24-4"><a href="download-rstudio-basics-of-r.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># it allows you to save figures in .png file</span></span>
-<span id="cb24-5"><a href="download-rstudio-basics-of-r.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="download-rstudio-basics-of-r.html#cb23-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tidyverse&#39;</span>) <span class="co"># only need to install once</span></span>
+<span id="cb23-2"><a href="download-rstudio-basics-of-r.html#cb23-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;cowplot&#39;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="download-rstudio-basics-of-r.html#cb24-1" tabindex="-1"></a><span class="co"># packages must be loaded every time by using library() when you run your script</span></span>
+<span id="cb24-2"><a href="download-rstudio-basics-of-r.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="download-rstudio-basics-of-r.html#cb24-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># it has ggplot2 package</span></span>
+<span id="cb24-4"><a href="download-rstudio-basics-of-r.html#cb24-4" tabindex="-1"></a><span class="fu">library</span>(cowplot) <span class="co"># it allows you to save figures in .png file</span></span>
+<span id="cb24-5"><a href="download-rstudio-basics-of-r.html#cb24-5" tabindex="-1"></a><span class="fu">library</span>(smplot2)</span></code></pre></div>
 <ul>
 <li>Now let’s make some graphs in the subsequent chapters.</li>
 </ul>
