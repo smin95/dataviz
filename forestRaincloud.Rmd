@@ -45,42 +45,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 
 ```
 
-The default of the individual points' `shape` is 21, which is circle with borders. Therefore `fill` parameter has to be specified to change the filling colors. 
-
-After removing the defaults from **smplot2** by including `xxx.param = list()`, you can set the color of all visual components by setting `color = 'black'` as a generic parameter. Note that the boxplot and violin have both `fill` and `color` parameters. When `color = 'black'` is included as a generic parameter, `shape` of the point becomes 16 because the default of *smplot2* is overridden. Therefore, now that the point has no border, `color` affects the filling color rather than `fill`.
-
-```{r, fig.width = 3.5, fig.height=3.5}
-ggplot(data = df, mapping = aes(x = Group, y = Value, color = Group)) +
-  sm_raincloud(color = 'black', point.params = list(),
-               boxplot.params = list(),
-               violin.params = list()) 
-```
-
-The limitation of this function is that you cannot assign unique to the boxplot for each group using `scale_color_manual()`. We can test this using the script below.
-
-```{r, fig.width = 3.5, fig.height=3.5}
-
-ggplot(data = df, mapping = aes(x = Group, y = Value, color = Group)) +
-  sm_raincloud(point.params = list(),
-               boxplot.params = list(),
-               violin.params = list()) +
-  scale_color_manual(values = sm_color('blue','orange')) 
-
-```
-
-In this example, the `color` affects the border color of the violin. However, the boxplot's line color is still black even with `scale_color_manual()`.
-
-```{r, fig.width = 3.5, fig.height=3.5}
-
-ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_raincloud(point.params = list(),
-               boxplot.params = list(),
-               violin.params = list()) +
-  scale_fill_manual(values = sm_color('blue','orange')) 
-
-```
-
-In this example, the `fill` affects the filling color of the violin but not points. 
+The default of the individual points' `shape` is 21, which is circle with borders. Therefore `fill` parameter has to be specified to change the filling colors with `scale_fill_manual()`.
 
 In most cases, users might not need to manually tweak the defaults of *smplot2*. This is the default appearance with two custom colors `darkred` and `viridian`.
 
@@ -95,11 +60,9 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 Notice that there is an outlier in Group 2. The black circle at the top that is aligned to the top `viridian` point indicates that the `viridian` point is an outlier. This option of indicating outlier can be removed setting `boxplot.params = list(outlier.shape = NA)`.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
-
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
   sm_raincloud(boxplot.params = list(outlier.shape = NA)) +
   scale_fill_manual(values = sm_color('darkred','viridian'))
-
 ```
 
 To truly modify each component of the raincloud plot that is generated using `sm_raincloud()`, you have to understand these `xxx.param = list()`:
@@ -366,16 +329,7 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 - `refLine.params = list()` sends arguments, such as `color` and `size` to `geom_vline()` to plot the reference line.
 
 
-We can reset all the defaults by listing these parameters as `xxx.params = list()`.
-
-```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
-ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(avgPoint.params = list(),
-            err.params = list(),
-            point.params = list())
-```
-
-Let's restore the defaults and change colors now using `scale_color_manual()`.
+We can change colors using `scale_color_manual()`.
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +

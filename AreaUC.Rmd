@@ -325,6 +325,7 @@ baseline$Day <- as.factor(baseline$Day)
 
 baseline %>%  ggplot(aes(x = Day, y= Baseline, fill = Day)) +
   sm_bar(points = FALSE,
+         forget = TRUE,
          err.params = list(size = 0.4),
          bar.params = list()) + # remove defaults of bar.params
   scale_fill_manual(values = colors) + 

@@ -24,11 +24,10 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ## Installation of the Package 
 
 ```{r, eval = F}
-install.packages('devtools')
-devtools::install_github('smin95/smplot2', force = TRUE)
+install.packages('smplot2')
 ```
 
-To use the package, load it in RStudio.
+To use the package, load it to memory in RStudio.
 
 ```{r}
 library(smplot2)
@@ -57,6 +56,52 @@ These are both additional arguments in the visualizing functions of *smplot2*. `
 - However, these `xxx.params` can have defaults on their own depending on the function. To remove the defaults, arguments have to be written in this format `xxx.params = list()` within the functions. 
 
 This is probably the most substantial difference between **smplot** and **smplot2**.
+
+## Modifying the default aesthetics
+
+Users can modify the default appearance of the visualization functions from the *smplot2* package in **two different ways**:
+
+- First, they can modify one component of a graph while keeping the rest of the default the same (second panel of the figure). This involves users to re-specify one aspect of the appearance, such as the bar's alpha level here.
+
+- Second, they can reset the defaults by setting `forget = TRUE` and calling `list()` for a certain plot component, such as `bar.params` of the bar plot (third panel). This will ensure that the defaults of the plot component (i.e., bar) are forgotten, so users should re-specify each part of the appearance of the bar. This allows users to be more flexible with the aesthetics.
+
+```{r, echo=FALSE}
+library(smplot2)
+library(ggplot2)
+set.seed(1) # generate random data
+day1 = rnorm(16,2,1)
+day2 = rnorm(16,5,1)
+Subject <- rep(paste0('S',seq(1:16)), 2)
+Data <- data.frame(Value = matrix(c(day1,day2),ncol=1))
+Day <- rep(c('Day 1', 'Day 2'), each = length(day1))
+df <- cbind(Subject, Data, Day)
+```
+
+```{r, fig.height =3.6, fig.width = 9.6}
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_bar() +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  ggtitle('Default') -> p1
+
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_bar(bar.params = list(alpha = 0.3)) + 
+  # Previously, needed to write:
+  # bar.params = list(alpha = 0.5, width = 0.7, color = 'transparent', fill = 'gray80')
+  scale_color_manual(values = sm_color('blue','orange')) +
+  ggtitle('Default with new alpha') -> p2
+
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_bar(bar.params = list(alpha = 0.3), forget = TRUE) + 
+  # As previously, forgets defaults of a plot component (ex. bar) when list() is called.
+  scale_color_manual(values = sm_color('blue','orange')) +
+  ggtitle('Bar\'s default forgotten') -> p3
+
+sm_put_together(list(p1,p2,p3), ncol=3, nrow=1, tickRatio=1) 
+```
+
+```{block type='rmdtip', echo=TRUE}
+In the visualization functions of *smplot2*, argument for aesthetics that are not re-specified in `list()` follow the defaults of *smplot2*. If only one of them gets re-specified, then that one will get modified as specified but others will still retain the default appearance. 
+```
 
 ## Color palette 
 
@@ -444,13 +489,6 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot(color = sm_color('darkred'))
 ```
 
-Notice that in the example below, the points are no longer transparent as the default `alpha` has been reset by explicitly writing `point.params = list(color = ...)`. 
-
-```{r,fig.width = 3.4, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value)) +
-  sm_boxplot(point.params = list(color = sm_color('darkred')))
-```
-
 You can be quite flexible with the aesthetics.
 
 ```{r,fig.width = 3.4, fig.height=3.5, warning = F}
@@ -458,19 +496,21 @@ ggplot(data = df, mapping = aes(x = Day, y = Value)) +
   sm_boxplot(point.params = list(fill = sm_color('darkred'),
                                  size = 2.2,
                                  shape = 21,
-                                 color = 'white'))
+                                 color = 'white', 
+                                 alpha = 1))
 ```
 
-You can also change the border `color` of the boxplot using `boxplot.params`.
+You can also change the border `color` of the boxplot and its `width` using `boxplot.params`.
 
 ```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
-  sm_boxplot(boxplot.params = list(color = sm_color('skyblue')),
+  sm_boxplot(boxplot.params = list(color = sm_color('skyblue'),
+                                   width = 0.65),
              point.params = list(alpha = 0.65,
                                  size = 2.5))
 ```
 
-Notice that the default `width = 0.5` boxplot is gone in the example below because we have explicitly written `boxplot.params = list()`.
+**Notice that the border color of the boxplot and the fact that outliers are not separately labeled are identical to the default settings because these are kept unless the user re-specifies them.** Only the width of the boxplots and their filling colors have been changed because we have specified them by overwriting over the defaults.
 
 Now let's apply different color for each Day.
 
@@ -484,8 +524,7 @@ You can change the shape of the boxplot by setting `notch = TRUE` within `boxplo
 
 ```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_boxplot(boxplot.params = list(notch = TRUE, color = 'black',
-                                   width = 0.5)) +
+  sm_boxplot(boxplot.params = list(notch = TRUE, color = 'black')) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
 ```
 
@@ -502,23 +541,6 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
 ```
 
-- `points = FALSE` removes all the individual points.
-
-```{r, fig.width = 3.4, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_boxplot(points = FALSE) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
-```
-
-This is obviously not acceptable partly because each x-level has the same color and the plot is too empty. So we can add the points back with unique colors.
-
-```{r, fig.width = 3.4, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
-  sm_boxplot(point.params = list(size = 2.2,
-                                 shape = 21,
-                                 color = 'white')) +
-  scale_fill_manual(values = sm_color('blue','darkred','viridian'))
-```
 
 ### Plotting individual points with unique colors
 
@@ -647,24 +669,18 @@ You can also adjust different parameters of the bar graph using `bar.params`, `e
 
 - `bar.params = list()` sends arguments, such as `color`, `fill`, `width` and `alpha` to `geom_bar()` so that a bar is plotted.
 
-```{r,fig.width = 3.4, fig.height=3.5,warning = F}
+```{r,fig.width = 3.8, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(bar.params = list(alpha = 0.3,
-                           color = 'transparent',
-                           color = 'gray80',
-                           width = 0.5)) +
+  sm_bar(bar.params = list(width = 0.7, alpha = 0.5)) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
 ```
 
 - `err.params = list()` sends arguments, such as `color`, to `geom_linerange()` so that an error bar is plotted.
 
-```{r,fig.width = 3.4, fig.height=3.5,warning = F}
+```{r,fig.width = 3.8, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(errorbar_type = 'sd',
-         bar.params = list(alpha = 0.3,
-                           color = 'transparent',
-                           color = 'gray80',
-                           width = 0.5),
+         bar.params = list(width = 0.7, alpha = 0.5),
          err.params = list(color = 'gray40',
                            size = 1)) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
@@ -673,29 +689,16 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 - `point.params = list()` feeds arguments, such as `color`, `fill`, and `alpha` to `geom_point()` to so that individual points are plotted.
 
-```{r,fig.width = 3.4, fig.height=3.5,warning = F}
+```{r,fig.width = 3.8, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(errorbar_type = 'sd',
-         bar.params = list(alpha = 0.3,
-                           color = 'transparent',
-                           color = 'gray80',
-                           width = 0.5),
+         bar.params = list(width = 0.7, alpha = 0.5),
          err.params = list(color = 'gray40',
                            size = 1),
-         point.params = list(shape = 15,
+         point.params = list(size = 2.5, shape = 15,
                              alpha = 0.6)) +
   scale_color_manual(values = sm_color('blue','darkred','viridian'))
 
-```
-
-Here is one more example that accentuates the points rather than the bars.
-
-```{r, fig.width = 3.8, fig.height=3.5,warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day))  +
-  sm_bar(bar.params = list(fill = 'gray80', width = 0.7, alpha = 0.5),
-         point.params = list(size = 2.5, shape = 21, color ='white', 
-                             stroke = 0.75)) +
-  scale_fill_manual(values = sm_color('blue','darkred','viridian')) 
 ```
 
 
@@ -709,37 +712,42 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
   scale_color_manual(values = sm_palette(16)) 
 ```
 
-`sm_bar()` can also print distinct box colors across distinct x levels. This requires the defaults of `bar.params` to be reset. Therefore, it needs to be written as `bar.params = list()`.
+`sm_bar()` can also print distinct box colors across distinct x levels. This requires the defaults of `bar.params` to be reset. Therefore, it needs to be written as `bar.params = list()` by setting `forget = TRUE`, which is an argument that makes the function forget its default when `list()` is called.
 
-```{r,fig.width = 3.4, fig.height=3.5,warning = F}
+```{block type='rmdtip', echo=TRUE}
+If you want the visualization functions to forget their defaults when `list()` is called, set `forget = TRUE`. This is necessary when you want to map aesthetics to different variables more flexibly.
+```
+
+```{r, fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
                                 fill = Day)) +
-  sm_bar(bar.params = list(alpha = 0.7, color = 'transparent')) +
+  sm_bar(bar.params = list(alpha = 0.7, color = 'transparent'),
+         forget = TRUE) +
   scale_color_manual(values = sm_palette(16)) +
   scale_fill_manual(values = sm_color('blue','darkred','viridian'))
 ```
 
+To set one color across all points, you need to remove `color = Subject`. `point.params` can be specified to control the aesthetics of the points
 
-To set one color across all points, you need to remove `color = Subject`. `point.params` can be specified to control the aesthetics of the points.
-
-```{r,fig.width = 3.4, fig.height=3.5,warning = F}
+```{r, fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, 
                                 fill = Day)) +
   sm_bar(bar.params = list(alpha = 0.7, color = 'transparent'),
          point.params = list(shape = 21, fill = 'gray90',
-                             color = 'black', size = 2.2)) +
+                             color = 'black', size = 2.2),
+         forget = TRUE) +
   scale_fill_manual(values = sm_color('blue','darkred','viridian'))
 ```
 
 This is an example where the bar and points have unique colors per group.
 
-```{r,fig.width = 3.4, fig.height=3.5,warning = F}
+```{r, fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, 
                                 fill = Day)) +
   sm_bar(bar.params = list(alpha = 0.5, color = 'transparent'),
          point.params = list(shape = 21, alpha = 1,
                              size = 2.2,
-                             color = 'white')) +
+                             color = 'white'),
+         forget = TRUE) +
   scale_fill_manual(values = sm_color('blue','darkred','viridian'))
 ```
-

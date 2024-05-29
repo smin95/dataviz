@@ -398,7 +398,7 @@ print(plot_s9)
 
 Each panel output has to be stored in a `list` using the function `list()`. X-axis label can be specified using `sm_common_xlabel()`, which has `x` and `y` arguments for setting the location of the label. Y-axis label is specified using `sm_common_ylabel()` with the same `x` and `y` arguments. The title can be set using `sm_common_title()`. 
 
-```{r}
+```{r, warning=F, message=F}
 all_plots <- list(plot_s1, plot_s2, plot_s3, 
                   plot_s4, plot_s5, plot_s6,
                   plot_s7, plot_s8, plot_s9)
@@ -510,7 +510,7 @@ plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend)
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=F, message=F}
 save_plot('together2c.png', plots_tgd3c, ncol=3, nrow=3,
           base_height=3.4, base_width=3)
 ```
@@ -524,7 +524,7 @@ Also, besides `sm_add_legend()`, `sm_put_together()` can also legend onto the co
 
 To demonstrate this function, we will make a combined figure with 2 rows and 5 columns.
 
-```{r}
+```{r, warning=F, message=F}
 xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x=0.51, y = 0.6)
 ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)', x=0.7)
 title <- sm_common_title('Individual data', y = 0.3, x = 0.51, size=18)
@@ -536,7 +536,7 @@ plots_tgd4 <- sm_put_together(all_plots, title=title, xlabel=xlabel,
 ```
 
 
-```{r}
+```{r, warning=F, message=F}
 save_plot('together4.png', plots_tgd4, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 
@@ -546,14 +546,14 @@ The arguments of `sm_put_together()` have to be written in this order unless the
 
 The `title`, `xlabel`, `xlabel2`, `ylabel` and `ylabel2` can be provided as string characters, as shown below. If characters are provided rather than the outputs of `sm_common_title()`, `sm_common_xlabel()` and `sm_common_ylabel()`, then their locations cannot be modified. Their sizes can be adjusted using `labelRatio` argument. A value of 1 refers to the optimized text size, and 1.1 will be 0.1x larger than the optimized size. The text size optimization and the text locations are set by a simple algorithm that relies on the plot's layout and other information to give optimal values. `labelRatio` only adjusts the text sizes when the label inputs are supplied as character strings, and they wont change text sizes when these have been created with `sm_common_title()`, `sm_common_xlabel()` and `sm_common_ylabel()`.
 
-```{r}
+```{r, warning=F, message=F}
 plots_tgd_quick <- sm_put_together(all_plots, 
                               title='Individual data', xlabel='Minutes after monocular deprivation',
                               ylabel='\u0394 Contrast balance ratio (dB)', legend=legend,
                               ncol=5,nrow=2, hmargin=-5, wmargin=-5)
 ```
 
-```{r}
+```{r, warning=F, message=F}
 save_plot('together4_quick.png', plots_tgd_quick, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 
@@ -562,7 +562,7 @@ save_plot('together4_quick.png', plots_tgd_quick, ncol=5, nrow=2,
 
 ## Other important inputs of `sm_put_together()`
 
-These inputs are automatically optimized as default if the user does not supply input (available in version 0.2.2.2 from GitHub as of **2024-05-24**).
+These inputs are automatically optimized (or adjusted) as default if the user does not supply input.
 
 1. `wRatio`: controls the relative width of the panels in the left-most column of the composite plot with ticks for the **primary y-axis**. 
 
@@ -574,7 +574,7 @@ These inputs are automatically optimized as default if the user does not supply 
 
 5. `tickRatio`: controls the relative text size of the tick labels on both axes of the outer panels in the composite plot.
 
-However, is possible that the optimization is not perfect because the current algorithm is quite simple and does not encompass all possible plotting situations. **So, users are encouraged to modify these arguments using values from 1.1 to 1.4**. 
+However, is possible that the optimization is not perfect because the current algorithm is quite simple and does not foresee all possible plotting situations. **So, users are encouraged to modify these arguments using values from 1.1 to 1.4**. 
 
 ```{r, echo=FALSE, fig.align = 'center'}
 knitr::include_graphics("together4.png")
@@ -582,7 +582,7 @@ knitr::include_graphics("together4.png")
 
 ## Adding annotations to the composite figure
 
-*smplot2* offers multiple options for users to add annotations on the final, combined figure with a full flexibility. Here are some examples. These functions all have the form of `sm_add_*()`. Except for `sm_add_legend()`, all of these functions are added modularly to the composite plot (output from `sm_put_together()`).
+*smplot2* enables users to add annotations on the final, combined figure with a full flexibility. Here are some examples using both functions of *smplot2* and `annotate()` from `ggplot2`. Theoretically, users can also use functions from other packages. Except for `sm_add_legend()`, `sm_add_point()` and `sm_add_text()` functions are added modularly to the composite plot (output from `sm_put_together()`) as shown below.
 
 
 ### Text annotations
@@ -595,7 +595,7 @@ plots_tgd4b <- plots_tgd4 + sm_add_text(label = 'My composite figure',
 ```
 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=F, message=F}
 save_plot('together4b.png', plots_tgd4b, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 ```
@@ -608,12 +608,12 @@ knitr::include_graphics("together4b.png")
 
 Point annotations can be added to the composite figure using `sm_add_point()`. `x` and `y` are the coordinate values of the point in the composite figure, and they have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `size` determines the point size and the `shape` number input should be the same as the ones in *ggplot2* (ex. 21 is circle with border). `fill` should be provided for shapes with border. If the shape has no border, then `color` is sufficient to set the color that fills the point.
 
-```{r}
+```{r, warning=F, message=F}
 plots_tgd4c <- plots_tgd4b + sm_add_point(x = 0.50, y = 0.50, size = 35, 
                             shape = 21, fill = 'gray80', color = 'black')
 ```
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=F, message=F}
 save_plot('together4c.png', plots_tgd4c, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 ```
@@ -680,7 +680,7 @@ We see that `all_figs` has nine plots and that it is a list structure, which can
 knitr::include_graphics("together5.png")
 ```
 
-```{r}
+```{r, warning=F, message=F}
 plots_tgd5 <- sm_put_together(all_figs, title='Individual data', 
                               xlabel='Minutes after monocular deprivation',
                               ylabel='\u0394 Contrast balance ratio (dB)', legend=legend, 
@@ -689,7 +689,7 @@ plots_tgd5 <- sm_put_together(all_figs, title='Individual data',
 
 `sm_put_together()` can also handle nested list objects (i.e., list of list), so users can fully integrate complex programming constructs into their visualization routines to perform sophisticated data visualizations without relying on external packages. 
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=F, message=F}
 save_plot('together5.png', plots_tgd5, ncol=5, nrow=2,
           base_height=3.4, base_width=3)
 ```

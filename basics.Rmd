@@ -134,7 +134,7 @@ TRUE*FALSE # 1 * 0
 - So, people, such as statisticians and programmers, have created more functions in R in the form of the package to update the language. They are free but they have to be downloaded separately.
   - A **package** can contain several **functions**.
   - In this tutorial, you will mainly be using **ggplot2** package, which is elegant and flexible for visualizing data.
-  - Also, you will be using **smplot2** package. It improves ggplot2 graphs visually.
+  - Also, you will be using **smplot2** package. It improves **ggplot2** graphs visually.
 - So, you will need to install some packages, such as ggplot2 and smplot2. Please type the codes below.
 
 ```{r, eval = FALSE}
@@ -145,7 +145,7 @@ install.packages('smplot2)
 
 ```{r, eval = F}
 install.packages('tidyverse') # only need to install once
-install.packages('cowplot')
+install.packages('cowplot') 
 ```
 
 ```{r}

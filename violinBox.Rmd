@@ -120,14 +120,14 @@ random_df <- data.frame(y = c(s$stats, max(y)),
                  x = c(1.23, 1.605, 1.605, 1.605, 1.23, 1.24),
                  label = c("minimum", "first quartile", "median", "third quartile", "maximum within upper whisker", "outlier"))
 
-bp <- ggplot(data.frame(y), aes(x = 1, y = y)) + geom_boxplot(fill = sm_color('darkred')) +
+bp <- ggplot(data.frame(y), aes(x = 1, y = y)) + geom_boxplot(fill = sm_color('wine')) +
   geom_text(data = random_df, aes(x, y, label = label), hjust = 0, size = 14/.pt) +
   scale_x_continuous(limits = c(0, 3.5), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2.55, 4.2), expand = c(0, 0)) +
   theme_nothing()
 
 points <- ggplot(data.frame(y), aes(x = 0, y = y)) + 
-  geom_point(color = sm_color('darkred'), position = position_jitter(width = .4, height = 0, seed = 320)) +
+  geom_point(color = sm_color('wine'), position = position_jitter(width = .4, height = 0, seed = 320)) +
   scale_x_continuous(limits = c(-1.8, .4), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2.55, 4.2), expand = c(0, 0)) +
   theme_nothing()
@@ -160,7 +160,7 @@ random_df <- data.frame(y = c(avg-se, avg, avg+se),
                  x = c(1.5, 0.1, 1.5),
                  label = c("lower standard error", "mean", "upper standard error"))
 
-bar <- ggplot(y_df, aes(x = 1, y = Avg)) + geom_bar(stat = 'identity',fill = sm_color('darkred'), width = .8) +
+bar <- ggplot(y_df, aes(x = 1, y = Avg)) + geom_bar(stat = 'identity',fill = sm_color('wine'), width = .8) +
   geom_text(data = random_df, aes(x, y, label = label), hjust = 0, size = 5) +
   scale_x_continuous(limits = c(0, 3.5), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2, 13), expand = c(0, 0)) +
@@ -169,7 +169,7 @@ bar <- ggplot(y_df, aes(x = 1, y = Avg)) + geom_bar(stat = 'identity',fill = sm_
                 width = .1, size = 1.2)
 
 points <- ggplot(data.frame(y), aes(x = -0.2, y = y)) + 
-  geom_point(color = sm_color('darkred'), position = position_jitter(width = .4, height = 0, seed = 320)) +
+  geom_point(color = sm_color('wine'), position = position_jitter(width = .4, height = 0, seed = 320)) +
   scale_x_continuous(limits = c(-1.8, .4), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2, 13), expand = c(0, 0)) +
   theme_nothing()
@@ -351,7 +351,20 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   scale_color_manual(values = sm_palette(3))
 ```
 
-As you can see the default of the point is slightly transparent (`alpha = 0.65'`). If you prefer it to change it to opaque with white borders, we can by specifying the parameters of the points, `point.param`, which is an argument that is found across multiple functions of **smplot2**.
+As you can see the default of the point is slightly transparent (`alpha = 0.65'`). 
+
+You can also change the alpha value to see what happens. For example, if you wish to change the transparency of the points (alpha), then you can merely re-specify the alpha to the `point.params()` while maintaining the standard defaults without specifying them again.
+
+```{r,fig.width = 3.5, fig.height=3.5, warning = F}
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_boxplot(point.params = list(alpha = 0.35)) +  # defaults are kept but only alpha has changed
+  ggtitle('Visual improvement after treatment') +
+  scale_color_manual(values = sm_palette(3))
+```
+
+**When you leave `point.params = list()` as empty or filled, the aesthetic defaults of `sm_boxplot()` (or other visualization functions) are still kept unless users re-specify them**.
+
+If you prefer it to change it to opaque with white borders, we can by specifying the parameters of the points, `point.param`, which is an argument that is found across multiple functions of **smplot2**.
 
 In arguments that look like`xxx.params = list()`. `sm_boxplot()` has two `xxx.param`s: `point.param` and `boxplot.param`. 
 
@@ -373,24 +386,8 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
   scale_fill_manual(values = sm_palette(3))
 ```
 
-Notice that when you leave `point.params = list()` as empty or filled, then the aesthetic defaults of `sm_boxplot()` will disappear, such as the transparency of the points (`alpha = 0.65`). To fully restore the defaults while keeping the shape of the points, you will need to specify all the parameters.
 
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
-  sm_boxplot(point.params = list(shape = 21, color = 'white',
-                                 size = 2.5, alpha = 0.65)) + 
-  ggtitle('Visual improvement after treatment') +
-  scale_fill_manual(values = sm_palette(3))
-```
 
-Also, this is an example that shows that the defaults (i.e., transparency) are no longer maintained when `point.params = list()` is written but not filled. 
-
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(point.params = list()) + 
-  ggtitle('Visual improvement after treatment') +
-  scale_color_manual(values = sm_palette(3))
-```
 
 Another way to change the shape is to not use `point.params = list()`. You could directly use `shape` argument within `sm_boxplot()` but this could affect other aesthetic components.
 
@@ -401,7 +398,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   scale_color_manual(values = sm_palette(3))
 ```
 
-In this case, we are lucky because `shape` is an aesthetic parameter that does not affect the boxplot, which is drawn using `geom_boxplot()`. We can set the size and transparency explicity in `point.params()`. 
+In this case, we are lucky because `shape` is an aesthetic parameter that does not affect the boxplot, which is drawn using `geom_boxplot()`. We can set the size and transparency explicitly in `point.params()`. 
 
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
@@ -412,48 +409,18 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   scale_color_manual(values = sm_palette(3))
 ```
 
-What happens if you explicittly write `boxplot.params = list()` in `sm_boxplot()`? 
+
+You can separataely label of the outlier by specifying `outlier.shape = TRUE`, which is an argument within `geom_boxplot()`, in `boxplot.params`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(boxplot.params = list()) + 
+  sm_boxplot(boxplot.params = list(outlier.shape = TRUE)) + 
   ggtitle('Visual improvement after treatment') +
   scale_color_manual(values = sm_palette(3))
 ```
 
-Now the defaults of the boxplot are gone. The boxplot's `fill` is white, and the line colors are no longer `black`. Also, the `width` is wider now than the default (`width = 0.5`).
 
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(boxplot.params = list(fill = 'gray95', width = 0.5, 
-                                   color = 'black')) + 
-  ggtitle('Visual improvement after treatment') +
-  scale_color_manual(values = sm_palette(3))
-```
-
-You can remove the label of the outlier by specifying `outlier.shape = NA`, which is an argument within `geom_boxplot()`, in `boxplot.params`.
-
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(boxplot.params = list(fill = 'gray95', width = 0.5, 
-                                   color = 'black', outlier.shape = NA)) + 
-  ggtitle('Visual improvement after treatment') +
-  scale_color_manual(values = sm_palette(3))
-```
-
-Now we are essentially back to where we were.
-
-In addition, you can also change the `size` as a generic aesthetic parameter without affecting others because the `size` of the boxplot (`boxplot.params`) already has a specific default. 
-
-
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(shape = 15, size = 2) + 
-  ggtitle('Visual improvement after treatment') +
-  scale_color_manual(values = sm_palette(3))
-```
-
-**Important:** The generic parameter (`...` in ex. `sm_boxplot()`) cannot overturn the smplot2's default unless the user makes the default gone by explictly writing `param.xxx = list()`.
+**Important:** The generic parameter (`...` in ex. `sm_boxplot()`) cannot overturn the smplot2's default unless the user makes the default gone by explicitly writing `param.xxx = list()`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
@@ -463,35 +430,15 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   scale_color_manual(values = sm_palette(3))
 ```
 
-Now the `size` affects both the points and the boxplot because the default of `boxplot.params` is gone after we have written it in the argument.
+Now the `size` affects both the points and the boxplot due to two reasons: 1) the `point.params` has no default for shape and size, so `shape = 15, size = 2` are applied, 2) `size = 2` is applied to set the boxplot's appearance because the default of `boxplot.params` is gone (`size = 0.5`) after we have specified it as `boxplot.params = list()`.
 
-Advanced users can really have much flexibility with this feature of **smplot2**. For example, you can essentially remove all the defaults by including empty `boxplot.params` and `point.params`.
-
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(boxplot.params = list(),
-             point.params = list()) + 
-  ggtitle('Visual improvement after treatment') +
-  scale_color_manual(values = sm_palette(3))
-```
-
-Then you can change the `color` across points and boxplot to be just `black`.
-
-```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(color = 'black', boxplot.params = list(),
-             point.params = list()) + 
-  ggtitle('Visual improvement after treatment') +
-  scale_color_manual(values = sm_palette(3))
-```
-
-If you are confused about this, do not worry because you can directly set the `size` and `shape` of the points as generic parameter without affecting other aesthetic components. You could probably get by with the defaults of **smplot2** without specifying much. 
+If you are confused about this, do not worry because you could probably get by with the defaults of **smplot2** without specifying much else. 
 
 Now, pick your favorite boxplot and store it in a variable called **my_boxplot** using `<-`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 my_boxplot <- ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
-  sm_boxplot(point.params = list(size = 2.5, color='white', shape = 21)) + 
+  sm_boxplot() + 
   ggtitle('Visual improvement after treatment') +
   scale_fill_manual(values = sm_palette(3))
 ```
@@ -521,14 +468,14 @@ y <- c(rnorm(100), 3.4)
 d <- density(y)
 random_df <- data.frame(y = c(min(y), d$x[which(d$y == max(d$y))], max(y)), x = c(1.3, 1.7, 1.3),
                  label = c("minimum data", "maximum point density", "maximum data"))
-p_violin <- ggplot(data.frame(y), aes(x = 1, y = y)) + geom_violin(fill = sm_color('darkred'), color = sm_color('darkred')) +
+p_violin <- ggplot(data.frame(y), aes(x = 1, y = y)) + geom_violin(fill = sm_color('wine'), color = sm_color('wine')) +
   geom_text(data = random_df, aes(x, y, label = label), hjust = 0,
             size = 14/.pt) +
   scale_x_continuous(limits = c(0, 3.5), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2.55, 3.6), expand = c(0, 0)) +
   theme_nothing()
 p_points <- ggplot(data.frame(y), aes(x = 0, y = y)) + 
-  geom_point(color = sm_color('darkred'), position = position_jitter(width = .4, height = 0, seed = 320)) +
+  geom_point(color = sm_color('wine'), position = position_jitter(width = .4, height = 0, seed = 320)) +
   scale_x_continuous(limits = c(-1.8, .4), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2.55, 3.6), expand = c(0, 0)) +
   theme_nothing()
@@ -619,12 +566,12 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 
 In this case, we have successfully changed the size (larger) and shape (circle to square) of the mean and individual points. 
 
-If you write `xxx.params = list()`, even with empty ones, you will remove the defaults of `sm_violin()`.
+If you only modify one aspect of the plot's default, then you will modify just that feature while keeping the defaults of the violin plot generated from `sm_violin()`.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_violin(point.params = list(), 
-            violin.params = list()) +
+  sm_violin(point.params = list(size=1.5)) + 
+  scale_color_manual(values = sm_palette(3)) +
   ggtitle('Visual improvement after treatment')
 ```
 
@@ -644,7 +591,7 @@ Only after the defaults are gone, the generic parameters (`...`) in `sm_violin()
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
   sm_violin(color = 'black', fill = 'black', 
             point.params = list(fill = 'white', shape = 21, 
-                                color ='black', size = 2), 
+                                color ='black', size = 2, alpha = 1), 
             violin.params = list(alpha = 0.5)) + 
   ggtitle('Visual improvement after treatment')
 ```

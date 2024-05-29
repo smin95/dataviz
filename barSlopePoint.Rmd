@@ -181,97 +181,39 @@ In the example below, various aspects of the plot have been modified, such as th
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_bar(bar.params = list(fill = 'gray80', width = 0.5, alpha = 0.5),
-         point.params = list(size = 2.5, shape = 21, color ='white', 
-                             stroke = 0.75)) +
+  sm_bar(bar.params = list(width = 0.5, alpha = 0.5),
+         point.params = list(shape = 21, color ='white', 
+                             stroke = 0.75, alpha = 1)) +
   scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) +
   scale_fill_manual(values = sm_color('blue', 'orange')) 
 ```
 
-Now, let's get rid of all the defaults imposed by `sm_bar()` to see what happens by including `bar.params = list()` and `point.params = list()`.
+```{block type='rmdtip', echo=TRUE}
+In the visualization functions of *smplot2*, argument for aesthetics that are not re-specified in `list()` follow the defaults of *smplot2*. If only one of them gets re-specified, then that one will get modified as specified but others will still retain the default appearance.
+```
+
+
+Below, we change the color (`fill`) of the bar instead but keep all other features of the bar by not specifying the inputs. 
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_bar(bar.params = list(),
-         point.params = list(),
-         err.params = list()) +
+  sm_bar(bar.params = list(fill = 'gray60'),
+         point.params = list(shape = 21, color ='white', 
+                             stroke = 0.75, alpha = 1)) +
   scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) +
   scale_fill_manual(values = sm_color('blue', 'orange')) 
 ```
 
-Now, the `size` of the point is smaller. Let's add `size` as a generic paramater to control for the aesthetics.
-
-```{r, fig.width = 3.5, fig.height=3.5}
-ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_bar(size = 3, bar.params = list(),
-         point.params = list(),
-         err.params = list()) +
-  scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) +
-  scale_fill_manual(values = sm_color('blue', 'orange')) 
-```
-
-In this case, `size` affects both the points and the error bar, but not the bar plot because `geom_bar()` does not accept `size` as argument.
-
-How about `width`?
-
-```{r, fig.width = 3.5, fig.height=3.5}
-ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_bar(width = 0.5, bar.params = list(),
-         point.params = list(),
-         err.params = list()) +
-  scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) +
-  scale_fill_manual(values = sm_color('blue', 'orange')) 
-```
-
-We see that `width` only affects the bar's `width` because it does not affect the points and error bars as shown by the warning above `Ignoring unknown parameters: width`. 
-
-Let's try `fill` and `color` next by setting them to black.
-
-```{r, fig.width = 3.5, fig.height=3.5}
-ggplot(data = df, mapping = aes(x = Group, y = Value)) +
-  sm_bar(fill = 'black', 
-         color = 'black', bar.params = list(),
-         point.params = list(),
-         err.params = list()) +
-  scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) 
-```
-
-We see that everything is `'black'` now, affecting across the bar, error bar and the points. Now, as previously mentioned in the previous chapter, if we add parameters within `xxx.params`, we see that these parameters will ignore the generic ones.
+Defaults of `sm_bar()` can be accessed by typing `?sm_bar()`. You can also set to remove the points by using `points` argument (`points = FALSE`).
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = FALSE}
-ggplot(data = df, mapping = aes(x = Group, y = Value)) +
-  sm_bar(fill = 'black', 
-         color = 'black', bar.params = list(width = 0.5, alpha = 0.80),
-         point.params = list(shape = 21, fill = 'gray90', color = 'black',
-                             size = 2.5),
-         err.params = list(size = 1)) +
-  scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) 
-```
-
-You can also set to remove the points by using `points` argument.
-
-```{r, fig.width = 3.5, fig.height=3.5, warning = FALSE}
-ggplot(data = df, mapping = aes(x = Group, y = Value)) +
-  sm_bar(fill = 'black', 
-         color = 'black', bar.params = list(width = 0.5, alpha = 0.80),
-         point.params = list(shape = 21, fill = 'gray90', color = 'black',
-                             size = 2.5),
-         err.params = list(size = 1),
-         points = FALSE) +
-  scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) 
-```
-
-Obviously, this is not a good bar graph because we cannot see where the error bar begins. We can change the colors to `blue` and `orange` for each x level.
-
-```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_bar(bar.params = list(width = 0.5, alpha = 0.85),
-         point.params = list(),
-         err.params = list(size = 1),
-         points = FALSE) +
-  scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) + 
+  sm_bar(point.params = list(shape = 21, color ='white', 
+                             stroke = 0.75, alpha = 1), points = FALSE) +
+  scale_y_continuous(limits = c(0,8), expand = c(0,0.05)) +
   scale_fill_manual(values = sm_color('blue', 'orange')) 
 ```
+
 
 We can see that `sm_bar()` can offer a huge flexibility for users to control over the aesthetics with relative ease while maintaining the minimalistic style.
 
@@ -343,12 +285,9 @@ In fact, it turns out that our observation is true. We need to separate their po
 ```{r,fig.width = 4.5, fig.height=3.5,warning = F}
 
 ggplot(data = df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
-  sm_bar(alpha = 0.5, 
-         position = position_dodge(width = 1),
+  sm_bar(position = position_dodge(width = 1),
          legends = T,
-         bar.params = list(width = 0.8, alpha = 1,
-                           color = 'transparent',
-                           fill = 'gray80')) +
+         bar.params = list(width = 0.8)) +
   scale_color_manual(values=  sm_color('blue','orange'))
 
 ```
@@ -359,9 +298,7 @@ Let's add some jitter to the points. This part is quite complicated. In this exa
 
 ggplot(data = df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
   sm_bar(position = position_dodge(width = 1),
-         bar.params = list(width = 0.8, alpha = 1,
-                           color = 'transparent',
-                           fill = 'gray80'),
+         bar.params = list(width = 0.8),
          point.params = list(alpha=0.5,
                              position = position_jitterdodge(jitter.width = 0.12,
                                                   dodge.width = 1)),
@@ -484,45 +421,7 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
            show_mean = TRUE)
 ```
 
-As before, let's remove the defaults by providing arguments in this format `xxx.param = list()`.
-
-```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(labels = c('Before','After'), group = Subject,
-           point.params = list(),
-           line.params = list(),
-           avgPoint.params = list(),
-           avgLine.params = list(),
-           show_mean = TRUE)
-```
-
-Now we see that the mean and the individual plots are indistinguishable.
-
-```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(color = sm_color('purple'), labels = c('Before','After'), group = Subject,
-           point.params = list(),
-           line.params = list(),
-           avgPoint.params = list(),
-           avgLine.params = list(),
-           show_mean = TRUE)
-```
-
-By specifying `color` as a generic parameter (`...`) to `purple`, we have changed all components of the plot to `purple`.
-
-Now we can choose specific `alpha`s for individual plots in `xxx.params` to distinguish from the mean and the individual plots.
-
-```{r,fig.width = 3.2, fig.height=3.5,warning = F}
-ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(color = sm_color('purple'), labels = c('Before','After'), group = Subject,
-           point.params = list(alpha = 0.2),
-           line.params = list(alpha = 0.2),
-           avgPoint.params = list(),
-           avgLine.params = list(),
-           show_mean = TRUE)
-```
-
-Now we see the average plot in the midst of the purple sea. Let's enlarge it slightly by specifying the parameters within `avgPoint.params` and `avgLine.params`. We can also change the `shape` to triangle by setting the generic parameter (`...`) as `shape = 17`. 
+We can plot a similar slope chart with mean with purple and triangular shaped points by changing the `shape` parameter to triangle (`shape = 17`) for the generic parameter (`...`), thereby setting the shape for both `point.params` and `avgPoint.params` at the same time.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
@@ -532,8 +431,6 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
            group = Subject,
            point.params = list(alpha = 0.2),
            line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
            show_mean = TRUE)
 ```
 
@@ -543,6 +440,7 @@ Alternatively, we can use `sm_slope_mean()`, a shortcut function of `sm_slope()`
 
 ggplot(data = df, aes(x = beforeAfter, y = Value))  +
   sm_slope_mean(labels = c('Before','After'), 
+                main_shape = 17,
                 group = Subject, back_alpha = .3,
                 main_color = sm_color('purple'))
 
@@ -563,8 +461,6 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
            group = Subject,
            point.params = list(alpha = 0.2),
            line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
            show_mean = TRUE,
            show_err = TRUE)
 ```
@@ -581,16 +477,15 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
            shape = 17,
            labels = c('Before','After'), 
            group = Subject,
+           avgPoint.params = list(point = 5.5, fill = sm_color('purple'),
+                                  shape = 21, color = 'white'),
            point.params = list(alpha = 0.2),
            line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
-           err.params = list(size = 1),
+           err.params = list(linewidth = 2),
            show_mean = TRUE,
            show_err = TRUE)
 ```
 
-This form of slope chart highly resembles a point plot with a shadow, which we will discuss below using the function `sm_pointplot()`.
 
 This can also be produced with `sm_slope_mean()`, which is easier. The error bar type can be selected using `errorbar_type`. The aesthetics of the error bars can be set using `err_width`. 
 
@@ -631,9 +526,6 @@ ggplot(data = df, aes(x = Day, y = Value)) +
            group = Subject,
            point.params = list(alpha = 0.2),
            line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
-           err.params = list(size = 1),
            show_mean = TRUE,
            show_err = TRUE)
 ```
@@ -685,35 +577,34 @@ This data set `df3` has two groups: `Normal` and `Patients`. Each group has 20 `
 
 Let's start an example without the mean plot, where `show_mean = FALSE` (i.e., default). We will provide unique `color` and `shape` to each group.
 
+Since `point.params` and `line.params` have defaults in their colors, their colors cannot be mapped to `group` unless these defaults are removed. This can be forgotten if users call `list()` for `point.params` and `line.params` and set `forget = TRUE`.
+
 ```{r,fig.width = 3.8, fig.height=3.5,warning = F}
 ggplot(data = df3, aes(x = Day, y = Value, color = group, 
                        shape = group, group = group)) +
   sm_slope(labels = c('Day 1','Day 2', 'Day 3'), 
            group = Subject,
            point.params = list(alpha = 0.2),
-           line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
-           err.params = list(size = 1)) +
+           line.params = list(alpha = 0.2), forget = TRUE) +
   scale_color_manual(values = sm_color('blue','orange')) +
   scale_shape_manual(values = c(16,17))
 ```
 
+```{block type='rmdtip', echo=TRUE}
+If you want the visualization functions to forget their defaults when `list()` is called, set `forget = TRUE`. This is necessary when you want to map aesthetics to different variables more flexibly.
+```
+
 You can also add legends by setting `legends = TRUE` and put in the upperleft part of the plot.
 
-```{r,fig.width = 3.8, fig.height=3.5,warning = F}
+```{r,fig.width = 4.3, fig.height=3.5,warning = F}
 ggplot(data = df3, aes(x = Day, y = Value, color = group, 
                        shape = group, group = group)) +
   sm_slope(labels = c('Day 1','Day 2', 'Day 3'), 
            group = Subject,
            point.params = list(alpha = 0.2),
-           line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
-           err.params = list(size = 1),
-           legends = TRUE) +
+           line.params = list(alpha = 0.2), forget = TRUE) +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_shape_manual(values = c(16,17)) +
+  scale_shape_manual(values = c(16,17)) + 
   theme(legend.position = c(0.2,0.85),
         legend.title = element_blank(),
         legend.text = element_text(size = 10))
@@ -728,13 +619,9 @@ ggplot(data = df3, aes(x = Day, y = Value, color = group,
            group = Subject,
            point.params = list(alpha = 0.2),
            line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
-           err.params = list(size = 1),
-           legends = TRUE,
-           show_mean = TRUE) +
+           legends = TRUE, forget = TRUE, show_mean = TRUE) +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_shape_manual(values = c(16,17)) +
+  scale_shape_manual(values = c(16,17)) + 
   theme(legend.position = c(0.2,0.85),
         legend.title = element_blank(),
         legend.text = element_text(size = 10))
@@ -750,22 +637,18 @@ ggplot(data = df3, aes(x = Day, y = Value, color = group,
            group = Subject,
            point.params = list(alpha = 0.2),
            line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
-           err.params = list(size = 1),
            legends = TRUE,
+           forget = TRUE,
            show_mean = TRUE,
            many_groups = TRUE) +
   scale_color_manual(values = sm_color('blue','orange')) +
-  scale_shape_manual(values = c(16,17)) +
+  scale_shape_manual(values = c(16,17)) + 
   theme(legend.position = c(0.2,0.85),
         legend.title = element_blank(),
         legend.text = element_text(size = 10))
 ```
 
 This plot can appear quite complicated. The point of this subsection is to show the flexibility of `sm_slope()`, not necessarily to talk about my preferred practices of data visualization.
-
-Another solution is to draw a separate slope chart for each group and put them together using `sm_common_axis()`, which is described in the subsequent chapter called **Combining Plots with Common Axes** in the **Data Analysis** section of the book.
 
 ## Point plot
 
@@ -867,21 +750,9 @@ ggplot(data = df2, aes(x = SF, y = absBP,
   scale_color_manual(values = sm_color('darkred', 'viridian','skyblue','purple'))
 ```
 
-We immediately see that the plots are noticeably overlapped. This becomes a huge issue if the user attempts to plot repeated-measures data (i.e., each participant measured across time) of multiple groups/condition in a single panel. Fortunately, we can resolve this issue by using `position_dodge()`.
+We immediately see that the plots are noticeably overlapped. This becomes an issue if the user attempts to plot repeated-measures data (i.e., each participant measured across time) of multiple groups/condition in a single panel. Fortunately, we can resolve this issue by using `position_dodge()`.
 
 ```{r,fig.width = 3.5, fig.height = 3.5,warning = F}
-
-ggplot(data = df2, aes(x = SF, y = absBP, 
-             color = Group, group = Group)) +
-  sm_pointplot(position = position_dodge(width = 0.05)) +
-  scale_color_manual(values = sm_color('darkred', 'viridian','skyblue','purple'))
-
-```
-
-Let's increase the `width` more because we still see a large overlap and not see where the error bars begin and end.
-
-```{r,fig.width = 3.5, fig.height = 3.5,warning = F}
-
 ggplot(data = df2, aes(x = SF, y = absBP, 
              color = Group, group = Group)) +
   sm_pointplot(position = position_dodge(width = 0.08)) +
@@ -891,7 +762,7 @@ ggplot(data = df2, aes(x = SF, y = absBP,
 
 By using the function `position_dodge()`, we can see each plot quite clearly.
 
-Following is the equivalent code but it only nudges the error bar because it does not take advantage of using a generic parameter `...` to control the aesthetics. Instead it uses `err.params = list(position = position_dodge(width = ...))`.
+Following is the equivalent code but it only nudges the error bar because it does not take advantage of using a generic parameter `...` to control the aesthetics. Instead it uses `err.params = list(position = position_dodge(width = ...))`. So, the points are still overlapped.
 
 ```{r,fig.width = 3.5, fig.height = 3.5,warning = F}
 
@@ -927,7 +798,6 @@ ggplot(data = df2, aes(x = SF, y = absBP,
 
 ```
 
-Notice that the `size` of the points have become smaller as the defaults of **smplot2** have disappeared with the writing of `xxx.params`. 
 
 Now that we know how convenient it is to use the generic parameter `...` to shift the plot's position, lets use it to `position_dodge` and change the `size` of all components of the plots. Therefore, we will use `size` as a generic argument (`sm_pointplot(size = ...,)`).
 
@@ -966,32 +836,15 @@ ggplot(df2a, aes(x = SF, y = absBP, color = Group,
   scale_color_manual(values = sm_color('viridian'))
 ```
 
-You can finely control the aesthetics of the shadow by using `line.params = list()` and `point.params = list()`.
-
-First let's remove the defaults of the shadow.
-
-```{r, fig.width = 3.5, fig.height = 3.5,warning = F}
-ggplot(df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
-  sm_pointplot(group = Subject, # grouping for shadow
-               avgPoint.params = list(size=2.5), # average point
-               line.params = list(), # shadow
-               point.params = list(), # shadow
-               show_shadow = T)  +
-  scale_color_manual(values = sm_color('viridian'))
-```
-
-It is a mangled mess because they all have the same color `viridian`. We can make the shadow more transparent (`alpha = 0.2`).
+You can finely control the aesthetics of the shadow by using `line.params = list()` and `point.params = list()`. The appearance of the average points and lines are controlled with `avgLine.params` and `avgPoint.params`. 
 
 ```{r, fig.width = 3.5, fig.height = 3.5,warning = F}
 ggplot(df2a, aes(x = SF, y = absBP, color = Group, group = Group)) +
   sm_pointplot(group = Subject,
-               avgPoint.params = list(size=3,fill = sm_color('viridian'),
-                                      shape = 21,
-                                      color = 'white'),
+               avgPoint.params = list(fill = sm_color('viridian'),
+                                      shape = 21, color = 'white'),
                avgLine.params = list(size = 1.3, alpha = 0.65),
                err.params = list(size = 1.3, alpha = 0.65),
-               line.params = list(alpha = 0.2),
-               point.params = list(alpha = 0.2),
                show_shadow = T)  +
   scale_color_manual(values = sm_color('viridian'))
 ```
@@ -1016,8 +869,8 @@ ggplot(df2b, aes(x = SF, y = absBP,
   sm_pointplot(group = Subject, show_shadow = T,
                size = 1,
                position = position_dodge(width = 0.08),
-               line.params = list(alpha = 0.1, size = 0.6),
-               point.params = list(alpha = 0.1, size = 0.6)) +
+               line.params = list(alpha = 0.2, size = 0.6),
+               point.params = list(alpha = 0.2, size = 0.6)) +
   scale_color_manual(values = sm_color('darkred', 'viridian'))
 ```
 
@@ -1028,14 +881,14 @@ This is a point plot that includes everything we have learned thus far, such as 
 
 You can also add `legend` to label the two colors by setting `sm_pointplot(..., legends = TRUE)`
 
-```{r, fig.width = 4.2, fig.height = 3.5,warning = F}
+```{r, fig.width = 4.8, fig.height = 3.5,warning = F}
 ggplot(df2b, aes(x = SF, y = absBP, 
            color = Group, group = Group)) +
   sm_pointplot(group = Subject, show_shadow = T,
                size = 1,
                position = position_dodge(width = 0.08),
-               line.params = list(alpha = 0.1, size = 0.6),
-               point.params = list(alpha = 0.1, size = 0.6),
+               line.params = list(alpha = 0.2, size = 0.6),
+               point.params = list(alpha = 0.2, size = 0.6),
                legends = TRUE) +
   scale_color_manual(values = sm_color('darkred', 'viridian'))
 ```
@@ -1048,11 +901,11 @@ ggplot(df2b, aes(x = SF, y = absBP,
   sm_pointplot(group = Subject, show_shadow = T,
                size = 1,
                position = position_dodge(width = 0.08),
-               line.params = list(alpha = 0.1, size = 0.6),
-               point.params = list(alpha = 0.1, size = 0.6),
+               line.params = list(alpha = 0.2, size = 0.6),
+               point.params = list(alpha = 0.2, size = 0.6),
                legends = TRUE) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) +
-  theme(legend.position = c(0.24,0.80),
+  theme(legend.position = c(0.24,0.80), # position the legend's location
         legend.title = element_blank())
 ```
 
@@ -1065,8 +918,8 @@ ggplot(df2b, aes(x = SF, y = absBP,
   sm_pointplot(group = Subject, show_shadow = T,
                size = 1,
                position = position_dodge(width = 0.08),
-               line.params = list(alpha = 0.1, size = 0.6),
-               point.params = list(alpha = 0.1, size = 0.6),
+               line.params = list(alpha = 0.2, size = 0.6),
+               point.params = list(alpha = 0.2, size = 0.6),
                err.params = list(show.legend = FALSE),
                legends = TRUE) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) +
@@ -1082,8 +935,8 @@ ggplot(df2b, aes(x = SF, y = absBP,
   sm_pointplot(group = Subject, show_shadow = T,
                size = 1,
                position = position_dodge(width = 0.08),
-               line.params = list(alpha = 0.1, size = 0.6),
-               point.params = list(alpha = 0.1, size = 0.6),
+               line.params = list(alpha = 0.25, size = 0.6),
+               point.params = list(alpha = 0.25, size = 0.6),
                err.params = list(show.legend = FALSE),
                legends = TRUE) +
   scale_color_manual(values = sm_color('darkred', 'viridian')) +

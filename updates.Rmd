@@ -1,10 +1,10 @@
 ---
 output: html_document
-chapter: Opening Remarks
+chapter: Opening Remarks and News
 editor_options:
   chunk_output_type: console
 ---
-# Opening Remarks
+# Opening Remarks & News
 ```{r,fig.align = 'left', out.width='35%',echo=FALSE}
 knitr::include_graphics("smplot2_hex.png")
 ```
@@ -30,3 +30,53 @@ If you are a newcomer, then you can just start reading from the next chapter.
 With more than 300 examples, this documentation guide serves as a "gallery" of plots that can be generated with **smplot2**. 
 
 **CTRL + F** is your friend! No need to linearly read this guide from cover-to-cover. You can save your time by searching for the key word or function's name of your interest, reading its description, finding some examples that you like, and then using them for your own data. This might be the best way to get familiarized with the functions of **smplot2**.
+
+## News
+
+```{r}
+packageVersion("smplot2") # Current version to run the website
+```
+
+### 2024-05-29: Version 0.2.3 {-}
+
+- Both $R$ and $R^2$ can be computed with `sm_statCorr()`.
+
+- `wRatio`, `wRatio`, `hRatio`, `hRatio2` and `tickRatio` of `sm_put_together()` are adjusted automatically unless users supply their own inputs.
+
+-  Defaults of visualization functions are now kept even when users call upon `list()` for each argument unless users directly replace them with another input value. For example, to change the transparency of the bar and keep the defaults of `sm_bar()`, users can only re-specify the alpha value as shown below.
+
+  - To forget the defaults for a plot component (ex. bar), set `forget = TRUE` and call `list()` for the component, and the visualization functions **will work the same as before** the version update.
+
+```{r, echo=FALSE}
+library(smplot2)
+library(ggplot2)
+set.seed(1) # generate random data
+day1 = rnorm(16,2,1)
+day2 = rnorm(16,5,1)
+Subject <- rep(paste0('S',seq(1:16)), 2)
+Data <- data.frame(Value = matrix(c(day1,day2),ncol=1))
+Day <- rep(c('Day 1', 'Day 2'), each = length(day1))
+df <- cbind(Subject, Data, Day)
+```
+
+```{r, fig.height =3.6, fig.width = 9.6}
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_bar() +
+  scale_color_manual(values = sm_color('blue','orange')) +
+  ggtitle('Default') -> p1
+
+# In the previous versions of smplot2, needed to write:
+# bar.params = list(alpha = 0.5, width = 0.7, color = 'transparent', fill = 'gray80')
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_bar(bar.params = list(alpha = 0.3)) +  # forget = FALSE (default)
+  scale_color_manual(values = sm_color('blue','orange')) +
+  ggtitle('Default with new alpha') -> p2
+
+# When forget = TRUE, forgets defaults of a plotting feature (ex. bar) when list() is called as in the previous versions.
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_bar(bar.params = list(alpha = 0.3), forget = TRUE) + 
+  scale_color_manual(values = sm_color('blue','orange')) +
+  ggtitle('Bar\'s default forgotten') -> p3
+
+sm_put_together(list(p1,p2,p3), ncol=3, nrow=1, tickRatio=1) 
+```
