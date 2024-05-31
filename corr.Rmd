@@ -54,7 +54,7 @@ Question: Do cars with large engines use up more fuel than the those with small 
 To answer our question, we need to plot **mpg** data. The x-axis should be **displ**, the y-axis should be **hwy**. 
 
 ```{r, fig.width = 3.5, fig.height=3.5}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
 ```
 
@@ -91,14 +91,14 @@ You can apply different colors by the **class** of each car (each car = each row
   - `aes()` means aesthetic (ex. color, shape, etc).
 
 ```{r, fig.width = 5, fig.height=3.5}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class))
 ```
 
 You can also set different shapes for each group of the data.
 
 ```{r, fig.width =5, fig.height = 3.5, warning = F}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, shape = class))
 ```
 
@@ -112,7 +112,7 @@ ggplot(data = mpg) +
 
 ```{r, fig.width =5, fig.height = 3.5, warning = F}
 # different sizes of the points for each group
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, size = class))
 ```
 
@@ -123,9 +123,11 @@ You can also apply different color & shape for each group of the data.
 **Exercise**: Try it on your own before you look at the code below.
   
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy, color = class,
-                           shape = class))
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, y = hwy, color = class,
+    shape = class
+  ))
 ```
 
 ### Same shape across all groups 
@@ -135,9 +137,11 @@ So far, you have put variables such as `shape` and `color` inside the function `
 If you put the variable for `shape`, `color`, `size` outside of `aes()` in the geom function, then all data points will have the specified `shape`, `color`, etc even if they are in different groups.
 
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
-ggplot(data = mpg) + 
-  geom_point(mapping = aes(x = displ, y = hwy,
-                           color = class), shape = 17)
+ggplot(data = mpg) +
+  geom_point(mapping = aes(
+    x = displ, y = hwy,
+    color = class
+  ), shape = 17)
 ```
 
 Notice that the `color` is different for each group because it is inside the function `aes()`. However, all the points are triangle because we have typed `shape = 17` outside the function `aes()`.
@@ -158,7 +162,7 @@ knitr::include_graphics("img/shape.jpg")
 - So let's set `shape` to 21.
 
 ```{r, fig.width = 5, fig.height=3.5}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, color = class), shape = 21)
 ```
 
@@ -168,7 +172,7 @@ ggplot(data = mpg) +
 - So let's change `color = Class` to `fill = Class`. 
 
 ```{r, fig.width = 5, fig.height=3.5}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy, fill = class), shape = 21)
 ```
 
@@ -178,14 +182,14 @@ ggplot(data = mpg) +
 Here is our graph. 
 
 ```{r, fig.width = 3.5, fig.height=3.5}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy))
 ```
 
 There seems to be a negative relationship. How do we draw the best-fit line of the graph's negative relationship? Use another geom function `geom_smooth()`.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
 ```
 
@@ -197,7 +201,7 @@ ggplot(data = mpg) +
 Now let's combine geom_point() + geom_smooth() into one graph.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
 ```
@@ -213,7 +217,7 @@ ggplot(data = mpg)
 ### Writing shorter codes 
 
 ```{r, eval = FALSE, fig.width = 3.5, fig.height=3.5}
-ggplot(data = mpg) + 
+ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy)) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
 ```
@@ -221,7 +225,7 @@ ggplot(data = mpg) +
 Notice that we have typed `mapping = aes(x = displ, y = hwy)` twice.  This is **repetitive**. If you type the `mapping` argument in `ggplot()`, you won't need to type them anymore in the subsequent `geom` functions.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_point() +
   geom_smooth()
 ```
@@ -231,7 +235,7 @@ This is exactly the same as the previous graph. In both cases, the mapping has b
 Now let's apply different color of points and the fit the line for each group.
 
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
   geom_point() +
   geom_smooth()
 ```
@@ -243,7 +247,7 @@ Okay, this is extremely messy and probably a bad idea.
 Let's plot the best-fit line across all groups (i.e., one best-fit line) but apply different color for each class (i.e., many colors). To do so, type `color = class` in geom_point, not `ggplot()`. This enables you to specify that you will apply different color for each class **only** in `geom_point()` but not in `geom_smooth()`.
 
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_point(aes(color = class)) +
   geom_smooth()
 ```
@@ -259,8 +263,8 @@ Although the default theme of ggplot2 graphs is clean, there are some things tha
 - There are too many grids.
 
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
-  geom_point() 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point()
 ```
 
 Let's make this graph prettier by using functions from **smplot2**.
@@ -271,24 +275,24 @@ Let's make this graph prettier by using functions from **smplot2**.
 It is possible to change every aspect of the graph with **ggplot2** but this requires about 8-20 lines of codes (based on my experience). Instead, **smplot2** function does so in a few lines of code.
 
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
-  geom_point() + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
   sm_hvgrid()
 ```
 
 Now let's remove the border within `sm_hvgrid()` by setting `borders = FALSE`.
 
 ```{r, fig.width = 5, fig.height=3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
-  geom_point() + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
   sm_hvgrid(borders = FALSE)
 ```
 
 **Exercise:** You can also set `borders = TRUE` and see what happens. 
 
 ```{r, eval = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
-  geom_point() + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
   sm_hvgrid(borders = TRUE)
 ```
 
@@ -298,16 +302,16 @@ You might notice that borders come back. This is exactly what happens when you d
 - You can also remove the legend by setting `legends = FALSE` in `sm_hvgrid()`. 
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
-  geom_point() + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
   sm_hvgrid(legends = FALSE)
 ```
 
 **Exercise** Set `legends = TRUE` and see what happens. Type `?sm_hvgrid` to see why legends appear without directly writing `legends = TRUE`. 
 
 ```{r, eval = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
-  geom_point() + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
   sm_hvgrid(legends = TRUE)
 ```
 
@@ -327,15 +331,17 @@ Let's plot another scatterplot using **mtcars** data.
 
 ```{r,fig.width = 3.5, fig.height=3.5}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white',
-             size = 3) 
+  geom_point(
+    shape = 21, fill = "#0f993d", color = "white",
+    size = 3
+  )
 ```
 
 **drat** and **mpg** have a positive relationship. Now let's make it pretty by adding `sm_hvgrid()`, which has major horizontal and vertical grids on a white background.
 
 ```{r,fig.width = 3.5,fig.height=3.5}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
   sm_hvgrid()
 ```
 
@@ -343,7 +349,7 @@ You can remove borders too by setting `borders = FALSE` in `sm_hvgrid()`.
 
 ```{r,fig.width = 3.5,fig.height=3.5}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
   sm_hvgrid(borders = FALSE)
 ```
 
@@ -360,7 +366,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) +
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
   sm_statCorr()
 ```
 
@@ -374,18 +380,22 @@ Let's change the color to green.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_statCorr(color = '#0f993d', corr_method = 'spearman',
-              linetype = 'dashed')
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_statCorr(
+    color = "#0f993d", corr_method = "spearman",
+    linetype = "dashed"
+  )
 ```
 
 You can also compute $R^2$ instead of $R$ by setting `R2 = TRUE`. If `R2 = FALSE`, $R$ will be computed. The values of $R^2$ also depend on the statistical test that is used (`corr_method`). 
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_statCorr(color = '#0f993d', corr_method = 'spearman',
-              linetype = 'dashed', R2 = TRUE)
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_statCorr(
+    color = "#0f993d", corr_method = "spearman",
+    linetype = "dashed", R2 = TRUE
+  )
 ```
 
 - **Exercise**: Set `corr_method = 'pearson'`and see what happens.
@@ -393,8 +403,8 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 
 ```{r, eval = F}
 ggplot(data = mtcars, aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) +
-  sm_statCorr(color = '#0f993d', corr_method = 'pearson')
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_statCorr(color = "#0f993d", corr_method = "pearson")
 ```
 
 You will see that this is exactly the same as when `corr_method` argument is not included in `sm_statCorr()`. In short, the **default** correlation method for `sm_statCorr()` is `'pearson'`. So, if you don't write anything for `corr_method`, it will give results from Pearson's correlation test. Type `?sm_statCorr` to see the default of `line_type`.
@@ -405,8 +415,8 @@ You will see that this is exactly the same as when `corr_method` argument is not
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = 'green', color = 'white', size = 3) +
-  sm_statCorr(color = 'green')
+  geom_point(shape = 21, fill = "green", color = "white", size = 3) +
+  sm_statCorr(color = "green")
 ```
 
 To precisely change the parameter for the fitted line, you can do it as shown below by filling the `fit.params` argument in the form of `list`, such as `fit.params = list(color = ..., linetype = ...)`. 
@@ -418,32 +428,44 @@ In fact, this is the major update of **smplot2** across most visualizing functio
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_statCorr(corr_method = 'spearman',
-              fit.params = list(color = '#0f993d', 
-                                linetype = 'dashed'))
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_statCorr(
+    corr_method = "spearman",
+    fit.params = list(
+      color = "#0f993d",
+      linetype = "dashed"
+    )
+  )
 ```
 
 You can also remove the `borders` of the plot using `sm_statCorr`. This computes R.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_statCorr(corr_method = 'spearman',
-              fit.params = list(color = '#0f993d', 
-                                linetype = 'dashed'),
-              borders = FALSE)
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_statCorr(
+    corr_method = "spearman",
+    fit.params = list(
+      color = "#0f993d",
+      linetype = "dashed"
+    ),
+    borders = FALSE
+  )
 ```
 
 This instead computes $R^2$.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_statCorr(corr_method = 'spearman',
-              fit.params = list(color = '#0f993d', 
-                                linetype = 'dashed'),
-              borders = FALSE, R2 = TRUE)
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_statCorr(
+    corr_method = "spearman",
+    fit.params = list(
+      color = "#0f993d",
+      linetype = "dashed"
+    ),
+    borders = FALSE, R2 = TRUE
+  )
 ```
 
 Which one do you prefer? With or without the border?
@@ -457,29 +479,33 @@ In `R`, `\n` means addition of a new line. So you can set the argument `separate
 You would test this directly by typing in R console.
 
 ```{r}
-cat('R = 0.65\np < 0.001')
+cat("R = 0.65\np < 0.001")
 ```
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_statCorr(corr_method = 'spearman',
-              fit.params = list(color = '#0f993d', 
-                                linetype = 'dashed'), 
-              separate_by = '\n')
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_statCorr(
+    corr_method = "spearman",
+    fit.params = list(
+      color = "#0f993d",
+      linetype = "dashed"
+    ),
+    separate_by = "\n"
+  )
 ```
 
 Another way is just do directly compute it yourself using `cor()` or `cor.test()`, and annotate the statistical results on the plot. This might be a better alternative if you wish to precisely modify how the text is presented. 
 
 ```{r, warning = F}
-cor.test(mtcars$drat, mtcars$mpg, method = 'spearman')
+cor.test(mtcars$drat, mtcars$mpg, method = "spearman")
 ```
 
 Store the results from `cor.test()` into a variable called `res`, which is short for **results**.
 
 ```{r, warning = F}
-res <- cor.test(mtcars$drat, mtcars$mpg, method = 'spearman')
-res$p.value 
+res <- cor.test(mtcars$drat, mtcars$mpg, method = "spearman")
+res$p.value
 ```
 
 You can extract certain component of the results from `cor.test()` from the variable `res` by using `$`. `res$p.value` extracts the p-value, and `res$estimate` extracts the correlation coefficient `R`.
@@ -492,14 +518,19 @@ We will round the values to 2 decimal points using `round(..., 2)`, where 2 deno
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  annotate('text', x = 3, y = 32, label = paste0('R =', 
-                                                 round(res$estimate,2),
-                                                 '\n   p < 0.001')) +
-  sm_statCorr(show_text = FALSE,
-              fit.params = list(color = '#0f993d', 
-                                linetype = 'dashed'))
-  
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  annotate("text", x = 3, y = 32, label = paste0(
+    "R =",
+    round(res$estimate, 2),
+    "\n   p < 0.001"
+  )) +
+  sm_statCorr(
+    show_text = FALSE,
+    fit.params = list(
+      color = "#0f993d",
+      linetype = "dashed"
+    )
+  )
 ```
 
 ### Plotting the average with standard errors 
@@ -508,7 +539,7 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
   sm_corr_avgErr(data = mtcars, x = drat, y = mpg)
 ```
 
@@ -528,10 +559,12 @@ If you write `xxx.params = list()`, even with empty ones, you will remove the de
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
-                 errh.params = list(),
-                 errv.params = list()) +
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_corr_avgErr(
+    data = mtcars, x = drat, y = mpg,
+    errh.params = list(),
+    errv.params = list()
+  ) +
   sm_hvgrid()
 ```
 
@@ -539,10 +572,12 @@ After removing the defaults, we see that `width` of `errv.params` and `height` o
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
-                 errh.params = list(height = 1),
-                 errv.params = list(width = 0.12)) +
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_corr_avgErr(
+    data = mtcars, x = drat, y = mpg,
+    errh.params = list(height = 1),
+    errv.params = list(width = 0.12)
+  ) +
   sm_hvgrid()
 ```
 
@@ -550,10 +585,12 @@ In this case, `height` is much longer because the scale of y-axis is much longer
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
-                 errh.params = list(height = 1, color = "#1262b3"),
-                 errv.params = list(width = 0.12, color = "#cc3d3d")) +
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_corr_avgErr(
+    data = mtcars, x = drat, y = mpg,
+    errh.params = list(height = 1, color = "#1262b3"),
+    errv.params = list(width = 0.12, color = "#cc3d3d")
+  ) +
   sm_hvgrid()
 ```
 
@@ -561,13 +598,19 @@ The error bar might appear too thin and the average point too small. We can cont
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
-                 point.params = list(size = 4),
-                 errh.params = list(height = 1, color = "#1262b3",
-                                    size = 0.8),
-                 errv.params = list(width = 0.12, color = "#cc3d3d",
-                                    size = 0.8)) +
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_corr_avgErr(
+    data = mtcars, x = drat, y = mpg,
+    point.params = list(size = 4),
+    errh.params = list(
+      height = 1, color = "#1262b3",
+      size = 0.8
+    ),
+    errv.params = list(
+      width = 0.12, color = "#cc3d3d",
+      size = 0.8
+    )
+  ) +
   sm_hvgrid()
 ```
 
@@ -575,15 +618,25 @@ We can control the transparency of the individual points and fine tune the aesth
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3,
-             alpha = 0.6) + 
-  sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
-                 point.params = list(size = 4, shape = 21, color = 'white',
-                                     fill = 'black'),
-                 errh.params = list(height = 1, color = "#1262b3",
-                                    size = 0.8),
-                 errv.params = list(width = 0.12, color = "#cc3d3d",
-                                    size = 0.8)) +
+  geom_point(
+    shape = 21, fill = "#0f993d", color = "white", size = 3,
+    alpha = 0.6
+  ) +
+  sm_corr_avgErr(
+    data = mtcars, x = drat, y = mpg,
+    point.params = list(
+      size = 4, shape = 21, color = "white",
+      fill = "black"
+    ),
+    errh.params = list(
+      height = 1, color = "#1262b3",
+      size = 0.8
+    ),
+    errv.params = list(
+      width = 0.12, color = "#cc3d3d",
+      size = 0.8
+    )
+  ) +
   sm_hvgrid()
 ```
 
@@ -598,7 +651,7 @@ You do not have to. You can type `sm_color('green')` instead. This is a function
 `sm_color()` accepts the name of the color. If you want to get the hex codes (color codes) for red and green, type `sm_color('red','green')`.
 
 ```{r, eval = F}
-sm_color('red','green')
+sm_color("red", "green")
 ```
 
 Again, `sm_color()` has been built based on my preference. So it returns the hex codes of colors that I use most often. 
@@ -608,18 +661,18 @@ There are many more color themes that are available in R. For more information, 
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F, message = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = sm_color('green'), color = 'white',size = 3) + 
-  sm_hvgrid() + 
-  sm_statCorr(color = sm_color('green'))
+  geom_point(shape = 21, fill = sm_color("green"), color = "white", size = 3) +
+  sm_hvgrid() +
+  sm_statCorr(color = sm_color("green"))
 ```
 
 **Exercise** Change the color of the points and the best-fit line to `blue` using `sm_color()`. If you want to see all the color options for `sm_color()`, type `?sm_color`. There are 16 colors total.
 
 ```{r, eval = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = sm_color('blue'), color = 'white',size = 3) + 
-  sm_hvgrid() + 
-  sm_statCorr(color = sm_color('blue'))
+  geom_point(shape = 21, fill = sm_color("blue"), color = "white", size = 3) +
+  sm_hvgrid() +
+  sm_statCorr(color = sm_color("blue"))
 ```
 
 ### Different color for each group but with other colors 
@@ -632,7 +685,7 @@ Let's apply different color for each `class` of the cars by writing `color = cla
   - `fill = class` is needed when the shape of the point is set to 21-25.
 
 ```{r, fig.width = 5, fig.height = 3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
   geom_point(size = 2)
 ```
 
@@ -658,25 +711,25 @@ number_of_classes
   
   
 ```{r, fig.width = 5, fig.height = 3.5, warning = F}
-ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
-  geom_point(size = 2) + 
-  scale_color_manual(values = sm_palette(number_of_classes)) + 
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point(size = 2) +
+  scale_color_manual(values = sm_palette(number_of_classes)) +
   sm_hvgrid()
 ```
 
 Let's store this graph using a **variable** called `figure1`. 
 
 ```{r, eval = T}
-figure1 <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
-  geom_point() + 
-  scale_color_manual(values = sm_palette(number_of_classes)) + 
+figure1 <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
+  geom_point() +
+  scale_color_manual(values = sm_palette(number_of_classes)) +
   sm_hvgrid()
 ```
 
 **Notice that when you store a figure into a variable, the figure is not displayed** when you run the code that makes the figure, ex.  `figure1 <- ggplot(data = mpg, mapping = ...`. To display the figure, please type the variable name in the console.
 
 ```{r, fig.width = 5, fig.height = 3.5, warning = F}
-figure1 # it will appear again by calling this variable 
+figure1 # it will appear again by calling this variable
 ```
 
 
@@ -691,13 +744,13 @@ To save the figure as an image, we will use the function `save_plot()` from the 
   - If there is no legend, then `base_asp = 1` is recommended.
   
  ```{r, eval = F}
- save_plot('figure1.png', figure1, base_asp = 1.4)
+save_plot("figure1.png", figure1, base_asp = 1.4)
  ```
  
 **Exercise**: try to save it again with a name **figure1b.png** by typing:
 
 ```{r, eval = F}
-save_plot('figure1b.png', figure1)
+save_plot("figure1b.png", figure1)
 ```
 
 How's the picture? Why does it look different? Type `?save_plot` to see what the default `base_asp` is.

@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ## Installation of the Package 
 
 ```{r, eval = F}
-install.packages('smplot2')
+install.packages("smplot2")
 ```
 
 To use the package, load it to memory in RStudio.
@@ -69,34 +69,34 @@ Users can modify the default appearance of the visualization functions from the 
 library(smplot2)
 library(ggplot2)
 set.seed(1) # generate random data
-day1 = rnorm(16,2,1)
-day2 = rnorm(16,5,1)
-Subject <- rep(paste0('S',seq(1:16)), 2)
-Data <- data.frame(Value = matrix(c(day1,day2),ncol=1))
-Day <- rep(c('Day 1', 'Day 2'), each = length(day1))
+day1 <- rnorm(16, 2, 1)
+day2 <- rnorm(16, 5, 1)
+Subject <- rep(paste0("S", seq(1:16)), 2)
+Data <- data.frame(Value = matrix(c(day1, day2), ncol = 1))
+Day <- rep(c("Day 1", "Day 2"), each = length(day1))
 df <- cbind(Subject, Data, Day)
 ```
 
 ```{r, fig.height =3.6, fig.width = 9.6}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  ggtitle('Bar\'s default in smplot2') -> p1
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  ggtitle("Bar's default in smplot2") -> p1
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(bar.params = list(alpha = 0.3)) + 
+  sm_bar(bar.params = list(alpha = 0.3)) +
   # Previously, needed to write:
   # bar.params = list(alpha = 0.5, width = 0.7, color = 'transparent', fill = 'gray80')
-  scale_color_manual(values = sm_color('blue','orange')) +
-  ggtitle('Bar\'s default with new alpha') -> p2
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  ggtitle("Bar's default with new alpha") -> p2
 
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(bar.params = list(), forget = TRUE) + 
+  sm_bar(bar.params = list(), forget = TRUE) +
   # As previously, forgets defaults of a plot component (ex. bar) when list() is called.
-  scale_color_manual(values = sm_color('blue','orange')) +
-  ggtitle('Bar\'s default forgotten') -> p3
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  ggtitle("Bar's default forgotten") -> p3
 
-sm_put_together(list(p1,p2,p3), ncol=3, nrow=1, tickRatio=1) 
+sm_put_together(list(p1, p2, p3), ncol = 3, nrow = 1, tickRatio = 1)
 ```
 
 ```{block type='rmdtip', echo=TRUE}
@@ -134,17 +134,17 @@ sm_palette(5)
 This is the hex code for `darkred`.
 
 ```{r}
-sm_color('darkred')
+sm_color("darkred")
 ```
 
 You can also call two (same / different) colors at the same time.
 
 ```{r}
-sm_color('darkred', 'darkred')
+sm_color("darkred", "darkred")
 ```
 
 ```{r}
-sm_color('darkred', 'viridian')
+sm_color("darkred", "viridian")
 ```
 
 If you want to use 1 color (ex. `darkred`) from **smplot2** and another color (`#b37982`) from somewhere else, you will need to resort to using their hex codes.
@@ -152,7 +152,7 @@ If you want to use 1 color (ex. `darkred`) from **smplot2** and another color (`
 Create a variable that stores these two colors using `<-`.
 
 ```{r}
-my_colors <- c(sm_color('darkred'),'#b37982')
+my_colors <- c(sm_color("darkred"), "#b37982")
 my_colors
 ```
 
@@ -182,7 +182,7 @@ Let's explore these themes one-by-one. First, let's create `p1`, which has the d
 
 ```{r,fig.width = 4.9, fig.height=3.5}
 library(tidyverse)
-p1 <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
+p1 <- ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
   geom_point(size = 2)
 p1
 ```
@@ -254,7 +254,7 @@ When using **ggplot2** to plot correlation, the data frame has to have at least 
 
 ```{r,fig.width = 3.5, fig.height=3.5}
 p1 <- ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = sm_color('green'), color = 'white', size = 3) 
+  geom_point(shape = 21, fill = sm_color("green"), color = "white", size = 3)
 p1
 ```
 
@@ -280,8 +280,10 @@ p1 + sm_statCorr()
 - `fit.params` feeds arguments to `geom_smooth()`control the aesthetics such as `color`, `linetype`, `fullrange` etc. These parameters can be used as part of `...` the generic parameter. 
 
 ```{r,fig.width = 3.5, fig.height=3.5}
-p1 + sm_statCorr(fit.params = list(color = 'black',
-                                   linetype = 'dashed'))
+p1 + sm_statCorr(fit.params = list(
+  color = "black",
+  linetype = "dashed"
+))
 ```
 
   - `fullrange` controls whether the fitted line spans the entire length of the x-axis. If `fullrange = TRUE`, it will do so. If not, it will only span between the minimum and maximum x points of the dataset.
@@ -289,32 +291,36 @@ p1 + sm_statCorr(fit.params = list(color = 'black',
 
 ```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_statCorr(fullrange = T) +
-  scale_x_continuous(limits = c(2,5))
+  scale_x_continuous(limits = c(2, 5))
 ```
 
 ```{r,fig.width = 3.5, fig.height=3.5}
 p1 + sm_statCorr(fullrange = F) +
-  scale_x_continuous(limits = c(2,5))
+  scale_x_continuous(limits = c(2, 5))
 ```
   
 - `corr_method` is the method of correlation test that is to be used. The default is set to the pearson correlation test (`corr_method = 'pearson'`).
 
 ```{r,fig.width = 3.5, fig.height=3.5}
-p1 + sm_statCorr(corr_method = 'spearman')
+p1 + sm_statCorr(corr_method = "spearman")
 ```
 
 - `separate_by` is the string that separates between the `R` (or $R^2$) print and the `p` print.
 
 ```{r,fig.width = 3.5, fig.height=3.5}
-p1 + sm_statCorr(separate_by = '\n', R2=TRUE)
+p1 + sm_statCorr(separate_by = "\n", R2 = TRUE)
 ```
 
 - `label_x` and `label_y` controls the location of the statistical annotations. `text_size` controls their size.
 
 ```{r,fig.width = 3.5, fig.height=3.5}
-p1 + sm_statCorr(fit.params = list(color = 'black',
-                                   linetype = 'dashed'),
-                 label_x = 2, label_y = 0, text_size = 5, R2 = TRUE)
+p1 + sm_statCorr(
+  fit.params = list(
+    color = "black",
+    linetype = "dashed"
+  ),
+  label_x = 2, label_y = 0, text_size = 5, R2 = TRUE
+)
 ```
 
 ### `sm_corr_avgErr()`
@@ -327,7 +333,7 @@ p1 + sm_statCorr(fit.params = list(color = 'black',
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
   sm_corr_avgErr(data = mtcars, x = drat, y = mpg) +
   sm_hvgrid()
 ```
@@ -340,13 +346,19 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
-                 point.params = list(size = 4),
-                 errh.params = list(height = 1, color = "#1262b3",
-                                    size = 0.8),
-                 errv.params = list(width = 0.12, color = "#cc3d3d",
-                                    size = 0.8)) +
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_corr_avgErr(
+    data = mtcars, x = drat, y = mpg,
+    point.params = list(size = 4),
+    errh.params = list(
+      height = 1, color = "#1262b3",
+      size = 0.8
+    ),
+    errv.params = list(
+      width = 0.12, color = "#cc3d3d",
+      size = 0.8
+    )
+  ) +
   sm_hvgrid()
 ```
 
@@ -354,17 +366,21 @@ ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
-                 errorbar_type = 'se') +
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_corr_avgErr(
+    data = mtcars, x = drat, y = mpg,
+    errorbar_type = "se"
+  ) +
   sm_hvgrid()
 ```
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = mtcars, mapping = aes(x = drat, y = mpg)) +
-  geom_point(shape = 21, fill = '#0f993d', color = 'white', size = 3) + 
-  sm_corr_avgErr(data = mtcars, x = drat, y = mpg,
-                 errorbar_type = 'ci') +
+  geom_point(shape = 21, fill = "#0f993d", color = "white", size = 3) +
+  sm_corr_avgErr(
+    data = mtcars, x = drat, y = mpg,
+    errorbar_type = "ci"
+  ) +
   sm_hvgrid()
 ```
 
@@ -380,11 +396,11 @@ Let's explore this difference by generating fake dataset and reorganizing it for
 ```{r}
 # Example
 set.seed(11) # generate random data
-method1 = c(rnorm(19,0,1),2.5)
-method2 = c(rnorm(19,0,1),2.5)
-Subject <- rep(paste0('S',seq(1:20)), 2)
-Data <- data.frame(Value = matrix(c(method1,method2),ncol=1))
-Method <- rep(c('Method 1', 'Method 2'), each = length(method1))
+method1 <- c(rnorm(19, 0, 1), 2.5)
+method2 <- c(rnorm(19, 0, 1), 2.5)
+Subject <- rep(paste0("S", seq(1:20)), 2)
+Data <- data.frame(Value = matrix(c(method1, method2), ncol = 1))
+Method <- rep(c("Method 1", "Method 2"), each = length(method1))
 df_general <- cbind(Subject, Data, Method) # used for sm_bar(), sm_boxplot(), sm_violin(), etc
 
 df_corr <- data.frame(first = method1, second = method2) # used for correlation
@@ -404,28 +420,34 @@ head(df_corr)
 Notice that `df_corr` has two columns, each of which represents a measurement group. 
 
 ```{r, fig.width = 3.35, fig.height=3.5}
-
-# correlation plot using data frame 'df_corr' 
-ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
-  geom_point(shape = 21, fill = sm_color('crimson'), color = 'white',
-             size = 3) + sm_hvgrid(borders = FALSE) +
-  scale_y_continuous(limits = c(-2.5,2.5)) +
-  scale_x_continuous(limits = c(-2.5,2.5)) +
-  sm_statCorr(color = sm_color('crimson'), fullrange = TRUE,
-              label_x = -2.2, label_y = 2.3,
-              linetype = 'dashed') +
-  ggtitle('Correlation plot') + 
-  xlab('Method 1') + ylab('Method 2') 
-
+# correlation plot using data frame 'df_corr'
+ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
+  geom_point(
+    shape = 21, fill = sm_color("crimson"), color = "white",
+    size = 3
+  ) +
+  sm_hvgrid(borders = FALSE) +
+  scale_y_continuous(limits = c(-2.5, 2.5)) +
+  scale_x_continuous(limits = c(-2.5, 2.5)) +
+  sm_statCorr(
+    color = sm_color("crimson"), fullrange = TRUE,
+    label_x = -2.2, label_y = 2.3,
+    linetype = "dashed"
+  ) +
+  ggtitle("Correlation plot") +
+  xlab("Method 1") +
+  ylab("Method 2")
 ```
 
 ```{r, fig.width = 3.4, fig.height=3.5}
 # bar graph using data frame 'df_general'
-ggplot(data = df_general, mapping = aes(x = Method, y = Value, 
-                                        color = Method)) +
+ggplot(data = df_general, mapping = aes(
+  x = Method, y = Value,
+  color = Method
+)) +
   sm_bar() +
-  scale_color_manual(values = sm_color('crimson','green')) +
-  scale_y_continuous(limits = c(-2,3))
+  scale_color_manual(values = sm_color("crimson", "green")) +
+  scale_y_continuous(limits = c(-2, 3))
 ```
 
 ### Correlation plot with both regression and reference lines
@@ -435,20 +457,24 @@ You can also add a reference line (slope = 1) in a correlation plot.
 This can be done with `geom_abline()`. In this example, the reference line's slope is set to 1 and it has a dashed line style.
 
 ```{r, fig.width = 3.35, fig.height=3.5}
-
-# correlation plot using data frame 'df_corr' 
-ggplot(data = df_corr, mapping = aes(x = first, y = second)) + 
-  geom_point(shape = 21, fill = sm_color('crimson'), color = 'white',
-             size = 3) + sm_hvgrid(borders = FALSE) +
-  geom_abline(slope = 1, linetype = 'dashed') +
-  scale_y_continuous(limits = c(-2.8,2.8),  expand = c(0,0)) +
-  scale_x_continuous(limits = c(-2.8,2.8), expand = c(0,0)) +
-  sm_statCorr(color = sm_color('crimson'), fullrange = TRUE,
-              label_x = -2.2, label_y = 2.3,
-              linetype = 'dashed') +
-  ggtitle('Correlation plot') + 
-  xlab('Method 1') + ylab('Method 2') 
-
+# correlation plot using data frame 'df_corr'
+ggplot(data = df_corr, mapping = aes(x = first, y = second)) +
+  geom_point(
+    shape = 21, fill = sm_color("crimson"), color = "white",
+    size = 3
+  ) +
+  sm_hvgrid(borders = FALSE) +
+  geom_abline(slope = 1, linetype = "dashed") +
+  scale_y_continuous(limits = c(-2.8, 2.8), expand = c(0, 0)) +
+  scale_x_continuous(limits = c(-2.8, 2.8), expand = c(0, 0)) +
+  sm_statCorr(
+    color = sm_color("crimson"), fullrange = TRUE,
+    label_x = -2.2, label_y = 2.3,
+    linetype = "dashed"
+  ) +
+  ggtitle("Correlation plot") +
+  xlab("Method 1") +
+  ylab("Method 2")
 ```
 
 ## Boxplot - `sm_boxplot()`
@@ -462,12 +488,12 @@ It has several arguments. To explore them, let's generate some random data first
 
 ```{r}
 set.seed(1) # generate random data
-day1 = rnorm(16,0,1)
-day2 = rnorm(16,5,1)
-day3 = rnorm(16,10,1)
-Subject <- rep(paste0('S',seq(1:16)), 3)
-Data <- data.frame(Value = matrix(c(day1,day2,day3),ncol=1))
-Day <- rep(c('Day 1', 'Day 2', 'Day 3'), each = length(day1))
+day1 <- rnorm(16, 0, 1)
+day2 <- rnorm(16, 5, 1)
+day3 <- rnorm(16, 10, 1)
+Subject <- rep(paste0("S", seq(1:16)), 3)
+Data <- data.frame(Value = matrix(c(day1, day2, day3), ncol = 1))
+Day <- rep(c("Day 1", "Day 2", "Day 3"), each = length(day1))
 df <- cbind(Subject, Data, Day)
 ```
 
@@ -486,28 +512,36 @@ In this example, `...` is fed into `point.params` to control the `color` of the 
 
 ```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
-  sm_boxplot(color = sm_color('darkred'))
+  sm_boxplot(color = sm_color("darkred"))
 ```
 
 You can be quite flexible with the aesthetics.
 
 ```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
-  sm_boxplot(point.params = list(fill = sm_color('darkred'),
-                                 size = 2.2,
-                                 shape = 21,
-                                 color = 'white', 
-                                 alpha = 1))
+  sm_boxplot(point.params = list(
+    fill = sm_color("darkred"),
+    size = 2.2,
+    shape = 21,
+    color = "white",
+    alpha = 1
+  ))
 ```
 
 You can also change the border `color` of the boxplot and its `width` using `boxplot.params`.
 
 ```{r,fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
-  sm_boxplot(boxplot.params = list(color = sm_color('skyblue'),
-                                   width = 0.65),
-             point.params = list(alpha = 0.65,
-                                 size = 2.5))
+  sm_boxplot(
+    boxplot.params = list(
+      color = sm_color("skyblue"),
+      width = 0.65
+    ),
+    point.params = list(
+      alpha = 0.65,
+      size = 2.5
+    )
+  )
 ```
 
 **Notice that the border color of the boxplot and the fact that outliers are not separately labeled are identical to the default settings because these are kept unless the user re-specifies them.** Only the width of the boxplots and their filling colors have been changed because we have specified them by overwriting over the defaults.
@@ -517,15 +551,15 @@ Now let's apply different color for each Day.
 ```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_boxplot() +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 You can change the shape of the boxplot by setting `notch = TRUE` within `boxplot.params`.
 
 ```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_boxplot(boxplot.params = list(notch = TRUE, color = 'black')) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  sm_boxplot(boxplot.params = list(notch = TRUE, color = "black")) +
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 A notched boxplot shows the confidence interval around the median (+/- 1.58 * interquartile range / sqrt(n)).
@@ -538,7 +572,7 @@ A notched boxplot shows the confidence interval around the median (+/- 1.58 * in
 ```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_boxplot(point_jitter_width = 0.2) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 
@@ -571,14 +605,14 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
 
 ```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value)) +
-  sm_violin() 
+  sm_violin()
 ```
 
 ```{r, fig.width = 3.4, fig.height=3.5,warning = F}
 # a violin plot with different colored points and lines
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_violin() + 
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  sm_violin() +
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 You can specify the aesthetics of `sm_violin()` using `point.params`, `err.params` and `violin.params`. 
@@ -589,11 +623,15 @@ You can specify the aesthetics of `sm_violin()` using `point.params`, `err.param
   - `err.params` can be used to control the average point as well because it is connected to the error bar.
   
 ```{r, fig.width = 3.4, fig.height=3.5,warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day,
-                                group = Day)) +
-  sm_violin(err.params = list(color = 'black',
-                              size = 1.2)) + 
-  scale_color_manual(values = sm_palette(3)) 
+ggplot(data = df, mapping = aes(
+  x = Day, y = Value, color = Day,
+  group = Day
+)) +
+  sm_violin(err.params = list(
+    color = "black",
+    size = 1.2
+  )) +
+  scale_color_manual(values = sm_palette(3))
 ```
 
 - `violin.params` feeds the arguments to `geom_violin()`, such as `color` and `fill`, to plot the violin.
@@ -603,7 +641,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day,
 ```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_violin(point_jitter_width = 0.2) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 - `points = FALSE` removes all the individual points.
@@ -611,7 +649,7 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 ```{r, fig.width = 3.4, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_violin(points = FALSE) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 
@@ -620,10 +658,12 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 Set `color = Subject` to plot individual points with unique colors.
 
 ```{r, fig.width = 3.4, fig.height=3.5,warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
-                                group = Day)) +
-  sm_violin(point.params = list(alpha = 0.5)) + 
-  scale_color_manual(values = sm_palette(16)) 
+ggplot(data = df, mapping = aes(
+  x = Day, y = Value, color = Subject,
+  group = Day
+)) +
+  sm_violin(point.params = list(alpha = 0.5)) +
+  scale_color_manual(values = sm_palette(16))
 ```
 
 ## Bar plot - `sm_bar()` 
@@ -637,32 +677,34 @@ Let's use data (`df`) we generated before to explore this function.
 ```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar() +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 In this case, the error bar represents **standard error**. If you prefer to show **standard deviation**, then you should set `errorbar_type  = 'sd'` in `sm_bar()`.
   
 ```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(errorbar_type = 'sd') +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  sm_bar(errorbar_type = "sd") +
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 95% confidence interval can also be displayed with `errorbar_type  = 'ci'`. 
 
 ```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(errorbar_type = 'ci') +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  sm_bar(errorbar_type = "ci") +
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 Jitter's width can be controlled using `point_jitter_width`.
 
 ```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(errorbar_type = 'ci',
-         point_jitter_width = 0.2) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  sm_bar(
+    errorbar_type = "ci",
+    point_jitter_width = 0.2
+  ) +
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 You can also adjust different parameters of the bar graph using `bar.params`, `err.params` and `point.params`.
@@ -672,33 +714,41 @@ You can also adjust different parameters of the bar graph using `bar.params`, `e
 ```{r,fig.width = 3.8, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
   sm_bar(bar.params = list(width = 0.7, alpha = 0.5)) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 - `err.params = list()` sends arguments, such as `color`, to `geom_linerange()` so that an error bar is plotted.
 
 ```{r,fig.width = 3.8, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(errorbar_type = 'sd',
-         bar.params = list(width = 0.7, alpha = 0.5),
-         err.params = list(color = 'gray40',
-                           size = 1)) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
-
+  sm_bar(
+    errorbar_type = "sd",
+    bar.params = list(width = 0.7, alpha = 0.5),
+    err.params = list(
+      color = "gray40",
+      size = 1
+    )
+  ) +
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 - `point.params = list()` feeds arguments, such as `color`, `fill`, and `alpha` to `geom_point()` to so that individual points are plotted.
 
 ```{r,fig.width = 3.8, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_bar(errorbar_type = 'sd',
-         bar.params = list(width = 0.7, alpha = 0.5),
-         err.params = list(color = 'gray40',
-                           size = 1),
-         point.params = list(size = 2.5, shape = 15,
-                             alpha = 0.6)) +
-  scale_color_manual(values = sm_color('blue','darkred','viridian'))
-
+  sm_bar(
+    errorbar_type = "sd",
+    bar.params = list(width = 0.7, alpha = 0.5),
+    err.params = list(
+      color = "gray40",
+      size = 1
+    ),
+    point.params = list(
+      size = 2.5, shape = 15,
+      alpha = 0.6
+    )
+  ) +
+  scale_color_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 
@@ -709,7 +759,7 @@ As before with `sm_boxplot()` and `sm_violin()`, to plot individual points with 
 ```{r,fig.width = 3.4, fig.height=3.5,warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject)) +
   sm_bar() +
-  scale_color_manual(values = sm_palette(16)) 
+  scale_color_manual(values = sm_palette(16))
 ```
 
 `sm_bar()` can also print distinct box colors across distinct x levels. This requires the defaults of `bar.params` to be reset. Therefore, it needs to be written as `bar.params = list()` by setting `forget = TRUE`, which is an argument that makes the function forget its default when `list()` is called.
@@ -719,35 +769,51 @@ If you want the visualization functions to forget their defaults when `list()` i
 ```
 
 ```{r, fig.width = 3.4, fig.height=3.5,warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Subject,
-                                fill = Day)) +
-  sm_bar(bar.params = list(alpha = 0.7, color = 'transparent'),
-         forget = TRUE) +
+ggplot(data = df, mapping = aes(
+  x = Day, y = Value, color = Subject,
+  fill = Day
+)) +
+  sm_bar(
+    bar.params = list(alpha = 0.7, color = "transparent"),
+    forget = TRUE
+  ) +
   scale_color_manual(values = sm_palette(16)) +
-  scale_fill_manual(values = sm_color('blue','darkred','viridian'))
+  scale_fill_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 To set one color across all points, you need to remove `color = Subject`. `point.params` can be specified to control the aesthetics of the points
 
 ```{r, fig.width = 3.4, fig.height=3.5,warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, 
-                                fill = Day)) +
-  sm_bar(bar.params = list(alpha = 0.7, color = 'transparent'),
-         point.params = list(shape = 21, fill = 'gray90',
-                             color = 'black', size = 2.2),
-         forget = TRUE) +
-  scale_fill_manual(values = sm_color('blue','darkred','viridian'))
+ggplot(data = df, mapping = aes(
+  x = Day, y = Value,
+  fill = Day
+)) +
+  sm_bar(
+    bar.params = list(alpha = 0.7, color = "transparent"),
+    point.params = list(
+      shape = 21, fill = "gray90",
+      color = "black", size = 2.2
+    ),
+    forget = TRUE
+  ) +
+  scale_fill_manual(values = sm_color("blue", "darkred", "viridian"))
 ```
 
 This is an example where the bar and points have unique colors per group.
 
 ```{r, fig.width = 3.4, fig.height=3.5,warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, 
-                                fill = Day)) +
-  sm_bar(bar.params = list(alpha = 0.5, color = 'transparent'),
-         point.params = list(shape = 21, alpha = 1,
-                             size = 2.2,
-                             color = 'white'),
-         forget = TRUE) +
-  scale_fill_manual(values = sm_color('blue','darkred','viridian'))
+ggplot(data = df, mapping = aes(
+  x = Day, y = Value,
+  fill = Day
+)) +
+  sm_bar(
+    bar.params = list(alpha = 0.5, color = "transparent"),
+    point.params = list(
+      shape = 21, alpha = 1,
+      size = 2.2,
+      color = "white"
+    ),
+    forget = TRUE
+  ) +
+  scale_fill_manual(values = sm_color("blue", "darkred", "viridian"))
 ```

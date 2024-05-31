@@ -48,7 +48,7 @@ We will use a function from the **tidyverse** package called **read_csv()**.
   - For more information, type `?read_csv()`.
 
 ```{r}
-df <- read_csv('data.csv')
+df <- read_csv("data.csv")
 ```
 
 If you get an **error** such as `object 'data.csv' not found`, make sure you set your working directory in the **LearnR** folder. Also make sure you have downloaded your data and saved it in the **LearnR** folder.
@@ -116,18 +116,21 @@ set.seed(5)
 y <- c(rnorm(100), 4)
 s <- boxplot.stats(y)
 
-random_df <- data.frame(y = c(s$stats, max(y)),
-                 x = c(1.23, 1.605, 1.605, 1.605, 1.23, 1.24),
-                 label = c("minimum", "first quartile", "median", "third quartile", "maximum within upper whisker", "outlier"))
+random_df <- data.frame(
+  y = c(s$stats, max(y)),
+  x = c(1.23, 1.605, 1.605, 1.605, 1.23, 1.24),
+  label = c("minimum", "first quartile", "median", "third quartile", "maximum within upper whisker", "outlier")
+)
 
-bp <- ggplot(data.frame(y), aes(x = 1, y = y)) + geom_boxplot(fill = sm_color('wine')) +
-  geom_text(data = random_df, aes(x, y, label = label), hjust = 0, size = 14/.pt) +
+bp <- ggplot(data.frame(y), aes(x = 1, y = y)) +
+  geom_boxplot(fill = sm_color("wine")) +
+  geom_text(data = random_df, aes(x, y, label = label), hjust = 0, size = 14 / .pt) +
   scale_x_continuous(limits = c(0, 3.5), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2.55, 4.2), expand = c(0, 0)) +
   theme_nothing()
 
-points <- ggplot(data.frame(y), aes(x = 0, y = y)) + 
-  geom_point(color = sm_color('wine'), position = position_jitter(width = .4, height = 0, seed = 320)) +
+points <- ggplot(data.frame(y), aes(x = 0, y = y)) +
+  geom_point(color = sm_color("wine"), position = position_jitter(width = .4, height = 0, seed = 320)) +
   scale_x_continuous(limits = c(-1.8, .4), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2.55, 4.2), expand = c(0, 0)) +
   theme_nothing()
@@ -150,26 +153,30 @@ Here is the basic structure of the bar graph.
 
 ```{r, echo = FALSE,fig.width = 5*6/4.2}
 set.seed(5)
-y <- c(rnorm(100,5,3))
+y <- c(rnorm(100, 5, 3))
 avg <- mean(y)
-se <- sd(y)/sqrt(length(y))
+se <- sd(y) / sqrt(length(y))
 
 y_df <- data.frame(Avg = mean(y))
 
-random_df <- data.frame(y = c(avg-se, avg, avg+se),
-                 x = c(1.5, 0.1, 1.5),
-                 label = c("lower standard error", "mean", "upper standard error"))
+random_df <- data.frame(
+  y = c(avg - se, avg, avg + se),
+  x = c(1.5, 0.1, 1.5),
+  label = c("lower standard error", "mean", "upper standard error")
+)
 
-bar <- ggplot(y_df, aes(x = 1, y = Avg)) + geom_bar(stat = 'identity',fill = sm_color('wine'), width = .8) +
+bar <- ggplot(y_df, aes(x = 1, y = Avg)) +
+  geom_bar(stat = "identity", fill = sm_color("wine"), width = .8) +
   geom_text(data = random_df, aes(x, y, label = label), hjust = 0, size = 5) +
   scale_x_continuous(limits = c(0, 3.5), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2, 13), expand = c(0, 0)) +
   theme_nothing() +
   geom_errorbar(aes(ymin = Avg - se, ymax = Avg + se),
-                width = .1, size = 1.2)
+    width = .1, size = 1.2
+  )
 
-points <- ggplot(data.frame(y), aes(x = -0.2, y = y)) + 
-  geom_point(color = sm_color('wine'), position = position_jitter(width = .4, height = 0, seed = 320)) +
+points <- ggplot(data.frame(y), aes(x = -0.2, y = y)) +
+  geom_point(color = sm_color("wine"), position = position_jitter(width = .4, height = 0, seed = 320)) +
   scale_x_continuous(limits = c(-1.8, .4), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2, 13), expand = c(0, 0)) +
   theme_nothing()
@@ -199,7 +206,8 @@ However, as we learned in the last lesson, **ggplot** requires **geom** objects 
 - Now, let's use **geom_boxplot()** to plot a boxplot.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot()
+ggplot(data = df, mapping = aes(x = Day, y = Value)) +
+  geom_boxplot()
 ```
 
 Here's the boxplot! But I think there is a problem here. Day **Three** precedes Day **Two** in the x-axis. 
@@ -225,9 +233,9 @@ df
 In R, **character** is also referred to as **string**. They mean the same thing. Here are more examples of **characters/strings**.
 
 ```{r}
-a <- 'R is very useful!'
-b <- 'Dogs are so cute.'
-c <- 'Clarinet is the best.'
+a <- "R is very useful!"
+b <- "Dogs are so cute."
+c <- "Clarinet is the best."
 ```
 
 In these examples, you have stored the **characters/strings** in the variables **a**, **b** and **c**.
@@ -245,7 +253,7 @@ However, when you are using `read_csv()` to load data into RStudio, `read_csv()`
 To resolve this problem, you will need to change the **characters** into **factors** using `factor()` function.
 
 ```{r}
-df$Day <- factor(df$Day, levels = c('One','Two','Three'))
+df$Day <- factor(df$Day, levels = c("One", "Two", "Three"))
 ```
 
 Remember that `<-` means equivalent. Also,  `$` of a data frame can extract a specific column 
@@ -279,7 +287,8 @@ Now we see `<fct>` in the **Day** column. This means that the column is now **fa
 Now let's draw the boxplot again.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot()
+ggplot(data = df, mapping = aes(x = Day, y = Value)) +
+  geom_boxplot()
 ```
 
 Since we have converted the **Day** column of **df** into factor, the boxplot successfully plots each day in the correct order.
@@ -289,15 +298,16 @@ Since we have converted the **Day** column of **df** into factor, the boxplot su
 Sometimes, it is preferable to plot individual data on top of the boxplot. There are many ways to do this. Here is a simple solution by using `geom_jitter()`. For more information, type `?geom_jitter`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_boxplot() + 
+ggplot(data = df, mapping = aes(x = Day, y = Value)) +
+  geom_boxplot() +
   geom_jitter()
 ```
 
 I think the points are too spread. So let's set the `width` of the spread in `geom_jitter()` to 0.15. Also, let's apply a different color of points for each **Day**.
 
 ```{r,fig.width = 4.8, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  geom_boxplot() + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  geom_boxplot() +
   geom_jitter(width = 0.15)
 ```
 
@@ -306,11 +316,11 @@ Now we can make the boxplot prettier with `sm_minimal()`, which removes all grid
 Let's also add a title **Visual improvement after treatment** using `ggtitle()`, which is a function from the **ggplot2** package.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  geom_boxplot() + 
-  geom_jitter(width = 0.15) + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.15) +
   sm_minimal(legends = FALSE) +
-  ggtitle('Visual improvement after treatment')
+  ggtitle("Visual improvement after treatment")
 ```
 
 Now let's set the colors using `sm_palette()`. Remember from the last lesson that we set the colors in **ggplot** by using `scale_color_manual()` for points without borders.
@@ -318,11 +328,11 @@ Now let's set the colors using `sm_palette()`. Remember from the last lesson tha
 - Let's write `3` in `sm_palette()` because we need 3 colors (for each **Day**). It will automatically extract 3 different colors from the color palette in **smplot2**. 
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  geom_boxplot() + 
-  geom_jitter(width = 0.15) + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.15) +
   sm_minimal(legends = FALSE) +
-  ggtitle('Visual improvement after treatment') +
+  ggtitle("Visual improvement after treatment") +
   scale_color_manual(values = sm_palette(3))
 ```
 
@@ -330,11 +340,11 @@ If you need horizontal grids, you can simply replace `sm_minimal()` with `sm_hgr
 
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  geom_boxplot() + 
-  geom_jitter(width = 0.15) + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.15) +
   sm_hgrid(legends = FALSE) +
-  ggtitle('Visual improvement after treatment') +
+  ggtitle("Visual improvement after treatment") +
   scale_color_manual(values = sm_palette(3))
 ```
 
@@ -345,9 +355,9 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 `sm_boxplot()` shows both a boxplot and jittered individual data. It automatically uses `sm_hgrid()`. Also it stores defaults that are aesthetically pleasing and has flexibility with which you can entirely overturn the defaults.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot() + 
-  ggtitle('Visual improvement after treatment') +
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_boxplot() +
+  ggtitle("Visual improvement after treatment") +
   scale_color_manual(values = sm_palette(3))
 ```
 
@@ -357,8 +367,8 @@ You can also change the alpha value to see what happens. For example, if you wis
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  sm_boxplot(point.params = list(alpha = 0.35)) +  # defaults are kept but only alpha has changed
-  ggtitle('Visual improvement after treatment') +
+  sm_boxplot(point.params = list(alpha = 0.35)) + # defaults are kept but only alpha has changed
+  ggtitle("Visual improvement after treatment") +
   scale_color_manual(values = sm_palette(3))
 ```
 
@@ -379,10 +389,12 @@ We could change the shape to `21` so that the points have the circular shape wit
 Also, `scale_color_manual()` is now used to apply distinct border colors of the points rather than their filling colors. So now we should use `scale_fill_manual()`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
-  sm_boxplot(point.params = list(shape = 21, color = 'white',
-                                 size = 2.5)) + 
-  ggtitle('Visual improvement after treatment') +
+ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_boxplot(point.params = list(
+    shape = 21, color = "white",
+    size = 2.5
+  )) +
+  ggtitle("Visual improvement after treatment") +
   scale_fill_manual(values = sm_palette(3))
 ```
 
@@ -392,9 +404,9 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
 Another way to change the shape is to not use `point.params = list()`. You could directly use `shape` argument within `sm_boxplot()` but this could affect other aesthetic components.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(shape = 15) + 
-  ggtitle('Visual improvement after treatment') +
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_boxplot(shape = 15) +
+  ggtitle("Visual improvement after treatment") +
   scale_color_manual(values = sm_palette(3))
 ```
 
@@ -402,10 +414,12 @@ In this case, we are lucky because `shape` is an aesthetic parameter that does n
 
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(shape = 15, point.params = list(alpha = 0.65, 
-                                             size = 2.5)) + 
-  ggtitle('Visual improvement after treatment') +
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_boxplot(shape = 15, point.params = list(
+    alpha = 0.65,
+    size = 2.5
+  )) +
+  ggtitle("Visual improvement after treatment") +
   scale_color_manual(values = sm_palette(3))
 ```
 
@@ -413,9 +427,9 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 You can separataely label of the outlier by specifying `outlier.shape = TRUE`, which is an argument within `geom_boxplot()`, in `boxplot.params`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(boxplot.params = list(outlier.shape = TRUE)) + 
-  ggtitle('Visual improvement after treatment') +
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_boxplot(boxplot.params = list(outlier.shape = TRUE)) +
+  ggtitle("Visual improvement after treatment") +
   scale_color_manual(values = sm_palette(3))
 ```
 
@@ -423,10 +437,12 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 **Important:** The generic parameter (`...` in ex. `sm_boxplot()`) cannot overturn the smplot2's default unless the user makes the default gone by explicitly writing `param.xxx = list()`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_boxplot(shape = 15, size = 2,
-             boxplot.params = list()) + 
-  ggtitle('Visual improvement after treatment') +
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_boxplot(
+    shape = 15, size = 2,
+    boxplot.params = list()
+  ) +
+  ggtitle("Visual improvement after treatment") +
   scale_color_manual(values = sm_palette(3))
 ```
 
@@ -437,9 +453,9 @@ If you are confused about this, do not worry because you could probably get by w
 Now, pick your favorite boxplot and store it in a variable called **my_boxplot** using `<-`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-my_boxplot <- ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) + 
-  sm_boxplot() + 
-  ggtitle('Visual improvement after treatment') +
+my_boxplot <- ggplot(data = df, mapping = aes(x = Day, y = Value, fill = Day)) +
+  sm_boxplot() +
+  ggtitle("Visual improvement after treatment") +
   scale_fill_manual(values = sm_palette(3))
 ```
 
@@ -450,7 +466,7 @@ We can save the boxplot by using `save_plot()` from the **cowplot** package.
 Let's set the aspect ratio (width/height) to 1. So, type `base_asp = 1`.
 
 ```{r, eval = F}
-save_plot('boxplot.jpg', my_boxplot, base_asp = 1)
+save_plot("boxplot.jpg", my_boxplot, base_asp = 1)
 ```
 
 This image file should now be in your **LearnR** folder.
@@ -466,16 +482,21 @@ The boxplot represents the distribution quite well but it can still be misleadin
 set.seed(7)
 y <- c(rnorm(100), 3.4)
 d <- density(y)
-random_df <- data.frame(y = c(min(y), d$x[which(d$y == max(d$y))], max(y)), x = c(1.3, 1.7, 1.3),
-                 label = c("minimum data", "maximum point density", "maximum data"))
-p_violin <- ggplot(data.frame(y), aes(x = 1, y = y)) + geom_violin(fill = sm_color('wine'), color = sm_color('wine')) +
-  geom_text(data = random_df, aes(x, y, label = label), hjust = 0,
-            size = 14/.pt) +
+random_df <- data.frame(
+  y = c(min(y), d$x[which(d$y == max(d$y))], max(y)), x = c(1.3, 1.7, 1.3),
+  label = c("minimum data", "maximum point density", "maximum data")
+)
+p_violin <- ggplot(data.frame(y), aes(x = 1, y = y)) +
+  geom_violin(fill = sm_color("wine"), color = sm_color("wine")) +
+  geom_text(
+    data = random_df, aes(x, y, label = label), hjust = 0,
+    size = 14 / .pt
+  ) +
   scale_x_continuous(limits = c(0, 3.5), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2.55, 3.6), expand = c(0, 0)) +
   theme_nothing()
-p_points <- ggplot(data.frame(y), aes(x = 0, y = y)) + 
-  geom_point(color = sm_color('wine'), position = position_jitter(width = .4, height = 0, seed = 320)) +
+p_points <- ggplot(data.frame(y), aes(x = 0, y = y)) +
+  geom_point(color = sm_color("wine"), position = position_jitter(width = .4, height = 0, seed = 320)) +
   scale_x_continuous(limits = c(-1.8, .4), expand = c(0, 0)) +
   scale_y_continuous(limits = c(-2.55, 3.6), expand = c(0, 0)) +
   theme_nothing()
@@ -491,7 +512,8 @@ plot_grid(p_points, p_violin, rel_widths = c(.65, 1), nrow = 1)
 Let's draw the violin plot. Specify the x-axis to **Day** and the y-axis to **Value** using data frame **df**.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value)) + geom_violin()
+ggplot(data = df, mapping = aes(x = Day, y = Value)) +
+  geom_violin()
 ```
 
 Notice that since we have already converted the **Day** column of df into **factor**, the violin plot's x-axis is in the correct order. Also, notice that we can just replace `geom_boxplot()` with `geom_violin()`.
@@ -502,16 +524,16 @@ Let's add individual points to the violin plot by using `geom_jitter()`.
 - Set `width` of the spread to `0.15`.
 
 ```{r,fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value)) + 
-  geom_violin() + 
+ggplot(data = df, mapping = aes(x = Day, y = Value)) +
+  geom_violin() +
   geom_jitter(width = 0.15)
 ```
 
 Now let's apply different color to each **Day** like we did in boxplot by using `scale_color_manual()`. Let's use `sm_palette(3)`.
   
 ```{r,fig.width = 4.54, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  geom_violin() + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  geom_violin() +
   geom_jitter(width = 0.15) +
   scale_color_manual(values = sm_palette(3))
 ```
@@ -521,11 +543,11 @@ Finally, let's make it pretty and remove the **legend** by applying `sm_hgrid()`
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
 ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
-  geom_violin() + 
+  geom_violin() +
   geom_jitter(width = 0.15) +
   scale_color_manual(values = sm_palette(3)) +
   sm_hgrid() +
-  ggtitle('Visual improvement after treatment')
+  ggtitle("Visual improvement after treatment")
 ```
 
 ### geom_violin() vs sm_violin() 
@@ -541,10 +563,10 @@ Let’s set `color = Day` in `aes()` so that we can apply different colors of th
 - Make sure you use `scale_color_manual()` rather than `scale_fill_manual` to have a unique filling color for each `Day`.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_violin() + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_violin() +
   scale_color_manual(values = sm_palette(3)) +
-  ggtitle('Visual improvement after treatment')
+  ggtitle("Visual improvement after treatment")
 ```
 
 As in the case of `sm_boxplot()`, you can specify the aesthetics of `sm_violin()` using `point.params`, `err.params` and `violin.params`. 
@@ -558,10 +580,10 @@ As in the case of `sm_boxplot()`, you can specify the aesthetics of `sm_violin()
 By using `size` and `shape` as generic parameter, you can easily change the mean and individual points' color and shapes, but not those of the violin because `geom_violin()` does not use these two parameters.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_violin(size = 3, shape = 15) + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_violin(size = 3, shape = 15) +
   scale_color_manual(values = sm_palette(3)) +
-  ggtitle('Visual improvement after treatment')
+  ggtitle("Visual improvement after treatment")
 ```
 
 In this case, we have successfully changed the size (larger) and shape (circle to square) of the mean and individual points. 
@@ -569,40 +591,46 @@ In this case, we have successfully changed the size (larger) and shape (circle t
 If you only modify one aspect of the plot's default, then you will modify just that feature while keeping the defaults of the violin plot generated from `sm_violin()`.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_violin(point.params = list(size=1.5)) + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_violin(point.params = list(size = 1.5)) +
   scale_color_manual(values = sm_palette(3)) +
-  ggtitle('Visual improvement after treatment')
+  ggtitle("Visual improvement after treatment")
 ```
 
 Now we can add `color = 'black'` and `fill = 'black'` to affect it across all components of the graph (violin, error bar and points).
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_violin(color = 'black', fill = 'black', 
-            point.params = list(), 
-            violin.params = list()) + 
-  ggtitle('Visual improvement after treatment')
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_violin(
+    color = "black", fill = "black",
+    point.params = list(),
+    violin.params = list()
+  ) +
+  ggtitle("Visual improvement after treatment")
 ```
 
 Only after the defaults are gone, the generic parameters (`...`) in `sm_violin()` have power to affect different components of the violin plot. However, if we add parameters within `xxx.params`, we see that these parameters will ignore the generic ones.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_violin(color = 'black', fill = 'black', 
-            point.params = list(fill = 'white', shape = 21, 
-                                color ='black', size = 2, alpha = 1), 
-            violin.params = list(alpha = 0.5)) + 
-  ggtitle('Visual improvement after treatment')
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_violin(
+    color = "black", fill = "black",
+    point.params = list(
+      fill = "white", shape = 21,
+      color = "black", size = 2, alpha = 1
+    ),
+    violin.params = list(alpha = 0.5)
+  ) +
+  ggtitle("Visual improvement after treatment")
 ```
 
 You could also remove `borders` or add `legends` by setting them as `FALSE` or `TRUE` respectively (ex. `sm_violin(..., borders = FALSE)`).
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_violin(size = 2, shape = 17, borders = 'FALSE') + 
+ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_violin(size = 2, shape = 17, borders = "FALSE") +
   scale_color_manual(values = sm_palette(3)) +
-  ggtitle('Visual improvement after treatment')
+  ggtitle("Visual improvement after treatment")
 ```
 
 
@@ -611,16 +639,16 @@ ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
 Pick your favorite violin plot and store it in a variable called `my_violin` using `<-`.
 
 ```{r, evak = F}
-my_violin <- ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) + 
-  sm_violin() + 
+my_violin <- ggplot(data = df, mapping = aes(x = Day, y = Value, color = Day)) +
+  sm_violin() +
   scale_color_manual(values = sm_palette(3)) +
-  ggtitle('Visual improvement after treatment')
+  ggtitle("Visual improvement after treatment")
 ```
 
 We can save the violin plot by using `save_plot()` from the **cowplot** package, and set the aspect ratio (width/height) to 1. So, type `base_asp = 1`.
 
 ```{r, eval = F}
-save_plot('violin.jpg', my_violin, base_asp = 1)
+save_plot("violin.jpg", my_violin, base_asp = 1)
 ```
 
 This image file should now be in your **LearnR** folder.

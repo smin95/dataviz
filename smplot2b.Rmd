@@ -22,11 +22,11 @@ library(tidyverse)
 library(smplot2)
 
 set.seed(201) # generate random data
-before = abs(rnorm(20,2.5,1))
-after = abs(rnorm(20,5,1))
-Subject <- rep(paste0('S',seq(1:20)), 2)
-Data <- data.frame(Value = matrix(c(before,after),ncol=1))
-beforeAfter <- rep(c('Before', 'After'), each = length(before))
+before <- abs(rnorm(20, 2.5, 1))
+after <- abs(rnorm(20, 5, 1))
+Subject <- rep(paste0("S", seq(1:20)), 2)
+Data <- data.frame(Value = matrix(c(before, after), ncol = 1))
+beforeAfter <- rep(c("Before", "After"), each = length(before))
 df <- cbind(Subject, Data, beforeAfter)
 ```
 
@@ -36,7 +36,7 @@ Each level of `x` has to be categorical to use `sm_slope()`. In other words, the
 - If x-axis only has number (i.e., `double` form, such as 1.02, 1.05, 1.5), then `sm_slope()` will produce an error.
 
 ```{r}
-df$beforeAfter <- factor(df$beforeAfter, levels = c('Before','After'))
+df$beforeAfter <- factor(df$beforeAfter, levels = c("Before", "After"))
 df$beforeAfter
 ```
 
@@ -51,25 +51,29 @@ df$beforeAfter
  
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
-  sm_slope(group = Subject) 
+  sm_slope(group = Subject)
 ```
 
 `labels` argument decides the x-axis tick `sm_slope()`. If it is empty, it will choose alphabetical `letters`.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
-  sm_slope(group = Subject,
-           labels = c('Before', 'After')) +
-  scale_fill_manual(values=  sm_color('blue','orange'))
+  sm_slope(
+    group = Subject,
+    labels = c("Before", "After")
+  ) +
+  scale_fill_manual(values = sm_color("blue", "orange"))
 ```
 
 Same color can also be set across the factors (x-level).
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
-  sm_slope(group = Subject,
-           labels = c('Before', 'After')) +
-  scale_fill_manual(values=  sm_color('blue','blue'))
+  sm_slope(
+    group = Subject,
+    labels = c("Before", "After")
+  ) +
+  scale_fill_manual(values = sm_color("blue", "blue"))
 ```
 
 ### Drawing the mean plot
@@ -78,21 +82,25 @@ When `show_mean = TRUE`, then the average plot will be shown.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
-  sm_slope(group = Subject,
-           labels = c('Before', 'After'),
-           show_mean = TRUE) +
-  scale_fill_manual(values=  sm_color('blue','orange'))
+  sm_slope(
+    group = Subject,
+    labels = c("Before", "After"),
+    show_mean = TRUE
+  ) +
+  scale_fill_manual(values = sm_color("blue", "orange"))
 ```
 
 If `show_err = TRUE`, then the error bar will be displayed.
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
-  sm_slope(group = Subject,
-           labels = c('Before', 'After'),
-           show_mean = TRUE,
-           show_err = TRUE) +
-  scale_fill_manual(values=  sm_color('blue','orange'))
+  sm_slope(
+    group = Subject,
+    labels = c("Before", "After"),
+    show_mean = TRUE,
+    show_err = TRUE
+  ) +
+  scale_fill_manual(values = sm_color("blue", "orange"))
 ```
 
 `sm_slope()` has many several arguments:
@@ -101,29 +109,39 @@ ggplot(data = df, aes(x = beforeAfter, y = Value, fill = beforeAfter)) +
 
 ```{r,fig.width = 3, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(group = Subject,
-           labels = c('Before', 'After'),
-           point.params = list(fill = sm_color('blue'),
-                               color = 'white',
-                               size = 2.2,
-                               stroke = 0.65,
-                               shape = 21))
+  sm_slope(
+    group = Subject,
+    labels = c("Before", "After"),
+    point.params = list(
+      fill = sm_color("blue"),
+      color = "white",
+      size = 2.2,
+      stroke = 0.65,
+      shape = 21
+    )
+  )
 ```
 
 - `line.params` feeds arguments to `geom_line()` to plot the points with specified `color`, `size` and `alpha`. 
 
 ```{r,fig.width = 3.2, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(group = Subject,
-           labels = c('Before', 'After'),
-           point.params = list(fill = sm_color('blue'),
-                               color = 'white',
-                               size = 2.2,
-                               stroke = 0.65,
-                               shape = 21,
-                               alpha = 0.3),
-           line.params = list(color = sm_color('skyblue'),
-                              alpha = 0.3))
+  sm_slope(
+    group = Subject,
+    labels = c("Before", "After"),
+    point.params = list(
+      fill = sm_color("blue"),
+      color = "white",
+      size = 2.2,
+      stroke = 0.65,
+      shape = 21,
+      alpha = 0.3
+    ),
+    line.params = list(
+      color = sm_color("skyblue"),
+      alpha = 0.3
+    )
+  )
 ```
 
 
@@ -131,61 +149,85 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
 
 ```{r,fig.width = 3.2, fig.height=3.5, warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(group = Subject,
-           show_mean = TRUE,
-           labels = c('Before', 'After'),
-           point.params = list(fill = sm_color('blue'),
-                               color = 'white',
-                               size = 2.2,
-                               stroke = 0.65,
-                               shape = 21,
-                               alpha = 0.3),
-           line.params = list(color = sm_color('skyblue'),
-                              alpha = 0.3),
-           avgPoint.params = list(color='transparent', shape = 21,
-                                  size = 4, fill = sm_color('blue')))
+  sm_slope(
+    group = Subject,
+    show_mean = TRUE,
+    labels = c("Before", "After"),
+    point.params = list(
+      fill = sm_color("blue"),
+      color = "white",
+      size = 2.2,
+      stroke = 0.65,
+      shape = 21,
+      alpha = 0.3
+    ),
+    line.params = list(
+      color = sm_color("skyblue"),
+      alpha = 0.3
+    ),
+    avgPoint.params = list(
+      color = "transparent", shape = 21,
+      size = 4, fill = sm_color("blue")
+    )
+  )
 ```
 
 - `avgLine.params` feeds arguments to `geom_line()` to plot the average plot (line) with specified `color`, `size` and `alpha`. 
 
 ```{r,fig.width = 3.2, fig.height=3.5, warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(group = Subject,
-           show_mean = TRUE,
-           labels = c('Before', 'After'),
-           point.params = list(fill = sm_color('blue'),
-                               color = 'white',
-                               size = 2.2,
-                               stroke = 0.65,
-                               shape = 21,
-                               alpha = 0.3),
-           line.params = list(color = sm_color('skyblue'),
-                              alpha = 0.3),
-            avgPoint.params = list(color='transparent', shape = 21,
-                                  size = 4, fill = sm_color('blue')),
-           avgLine.params = list(size = 1, color = sm_color('blue')))
+  sm_slope(
+    group = Subject,
+    show_mean = TRUE,
+    labels = c("Before", "After"),
+    point.params = list(
+      fill = sm_color("blue"),
+      color = "white",
+      size = 2.2,
+      stroke = 0.65,
+      shape = 21,
+      alpha = 0.3
+    ),
+    line.params = list(
+      color = sm_color("skyblue"),
+      alpha = 0.3
+    ),
+    avgPoint.params = list(
+      color = "transparent", shape = 21,
+      size = 4, fill = sm_color("blue")
+    ),
+    avgLine.params = list(size = 1, color = sm_color("blue"))
+  )
 ```
 
 - `err.params` feeds arguments to `geom_linerange()` to plot the error bar with specified `color`, `size` etc.
 
 ```{r,fig.width = 3.2, fig.height=3.5, warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(group = Subject,
-           show_mean = TRUE, 
-           show_err = TRUE,
-           labels = c('Before', 'After'),
-           point.params = list(fill = sm_color('blue'),
-                               color = 'white',
-                               size = 2.2,
-                               stroke = 0.65,
-                               shape = 21,
-                               alpha = 0.3),
-           line.params = list(color = sm_color('skyblue'),
-                              alpha = 0.3),
-            avgPoint.params = list(color='transparent', shape = 21,
-                                  size = 4, fill = sm_color('blue')),
-           avgLine.params = list(size = 1, color = sm_color('blue')),
-           err.params = list(size = 1, color = sm_color('blue')))
+  sm_slope(
+    group = Subject,
+    show_mean = TRUE,
+    show_err = TRUE,
+    labels = c("Before", "After"),
+    point.params = list(
+      fill = sm_color("blue"),
+      color = "white",
+      size = 2.2,
+      stroke = 0.65,
+      shape = 21,
+      alpha = 0.3
+    ),
+    line.params = list(
+      color = sm_color("skyblue"),
+      alpha = 0.3
+    ),
+    avgPoint.params = list(
+      color = "transparent", shape = 21,
+      size = 4, fill = sm_color("blue")
+    ),
+    avgLine.params = list(size = 1, color = sm_color("blue")),
+    err.params = list(size = 1, color = sm_color("blue"))
+  )
 ```
 
 - `xtick.params` feeds arguments to `scale_x_discrete()` so that the user can have control over specific aesthetics of the x-tick. Type `?scale_x_discrete()` for more information.
@@ -194,44 +236,60 @@ ggplot(data = df, aes(x = beforeAfter, y = Value)) +
 
 ```{r,fig.width = 3.2, fig.height=3.5, warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(group = Subject,
-           show_mean = TRUE, 
-           show_err = TRUE,
-           labels = c('Before', 'After'),
-           point.params = list(fill = sm_color('blue'),
-                               color = 'white',
-                               size = 2.2,
-                               stroke = 0.65,
-                               shape = 21,
-                               alpha = 0.3),
-           line.params = list(color = sm_color('skyblue'),
-                              alpha = 0.3),
-            avgPoint.params = list(color='transparent', shape = 21,
-                                  size = 4, fill = sm_color('blue')),
-           avgLine.params = list(size = 1, color = sm_color('blue')),
-           err.params = list(size = 1, color = sm_color('blue')),
-           errorbar_type = 'ci')
+  sm_slope(
+    group = Subject,
+    show_mean = TRUE,
+    show_err = TRUE,
+    labels = c("Before", "After"),
+    point.params = list(
+      fill = sm_color("blue"),
+      color = "white",
+      size = 2.2,
+      stroke = 0.65,
+      shape = 21,
+      alpha = 0.3
+    ),
+    line.params = list(
+      color = sm_color("skyblue"),
+      alpha = 0.3
+    ),
+    avgPoint.params = list(
+      color = "transparent", shape = 21,
+      size = 4, fill = sm_color("blue")
+    ),
+    avgLine.params = list(size = 1, color = sm_color("blue")),
+    err.params = list(size = 1, color = sm_color("blue")),
+    errorbar_type = "ci"
+  )
 ```
 
 ```{r,fig.width = 3.2, fig.height=3.5, warning = F}
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope(group = Subject,
-           show_mean = TRUE, 
-           show_err = TRUE,
-           labels = c('Before', 'After'),
-           point.params = list(fill = sm_color('blue'),
-                               color = 'white',
-                               size = 2.2,
-                               stroke = 0.65,
-                               shape = 21,
-                               alpha = 0.3),
-           line.params = list(color = sm_color('skyblue'),
-                              alpha = 0.3),
-            avgPoint.params = list(color='transparent', shape = 21,
-                                  size = 4, fill = sm_color('blue')),
-           avgLine.params = list(size = 1, color = sm_color('blue')),
-           err.params = list(size = 1, color = sm_color('blue')),
-           errorbar_type = 'se')
+  sm_slope(
+    group = Subject,
+    show_mean = TRUE,
+    show_err = TRUE,
+    labels = c("Before", "After"),
+    point.params = list(
+      fill = sm_color("blue"),
+      color = "white",
+      size = 2.2,
+      stroke = 0.65,
+      shape = 21,
+      alpha = 0.3
+    ),
+    line.params = list(
+      color = sm_color("skyblue"),
+      alpha = 0.3
+    ),
+    avgPoint.params = list(
+      color = "transparent", shape = 21,
+      size = 4, fill = sm_color("blue")
+    ),
+    avgLine.params = list(size = 1, color = sm_color("blue")),
+    err.params = list(size = 1, color = sm_color("blue")),
+    errorbar_type = "se"
+  )
 ```
 
 - `many_groups` decides whether the average plot is based on all individual data across groups or per group.
@@ -240,70 +298,82 @@ To show how this function works, we will need to use data with multiple groups a
 
 ```{r}
 set.seed(201) # generate random data
-day1 = abs(rnorm(20,2.5,1))
-day2 = abs(rnorm(20,5,1))
-day3 = abs(rnorm(20,7.5,1))
-Subject <- rep(paste0('N',seq(1:20)), 3)
-Data <- data.frame(Value = matrix(c(day1,day2,day3),ncol=1))
-Day <- rep(c('Day 1', 'Day 2', 'Day 3'), each = length(day1))
+day1 <- abs(rnorm(20, 2.5, 1))
+day2 <- abs(rnorm(20, 5, 1))
+day3 <- abs(rnorm(20, 7.5, 1))
+Subject <- rep(paste0("N", seq(1:20)), 3)
+Data <- data.frame(Value = matrix(c(day1, day2, day3), ncol = 1))
+Day <- rep(c("Day 1", "Day 2", "Day 3"), each = length(day1))
 df <- cbind(Subject, Data, Day)
-df$group <- 'Normal'
+df$group <- "Normal"
 
 set.seed(191) # generate random data
-day1 = abs(rnorm(20,1.5,1))
-day2 = abs(rnorm(20,1.8,1))
-day3 = abs(rnorm(20,2.3,1))
-Subject <- rep(paste0('P',seq(1:20)), 3)
-Data <- data.frame(Value = matrix(c(day1,day2,day3),ncol=1))
-Day <- rep(c('Day 1', 'Day 2', 'Day 3'), each = length(day1))
+day1 <- abs(rnorm(20, 1.5, 1))
+day2 <- abs(rnorm(20, 1.8, 1))
+day3 <- abs(rnorm(20, 2.3, 1))
+Subject <- rep(paste0("P", seq(1:20)), 3)
+Data <- data.frame(Value = matrix(c(day1, day2, day3), ncol = 1))
+Day <- rep(c("Day 1", "Day 2", "Day 3"), each = length(day1))
 df2 <- cbind(Subject, Data, Day)
-df2$group <- 'Patients'
+df2$group <- "Patients"
 
-df3 <- rbind(df,df2)
+df3 <- rbind(df, df2)
 ```
 
 If we plot a slope chart, `sm_slope(..., show_mean = TRUE)` using data of multiple groups while `many_groups = FALSE`, we will draw a single average plot across all groups.
 
 ```{r,fig.width = 3.8, fig.height=3.5,warning = F}
-ggplot(data = df3, aes(x = Day, y = Value, color = group, 
-                       shape = group, group = group)) +
-  sm_slope(labels = c('Day 1','Day 2', 'Day 3'), 
-           group = Subject,
-           point.params = list(alpha = 0.2),
-           line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
-           err.params = list(size = 1),
-           legends = TRUE,
-           show_mean = TRUE) +
-  scale_color_manual(values = sm_color('viridian','darkred')) +
-  scale_shape_manual(values = c(16,17)) +
-  theme(legend.position = c(0.2,0.85),
-        legend.title = element_blank(),
-        legend.text = element_text(size = 10))
+ggplot(data = df3, aes(
+  x = Day, y = Value, color = group,
+  shape = group, group = group
+)) +
+  sm_slope(
+    labels = c("Day 1", "Day 2", "Day 3"),
+    group = Subject,
+    point.params = list(alpha = 0.2),
+    line.params = list(alpha = 0.2),
+    avgPoint.params = list(size = 4),
+    avgLine.params = list(size = 1),
+    err.params = list(size = 1),
+    legends = TRUE,
+    show_mean = TRUE
+  ) +
+  scale_color_manual(values = sm_color("viridian", "darkred")) +
+  scale_shape_manual(values = c(16, 17)) +
+  theme(
+    legend.position = c(0.2, 0.85),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 10)
+  )
 ```
 
 To prevent this from happening, set `many_groups = TRUE`.
 
 
 ```{r,fig.width = 3.8, fig.height=3.5,warning = F}
-ggplot(data = df3, aes(x = Day, y = Value, color = group, 
-                       shape = group, group = group)) +
-  sm_slope(labels = c('Day 1','Day 2', 'Day 3'), 
-           group = Subject,
-           point.params = list(alpha = 0.2),
-           line.params = list(alpha = 0.2),
-           avgPoint.params = list(size = 4),
-           avgLine.params = list(size = 1),
-           err.params = list(size = 1),
-           many_groups = TRUE,
-           legends = TRUE,
-           show_mean = TRUE) +
-  scale_color_manual(values = sm_color('viridian','darkred')) +
-  scale_shape_manual(values = c(16,17)) +
-  theme(legend.position = c(0.2,0.85),
-        legend.title = element_blank(),
-        legend.text = element_text(size = 10))
+ggplot(data = df3, aes(
+  x = Day, y = Value, color = group,
+  shape = group, group = group
+)) +
+  sm_slope(
+    labels = c("Day 1", "Day 2", "Day 3"),
+    group = Subject,
+    point.params = list(alpha = 0.2),
+    line.params = list(alpha = 0.2),
+    avgPoint.params = list(size = 4),
+    avgLine.params = list(size = 1),
+    err.params = list(size = 1),
+    many_groups = TRUE,
+    legends = TRUE,
+    show_mean = TRUE
+  ) +
+  scale_color_manual(values = sm_color("viridian", "darkred")) +
+  scale_shape_manual(values = c(16, 17)) +
+  theme(
+    legend.position = c(0.2, 0.85),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 10)
+  )
 ```
 
 ### `sm_slope_mean()`
@@ -315,18 +385,20 @@ One plot color and shape can be chosen in this function, and this gets shared ac
 ```{r, fig.width = 3.2, fig.height=3.5, warning = F}
 # Recreate data from the previous section
 set.seed(201) # generate random data
-before = abs(rnorm(20,2.5,1))
-after = abs(rnorm(20,5,1))
-Subject <- rep(paste0('S',seq(1:20)), 2)
-Data <- data.frame(Value = matrix(c(before,after),ncol=1))
-beforeAfter <- rep(c('Before', 'After'), each = length(before))
+before <- abs(rnorm(20, 2.5, 1))
+after <- abs(rnorm(20, 5, 1))
+Subject <- rep(paste0("S", seq(1:20)), 2)
+Data <- data.frame(Value = matrix(c(before, after), ncol = 1))
+beforeAfter <- rep(c("Before", "After"), each = length(before))
 df <- cbind(Subject, Data, beforeAfter)
-df$beforeAfter <- factor(df$beforeAfter, levels = c('Before','After'))
+df$beforeAfter <- factor(df$beforeAfter, levels = c("Before", "After"))
 
 ggplot(data = df, aes(x = beforeAfter, y = Value)) +
-  sm_slope_mean(group = Subject,
-           labels = c('Before', 'After'),
-           main_color = sm_color('blue'))
+  sm_slope_mean(
+    group = Subject,
+    labels = c("Before", "After"),
+    main_color = sm_color("blue")
+  )
 ```
 
 ## Point plot - `sm_pointplot()`
@@ -337,44 +409,46 @@ Let's generate some random data. .
 
 ```{r}
 set.seed(201) # generate random data
-day1 = abs(rnorm(20,1.5,1))
-day2 = abs(rnorm(20,2,1))
-day3 = abs(rnorm(20,4.1,2.2))
-Subject <- rep(paste0('N',seq(1:20)), 3)
-Data <- data.frame(Value = matrix(c(day1,day2,day3),ncol=1))
-Day <- rep(c('Day 1', 'Day 2', 'Day 3'), each = length(day1))
+day1 <- abs(rnorm(20, 1.5, 1))
+day2 <- abs(rnorm(20, 2, 1))
+day3 <- abs(rnorm(20, 4.1, 2.2))
+Subject <- rep(paste0("N", seq(1:20)), 3)
+Data <- data.frame(Value = matrix(c(day1, day2, day3), ncol = 1))
+Day <- rep(c("Day 1", "Day 2", "Day 3"), each = length(day1))
 df <- cbind(Subject, Data, Day)
-df$group <- 'Normal'
+df$group <- "Normal"
 
 set.seed(191) # generate random data
-day1 = abs(rnorm(20,1.5,1))
-day2 = abs(rnorm(20,1.8,1))
-day3 = abs(rnorm(20,2.3,1.5))
-Subject <- rep(paste0('M',seq(1:20)), 3)
-Data <- data.frame(Value = matrix(c(day1,day2,day3),ncol=1))
-Day <- rep(c('Day 1', 'Day 2', 'Day 3'), each = length(day1))
+day1 <- abs(rnorm(20, 1.5, 1))
+day2 <- abs(rnorm(20, 1.8, 1))
+day3 <- abs(rnorm(20, 2.3, 1.5))
+Subject <- rep(paste0("M", seq(1:20)), 3)
+Data <- data.frame(Value = matrix(c(day1, day2, day3), ncol = 1))
+Day <- rep(c("Day 1", "Day 2", "Day 3"), each = length(day1))
 df2 <- cbind(Subject, Data, Day)
-df2$group <- 'Myopia'
+df2$group <- "Myopia"
 
 set.seed(1291) # generate random data
-day1 = abs(rnorm(20,1.5,1))
-day2 = abs(rnorm(20,2.2,1))
-day3 = abs(rnorm(20,3.3,1.8))
-Subject <- rep(paste0('A',seq(1:20)), 3)
-Data <- data.frame(Value = matrix(c(day1,day2,day3),ncol=1))
-Day <- rep(c('Day 1', 'Day 2', 'Day 3'), each = length(day1))
+day1 <- abs(rnorm(20, 1.5, 1))
+day2 <- abs(rnorm(20, 2.2, 1))
+day3 <- abs(rnorm(20, 3.3, 1.8))
+Subject <- rep(paste0("A", seq(1:20)), 3)
+Data <- data.frame(Value = matrix(c(day1, day2, day3), ncol = 1))
+Day <- rep(c("Day 1", "Day 2", "Day 3"), each = length(day1))
 df3 <- cbind(Subject, Data, Day)
-df3$group <- 'Amblyopia'
+df3$group <- "Amblyopia"
 
-df1 <- rbind(df,df2,df3) # three groups of individuals, three time points
+df1 <- rbind(df, df2, df3) # three groups of individuals, three time points
 ```
 
 `sm_pointplot()` groups each observation to plot the line. So, the grouping **always** needs to be specified: `ggplot(aes(x = ..., y = ..., group = xxx))`.
 
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
-ggplot(data = df1, aes(x = Day, y = Value, 
-             color = group, group = group)) +
+ggplot(data = df1, aes(
+  x = Day, y = Value,
+  color = group, group = group
+)) +
   sm_pointplot()
 ```
 
@@ -382,14 +456,18 @@ We can customise the colors using `sm_color_manual()`.
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 set.seed(11)
-my_colors <- sample(sm_palette(20),3) # pick random 3 colors
+my_colors <- sample(sm_palette(20), 3) # pick random 3 colors
 
-ggplot(data = df1, aes(x = Day, y = Value, 
-             color = group, group = group)) +
+ggplot(data = df1, aes(
+  x = Day, y = Value,
+  color = group, group = group
+)) +
   sm_pointplot(legends = T) +
   scale_color_manual(values = my_colors) +
-  theme(legend.position = c(0.22,0.83), # add legend
-        legend.title = element_blank())
+  theme(
+    legend.position = c(0.22, 0.83), # add legend
+    legend.title = element_blank()
+  )
 ```
 
 The problem with this plot is that we do not clearly see the error bars, especially the ones of the `Amblyopia` plot.
@@ -400,13 +478,19 @@ To resolve this, we will need to explore the parameters of `sm_pointplot()`.
   - This will be important to apply `position_dodge()` to prevent the overlap of the plots.
   
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
-ggplot(data = df1, aes(x = Day, y = Value, 
-             color = group, group = group)) +
-  sm_pointplot(legends = T,
-               position = position_dodge(width = .05)) +
+ggplot(data = df1, aes(
+  x = Day, y = Value,
+  color = group, group = group
+)) +
+  sm_pointplot(
+    legends = T,
+    position = position_dodge(width = .05)
+  ) +
   scale_color_manual(values = my_colors) +
-  theme(legend.position = c(0.22,0.83), # add legend
-        legend.title = element_blank())
+  theme(
+    legend.position = c(0.22, 0.83), # add legend
+    legend.title = element_blank()
+  )
 ```
 
 
@@ -415,30 +499,46 @@ ggplot(data = df1, aes(x = Day, y = Value,
 Remember that in this case, all three plots show the average, not the individual data.
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
-ggplot(data = df1, aes(x = Day, y = Value, 
-             color = group, group = group)) +
-  sm_pointplot(legends = T,
-               position = position_dodge(width = .05),
-               avgPoint.params = list(alpha = 0.8, size = 2.2,
-                                      shape = 15)) +
+ggplot(data = df1, aes(
+  x = Day, y = Value,
+  color = group, group = group
+)) +
+  sm_pointplot(
+    legends = T,
+    position = position_dodge(width = .05),
+    avgPoint.params = list(
+      alpha = 0.8, size = 2.2,
+      shape = 15
+    )
+  ) +
   scale_color_manual(values = my_colors) +
-  theme(legend.position = c(0.22,0.83), # add legend
-        legend.title = element_blank())
+  theme(
+    legend.position = c(0.22, 0.83), # add legend
+    legend.title = element_blank()
+  )
 ```
 
 - `avgLine.params` feeds arguments to `geom_line()` to plot the average line with specified `color`, `size` and `alpha`. 
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
-ggplot(data = df1, aes(x = Day, y = Value, 
-             color = group, group = group)) +
-  sm_pointplot(legends = T,
-               position = position_dodge(width = .05),
-               avgPoint.params = list(alpha = 0.8, size = 2.2,
-                                      shape = 15),
-               avgLine.params = list(alpha = 0.8, size = 1)) +
+ggplot(data = df1, aes(
+  x = Day, y = Value,
+  color = group, group = group
+)) +
+  sm_pointplot(
+    legends = T,
+    position = position_dodge(width = .05),
+    avgPoint.params = list(
+      alpha = 0.8, size = 2.2,
+      shape = 15
+    ),
+    avgLine.params = list(alpha = 0.8, size = 1)
+  ) +
   scale_color_manual(values = my_colors) +
-  theme(legend.position = c(0.22,0.83), # add legend
-        legend.title = element_blank())
+  theme(
+    legend.position = c(0.22, 0.83), # add legend
+    legend.title = element_blank()
+  )
 ```
 
 - `point.params` feeds arguments to `geom_point()` to plot the points in the shadow with specified `color`, `fill`, `size`, `shape` and `alpha`. 
@@ -451,73 +551,105 @@ Let's display the shadow by setting `show_shadow = TRUE`. To show the `shadow`, 
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = Day, y = Value, group = group)) +
-  sm_pointplot(show_shadow = T,
-               group = Subject)
+  sm_pointplot(
+    show_shadow = T,
+    group = Subject
+  )
 ```
 
 By using `point.params` and `line.params`, you can control the aesthetics of the shadow.
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = Day, y = Value, group = group)) +
-  sm_pointplot(show_shadow = T,
-               group = Subject,
-               point.params = list(size = 1,
-                                   color = sm_color('wine'),
-                                   alpha = 0.5),
-               line.params = list(size = 1,
-                                  color = sm_color('wine'),
-                                  alpha = 0.2))
+  sm_pointplot(
+    show_shadow = T,
+    group = Subject,
+    point.params = list(
+      size = 1,
+      color = sm_color("wine"),
+      alpha = 0.5
+    ),
+    line.params = list(
+      size = 1,
+      color = sm_color("wine"),
+      alpha = 0.2
+    )
+  )
 ```
 
 Now let's control the aesthetics of the average plot using `avgPoint.params`, `avgLine.params` and `err.params`.
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = Day, y = Value, group = group)) +
-  sm_pointplot(show_shadow = T,
-               group = Subject,
-               point.params = list(size = 1,
-                                   color = sm_color('wine'),
-                                   alpha = 0.5),
-               line.params = list(size = 1,
-                                  color = sm_color('wine'),
-                                  alpha = 0.2),
-               avgPoint.params = list(size = 3,
-                                      shape = 21,
-                                      color = 'white',
-                                      stroke = 0.8,
-                                      fill = sm_color('purple')),
-               avgLine.params = list(size = 1.2,
-                                     alpha = 0.7,
-                                     color = sm_color('purple')),
-               err.params = list(size = 1.2,
-                                 alpha = 0.7,
-                                 color = sm_color('purple')))
+  sm_pointplot(
+    show_shadow = T,
+    group = Subject,
+    point.params = list(
+      size = 1,
+      color = sm_color("wine"),
+      alpha = 0.5
+    ),
+    line.params = list(
+      size = 1,
+      color = sm_color("wine"),
+      alpha = 0.2
+    ),
+    avgPoint.params = list(
+      size = 3,
+      shape = 21,
+      color = "white",
+      stroke = 0.8,
+      fill = sm_color("purple")
+    ),
+    avgLine.params = list(
+      size = 1.2,
+      alpha = 0.7,
+      color = sm_color("purple")
+    ),
+    err.params = list(
+      size = 1.2,
+      alpha = 0.7,
+      color = sm_color("purple")
+    )
+  )
 ```
 
  - `errorbar_type` can control the type of the error that is shown on the point plot. The three choices are standard error (`se`), standard deviation (`sd`) and 95% confidence interval (`ci`).
  
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
 ggplot(data = df, aes(x = Day, y = Value, group = group)) +
-  sm_pointplot(show_shadow = T,
-               group = Subject,
-               errorbar_type = 'sd',
-               point.params = list(size = 1,
-                                   color = sm_color('wine'),
-                                   alpha = 0.5),
-               line.params = list(size = 1,
-                                  color = sm_color('wine'),
-                                  alpha = 0.2),
-               avgPoint.params = list(size = 3,
-                                      shape = 21,
-                                      color = 'white',
-                                      stroke = 0.8,
-                                      fill = sm_color('purple')),
-               avgLine.params = list(size = 1.2,
-                                     alpha = 0.7,
-                                     color = sm_color('purple')),
-               err.params = list(size = 1.2,
-                                 alpha = 0.7,
-                                 color = sm_color('purple')))
+  sm_pointplot(
+    show_shadow = T,
+    group = Subject,
+    errorbar_type = "sd",
+    point.params = list(
+      size = 1,
+      color = sm_color("wine"),
+      alpha = 0.5
+    ),
+    line.params = list(
+      size = 1,
+      color = sm_color("wine"),
+      alpha = 0.2
+    ),
+    avgPoint.params = list(
+      size = 3,
+      shape = 21,
+      color = "white",
+      stroke = 0.8,
+      fill = sm_color("purple")
+    ),
+    avgLine.params = list(
+      size = 1.2,
+      alpha = 0.7,
+      color = sm_color("purple")
+    ),
+    err.params = list(
+      size = 1.2,
+      alpha = 0.7,
+      color = sm_color("purple")
+    )
+  )
 ```
 
 ## A Bland Altman plot - `sm_bland_altman()`
@@ -533,15 +665,15 @@ Let's generate some random data to explore these two functions.
 set.seed(1)
 first <- rnorm(20)
 second <- rnorm(20)
-df3 <- as_tibble(cbind(first,second)) # requires library(tidyverse)
+df3 <- as_tibble(cbind(first, second)) # requires library(tidyverse)
 ```
 
 Now let's draw a Bland Altman plot using `sm_bland_altman()`, which requires two arguments: first dataset, second dataset. They have to be numerical vectors of equal length.
 - This function automatically uses `sm_classic()` theme.
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
-sm_bland_altman(df3$first, df3$second, color = sm_color('green')) + 
-  scale_y_continuous(limits = c(-4,4))
+sm_bland_altman(df3$first, df3$second, color = sm_color("green")) +
+  scale_y_continuous(limits = c(-4, 4))
 ```
 
 - The upper dashed line represents the upper limit of the difference between two measurements (mean difference + 1.96 * standard deviation of the difference). 
@@ -562,28 +694,28 @@ necessary to draw a Bland-Altman plot, such as the mean difference, upper and lo
   - The arguments for this function are first and second datasets, just like in `sm_bland_altman()`.
   
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
-res <- sm_statBlandAlt(df3$first,df3$second) # store the results in res variable 
-sm_bland_altman(df3$first, df3$second, color = sm_color('green')) + 
-  scale_y_continuous(limits = c(-4,4)) +
-  annotate('text', label = 'Mean', x = -1, y = res$mean_diff + 0.4) +
-  annotate('text', label = signif(res$mean_diff,3), x = -1, y = res$mean_diff - 0.4) +
-  annotate('text', label = 'Upper limit', x = 1.2, y = res$upper_limit + 0.4) +
-  annotate('text', label = signif(res$upper_limit,3), x = 1.2, y = res$upper_limit - 0.4) +
-  annotate('text', label = 'Lower limit', x = 1.2, y = res$lower_limit + 0.4) +
-  annotate('text', label = signif(res$lower_limit,3), x = 1.2, y = res$lower_limit-0.4)
+res <- sm_statBlandAlt(df3$first, df3$second) # store the results in res variable
+sm_bland_altman(df3$first, df3$second, color = sm_color("green")) +
+  scale_y_continuous(limits = c(-4, 4)) +
+  annotate("text", label = "Mean", x = -1, y = res$mean_diff + 0.4) +
+  annotate("text", label = signif(res$mean_diff, 3), x = -1, y = res$mean_diff - 0.4) +
+  annotate("text", label = "Upper limit", x = 1.2, y = res$upper_limit + 0.4) +
+  annotate("text", label = signif(res$upper_limit, 3), x = 1.2, y = res$upper_limit - 0.4) +
+  annotate("text", label = "Lower limit", x = 1.2, y = res$lower_limit + 0.4) +
+  annotate("text", label = signif(res$lower_limit, 3), x = 1.2, y = res$lower_limit - 0.4)
 ```
 
 - Let's change the border color of the circles to white. To do so, we will have to change their shape to 21.
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
-sm_bland_altman(df3$first, df3$second, shape = 21, fill = sm_color('green'), color = 'white') + 
-  scale_y_continuous(limits = c(-4,4)) +
-  annotate('text', label = 'Mean', x = -1, y = res$mean_diff + 0.4) +
-  annotate('text', label = signif(res$mean_diff,3), x = -1, y = res$mean_diff - 0.4) +
-  annotate('text', label = 'Upper limit', x = 1.2, y = res$upper_limit + 0.4) +
-  annotate('text', label = signif(res$upper_limit,3), x = 1.2, y = res$upper_limit - 0.4) +
-  annotate('text', label = 'Lower limit', x = 1.2, y = res$lower_limit + 0.4) +
-  annotate('text', label = signif(res$lower_limit,3), x = 1.2, y = res$lower_limit-0.4)
+sm_bland_altman(df3$first, df3$second, shape = 21, fill = sm_color("green"), color = "white") +
+  scale_y_continuous(limits = c(-4, 4)) +
+  annotate("text", label = "Mean", x = -1, y = res$mean_diff + 0.4) +
+  annotate("text", label = signif(res$mean_diff, 3), x = -1, y = res$mean_diff - 0.4) +
+  annotate("text", label = "Upper limit", x = 1.2, y = res$upper_limit + 0.4) +
+  annotate("text", label = signif(res$upper_limit, 3), x = 1.2, y = res$upper_limit - 0.4) +
+  annotate("text", label = "Lower limit", x = 1.2, y = res$lower_limit + 0.4) +
+  annotate("text", label = signif(res$lower_limit, 3), x = 1.2, y = res$lower_limit - 0.4)
 ```
 
 
@@ -593,13 +725,13 @@ A forest plot can summarise data across multiple studies or experiments.
 
 ```{r}
 set.seed(2) # generate random data
-day1 = rnorm(20,0,1)
-day2 = rnorm(20,5,1)
-day3 = rnorm(20,6,1.5)
-day4 = rnorm(20,7,2)
-Subject <- rep(paste0('S',seq(1:20)), 4)
-Data <- data.frame(Value = matrix(c(day1,day2,day3,day4),ncol=1))
-Day <- rep(c('Day 1', 'Day 2', 'Day 3', 'Day 4'), each = length(day1))
+day1 <- rnorm(20, 0, 1)
+day2 <- rnorm(20, 5, 1)
+day3 <- rnorm(20, 6, 1.5)
+day4 <- rnorm(20, 7, 2)
+Subject <- rep(paste0("S", seq(1:20)), 4)
+Data <- data.frame(Value = matrix(c(day1, day2, day3, day4), ncol = 1))
+Day <- rep(c("Day 1", "Day 2", "Day 3", "Day 4"), each = length(day1))
 df2 <- cbind(Subject, Data, Day)
 ```
 
@@ -607,7 +739,7 @@ When using `sm_forest()`, `x` is required to be a continuous variable. `y` shoul
 
 ```{r,fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest() 
+  sm_forest()
 ```
 
 `sm_forest()` has many parameters. 
@@ -636,8 +768,10 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
   
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(point_jitter_width = 0.2, sep_level = 3,
-            errorbar_type = 'sd') +
+  sm_forest(
+    point_jitter_width = 0.2, sep_level = 3,
+    errorbar_type = "sd"
+  ) +
   scale_color_manual(values = sm_palette(4))
 ```
 
@@ -645,8 +779,10 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(point_jitter_width = 0.2, sep_level = 3,
-            points = FALSE) +
+  sm_forest(
+    point_jitter_width = 0.2, sep_level = 3,
+    points = FALSE
+  ) +
   scale_color_manual(values = sm_palette(4))
 ```
 
@@ -654,8 +790,10 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(point_jitter_width = 0.2, sep_level = 3,
-            refLine = TRUE, xintercept = 4) +
+  sm_forest(
+    point_jitter_width = 0.2, sep_level = 3,
+    refLine = TRUE, xintercept = 4
+  ) +
   scale_color_manual(values = sm_palette(4))
 ```
 
@@ -665,8 +803,10 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(avgPoint.params = list(shape = 17,
-                                   size = 4)) +
+  sm_forest(avgPoint.params = list(
+    shape = 17,
+    size = 4
+  )) +
   scale_color_manual(values = sm_palette(4))
 ```
 
@@ -674,9 +814,13 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(avgPoint.params = list(shape = 17,
-                                   size = 4),
-            err.params = list(size = 1)) +
+  sm_forest(
+    avgPoint.params = list(
+      shape = 17,
+      size = 4
+    ),
+    err.params = list(size = 1)
+  ) +
   scale_color_manual(values = sm_palette(4))
 ```
 
@@ -684,10 +828,16 @@ Notice that the default color of `err.params = list(color = 'black')` has disapp
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(avgPoint.params = list(shape = 17,
-                                   size = 4),
-            err.params = list(size = 1,
-                              color = 'black')) +
+  sm_forest(
+    avgPoint.params = list(
+      shape = 17,
+      size = 4
+    ),
+    err.params = list(
+      size = 1,
+      color = "black"
+    )
+  ) +
   scale_color_manual(values = sm_palette(4))
 ```
 
@@ -696,13 +846,21 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(avgPoint.params = list(shape = 17,
-                                   size = 4),
-            err.params = list(size = 1,
-                              color = 'black'),
-            point.params = list(shape = 17,
-                                alpha = 0.5,
-                                size = 2.2)) +
+  sm_forest(
+    avgPoint.params = list(
+      shape = 17,
+      size = 4
+    ),
+    err.params = list(
+      size = 1,
+      color = "black"
+    ),
+    point.params = list(
+      shape = 17,
+      alpha = 0.5,
+      size = 2.2
+    )
+  ) +
   scale_color_manual(values = sm_palette(4))
 ```
 
@@ -710,16 +868,26 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(refLine = TRUE, 
-            avgPoint.params = list(shape = 17,
-                                   size = 4),
-            err.params = list(size = 1,
-                              color = 'black'),
-            point.params = list(shape = 17,
-                                alpha = 0.5,
-                                size = 2.2),
-            ref.params = list(color = 'black',
-                              linetype = 'dashed')) +
+  sm_forest(
+    refLine = TRUE,
+    avgPoint.params = list(
+      shape = 17,
+      size = 4
+    ),
+    err.params = list(
+      size = 1,
+      color = "black"
+    ),
+    point.params = list(
+      shape = 17,
+      alpha = 0.5,
+      size = 2.2
+    ),
+    ref.params = list(
+      color = "black",
+      linetype = "dashed"
+    )
+  ) +
   scale_color_manual(values = sm_palette(4))
 ```
 
@@ -740,54 +908,59 @@ ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
   sm_forest() +
   scale_color_manual(values = sm_palette(4)) +
   sm_forest_annot(data = df2, x = Value, y = Day)
-
 ```
 
 
 - `sep_level` refers to the separation level between the text annotation and the average point. If it is positive, the text will be above the mean point. **In practice, put the same value of** `sep_level` **in both** `sm_forest()` **and **`sm_forest_annot()`. The default is `sep_level = 2`, which is also found in `sm_forest()`.
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
-
 sep_distance <- 3
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
   sm_forest(sep_level = sep_distance) +
   scale_color_manual(values = sm_palette(4)) +
-  sm_forest_annot(data = df2, x = Value, y = Day,
-                  sep_level = sep_distance)
-
+  sm_forest_annot(
+    data = df2, x = Value, y = Day,
+    sep_level = sep_distance
+  )
 ```
 
 - `errorbar_type` refers to the type of error by which the text annotation should be written. **In practice, put the same argument of** `sep_level` **in both** `sm_forest()` **and **`sm_forest_annot()`. The default is set to confidence interval (`errorbar_type = 'ci'`).
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 sep_distance <- 3
-errType <- 'sd'
+errType <- "sd"
 
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(sep_level = sep_distance,
-            errorbar_type = errType) +
+  sm_forest(
+    sep_level = sep_distance,
+    errorbar_type = errType
+  ) +
   scale_color_manual(values = sm_palette(4)) +
-  sm_forest_annot(data = df2, x = Value, y = Day,
-                  sep_level = sep_distance,
-                  errorbar_type = errType)
-
+  sm_forest_annot(
+    data = df2, x = Value, y = Day,
+    sep_level = sep_distance,
+    errorbar_type = errType
+  )
 ```
 
 - `text.params` feeds arguments to `geom_text()` to set the aesthetics of the texts such as `color` and `size`. 
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 sep_distance <- 2
-errType <- 'sd'
+errType <- "sd"
 
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(sep_level = sep_distance,
-            errorbar_type = errType) +
+  sm_forest(
+    sep_level = sep_distance,
+    errorbar_type = errType
+  ) +
   scale_color_manual(values = sm_palette(4)) +
-  sm_forest_annot(data = df2, x = Value, y = Day,
-                  sep_level = sep_distance,
-                  errorbar_type = errType,
-                  text.params = list(size = 3.5))
-
+  sm_forest_annot(
+    data = df2, x = Value, y = Day,
+    sep_level = sep_distance,
+    errorbar_type = errType,
+    text.params = list(size = 3.5)
+  )
 ```
 
 Notice that `text.params = list(color = 'black'`) has been removed because we have specifically wirtten `text.params = list()`. Therefore, there is now unique color to each `Day` as set within `ggplot(...,aes(color = Day))`.
@@ -796,17 +969,20 @@ Notice that `text.params = list(color = 'black'`) has been removed because we ha
 
 ```{r, fig.width = 3.1, fig.height= 4.8, warning = FALSE}
 sep_distance <- -2
-errType <- 'sd'
+errType <- "sd"
 
 ggplot(data = df2, aes(x = Value, y = Day, color = Day)) +
-  sm_forest(sep_level = sep_distance,
-            errorbar_type = errType) +
+  sm_forest(
+    sep_level = sep_distance,
+    errorbar_type = errType
+  ) +
   scale_color_manual(values = sm_palette(4)) +
-  sm_forest_annot(data = df2, x = Value, y = Day,
-                  sep_level = sep_distance,
-                  errorbar_type = errType,
-                  text.params = list(size = 3.5))
-
+  sm_forest_annot(
+    data = df2, x = Value, y = Day,
+    sep_level = sep_distance,
+    errorbar_type = errType,
+    text.params = list(size = 3.5)
+  )
 ```
 
 ## Raincloud plot - `sm_raincloud()`
@@ -819,17 +995,17 @@ In this section, we will use this random data.
 
 ```{r}
 set.seed(2343) # generate random data
-group1 = abs(rnorm(20,2.5,1))
-group2 = abs(rnorm(20,5,1))
-Subject <- rep(paste0('S',seq(1:20)), 2)
-Data <- data.frame(Value = matrix(c(group1,group2),ncol=1))
-Group <- rep(c('Group 1', 'Group 2'), each = length(group1))
+group1 <- abs(rnorm(20, 2.5, 1))
+group2 <- abs(rnorm(20, 5, 1))
+Subject <- rep(paste0("S", seq(1:20)), 2)
+Data <- data.frame(Value = matrix(c(group1, group2), ncol = 1))
+Group <- rep(c("Group 1", "Group 2"), each = length(group1))
 df <- cbind(Subject, Data, Group)
 ```
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_raincloud() 
+  sm_raincloud()
 ```
 
 `fill` can be customised using `scale_fill_manual()`.
@@ -837,7 +1013,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
   sm_raincloud() +
-  scale_fill_manual(values = sm_color('blue','orange'))
+  scale_fill_manual(values = sm_color("blue", "orange"))
 ```
 
 Here, `x` has to be a categorical variable. `y` should be a continuous variable.
@@ -851,9 +1027,11 @@ Here, `x` has to be a categorical variable. `y` should be a continuous variable.
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_raincloud(sep_level = 4,
-               point_jitter_width = .2) +
-  scale_fill_manual(values = sm_color('blue','orange'))
+  sm_raincloud(
+    sep_level = 4,
+    point_jitter_width = .2
+  ) +
+  scale_fill_manual(values = sm_color("blue", "orange"))
 ```
 
 - `which_side` refers to the side where the distribution plot faces. 
@@ -862,8 +1040,8 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
   
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_raincloud(which_side = 'left') +
-  scale_fill_manual(values = sm_color('blue','orange'))
+  sm_raincloud(which_side = "left") +
+  scale_fill_manual(values = sm_color("blue", "orange"))
 ```
 
 - `vertical` controls the orientation of the raincloud plot. The default is set to `vertical = TRUE`. It refers to the fact that the distribution is vertically oriented.
@@ -872,7 +1050,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
   sm_raincloud(vertical = FALSE) +
-  scale_fill_manual(values = sm_color('blue','orange'))
+  scale_fill_manual(values = sm_color("blue", "orange"))
 ```
 
 `vertical = FALSE` and `which_side = 'right'` gives the true raincloud shape, the distribution plot being the cloud and the individual points being the rain.
@@ -883,7 +1061,7 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
   sm_raincloud(points = FALSE) +
-  scale_fill_manual(values = sm_color('blue','orange'))
+  scale_fill_manual(values = sm_color("blue", "orange"))
 ```
 
 Lastly, it has `xxx.params` to control the aesthetics of boxplots, violins and the points:
@@ -892,8 +1070,8 @@ Lastly, it has `xxx.params` to control the aesthetics of boxplots, violins and t
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_raincloud(boxplot.params = list(color = 'white')) +
-  scale_fill_manual(values = sm_color('blue','orange')) +
+  sm_raincloud(boxplot.params = list(color = "white")) +
+  scale_fill_manual(values = sm_color("blue", "orange")) +
   sm_minimal()
 ```
 
@@ -903,10 +1081,14 @@ By setting the `color` (border of the boxplot) as `white`, I think the raincloud
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_raincloud(boxplot.params = list(color = 'white'),
-               violin.params = list(alpha = 0.2,
-                                    color = 'transparent')) +
-  scale_fill_manual(values = sm_color('blue','orange')) +
+  sm_raincloud(
+    boxplot.params = list(color = "white"),
+    violin.params = list(
+      alpha = 0.2,
+      color = "transparent"
+    )
+  ) +
+  scale_fill_manual(values = sm_color("blue", "orange")) +
   sm_minimal()
 ```
 
@@ -915,13 +1097,19 @@ ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_raincloud(boxplot.params = list(color = 'white'),
-               violin.params = list(alpha = 0.2,
-                                    color = 'transparent'),
-               point.params = list(stroke = 0.8,
-                                   color = 'white',
-                                   size = 2.6)) +
-  scale_fill_manual(values = sm_color('blue','orange')) +
+  sm_raincloud(
+    boxplot.params = list(color = "white"),
+    violin.params = list(
+      alpha = 0.2,
+      color = "transparent"
+    ),
+    point.params = list(
+      stroke = 0.8,
+      color = "white",
+      size = 2.6
+    )
+  ) +
+  scale_fill_manual(values = sm_color("blue", "orange")) +
   sm_minimal()
 ```
 
@@ -929,13 +1117,17 @@ You can also change the label of the x-axis tick using `scale_x_discrete()` (not
 
 ```{r, fig.width = 3.5, fig.height=3.5}
 ggplot(data = df, mapping = aes(x = Group, y = Value, fill = Group)) +
-  sm_raincloud(boxplot.params = list(color = 'white'),
-               violin.params = list(alpha = 0.2),
-               point.params = list(stroke = 0.8,
-                                   color = 'white',
-                                   size = 2.6)) +
-  scale_fill_manual(values = sm_color('blue','orange')) +
-  scale_x_discrete(labels = c('One', 'Two')) +
+  sm_raincloud(
+    boxplot.params = list(color = "white"),
+    violin.params = list(alpha = 0.2),
+    point.params = list(
+      stroke = 0.8,
+      color = "white",
+      size = 2.6
+    )
+  ) +
+  scale_fill_manual(values = sm_color("blue", "orange")) +
+  scale_x_discrete(labels = c("One", "Two")) +
   sm_minimal()
 ```
 
@@ -947,11 +1139,11 @@ Using this random data, I will demonstrate `sm_hist()`.
 
 ```{r}
 set.seed(2)
-data=data.frame(value=rnorm(1000))
-data2 = data.frame(value=rnorm(1000,5,1))
-data$day <- 'day1'
-data2$day <- 'day2'
-rbind(data,data2) -> df
+data <- data.frame(value = rnorm(1000))
+data2 <- data.frame(value = rnorm(1000, 5, 1))
+data$day <- "day1"
+data2$day <- "day2"
+rbind(data, data2) -> df
 ```
 
 ```{r}
@@ -960,8 +1152,8 @@ rbind(data,data2) -> df
 Let's generate histogram just for `data`.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = data, aes(x=value, fill=day)) +
-  sm_hist() 
+ggplot(data = data, aes(x = value, fill = day)) +
+  sm_hist()
 ```
 
 `sm_hist()` has many arguments.
@@ -970,74 +1162,90 @@ ggplot(data = data, aes(x=value, fill=day)) +
   - The default is set to `histogram = TRUE`.
   
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = data, aes(x=value, fill=day)) +
-  sm_hist(histogram = FALSE) 
+ggplot(data = data, aes(x = value, fill = day)) +
+  sm_hist(histogram = FALSE)
 ```
 
 - `density` can be used to show or not show the density estimation plot.
   - The default is set to `density = TRUE`.
   
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = data, aes(x=value, fill=day)) +
-  sm_hist(density = FALSE) 
+ggplot(data = data, aes(x = value, fill = day)) +
+  sm_hist(density = FALSE)
 ```
 
 - `rug` can be used to show or not show the rugs below the histogram.
   - The default is `rug = TRUE`.
   
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = data, aes(x=value, fill=day)) +
-  sm_hist(rug = FALSE) 
+ggplot(data = data, aes(x = value, fill = day)) +
+  sm_hist(rug = FALSE)
 ```
 
 - `borders` can summon the borders when set to `borders = TRUE`.
  - The default is `borders = FALSE`.
  
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = data, aes(x=value, fill=day)) +
-  sm_hist(borders = TRUE) 
+ggplot(data = data, aes(x = value, fill = day)) +
+  sm_hist(borders = TRUE)
 ```
 
 - `hist.params` feeds arguments to `geom_histogram()` that dictates the aesthetics of the histogram, such as `color`, `fill`, `alpha` and `binwidth`. 
   - `binwidth` refers to the width of the bins. It has to be included if the user wishes to write `hist.params = list()` to finely control the aesthetics of the histogram. 
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = data, aes(x=value, fill=day)) +
-  sm_hist(hist.params = list(color = 'black',
-                             fill = sm_color('wine'),
-                             alpha = 0.7,
-                             binwidth = 1/4)) 
+ggplot(data = data, aes(x = value, fill = day)) +
+  sm_hist(hist.params = list(
+    color = "black",
+    fill = sm_color("wine"),
+    alpha = 0.7,
+    binwidth = 1 / 4
+  ))
 ```
 
 
 - `density.params` feeds arguments to `geom_density()` that dictates the aesthetics of the histogram, such as `color`, `fill` and `alpha`.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = data, aes(x=value, fill=day)) +
-  sm_hist(hist.params = list(color = 'black',
-                             fill = sm_color('wine'),
-                             alpha = 0.5,
-                             binwidth = 1/4),
-          density.params = list(color = 'black',
-                                size = 1,
-                                linetype = 'dashed',
-                                fill = 'transparent')) 
+ggplot(data = data, aes(x = value, fill = day)) +
+  sm_hist(
+    hist.params = list(
+      color = "black",
+      fill = sm_color("wine"),
+      alpha = 0.5,
+      binwidth = 1 / 4
+    ),
+    density.params = list(
+      color = "black",
+      size = 1,
+      linetype = "dashed",
+      fill = "transparent"
+    )
+  )
 ```
 
 - `rug.params` feeds arguments to `geom_rug` to control the aesthetics of the rugs such as `color`, `alpha` and `size`.
 
 ```{r, fig.width = 3.5, fig.height=3.5, warning = F}
-ggplot(data = data, aes(x=value, fill=day)) +
-  sm_hist(hist.params = list(color = 'black',
-                             fill = sm_color('wine'),
-                             alpha = 0.5,
-                             binwidth = 1/4),
-          density.params = list(color = 'black',
-                                size = 1,
-                                linetype = 'dashed',
-                                fill = 'transparent'),
-          rug.params = list(color = sm_color('wine'),
-                            size = 0.5)) 
+ggplot(data = data, aes(x = value, fill = day)) +
+  sm_hist(
+    hist.params = list(
+      color = "black",
+      fill = sm_color("wine"),
+      alpha = 0.5,
+      binwidth = 1 / 4
+    ),
+    density.params = list(
+      color = "black",
+      size = 1,
+      linetype = "dashed",
+      fill = "transparent"
+    ),
+    rug.params = list(
+      color = sm_color("wine"),
+      size = 0.5
+    )
+  )
 ```
 
 You can also plot the histogram across multiple conditions/groups by setting `ggplot(aes(..., color = xx)` and `forget = TRUE` in `sm_hist()` to remove its default appearance and enable flexible color mapping. We can demonstrate this using `df`, which has data across multiple groups.
@@ -1046,17 +1254,19 @@ You can also plot the histogram across multiple conditions/groups by setting `gg
   - The default is set to `legends = FALSE`.
 
 ```{r, fig.width = 6, fig.height=3.5, warning = F}
-
-df %>% ggplot(aes(x=value, fill=day, color = day)) +
-    sm_hist(forget=TRUE, hist.params = list(binwidth = 1/4, alpha = 0.5,color='white'),
-          density.params = list(fill='transparent', size = 0.8),
-          rug.params = list(alpha = 0.8), legends = T) +
-  scale_color_manual(values = sm_color('blue', 'orange')) +
-  scale_fill_manual(values = sm_color('blue', 'orange')) +
-  ggtitle('Histograms + rugs + kernel estimations of two groups') +
-  theme(plot.title= element_text(size = rel(0.85))) +
-   theme(legend.position = c(0.84,0.82),
-        legend.title = element_blank(),
-        legend.text = element_text(size = 11))
-
+df %>% ggplot(aes(x = value, fill = day, color = day)) +
+  sm_hist(
+    forget = TRUE, hist.params = list(binwidth = 1 / 4, alpha = 0.5, color = "white"),
+    density.params = list(fill = "transparent", size = 0.8),
+    rug.params = list(alpha = 0.8), legends = T
+  ) +
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_fill_manual(values = sm_color("blue", "orange")) +
+  ggtitle("Histograms + rugs + kernel estimations of two groups") +
+  theme(plot.title = element_text(size = rel(0.85))) +
+  theme(
+    legend.position = c(0.84, 0.82),
+    legend.title = element_blank(),
+    legend.text = element_text(size = 11)
+  )
 ```

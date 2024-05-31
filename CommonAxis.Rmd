@@ -25,11 +25,11 @@ library(cowplot)
 
 
 ```{r, eval  = F, warning=F ,message=F}
-df <- read_csv('https://www.smin95.com/min2019.csv')
+df <- read_csv("https://www.smin95.com/min2019.csv")
 ```
 
 ```{r, echo  = F, warning=F, message=F}
-df <- read_csv('min2019.csv')
+df <- read_csv("min2019.csv")
 ```
 
 ```{r}
@@ -55,7 +55,7 @@ In the example below, the plots will have different colors based on Day (1 or 5)
 To plot data of each subject separately, we need the data frame to show data only from one subject. This can be achieved as using `filter()`:
 
 ```{r}
-filter(df, Subject == 'S1')
+filter(df, Subject == "S1")
 ```
 
 - The first argument of `filter()`, `select()`, `summarise()` and `mutate()` is a data frame.
@@ -78,7 +78,7 @@ Let's try another example.
 
 ```{r}
 day1 <- filter(df, Day == 1) # save the new data frame into a new variable
-filter(day1, Subject == 'S1') # this new data frame contains Day 1 and Subject 1 data only.
+filter(day1, Subject == "S1") # this new data frame contains Day 1 and Subject 1 data only.
 ```
 
 The above code can be read as: **filter** for all rows of the data frame **df** that have `1` in the `Day` column. Save this new data frame as `day1`. Then,  **filter** for all rows of the data frame `day1` that have `S1` in the `Subject` column. 
@@ -86,13 +86,13 @@ The above code can be read as: **filter** for all rows of the data frame **df** 
 The above can also be written like the one below:
 
 ```{r}
-filter(df, Day == 1 & Subject == 'S1')
+filter(df, Day == 1 & Subject == "S1")
 ```
 
 The above can be read as: **filter** for all rows of the data frame **df** that have `1` in the `Day` column **AND** have `S1` in the `Subject` column.
 
 ```{r}
-filter(df, Day == 1 | Subject == 'S1')
+filter(df, Day == 1 | Subject == "S1")
 ```
 
 The above can be read as: **filter** for all rows of the data frame **df** that have `1` in the `Day` column **OR** have `S1` in the `Subject` column. `|` represents **OR**, `&` represents **AND**.
@@ -102,7 +102,7 @@ The above can be read as: **filter** for all rows of the data frame **df** that 
 If you wish to see the `Cbratio` column only (i.e., data only) for rows of **df** that have `Day ==  1` and `Time == 0`, you can write it like this:
 
 ```{r}
-day1_time0 <- filter(df, Day == 1 & Time == 0) # save the new data frame in the day1_time0 variable 
+day1_time0 <- filter(df, Day == 1 & Time == 0) # save the new data frame in the day1_time0 variable
 select(day1_time0, Cbratio)
 ```
 
@@ -164,8 +164,10 @@ This standard error is for each `Day` and `Time` across all subjects.
 Now let's obtain the **mean** and **standard error**  of `Cbratio` for each `Day` and `Time` across all subjects using the data frame that has been grouped by `Day` and `Time` via `group_by()`.
 
 ```{r}
-by_day_time1 <- summarise(by_day_time, Average = mean(Cbratio),
-          StdError = sm_stdErr(Cbratio))
+by_day_time1 <- summarise(by_day_time,
+  Average = mean(Cbratio),
+  StdError = sm_stdErr(Cbratio)
+)
 print(by_day_time1)
 ```
 
@@ -190,19 +192,25 @@ We will plot a similar graph to **Figure 3A** in the Vision Research paper (Min 
 ggplot(data = by_day_time1, aes(x = Time, y = Average, color = Day)) +
   geom_point(size = 4.5) +
   geom_errorbar(aes(ymin = Average - StdError, ymax = Average + StdError), size = .5, width = .05) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid(legends = TRUE) +
-  scale_color_manual(values = sm_color('blue','orange'),
-                     labels = c("Day 1", "Day 5")) +
+  scale_color_manual(
+    values = sm_color("blue", "orange"),
+    labels = c("Day 1", "Day 5")
+  ) +
   ggtitle("Recovery of the patching effect") +
   xlab("Time after monocular deprivation (min)") +
   ylab("\u0394 Contrast balance ratio (dB)") +
-  theme(legend.justification = c(1,0), 
-        legend.position = c(0.96, 0.67), 
-        legend.title = element_blank()) 
+  theme(
+    legend.justification = c(1, 0),
+    legend.position = c(0.96, 0.67),
+    legend.title = element_blank()
+  )
 ```
 
 
@@ -215,8 +223,8 @@ First, you will need several packages for this section.
 - If you do not have the **gridExtra** and **grid** packages in your RStudio, please install them using the codes below. It might take less than a minute. 
 
 ```{r, eval = F}
-install.packages('gridExtra')
-install.packages('grid')
+install.packages("gridExtra")
+install.packages("grid")
 ```
 
 - Then load all these packages below. 
@@ -232,21 +240,23 @@ library(grid)
 Now let's plot data for each subject (S1-S9) except S10. Each panel shows the data of each subject for both Days 1 and 5. 
 
 ```{r, fig.width = 3.5, fig.height = 3.5}
-df_s1 <- filter(df, Subject == 'S1') 
+df_s1 <- filter(df, Subject == "S1")
 # rows of df that only contain S1 in the Subject column
 
 # use df_s1 to plot the data of S1
 
-plot_s1 <- ggplot(data = df_s1, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s1 <- ggplot(data = df_s1, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
-# axis text size is 1.5x the original font size. 
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
+# axis text size is 1.5x the original font size.
 
 print(plot_s1)
 ```
@@ -254,123 +264,137 @@ print(plot_s1)
 Then make each one for the other subjects (S2-S9). 
 
 ```{r, fig.width = 3.5, fig.height = 3.5}
-df_s2 <- filter(df, Subject == 'S2') 
+df_s2 <- filter(df, Subject == "S2")
 
-plot_s2 <- ggplot(data = df_s2, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s2 <- ggplot(data = df_s2, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
-# axis text size is 1.5x the original font size. 
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
+# axis text size is 1.5x the original font size.
 
 print(plot_s2)
 ```
 
 ```{r, fig.width = 3.5, fig.height = 3.5}
-df_s3 <- filter(df, Subject == 'S3')
+df_s3 <- filter(df, Subject == "S3")
 
-plot_s3 <- ggplot(data = df_s3, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s3 <- ggplot(data = df_s3, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
-# axis text size is 1.5x the original font size. 
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
+# axis text size is 1.5x the original font size.
 
 print(plot_s3)
 ```
 
 ```{r, fig.width = 3.5, fig.height = 3.5}
-df_s4 <- filter(df, Subject == 'S4')
+df_s4 <- filter(df, Subject == "S4")
 
-plot_s4 <- ggplot(data = df_s4, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s4 <- ggplot(data = df_s4, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
-# axis text size is 1.5x the original font size. 
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
+# axis text size is 1.5x the original font size.
 
 print(plot_s4)
 ```
 
 ```{r, fig.width = 3.5, fig.height = 3.5}
 # Subject 5
-df_s5 <- filter(df, Subject == 'S5') 
+df_s5 <- filter(df, Subject == "S5")
 # rows of df that only contain S5 in the Subject column
 
-plot_s5 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s5 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
-  sm_hgrid(legends = FALSE) + 
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
+  sm_hgrid(legends = FALSE) +
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
 
 print(plot_s5)
 ```
 
 ```{r, fig.width = 3.5, fig.height = 3.5}
 # Subject 6
-df_s6 <- filter(df, Subject == 'S6') 
+df_s6 <- filter(df, Subject == "S6")
 # rows of df that only contain S6 in the Subject column
 
-plot_s6 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s6 <- ggplot(data = df_s5, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5))  
-# axis text size is 1.5x the original font size. 
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
+# axis text size is 1.5x the original font size.
 
 print(plot_s6)
 ```
 
 ```{r, fig.width = 3.5, fig.height = 3.5}
-df_s7 <- filter(df, Subject == 'S7')
+df_s7 <- filter(df, Subject == "S7")
 
-plot_s7 <- ggplot(data = df_s7, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s7 <- ggplot(data = df_s7, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
-# axis text size is 1.5x the original font size. 
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
+# axis text size is 1.5x the original font size.
 
 print(plot_s7)
 ```
 
 ```{r, fig.width = 3.5, fig.height = 3.5}
-df_s8 <- filter(df, Subject == 'S8')
+df_s8 <- filter(df, Subject == "S8")
 
-plot_s8 <- ggplot(data = df_s8, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s8 <- ggplot(data = df_s8, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
-# axis text size is 1.5x the original font size. 
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
+# axis text size is 1.5x the original font size.
 
 print(plot_s8)
 ```
@@ -378,18 +402,20 @@ print(plot_s8)
 ```{r, fig.width = 3.5, fig.height = 3.5}
 # Subject 9
 
-df_s9 <- filter(df, Subject == 'S9') 
+df_s9 <- filter(df, Subject == "S9")
 
-plot_s9 <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
+plot_s9 <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
+  geom_smooth(method = "lm", se = F, size = 0.9) +
+  # lm = linear regression method
+  scale_x_continuous(
+    breaks = unique(df$Time),
+    labels = c("0", "3", "6", "12", "24", "48")
+  ) +
   sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
-# axis text size is 1.5x the original font size. 
+  scale_color_manual(values = sm_color("blue", "orange")) +
+  scale_y_continuous(limits = c(-3, 5.5))
+# axis text size is 1.5x the original font size.
 
 print(plot_s9)
 ```
@@ -399,18 +425,21 @@ print(plot_s9)
 Each panel output has to be stored in a `list` using the function `list()`. X-axis label can be specified using `sm_common_xlabel()`, which has `x` and `y` arguments for setting the location of the label. Y-axis label is specified using `sm_common_ylabel()` with the same `x` and `y` arguments. The title can be set using `sm_common_title()`. 
 
 ```{r, warning=F, message=F}
-all_plots <- list(plot_s1, plot_s2, plot_s3, 
-                  plot_s4, plot_s5, plot_s6,
-                  plot_s7, plot_s8, plot_s9)
+all_plots <- list(
+  plot_s1, plot_s2, plot_s3,
+  plot_s4, plot_s5, plot_s6,
+  plot_s7, plot_s8, plot_s9
+)
 
-xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x= 0.52, y = 0.6)
-ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)')
-title <- sm_common_title('Individual data', y = 0.2)
+xlabel <- sm_common_xlabel("Minutes after monocular deprivation", x = 0.52, y = 0.6)
+ylabel <- sm_common_ylabel("\u0394 Contrast balance ratio (dB)")
+title <- sm_common_title("Individual data", y = 0.2)
 
-plots_tgd <- sm_put_together(all_plots, title=title, xlabel=xlabel,
-                             ylabel=ylabel, ncol=3,nrow=3,
-                             hmargin=-5, wmargin=-5)
-
+plots_tgd <- sm_put_together(all_plots,
+  title = title, xlabel = xlabel,
+  ylabel = ylabel, ncol = 3, nrow = 3,
+  hmargin = -5, wmargin = -5
+)
 ```
 
 Now let's put them together in a 3x3 figure (3 rows, 3 columns) using the function `sm_put_together()`. So, `ncol` and `nrow` are set to 3 in `sm_put_together()`. The function automatically removes tick labels in both x- and y-axes in inner panels, and keeps them on the outer panels, so that combined plot looks clean. Also, the `hmargin` argument can be set to adjust the blank space of height between panels; the `wmargin` argument can be set to adjust the blank space of width between panels. Their values can be both negative (less blank space) and positive (more blank space). I suggest you use values from *-5 to 5* for `hmargin` and `wmargin`. 
@@ -421,8 +450,10 @@ knitr::include_graphics("img/rc33.png")
 ```
 
 ```{r}
-save_plot('together1.png',plots_tgd,ncol=3,nrow=3,
-          base_height=3.4,base_width=3)
+save_plot("together1.png", plots_tgd,
+  ncol = 3, nrow = 3,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 ```{r, echo=FALSE, fig.align = 'center', out.width = '75%'}
@@ -434,8 +465,10 @@ When you are saving the graph as an image file, `nrow` and `ncol` in `save_plot(
 Open `together1.png` in your directory folder. The figure is clean but it lacks a few things: 1) label for each panel, 2) legend. With examples below, we will add them.
 
 ```{r, message=F, warning=F}
-all_plots2 <- sm_panel_label(all_plots, x = 0.1, y = 0.9, panel_tag ='1', panel_pretag = 'S', text_size = 5, 
-                             text_color = 'black', fontface='bold')
+all_plots2 <- sm_panel_label(all_plots,
+  x = 0.1, y = 0.9, panel_tag = "1", panel_pretag = "S", text_size = 5,
+  text_color = "black", fontface = "bold"
+)
 ```
 
 
@@ -444,12 +477,16 @@ Here, we include a label for each panel, which represents the data of each subje
 The function `sm_panel_label()` has a few arguments. `x` and `y` determine the location of the panel label; 0.5 represents its origin in the middle of the panel. `panel_tag` determines the character string that will be used for enumeration. In this example, `panel_tag = "1"` is chosen so there will be a sequence of numbers. Other options include: 1) `panel_tag = "A"` for uppercase letters, 2) `panel_tag = "a"` for small case letters, 3) `panel_tag = "I"` for upper roman numerals, and 4) `panel_tag = "i"` for lower roman numerals. There are also tag labels that can set to be *consistent* across panels: these are `panel_pretag` and `panel_posttag`. `panel_pretag` comes before `panel_tag` (as shown in this example, in the form of `S`, ex. `S1`), and `panel_posttag` comes after `panel_tag`. 
 
 ```{r, results='hide', message=F, warning=F}
-plots_tgd2 <- sm_put_together(all_plots2, title=title, xlabel=xlabel,
-                              ylabel=ylabel, ncol=3,nrow=3,
-                              hmargin=-5, wmargin=-5)
+plots_tgd2 <- sm_put_together(all_plots2,
+  title = title, xlabel = xlabel,
+  ylabel = ylabel, ncol = 3, nrow = 3,
+  hmargin = -5, wmargin = -5
+)
 
-plots_tgd3 <- sm_add_legend(plots_tgd2, x = .88, y= 0.05, sampleplot = all_plots2[[1]], 
-                            direction = 'horizontal', border = FALSE)
+plots_tgd3 <- sm_add_legend(plots_tgd2,
+  x = .88, y = 0.05, sampleplot = all_plots2[[1]],
+  direction = "horizontal", border = FALSE
+)
 ```
 
 
@@ -458,8 +495,10 @@ As before, we then combine the list of plots with panel label (`all_plots2`) and
 Next, we add legend using `sm_add_legend()`. It has a number of arguments. First, the combined figure (output from `sm_put_together()`) must be provided. Next, `x` and `y` are the location of the legend in the coordinates of the combined figure (0 to 1), where `x=0.5` and `y=0.5` represents the center of the combined figure. `sampleplot` has to be provided, which in this case one of the plots in the `plots_tgd2` list, so that the function `sm_add_legend()` can derive a legend for the whole combined plot. The `direction` (or orientation) of the legend can also be set as `horizontal` or `vertical`; in this case, we set it to `direction = horizontal`. 
 
 ```{r, echo=FALSE}
-save_plot('together2a.png', plots_tgd3, ncol=3, nrow=3,
-          base_height=3.4, base_width=3)
+save_plot("together2a.png", plots_tgd3,
+  ncol = 3, nrow = 3,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 ```{r, echo=FALSE, fig.align = 'center',out.width = '75%'}
@@ -469,13 +508,17 @@ knitr::include_graphics("together2a.png")
 The border of the legend can also be included by setting `border = TRUE`. We can also increase the amount of spacing within the legend using `legend_spacing` argument from `sm_add_legend`. This change is subtle but you will definitely notice it. 
 
 ```{r}
-plots_tgd3b <- sm_add_legend(plots_tgd2, x = .88, y= 0.05, sampleplot = all_plots2[[1]], 
-                             direction = 'horizontal', border = TRUE, legend_spacing = 1)
+plots_tgd3b <- sm_add_legend(plots_tgd2,
+  x = .88, y = 0.05, sampleplot = all_plots2[[1]],
+  direction = "horizontal", border = TRUE, legend_spacing = 1
+)
 ```
 
 ```{r, echo=FALSE}
-save_plot('together2b.png', plots_tgd3b, ncol=3, nrow=3,
-          base_height=3.4, base_width=3)
+save_plot("together2b.png", plots_tgd3b,
+  ncol = 3, nrow = 3,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 ```{r, echo=FALSE, fig.align = 'center',out.width = '75%'}
@@ -486,13 +529,17 @@ knitr::include_graphics("together2b.png")
 You can even make a separate legend on your own with full customization using `sm_common_legend()`, then add the legend to the combined plot using `sm_add_legend()`. We will do this by first making a combined figure with two rows and five columns (`nrow=2` and `ncol=5`). The legend can be on the 10th panel because its empty.
 
 ```{r}
-legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) + 
+legend <- ggplot(data = df_s9, aes(x = Time, y = Cbratio, color = Day)) +
   geom_point(size = 2.5) +
-  scale_color_manual(values = sm_color('blue','orange'),
-                     labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
-  scale_shape_manual(values = c(21,22),
-                     labels = c('Data from Day 1 ', 'Data from Day 5 ')) +
-  sm_common_legend(title=FALSE, legend_spacing = 1)
+  scale_color_manual(
+    values = sm_color("blue", "orange"),
+    labels = c("Data from Day 1 ", "Data from Day 5 ")
+  ) +
+  scale_shape_manual(
+    values = c(21, 22),
+    labels = c("Data from Day 1 ", "Data from Day 5 ")
+  ) +
+  sm_common_legend(title = FALSE, legend_spacing = 1)
 ```
 
 
@@ -506,13 +553,15 @@ Basically, `legend` that is created with `sm_common_legend()` is a new plot with
 The `legend` can then be added to the combined plot using `sm_add_legend()`. If you provide a separate legend, then other arguments of the function will be ignored, such as `direction` and `border` from `sm_add_legend()` because these arguments are used to derive a legend based on `sampleplot`. `x` and `y` describe the coordinates of the legend in the composite plot (output from `sm_put_together()`: `plots_tgd2`), and these are supplied in the `sm_add_legend()`.
 
 ```{r}
-plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y= 0.05, legend=legend)
+plots_tgd3c <- sm_add_legend(plots_tgd2, x = .91, y = 0.05, legend = legend)
 ```
 
 
 ```{r, echo=FALSE, warning=F, message=F}
-save_plot('together2c.png', plots_tgd3c, ncol=3, nrow=3,
-          base_height=3.4, base_width=3)
+save_plot("together2c.png", plots_tgd3c,
+  ncol = 3, nrow = 3,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 ```{r, echo=FALSE, fig.align = 'center',out.width = '75%'}
@@ -525,21 +574,23 @@ Also, besides `sm_add_legend()`, `sm_put_together()` can also legend onto the co
 To demonstrate this function, we will make a combined figure with 2 rows and 5 columns.
 
 ```{r, warning=F, message=F}
-xlabel <- sm_common_xlabel('Minutes after monocular deprivation', x=0.51, y = 0.6)
-ylabel <- sm_common_ylabel('\u0394 Contrast balance ratio (dB)', x=0.7)
-title <- sm_common_title('Individual data', y = 0.3, x = 0.51, size=18)
+xlabel <- sm_common_xlabel("Minutes after monocular deprivation", x = 0.51, y = 0.6)
+ylabel <- sm_common_ylabel("\u0394 Contrast balance ratio (dB)", x = 0.7)
+title <- sm_common_title("Individual data", y = 0.3, x = 0.51, size = 18)
 
-plots_tgd4 <- sm_put_together(all_plots, title=title, xlabel=xlabel,
-                              ylabel=ylabel, legend=legend,
-                             ncol=5,nrow=2, hmargin=-5, wmargin=-5)
-
+plots_tgd4 <- sm_put_together(all_plots,
+  title = title, xlabel = xlabel,
+  ylabel = ylabel, legend = legend,
+  ncol = 5, nrow = 2, hmargin = -5, wmargin = -5
+)
 ```
 
 
 ```{r, warning=F, message=F}
-save_plot('together4.png', plots_tgd4, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
-
+save_plot("together4.png", plots_tgd4,
+  ncol = 5, nrow = 2,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 The arguments of `sm_put_together()` have to be written in this order unless they are specified (ex. `sm_put_together(all_plots=all_plots, xlabel=xlabel, title=title)`).
@@ -547,16 +598,18 @@ The arguments of `sm_put_together()` have to be written in this order unless the
 The `title`, `xlabel`, `xlabel2`, `ylabel` and `ylabel2` can be provided as string characters, as shown below. If characters are provided rather than the outputs of `sm_common_title()`, `sm_common_xlabel()` and `sm_common_ylabel()`, then their locations cannot be modified. Their sizes can be adjusted using `labelRatio` argument. A value of 1 refers to the optimized text size, and 1.1 will be 0.1x larger than the optimized size. The text size optimization and the text locations are set by a simple algorithm that relies on the plot's layout and other information to give optimal values. `labelRatio` only adjusts the text sizes when the label inputs are supplied as character strings, and they wont change text sizes when these have been created with `sm_common_title()`, `sm_common_xlabel()` and `sm_common_ylabel()`.
 
 ```{r, warning=F, message=F}
-plots_tgd_quick <- sm_put_together(all_plots, 
-                              title='Individual data', xlabel='Minutes after monocular deprivation',
-                              ylabel='\u0394 Contrast balance ratio (dB)', legend=legend,
-                              ncol=5,nrow=2, hmargin=-5, wmargin=-5)
+plots_tgd_quick <- sm_put_together(all_plots,
+  title = "Individual data", xlabel = "Minutes after monocular deprivation",
+  ylabel = "\u0394 Contrast balance ratio (dB)", legend = legend,
+  ncol = 5, nrow = 2, hmargin = -5, wmargin = -5
+)
 ```
 
 ```{r, warning=F, message=F}
-save_plot('together4_quick.png', plots_tgd_quick, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
-
+save_plot("together4_quick.png", plots_tgd_quick,
+  ncol = 5, nrow = 2,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 
@@ -590,14 +643,18 @@ knitr::include_graphics("together4.png")
 Text annotations can be added to the composite figure using `sm_add_text()`. The `label` argument can be used to specify the text label. `x` and `y` are the coordinate values of the text in the composite figure, and they have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `size` determines the text size and the `fontface` can be either `bold`, `plain`, `italic` or `italic.bold`.
 
 ```{r}
-plots_tgd4b <- plots_tgd4 + sm_add_text(label = 'My composite figure',
-                           x = 0.185, y = 0.19, size = 14, fontface='bold')
+plots_tgd4b <- plots_tgd4 + sm_add_text(
+  label = "My composite figure",
+  x = 0.185, y = 0.19, size = 14, fontface = "bold"
+)
 ```
 
 
 ```{r, echo=FALSE, warning=F, message=F}
-save_plot('together4b.png', plots_tgd4b, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
+save_plot("together4b.png", plots_tgd4b,
+  ncol = 5, nrow = 2,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 ```{r,fig.align = 'center', echo=F}
@@ -609,13 +666,17 @@ knitr::include_graphics("together4b.png")
 Point annotations can be added to the composite figure using `sm_add_point()`. `x` and `y` are the coordinate values of the point in the composite figure, and they have to be between 0 and 1;  0.5 represents the origin (center) of the composite figure. `size` determines the point size and the `shape` number input should be the same as the ones in *ggplot2* (ex. 21 is circle with border). `fill` should be provided for shapes with border. If the shape has no border, then `color` is sufficient to set the color that fills the point.
 
 ```{r, warning=F, message=F}
-plots_tgd4c <- plots_tgd4b + sm_add_point(x = 0.50, y = 0.50, size = 35, 
-                            shape = 21, fill = 'gray80', color = 'black')
+plots_tgd4c <- plots_tgd4b + sm_add_point(
+  x = 0.50, y = 0.50, size = 35,
+  shape = 21, fill = "gray80", color = "black"
+)
 ```
 
 ```{r, echo=FALSE, warning=F, message=F}
-save_plot('together4c.png', plots_tgd4c, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
+save_plot("together4c.png", plots_tgd4c,
+  ncol = 5, nrow = 2,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 ```{r,fig.align = 'center', echo=F}
@@ -629,16 +690,21 @@ Line annotations can be added to the composite figure using `annotate()`. `x` an
 
 ```{r}
 plots_tgd4e <- plots_tgd4c +
-  annotate('segment', x = 0.5, y = 0.475, xend = 0.5, 
-                           yend = 0.525, color = 'black') +
-  annotate('segment', x = 0.49, y = 0.5, xend = 0.51, 
-                           yend = 0.5, color = 'black')
-
+  annotate("segment",
+    x = 0.5, y = 0.475, xend = 0.5,
+    yend = 0.525, color = "black"
+  ) +
+  annotate("segment",
+    x = 0.49, y = 0.5, xend = 0.51,
+    yend = 0.5, color = "black"
+  )
 ```
 
 ```{r, echo=FALSE}
-save_plot('together4e.png', plots_tgd4e, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
+save_plot("together4e.png", plots_tgd4e,
+  ncol = 5, nrow = 2,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 ```{r, fig.align = 'center', echo=F}
@@ -656,21 +722,22 @@ A programming approach refers to a means that involves creating programming cons
 In this short example, I recreate the composite plot generated above using the function `lapply()`, which creates an iterative loop, producing one ggplot2 object per loop. There will be nine loops total, and these will be stored in the output object `all_figs`. 
 
 ```{r}
-subj_list <- paste0('S', 1:9)
+subj_list <- paste0("S", 1:9)
 
 all_figs <- lapply(1:length(subj_list), function(i) {
-  
   df_subj <- df %>% filter(Subject == subj_list[[i]])
-  
-  ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) + 
-  geom_point(size = 4.5) +
-  geom_smooth(method = 'lm', se = F, size = 0.9) + 
-  # lm = linear regression method 
-  scale_x_continuous(breaks = unique(df$Time), 
-                     labels = c("0", "3", "6", "12", "24", "48")) +
-  sm_hgrid() +
-  scale_color_manual(values = sm_color('blue','orange')) +
-  scale_y_continuous(limits = c(-3, 5.5)) 
+
+  ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) +
+    geom_point(size = 4.5) +
+    geom_smooth(method = "lm", se = F, size = 0.9) +
+    # lm = linear regression method
+    scale_x_continuous(
+      breaks = unique(df$Time),
+      labels = c("0", "3", "6", "12", "24", "48")
+    ) +
+    sm_hgrid() +
+    scale_color_manual(values = sm_color("blue", "orange")) +
+    scale_y_continuous(limits = c(-3, 5.5))
 })
 ```
 
@@ -681,41 +748,49 @@ knitr::include_graphics("together5.png")
 ```
 
 ```{r, warning=F, message=F}
-plots_tgd5 <- sm_put_together(all_figs, title='Individual data', 
-                              xlabel='Minutes after monocular deprivation',
-                              ylabel='\u0394 Contrast balance ratio (dB)', legend=legend, 
-                              labelRatio = 0.95, ncol=5,nrow=2, hmargin=-5, wmargin=-5)
+plots_tgd5 <- sm_put_together(all_figs,
+  title = "Individual data",
+  xlabel = "Minutes after monocular deprivation",
+  ylabel = "\u0394 Contrast balance ratio (dB)", legend = legend,
+  labelRatio = 0.95, ncol = 5, nrow = 2, hmargin = -5, wmargin = -5
+)
 ```
 
 `sm_put_together()` can also handle nested list objects (i.e., list of list), so users can fully integrate complex programming constructs into their visualization routines to perform sophisticated data visualizations without relying on external packages. 
 
 ```{r, echo=FALSE, warning=F, message=F}
-save_plot('together5.png', plots_tgd5, ncol=5, nrow=2,
-          base_height=3.4, base_width=3)
+save_plot("together5.png", plots_tgd5,
+  ncol = 5, nrow = 2,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 To create a mosaic, where there is an empty panel in the every other panel, simply create an empty plot `ggplot(NULL) + sm_common_legend()` inside the `lapply()` construct.
 
 ```{r, warning=F, message=F}
-ncol <- 5; nrow <- 4
-numPanels <- ncol * nrow 
-subj_list <- paste0('S', 1:10)
+ncol <- 5
+nrow <- 4
+numPanels <- ncol * nrow
+subj_list <- paste0("S", 1:10)
 
 figs_mosaic <- lapply(1:numPanels, function(iPlot) {
   if (iPlot %% 2 == 0) {
-    ggplot(NULL) + sm_common_legend() # empty panel
+    ggplot(NULL) +
+      sm_common_legend() # empty panel
   } else if (iPlot %% 2 == 1) {
-    i <-  iPlot %/% 2 + 1
+    i <- iPlot %/% 2 + 1
     df_subj <- df %>% filter(Subject == subj_list[[i]])
-    ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) + 
+    ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) +
       geom_point(size = 4.5) +
-      geom_smooth(method = 'lm', se = F, size = 0.9) + 
-      # lm = linear regression method 
-      scale_x_continuous(breaks = unique(df$Time), 
-                         labels = c("0", "3", "6", "12", "24", "48")) +
+      geom_smooth(method = "lm", se = F, size = 0.9) +
+      # lm = linear regression method
+      scale_x_continuous(
+        breaks = unique(df$Time),
+        labels = c("0", "3", "6", "12", "24", "48")
+      ) +
       sm_hgrid() +
-      scale_color_manual(values = sm_color('blue','orange')) +
-      scale_y_continuous(limits = c(-3, 5.5)) 
+      scale_color_manual(values = sm_color("blue", "orange")) +
+      scale_y_continuous(limits = c(-3, 5.5))
   }
 })
 ```
@@ -723,17 +798,21 @@ figs_mosaic <- lapply(1:numPanels, function(iPlot) {
 `sm_put_together()` provides a limitless possibility of creating a composite plot with expressive layouts of subplots, as shown below.
 
 ```{r, warning=F, message=F}
-mosaic_tgd <- sm_put_together(figs_mosaic, title='Mosaic of individual data', 
-                              xlabel='Minutes after monocular deprivation',
-                              ylabel='\u0394 Contrast balance ratio (dB)',
-                              labelRatio = 0.95, ncol=ncol,nrow=nrow, hmargin=-5, wmargin=-5)
+mosaic_tgd <- sm_put_together(figs_mosaic,
+  title = "Mosaic of individual data",
+  xlabel = "Minutes after monocular deprivation",
+  ylabel = "\u0394 Contrast balance ratio (dB)",
+  labelRatio = 0.95, ncol = ncol, nrow = nrow, hmargin = -5, wmargin = -5
+)
 
-mosaic_tgd1 <- sm_add_legend(mosaic_tgd, x = 0.555, y = 0.2, legend=legend)
+mosaic_tgd1 <- sm_add_legend(mosaic_tgd, x = 0.555, y = 0.2, legend = legend)
 ```
 
 ```{r, warning=F, message=F}
-save_plot('mosaic.png', mosaic_tgd1, ncol=ncol, nrow=nrow,
-          base_height=3.4, base_width=3)
+save_plot("mosaic.png", mosaic_tgd1,
+  ncol = ncol, nrow = nrow,
+  base_height = 3.4, base_width = 3
+)
 ```
 
 ```{r, fig.align = 'center', echo=F}

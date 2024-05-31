@@ -38,22 +38,24 @@ If the user provides linear data of spatial frequency and contrast sensitivity, 
 library(tidyverse)
 library(smplot2)
 library(smCSF)
-ACh <- read_csv('https://www.smin95.com/data_ACh.csv')
+ACh <- read_csv("https://www.smin95.com/data_ACh.csv")
 ```
 
 ```{r, echo = F, message = F}
 library(tidyverse)
 library(smplot2)
 library(smCSF)
-ACh <- read_csv('data_Ach.csv')
+ACh <- read_csv("data_Ach.csv")
 ```
 
 ```{r}
-ACh1 <- ACh %>% 
+ACh1 <- ACh %>%
   group_by(SpatialFreq) %>%
-  summarise(avgSens = mean(Sensitivity),
-            stdErrSens = sm_stdErr(Sensitivity),
-            stdDevSens = sd(Sensitivity))
+  summarise(
+    avgSens = mean(Sensitivity),
+    stdErrSens = sm_stdErr(Sensitivity),
+    stdDevSens = sd(Sensitivity)
+  )
 
 ACh1
 ```
@@ -76,14 +78,16 @@ In short, the smaller the RSS, the better the model is because it means that the
 `sm_params()` repeatedly plugs in different combinations and permutations of the four parameters. This process is repeated many times until the four parameters yield the smallest RSS. This process is known as **optimization**. During the first iteration of optimization, it uses initial guess parameters, which are provided by the argument `param0`, to calculate the RSS. Then, it tries another four parameters. The ranges of the parameters are limited, however. When the parameters of the CSF model are estimated, it is standard to set the upper and lower bound of the parameters. These are set by the arguments `param_upLimit` and `param_lowLimit`, respectively. `sm_params()` specifically uses the `L-BFGS-B` algorithm to perform the optimization so that upper and lower bounds can be set to estimate the parameters that yield the minimum RSS.  **smCSF** provides default values for `param0`, `param_upLimit` and `param_lowLimit` (see the values below) so that the user does not have to be stressed about these initial parameters, and can easily visualize and analyze the contrast sensitivity function. 
 
 ```{r}
-param0 = log10(c(100, 1, 2, 0.5))
-param_upLimit = log10(c(2000, 20, 9, 2)) 
-param_lowLimit= log10(c(2, 0.2, 1, 0.02)) 
+param0 <- log10(c(100, 1, 2, 0.5))
+param_upLimit <- log10(c(2000, 20, 9, 2))
+param_lowLimit <- log10(c(2, 0.2, 1, 0.02))
 ```
 
 ```{r}
-params <- sm_params(ACh1$SpatialFreq, ACh1$avgSens, param0,
-          param_upLimit, param_lowLimit)
+params <- sm_params(
+  ACh1$SpatialFreq, ACh1$avgSens, param0,
+  param_upLimit, param_lowLimit
+)
 
 params
 ```
@@ -117,13 +121,15 @@ Let's visually confirm whether the cut-off spatial frequency yields sensitivity 
 Then using the sequence of the x values, we plug them into the CSF formulas with the parameters that we have obtained using `sm_params()` to obtain the fitted values.
 
 ```{r}
-grid <- data.frame(x = seq(min(ACh1$SpatialFreq),31, length = 200))
+grid <- data.frame(x = seq(min(ACh1$SpatialFreq), 31, length = 200))
 
-grid$y <- 10^sm_findQCSF(log10(grid$x), 
-                         params[[1]], params[[2]],
-                         params[[3]], params[[4]])
+grid$y <- 10^sm_findQCSF(
+  log10(grid$x),
+  params[[1]], params[[2]],
+  params[[3]], params[[4]]
+)
 
-head(grid,10) # first 10 rows
+head(grid, 10) # first 10 rows
 ```
 
 `grid` variable contains all the fitted values as a function of the `x` values.
@@ -133,15 +139,19 @@ Now let's plot the fitted values.
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 grid %>% ggplot(aes(x = x, y = y)) +
   geom_point() +
-  scale_x_continuous(trans = 'log10') +
-  scale_y_continuous(trans = 'log10') +
+  scale_x_continuous(trans = "log10") +
+  scale_y_continuous(trans = "log10") +
   sm_hgrid() +
-  geom_vline(xintercept = max(ACh1$SpatialFreq),
-             color = sm_color('red'), size = 1,
-             linetype = 'dashed') +
-  annotate('text', x = 3, y = 1.5, 
-           label = 'maximum tested\nSF', color = 
-           sm_color('red'))
+  geom_vline(
+    xintercept = max(ACh1$SpatialFreq),
+    color = sm_color("red"), size = 1,
+    linetype = "dashed"
+  ) +
+  annotate("text",
+    x = 3, y = 1.5,
+    label = "maximum tested\nSF", color =
+      sm_color("red")
+  )
 ```
 
 If you use `sm_CSF()`, you will get the same plot, but this plot only has a x-range from the minimum and maximum values of the spatial frequency within the `SpatialFreq` column of `ACh1`. You might get some warning messages after the running the example code below but you can ignore them altogether.
@@ -150,8 +160,8 @@ If you use `sm_CSF()`, you will get the same plot, but this plot only has a x-ra
 ACh1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF() +
   sm_hgrid() +
-  scale_x_log10(limits = c(min(grid$x),max(grid$x))) +
-  scale_y_log10(limits = c(min(grid$y), max(grid$y)), breaks = c(1,3,10,30)) 
+  scale_x_log10(limits = c(min(grid$x), max(grid$x))) +
+  scale_y_log10(limits = c(min(grid$y), max(grid$y)), breaks = c(1, 3, 10, 30))
 ```
 
 From the first plot, it is visually clear that at about 31 c/deg, the linear sensitivity approaches 1 (i.e., log-sensitivity = 0). We can also directly see the fitted values in the `grid` data frame and confirm our qualitative observation.
@@ -166,9 +176,11 @@ Another highlight of the **smCSF** package is the function `sm_ribbonCSF()`, whi
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 ACh1 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
-  sm_ribbonCSF(aes(ymin = avgSens - stdDevSens,
-                   ymax = avgSens + stdDevSens)) +
-  sm_CSF() + 
+  sm_ribbonCSF(aes(
+    ymin = avgSens - stdDevSens,
+    ymax = avgSens + stdDevSens
+  )) +
+  sm_CSF() +
   sm_hgrid()
 ```
 
@@ -181,8 +193,10 @@ The upper fit of the CSF is created using values from `ymax = avgSens + stdDevSe
 Let's recreate the plot above using only `sm_CSF()` and without `sm_ribbonCSF()`. To do so, we will need to create two more columns `ymin` and `ymax`.
 
 ```{r}
-ACh2 <- ACh1 %>% mutate(ymin = avgSens - stdDevSens,
-                        ymax = avgSens + stdDevSens)
+ACh2 <- ACh1 %>% mutate(
+  ymin = avgSens - stdDevSens,
+  ymax = avgSens + stdDevSens
+)
 ACh2
 ```
 
@@ -191,9 +205,9 @@ The code below will generate warning messages but these are trivial, so you can 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F, message = F}
 ACh2 %>% ggplot(aes(x = SpatialFreq, y = avgSens)) +
   sm_CSF() +
-  sm_CSF(aes(x = SpatialFreq, y = ymin), linetype = 'dashed') +
-  sm_CSF(aes(x = SpatialFreq, y = ymax), linetype = 'dashed') +
-  sm_hgrid() 
+  sm_CSF(aes(x = SpatialFreq, y = ymin), linetype = "dashed") +
+  sm_CSF(aes(x = SpatialFreq, y = ymax), linetype = "dashed") +
+  sm_hgrid()
 ```
 
 We now have recreated the same plot without using `sm_ribbonCSF()`.
@@ -219,11 +233,13 @@ ACh
 - `param_lowLimit` = This argument should be a vector that contains the lower bounds of the four parameters (peak gain, peak spatial frequency, bandwidth and truncation value) of the log-truncated CSF model. This argument is not required because the default has been set to `log10(c(2, 0.2, 1, 0.02))`. 
 
 ```{r}
-params_df <- sm_params_list(subjects = 'Subject', 
-                          conditions = 'Repetition',
-                          x = 'SpatialFreq', 
-                          values = 'Sensitivity', 
-                          data = ACh)
+params_df <- sm_params_list(
+  subjects = "Subject",
+  conditions = "Repetition",
+  x = "SpatialFreq",
+  values = "Sensitivity",
+  data = ACh
+)
 
 head(params_df[[1]])
 params_df[[2]]
@@ -237,102 +253,136 @@ params_df[[2]]
 Here is a visual representation of the parameters. The contrast sensitivity function has been drawn with the four parameters that have been obtained from the `ACh` data set. The four parameters have been used to draw the contrast sensitivity function all the way to 30 c/deg. As an exercise, the reader can produce the example below. This plot has been entirely drawn with R, including the arrow and text annotations.
 
 ```{r, echo = FALSE, message = FALSE}
-grid <- data.frame(x = seq(min(ACh1$SpatialFreq),31, length = 5000))
+grid <- data.frame(x = seq(min(ACh1$SpatialFreq), 31, length = 5000))
 
-grid$y <- 10^sm_findQCSF(log10(grid$x), 
-                         params[[1]], params[[2]],
-                         params[[3]], params[[4]])
+grid$y <- 10^sm_findQCSF(
+  log10(grid$x),
+  params[[1]], params[[2]],
+  params[[3]], params[[4]]
+)
 ```
 
 ```{r, echo = FALSE, message = FALSE, fig.width = 3.5, fig.height = 3.5, warning = F}
 ind <- which(grid$y == max(grid$y))
 peak_sens <- data.frame(x = grid$x[ind], y = grid$y[ind])
-half_ind1 <- which(round(grid$y,1) == 16.4)[[1]]
-half_ind2 <- which(round(grid$y,1) == 16.4)[[2]]
-half_ind <- c(half_ind1,half_ind2)
+half_ind1 <- which(round(grid$y, 1) == 16.4)[[1]]
+half_ind2 <- which(round(grid$y, 1) == 16.4)[[2]]
+half_ind <- c(half_ind1, half_ind2)
 cutoff_sf <- data.frame(x = 30.97, y = 1)
 
 half_sens <- data.frame(x = grid$x[half_ind], y = grid$y[half_ind])
 grid %>% ggplot(aes(x = x, y = y)) +
-  geom_segment(data = half_sens, aes(xend = 1, yend = y),
-               linetype = 'dashed', color = 'gray60',
-               size = 0.75) +
+  geom_segment(
+    data = half_sens, aes(xend = 1, yend = y),
+    linetype = "dashed", color = "gray60",
+    size = 0.75
+  ) +
   geom_line(size = 1) +
-  scale_x_continuous(trans = 'log10') +
-  scale_y_continuous(trans = 'log10') +
+  scale_x_continuous(trans = "log10") +
+  scale_y_continuous(trans = "log10") +
   sm_hgrid() +
-  annotate('segment', x = peak_sens$x, y = peak_sens$y,
-           xend = peak_sens$x, yend = 1,
-           arrow = arrow(type = 'closed', length = unit(0.04, 'npc'))) +
-  geom_point(data = peak_sens, color = sm_color('red'), size = 3) +
-  annotate('segment', x = peak_sens$x, y = peak_sens$y,
-           xend = 0, yend = peak_sens$y,
-           arrow = arrow(type = 'closed', length = unit(0.04, 'npc')),
-           color = sm_color('red')) +
-  scale_y_log10(limits = c(1,100)) +
-  annotate('text', x = peak_sens$x, y = peak_sens$y+20,
-           label = 'Peak gain (sensitivity)',
-           color = sm_color('red')) +
-  annotate('text', x = 3.8, y = 1.5, label = 'Peak SF') +
-  annotate('text', x = 3.8, y = 8, label = 'Bandwidth',
-           color = 'gray60') +
-  xlab('Spatial frequency (c/deg)') +
-  ylab('Contrast sensitivity') +
-  ggtitle('Parameters of the CSF') +
-  annotate('text', x = 18, y = grid$y[half_ind][[1]], 
-           label = 'Half of \npeak gain',
-           color = 'gray60') +
-  geom_point(data = cutoff_sf, color = sm_color('orange'),
-             size = 3) +
-  annotate('text', x = 26, y = 4, 
-           label = 'Cutoff\nSF', color = sm_color('orange'))
+  annotate("segment",
+    x = peak_sens$x, y = peak_sens$y,
+    xend = peak_sens$x, yend = 1,
+    arrow = arrow(type = "closed", length = unit(0.04, "npc"))
+  ) +
+  geom_point(data = peak_sens, color = sm_color("red"), size = 3) +
+  annotate("segment",
+    x = peak_sens$x, y = peak_sens$y,
+    xend = 0, yend = peak_sens$y,
+    arrow = arrow(type = "closed", length = unit(0.04, "npc")),
+    color = sm_color("red")
+  ) +
+  scale_y_log10(limits = c(1, 100)) +
+  annotate("text",
+    x = peak_sens$x, y = peak_sens$y + 20,
+    label = "Peak gain (sensitivity)",
+    color = sm_color("red")
+  ) +
+  annotate("text", x = 3.8, y = 1.5, label = "Peak SF") +
+  annotate("text",
+    x = 3.8, y = 8, label = "Bandwidth",
+    color = "gray60"
+  ) +
+  xlab("Spatial frequency (c/deg)") +
+  ylab("Contrast sensitivity") +
+  ggtitle("Parameters of the CSF") +
+  annotate("text",
+    x = 18, y = grid$y[half_ind][[1]],
+    label = "Half of \npeak gain",
+    color = "gray60"
+  ) +
+  geom_point(
+    data = cutoff_sf, color = sm_color("orange"),
+    size = 3
+  ) +
+  annotate("text",
+    x = 26, y = 4,
+    label = "Cutoff\nSF", color = sm_color("orange")
+  )
 ```
 
 ```{r, echo = FALSE, message = FALSE, fig.width = 3.5, fig.height = 3.5, warning = F}
 ind <- which(grid$y == max(grid$y))
 peak_sens <- data.frame(x = grid$x[ind], y = grid$y[ind])
-half_ind1 <- which(round(grid$y,1) == 16.4)[[1]]
-half_ind2 <- which(round(grid$y,1) == 16.4)[[2]]
-half_ind <- c(half_ind1,half_ind2)
+half_ind1 <- which(round(grid$y, 1) == 16.4)[[1]]
+half_ind2 <- which(round(grid$y, 1) == 16.4)[[2]]
+half_ind <- c(half_ind1, half_ind2)
 cutoff_sf <- data.frame(x = 30.97, y = 1)
 
 half_sens <- data.frame(x = grid$x[half_ind], y = grid$y[half_ind])
 grid %>% ggplot(aes(x = x, y = y)) +
-  geom_segment(data = half_sens, aes(xend = 1, yend = y),
-               linetype = 'dashed', color = 'gray60',
-               size = 0.75) +
+  geom_segment(
+    data = half_sens, aes(xend = 1, yend = y),
+    linetype = "dashed", color = "gray60",
+    size = 0.75
+  ) +
   geom_line(size = 1) +
-  scale_x_continuous(trans = 'log10') +
-  scale_y_continuous(trans = 'log10') +
+  scale_x_continuous(trans = "log10") +
+  scale_y_continuous(trans = "log10") +
   sm_hgrid() +
-  annotate('segment', x = peak_sens$x, y = peak_sens$y,
-           xend = peak_sens$x, yend = 1,
-           arrow = arrow(type = 'closed', length = unit(0.04, 'npc'))) +
-  geom_point(data = peak_sens, color = sm_color('red'), size = 3) +
-  annotate('segment', x = peak_sens$x, y = peak_sens$y,
-           xend = 0, yend = peak_sens$y,
-           arrow = arrow(type = 'closed', length = unit(0.04, 'npc')),
-           color = sm_color('red')) +
-  scale_y_log10(limits = c(1,100)) +
-  annotate('text', x = peak_sens$x, y = peak_sens$y+20,
-           label = 'Peak gain (sensitivity)',
-           color = sm_color('red')) +
-  annotate('text', x = 3.8, y = 1.5, label = 'Peak SF') +
-  annotate('text', x = 3.8, y = 8, label = 'Bandwidth',
-           color = 'gray60') +
-  xlab('Spatial frequency (c/deg)') +
-  ylab('Contrast sensitivity') +
-  ggtitle('Parameters of the CSF') +
-  annotate('text', x = 18, y = grid$y[half_ind][[1]], 
-           label = 'Half of \npeak gain',
-           color = 'gray60') +
-  geom_point(data = cutoff_sf, color = sm_color('orange'),
-             size = 3) +
-  annotate('text', x = 26, y = 4, 
-           label = 'Cutoff\nSF', color = sm_color('orange')) -> param_plot
+  annotate("segment",
+    x = peak_sens$x, y = peak_sens$y,
+    xend = peak_sens$x, yend = 1,
+    arrow = arrow(type = "closed", length = unit(0.04, "npc"))
+  ) +
+  geom_point(data = peak_sens, color = sm_color("red"), size = 3) +
+  annotate("segment",
+    x = peak_sens$x, y = peak_sens$y,
+    xend = 0, yend = peak_sens$y,
+    arrow = arrow(type = "closed", length = unit(0.04, "npc")),
+    color = sm_color("red")
+  ) +
+  scale_y_log10(limits = c(1, 100)) +
+  annotate("text",
+    x = peak_sens$x, y = peak_sens$y + 20,
+    label = "Peak gain (sensitivity)",
+    color = sm_color("red")
+  ) +
+  annotate("text", x = 3.8, y = 1.5, label = "Peak SF") +
+  annotate("text",
+    x = 3.8, y = 8, label = "Bandwidth",
+    color = "gray60"
+  ) +
+  xlab("Spatial frequency (c/deg)") +
+  ylab("Contrast sensitivity") +
+  ggtitle("Parameters of the CSF") +
+  annotate("text",
+    x = 18, y = grid$y[half_ind][[1]],
+    label = "Half of \npeak gain",
+    color = "gray60"
+  ) +
+  geom_point(
+    data = cutoff_sf, color = sm_color("orange"),
+    size = 3
+  ) +
+  annotate("text",
+    x = 26, y = 4,
+    label = "Cutoff\nSF", color = sm_color("orange")
+  ) -> param_plot
 
-cowplot::save_plot('param_CSF.png', param_plot, base_asp = 1)
-cowplot::save_plot('param_CSF.pdf', param_plot, base_asp = 1)
+cowplot::save_plot("param_CSF.png", param_plot, base_asp = 1)
+cowplot::save_plot("param_CSF.pdf", param_plot, base_asp = 1)
 ```
 
 
@@ -344,24 +394,28 @@ As in the previous chapter, let's make some fake data with `ACh`. This new data 
 
 ```{r}
 ACh$Repetition <- factor(ACh$Repetition)
-ACh3 <- ACh %>% mutate(BeforeAfter = fct_recode(Repetition,
-                                        'Before' = '1',
-                                        'After' = '2')) %>%
+ACh3 <- ACh %>%
+  mutate(BeforeAfter = fct_recode(Repetition,
+    "Before" = "1",
+    "After" = "2"
+  )) %>%
   select(-Repetition)
 
 set.seed(33)
-ind <- which(ACh3$BeforeAfter == 'After')
-ACh3[ind,]$Sensitivity <- ACh3[ind,]$Sensitivity + abs(rnorm(length(ind), 31, 35))
+ind <- which(ACh3$BeforeAfter == "After")
+ACh3[ind, ]$Sensitivity <- ACh3[ind, ]$Sensitivity + abs(rnorm(length(ind), 31, 35))
 ```
 
 Now let's calculate five parameters using `sm_params_list()`.
 
 ```{r}
-params_df <- sm_params_list(subjects = 'Subject', 
-                          conditions = 'BeforeAfter',
-                          x = 'SpatialFreq', 
-                          values = 'Sensitivity', 
-                          data = ACh3)
+params_df <- sm_params_list(
+  subjects = "Subject",
+  conditions = "BeforeAfter",
+  x = "SpatialFreq",
+  values = "Sensitivity",
+  data = ACh3
+)
 
 head(params_df[[1]])
 ```
@@ -369,7 +423,7 @@ head(params_df[[1]])
 Let's store the results of cut-off spatial frequency in a new variable `cut_sf` along with `Subject` and `BeforeAfter` columns.
 
 ```{r}
-cut_sf <- params_df[[1]][c(1,2,7)]
+cut_sf <- params_df[[1]][c(1, 2, 7)]
 head(cut_sf)
 ```
 
@@ -385,12 +439,14 @@ head(cut_sf)
 Notice that we have created a new column entitled `linCutOff`. We will now plot the values from the column, as shown below.
 
 ```{r,fig.width = 3.5, fig.height=3.5,warning = F}
-cut_sf %>% ggplot(aes(x = BeforeAfter, y = linCutOff,
-                        color = BeforeAfter)) +
-  sm_bar(point.params = list(alpha=0.3, size=2)) +
+cut_sf %>% ggplot(aes(
+  x = BeforeAfter, y = linCutOff,
+  color = BeforeAfter
+)) +
+  sm_bar(point.params = list(alpha = 0.3, size = 2)) +
   scale_color_manual(values = sm_palette(2)) +
-  scale_y_continuous(trans = 'log10') +
-  ggtitle('Cut-off spatial frequency') +
-  ylab('Cut-off SF (c/deg)') +
-  xlab('Before/after treatment') 
+  scale_y_continuous(trans = "log10") +
+  ggtitle("Cut-off spatial frequency") +
+  ylab("Cut-off SF (c/deg)") +
+  xlab("Before/after treatment")
 ```

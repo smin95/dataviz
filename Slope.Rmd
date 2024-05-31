@@ -21,7 +21,7 @@ It is always a good habit to make sure that the data set you intended to load up
 library(tidyverse)
 library(smplot2)
 library(cowplot)
-df <- read_csv('https://www.smin95.com/amblyopia_random.csv') 
+df <- read_csv("https://www.smin95.com/amblyopia_random.csv")
 head(df)
 ```
 
@@ -72,13 +72,13 @@ Linear relationship between $x$ and $y$ can be described as $y = mx + b$, where 
 Let's try calculate $m$ and $b$ using the data of `A3`, which is the 3rd amblyopic observer.
 
 ```{r}
-A3 <- df %>% filter(Subject == 'A3')
+A3 <- df %>% filter(Subject == "A3")
 ```
 
 There are two conditions here. Let's filter for data from the second condition only (`Condition == Two`).
 
 ```{r}
-A3_second <- A3 %>% filter(Condition == 'Two')
+A3_second <- A3 %>% filter(Condition == "Two")
 ```
 
 Now, we will use the function `lm()` to compute $m$ (slope) and $b$ (y-intercept).
@@ -134,14 +134,20 @@ y_int <- data.frame(logSF = 0, absBP = res$coefficients[[1]])
 
 A3_second %>% ggplot(aes(x = logSF, y = absBP)) +
   geom_point(size = 3) +
-  geom_abline(slope = res$coefficients[[2]], 
-              intercept = res$coefficients[[1]]) +
-  geom_point(data = y_int, color = sm_color('red'), size = 3) +
+  geom_abline(
+    slope = res$coefficients[[2]],
+    intercept = res$coefficients[[1]]
+  ) +
+  geom_point(data = y_int, color = sm_color("red"), size = 3) +
   sm_hvgrid() +
-  annotate('text', x = 0, y = 1.2, size = 3.5,
-           label = paste('Slope =',round(res$coefficients[[2]],2))) +
-  annotate('text', x = 0, y = 0.9, size = 3.5,
-           label = paste('Intercept =', round(res$coefficients[[1]],2)))
+  annotate("text",
+    x = 0, y = 1.2, size = 3.5,
+    label = paste("Slope =", round(res$coefficients[[2]], 2))
+  ) +
+  annotate("text",
+    x = 0, y = 0.9, size = 3.5,
+    label = paste("Intercept =", round(res$coefficients[[1]], 2))
+  )
 ```
 
 In summary, you can compute the slope of a linear function between $y$ and $x$ and using `lm()`, where you use `~` to describe the relationship. You also need to use `$` to subset the slopes directly. 
@@ -170,7 +176,7 @@ Before using `sm_slope_all()`, you will need to check for a few things. First, c
 
 ```{r}
 # check if the x column is numeric
-is.numeric(df$logSF) 
+is.numeric(df$logSF)
 
 # check if the x column is factor
 is.factor(df$logSF)
@@ -183,11 +189,13 @@ df$logSF <- as.numeric(df$logSF)
 After checking, we can store the results from `sm_slope_all()` into a new variable. I will call the new variable `slope_df`.
 
 ```{r}
-slope_df <- sm_slope_all(subjects = 'Subject', 
-                          conditions = 'Condition',
-                          groups = 'Group',
-                          x = 'logSF', values = 'absBP', 
-                          data = df)
+slope_df <- sm_slope_all(
+  subjects = "Subject",
+  conditions = "Condition",
+  groups = "Group",
+  x = "logSF", values = "absBP",
+  data = df
+)
 
 slope_df
 ```
@@ -195,11 +203,12 @@ slope_df
 We see that the slope of A3 in `Two` condition is identical to the one we have obtained from the `lm()` function.
 
 ```{r}
-res$coefficients[[2]] 
+res$coefficients[[2]]
 ```
 
 ```{r}
-slope_df %>% filter(Subject == 'A3' & Condition == 'Two') %>%
+slope_df %>%
+  filter(Subject == "A3" & Condition == "Two") %>%
   select(Slope)
 ```
 
@@ -209,9 +218,10 @@ The factor level of `slope_df_one$Group` is changed below so that bar plot of no
 
 
 ```{r}
-slope_df_one <- slope_df %>% filter(Condition == 'One')
-slope_df_one$Group <- factor(slope_df_one$Group, 
-                             levels = c('Normal','Amblyopia'))
+slope_df_one <- slope_df %>% filter(Condition == "One")
+slope_df_one$Group <- factor(slope_df_one$Group,
+  levels = c("Normal", "Amblyopia")
+)
 ```
 
 
@@ -219,18 +229,22 @@ Here is a boxplot showing `slope_df_one`'s data.
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 slope_df_one %>% ggplot(mapping = aes(x = Group, y = Slope, color = Group)) +
-  sm_boxplot(alpha = 0.6,
-             point.params = list(size = 2.2, 
-                                 alpha = 0.6)) + 
+  sm_boxplot(
+    alpha = 0.6,
+    point.params = list(
+      size = 2.2,
+      alpha = 0.6
+    )
+  ) +
   scale_color_manual(values = sm_palette(2)) +
-  ggtitle('Binocular imbalance')
+  ggtitle("Binocular imbalance")
 ```
 
 Here is a bar graph showing `slope_df`'s data for `One` condition only. This figure is similar to Figure 3B in the paper (Mao et al., 2020).
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 slope_df_one %>% ggplot(aes(x = Group, y = Slope, color = Group)) +
-   sm_bar(shape = 21) +
+  sm_bar(shape = 21) +
   scale_color_manual(values = sm_palette(2)) +
-  ggtitle('Binocular imbalance')
+  ggtitle("Binocular imbalance")
 ```
