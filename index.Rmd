@@ -198,7 +198,7 @@ The codes of the figures in the report are [**here**](https://www.smin95.com/dat
 
 Here is the reference for the **smCSF** package (Chapters 13-16):
 
-**Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). *Investigative Ophthalmology and Visual Science*.**
+**Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). *Investigative Ophthalmology and Visual Science*.** [**pdf**](https://www.smin95.com/pubs/min2024.pdf)
 
 ## Installation of smplot2 {-}
 [![](http://cranlogs.r-pkg.org/badges/grand-total/smplot2?color=green)](https://cran.r-project.org/package=smplot2)
