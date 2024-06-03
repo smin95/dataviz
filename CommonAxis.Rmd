@@ -627,7 +627,7 @@ These inputs are automatically optimized (or adjusted) as default if the user do
 
 5. `tickRatio`: controls the relative text size of the tick labels on both axes of the outer panels in the composite plot.
 
-However, is possible that the optimization is not perfect because the current algorithm is quite simple and does not foresee all possible plotting situations. **So, users are encouraged to modify these arguments using values from 1.1 to 1.4**. 
+However, it is possible that the optimization might not yield the best composite output, especially if users change the font sizes and because I cannot simply anticipate all possible plotting situations. **So, users are encouraged to modify these arguments using values from 1.1 to 1.4**. 
 
 ```{r, echo=FALSE, fig.align = 'center'}
 knitr::include_graphics("together4.png")
@@ -877,6 +877,6 @@ save_plot("low_tr.png", low_tr_tgd2,
 
 
 
-```{r, fig.align = 'center', echo=F}
+```{r, fig.align = 'center', echo=F,  out.width = '85%'}
 knitr::include_graphics("low_tr.png")
 ```
