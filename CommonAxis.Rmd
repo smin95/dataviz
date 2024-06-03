@@ -772,13 +772,13 @@ ncol <- 5
 nrow <- 4
 numPanels <- ncol * nrow
 subj_list <- paste0("S", 1:10)
-
+i <- 0
 figs_mosaic <- lapply(1:numPanels, function(iPlot) {
   if (iPlot %% 2 == 0) {
     ggplot(NULL) +
       sm_common_legend() # empty panel
   } else if (iPlot %% 2 == 1) {
-    i <- iPlot %/% 2 + 1
+    i <<- i + 1
     df_subj <- df %>% filter(Subject == subj_list[[i]])
     ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) +
       geom_point(size = 4.5) +
@@ -815,6 +815,71 @@ save_plot("mosaic.png", mosaic_tgd1,
 )
 ```
 
+
 ```{r, fig.align = 'center', echo=F}
 knitr::include_graphics("mosaic.png")
+```
+
+
+In this last example, we will organize the subplots using the configuration of a lower triangular matrix.
+
+```{r, warning=FALSE, message=FALSE}
+ncol <- 4
+nrow <- 4
+numPanels <- ncol * nrow
+subj_list <- paste0("S", 1:10)
+i <- 0
+low_triangle <- lapply(1:numPanels, function(iPlot) {
+
+  if (iPlot %in% c(2, 3, 4, 7, 8, 12)) {
+    ggplot(NULL) +
+      sm_common_legend() # empty panel
+  } else {
+    i <<- i + 1
+    df_subj <- df %>% filter(Subject == subj_list[[i]])
+    ggplot(data = df_subj, aes(x = Time, y = Cbratio, color = Day)) +
+      geom_point(size = 4.5) +
+      geom_smooth(method = "lm", se = F, size = 0.9) +
+      # lm = linear regression method
+      scale_x_continuous(
+        breaks = unique(df$Time),
+        labels = c("0", "3", "6", "12", "24", "48")
+      ) +
+      sm_hgrid() +
+      scale_color_manual(values = sm_color("blue", "orange")) +
+      scale_y_continuous(limits = c(-3, 5.5))
+  }
+})
+
+# Combine the subplots
+low_tr_tgd <- sm_put_together(low_triangle,
+  title = "Low triangle of individual data",
+  xlabel = "Minutes after monocular deprivation",
+  ylabel = "\u0394 Contrast balance ratio (dB)",
+  labelRatio = 0.95, ncol = ncol, nrow = nrow, hmargin = -5, wmargin = -5
+)
+
+# Add legend
+
+low_tr_tgd1 <- sm_add_legend(low_tr_tgd, x = 0.89, y = 0.35, legend = legend)
+
+# Add annotation
+low_tr_tgd2 <- low_tr_tgd1 + sm_add_text("Programmatic approach",
+  alpha = 0.5, x = 0.7, y = 0.65,
+  color = "black", size = 48, angle = 315,
+  fontface = "bold"
+)
+
+# Save figure
+
+save_plot("low_tr.png", low_tr_tgd2,
+  ncol = ncol, nrow = nrow,
+  base_height = 3.4, base_width = 3
+)
+```
+
+
+
+```{r, fig.align = 'center', echo=F}
+knitr::include_graphics("low_tr.png")
 ```
