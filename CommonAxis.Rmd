@@ -830,7 +830,6 @@ numPanels <- ncol * nrow
 subj_list <- paste0("S", 1:10)
 i <- 0
 low_triangle <- lapply(1:numPanels, function(iPlot) {
-
   if (iPlot %in% c(2, 3, 4, 7, 8, 12)) {
     ggplot(NULL) +
       sm_common_legend() # empty panel
@@ -860,7 +859,6 @@ low_tr_tgd <- sm_put_together(low_triangle,
 )
 
 # Add legend
-
 low_tr_tgd1 <- sm_add_legend(low_tr_tgd, x = 0.89, y = 0.35, legend = legend)
 
 # Add annotation
@@ -871,7 +869,6 @@ low_tr_tgd2 <- low_tr_tgd1 + sm_add_text("Programmatic approach",
 )
 
 # Save figure
-
 save_plot("low_tr.png", low_tr_tgd2,
   ncol = ncol, nrow = nrow,
   base_height = 3.4, base_width = 3
