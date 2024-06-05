@@ -13,7 +13,7 @@ knitr::opts_chunk$set(cache = FALSE)
 
 # Welcome! {-#index}
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 7.4, fig.height= 18}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 7, fig.height= 10.95, fig.align = 'center'}
 library(tidyverse)
 library(cowplot)
 library(smplot2)
@@ -109,11 +109,11 @@ df1a %>%
 all <- sm_put_together(list(bar, raincloud, slope, slope_avg, raincloud2, shadow),
                 ncol = 2, nrow = 3, remove_ticks = 'none', tickRatio = 1, panel_scale = 0.95)
 
-ggsave("all.png", all, height = 10.95, width = 7, dpi = 300)
-
+#ggsave("all.png", all, height = 10.95, width = 7, dpi = 300)
+all
 ```
 ```{r,fig.align = 'center', echo=F, out.width = '90%',  fig.cap="Standalone plots created with smplot2. Visit chapters 3-6 for more information."}
-knitr::include_graphics("all.png")
+#knitr::include_graphics("all.png")
 ```
 ```{r,fig.align = 'center', echo=F,  out.width = '85%', fig.cap="A composite plot generated with smplot2. For more details about creating and annotating a composite figure using programmatic constructs and smplot2, please check out Chapter 7."}
 knitr::include_graphics("low_tr.png")
