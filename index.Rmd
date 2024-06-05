@@ -13,7 +13,7 @@ knitr::opts_chunk$set(cache = FALSE)
 
 # Welcome! {-#index}
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 7, fig.height= 10.95, fig.align = 'center'}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width = 7, fig.height= 10.95, fig.align = 'center', fig.cap="Standalone plots created with smplot2. Visit chapters 3-6 for more information."}
 library(tidyverse)
 library(cowplot)
 library(smplot2)
