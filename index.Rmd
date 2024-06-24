@@ -118,25 +118,26 @@ all
 knitr::include_graphics("low_tr.png")
 ```
 
-This book (https://smin95.github.io/dataviz) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package **smplot2**, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. The secondary link of the e-book is: https://smin95.com/dataviz. 
+This guide (https://smin95.github.io/dataviz) aims to familiarize the reader with R, a programming language, for data visualization. It also introduces the R package **smplot2**, which aims to make the process of data visualization simple. This guide was created entirely using RMarkdown for reproducibility. The secondary link of the guide is: https://smin95.com/dataviz. 
 
-The old website (on **smplot**) can be accessed using this link (https://smin95.com/dataviz0).
+The archived website on **smplot** can be accessed using this link (https://smin95.com/dataviz0).
 
-## References {-}
+## Citing the guide and my packages {-}
 
-Here is the only (and slightly outdated) reference for **smplot2**:
+I have spent considerable time and effort on launching this guide and building/maintaining the packages. I would appreciate if you could cite a relevant reference if you used the guide and my packages for your visualization routines.
 
-**Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). *Frontiers in Genetics*, 12:802894.** [**pdf**](https://www.smin95.com/pubs/smplot2021.pdf)
+For **smplot2**:
 
-The codes of the figures in the report are [**here**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html) but these depend on *smplot*, not *smplot2*. 
+**Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). *Frontiers in Genetics*, 12:802894.** [**[pdf]**](https://www.smin95.com/pubs/smplot2021.pdf) [**[codes]**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html)
 
-Here is the reference for the **smCSF** package (Chapters 13-16):
 
-**Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). *Investigative Ophthalmology and Visual Science*.** [**pdf**](https://www.smin95.com/pubs/min2024.pdf)
+For **smCSF** (Chapters 13-16):
+
+**Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). *Investigative Ophthalmology and Visual Science*.** [**[pdf]**](https://www.smin95.com/pubs/min2024.pdf)
 
 ## Installation of smplot2 {-}
 [![](http://cranlogs.r-pkg.org/badges/grand-total/smplot2?color=green)](https://cran.r-project.org/package=smplot2)
-[![](https://cranlogs.r-pkg.org/badges/smplot2?color=green)](https://cran.r-project.org/package=smplot2) [![](https://img.shields.io/badge/devel%20version-0.2.3.1-black.svg)](https://github.com/smin95/smplot2) [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/smplot2?color=green)](https://CRAN.R-project.org/package=smplot2) 
+[![](https://cranlogs.r-pkg.org/badges/smplot2?color=green)](https://cran.r-project.org/package=smplot2) [![](https://img.shields.io/badge/devel%20version-0.2.4-black.svg)](https://github.com/smin95/smplot2) [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/smplot2?color=green)](https://CRAN.R-project.org/package=smplot2) 
 
 In April 2024, *smplot2* joined the **CRAN** repository. Please install using `install.packages()` for the most stable version.
 
@@ -152,7 +153,7 @@ devtools::install_github('smin95/smplot2',force = T)
 ```
 
 ## Issues and contact {-}
-If you spot any mistakes in this online book, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the *smplot2* package, please pull-request on [Github](https://github.com/smin95/smplot2).
+If you spot any mistakes in the guide, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the *smplot2* package, please pull-request on [Github](https://github.com/smin95/smplot2).
 
 ## License {-}
 This tutorial is under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). I am the sole creator of **smplot2**.

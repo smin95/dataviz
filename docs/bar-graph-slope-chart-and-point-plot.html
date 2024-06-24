@@ -141,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#references"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#citing-the-guide-and-my-packages"><i class="fa fa-check"></i>Citing the guide and my packages</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#installation-of-smplot2"><i class="fa fa-check"></i>Installation of smplot2</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
@@ -153,6 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="opening-remarks-news.html"><a href="opening-remarks-news.html#how-to-use-this-guide"><i class="fa fa-check"></i><b>1.2</b> How to use this guide</a></li>
 <li class="chapter" data-level="1.3" data-path="opening-remarks-news.html"><a href="opening-remarks-news.html#news"><i class="fa fa-check"></i><b>1.3</b> News</a>
 <ul>
+<li class="chapter" data-level="" data-path="opening-remarks-news.html"><a href="opening-remarks-news.html#version-0.2.4"><i class="fa fa-check"></i>2024-06-24: Version 0.2.4</a></li>
 <li class="chapter" data-level="" data-path="opening-remarks-news.html"><a href="opening-remarks-news.html#version-0.2.3"><i class="fa fa-check"></i>2024-05-29: Version 0.2.3</a></li>
 </ul></li>
 </ul></li>
@@ -1156,7 +1157,7 @@ flexibly.
 <span id="cb211-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb211-2" tabindex="-1"></a>df2b<span class="sc">$</span>SF <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df2b<span class="sc">$</span>SF)</span>
 <span id="cb211-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb211-3" tabindex="-1"></a><span class="fu">unique</span>(df2b<span class="sc">$</span>Group)</span></code></pre></div>
 <pre><code>## [1] &quot;Amblyopia&quot; &quot;Normal&quot;</code></pre>
-<p>After confirming that we have successfully filtered the data, we can plot the data of the two groups with a shadow for each group.</p>
+<p>After confirming that we have successfully filtered the data, we can plot the data of the two groups with a shadow for each group. The default color of the shadow is <code>gray</code>, and this needs to be forgotten by setting <code>forget = TRUE</code> so that we can assign unique shadow color to each group. The alpha level is set to 0.12 for the lines and points of the shadow.</p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-1" tabindex="-1"></a><span class="fu">ggplot</span>(df2b, <span class="fu">aes</span>(</span>
 <span id="cb213-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-2" tabindex="-1"></a>  <span class="at">x =</span> SF, <span class="at">y =</span> absBP,</span>
 <span id="cb213-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-3" tabindex="-1"></a>  <span class="at">color =</span> Group, <span class="at">group =</span> Group</span>
@@ -1165,10 +1166,11 @@ flexibly.
 <span id="cb213-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-6" tabindex="-1"></a>    <span class="at">group =</span> Subject, <span class="at">show_shadow =</span> T,</span>
 <span id="cb213-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-7" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
 <span id="cb213-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-8" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.08</span>),</span>
-<span id="cb213-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
-<span id="cb213-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.6</span>)</span>
-<span id="cb213-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb213-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-12" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
+<span id="cb213-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb213-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb213-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-11" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
+<span id="cb213-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb213-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-13" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-184-1.png" width="336" /></p>
 <p>This is a point plot that includes everything we have learned thus far, such as <code>position_dodge()</code>, the importance of generic paramter <code>...</code>, inclusion of a shadow <code>show_shadow = T</code>, and using two <code>group</code> arguments (one for the average plot, one for the individual points for the shadow).</p>
 </div>
@@ -1183,11 +1185,12 @@ flexibly.
 <span id="cb214-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-6" tabindex="-1"></a>    <span class="at">group =</span> Subject, <span class="at">show_shadow =</span> T,</span>
 <span id="cb214-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-7" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
 <span id="cb214-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-8" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.08</span>),</span>
-<span id="cb214-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
-<span id="cb214-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
-<span id="cb214-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-11" tabindex="-1"></a>    <span class="at">legends =</span> <span class="cn">TRUE</span></span>
-<span id="cb214-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb214-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-13" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
+<span id="cb214-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb214-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb214-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-11" tabindex="-1"></a>    <span class="at">legends =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb214-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-12" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
+<span id="cb214-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb214-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-14" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-185-1.png" width="460.8" /></p>
 <p>We can move the legend to the topleft part of the plot that has most empty space using <code>theme(legend.position = ...)</code>. Also, the title of the legend can be removed with <code>theme(legend.title = element_blank</code>)</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-1" tabindex="-1"></a><span class="fu">ggplot</span>(df2b, <span class="fu">aes</span>(</span>
@@ -1198,15 +1201,16 @@ flexibly.
 <span id="cb215-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-6" tabindex="-1"></a>    <span class="at">group =</span> Subject, <span class="at">show_shadow =</span> T,</span>
 <span id="cb215-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-7" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
 <span id="cb215-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-8" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.08</span>),</span>
-<span id="cb215-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
-<span id="cb215-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
-<span id="cb215-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-11" tabindex="-1"></a>    <span class="at">legends =</span> <span class="cn">TRUE</span></span>
-<span id="cb215-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb215-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-13" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb215-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-14" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb215-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-15" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>, <span class="fl">0.80</span>), <span class="co"># position the legend&#39;s location</span></span>
-<span id="cb215-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-16" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb215-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-17" tabindex="-1"></a>  )</span></code></pre></div>
+<span id="cb215-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb215-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb215-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-11" tabindex="-1"></a>    <span class="at">legends =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb215-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-12" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
+<span id="cb215-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb215-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-14" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb215-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-15" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb215-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-16" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>, <span class="fl">0.80</span>), <span class="co"># position the legend&#39;s location</span></span>
+<span id="cb215-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-17" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb215-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-18" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-186-1.png" width="336" /></p>
 <p>Note that the legend includes horizontal and vertical lines around the plot. The vertical line represents the error bar, and the horizontal line represents the line that connects between the points at various x levels. The symbols in legend can be manually modified. In this case, I will remove the vertical error bar from the legend by writing <code>err.params = list(show.legend = FALSE)</code>.</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-1" tabindex="-1"></a><span class="fu">ggplot</span>(df2b, <span class="fu">aes</span>(</span>
@@ -1217,16 +1221,17 @@ flexibly.
 <span id="cb216-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-6" tabindex="-1"></a>    <span class="at">group =</span> Subject, <span class="at">show_shadow =</span> T,</span>
 <span id="cb216-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-7" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
 <span id="cb216-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-8" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.08</span>),</span>
-<span id="cb216-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
-<span id="cb216-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb216-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb216-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
 <span id="cb216-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-11" tabindex="-1"></a>    <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb216-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-12" tabindex="-1"></a>    <span class="at">legends =</span> <span class="cn">TRUE</span></span>
-<span id="cb216-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb216-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-14" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb216-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-15" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb216-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-16" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>, <span class="fl">0.80</span>),</span>
-<span id="cb216-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-17" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb216-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-18" tabindex="-1"></a>  )</span></code></pre></div>
+<span id="cb216-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-12" tabindex="-1"></a>    <span class="at">legends =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb216-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-13" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
+<span id="cb216-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-14" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb216-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-15" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb216-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-16" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb216-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-17" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>, <span class="fl">0.80</span>),</span>
+<span id="cb216-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-18" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb216-19"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-19" tabindex="-1"></a>  )</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-187-1.png" width="336" /></p>
 <p>You can also think about controlling the ratio of the figure when saving the figure. In this example, <code>base_height</code> and <code>base_width</code> are specifically controlled.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-1" tabindex="-1"></a><span class="fu">ggplot</span>(df2b, <span class="fu">aes</span>(</span>
@@ -1237,18 +1242,19 @@ flexibly.
 <span id="cb217-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-6" tabindex="-1"></a>    <span class="at">group =</span> Subject, <span class="at">show_shadow =</span> T,</span>
 <span id="cb217-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-7" tabindex="-1"></a>    <span class="at">size =</span> <span class="dv">1</span>,</span>
 <span id="cb217-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-8" tabindex="-1"></a>    <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.08</span>),</span>
-<span id="cb217-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
-<span id="cb217-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.25</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb217-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-9" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
+<span id="cb217-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-10" tabindex="-1"></a>    <span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.12</span>, <span class="at">size =</span> <span class="fl">0.6</span>),</span>
 <span id="cb217-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-11" tabindex="-1"></a>    <span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">show.legend =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb217-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-12" tabindex="-1"></a>    <span class="at">legends =</span> <span class="cn">TRUE</span></span>
-<span id="cb217-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb217-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-14" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb217-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-15" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb217-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-16" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>, <span class="fl">0.80</span>),</span>
-<span id="cb217-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-17" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
-<span id="cb217-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-18" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> pointplot</span>
-<span id="cb217-19"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-19" tabindex="-1"></a></span>
-<span id="cb217-20"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-20" tabindex="-1"></a><span class="fu">print</span>(pointplot)</span></code></pre></div>
+<span id="cb217-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-12" tabindex="-1"></a>    <span class="at">legends =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb217-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-13" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
+<span id="cb217-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-14" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb217-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-15" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb217-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-16" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb217-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-17" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>, <span class="fl">0.80</span>),</span>
+<span id="cb217-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-18" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb217-19"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-19" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> pointplot</span>
+<span id="cb217-20"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-20" tabindex="-1"></a></span>
+<span id="cb217-21"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-21" tabindex="-1"></a><span class="fu">print</span>(pointplot)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-188-1.png" width="384" /></p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb218-1" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;pointplot.png&quot;</span>, pointplot,</span>
 <span id="cb218-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb218-2" tabindex="-1"></a>  <span class="at">base_height =</span> <span class="fl">2.8</span>,</span>

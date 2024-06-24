@@ -924,7 +924,7 @@ df2b$SF <- as.factor(df2b$SF)
 unique(df2b$Group)
 ```
 
-After confirming that we have successfully filtered the data, we can plot the data of the two groups with a shadow for each group.
+After confirming that we have successfully filtered the data, we can plot the data of the two groups with a shadow for each group. The default color of the shadow is `gray`, and this needs to be forgotten by setting `forget = TRUE` so that we can assign unique shadow color to each group. The alpha level is set to 0.12 for the lines and points of the shadow.
 
 ```{r, fig.width = 3.5, fig.height = 3.5,warning = F}
 ggplot(df2b, aes(
@@ -935,8 +935,9 @@ ggplot(df2b, aes(
     group = Subject, show_shadow = T,
     size = 1,
     position = position_dodge(width = 0.08),
-    line.params = list(alpha = 0.2, size = 0.6),
-    point.params = list(alpha = 0.2, size = 0.6)
+    line.params = list(alpha = 0.12, size = 0.6),
+    point.params = list(alpha = 0.12, size = 0.6),
+    forget = TRUE
   ) +
   scale_color_manual(values = sm_color("darkred", "viridian"))
 ```
@@ -957,9 +958,10 @@ ggplot(df2b, aes(
     group = Subject, show_shadow = T,
     size = 1,
     position = position_dodge(width = 0.08),
-    line.params = list(alpha = 0.2, size = 0.6),
-    point.params = list(alpha = 0.2, size = 0.6),
-    legends = TRUE
+    line.params = list(alpha = 0.12, size = 0.6),
+    point.params = list(alpha = 0.12, size = 0.6),
+    legends = TRUE,
+    forget = TRUE
   ) +
   scale_color_manual(values = sm_color("darkred", "viridian"))
 ```
@@ -975,9 +977,10 @@ ggplot(df2b, aes(
     group = Subject, show_shadow = T,
     size = 1,
     position = position_dodge(width = 0.08),
-    line.params = list(alpha = 0.2, size = 0.6),
-    point.params = list(alpha = 0.2, size = 0.6),
-    legends = TRUE
+    line.params = list(alpha = 0.12, size = 0.6),
+    point.params = list(alpha = 0.12, size = 0.6),
+    legends = TRUE,
+    forget = TRUE
   ) +
   scale_color_manual(values = sm_color("darkred", "viridian")) +
   theme(
@@ -998,10 +1001,11 @@ ggplot(df2b, aes(
     group = Subject, show_shadow = T,
     size = 1,
     position = position_dodge(width = 0.08),
-    line.params = list(alpha = 0.2, size = 0.6),
-    point.params = list(alpha = 0.2, size = 0.6),
+    line.params = list(alpha = 0.12, size = 0.6),
+    point.params = list(alpha = 0.12, size = 0.6),
     err.params = list(show.legend = FALSE),
-    legends = TRUE
+    legends = TRUE,
+    forget = TRUE
   ) +
   scale_color_manual(values = sm_color("darkred", "viridian")) +
   theme(
@@ -1021,10 +1025,11 @@ ggplot(df2b, aes(
     group = Subject, show_shadow = T,
     size = 1,
     position = position_dodge(width = 0.08),
-    line.params = list(alpha = 0.25, size = 0.6),
-    point.params = list(alpha = 0.25, size = 0.6),
+    line.params = list(alpha = 0.12, size = 0.6),
+    point.params = list(alpha = 0.12, size = 0.6),
     err.params = list(show.legend = FALSE),
-    legends = TRUE
+    legends = TRUE,
+    forget = TRUE
   ) +
   scale_color_manual(values = sm_color("darkred", "viridian")) +
   theme(

@@ -37,6 +37,11 @@ With more than 300 examples, this documentation guide serves as a "gallery" of p
 packageVersion("smplot2") # Current version to run the website
 ```
 
+### 2024-06-24: Version 0.2.4 {-}
+
+- `sm_pointplot()` now also has `forget` argument. So, examples in Chapter 5.3.4 have been modified (or fixed).
+
+
 ### 2024-05-29: Version 0.2.3 {-}
 
 - Both $R$ and $R^2$ can be computed with `sm_statCorr()`.

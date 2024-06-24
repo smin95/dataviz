@@ -141,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#references"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#citing-the-guide-and-my-packages"><i class="fa fa-check"></i>Citing the guide and my packages</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#installation-of-smplot2"><i class="fa fa-check"></i>Installation of smplot2</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#issues-and-contact"><i class="fa fa-check"></i>Issues and contact</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
@@ -153,6 +153,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="opening-remarks-news.html"><a href="opening-remarks-news.html#how-to-use-this-guide"><i class="fa fa-check"></i><b>1.2</b> How to use this guide</a></li>
 <li class="chapter" data-level="1.3" data-path="opening-remarks-news.html"><a href="opening-remarks-news.html#news"><i class="fa fa-check"></i><b>1.3</b> News</a>
 <ul>
+<li class="chapter" data-level="" data-path="opening-remarks-news.html"><a href="opening-remarks-news.html#version-0.2.4"><i class="fa fa-check"></i>2024-06-24: Version 0.2.4</a></li>
 <li class="chapter" data-level="" data-path="opening-remarks-news.html"><a href="opening-remarks-news.html#version-0.2.3"><i class="fa fa-check"></i>2024-05-29: Version 0.2.3</a></li>
 </ul></li>
 </ul></li>
@@ -452,7 +453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Visualizing Data for Publications Using smplot2</h1>
 <p class="author"><em>Seung Hyun Min</em></p>
-<p class="date"><em>Last Updated: 2024-06-10</em></p>
+<p class="date"><em>Last Updated: 2024-06-24</em></p>
 </div>
 <div id="index" class="section level1 unnumbered hasAnchor">
 <h1>Welcome!<a href="index.html#index" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -468,20 +469,20 @@ Figure 0.1: Standalone plots created with smplot2. Visit chapters 3-6 for more i
 Figure 0.2: A composite plot generated with smplot2. For more details about creating and annotating a composite figure using programmatic constructs and smplot2, please check out Chapter 7.
 </p>
 </div>
-<p>This book (<a href="https://smin95.github.io/dataviz" class="uri">https://smin95.github.io/dataviz</a>) guides the reader to be familiar with R, a programming language, for data visualization. It also introduces the R package <strong>smplot2</strong>, which aims to make the process of data visualization simple. This book was created entirely using RMarkdown for reproducibility. The secondary link of the e-book is: <a href="https://smin95.com/dataviz" class="uri">https://smin95.com/dataviz</a>.</p>
-<p>The old website (on <strong>smplot</strong>) can be accessed using this link (<a href="https://smin95.com/dataviz0" class="uri">https://smin95.com/dataviz0</a>).</p>
-<div id="references" class="section level2 unnumbered hasAnchor">
-<h2>References<a href="index.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Here is the only (and slightly outdated) reference for <strong>smplot2</strong>:</p>
-<p><strong>Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). <em>Frontiers in Genetics</em>, 12:802894.</strong> <a href="https://www.smin95.com/pubs/smplot2021.pdf"><strong>pdf</strong></a></p>
-<p>The codes of the figures in the report are <a href="https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html"><strong>here</strong></a> but these depend on <em>smplot</em>, not <em>smplot2</em>.</p>
-<p>Here is the reference for the <strong>smCSF</strong> package (Chapters 13-16):</p>
-<p><strong>Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). <em>Investigative Ophthalmology and Visual Science</em>.</strong> <a href="https://www.smin95.com/pubs/min2024.pdf"><strong>pdf</strong></a></p>
+<p>This guide (<a href="https://smin95.github.io/dataviz" class="uri">https://smin95.github.io/dataviz</a>) aims to familiarize the reader with R, a programming language, for data visualization. It also introduces the R package <strong>smplot2</strong>, which aims to make the process of data visualization simple. This guide was created entirely using RMarkdown for reproducibility. The secondary link of the guide is: <a href="https://smin95.com/dataviz" class="uri">https://smin95.com/dataviz</a>.</p>
+<p>The archived website on <strong>smplot</strong> can be accessed using this link (<a href="https://smin95.com/dataviz0" class="uri">https://smin95.com/dataviz0</a>).</p>
+<div id="citing-the-guide-and-my-packages" class="section level2 unnumbered hasAnchor">
+<h2>Citing the guide and my packages<a href="index.html#citing-the-guide-and-my-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>I have spent considerable time and effort on launching this guide and building/maintaining the packages. I would appreciate if you could cite a relevant reference if you used the guide and my packages for your visualization routines.</p>
+<p>For <strong>smplot2</strong>:</p>
+<p><strong>Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). <em>Frontiers in Genetics</em>, 12:802894.</strong> <a href="https://www.smin95.com/pubs/smplot2021.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html"><strong>[codes]</strong></a></p>
+<p>For <strong>smCSF</strong> (Chapters 13-16):</p>
+<p><strong>Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). <em>Investigative Ophthalmology and Visual Science</em>.</strong> <a href="https://www.smin95.com/pubs/min2024.pdf"><strong>[pdf]</strong></a></p>
 </div>
 <div id="installation-of-smplot2" class="section level2 unnumbered hasAnchor">
 <h2>Installation of smplot2<a href="index.html#installation-of-smplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://cran.r-project.org/package=smplot2"><img src="http://cranlogs.r-pkg.org/badges/grand-total/smplot2?color=green" /></a>
-<a href="https://cran.r-project.org/package=smplot2"><img src="https://cranlogs.r-pkg.org/badges/smplot2?color=green" /></a> <a href="https://github.com/smin95/smplot2"><img src="https://img.shields.io/badge/devel%20version-0.2.3.1-black.svg" /></a> <a href="https://CRAN.R-project.org/package=smplot2"><img src="http://www.r-pkg.org/badges/version-ago/smplot2?color=green" alt="CRAN_Release_Badge" /></a></p>
+<a href="https://cran.r-project.org/package=smplot2"><img src="https://cranlogs.r-pkg.org/badges/smplot2?color=green" /></a> <a href="https://github.com/smin95/smplot2"><img src="https://img.shields.io/badge/devel%20version-0.2.4-black.svg" /></a> <a href="https://CRAN.R-project.org/package=smplot2"><img src="http://www.r-pkg.org/badges/version-ago/smplot2?color=green" alt="CRAN_Release_Badge" /></a></p>
 <p>In April 2024, <em>smplot2</em> joined the <strong>CRAN</strong> repository. Please install using <code>install.packages()</code> for the most stable version.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;smplot2&#39;</span>)</span></code></pre></div>
 <p>If users wish to download the most updated version of <em>smplot2</em>, please use <code>install_github()</code>. This might be necessary if some codes from the documentation webpage do not work in RStudio as intended.</p>
@@ -490,7 +491,7 @@ Figure 0.2: A composite plot generated with smplot2. For more details about crea
 </div>
 <div id="issues-and-contact" class="section level2 unnumbered hasAnchor">
 <h2>Issues and contact<a href="index.html#issues-and-contact" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>If you spot any mistakes in this online book, please pull-request on <a href="https://github.com/smin95/dataviz">Github</a> or email me <a href="mailto:seung.min@mail.mcgill.ca" class="email">seung.min@mail.mcgill.ca</a>. If you find issues with the <em>smplot2</em> package, please pull-request on <a href="https://github.com/smin95/smplot2">Github</a>.</p>
+<p>If you spot any mistakes in the guide, please pull-request on <a href="https://github.com/smin95/dataviz">Github</a> or email me <a href="mailto:seung.min@mail.mcgill.ca" class="email">seung.min@mail.mcgill.ca</a>. If you find issues with the <em>smplot2</em> package, please pull-request on <a href="https://github.com/smin95/smplot2">Github</a>.</p>
 </div>
 <div id="license" class="section level2 unnumbered hasAnchor">
 <h2>License<a href="index.html#license" class="anchor-section" aria-label="Anchor link to header"></a></h2>
