@@ -139,13 +139,13 @@ For **smCSF** (Chapters 13-16):
 [![](http://cranlogs.r-pkg.org/badges/grand-total/smplot2?color=green)](https://cran.r-project.org/package=smplot2)
 [![](https://cranlogs.r-pkg.org/badges/smplot2?color=green)](https://cran.r-project.org/package=smplot2) [![](https://img.shields.io/badge/devel%20version-0.2.4-black.svg)](https://github.com/smin95/smplot2) [![CRAN_Release_Badge](http://www.r-pkg.org/badges/version-ago/smplot2?color=green)](https://CRAN.R-project.org/package=smplot2) 
 
-In April 2024, *smplot2* joined the **CRAN** repository. Please install using `install.packages()` for the most stable version.
+In April 2024, **smplot2** joined the **CRAN** repository. Please install using `install.packages()` for the most stable version.
 
 ```{r, eval = FALSE}
 install.packages('smplot2')
 ```
 
-If users wish to download the most updated version of *smplot2*, please use `install_github()`. This might be necessary if some codes from the documentation webpage do not work in RStudio as intended.
+If users wish to download the most updated version of **smplot2**, please use `install_github()`. This might be necessary if some codes from the documentation webpage do not work in RStudio as intended.
 
 ```{r, eval = FALSE}
 install.packages('devtools)
@@ -153,7 +153,7 @@ devtools::install_github('smin95/smplot2',force = T)
 ```
 
 ## Issues and contact {-}
-If you spot any mistakes in the guide, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the *smplot2* package, please pull-request on [Github](https://github.com/smin95/smplot2).
+If you spot any mistakes in the guide, please pull-request on [Github](https://github.com/smin95/dataviz) or email me seung.min@mail.mcgill.ca. If you find issues with the **smplot2** package, please pull-request on [Github](https://github.com/smin95/smplot2).
 
 ## License {-}
 This tutorial is under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). I am the sole creator of **smplot2**.
