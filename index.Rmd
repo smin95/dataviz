@@ -124,7 +124,7 @@ The archived website on **smplot** can be accessed using this link (https://smin
 
 ## Citing the guide and my packages {-}
 
-I have spent considerable time and effort on launching this guide and building/maintaining the packages. I would appreciate if you could cite a relevant reference if you used the guide and my packages for your visualization routines.
+If you use the guide and one of my packages, please cite the most appropriate paper from below.
 
 For **smplot2**:
 
