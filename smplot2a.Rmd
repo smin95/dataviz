@@ -9,6 +9,15 @@ editor_options:
 
 # Themes, Colors, Correlations, Boxplots, Violins and Bars (Part 1)
 
+### Citing the Guide and the Package {-}
+
+If you have used **smplot2** for your visualization routines, please cite the paper below:
+
+1. **Min, S. H.**, & Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. ***Frontiers in Genetics***, 12, 802894. [**[pdf]**](https://www.smin95.com/pubs/smplot2021.pdf) [**[codes]**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html)
+
+
+### Getting Started {-}
+
 This and the next chapters discuss in brief of all visualization functions of **smplot2**. Most of these functions have already been described in depth in the preceding chapters. Those that have not, such as `sm_hgrid()`, `sm_hist()` and `sm_bland_altman()` will be discussed in detail.
 
 If you seek certain bits of information about the package on this page, the best is to use it via **CTRL + F** and type certain key words as this page will be long. This page is meant to be a manual, not a linear tutorial. So I recommend that the reader not read this page linearly.
@@ -20,6 +29,7 @@ If you are still not sure about any of the functions, please type `?` before the
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 ```
+
 
 ## Installation of the Package 
 

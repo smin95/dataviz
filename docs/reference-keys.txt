@@ -5,9 +5,9 @@ fig:unnamed-chunk-12
 fig:unnamed-chunk-13
 fig:unnamed-chunk-14
 fig:unnamed-chunk-32
-fig:unnamed-chunk-264
-fig:unnamed-chunk-405
-fig:unnamed-chunk-409
+fig:unnamed-chunk-262
+fig:unnamed-chunk-403
+fig:unnamed-chunk-407
 opening-remarks-news
 which-sections-to-read
 how-to-use-this-guide

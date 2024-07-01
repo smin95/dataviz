@@ -128,12 +128,12 @@ If you have used the guide and one of my packages, please cite the most appropri
 
 For **smplot2**:
 
-**Seung Hyun Min, Jiawei Zhou. smplot: An R Package for Easy and Elegant Data Visualization (2021). *Frontiers in Genetics*, 12:802894.** [**[pdf]**](https://www.smin95.com/pubs/smplot2021.pdf) [**[codes]**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html)
+1. **Min, S. H.**, & Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. ***Frontiers in Genetics***, 12, 802894. [**[pdf]**](https://www.smin95.com/pubs/smplot2021.pdf) [**[codes]**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html)
 
 
 For **smCSF** (Chapters 13-16):
 
-**Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). *Investigative Ophthalmology and Visual Science*.** [**[pdf]**](https://www.smin95.com/pubs/min2024.pdf)
+2. **Min, S. H.**, & Reynaud, A. (2024). Applying Resampling and Visualization Methods in Factor Analysis to Model Human Spatial Vision. ***Investigative Ophthalmology & Visual Science***, 65(1), 17-17. [**[pdf]**](https://www.smin95.com/pubs/min2024.pdf)
 
 ## Installation of smplot2 {-}
 [![](http://cranlogs.r-pkg.org/badges/grand-total/smplot2?color=green)](https://cran.r-project.org/package=smplot2)
@@ -159,4 +159,4 @@ If you spot any mistakes in the guide, please pull-request on [Github](https://g
 This tutorial is under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). I am the sole creator of **smplot2**.
 
 ## About the author {-}
-I am Assistant Professor in Dept. Ophthalmology and Optometry at Wenzhou Medical University. On June 2021, I received my PhD at McGill University under the supervision of Dr. Robert F. Hess. My research is focused on amblyopia, neural plasticity and binocular vision. During spare time, I play the clarinet and develop R packages. More details, such as my publications, are on my website: https://www.smin95.com. 
+I am Assistant Professor in Dept. Ophthalmology and Optometry at Wenzhou Medical University. On June 2021, I received my PhD at McGill University under the supervision of Dr. Robert F. Hess. My research is focused on visual perception, neural plasticity and computational modeling. During spare time, I play the clarinet and develop R packages. More details, such as my publications, are on my website: https://www.smin95.com. 

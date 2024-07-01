@@ -7,6 +7,14 @@ editor_options:
 
 # Understanding the Contrast Sensitivity Function 
 
+### Citing the Guide and the Package {-}
+
+If you have used the **smCSF** package for your research, please cite the paper below:
+
+1. **Min, S. H.**, & Reynaud, A. (2024). Applying Resampling and Visualization Methods in Factor Analysis to Model Human Spatial Vision. ***Investigative Ophthalmology & Visual Science***, 65(1), 17-17.
+
+### Getting Started {-}
+
  In this section, the model that is used to fit the contrast sensitivity function (CSF) in `sm_CSF()` is discussed in detail. If readers decide to use **smCSF**, it is necessary to understand and report these details on their manuscripts.
  
 ## Contrast Sensitivity Function Model
@@ -450,3 +458,4 @@ cut_sf %>% ggplot(aes(
   ylab("Cut-off SF (c/deg)") +
   xlab("Before/after treatment")
 ```
+

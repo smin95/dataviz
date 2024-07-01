@@ -7,9 +7,9 @@ editor_options:
 
 # Basic Statistics
 
-As in the previous two chapters, we will continue to use data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
+In this chapter, we will use the data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
 
-**Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.**
+**Min, S. H.**, Baldwin, A. S., & Hess, R. F. (2019). Ocular dominance plasticity: a binocular combination task finds no cumulative effect with repeated patching. ***Vision Research***, 161, 36-42.
 
 Load the `tidyverse` and other libraries, and the csv file `min2019b.csv` using `read_csv()` from the `tidyverse` package.
 

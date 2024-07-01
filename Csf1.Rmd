@@ -9,9 +9,15 @@ editor_options:
 
 # Plotting the Contrast Sensitivity Function 
 
-For the next three chapters, we will use **smCSF**. Make sure you have downloaded it. The reference of the package is:
+### Citing the Guide and the Package {-}
 
-**Seung Hyun Min, Alexandre Reynaud. Applying resampling and visualization methods in factor analysis to model human spatial vision (2024). Investigative Ophthalmology and Visual Science.**
+If you have used the **smCSF** package for your research, please cite the paper below:
+
+1. **Min, S. H.**, & Reynaud, A. (2024). Applying Resampling and Visualization Methods in Factor Analysis to Model Human Spatial Vision. ***Investigative Ophthalmology & Visual Science***, 65(1), 17-17.
+
+### Getting Started {-}
+
+**smCSF** package will be used in this chapter, so readers should directly download it from my GitHub page using the code below.
 
 ```{r, eval = FALSE}
 install.packages("devtools")
@@ -20,7 +26,7 @@ devtools::install_github("smin95/smCSF", force = TRUE)
 
 Also, we will use the data of achromatic contrast sensitivity from 51 normal observers from this paper (a subset of the entire dataset):
 
-**Kim, Y. J., Reynaud, A., Hess, R. F., & Mullen, K. T. (2017). A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. Investigative ophthalmology & visual science, 58(9), 3628-3636.**
+Kim, Y. J., Reynaud, A., Hess, R. F., & Mullen, K. T. (2017). A normative data set for the clinical assessment of achromatic and chromatic contrast sensitivity using a qCSF approach. ***Investigative Ophthalmology & Visual Science***, 58(9), 3628-3636.
 
 Luckily, the data are publicly available. I have reorganized the data so that we could easily use them in the form of a data frame. Let's load the data from online.
 
@@ -508,6 +514,5 @@ ACh_avg %>%
   ggtitle("Achromatic CSF (n=51)")
 ```
 
-We see that these two curves are nearly identical, except that the green curve is uniformly higher than the red curve.
+We see that these two curves are nearly identical, except that the green curve is uniformly higher than the red curve. In the next chapter, we will discuss about some techniques on how to analyze contrast sensitivity data.
 
-In the next chapter, we will discuss about some techniques on how to analyze contrast sensitivity data.

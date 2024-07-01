@@ -7,11 +7,18 @@ editor_options:
 # (PART) Data Analysis with smplot2 {-}
 # Calculating Area under a Curve  
 
-In this chapter, we will continue to use data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
+### Citing the Guide and the Package {-}
 
-**Seung Hyun Min, Alex S. Baldwin and Robert F. Hess. Ocular dominance plasticity: A binocular combination task finds no cumulative effect with repeated patching (2019). Vision Research, 161, 36-42.**
+If you have used **smplot2** for your analysis routines, please cite the paper below:
 
-In Chapter 5, we only dealt with data from Days 1 and 5. In this chapter, we will use data from Days 1, 2, 3, 4 and 5. 
+1. **Min, S. H.**, & Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. ***Frontiers in Genetics***, 12, 802894. [**[pdf]**](https://www.smin95.com/pubs/smplot2021.pdf) [**[codes]**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html)
+
+
+### Getting Started {-}
+
+In this chapter, we will use the data from this paper ([PDF](https://www.smin95.com/pubs/min2019.pdf)):
+
+**Min, S. H.**, Baldwin, A. S., & Hess, R. F. (2019). Ocular dominance plasticity: a binocular combination task finds no cumulative effect with repeated patching. ***Vision Research***, 161, 36-42.
 
 Let's begin by loading the `tidyverse` and other libraries, and uploading the csv file `min2019b.csv` using `read_csv()` from the `tidyverse` package.
 
@@ -96,7 +103,7 @@ Let's use the data set `avg_day1` to plot data only from Day 1.
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 avg_day1 %>% ggplot(aes(x = Time, y = Average)) +
-  geom_area(fill = sm_color("skyblue"), alpha = 0.4) +
+  geom_area(fill = sm_color("skyblue"), alpha = 0.3) +
   geom_point(size = 4.5, color = sm_color("skyblue")) +
   geom_line(size = 1, color = sm_color("skyblue")) +
   geom_errorbar(aes(ymin = Average - StdError, ymax = Average + StdError), size = .75, width = .05, color = sm_color("skyblue")) +
@@ -135,7 +142,7 @@ subj_b_day1
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
-  geom_area(fill = sm_color("skyblue"), alpha = 0.4) +
+  geom_area(fill = sm_color("skyblue"), alpha = 0.3) +
   geom_point(size = 4.5, color = sm_color("skyblue")) +
   geom_line(size = 1, color = sm_color("skyblue")) +
   scale_x_continuous(
@@ -163,7 +170,7 @@ The AUC equals 60.53. This shows that for subject `b`, the effect is large and l
 
 ```{r, fig.width = 3.5, fig.height = 3.5, warning = F}
 subj_b_day1 %>% ggplot(aes(x = Time, y = Cbratio)) +
-  geom_area(fill = sm_color("skyblue"), alpha = 0.4) +
+  geom_area(fill = sm_color("skyblue"), alpha = 0.3) +
   geom_point(size = 4.5, color = sm_color("skyblue")) +
   geom_line(size = 1, color = sm_color("skyblue")) +
   scale_x_continuous(
@@ -183,7 +190,7 @@ Now let's visualize the data of subject `b` from Day 2.
 subj_b_day2 <- df %>% filter(Day == 2 & Subject == "b")
 
 subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
-  geom_area(fill = sm_color("yelloworange"), alpha = 0.4) +
+  geom_area(fill = sm_color("yelloworange"), alpha = 0.3) +
   geom_point(size = 4.5, color = sm_color("yelloworange")) +
   geom_line(size = 1, color = sm_color("yelloworange")) +
   scale_x_continuous(
@@ -209,7 +216,7 @@ The AUC equals 80.38. In the case of subject `b`, the effect seems to have incre
 subj_b_day2 <- df %>% filter(Day == 2 & Subject == "b")
 
 subj_b_day2 %>% ggplot(aes(x = Time, y = Cbratio)) +
-  geom_area(fill = sm_color("yelloworange"), alpha = 0.4) +
+  geom_area(fill = sm_color("yelloworange"), alpha = 0.3) +
   geom_point(size = 4.5, color = sm_color("yelloworange")) +
   geom_line(size = 1, color = sm_color("yelloworange")) +
   scale_x_continuous(
@@ -296,7 +303,7 @@ auc_df %>% ggplot(mapping = aes(x = Day, y = AUC_Cbratio, color = Day)) +
 
 ## Reproducing figures in the paper (Min et al., 2019)
 
-Let's redraw some of the figures in the paper. In 2019, when the paper was published, there was no smplot. However, the themes I developed during then have become part of smplot. So, I have incorporated functions from smplot to reproduce the figures here. 
+Let's redraw some of the figures in the paper. In 2019, when the paper was published, there was no smplot2. However, the themes I developed during then have become part of smplot2. So, I have incorporated functions from smplot2 to reproduce the figures here. 
 
 ### Figure 3B (a best-fit line with points and error bars)
 

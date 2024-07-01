@@ -7,6 +7,14 @@ editor_options:
 
 # Factor Analysis and CSF 
 
+### Citing the Guide and the Package {-}
+
+If you have used the **smCSF** package for your research, please cite the paper below:
+
+1. **Min, S. H.**, & Reynaud, A. (2024). Applying Resampling and Visualization Methods in Factor Analysis to Model Human Spatial Vision. ***Investigative Ophthalmology & Visual Science***, 65(1), 17-17.
+
+### Getting Started {-}
+
 ```{r, message=F, warning=F}
 library(tidyverse)
 library(cowplot)
