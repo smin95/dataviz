@@ -11,7 +11,7 @@ editor_options:
 
 ### Citing the Guide and the Package {-}
 
-If you have used **smplot2** for your analysis routines, please cite the paper below:
+If you have used **smplot2** for your visualization routines, please cite the paper below:
 
 1. **Min, S. H.**, & Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. ***Frontiers in Genetics***, 12, 802894. [**[pdf]**](https://www.smin95.com/pubs/smplot2021.pdf) [**[codes]**](https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html)
 
