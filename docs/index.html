@@ -424,13 +424,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.2" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#data-visualization"><i class="fa fa-check"></i><b>13.2</b> Data Visualization</a></li>
 <li class="chapter" data-level="13.3" data-path="plotting-the-contrast-sensitivity-function.html"><a href="plotting-the-contrast-sensitivity-function.html#facetting-the-contrast-sensitivity-functions"><i class="fa fa-check"></i><b>13.3</b> Facetting the Contrast Sensitivity Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>14</b> Area under Curve, AULCSF and R2 of the CSF</a>
+<li class="chapter" data-level="14" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html"><i class="fa fa-check"></i><b>14</b> Area under Curve, AULCSF and <span class="math inline">\(R^2\)</span> of the CSF</a>
 <ul>
 <li class="chapter" data-level="" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#citing-the-guide-and-the-package-10"><i class="fa fa-check"></i>Citing the Guide and the Package</a></li>
 <li class="chapter" data-level="" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#getting-started-10"><i class="fa fa-check"></i>Getting Started</a></li>
 <li class="chapter" data-level="14.1" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#area-under-a-curve-1"><i class="fa fa-check"></i><b>14.1</b> Area under a Curve</a></li>
 <li class="chapter" data-level="14.2" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#sm_trapz-sm_aulcsf-and-sm_r2"><i class="fa fa-check"></i><b>14.2</b> <code>sm_trapz()</code>, <code>sm_AULCSF()</code> and <code>sm_r2()</code></a></li>
-<li class="chapter" data-level="14.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>14.3</b> Calculating area and R2 of all subjects, groups and conditions</a></li>
+<li class="chapter" data-level="14.3" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#calculating-area-and-r2-of-all-subjects-groups-and-conditions"><i class="fa fa-check"></i><b>14.3</b> Calculating area and <span class="math inline">\(R^2\)</span> of all subjects, groups and conditions</a></li>
 <li class="chapter" data-level="14.4" data-path="area-under-curve-aulcsf-and-r2-of-the-csf.html"><a href="area-under-curve-aulcsf-and-r2-of-the-csf.html#case-study"><i class="fa fa-check"></i><b>14.4</b> Case Study</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="understanding-the-contrast-sensitivity-function.html"><a href="understanding-the-contrast-sensitivity-function.html"><i class="fa fa-check"></i><b>15</b> Understanding the Contrast Sensitivity Function</a>
@@ -479,7 +479,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Visualizing Data for Publications Using smplot2</h1>
 <p class="author"><em>Seung Hyun Min</em></p>
-<p class="date"><em>Last Updated: 2024-07-01</em></p>
+<p class="date"><em>Last Updated: 2024-07-04</em></p>
 </div>
 <div id="index" class="section level1 unnumbered hasAnchor">
 <h1>Welcome!<a href="index.html#index" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -495,7 +495,7 @@ Figure 0.1: Standalone plots created with smplot2. Visit chapters 3-6 for more i
 Figure 0.2: A composite plot generated with smplot2. For more details about creating and annotating a composite figure using programmatic constructs and smplot2, please check out Chapter 7.
 </p>
 </div>
-<p>This guide (<a href="https://smin95.github.io/dataviz" class="uri">https://smin95.github.io/dataviz</a>) aims to familiarize the reader with R, a programming language, for data visualization. It also introduces the R package <strong>smplot2</strong>, which aims to make the process of data visualization simple. This guide was created entirely using RMarkdown for reproducibility. The secondary link of the guide is: <a href="https://smin95.com/dataviz" class="uri">https://smin95.com/dataviz</a>.</p>
+<p>This guide (<a href="https://smin95.github.io/dataviz" class="uri">https://smin95.github.io/dataviz</a>) aims to familiarize the reader with R, a programming language, for data visualization. It also introduces the R package <strong>smplot2</strong>, which aims to make the process of data visualization simple. This guide was created entirely using <strong>bookdown</strong> for reproducibility. The secondary link of the guide is: <a href="https://smin95.com/dataviz" class="uri">https://smin95.com/dataviz</a>.</p>
 <p>The archived website on <strong>smplot</strong> can be accessed using this link (<a href="https://smin95.com/dataviz0" class="uri">https://smin95.com/dataviz0</a>).</p>
 <div id="citing-the-guide-and-my-packages" class="section level2 unnumbered hasAnchor">
 <h2>Citing the guide and my packages<a href="index.html#citing-the-guide-and-my-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>

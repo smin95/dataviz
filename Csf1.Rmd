@@ -17,7 +17,7 @@ If you have used the **smCSF** package for your research, please cite the paper 
 
 ### Getting Started {-}
 
-**smCSF** package will be used in this chapter, so readers should directly download it from my GitHub page using the code below.
+The **smCSF** package will be used in this chapter, so readers should directly download it from my GitHub page using the code below.
 
 ```{r, eval = FALSE}
 install.packages("devtools")

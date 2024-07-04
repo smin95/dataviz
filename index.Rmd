@@ -118,7 +118,7 @@ all
 knitr::include_graphics("low_tr.png")
 ```
 
-This guide (https://smin95.github.io/dataviz) aims to familiarize the reader with R, a programming language, for data visualization. It also introduces the R package **smplot2**, which aims to make the process of data visualization simple. This guide was created entirely using RMarkdown for reproducibility. The secondary link of the guide is: https://smin95.com/dataviz. 
+This guide (https://smin95.github.io/dataviz) aims to familiarize the reader with R, a programming language, for data visualization. It also introduces the R package **smplot2**, which aims to make the process of data visualization simple. This guide was created entirely using **bookdown** for reproducibility. The secondary link of the guide is: https://smin95.com/dataviz. 
 
 The archived website on **smplot** can be accessed using this link (https://smin95.com/dataviz0).
 
