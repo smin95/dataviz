@@ -509,24 +509,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb148-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb148-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
 <span id="cb148-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb148-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb148-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb148-4" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;A bar graph&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-126-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-125-1.png" width="336" /></p>
 <p><code>sm_bar()</code> automatically uses <code>sm_hgrid()</code>, which provides horizontal major grids. Moreover, it has arguments <code>borders</code> and <code>legends</code> so that the user can wish to remove border or legend easily.</p>
 <div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb149-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
 <span id="cb149-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb149-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb149-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb149-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb149-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb149-4" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;A bar graph&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-127-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-126-1.png" width="336" /></p>
 <p>The default of the error bar’s type is standard error, i.e., <code>errorbar_type = 'se'</code>. There are three options: standard error (<code>se</code>), standard deviation (<code>sd</code>) and 95% confidence interval (<code>ci</code>). The <code>sd</code> and <code>ci</code> are shown below.</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb150-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
 <span id="cb150-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb150-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">errorbar_type =</span> <span class="st">&quot;sd&quot;</span>) <span class="sc">+</span></span>
 <span id="cb150-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb150-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb150-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb150-4" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;A bar graph&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-128-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-127-1.png" width="336" /></p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb151-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
 <span id="cb151-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb151-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">errorbar_type =</span> <span class="st">&quot;ci&quot;</span>) <span class="sc">+</span></span>
 <span id="cb151-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb151-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb151-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb151-4" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;A bar graph&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-128-1.png" width="336" /></p>
 <p>You can also use <code>theme()</code> to finely modify the aesthetics. For instance, you can remove the title of the x-axis <code>Group</code>. <code>ylab()</code> and <code>xlab()</code> are functions to modify the title of y- and x-axes.</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb152-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
 <span id="cb152-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb152-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
@@ -534,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb152-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb152-4" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
 <span id="cb152-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb152-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Reading performance in children&quot;</span>) <span class="sc">+</span></span>
 <span id="cb152-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb152-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Reading speed&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-130-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-1.png" width="336" /></p>
 <div id="scaling-the-y-axis" class="section level3 hasAnchor" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Scaling the y-axis<a href="bar-graph-slope-chart-and-point-plot.html#scaling-the-y-axis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Upon a closer look, we realize that the y-axis starts from below 0 even if all data are higher than 0. We can specify the y-axis limit manually using <code>scale_y_continuous()</code> between 0 and 8.</p>
@@ -545,7 +545,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb153-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb153-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Reading performance in children&quot;</span>) <span class="sc">+</span></span>
 <span id="cb153-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb153-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Reading speed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb153-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb153-7" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-131-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-130-1.png" width="336" /></p>
 <p>Although we have specified that the y-axis limit begins from 0 and ends at 7, there is still a small margin below 0. What is going on here?</p>
 <p>The default of <strong>ggplot2</strong> is that there is always a small margin below the lowest point of the y-axis limit and above the largest point of the y-axis.The empty space below 0 and above 7 can be removed by using <code>expand = c(0,0)</code> within <code>scale_y_continuous()</code>.</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb154-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
@@ -555,7 +555,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb154-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb154-5" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Reading performance in children&quot;</span>) <span class="sc">+</span></span>
 <span id="cb154-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb154-6" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Reading speed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb154-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb154-7" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-132-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-131-1.png" width="336" /></p>
 <p>If you would like a small margin between the bottom of the plot and the bars, you could so by replacing <code>0</code> with <code>0.05</code>, i.e., <code>expand = c(0,0.05)</code>. Then the vertical margin will slightly increase.</p>
 <div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb155-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">color =</span> Group)) <span class="sc">+</span></span>
 <span id="cb155-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb155-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
@@ -576,7 +576,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb156-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb156-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Reading speed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb156-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb156-6" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb156-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb156-7" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-133-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-132-1.png" width="336" /></p>
 </div>
 <div id="other-parameters" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Other parameters<a href="bar-graph-slope-chart-and-point-plot.html#other-parameters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -588,7 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb157-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb157-5" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Reading speed&quot;</span>) <span class="sc">+</span></span>
 <span id="cb157-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb157-6" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb157-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb157-7" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-134-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-133-1.png" width="336" /></p>
 <p>You can also adjust different parameters of the bar graph using <code>bar.params</code>, <code>err.params</code> and <code>point.params</code>.</p>
 <ul>
 <li><p><code>bar.params = list()</code> feeds arguments, such as <code>color</code>, <code>fill</code>, <code>width</code> and <code>alpha</code> to <code>geom_bar()</code> to plot the bar.</p></li>
@@ -607,7 +607,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb158-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb158-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb158-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb158-9" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb158-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb158-10" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-135-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-134-1.png" width="336" /></p>
 <div class="rmdtip">
 <p>
 In the visualization functions of <em>smplot2</em>, argument for
@@ -628,7 +628,7 @@ retain the default appearance.
 <span id="cb159-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb159-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb159-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb159-9" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb159-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb159-10" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-137-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-136-1.png" width="336" /></p>
 <p>Defaults of <code>sm_bar()</code> can be accessed by typing <code>?sm_bar()</code>. You can also set to remove the points by using <code>points</code> argument (<code>points = FALSE</code>).</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb160-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Value, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
 <span id="cb160-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb160-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">point.params =</span> <span class="fu">list</span>(</span>
@@ -637,7 +637,7 @@ retain the default appearance.
 <span id="cb160-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb160-5" tabindex="-1"></a>  ), <span class="at">points =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb160-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb160-6" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">8</span>), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb160-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb160-7" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-138-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-137-1.png" width="336" /></p>
 <p>We can see that <code>sm_bar()</code> can offer a huge flexibility for users to control over the aesthetics with relative ease while maintaining the minimalistic style.</p>
 </div>
 <div id="bar-graph-with-data-of-multiple-groups" class="section level3 hasAnchor" number="5.1.4">
@@ -660,7 +660,7 @@ retain the default appearance.
 <div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb165-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2a, <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">color =</span> SF)) <span class="sc">+</span></span>
 <span id="cb165-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb165-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
 <span id="cb165-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb165-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-141-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-140-1.png" width="336" /></p>
 <p>Immediately we see that something is wrong here. There seem to be too many points in this bar graph compared to the sample size of each group per condition.</p>
 <div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb166-1" tabindex="-1"></a>df2amb <span class="ot">&lt;-</span> <span class="fu">filter</span>(df2a, Group <span class="sc">==</span> <span class="st">&quot;Amblyopia&quot;</span>)</span>
 <span id="cb166-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb166-2" tabindex="-1"></a>df2norm <span class="ot">&lt;-</span> <span class="fu">filter</span>(df2a, Group <span class="sc">==</span> <span class="st">&quot;Normal&quot;</span>)</span>
@@ -673,7 +673,7 @@ retain the default appearance.
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb170-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2a, <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">color =</span> SF, <span class="at">group =</span> Group)) <span class="sc">+</span></span>
 <span id="cb170-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb170-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
 <span id="cb170-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb170-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-1.png" width="336" /></p>
 <p>We see there are two error bars in the midst of the orange plots, indicating that the data are superimpsoed on top of another. Let’s change border color of the bar to verify this observation.</p>
 <div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb171-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2a, <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">color =</span> SF, <span class="at">group =</span> Group)) <span class="sc">+</span></span>
 <span id="cb171-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb171-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(</span>
@@ -681,7 +681,7 @@ retain the default appearance.
 <span id="cb171-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb171-4" tabindex="-1"></a>    <span class="at">bar.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;black&quot;</span>)</span>
 <span id="cb171-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb171-5" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb171-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb171-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-144-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="336" /></p>
 <p>In fact, it turns out that our observation is true. We need to separate their position (i.e., <code>dodge</code>) using <code>position_dodge()</code> across all visual components of the bar graph: <code>err.params</code>, <code>bar.params</code> and <code>point.params</code>. This can be done easily by setting it as a generic parameter <code>...</code>.</p>
 <div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb172-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2a, <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">color =</span> Group, <span class="at">group =</span> Group)) <span class="sc">+</span></span>
 <span id="cb172-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb172-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(</span>
@@ -690,7 +690,7 @@ retain the default appearance.
 <span id="cb172-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb172-5" tabindex="-1"></a>    <span class="at">bar.params =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="fl">0.8</span>)</span>
 <span id="cb172-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb172-6" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb172-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb172-7" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-145-1.png" width="432" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-144-1.png" width="432" /></p>
 <p>Let’s add some jitter to the points. This part is quite complicated. In this example, <code>point.params</code> has to be set separately using <code>position_jitterdodge()</code> so that the points remained jittered and dodged at the same time.</p>
 <div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb173-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2a, <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">color =</span> Group, <span class="at">group =</span> Group)) <span class="sc">+</span></span>
 <span id="cb173-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb173-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(</span>
@@ -707,7 +707,7 @@ retain the default appearance.
 <span id="cb173-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb173-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb173-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb173-14" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb173-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb173-15" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-146-1.png" width="432" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-145-1.png" width="432" /></p>
 <p>We have now successfully plotted the bar graph using data of multiple groups and conditions. Another solution is to plot each group per panel and combine the two panels into one figure using <code>sm_common_axis()</code>, which will be described in the later part of the book.</p>
 </div>
 </div>
@@ -736,14 +736,14 @@ retain the default appearance.
 <div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb177-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value, <span class="at">fill =</span> beforeAfter)) <span class="sc">+</span></span>
 <span id="cb177-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb177-2" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">group =</span> Subject) <span class="sc">+</span></span>
 <span id="cb177-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb177-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-149-1.png" width="288" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-148-1.png" width="288" /></p>
 <p>Notice that each line is grouped for each subject. For this to properly happen, <code>group</code> argument has to be specified within <code>sm_slope()</code>. In fact, due to the update from <strong>smplot2</strong>, the user is required to specify this at the level of <code>sm_slope()</code> rather than at <code>aes()</code>.</p>
 <p>Also, to assign a unique color to each discrete level in x-axis, <code>fill</code> has to be specified because the default shape of the point is <code>21</code>, which is a circle with borders.</p>
 <p>Now let’s add <code>labels</code> for the x-axis tick. To do so, include <code>labels = c('Before', 'After')</code>.</p>
 <div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb178-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value, <span class="at">fill =</span> beforeAfter)) <span class="sc">+</span></span>
 <span id="cb178-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb178-2" tabindex="-1"></a>  <span class="fu">sm_slope</span>(<span class="at">group =</span> Subject, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Before&quot;</span>, <span class="st">&quot;After&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb178-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb178-3" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-150-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-149-1.png" width="307.2" /></p>
 <p>If you would like to do statistical test that is paired, such as a paired t-test, then the apt means to visualize the data would be to use slope chart, rather than a bar graph. This is because the p-value gets smaller as a larger proportion of the sample experiences a change in the same direction (i.e., all increase). It is the direction of the overall change that is important, rather than the difference of the means from unique groups/conditions/instances.</p>
 <div id="slope-chart-with-mean-plot" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Slope chart with mean plot<a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-mean-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -755,7 +755,7 @@ retain the default appearance.
 <span id="cb179-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb179-4" tabindex="-1"></a>    <span class="at">show_mean =</span> <span class="cn">TRUE</span></span>
 <span id="cb179-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb179-5" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb179-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb179-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-151-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-150-1.png" width="307.2" /></p>
 <p>When a mean plot is included in slope chart, I personally prefer to visually emphasize the mean plot while treating the individual plots as <strong>shadow</strong>. Hence, I would use similar colors across all levels. Here is an example below using blue colors. The mean plot should be slightly larger than the individual points from the shadow.</p>
 <div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb180-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb180-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb180-2" tabindex="-1"></a>  <span class="fu">sm_slope</span>(</span>
@@ -775,7 +775,7 @@ retain the default appearance.
 <span id="cb180-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb180-16" tabindex="-1"></a>    <span class="at">avgLine.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>),</span>
 <span id="cb180-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb180-17" tabindex="-1"></a>    <span class="at">show_mean =</span> <span class="cn">TRUE</span></span>
 <span id="cb180-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb180-18" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-152-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-151-1.png" width="307.2" /></p>
 <ul>
 <li><p><code>point.params</code> feeds arguments to <code>geom_point()</code> to plot the points with specified <code>color</code>, <code>fill</code>, <code>size</code>, <code>shape</code> and <code>alpha</code>.</p></li>
 <li><p><code>line.params</code> feeds arguments to <code>geom_line()</code> to plot the points with specified <code>color</code>, <code>size</code> and <code>alpha</code>.</p></li>
@@ -806,7 +806,7 @@ retain the default appearance.
 <span id="cb181-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb181-18" tabindex="-1"></a>    <span class="at">avgLine.params =</span> <span class="fu">list</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">size =</span> <span class="dv">1</span>),</span>
 <span id="cb181-19"><a href="bar-graph-slope-chart-and-point-plot.html#cb181-19" tabindex="-1"></a>    <span class="at">show_mean =</span> <span class="cn">TRUE</span></span>
 <span id="cb181-20"><a href="bar-graph-slope-chart-and-point-plot.html#cb181-20" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-153-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-152-1.png" width="307.2" /></p>
 <p>We can plot a similar slope chart with mean with purple and triangular shaped points by changing the <code>shape</code> parameter to triangle (<code>shape = 17</code>) for the generic parameter (<code>...</code>), thereby setting the shape for both <code>point.params</code> and <code>avgPoint.params</code> at the same time.</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb182-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb182-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb182-2" tabindex="-1"></a>  <span class="fu">sm_slope</span>(</span>
@@ -818,7 +818,7 @@ retain the default appearance.
 <span id="cb182-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb182-8" tabindex="-1"></a>    <span class="at">line.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>),</span>
 <span id="cb182-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb182-9" tabindex="-1"></a>    <span class="at">show_mean =</span> <span class="cn">TRUE</span></span>
 <span id="cb182-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb182-10" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-154-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-153-1.png" width="307.2" /></p>
 <p>Alternatively, we can use <code>sm_slope_mean()</code>, a shortcut function of <code>sm_slope()</code> that only plots the slope chart with mean for one group (i.e., one color palette). Besides the arguments <code>labels</code> and <code>group</code>, this function has some different arguments than those of <code>sm_slope()</code>. It is easier to use but less flexible.</p>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb183-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb183-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb183-2" tabindex="-1"></a>  <span class="fu">sm_slope_mean</span>(</span>
@@ -827,7 +827,7 @@ retain the default appearance.
 <span id="cb183-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb183-5" tabindex="-1"></a>    <span class="at">group =</span> Subject, <span class="at">back_alpha =</span> .<span class="dv">3</span>,</span>
 <span id="cb183-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb183-6" tabindex="-1"></a>    <span class="at">main_color =</span> <span class="fu">sm_color</span>(<span class="st">&quot;purple&quot;</span>)</span>
 <span id="cb183-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb183-7" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-155-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-154-1.png" width="307.2" /></p>
 <p>The main color of the slope chart is determined <code>main_color</code>, which is set to purple. The transparency of the back shadow is determined with <code>back_alpha</code>, which ranges from 0 (invisible) to 1 (opaque).</p>
 </div>
 <div id="slope-chart-with-mean-plot-and-error-bar" class="section level3 hasAnchor" number="5.2.2">
@@ -844,7 +844,7 @@ retain the default appearance.
 <span id="cb184-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb184-9" tabindex="-1"></a>    <span class="at">show_mean =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb184-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb184-10" tabindex="-1"></a>    <span class="at">show_err =</span> <span class="cn">TRUE</span></span>
 <span id="cb184-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb184-11" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-156-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-155-1.png" width="307.2" /></p>
 <p>As in <code>sm_bar()</code>, you can control the specific aesthetics of the error bar using <code>err.param</code>.</p>
 <ul>
 <li><code>err.params = list()</code> feeds arguments, such as <code>color</code>, to <code>geom_linerange()</code> to plot the error bar.</li>
@@ -866,7 +866,7 @@ retain the default appearance.
 <span id="cb185-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb185-14" tabindex="-1"></a>    <span class="at">show_mean =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb185-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb185-15" tabindex="-1"></a>    <span class="at">show_err =</span> <span class="cn">TRUE</span></span>
 <span id="cb185-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb185-16" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-157-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-156-1.png" width="307.2" /></p>
 <p>This can also be produced with <code>sm_slope_mean()</code>, which is easier. The error bar type can be selected using <code>errorbar_type</code>. The aesthetics of the error bars can be set using <code>err_width</code>.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb186-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> beforeAfter, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb186-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb186-2" tabindex="-1"></a>  <span class="fu">sm_slope_mean</span>(</span>
@@ -877,7 +877,7 @@ retain the default appearance.
 <span id="cb186-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb186-7" tabindex="-1"></a>    <span class="at">show_err =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb186-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb186-8" tabindex="-1"></a>    <span class="at">errorbar_type =</span> <span class="st">&quot;sd&quot;</span></span>
 <span id="cb186-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb186-9" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-158-1.png" width="307.2" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-157-1.png" width="307.2" /></p>
 </div>
 <div id="slope-chart-with-multiple-x-levels" class="section level3 hasAnchor" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Slope chart with multiple x levels<a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-x-levels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -902,7 +902,7 @@ retain the default appearance.
 <span id="cb188-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb188-9" tabindex="-1"></a>    <span class="at">show_mean =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb188-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb188-10" tabindex="-1"></a>    <span class="at">show_err =</span> <span class="cn">TRUE</span></span>
 <span id="cb188-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb188-11" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-160-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-159-1.png" width="364.8" /></p>
 <p>Now we have a mean plot with error bar representing standard deviation with a shadow of individual plots behind at 3 discrete x-levels.</p>
 <p>Here is the same plot created with <code>sm_slope_mean()</code>.</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb189-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
@@ -914,7 +914,7 @@ retain the default appearance.
 <span id="cb189-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb189-7" tabindex="-1"></a>    <span class="at">show_err =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb189-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb189-8" tabindex="-1"></a>    <span class="at">errorbar_type =</span> <span class="st">&quot;sd&quot;</span></span>
 <span id="cb189-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb189-9" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-161-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-160-1.png" width="364.8" /></p>
 </div>
 <div id="slope-chart-with-multiple-groups-and-x-levels" class="section level3 hasAnchor" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> Slope chart with multiple groups and x levels<a href="bar-graph-slope-chart-and-point-plot.html#slope-chart-with-multiple-groups-and-x-levels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -955,7 +955,7 @@ retain the default appearance.
 <span id="cb191-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb191-10" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb191-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb191-11" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;orange&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb191-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb191-12" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">16</span>, <span class="dv">17</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-163-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-162-1.png" width="364.8" /></p>
 <div class="rmdtip">
 <p>
 If you want the visualization functions to forget their defaults when
@@ -982,7 +982,7 @@ flexibly.
 <span id="cb192-15"><a href="bar-graph-slope-chart-and-point-plot.html#cb192-15" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb192-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb192-16" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)</span>
 <span id="cb192-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb192-17" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-165-1.png" width="412.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-164-1.png" width="412.8" /></p>
 <p>Next, we can also draw the mean plot for each group by setting <code>show_mean = TRUE</code>.</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb193-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df3, <span class="fu">aes</span>(</span>
 <span id="cb193-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb193-2" tabindex="-1"></a>  <span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> group,</span>
@@ -1002,7 +1002,7 @@ flexibly.
 <span id="cb193-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb193-16" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb193-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb193-17" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)</span>
 <span id="cb193-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb193-18" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-166-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-165-1.png" width="364.8" /></p>
 <p>Here, we see that the average line is across all presented data (from <code>Normal</code> and <code>Patients</code>). This is not what we wanted. To resolve this issue, set <code>many_groups = TRUE</code>, which then plots the average line for each group.</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb194-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df3, <span class="fu">aes</span>(</span>
 <span id="cb194-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb194-2" tabindex="-1"></a>  <span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> group,</span>
@@ -1025,7 +1025,7 @@ flexibly.
 <span id="cb194-19"><a href="bar-graph-slope-chart-and-point-plot.html#cb194-19" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb194-20"><a href="bar-graph-slope-chart-and-point-plot.html#cb194-20" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">10</span>)</span>
 <span id="cb194-21"><a href="bar-graph-slope-chart-and-point-plot.html#cb194-21" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-167-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-166-1.png" width="364.8" /></p>
 <p>This plot can appear quite complicated. The point of this subsection is to show the flexibility of <code>sm_slope()</code>, not necessarily to talk about my preferred practices of data visualization.</p>
 </div>
 </div>
@@ -1044,7 +1044,7 @@ flexibly.
 <span id="cb196-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb196-3" tabindex="-1"></a>  <span class="at">color =</span> Group, <span class="at">group =</span> Group</span>
 <span id="cb196-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb196-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
 <span id="cb196-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb196-5" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-169-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-168-1.png" width="336" /></p>
 <p>We can customise the colors as well in a standard way using <code>sm_color_manual()</code>. The default shape of the point is <code>16</code>, therefore it has no border.</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb197-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df1, <span class="fu">aes</span>(</span>
 <span id="cb197-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb197-2" tabindex="-1"></a>  <span class="at">x =</span> SF, <span class="at">y =</span> absBP,</span>
@@ -1052,7 +1052,7 @@ flexibly.
 <span id="cb197-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb197-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
 <span id="cb197-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb197-5" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>() <span class="sc">+</span></span>
 <span id="cb197-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb197-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-169-1.png" width="336" /></p>
 <p>However, we see that the position of the two plots is overlapped! Therefore, we cannot see where the error bar of the <code>darkred</code> plot (<code>Normal</code>) begins and where the <code>viridian</code> plot (<code>Amblyopia</code>) ends.</p>
 <p>This is where the generic variable <code>...</code> in <strong>smplot2</strong> comes in handy. You will need to <strong>dodge</strong> all components of a plot (error bar, point, line) from another plot’s entire components along the <code>x</code> axis. This can be done using the <code>position_dodge()</code> function. Otherwise, you might have to <code>dodge</code> one component by one separately.</p>
 <p>The argument <code>position_dodge(width = ...)</code> determines the size of the dodging distance between the plots.</p>
@@ -1062,7 +1062,7 @@ flexibly.
 <span id="cb198-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb198-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
 <span id="cb198-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb198-5" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb198-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb198-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-171-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-1.png" width="336" /></p>
 <div id="change-the-range-of-y-axis" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Change the range of y-axis<a href="bar-graph-slope-chart-and-point-plot.html#change-the-range-of-y-axis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are two functions that can be used to change the range of the y-axis: <code>scale_y_continuous()</code> and <code>coord_cartesian()</code>.</p>
@@ -1075,7 +1075,7 @@ flexibly.
 <span id="cb199-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb199-5" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.05</span>)) <span class="sc">+</span></span>
 <span id="cb199-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb199-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb199-7"><a href="bar-graph-slope-chart-and-point-plot.html#cb199-7" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.35</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-172-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-171-1.png" width="336" /></p>
 </div>
 <div id="data-with-more-than-two-groups" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Data with more than two groups<a href="bar-graph-slope-chart-and-point-plot.html#data-with-more-than-two-groups" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1103,7 +1103,7 @@ flexibly.
 <span id="cb203-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb203-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
 <span id="cb203-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb203-5" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>() <span class="sc">+</span></span>
 <span id="cb203-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb203-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>, <span class="st">&quot;skyblue&quot;</span>, <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-175-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-174-1.png" width="336" /></p>
 <p>We immediately see that the plots are noticeably overlapped. This becomes an issue if the user attempts to plot repeated-measures data (i.e., each participant measured across time) of multiple groups/condition in a single panel. Fortunately, we can resolve this issue by using <code>position_dodge()</code>.</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb204-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(</span>
 <span id="cb204-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb204-2" tabindex="-1"></a>  <span class="at">x =</span> SF, <span class="at">y =</span> absBP,</span>
@@ -1111,7 +1111,7 @@ flexibly.
 <span id="cb204-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb204-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
 <span id="cb204-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb204-5" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.08</span>)) <span class="sc">+</span></span>
 <span id="cb204-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb204-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>, <span class="st">&quot;skyblue&quot;</span>, <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-176-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-175-1.png" width="336" /></p>
 <p>By using the function <code>position_dodge()</code>, we can see each plot quite clearly.</p>
 <p>Following is the equivalent code but it only nudges the error bar because it does not take advantage of using a generic parameter <code>...</code> to control the aesthetics. Instead it uses <code>err.params = list(position = position_dodge(width = ...))</code>. So, the points are still overlapped.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb205-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(</span>
@@ -1120,7 +1120,7 @@ flexibly.
 <span id="cb205-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb205-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
 <span id="cb205-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb205-5" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(<span class="at">err.params =</span> <span class="fu">list</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.08</span>))) <span class="sc">+</span></span>
 <span id="cb205-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb205-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>, <span class="st">&quot;skyblue&quot;</span>, <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-177-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-176-1.png" width="336" /></p>
 <p>Notice that only the error bars have shifted, not the lines and points. We can nudge all components of the plot using <code>xxx.params</code>. These are:</p>
 <ul>
 <li><p><code>err.params</code> feeds arguments to <code>geom_linerange()</code> to plot the error bar with specified <code>color</code>, <code>size</code> etc.</p></li>
@@ -1140,7 +1140,7 @@ flexibly.
 <span id="cb206-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb206-8" tabindex="-1"></a>    <span class="at">avgLine.params =</span> <span class="fu">list</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.08</span>))</span>
 <span id="cb206-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb206-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb206-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb206-10" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>, <span class="st">&quot;skyblue&quot;</span>, <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-178-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-177-1.png" width="336" /></p>
 <p>Now that we know how convenient it is to use the generic parameter <code>...</code> to shift the plot’s position, lets use it to <code>position_dodge</code> and change the <code>size</code> of all components of the plots. Therefore, we will use <code>size</code> as a generic argument (<code>sm_pointplot(size = ...,)</code>).</p>
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb207-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df2, <span class="fu">aes</span>(</span>
 <span id="cb207-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb207-2" tabindex="-1"></a>  <span class="at">x =</span> SF, <span class="at">y =</span> absBP,</span>
@@ -1148,7 +1148,7 @@ flexibly.
 <span id="cb207-4"><a href="bar-graph-slope-chart-and-point-plot.html#cb207-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
 <span id="cb207-5"><a href="bar-graph-slope-chart-and-point-plot.html#cb207-5" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(<span class="at">size =</span> <span class="dv">1</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="fl">0.1</span>)) <span class="sc">+</span></span>
 <span id="cb207-6"><a href="bar-graph-slope-chart-and-point-plot.html#cb207-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>, <span class="st">&quot;skyblue&quot;</span>, <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-179-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-178-1.png" width="336" /></p>
 </div>
 <div id="point-plot-with-a-shadow-using-data-of-one-group" class="section level3 hasAnchor" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Point plot with a shadow using data of one group<a href="bar-graph-slope-chart-and-point-plot.html#point-plot-with-a-shadow-using-data-of-one-group" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1169,7 +1169,7 @@ flexibly.
 <span id="cb209-8"><a href="bar-graph-slope-chart-and-point-plot.html#cb209-8" tabindex="-1"></a>    <span class="at">show_shadow =</span> T</span>
 <span id="cb209-9"><a href="bar-graph-slope-chart-and-point-plot.html#cb209-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb209-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb209-10" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-181-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-180-1.png" width="336" /></p>
 <p>You can finely control the aesthetics of the shadow by using <code>line.params = list()</code> and <code>point.params = list()</code>. The appearance of the average points and lines are controlled with <code>avgLine.params</code> and <code>avgPoint.params</code>.</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb210-1" tabindex="-1"></a><span class="fu">ggplot</span>(df2a, <span class="fu">aes</span>(<span class="at">x =</span> SF, <span class="at">y =</span> absBP, <span class="at">color =</span> Group, <span class="at">group =</span> Group)) <span class="sc">+</span></span>
 <span id="cb210-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb210-2" tabindex="-1"></a>  <span class="fu">sm_pointplot</span>(</span>
@@ -1183,7 +1183,7 @@ flexibly.
 <span id="cb210-10"><a href="bar-graph-slope-chart-and-point-plot.html#cb210-10" tabindex="-1"></a>    <span class="at">show_shadow =</span> T</span>
 <span id="cb210-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb210-11" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb210-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb210-12" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-182-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-181-1.png" width="336" /></p>
 <p>Now it looks a lot better!</p>
 </div>
 <div id="point-plot-with-a-shadow-using-data-of-multiple-groups" class="section level3 hasAnchor" number="5.3.4">
@@ -1207,7 +1207,7 @@ flexibly.
 <span id="cb213-11"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-11" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
 <span id="cb213-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb213-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb213-13" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-184-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-183-1.png" width="336" /></p>
 <p>This is a point plot that includes everything we have learned thus far, such as <code>position_dodge()</code>, the importance of generic paramter <code>...</code>, inclusion of a shadow <code>show_shadow = T</code>, and using two <code>group</code> arguments (one for the average plot, one for the individual points for the shadow).</p>
 </div>
 <div id="adding-and-modifying-legends" class="section level3 hasAnchor" number="5.3.5">
@@ -1227,7 +1227,7 @@ flexibly.
 <span id="cb214-12"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-12" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
 <span id="cb214-13"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb214-14"><a href="bar-graph-slope-chart-and-point-plot.html#cb214-14" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-185-1.png" width="460.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-184-1.png" width="460.8" /></p>
 <p>We can move the legend to the topleft part of the plot that has most empty space using <code>theme(legend.position = ...)</code>. Also, the title of the legend can be removed with <code>theme(legend.title = element_blank</code>)</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-1" tabindex="-1"></a><span class="fu">ggplot</span>(df2b, <span class="fu">aes</span>(</span>
 <span id="cb215-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-2" tabindex="-1"></a>  <span class="at">x =</span> SF, <span class="at">y =</span> absBP,</span>
@@ -1247,7 +1247,7 @@ flexibly.
 <span id="cb215-16"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-16" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>, <span class="fl">0.80</span>), <span class="co"># position the legend&#39;s location</span></span>
 <span id="cb215-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-17" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb215-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb215-18" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-186-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-185-1.png" width="336" /></p>
 <p>Note that the legend includes horizontal and vertical lines around the plot. The vertical line represents the error bar, and the horizontal line represents the line that connects between the points at various x levels. The symbols in legend can be manually modified. In this case, I will remove the vertical error bar from the legend by writing <code>err.params = list(show.legend = FALSE)</code>.</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-1" tabindex="-1"></a><span class="fu">ggplot</span>(df2b, <span class="fu">aes</span>(</span>
 <span id="cb216-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-2" tabindex="-1"></a>  <span class="at">x =</span> SF, <span class="at">y =</span> absBP,</span>
@@ -1268,7 +1268,7 @@ flexibly.
 <span id="cb216-17"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-17" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.24</span>, <span class="fl">0.80</span>),</span>
 <span id="cb216-18"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-18" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_blank</span>()</span>
 <span id="cb216-19"><a href="bar-graph-slope-chart-and-point-plot.html#cb216-19" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-187-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-186-1.png" width="336" /></p>
 <p>You can also think about controlling the ratio of the figure when saving the figure. In this example, <code>base_height</code> and <code>base_width</code> are specifically controlled.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-1" tabindex="-1"></a><span class="fu">ggplot</span>(df2b, <span class="fu">aes</span>(</span>
 <span id="cb217-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-2" tabindex="-1"></a>  <span class="at">x =</span> SF, <span class="at">y =</span> absBP,</span>
@@ -1291,7 +1291,7 @@ flexibly.
 <span id="cb217-19"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-19" tabindex="-1"></a>  ) <span class="ot">-&gt;</span> pointplot</span>
 <span id="cb217-20"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-20" tabindex="-1"></a></span>
 <span id="cb217-21"><a href="bar-graph-slope-chart-and-point-plot.html#cb217-21" tabindex="-1"></a><span class="fu">print</span>(pointplot)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-188-1.png" width="384" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-187-1.png" width="384" /></p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="bar-graph-slope-chart-and-point-plot.html#cb218-1" tabindex="-1"></a><span class="fu">save_plot</span>(<span class="st">&quot;pointplot.png&quot;</span>, pointplot,</span>
 <span id="cb218-2"><a href="bar-graph-slope-chart-and-point-plot.html#cb218-2" tabindex="-1"></a>  <span class="at">base_height =</span> <span class="fl">2.8</span>,</span>
 <span id="cb218-3"><a href="bar-graph-slope-chart-and-point-plot.html#cb218-3" tabindex="-1"></a>  <span class="at">base_width =</span> <span class="dv">4</span></span>

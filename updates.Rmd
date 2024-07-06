@@ -13,17 +13,12 @@ knitr::include_graphics("smplot2_hex.png")
 
 ## Which sections to read
 
+If you are a newcomer, I recommend that you start reading from Chapter 2. 
+
 If you are a proficient R user, I suggest that you read Chapters 7 (sections 7.4-7.7), 11 and 12 because all other sections describe basics of R as well.
 
-Chapters 8-10 describe some introductory topics of data analysis that I often use in my research, and they have been written for the students that I supervise. Although the chapters might be useful for those in psychology and medicine, these do not discuss about data visualization. 
+Chapters 8-10 describe some introductory topics of data analysis that I ask my students to learn. They are not about data visualization per se. 
 
-If you are a **smplot** user, you can either use its tutorial website (https://www.smin95.com/dataviz0) and continue to use **smplot** or modify your codes so that it works with **smplot2**. If you decide to use **smplot2**, I suggest you that you delete **smplot**. Also, I suggest that you read Chapters 11 (especially the sub-section: How `...` parameter and `xxx.params` work) and 12 to understand the changes that have been made to the new package rather than to read the book from the beginning.
-
-```{r, eval = FALSE}
-remove.packages("smplot")
-```
-
-If you are a newcomer, then you can just start reading from the next chapter. 
 
 ## How to use this guide
 

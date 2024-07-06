@@ -500,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="how-...-and-xxx.params-arguments-work" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> How <code>...</code> and <code>xxx.params</code> arguments work<a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#how-...-and-xxx.params-arguments-work" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-403"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-402"></span>
 <img src="img/parameters.png" alt="smplot2's parameters" width="90%" />
 <p class="caption">
 Figure 11.1: smplot2’s parameters
@@ -549,7 +549,7 @@ Figure 11.1: smplot2’s parameters
 <span id="cb519-17"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb519-17" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Bar&#39;s default forgotten&quot;</span>) <span class="ot">-&gt;</span> p3</span>
 <span id="cb519-18"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb519-18" tabindex="-1"></a></span>
 <span id="cb519-19"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb519-19" tabindex="-1"></a><span class="fu">sm_put_together</span>(<span class="fu">list</span>(p1, p2, p3), <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">1</span>, <span class="at">tickRatio =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-405-1.png" width="921.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-404-1.png" width="921.6" /></p>
 <div class="rmdtip">
 <p>
 In the visualization functions of <em>smplot2</em>, argument for
@@ -571,7 +571,7 @@ retain the default appearance.
 <ul>
 <li><code>sm_color()</code> accepts the <strong>character string</strong> of the color name.</li>
 </ul>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-407"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-406"></span>
 <img src="img/color.png" alt="smplot2's color palette" width="85%" />
 <p class="caption">
 Figure 11.2: smplot2’s color palette
@@ -618,38 +618,38 @@ Figure 11.2: smplot2’s color palette
 <span id="cb532-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb532-2" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span></span>
 <span id="cb532-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb532-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>)</span>
 <span id="cb532-4"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb532-4" tabindex="-1"></a>p1</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-414-1.png" width="470.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-413-1.png" width="470.4" /></p>
 <p>We can incorporate <code>sm_hvgrid()</code>.</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb533-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_hvgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-415-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-414-1.png" width="480" /></p>
 <p>We can also remove <code>borders</code> and <code>legends</code> by setting them as <code>FALSE</code>.</p>
 <div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb534-1" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">sm_hvgrid</span>(<span class="at">borders =</span> <span class="cn">FALSE</span>, <span class="at">legends =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb534-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb534-2" tabindex="-1"></a>p2</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-416-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-415-1.png" width="336" /></p>
 <p>You can also apply smplot’s colors by using <code>scale_color_manual()</code>.</p>
 <div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb535-1" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">7</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-417-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-416-1.png" width="336" /></p>
 <p>We can also apply <code>sm_hgrid()</code>.</p>
 <div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb536-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_hgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-418-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-417-1.png" width="336" /></p>
 <p>Let’s try <code>sm_vgrid()</code>.</p>
 <div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb537-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_vgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-419-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-418-1.png" width="480" /></p>
 <p>You can remove the legend as shown below.</p>
 <div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb538-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_vgrid</span>(<span class="at">legends =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-420-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-419-1.png" width="336" /></p>
 <p><code>sm_classic()</code> looks very clean as well.</p>
 <div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb539-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_classic</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-421-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-420-1.png" width="336" /></p>
 <p>You can add a legend.</p>
 <div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb540-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_classic</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-422-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-421-1.png" width="480" /></p>
 <p>Another choice is <code>sm_minimal()</code>, which has no grids.</p>
 <div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb541-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_minimal</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-423-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-422-1.png" width="336" /></p>
 <p>You can choose to include the legend in <code>sm_minimal()</code>.</p>
 <div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb542-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_minimal</span>(<span class="at">legends =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-424-1.png" width="480" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-423-1.png" width="480" /></p>
 </div>
 <div id="correlation-plot---sm_statcorr-and-sm_corr_avgerr" class="section level2 hasAnchor" number="11.6">
 <h2><span class="header-section-number">11.6</span> Correlation plot - <code>sm_statCorr()</code> and <code>sm_corr_avgErr()</code><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot---sm_statcorr-and-sm_corr_avgerr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -657,7 +657,7 @@ Figure 11.2: smplot2’s color palette
 <div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb543-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
 <span id="cb543-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb543-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="fu">sm_color</span>(<span class="st">&quot;green&quot;</span>), <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)</span>
 <span id="cb543-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb543-3" tabindex="-1"></a>p1</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-425-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-424-1.png" width="336" /></p>
 <p>In the data frame <code>mtcars</code>, one column is for the x-axis (<code>drat</code>), another column is for y-axis (<code>mpg</code>). In short, the data frame structure is different to the one used to plot bar <code>sm_bar()</code>, <code>sm_boxplot()</code>, <code>sm_raincloud()</code> etc.</p>
 <p>There are two associated functions in <strong>smplot2</strong> with correlation.</p>
 <ul>
@@ -671,7 +671,7 @@ Figure 11.2: smplot2’s color palette
 </ul></li>
 </ul>
 <div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb544-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-426-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-425-1.png" width="336" /></p>
 <div id="sm_statcorr" class="section level3 hasAnchor" number="11.6.1">
 <h3><span class="header-section-number">11.6.1</span> <code>sm_statCorr()</code><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_statcorr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>sm_statCorr()</code> has various arguments.</p>
@@ -682,26 +682,26 @@ Figure 11.2: smplot2’s color palette
 <span id="cb545-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb545-2" tabindex="-1"></a>  <span class="at">color =</span> <span class="st">&quot;black&quot;</span>,</span>
 <span id="cb545-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb545-3" tabindex="-1"></a>  <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span></span>
 <span id="cb545-4"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb545-4" tabindex="-1"></a>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-427-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-426-1.png" width="336" /></p>
 <ul>
 <li><code>fullrange</code> controls whether the fitted line spans the entire length of the x-axis. If <code>fullrange = TRUE</code>, it will do so. If not, it will only span between the minimum and maximum x points of the dataset.</li>
 </ul>
 <div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb546-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>(<span class="at">fullrange =</span> T) <span class="sc">+</span></span>
 <span id="cb546-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb546-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-428-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-427-1.png" width="336" /></p>
 <div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb547-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>(<span class="at">fullrange =</span> F) <span class="sc">+</span></span>
 <span id="cb547-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb547-2" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-429-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-428-1.png" width="336" /></p>
 <ul>
 <li><code>corr_method</code> is the method of correlation test that is to be used. The default is set to the pearson correlation test (<code>corr_method = 'pearson'</code>).</li>
 </ul>
 <div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb548-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb548-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>(<span class="at">corr_method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-430-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-429-1.png" width="336" /></p>
 <ul>
 <li><code>separate_by</code> is the string that separates between the <code>R</code> (or <span class="math inline">\(R^2\)</span>) print and the <code>p</code> print.</li>
 </ul>
 <div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb549-1" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">sm_statCorr</span>(<span class="at">separate_by =</span> <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>, <span class="at">R2 =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-431-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-430-1.png" width="336" /></p>
 <ul>
 <li><code>label_x</code> and <code>label_y</code> controls the location of the statistical annotations. <code>text_size</code> controls their size.</li>
 </ul>
@@ -712,7 +712,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb550-5"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb550-5" tabindex="-1"></a>  ),</span>
 <span id="cb550-6"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb550-6" tabindex="-1"></a>  <span class="at">label_x =</span> <span class="dv">2</span>, <span class="at">label_y =</span> <span class="dv">0</span>, <span class="at">text_size =</span> <span class="dv">5</span>, <span class="at">R2 =</span> <span class="cn">TRUE</span></span>
 <span id="cb550-7"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb550-7" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-432-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-431-1.png" width="336" /></p>
 </div>
 <div id="sm_corr_avgerr" class="section level3 hasAnchor" number="11.6.2">
 <h3><span class="header-section-number">11.6.2</span> <code>sm_corr_avgErr()</code><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#sm_corr_avgerr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -725,7 +725,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb551-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb551-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;#0f993d&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb551-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb551-3" tabindex="-1"></a>  <span class="fu">sm_corr_avgErr</span>(<span class="at">data =</span> mtcars, <span class="at">x =</span> drat, <span class="at">y =</span> mpg) <span class="sc">+</span></span>
 <span id="cb551-4"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb551-4" tabindex="-1"></a>  <span class="fu">sm_hvgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-433-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-432-1.png" width="336" /></p>
 <ul>
 <li><p><code>point.params()</code> feeds arguments to <code>geom_point()</code> to set <code>color</code>, <code>alpha</code>, <code>size</code> etc for the average point.</p></li>
 <li><p><code>errv.params</code> feeds the arguments to <code>geom_errorbar()</code>, such as <code>color</code>, <code>size</code> and <code>width</code> etc, to plot the vertical (y-axis) error bar.</p></li>
@@ -746,7 +746,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb552-13"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb552-13" tabindex="-1"></a>    )</span>
 <span id="cb552-14"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb552-14" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb552-15"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb552-15" tabindex="-1"></a>  <span class="fu">sm_hvgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-434-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-433-1.png" width="336" /></p>
 <ul>
 <li><code>errorbar_type</code> sets the type of the error bar, such as standard error (<code>errorbar_type = 'se'</code> as default), standard deviation (<code>errorbar_type = 'sd'</code>) or 95% confidence interval (<code>errorbar_type = 'ci'</code>).</li>
 </ul>
@@ -757,7 +757,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb553-5"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb553-5" tabindex="-1"></a>    <span class="at">errorbar_type =</span> <span class="st">&quot;se&quot;</span></span>
 <span id="cb553-6"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb553-6" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb553-7"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb553-7" tabindex="-1"></a>  <span class="fu">sm_hvgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-435-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-434-1.png" width="336" /></p>
 <div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb554-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb554-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mtcars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> drat, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
 <span id="cb554-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb554-2" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">&quot;#0f993d&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb554-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb554-3" tabindex="-1"></a>  <span class="fu">sm_corr_avgErr</span>(</span>
@@ -765,7 +765,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb554-5"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb554-5" tabindex="-1"></a>    <span class="at">errorbar_type =</span> <span class="st">&quot;ci&quot;</span></span>
 <span id="cb554-6"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb554-6" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb554-7"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb554-7" tabindex="-1"></a>  <span class="fu">sm_hvgrid</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-436-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-435-1.png" width="336" /></p>
 </div>
 <div id="structure-of-data-frame" class="section level3 hasAnchor" number="11.6.3">
 <h3><span class="header-section-number">11.6.3</span> Structure of data frame<a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#structure-of-data-frame" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -821,7 +821,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb560-15"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb560-15" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Correlation plot&quot;</span>) <span class="sc">+</span></span>
 <span id="cb560-16"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb560-16" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Method 1&quot;</span>) <span class="sc">+</span></span>
 <span id="cb560-17"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb560-17" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Method 2&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-440-1.png" width="321.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-439-1.png" width="321.6" /></p>
 <div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb561-1" tabindex="-1"></a><span class="co"># bar graph using data frame &#39;df_general&#39;</span></span>
 <span id="cb561-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb561-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df_general, <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb561-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb561-3" tabindex="-1"></a>  <span class="at">x =</span> Method, <span class="at">y =</span> Value,</span>
@@ -830,7 +830,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb561-6"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb561-6" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
 <span id="cb561-7"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb561-7" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;crimson&quot;</span>, <span class="st">&quot;green&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb561-8"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb561-8" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-441-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-440-1.png" width="326.4" /></p>
 </div>
 <div id="correlation-plot-with-both-regression-and-reference-lines" class="section level3 hasAnchor" number="11.6.4">
 <h3><span class="header-section-number">11.6.4</span> Correlation plot with both regression and reference lines<a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#correlation-plot-with-both-regression-and-reference-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -854,7 +854,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb562-16"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb562-16" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Correlation plot&quot;</span>) <span class="sc">+</span></span>
 <span id="cb562-17"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb562-17" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Method 1&quot;</span>) <span class="sc">+</span></span>
 <span id="cb562-18"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb562-18" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Method 2&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-442-1.png" width="321.6" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-441-1.png" width="321.6" /></p>
 </div>
 </div>
 <div id="boxplot---sm_boxplot" class="section level2 hasAnchor" number="11.7">
@@ -878,7 +878,7 @@ Figure 11.2: smplot2’s color palette
 <p>Here is the default boxplot.</p>
 <div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb564-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb564-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb564-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-444-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-443-1.png" width="326.4" /></p>
 <ul>
 <li><p><code>point.param</code> sends arguments to <code>geom_point()</code> such as <code>color</code>, <code>size</code> and <code>alpha</code> to plot the jittered individual points.</p></li>
 <li><p><code>boxplot.param</code> sends arguments to <code>geom_boxplot()</code> such as <code>fill</code>, <code>color</code>, <code>width</code> and <code>notch</code> to plot the boxplot.</p></li>
@@ -886,7 +886,7 @@ Figure 11.2: smplot2’s color palette
 <p>In this example, <code>...</code> is fed into <code>point.params</code> to control the <code>color</code> of the points, but not of the boxplot because <code>boxplot.params</code> already has a <code>color</code> default (type <code>?sm_boxplot</code> to see the defaults).</p>
 <div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb565-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb565-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb565-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">color =</span> <span class="fu">sm_color</span>(<span class="st">&quot;darkred&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-445-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-444-1.png" width="326.4" /></p>
 <p>You can be quite flexible with the aesthetics.</p>
 <div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb566-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb566-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb566-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">point.params =</span> <span class="fu">list</span>(</span>
@@ -896,7 +896,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb566-6"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb566-6" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">&quot;white&quot;</span>,</span>
 <span id="cb566-7"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb566-7" tabindex="-1"></a>    <span class="at">alpha =</span> <span class="dv">1</span></span>
 <span id="cb566-8"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb566-8" tabindex="-1"></a>  ))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-446-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-445-1.png" width="326.4" /></p>
 <p>You can also change the border <code>color</code> of the boxplot and its <code>width</code> using <code>boxplot.params</code>.</p>
 <div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb567-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb567-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb567-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(</span>
@@ -909,18 +909,18 @@ Figure 11.2: smplot2’s color palette
 <span id="cb567-9"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb567-9" tabindex="-1"></a>      <span class="at">size =</span> <span class="fl">2.5</span></span>
 <span id="cb567-10"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb567-10" tabindex="-1"></a>    )</span>
 <span id="cb567-11"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb567-11" tabindex="-1"></a>  )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-447-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-446-1.png" width="326.4" /></p>
 <p><strong>Notice that the border color of the boxplot and the fact that outliers are not separately labeled are identical to the default settings because these are kept unless the user re-specifies them.</strong> Only the width of the boxplots and their filling colors have been changed because we have specified them by overwriting over the defaults.</p>
 <p>Now let’s apply different color for each Day.</p>
 <div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb568-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb568-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb568-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb568-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb568-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-448-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-447-1.png" width="326.4" /></p>
 <p>You can change the shape of the boxplot by setting <code>notch = TRUE</code> within <code>boxplot.params</code>.</p>
 <div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb569-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb569-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb569-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">boxplot.params =</span> <span class="fu">list</span>(<span class="at">notch =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb569-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb569-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-449-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-448-1.png" width="326.4" /></p>
 <p>A notched boxplot shows the confidence interval around the median (+/- 1.58 * interquartile range / sqrt(n)).</p>
 <ul>
 <li><p>The notches are used for group comparison.
@@ -930,19 +930,19 @@ Figure 11.2: smplot2’s color palette
 <div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb570-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb570-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb570-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
 <span id="cb570-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb570-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-450-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-449-1.png" width="326.4" /></p>
 <div id="plotting-individual-points-with-unique-colors-1" class="section level3 hasAnchor" number="11.7.1">
 <h3><span class="header-section-number">11.7.1</span> Plotting individual points with unique colors<a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>sm_boxplot()</code> can draw individual points with unique colors if you set <code>color = Subject</code> within <code>ggplot()</code>.</p>
 <div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb571-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Subject)) <span class="sc">+</span></span>
 <span id="cb571-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb571-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>() <span class="sc">+</span></span>
 <span id="cb571-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb571-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-451-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-450-1.png" width="326.4" /></p>
 <p>We can increase the size of the points.</p>
 <div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb572-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Subject)) <span class="sc">+</span></span>
 <span id="cb572-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb572-2" tabindex="-1"></a>  <span class="fu">sm_boxplot</span>(<span class="at">size =</span> <span class="fl">2.2</span>) <span class="sc">+</span></span>
 <span id="cb572-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb572-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-452-1.png" width="336" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-451-1.png" width="336" /></p>
 </div>
 </div>
 <div id="violin-plot---sm_violin" class="section level2 hasAnchor" number="11.8">
@@ -957,12 +957,12 @@ Figure 11.2: smplot2’s color palette
 </ul>
 <div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb573-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value)) <span class="sc">+</span></span>
 <span id="cb573-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb573-2" tabindex="-1"></a>  <span class="fu">sm_violin</span>()</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-453-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-452-1.png" width="326.4" /></p>
 <div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb574-1" tabindex="-1"></a><span class="co"># a violin plot with different colored points and lines</span></span>
 <span id="cb574-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb574-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb574-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb574-3" tabindex="-1"></a>  <span class="fu">sm_violin</span>() <span class="sc">+</span></span>
 <span id="cb574-4"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb574-4" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-454-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-453-1.png" width="326.4" /></p>
 <p>You can specify the aesthetics of <code>sm_violin()</code> using <code>point.params</code>, <code>err.params</code> and <code>violin.params</code>.</p>
 <ul>
 <li><p><code>point.params</code> feeds the arguments to <code>geom_point()</code>, such as <code>color</code>, <code>alpha</code>, etc, to plot the individual points.</p></li>
@@ -980,7 +980,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb575-7"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb575-7" tabindex="-1"></a>    <span class="at">size =</span> <span class="fl">1.2</span></span>
 <span id="cb575-8"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb575-8" tabindex="-1"></a>  )) <span class="sc">+</span></span>
 <span id="cb575-9"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb575-9" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">3</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-455-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-454-1.png" width="326.4" /></p>
 <ul>
 <li><p><code>violin.params</code> feeds the arguments to <code>geom_violin()</code>, such as <code>color</code> and <code>fill</code>, to plot the violin.</p></li>
 <li><p><code>point_jitter_width</code> lets you control the width of the jitter of the individual points.</p></li>
@@ -988,14 +988,14 @@ Figure 11.2: smplot2’s color palette
 <div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb576-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb576-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb576-2" tabindex="-1"></a>  <span class="fu">sm_violin</span>(<span class="at">point_jitter_width =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
 <span id="cb576-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb576-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-456-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-455-1.png" width="326.4" /></p>
 <ul>
 <li><code>points = FALSE</code> removes all the individual points.</li>
 </ul>
 <div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb577-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb577-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb577-2" tabindex="-1"></a>  <span class="fu">sm_violin</span>(<span class="at">points =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb577-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb577-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-457-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-456-1.png" width="326.4" /></p>
 <div id="plotting-individual-points-with-unique-colors-2" class="section level3 hasAnchor" number="11.8.1">
 <h3><span class="header-section-number">11.8.1</span> Plotting individual points with unique colors<a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Set <code>color = Subject</code> to plot individual points with unique colors.</p>
@@ -1005,7 +1005,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb578-4"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb578-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
 <span id="cb578-5"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb578-5" tabindex="-1"></a>  <span class="fu">sm_violin</span>(<span class="at">point.params =</span> <span class="fu">list</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
 <span id="cb578-6"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb578-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-458-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-457-1.png" width="326.4" /></p>
 </div>
 </div>
 <div id="bar-plot---sm_bar" class="section level2 hasAnchor" number="11.9">
@@ -1018,17 +1018,17 @@ Figure 11.2: smplot2’s color palette
 <div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb579-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb579-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb579-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
 <span id="cb579-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb579-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-459-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-458-1.png" width="326.4" /></p>
 <p>In this case, the error bar represents <strong>standard error</strong>. If you prefer to show <strong>standard deviation</strong>, then you should set <code>errorbar_type  = 'sd'</code> in <code>sm_bar()</code>.</p>
 <div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb580-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb580-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb580-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">errorbar_type =</span> <span class="st">&quot;sd&quot;</span>) <span class="sc">+</span></span>
 <span id="cb580-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb580-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-460-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-459-1.png" width="326.4" /></p>
 <p>95% confidence interval can also be displayed with <code>errorbar_type  = 'ci'</code>.</p>
 <div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb581-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb581-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb581-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">errorbar_type =</span> <span class="st">&quot;ci&quot;</span>) <span class="sc">+</span></span>
 <span id="cb581-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb581-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-461-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-460-1.png" width="326.4" /></p>
 <p>Jitter’s width can be controlled using <code>point_jitter_width</code>.</p>
 <div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb582-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb582-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb582-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(</span>
@@ -1036,7 +1036,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb582-4"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb582-4" tabindex="-1"></a>    <span class="at">point_jitter_width =</span> <span class="fl">0.2</span></span>
 <span id="cb582-5"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb582-5" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb582-6"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb582-6" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-462-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-461-1.png" width="326.4" /></p>
 <p>You can also adjust different parameters of the bar graph using <code>bar.params</code>, <code>err.params</code> and <code>point.params</code>.</p>
 <ul>
 <li><code>bar.params = list()</code> sends arguments, such as <code>color</code>, <code>fill</code>, <code>width</code> and <code>alpha</code> to <code>geom_bar()</code> so that a bar is plotted.</li>
@@ -1044,7 +1044,7 @@ Figure 11.2: smplot2’s color palette
 <div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb583-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Day)) <span class="sc">+</span></span>
 <span id="cb583-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb583-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>(<span class="at">bar.params =</span> <span class="fu">list</span>(<span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
 <span id="cb583-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb583-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-463-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-462-1.png" width="364.8" /></p>
 <ul>
 <li><code>err.params = list()</code> sends arguments, such as <code>color</code>, to <code>geom_linerange()</code> so that an error bar is plotted.</li>
 </ul>
@@ -1058,7 +1058,7 @@ Figure 11.2: smplot2’s color palette
 <span id="cb584-8"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb584-8" tabindex="-1"></a>    )</span>
 <span id="cb584-9"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb584-9" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb584-10"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb584-10" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-464-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-463-1.png" width="364.8" /></p>
 <ul>
 <li><code>point.params = list()</code> feeds arguments, such as <code>color</code>, <code>fill</code>, and <code>alpha</code> to <code>geom_point()</code> to so that individual points are plotted.</li>
 </ul>
@@ -1076,14 +1076,14 @@ Figure 11.2: smplot2’s color palette
 <span id="cb585-12"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb585-12" tabindex="-1"></a>    )</span>
 <span id="cb585-13"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb585-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb585-14"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb585-14" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-465-1.png" width="364.8" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-464-1.png" width="364.8" /></p>
 <div id="plotting-individual-points-with-unique-colors-3" class="section level3 hasAnchor" number="11.9.1">
 <h3><span class="header-section-number">11.9.1</span> Plotting individual points with unique colors<a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#plotting-individual-points-with-unique-colors-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As before with <code>sm_boxplot()</code> and <code>sm_violin()</code>, to plot individual points with unique colors, set <code>color = Subject</code>.</p>
 <div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb586-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Day, <span class="at">y =</span> Value, <span class="at">color =</span> Subject)) <span class="sc">+</span></span>
 <span id="cb586-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb586-2" tabindex="-1"></a>  <span class="fu">sm_bar</span>() <span class="sc">+</span></span>
 <span id="cb586-3"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb586-3" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-466-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-465-1.png" width="326.4" /></p>
 <p><code>sm_bar()</code> can also print distinct box colors across distinct x levels. This requires the defaults of <code>bar.params</code> to be reset. Therefore, it needs to be written as <code>bar.params = list()</code> by setting <code>forget = TRUE</code>, which is an argument that makes the function forget its default when <code>list()</code> is called.</p>
 <div class="rmdtip">
 <p>
@@ -1103,7 +1103,7 @@ flexibly.
 <span id="cb587-8"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb587-8" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb587-9"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb587-9" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">sm_palette</span>(<span class="dv">16</span>)) <span class="sc">+</span></span>
 <span id="cb587-10"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb587-10" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-468-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-467-1.png" width="326.4" /></p>
 <p>To set one color across all points, you need to remove <code>color = Subject</code>. <code>point.params</code> can be specified to control the aesthetics of the points</p>
 <div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb588-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb588-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb588-2" tabindex="-1"></a>  <span class="at">x =</span> Day, <span class="at">y =</span> Value,</span>
@@ -1118,7 +1118,7 @@ flexibly.
 <span id="cb588-11"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb588-11" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
 <span id="cb588-12"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb588-12" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb588-13"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb588-13" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-469-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-468-1.png" width="326.4" /></p>
 <p>This is an example where the bar and points have unique colors per group.</p>
 <div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb589-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> df, <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
 <span id="cb589-2"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb589-2" tabindex="-1"></a>  <span class="at">x =</span> Day, <span class="at">y =</span> Value,</span>
@@ -1134,7 +1134,7 @@ flexibly.
 <span id="cb589-12"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb589-12" tabindex="-1"></a>    <span class="at">forget =</span> <span class="cn">TRUE</span></span>
 <span id="cb589-13"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb589-13" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb589-14"><a href="themes-colors-correlations-boxplots-violins-and-bars-part-1.html#cb589-14" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">sm_color</span>(<span class="st">&quot;blue&quot;</span>, <span class="st">&quot;darkred&quot;</span>, <span class="st">&quot;viridian&quot;</span>))</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-470-1.png" width="326.4" /></p>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-469-1.png" width="326.4" /></p>
 
 </div>
 </div>
