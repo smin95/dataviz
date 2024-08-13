@@ -71,9 +71,9 @@ This is probably the most substantial difference between **smplot** and **smplot
 
 Users can modify the default appearance of the visualization functions from the *smplot2* package in **two different ways**:
 
-- First, they can modify one component of a graph while keeping the rest of the default the same (second panel of the figure). This involves users to re-specify one aspect of the appearance, such as the bar's alpha level here.
+- First, they can modify one component of a graph while keeping the rest of the default the same (second panel of the figure). This involves re-specifying one aspect of the appearance, such as the bar's alpha level here.
 
-- Second, they can reset the defaults by setting `forget = TRUE` and calling `list()` for a certain plot component, such as `bar.params` of the bar plot (third panel). This will ensure that the defaults of the plot component (i.e., bar) are forgotten, so users should re-specify each part of the appearance of the bar. This allows users to be more flexible with the aesthetics.
+- Second, they can reset the defaults by setting `forget = TRUE` and calling `list()` for a certain plot component, such as `bar.params` of the bar plot (third panel). This will ensure that the defaults of the plot component (i.e., bar) are forgotten, so users should re-specify each part of the appearance of the bar. This allows users to be more flexible with the aesthetics. **[Same as previous version of smplot2]**
 
 ```{r, echo=FALSE}
 library(smplot2)
