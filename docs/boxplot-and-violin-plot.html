@@ -480,9 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 4</span> Boxplot and Violin Plot<a href="boxplot-and-violin-plot.html#boxplot-and-violin-plot" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="citing-the-guide-and-the-package-1" class="section level3 unnumbered hasAnchor">
 <h3>Citing the Guide and the Package<a href="boxplot-and-violin-plot.html#citing-the-guide-and-the-package-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If you have used <strong>smplot2</strong> for your visualization routines, please cite the paper below:</p>
+<p>If you have used <strong>smplot2</strong> for your visualization routines, please cite one of the papers below:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Min, S. H.</strong>, &amp; Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. <strong><em>Frontiers in Genetics</em></strong>, 12, 802894. <a href="https://www.smin95.com/pubs/smplot2021.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html"><strong>[codes]</strong></a></li>
+<li><p><strong>Min, S. H.</strong> (2024). Visualization of composite plots in R using a programmatic approach and <em>smplot2</em>. <strong><em>Advances in Methods and Practices in Psychological Science</em></strong>, 7(3). <a href="https://www.smin95.com/pubs/ampps2024.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/smplot2doc"><strong>[codes]</strong></a></p></li>
+<li><p><strong>Min, S. H.</strong>, &amp; Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. <strong><em>Frontiers in Genetics</em></strong>, 12, 802894. <a href="https://www.smin95.com/pubs/smplot2021.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html"><strong>[codes]</strong></a></p></li>
 </ol>
 </div>
 <div id="getting-started-1" class="section level3 unnumbered hasAnchor">
@@ -519,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 - For more information, type <code>?read_csv()</code>.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="boxplot-and-violin-plot.html#cb106-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Rows: 90 Columns: 3
-## ── Column specification ────────────────────────────────────────────────────────────
+## ── Column specification ────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
 ## chr (2): Subject, Day
 ## dbl (1): Value
@@ -587,8 +588,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `linewidth` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-## generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-87-1.png" width="685.714285714286" /></p>
 <ul>
 <li>The boxplot is more informative than bar graph.</li>

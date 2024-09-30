@@ -482,7 +482,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Citing the Guide and the Package<a href="creating-a-composite-figure-by-subplotting.html#citing-the-guide-and-the-package-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If you have used <strong>smplot2</strong> for your composite visualizations, please cite the paper below:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Min, S. H.</strong>, &amp; Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. <strong><em>Frontiers in Genetics</em></strong>, 12, 802894. <a href="https://www.smin95.com/pubs/smplot2021.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html"><strong>[codes]</strong></a></li>
+<li><strong>Min, S. H.</strong> (2024). Visualization of composite plots in R using a programmatic approach and <em>smplot2</em>. <strong><em>Advances in Methods and Practices in Psychological Science</em></strong>, 7(3). <a href="https://www.smin95.com/pubs/ampps2024.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/smplot2doc"><strong>[codes]</strong></a></li>
 </ol>
 </div>
 <div id="getting-started-4" class="section level3 unnumbered hasAnchor">
@@ -656,8 +656,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## # ℹ 110 more rows</code></pre>
 <p>The output of <code>group_by()</code> is a new data frame (it might appear exactly the same as before, ex. <strong>df</strong>). However, it will respond differently to <code>summarise()</code> because the rows of the data frame are now grouped based on day and time, as we have specified.</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="creating-a-composite-figure-by-subplotting.html#cb287-1" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">Average_Cbratio =</span> <span class="fu">mean</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time Average_Cbratio
@@ -687,8 +686,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As we have seen before, we see that <code>standard_error</code> has been calculated across all subjects, day and time. This is not so useful. We should use <code>summarise()</code> with <code>group_by()</code> so that each standard error could be for each <code>Day</code> and <code>Time</code>.</p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="creating-a-composite-figure-by-subplotting.html#cb292-1" tabindex="-1"></a>by_day_time <span class="ot">&lt;-</span> <span class="fu">group_by</span>(df, Day, Time)</span>
 <span id="cb292-2"><a href="creating-a-composite-figure-by-subplotting.html#cb292-2" tabindex="-1"></a><span class="fu">summarise</span>(by_day_time, <span class="at">standard_error =</span> <span class="fu">sm_stdErr</span>(Cbratio))</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups` argument.</code></pre>
 <pre><code>## # A tibble: 12 × 3
 ## # Groups:   Day [2]
 ##    Day    Time standard_error
@@ -711,8 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb295-2"><a href="creating-a-composite-figure-by-subplotting.html#cb295-2" tabindex="-1"></a>  <span class="at">Average =</span> <span class="fu">mean</span>(Cbratio),</span>
 <span id="cb295-3"><a href="creating-a-composite-figure-by-subplotting.html#cb295-3" tabindex="-1"></a>  <span class="at">StdError =</span> <span class="fu">sm_stdErr</span>(Cbratio)</span>
 <span id="cb295-4"><a href="creating-a-composite-figure-by-subplotting.html#cb295-4" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups`
-## argument.</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;Day&#39;. You can override using the `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="creating-a-composite-figure-by-subplotting.html#cb297-1" tabindex="-1"></a><span class="fu">print</span>(by_day_time1)</span></code></pre></div>
 <pre><code>## # A tibble: 12 × 4
 ## # Groups:   Day [2]

@@ -480,9 +480,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 6</span> Raincloud and Forest Plots<a href="raincloud-and-forest-plots.html#raincloud-and-forest-plots" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="citing-the-guide-and-the-package-3" class="section level3 unnumbered hasAnchor">
 <h3>Citing the Guide and the Package<a href="raincloud-and-forest-plots.html#citing-the-guide-and-the-package-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If you have used <strong>smplot2</strong> for your visualization routines, please cite the paper below:</p>
+<p>If you have used <strong>smplot2</strong> for your visualization routines, please cite one of the papers below:</p>
 <ol style="list-style-type: decimal">
-<li><strong>Min, S. H.</strong>, &amp; Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. <strong><em>Frontiers in Genetics</em></strong>, 12, 802894. <a href="https://www.smin95.com/pubs/smplot2021.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html"><strong>[codes]</strong></a></li>
+<li><p><strong>Min, S. H.</strong> (2024). Visualization of composite plots in R using a programmatic approach and <em>smplot2</em>. <strong><em>Advances in Methods and Practices in Psychological Science</em></strong>, 7(3). <a href="https://www.smin95.com/pubs/ampps2024.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/smplot2doc"><strong>[codes]</strong></a></p></li>
+<li><p><strong>Min, S. H.</strong>, &amp; Zhou, J. (2021). smplot: an R package for easy and elegant data visualization. <strong><em>Frontiers in Genetics</em></strong>, 12, 802894. <a href="https://www.smin95.com/pubs/smplot2021.pdf"><strong>[pdf]</strong></a> <a href="https://www.smin95.com/dataviz0/recreating-figures-from-front.-genetics-2021.html"><strong>[codes]</strong></a></p></li>
 </ol>
 </div>
 <div id="getting-started-3" class="section level3 unnumbered hasAnchor">
@@ -538,11 +539,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that in <strong>smplot</strong>, <code>scale_x_continous()</code> was used to modify the label at each x level. In <strong>smplot2</strong>, <code>scale_x_discrete()</code> is used instead because <code>sm_raincloud()</code> keeps the x-axis <code>discrete</code> rather than forcibly converting it to becoming <code>continuous</code>.</p>
 <p><code>scale_x_discrete()</code> is used here because the data frame that is used to plot the data has categorical x variables as shown below.</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="raincloud-and-forest-plots.html#cb225-1" tabindex="-1"></a>df<span class="sc">$</span>Group</span></code></pre></div>
-<pre><code>##  [1] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
-##  [9] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
-## [17] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;
-## [25] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;
-## [33] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;</code></pre>
+<pre><code>##  [1] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
+## [10] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
+## [19] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;
+## [28] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;
+## [37] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;</code></pre>
 <p>This shows that <code>df$Group</code> is discrete and has two unique levels.</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="raincloud-and-forest-plots.html#cb227-1" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Group)</span></code></pre></div>
 <pre><code>## [1] &quot;Group 1&quot; &quot;Group 2&quot;</code></pre>
