@@ -160,4 +160,4 @@ If you spot any mistakes in the guide, please pull-request on [Github](https://g
 This tutorial is under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/). I am the sole creator of **smplot2**.
 
 ## About the author {-}
-I am Assistant Professor in Dept. Ophthalmology and Optometry at Wenzhou Medical University. In June 2021, I received my PhD at McGill University under the supervision of Dr. Robert F. Hess. A self-taught programmer, I am a developer of R packages, such as *ggsem*, *smplot2* and *smCSF*. More details, such as my publications, are on my website: https://www.smin95.com. 
+I am Associate Professor in the Department of Psychology at Zhejiang Sci-Tech University in Hangzhou, China. My experimental research focuses on binocular vision and neural plasticity. A self-taught programmer, I am a developer of R packages, such as *ggsem*, *smplot2* and *smCSF*. More details, such as my publications, are on my website: https://www.smin95.com. 

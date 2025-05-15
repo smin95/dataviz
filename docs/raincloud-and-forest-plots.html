@@ -539,10 +539,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Note that in <strong>smplot</strong>, <code>scale_x_continous()</code> was used to modify the label at each x level. In <strong>smplot2</strong>, <code>scale_x_discrete()</code> is used instead because <code>sm_raincloud()</code> keeps the x-axis <code>discrete</code> rather than forcibly converting it to becoming <code>continuous</code>.</p>
 <p><code>scale_x_discrete()</code> is used here because the data frame that is used to plot the data has categorical x variables as shown below.</p>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="raincloud-and-forest-plots.html#cb225-1" tabindex="-1"></a>df<span class="sc">$</span>Group</span></code></pre></div>
-<pre><code>##  [1] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
-## [11] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
-## [21] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;
-## [31] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;</code></pre>
+<pre><code>##  [1] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot;
+## [12] &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 1&quot; &quot;Group 2&quot; &quot;Group 2&quot;
+## [23] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;
+## [34] &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot; &quot;Group 2&quot;</code></pre>
 <p>This shows that <code>df$Group</code> is discrete and has two unique levels.</p>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="raincloud-and-forest-plots.html#cb227-1" tabindex="-1"></a><span class="fu">unique</span>(df<span class="sc">$</span>Group)</span></code></pre></div>
 <pre><code>## [1] &quot;Group 1&quot; &quot;Group 2&quot;</code></pre>
